@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+body {
+  background: #fafafa;
+  color: #171717;
+  font-family: var(--font-geist-sans);
+}
+
+/* Tesla-Premium Light Theme */
+.glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.premium-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1.0, 0.32, 1);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.premium-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transition: 0.6s;
+}
+
+.premium-button:hover::before {
+  left: 250%;
+}
+
+.premium-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 
+              0 10px 10px -5px rgb(0 0 0 / 0.04);
+}
+
+.section-heading {
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  color: #111111;
+}
+
+.card-hover {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+}
+
+/* Light theme accents */
+.text-premium {
+  color: #111111;
+}
+
+.text-secondary {
+  color: #525252;
+}
+
+.leopard-bg {
+  background-image: 
+    radial-gradient(circle at 25% 30%, rgba(234, 179, 8, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 75% 70%, rgba(234, 179, 8, 0.04) 1.5px, transparent 1.5px);
+  background-size: 8px 8px, 12px 12px;
+}
+
+/* SupplierAdvisor-style text formatting */
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+p {
+  line-height: 1.7;
+  color: #404040;
+}
+
+strong, b {
+  font-weight: 700;
+  color: #111111;
+}
