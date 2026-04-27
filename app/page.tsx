@@ -14,12 +14,10 @@ const statsData = [
 
 function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     let start = 0;
     const duration = 1500;
     const increment = end / (duration / 16);
-
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -29,10 +27,8 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
         setCount(Math.floor(start * 10) / 10);
       }
     }, 16);
-
     return () => clearInterval(timer);
   }, [end]);
-
   return (
     <span className="tabular-nums">
       {count}
@@ -47,39 +43,35 @@ export default function Home() {
       {/* HERO - Light Theme with Dotted Pattern + Text moved up 100px */}
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#fafafa]">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] bg-[length:4px_4px]" />
-        
+       
         <div className="relative z-10 max-w-5xl px-6 text-center mt-[-100px]">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 text-xs tracking-[3px] mb-6 text-[#525252]">
             EST. 2018 • KWAZULU-NATAL • AFRICA
           </div>
-
           <h1 className="section-heading mb-6 text-balance text-black">
             ONE GROUP.<br />EIGHT PILLARS.<br />INFINITE IMPACT.
           </h1>
-
           <p className="max-w-[620px] mx-auto text-2xl md:text-3xl text-[#525252] font-light tracking-tight mb-12">
             Regenerative. Sovereign. Ethical.<br />The future of Africa is being built right now.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="#pillars" 
+            <Link
+              href="#pillars"
               className="premium-button group inline-flex items-center justify-center gap-4 bg-black text-white px-10 py-4 rounded-full text-lg font-semibold"
             >
               EXPLORE THE 8 PILLARS
               <ArrowRight className="group-hover:translate-x-1 transition" />
             </Link>
-            
-            <Link 
-              href="/connect" 
+           
+            <Link
+              href="/connect"
               className="premium-button inline-flex items-center justify-center gap-4 border border-black/20 hover:bg-black/5 px-10 py-4 rounded-full text-lg font-semibold text-black"
             >
               LAUNCH CONNECT
             </Link>
           </div>
         </div>
-
-        <motion.div 
+        <motion.div
           animate={{ y: [0, 12, 0] }}
           transition={{ duration: 2.2, repeat: Infinity }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-[#525252] text-xs tracking-[2px]"
@@ -108,7 +100,6 @@ export default function Home() {
             <h2 className="section-heading text-black">The Eight Pillars of<br />African Sovereignty</h2>
           </div>
         </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {companies.map((company, index) => (
             <motion.div
@@ -119,11 +110,11 @@ export default function Home() {
               transition={{ delay: index * 0.04 }}
               whileHover={{ y: -4 }}
             >
-              <Link 
+              <Link
                 href={`/${company.slug}`}
                 className="group block h-full rounded-3xl border border-black/10 p-8 hover:border-black/20 transition-all card-hover bg-white"
               >
-                <div 
+                <div
                   className="w-16 h-16 rounded-2xl mb-8 flex items-center justify-center"
                   style={{ backgroundColor: `${company.color}15`, color: company.color }}
                 >
@@ -136,22 +127,19 @@ export default function Home() {
                   {company.icon === "Heart" && <Heart size={36} />}
                   {company.icon === "Feather" && <Feather size={36} />}
                 </div>
-
-                <div 
-                  className="font-semibold text-4xl tracking-tighter mb-2 group-hover:text-black transition-colors" 
+                <div
+                  className="font-semibold text-4xl tracking-tighter mb-2 group-hover:text-black transition-colors"
                   style={{ color: company.color }}
                 >
                   {company.name}
                 </div>
-                
+               
                 <div className="text-xl text-[#404040] mb-6 pr-4 leading-tight">
                   {company.tagline}
                 </div>
-
                 <div className="text-sm text-[#525252] line-clamp-3 mb-auto">
                   {company.description}
                 </div>
-
                 <div className="mt-8 flex items-center text-xs uppercase tracking-[1.5px] text-[#737373] group-hover:text-black transition-colors">
                   ENTER THE PILLAR <ArrowRight className="ml-2 w-3 h-3" />
                 </div>
@@ -166,17 +154,16 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="uppercase tracking-[3px] text-xs mb-4 text-emerald-600">CONTINENT-WIDE</div>
           <h2 className="section-heading mb-8 text-black">Africa is not a country.<br />It is our canvas.</h2>
-          
+         
           <p className="max-w-2xl mx-auto text-xl text-[#525252] mb-12">
-            From the savannas of KwaZulu-Natal to the markets of Lagos and the highlands of Ethiopia — 
+            From the savannas of KwaZulu-Natal to the markets of Lagos and the highlands of Ethiopia —
             Big Five operates with deep local roots and continental ambition.
           </p>
-
-          <Link 
-            href="/africa" 
+          <Link
+            href="/africa"
             className="mt-12 inline-flex items-center gap-3 text-sm uppercase tracking-[2px] border-b border-black/30 pb-1 hover:border-black group text-black"
           >
-            DISCOVER OUR AFRICAN FOOTPRINT 
+            DISCOVER OUR AFRICAN FOOTPRINT
             <ArrowRight className="group-hover:translate-x-1 transition" />
           </Link>
         </div>
@@ -188,10 +175,9 @@ export default function Home() {
           <div className="text-xs tracking-[3px] text-[#525252]">MEASURABLE. VERIFIABLE. ON-CHAIN.</div>
           <h3 className="text-5xl font-semibold tracking-tighter mt-4 text-black">Real Impact.<br />Real Numbers.</h3>
         </div>
-
         <div className="grid md:grid-cols-4 gap-6">
           {statsData.map((stat, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -208,24 +194,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* FINAL CTA - "Ready to build the future of Africa with us?" NOW WHITE */}
       <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-xs tracking-[3px] text-emerald-600 mb-4">THE TIME IS NOW</div>
           <h2 className="section-heading mb-8 text-white">Ready to build the future of Africa with us?</h2>
-          
+         
           <p className="text-xl text-white/70 mb-10">
             Whether you are a government, investor, farmer, or conscious consumer — there is a place for you in the Big Five ecosystem.
           </p>
-
-          <Link 
-            href="/connect" 
+          <Link
+            href="/connect"
             className="premium-button mx-auto inline-flex items-center justify-center gap-4 bg-white text-black text-xl px-16 py-5 rounded-full font-semibold shadow-xl"
           >
             LAUNCH CONNECT — SUPPLIERADVISOR®
             <ArrowRight className="w-6 h-6" />
           </Link>
-          
+         
           <div className="mt-6 text-xs text-white/40">No credit card required • Instant access for verified partners</div>
         </div>
       </section>

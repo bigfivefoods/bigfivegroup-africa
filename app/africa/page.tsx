@@ -1,214 +1,234 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Globe } from "lucide-react";
 
 export default function AfricaPage() {
-  const regions = [
-    {
-      name: "Southern Africa",
-      color: "#10b981",
-      challenge: "Southern Africa faces severe drought, high youth unemployment, and inequality. Climate change is reducing agricultural output while youth unemployment exceeds 40% in several countries (World Bank, 2024; UNDP Africa Report, 2025).",
-      countries: [
-        { name: "South Africa", flag: "🇿🇦", focus: "Headquarters • Agri • Leadership Academy", challenge: "High inequality and youth unemployment (Stats SA, 2025)" },
-        { name: "Botswana", flag: "🇧🇼", focus: "Leadership Development • Conservation", challenge: "Heavy reliance on diamond mining with limited diversification (African Development Bank, 2024)" },
-        { name: "Namibia", flag: "🇳🇦", focus: "Foundation • Arid Agriculture", challenge: "Severe water scarcity and desertification (UNDP Namibia, 2025)" },
-        { name: "Zambia", flag: "🇿🇲", focus: "Direct Micro-Hubs • Mining Communities", challenge: "High debt levels and copper price volatility (World Bank, 2024)" },
-        { name: "Mozambique", flag: "🇲🇿", focus: "Foods • Coastal Trade Corridors", challenge: "Climate vulnerability and insurgency in the north (UNDP, 2025)" },
-      ]
-    },
-    {
-      name: "East Africa",
-      color: "#06b6d4",
-      challenge: "East Africa is experiencing rapid population growth, climate-induced droughts, and food insecurity. Over 20 million people faced acute food insecurity in 2024 (FAO, 2025; IGAD Climate Prediction Centre).",
-      countries: [
-        { name: "Kenya", flag: "🇰🇪", focus: "Connect Platform • Youth Leadership", challenge: "High youth unemployment and rising cost of living (Kenya National Bureau of Statistics, 2025)" },
-        { name: "Ethiopia", flag: "🇪🇹", focus: "Foundation Impact • Regenerative Agri", challenge: "Conflict recovery and recurring droughts (World Bank, 2024)" },
-        { name: "Tanzania", flag: "🇹🇿", focus: "Agri Expansion • Coastal Hubs", challenge: "Limited access to finance for smallholder farmers (African Development Bank, 2025)" },
-        { name: "Uganda", flag: "🇺🇬", focus: "Connect • Youth Entrepreneurship", challenge: "High population growth outpacing job creation (UNDP Uganda, 2025)" },
-        { name: "Rwanda", flag: "🇷🇼", focus: "Tribal Tech • Cultural Innovation", challenge: "Limited domestic market size and export dependency (World Bank, 2024)" },
-      ]
-    },
-    {
-      name: "West Africa",
-      color: "#f59e0b",
-      challenge: "West Africa faces high population growth, coastal erosion, and insecurity. Nigeria alone accounts for over 40% of Africa’s food-insecure population (FAO, 2025; ECOWAS, 2024).",
-      countries: [
-        { name: "Nigeria", flag: "🇳🇬", focus: "Foods • Direct Distribution • Markets", challenge: "Insecurity, inflation, and naira devaluation (Central Bank of Nigeria, 2025)" },
-        { name: "Ghana", flag: "🇬🇭", focus: "Access • Government Partnerships", challenge: "Debt crisis and energy sector challenges (IMF, 2024)" },
-      ]
-    },
-    {
-      name: "Central Africa",
-      color: "#3b82f6",
-      challenge: "Central Africa struggles with political instability, poor infrastructure, and underutilised mineral wealth. The Democratic Republic of Congo holds 70% of the world’s coltan but remains one of the poorest nations (World Bank, 2024; UNEP, 2025).",
-      countries: [
-        { name: "DR Congo", flag: "🇨🇩", focus: "Access • Mineral Value Chains", challenge: "Conflict, poor governance, and resource mismanagement (UN Security Council, 2025)" },
-      ]
-    }
-  ];
-
   return (
     <div className="overflow-hidden bg-[#fafafa]">
-      {/* HERO - Full Height + Text moved up 100px */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center bg-black overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] bg-[length:3px_3px]" />
+      {/* HERO - New African Hero Image */}
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/africa-hero.jpg')" }}
+        />
         
-        <div className="relative z-10 max-w-5xl px-6 text-center mt-[-100px]">
-          <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-white/20 text-xs tracking-[3px] mb-6 text-white/70">
-            ONE CONTINENT • ONE VISION
-          </div>
-
+        {/* Dotted Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-15" />
+        
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/35" />
+        
+        <div className="relative z-10 max-w-4xl px-6 text-center mt-[-80px]">
+          <div className="text-[#4ade80] text-xs tracking-[4px] mb-6">CONTINENT-WIDE PRESENCE</div>
+          
           <h1 className="text-white text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-8">
-            Africa.<br />Our Home.<br />Our Future.
+            BIG FIVE GROUP<br />AFRICA
           </h1>
-
-          <p className="max-w-2xl mx-auto text-2xl text-white/80 font-light tracking-tight mb-12">
-            From the savannas of KwaZulu-Natal to the markets of Lagos and the highlands of Ethiopia — 
-            Big Five Group is building the infrastructure of African sovereignty.
+          
+          <p className="max-w-3xl mx-auto text-2xl text-white/95 font-light tracking-tight mb-12">
+            From the Cape to Cairo — building Africa’s future across 13 nations.
           </p>
-
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="#footprint" 
-              className="premium-button inline-flex items-center justify-center gap-3 bg-white text-black px-10 py-4 rounded-full text-lg font-semibold"
-            >
-              OUR CONTINENTAL FOOTPRINT
+            <Link href="#regions" className="premium-button inline-flex items-center justify-center gap-3 bg-white text-black px-10 py-4 rounded-full text-lg font-semibold">
+              EXPLORE OUR FOOTPRINT
             </Link>
-            <Link 
-              href="#vision" 
-              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10"
-            >
-              THE AFRICA WE ARE BUILDING
+            <Link href="/connect" className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10">
+              PARTNER WITH US
             </Link>
           </div>
-        </div>
-
-        <div className="absolute bottom-12 text-white/50 text-xs tracking-[2px] flex flex-col items-center">
-          SCROLL TO EXPLORE AFRICA
-          <div className="w-px h-10 bg-white/20 mt-2" />
         </div>
       </section>
 
-      {/* OUR CONTINENTAL FOOTPRINT - GROUPED BY REGION */}
-      <section id="footprint" className="max-w-6xl mx-auto px-6 py-24">
+      {/* REGIONS */}
+      <section id="regions" className="max-w-6xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <div className="text-xs tracking-[3px] text-emerald-600 mb-4">13 NATIONS • ONE ECOSYSTEM</div>
-          <h2 className="text-5xl font-semibold tracking-tighter text-black">Our Continental Footprint</h2>
-          <p className="max-w-2xl mx-auto mt-4 text-xl text-[#525252]">
+          <h2 className="text-5xl font-semibold tracking-tighter text-black mb-6">Our Continental Footprint</h2>
+          <p className="max-w-2xl mx-auto text-xl text-[#525252]">
             Big Five Group operates with deep roots and full presence across the African continent.
           </p>
         </div>
 
-        {regions.map((region, regionIndex) => (
-          <div key={regionIndex} className="mb-20 last:mb-0">
-            {/* Region Header + Challenge */}
-            <div className="mb-10">
-              <div className="flex items-center gap-3 mb-4">
-                <div 
-                  className="w-3 h-3 rounded-full" 
-                  style={{ backgroundColor: region.color }}
-                />
-                <h3 className="text-3xl font-semibold tracking-tight text-black">{region.name}</h3>
-              </div>
-              <p className="max-w-4xl text-lg text-[#404040] leading-relaxed">
-                {region.challenge}
-              </p>
+        <div className="space-y-20">
+          {/* Southern Africa */}
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <h3 className="text-4xl font-semibold tracking-tighter text-black">Southern Africa</h3>
             </div>
 
-            {/* Country Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {region.countries.map((country, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: (regionIndex * 5 + index) * 0.03 }}
-                  className="group bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all flex flex-col"
-                >
-                  <div className="flex items-start gap-4 mb-6">
-                    <span className="text-4xl mt-1">{country.flag}</span>
-                    <div>
-                      <div className="text-2xl font-semibold tracking-tight text-black group-hover:text-black transition">
-                        {country.name}
-                      </div>
-                      <div className="text-sm text-[#525252] mt-1">
-                        {country.focus}
-                      </div>
-                    </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {[
+                { name: "South Africa", flag: "ZA" },
+                { name: "Namibia", flag: "NA" },
+                { name: "Botswana", flag: "BW" },
+                { name: "Zimbabwe", flag: "ZW" },
+                { name: "Zambia", flag: "ZM" },
+                { name: "Mozambique", flag: "MZ" }
+              ].map((country, i) => (
+                <div key={i} className="bg-white border border-black/10 rounded-3xl p-8 flex flex-col">
+                  <div className="flex items-center gap-4 mb-3">
+                    <Image 
+                      src={`https://flagcdn.com/w80/${country.flag.toLowerCase()}.png`} 
+                      alt={country.name} 
+                      width={40} 
+                      height={28} 
+                      className="rounded-sm border border-black/10 object-cover"
+                    />
+                    <div className="font-semibold text-2xl text-black">{country.name}</div>
                   </div>
-
-                  <div className="mt-auto pt-6 border-t border-black/10">
-                    <div className="text-xs text-[#737373] mb-1">KEY CHALLENGE</div>
-                    <div className="text-sm text-[#404040] leading-snug">
-                      {country.challenge}
-                    </div>
-                  </div>
-                </motion.div>
+                  <div className="text-sm text-[#525252] mb-4">Active operations • Regional hub</div>
+                  
+                  <p className="text-xs text-[#525252] leading-snug">
+                    South Africa faces acute food insecurity affecting 13.5 million people due to 32% unemployment, extreme inequality, and climate change reducing maize yields by up to 20%. Load-shedding disrupts supply chains while rising food prices hit the poor hardest. Rural smallholders lack access to finance and markets. (Source: Stats SA 2024; World Bank South Africa Economic Update 2024; FAO State of Food Security 2024)
+                  </p>
+                </div>
               ))}
             </div>
-          </div>
-        ))}
-      </section>
 
-      {/* THE CHALLENGES WE ARE SOLVING */}
-      <section className="bg-white py-24 border-y border-black/10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16">
-            <div>
-              <div className="text-xs tracking-[3px] text-rose-600 mb-4">THE REALITY</div>
-              <h3 className="text-5xl font-semibold tracking-tighter text-black mb-8">The Challenges Africa Faces</h3>
-              
-              <ul className="space-y-6 text-lg text-[#404040]">
-                <li className="flex gap-4"><span className="text-rose-600 mt-1">•</span> Over 60% of smallholder farmers lack reliable market access</li>
-                <li className="flex gap-4"><span className="text-rose-600 mt-1">•</span> Youth unemployment rates exceeding 40% in many countries</li>
-                <li className="flex gap-4"><span className="text-rose-600 mt-1">•</span> Billions lost annually to corruption in public procurement</li>
-                <li className="flex gap-4"><span className="text-rose-600 mt-1">•</span> Climate change threatening food security across the continent</li>
-                <li className="flex gap-4"><span className="text-rose-600 mt-1">•</span> Fragmented supply chains keeping value outside African hands</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="text-xs tracking-[3px] text-emerald-600 mb-4">OUR RESPONSE</div>
-              <h3 className="text-5xl font-semibold tracking-tighter text-black mb-8">How Big Five is Responding</h3>
-              
-              <ul className="space-y-6 text-lg text-[#404040]">
-                <li className="flex gap-4"><span className="text-emerald-600 mt-1">•</span> Direct market access eliminating middlemen across 8 pillars</li>
-                <li className="flex gap-4"><span className="text-emerald-600 mt-1">•</span> 20+ jobs created per micro-hub in underserved communities</li>
-                <li className="flex gap-4"><span className="text-emerald-600 mt-1">•</span> Transparent, on-chain public procurement reducing corruption</li>
-                <li className="flex gap-4"><span className="text-emerald-600 mt-1">•</span> Regenerative agriculture building climate resilience</li>
-                <li className="flex gap-4"><span className="text-emerald-600 mt-1">•</span> Super-Cube® leadership developing the next generation of African leaders</li>
-              </ul>
+            {/* Challenges & Big Five Response */}
+            <div className="bg-white border border-black/10 rounded-3xl p-10">
+              <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                  <div className="text-xs tracking-[2px] text-emerald-600 mb-3">THE CHALLENGE</div>
+                  <h4 className="text-2xl font-semibold tracking-tight text-black mb-4">Southern Africa faces acute water scarcity, climate-induced droughts, and high inequality.</h4>
+                  <p className="text-[#525252] leading-relaxed">
+                    The region is experiencing its worst drought in 40 years, threatening food security for over 45 million people (World Bank, 2024; IPCC AR6, 2023). Rural communities and smallholder farmers are disproportionately affected, with limited access to markets and finance.
+                  </p>
+                </div>
+                <div>
+                  <div className="text-xs tracking-[2px] text-emerald-600 mb-3">HOW BIG FIVE HELPS</div>
+                  <h4 className="text-2xl font-semibold tracking-tight text-black mb-4">We are built for this moment.</h4>
+                  <p className="text-[#525252] leading-relaxed">
+                    Big Five Agri delivers regenerative farming solutions and climate-resilient seeds. Big Five Foods provides fortified nutrition at scale. Big Five Connect unlocks government funding and on-chain finance for farmers. Big Five Direct gives smallholders direct market access, bypassing exploitative middlemen.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* THE AFRICA WE ARE BUILDING */}
-      <section id="vision" className="py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="text-xs tracking-[3px] text-emerald-600 mb-4">AFRICA 2035</div>
-          <h2 className="text-5xl font-semibold tracking-tighter text-black mb-8">The Africa We Are Building</h2>
-          
-          <div className="max-w-3xl mx-auto text-xl text-[#404040] space-y-6">
-            <p>An Africa where every farmer has direct access to premium markets.<br />Where every young person has the tools to lead.<br />Where governments procure with full transparency.<br />Where the wealth of the continent stays in African hands.</p>
-            <p className="font-semibold text-black">This is not a dream. It is the inevitable outcome of the Eight Pillars working together.</p>
+          {/* East Africa */}
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <h3 className="text-4xl font-semibold tracking-tighter text-black">East Africa</h3>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {[
+                { name: "Kenya", flag: "KE" },
+                { name: "Tanzania", flag: "TZ" },
+                { name: "Uganda", flag: "UG" },
+                { name: "Ethiopia", flag: "ET" },
+                { name: "Rwanda", flag: "RW" }
+              ].map((country, i) => (
+                <div key={i} className="bg-white border border-black/10 rounded-3xl p-8 flex flex-col">
+                  <div className="flex items-center gap-4 mb-3">
+                    <Image 
+                      src={`https://flagcdn.com/w80/${country.flag.toLowerCase()}.png`} 
+                      alt={country.name} 
+                      width={40} 
+                      height={28} 
+                      className="rounded-sm border border-black/10 object-cover"
+                    />
+                    <div className="font-semibold text-2xl text-black">{country.name}</div>
+                  </div>
+                  <div className="text-sm text-[#525252] mb-4">Active operations • Growing presence</div>
+                  
+                  <p className="text-xs text-[#525252] leading-snug">
+                    Kenya battles recurrent droughts in ASAL regions, locust invasions, and 30-40% post-harvest losses, leaving 4.4 million people food insecure in 2024. Youth unemployment and limited smallholder finance worsen the crisis. (Source: FAO 2024; Kenya National Drought Management Authority 2024; WFP Hunger Map 2024)
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Challenges & Big Five Response */}
+            <div className="bg-white border border-black/10 rounded-3xl p-10">
+              <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                  <div className="text-xs tracking-[2px] text-emerald-600 mb-3">THE CHALLENGE</div>
+                  <h4 className="text-2xl font-semibold tracking-tight text-black mb-4">East Africa battles recurring climate shocks, food insecurity, and youth unemployment.</h4>
+                  <p className="text-[#525252] leading-relaxed">
+                    Over 50 million people face acute food insecurity due to droughts, floods, and locust invasions (FAO, 2024; UNDP Human Development Report, 2023). Rapid population growth has created a youth bulge with limited formal employment opportunities.
+                  </p>
+                </div>
+                <div>
+                  <div className="text-xs tracking-[2px] text-emerald-600 mb-3">HOW BIG FIVE HELPS</div>
+                  <h4 className="text-2xl font-semibold tracking-tight text-black mb-4">We turn crisis into opportunity.</h4>
+                  <p className="text-[#525252] leading-relaxed">
+                    Big Five Agri scales climate-smart regenerative farming across the Rift Valley. Big Five Foods delivers 73.9% more nutritious meals to school feeding programmes. Big Five Leadership trains the next generation of African entrepreneurs through our Super-Cube® model. Big Five Connect provides instant access to funding for youth-led agribusinesses.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-12">
-            <Link href="/" className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-10 py-4 rounded-full text-lg font-semibold">EXPLORE THE EIGHT PILLARS <ArrowRight /></Link>
+          {/* West Africa */}
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <h3 className="text-4xl font-semibold tracking-tighter text-black">West Africa</h3>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {[
+                { name: "Nigeria", flag: "NG" },
+                { name: "Ghana", flag: "GH" },
+                { name: "Senegal", flag: "SN" },
+                { name: "Côte d'Ivoire", flag: "CI" }
+              ].map((country, i) => (
+                <div key={i} className="bg-white border border-black/10 rounded-3xl p-8 flex flex-col">
+                  <div className="flex items-center gap-4 mb-3">
+                    <Image 
+                      src={`https://flagcdn.com/w80/${country.flag.toLowerCase()}.png`} 
+                      alt={country.name} 
+                      width={40} 
+                      height={28} 
+                      className="rounded-sm border border-black/10 object-cover"
+                    />
+                    <div className="font-semibold text-2xl text-black">{country.name}</div>
+                  </div>
+                  <div className="text-sm text-[#525252] mb-4">Active operations • Strategic markets</div>
+                  
+                  <p className="text-xs text-[#525252] leading-snug">
+                    Nigeria faces severe food insecurity affecting 26 million people due to Boko Haram insurgency, farmer-herder conflicts, flooding, and 40%+ food inflation from naira devaluation. Poor infrastructure causes massive post-harvest losses. (Source: WFP Nigeria 2024; FAO 2024; World Bank 2024)
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Challenges & Big Five Response */}
+            <div className="bg-white border border-black/10 rounded-3xl p-10">
+              <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                  <div className="text-xs tracking-[2px] text-emerald-600 mb-3">THE CHALLENGE</div>
+                  <h4 className="text-2xl font-semibold tracking-tight text-black mb-4">West Africa faces food inflation, infrastructure gaps, and a massive youth population.</h4>
+                  <p className="text-[#525252] leading-relaxed">
+                    Food prices have risen over 40% since 2020, pushing millions into poverty (World Bank, 2024; ECOWAS Regional Report, 2024). Poor logistics and limited cold-chain infrastructure cause massive post-harvest losses, while 60% of the population is under 25.
+                  </p>
+                </div>
+                <div>
+                  <div className="text-xs tracking-[2px] text-emerald-600 mb-3">HOW BIG FIVE HELPS</div>
+                  <h4 className="text-2xl font-semibold tracking-tight text-black mb-4">We build resilient supply chains.</h4>
+                  <p className="text-[#525252] leading-relaxed">
+                    Big Five Direct creates transparent, efficient routes from farm to market. Big Five Foods produces affordable fortified staples at scale. Big Five Agri introduces climate-resilient crops and regenerative practices. Big Five Connect gives small businesses and cooperatives instant access to working capital and government support programmes.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section className="bg-black py-20 text-center px-6">
+      <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
-          <div className="text-[#fbbf24] text-xs tracking-[3px] mb-4">THE TIME IS NOW</div>
-          <h3 className="text-white text-4xl font-semibold tracking-tighter mb-8">Ready to build the future of Africa with us?</h3>
-          <Link href="/connect" className="premium-button inline-flex items-center justify-center gap-3 bg-white text-black px-10 py-4 rounded-full text-lg font-semibold">LAUNCH CONNECT — SUPPLIERADVISOR®</Link>
+          <h2 className="text-white text-5xl font-semibold tracking-tighter mb-8">Let’s build Africa together</h2>
+          <Link href="/connect" className="premium-button inline-flex items-center justify-center gap-3 bg-white text-black px-10 py-4 rounded-full text-lg font-semibold">
+            START A CONVERSATION
+          </Link>
         </div>
       </section>
     </div>
