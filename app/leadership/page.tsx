@@ -10,6 +10,7 @@ export default function LeadershipPage() {
     {
       name: "Choices",
       icon: "/choices-icon.png",
+      color: "#ef4444", // Red
       quote: "“The history of free man is never written by chance, but by choice, their choice.” — Dwight D. Eisenhower",
       overview: "The Choices construct focuses on moral values, decision-making intelligence, judgement, and risk-taking. Grounded in choice theory, it equips leaders to evaluate options consistently and choose actions that serve humanity. In Africa, where corruption, poverty, and rapid change create constant high-stakes decisions, Super-Cube® develops ethical judgement and calculated risk-taking — critical because poor choices destroy trust and sustainable business networks.",
       courseOverview: "This programme develops moral decision-making intelligence. Learners master identifying the components of moral problems, understanding corruption drivers, and applying proven ethical frameworks (Utilitarian, Rights, Justice, Common Good, Virtue principles).",
@@ -26,6 +27,7 @@ export default function LeadershipPage() {
     {
       name: "Principles",
       icon: "/principles-icon.png",
+      color: "#a855f7", // Purple
       quote: "“You must be the change you wish to see in the world.” — Mahatma Gandhi",
       overview: "The Principles construct provides the foundation of ethics, governance, context, and standards. It draws from principle theory and is deeply rooted in Ubuntu (“I am because we are”) and Buber’s I-Thou philosophy of mutual respect. In Africa’s complex FMCG environment, where corruption and institutional weaknesses are prevalent, this construct ensures leaders act with integrity and accountability.",
       courseOverview: "Leaders learn that principles are natural, impersonal laws that govern consequences. The course focuses on aligning personal and organisational values with ethical governance and building strong codes of conduct.",
@@ -42,6 +44,7 @@ export default function LeadershipPage() {
     {
       name: "Mental",
       icon: "/mental-icon.png",
+      color: "#f97316", // Orange
       quote: "“Imagination is more important than knowledge. Memory is past. It's finite. Vision is future. It's infinite.” — Albert Einstein",
       overview: "The Mental construct develops cognitive intelligence, strategic thinking, problem-solving, vision, and continuous learning. Supported by cognition theory, it enables leaders to process complexity and innovate. Africa faces multidimensional issues — population growth, infrastructure gaps, climate shocks — and a severe skills shortage despite abundant talent.",
       courseOverview: "This module builds advanced cognitive intelligence through critical, lateral, inductive and deductive thinking, combined with personal study methodology and learning style optimisation.",
@@ -58,6 +61,7 @@ export default function LeadershipPage() {
     {
       name: "Emotional",
       icon: "/emotional-icon.png",
+      color: "#22c55e", // Green
       quote: "“One of the most difficult things to give away is kindness, for its often returned.” — Mark Ortman",
       overview: "The Emotional construct focuses on emotional intelligence, empathy, motivation, and social skills. Based on the four-branch ability model, it develops the ability to perceive, use, understand, and manage emotions. Leadership in Africa is highly relational; teams and communities thrive on trust and connection.",
       courseOverview: "Participants develop deep emotional intelligence across self-awareness, self-regulation, motivation, empathy and social skills for stronger relationships and leadership impact.",
@@ -73,6 +77,7 @@ export default function LeadershipPage() {
     {
       name: "Physical",
       icon: "/physical-icon.png",
+      color: "#3b82f6", // Blue
       quote: "“Take care of your body, its the only place you have to live.” — Jim Rohn",
       overview: "The Physical construct emphasises bodily well-being, energy management, fitness, nutrition, and resilience. It is grounded in the Wheel of Wellness theory. African leaders operate under extreme pressure from rapid growth and resource constraints. Super-Cube® develops the physical foundation needed to prevent burnout and sustain long-term impact.",
       courseOverview: "This programme explores wellness models and the discipline required to maintain peak physical and mental performance through practical stress management and balanced lifestyle design.",
@@ -88,6 +93,7 @@ export default function LeadershipPage() {
     {
       name: "Spiritual",
       icon: "/spiritual-icon.png",
+      color: "#1e40af", // Dark Blue
       quote: "“Example is not the main thing in influencing people, it is the only thing.” — Albert Schweitzer",
       overview: "The Spiritual construct integrates purpose, meaning, integrity, faith, and spiritual intelligence. It acts as the conduit connecting all other dimensions and aligns personal purpose with a greater “why”. Rooted in Ubuntu and I-Thou philosophy, it gives leaders authentic motivation and ethical depth.",
       courseOverview: "The Spiritual construct integrates purpose, meaning, integrity and higher consciousness, connecting all other dimensions and aligning daily actions with a greater “why”.",
@@ -173,7 +179,7 @@ export default function LeadershipPage() {
           </p>
         </div>
 
-        {/* 6 Dimensions */}
+        {/* 6 Dimensions with Dynamic Colors */}
         <div className="space-y-12">
           {dimensions.map((dim, index) => (
             <motion.div 
@@ -185,6 +191,7 @@ export default function LeadershipPage() {
               className="bg-white border border-black/10 rounded-3xl p-10 hover:border-black/20 transition-all"
             >
               <div className="flex flex-col md:flex-row gap-8">
+                {/* Icon + Title */}
                 <div className="flex-shrink-0 text-center md:text-left">
                   <Image 
                     src={dim.icon} 
@@ -194,41 +201,57 @@ export default function LeadershipPage() {
                     className="mx-auto md:mx-0 mb-4"
                   />
                   <h3 className="text-4xl font-semibold tracking-tight text-black">{dim.name}</h3>
-                  <div className="mt-3 inline-block bg-[#fbbf24] text-black text-sm font-semibold px-4 py-1 rounded-full">
+                  
+                  {/* Big Call-out Card for Improvement % */}
+                  <div 
+                    className="mt-4 inline-flex items-center justify-center px-6 py-3 rounded-2xl text-white text-xl font-bold shadow-lg"
+                    style={{ backgroundColor: dim.color }}
+                  >
                     +{dim.improvement} Improvement
                   </div>
                 </div>
 
+                {/* Content */}
                 <div className="flex-1">
                   <p className="italic text-[#525252] mb-6">“{dim.quote}”</p>
                   
                   <div className="mb-6">
-                    <div className="text-sm font-semibold text-[#fbbf24] mb-2">CONSTRUCT OVERVIEW</div>
+                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
+                      CONSTRUCT OVERVIEW
+                    </div>
                     <p className="text-[#404040] leading-relaxed">{dim.overview}</p>
                   </div>
 
                   <div className="mb-6">
-                    <div className="text-sm font-semibold text-[#fbbf24] mb-2">COURSE OVERVIEW</div>
+                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
+                      COURSE OVERVIEW
+                    </div>
                     <p className="text-[#404040] leading-relaxed">{dim.courseOverview}</p>
                   </div>
 
                   <div className="mb-6">
-                    <div className="text-sm font-semibold text-[#fbbf24] mb-3">KEY SKILLS TO BE DEVELOPED</div>
+                    <div className="text-sm font-semibold mb-3" style={{ color: dim.color }}>
+                      KEY SKILLS TO BE DEVELOPED
+                    </div>
                     <ul className="grid md:grid-cols-2 gap-x-6 gap-y-2 text-[#404040]">
                       {dim.skills.map((skill, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <span className="text-[#fbbf24] mt-1">•</span> {skill}
+                          <span style={{ color: dim.color }}>•</span> {skill}
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   <div className="pt-6 border-t border-black/10">
-                    <div className="text-sm font-semibold text-[#fbbf24] mb-2">COURSE RESULTS</div>
+                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
+                      COURSE RESULTS
+                    </div>
                     <p className="text-[#171717] font-medium mb-4">{dim.name} improved by {dim.improvement}</p>
                     <p className="text-[#404040] leading-relaxed mb-6">{dim.impact}</p>
 
-                    <div className="text-sm font-semibold text-[#fbbf24] mb-2">WHY THIS IS POWERFUL IN THE AFRICAN CONTEXT</div>
+                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
+                      WHY THIS IS POWERFUL IN THE AFRICAN CONTEXT
+                    </div>
                     <p className="text-[#404040] leading-relaxed">{dim.impact}</p>
                   </div>
                 </div>
@@ -289,7 +312,7 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* DOWNLOAD THE RESEARCH (NEW SECTION) */}
+      {/* DOWNLOAD THE RESEARCH */}
       <section className="py-24 bg-white border-y border-black/10">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">PEER-REVIEWED RESEARCH</div>
@@ -301,7 +324,8 @@ export default function LeadershipPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a 
-              href="#" 
+              href="/research/sajems-2022.pdf" 
+              download
               className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
             >
               <Download className="w-5 h-5" />
@@ -309,7 +333,8 @@ export default function LeadershipPage() {
             </a>
             
             <a 
-              href="#" 
+              href="/research/jcm-2022.pdf" 
+              download
               className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
             >
               <Download className="w-5 h-5" />
@@ -325,10 +350,6 @@ export default function LeadershipPage() {
             View full profile & publications on ResearchGate 
             <ExternalLink className="w-5 h-5" />
           </a>
-
-          <p className="mt-8 text-sm text-[#737373]">
-            PDFs will be available for download once uploaded to the public folder.
-          </p>
         </div>
       </section>
 
