@@ -40,20 +40,26 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
 export default function Home() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
-      {/* HERO - Light Theme with Dotted Pattern + Text moved up 100px */}
+      {/* HERO */}
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#fafafa]">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] bg-[length:4px_4px]" />
        
-        <div className="relative z-10 max-w-5xl px-6 text-center mt-[-100px]">
+        <div className="relative z-10 max-w-5xl px-6 text-center mt-[-20px]">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 text-xs tracking-[3px] mb-6 text-[#525252]">
             EST. 2018 • KWAZULU-NATAL • AFRICA
           </div>
-          <h1 className="section-heading mb-6 text-balance text-black">
+
+          <h1 
+            className="text-black text-[78px] md:text-[96px] font-black tracking-[-0.065em] leading-[0.92] mb-6"
+            style={{ fontFamily: "Inter, system-ui, sans-serif" }}
+          >
             ONE GROUP.<br />EIGHT PILLARS.<br />INFINITE IMPACT.
           </h1>
+
           <p className="max-w-[620px] mx-auto text-2xl md:text-3xl text-[#525252] font-light tracking-tight mb-12">
             Regenerative. Sovereign. Ethical.<br />The future of Africa is being built right now.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#pillars"
@@ -71,6 +77,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
         <motion.div
           animate={{ y: [0, 12, 0] }}
           transition={{ duration: 2.2, repeat: Infinity }}
@@ -169,7 +176,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* IMPACT STATS - Animated + Improved Readability */}
+      {/* IMPACT STATS */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
           <div className="text-xs tracking-[3px] text-[#525252]">MEASURABLE. VERIFIABLE. ON-CHAIN.</div>
@@ -194,7 +201,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA - "Ready to build the future of Africa with us?" NOW WHITE */}
+      {/* FINAL CTA */}
       <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-xs tracking-[3px] text-emerald-600 mb-4">THE TIME IS NOW</div>

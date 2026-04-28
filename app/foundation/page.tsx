@@ -47,9 +47,14 @@ export default function FoundationPage() {
 
   return (
     <div className="overflow-hidden bg-[#fafafa]">
-      {/* HERO */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black">
+      {/* HERO - Updated with foundation.jpg */}
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/foundation.jpg')" }}
+        />
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-10" />
+        <div className="absolute inset-0 bg-black/35" />
         
         <div className="relative z-10 max-w-4xl px-6 text-center mt-[-180px]">
           <div className="inline-flex items-center gap-3 mb-6">
@@ -298,7 +303,6 @@ export default function FoundationPage() {
                 <div className="font-mono text-sm text-[#fbbf24] mb-2">SDG {goal.number}</div>
                 <h4 className="text-2xl font-semibold tracking-tight text-black mb-4">{goal.title}</h4>
                 <p className="text-[#525252] mb-6 leading-relaxed">{goal.desc}</p>
-                {/* REMOVED "Learn more →" */}
               </motion.div>
             ))}
           </div>

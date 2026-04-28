@@ -107,10 +107,12 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button - NOW OPENS SUPPLIERADVISOR IN NEW TAB */}
         <div className="hidden md:block">
           <Link 
-            href="/connect" 
+            href="https://www.supplieradvisor.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="premium-button inline-flex items-center gap-3 bg-black text-white px-8 py-3 rounded-full text-sm font-semibold tracking-wide hover:bg-[#111]"
           >
             LAUNCH CONNECT
@@ -168,7 +170,9 @@ export default function Navbar() {
 
               <div className="pt-4 border-t border-black/10">
                 <Link 
-                  href="/connect" 
+                  href="https://www.supplieradvisor.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)} 
                   className="premium-button w-full inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-2xl text-base font-semibold"
                 >

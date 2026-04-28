@@ -19,7 +19,7 @@ export default function TribalPage() {
         <div className="absolute inset-0 bg-black/65" />
         <div className="absolute inset-0 bg-[radial-gradient(#fbbf24_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-20" />
 
-        <div className="relative z-10 max-w-4xl px-6 text-center mt-[-100px]">
+        <div className="relative z-10 max-w-4xl px-6 text-center mt-[-40px]">
           <div className="inline-flex items-center gap-3 mb-8">
             <div className="w-px h-8 bg-[#fbbf24]" />
             <div className="uppercase tracking-[4px] text-xs text-[#fbbf24]">INKOSI • ISIZWE • ISIKHATHI</div>
@@ -30,7 +30,7 @@ export default function TribalPage() {
             THE KINGDOM RISES.<br />BIG FIVE STANDS WITH IT.
           </h1>
 
-          <p className="max-w-2xl mx-auto text-2xl text-white/90 font-light tracking-tight mb-12">
+          <p className="max-w-2xl mx-auto text-2xl text-white font-light tracking-tight mb-12">
             With deep respect and unwavering commitment, Big Five Group aligns with the Zulu Kingdom — 
             honouring its heritage, amplifying its voice, and advancing its future.
           </p>
