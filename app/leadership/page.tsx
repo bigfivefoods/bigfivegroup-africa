@@ -4,13 +4,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, ExternalLink } from "lucide-react";
 import Image from "next/image";
+import { useState, useRef } from "react";
 
 export default function LeadershipPage() {
   const dimensions = [
     {
       name: "Choices",
       icon: "/choices-icon.png",
-      color: "#ef4444", // Red
+      color: "#ef4444",
       quote: "“The history of free man is never written by chance, but by choice, their choice.” — Dwight D. Eisenhower",
       overview: "The Choices construct focuses on moral values, decision-making intelligence, judgement, and risk-taking. Grounded in choice theory, it equips leaders to evaluate options consistently and choose actions that serve humanity. In Africa, where corruption, poverty, and rapid change create constant high-stakes decisions, Super-Cube® develops ethical judgement and calculated risk-taking — critical because poor choices destroy trust and sustainable business networks.",
       courseOverview: "This programme develops moral decision-making intelligence. Learners master identifying the components of moral problems, understanding corruption drivers, and applying proven ethical frameworks (Utilitarian, Rights, Justice, Common Good, Virtue principles).",
@@ -27,7 +28,7 @@ export default function LeadershipPage() {
     {
       name: "Principles",
       icon: "/principles-icon.png",
-      color: "#a855f7", // Purple
+      color: "#a855f7",
       quote: "“You must be the change you wish to see in the world.” — Mahatma Gandhi",
       overview: "The Principles construct provides the foundation of ethics, governance, context, and standards. It draws from principle theory and is deeply rooted in Ubuntu (“I am because we are”) and Buber’s I-Thou philosophy of mutual respect. In Africa’s complex FMCG environment, where corruption and institutional weaknesses are prevalent, this construct ensures leaders act with integrity and accountability.",
       courseOverview: "Leaders learn that principles are natural, impersonal laws that govern consequences. The course focuses on aligning personal and organisational values with ethical governance and building strong codes of conduct.",
@@ -44,7 +45,7 @@ export default function LeadershipPage() {
     {
       name: "Mental",
       icon: "/mental-icon.png",
-      color: "#f97316", // Orange
+      color: "#f97316",
       quote: "“Imagination is more important than knowledge. Memory is past. It's finite. Vision is future. It's infinite.” — Albert Einstein",
       overview: "The Mental construct develops cognitive intelligence, strategic thinking, problem-solving, vision, and continuous learning. Supported by cognition theory, it enables leaders to process complexity and innovate. Africa faces multidimensional issues — population growth, infrastructure gaps, climate shocks — and a severe skills shortage despite abundant talent.",
       courseOverview: "This module builds advanced cognitive intelligence through critical, lateral, inductive and deductive thinking, combined with personal study methodology and learning style optimisation.",
@@ -61,7 +62,7 @@ export default function LeadershipPage() {
     {
       name: "Emotional",
       icon: "/emotional-icon.png",
-      color: "#22c55e", // Green
+      color: "#22c55e",
       quote: "“One of the most difficult things to give away is kindness, for its often returned.” — Mark Ortman",
       overview: "The Emotional construct focuses on emotional intelligence, empathy, motivation, and social skills. Based on the four-branch ability model, it develops the ability to perceive, use, understand, and manage emotions. Leadership in Africa is highly relational; teams and communities thrive on trust and connection.",
       courseOverview: "Participants develop deep emotional intelligence across self-awareness, self-regulation, motivation, empathy and social skills for stronger relationships and leadership impact.",
@@ -77,7 +78,7 @@ export default function LeadershipPage() {
     {
       name: "Physical",
       icon: "/physical-icon.png",
-      color: "#3b82f6", // Blue
+      color: "#3b82f6",
       quote: "“Take care of your body, its the only place you have to live.” — Jim Rohn",
       overview: "The Physical construct emphasises bodily well-being, energy management, fitness, nutrition, and resilience. It is grounded in the Wheel of Wellness theory. African leaders operate under extreme pressure from rapid growth and resource constraints. Super-Cube® develops the physical foundation needed to prevent burnout and sustain long-term impact.",
       courseOverview: "This programme explores wellness models and the discipline required to maintain peak physical and mental performance through practical stress management and balanced lifestyle design.",
@@ -93,7 +94,7 @@ export default function LeadershipPage() {
     {
       name: "Spiritual",
       icon: "/spiritual-icon.png",
-      color: "#1e40af", // Dark Blue
+      color: "#1e40af",
       quote: "“Example is not the main thing in influencing people, it is the only thing.” — Albert Schweitzer",
       overview: "The Spiritual construct integrates purpose, meaning, integrity, faith, and spiritual intelligence. It acts as the conduit connecting all other dimensions and aligns personal purpose with a greater “why”. Rooted in Ubuntu and I-Thou philosophy, it gives leaders authentic motivation and ethical depth.",
       courseOverview: "The Spiritual construct integrates purpose, meaning, integrity and higher consciousness, connecting all other dimensions and aligning daily actions with a greater “why”.",
@@ -107,6 +108,194 @@ export default function LeadershipPage() {
       impact: "Leaders now operate with deep purpose and authenticity — the invisible force that turns individual effort into continent-wide transformation aligned with Ubuntu values."
     }
   ];
+
+  const assessmentQuestions = {
+    "Choices": [
+      "I consistently make decisions that align with my core values even under pressure.",
+      "I can quickly identify ethical dilemmas in complex business situations.",
+      "I evaluate the long-term consequences of my choices on communities and stakeholders.",
+      "I take calculated risks when they serve the greater good.",
+      "I reflect on past decisions to improve future moral judgement."
+    ],
+    "Principles": [
+      "I operate from a clear set of ethical principles in all business dealings.",
+      "I hold myself and my team accountable to high standards of integrity.",
+      "I align personal and organisational values in decision-making.",
+      "I build strong codes of conduct that guide organisational culture.",
+      "I practice Ubuntu by treating every stakeholder with dignity and respect."
+    ],
+    "Mental": [
+      "I think strategically about long-term opportunities and risks for Africa.",
+      "I solve complex problems using critical and creative thinking.",
+      "I continuously learn and adapt to new knowledge and technologies.",
+      "I synthesize information from multiple sources to make informed decisions.",
+      "I maintain a clear vision for the future while managing day-to-day complexity."
+    ],
+    "Emotional": [
+      "I am highly aware of my own emotions and how they affect others.",
+      "I manage stress and emotions effectively in high-pressure situations.",
+      "I show genuine empathy and build strong relationships with team members.",
+      "I motivate others by understanding their needs and aspirations.",
+      "I handle conflict with emotional intelligence and respect."
+    ],
+    "Physical": [
+      "I maintain high energy levels through healthy habits and routines.",
+      "I manage stress through physical wellness practices.",
+      "I prioritise sleep, nutrition, and exercise to sustain performance.",
+      "I recover quickly from setbacks and maintain resilience.",
+      "I model healthy work-life balance for my team."
+    ],
+    "Spiritual": [
+      "I have a clear sense of purpose that guides my leadership.",
+      "I align my daily actions with a greater 'why' beyond profit.",
+      "I practice integrity and authenticity in all interactions.",
+      "I draw strength from faith, values, or higher consciousness.",
+      "I inspire others through my sense of meaning and contribution to society."
+    ]
+  };
+
+  const [answers, setAnswers] = useState<Record<string, number[]>>({
+    Choices: Array(5).fill(3),
+    Principles: Array(5).fill(3),
+    Mental: Array(5).fill(3),
+    Emotional: Array(5).fill(3),
+    Physical: Array(5).fill(3),
+    Spiritual: Array(5).fill(3),
+  });
+  const [showResults, setShowResults] = useState(false);
+  const [scores, setScores] = useState<Record<string, number>>({});
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  const handleAnswer = (construct: string, qIndex: number, value: number) => {
+    setAnswers(prev => {
+      const newAnswers = { ...prev };
+      newAnswers[construct][qIndex] = value;
+      return newAnswers;
+    });
+  };
+
+  const getAdvice = (construct: string, score: number) => {
+    if (score >= 4.5) {
+      return "Excellent! You are operating at a high level in this dimension. Continue leading by example and consider mentoring others in the Super-Cube® programme.";
+    }
+    if (score >= 3.5) {
+      return "Strong foundation. Focus on consistent application in high-stakes African contexts and deepen your practice through our advanced modules.";
+    }
+    if (score >= 2.5) {
+      return "Good starting point. We recommend completing the foundational Super-Cube® course for this construct and building daily reflection habits.";
+    }
+    return "This is a key growth area. Start with our entry-level Super-Cube® programme for this construct to build core skills and confidence quickly.";
+  };
+
+  const calculateResults = () => {
+    const newScores: Record<string, number> = {};
+    dimensions.forEach(dim => {
+      const avg = answers[dim.name].reduce((a, b) => a + b, 0) / 5;
+      newScores[dim.name] = parseFloat(avg.toFixed(1));
+    });
+    setScores(newScores);
+    setShowResults(true);
+    setTimeout(() => drawRadarChart(newScores), 100);
+  };
+
+  const drawRadarChart = (scores: Record<string, number>) => {
+    const canvas = chartRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const maxRadius = 180;
+    const labels = Object.keys(scores);
+    const values = Object.values(scores).map(v => v / 5);
+    const angleStep = (Math.PI * 2) / labels.length;
+
+    // Grid circles
+    ctx.strokeStyle = '#e5e5e5';
+    ctx.lineWidth = 1;
+    for (let r = 1; r <= 5; r++) {
+      const radius = (r / 5) * maxRadius;
+      ctx.beginPath();
+      for (let i = 0; i < labels.length; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+    }
+
+    // Scale labels (1-5)
+    ctx.fillStyle = '#525252';
+    ctx.font = 'bold 12px Inter, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    for (let r = 1; r <= 5; r++) {
+      const radius = (r / 5) * maxRadius;
+      const angle = -Math.PI / 2;
+      const x = centerX + Math.cos(angle) * radius;
+      const y = centerY + Math.sin(angle) * radius;
+      ctx.fillText(r.toString(), x + 12, y - 4);
+    }
+
+    // Axes
+    ctx.strokeStyle = '#ccc';
+    ctx.lineWidth = 1;
+    for (let i = 0; i < labels.length; i++) {
+      const angle = i * angleStep - Math.PI / 2;
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(centerX + Math.cos(angle) * maxRadius, centerY + Math.sin(angle) * maxRadius);
+      ctx.stroke();
+    }
+
+    // Data polygon
+    ctx.strokeStyle = '#fbbf24';
+    ctx.fillStyle = 'rgba(251, 191, 36, 0.25)';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    for (let i = 0; i < labels.length; i++) {
+      const angle = i * angleStep - Math.PI / 2;
+      const radius = values[i] * maxRadius;
+      const x = centerX + Math.cos(angle) * radius;
+      const y = centerY + Math.sin(angle) * radius;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Coloured labels
+    ctx.font = 'bold 14px Inter, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    for (let i = 0; i < labels.length; i++) {
+      const angle = i * angleStep - Math.PI / 2;
+      const x = centerX + Math.cos(angle) * (maxRadius + 32);
+      const y = centerY + Math.sin(angle) * (maxRadius + 32);
+      const dim = dimensions.find(d => d.name === labels[i]);
+      ctx.fillStyle = dim?.color || '#171717';
+      ctx.fillText(labels[i], x, y + 4);
+    }
+  };
+
+  const downloadChart = () => {
+    const canvas = chartRef.current;
+    if (!canvas) return;
+    const link = document.createElement('a');
+    link.download = 'super-cube-leadership-radar.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  };
+
+  const printReport = () => {
+    window.print();
+  };
 
   return (
     <div className="overflow-hidden bg-[#fafafa]">
@@ -258,6 +447,128 @@ export default function LeadershipPage() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* SUPER-CUBE® SELF-ASSESSMENT */}
+      <section className="bg-white py-24 border-y border-black/10">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">KNOW YOUR LEADERSHIP OPERATING SYSTEM</div>
+            <h3 className="text-5xl font-semibold tracking-tighter text-black mb-6">Take the Super-Cube® Assessment</h3>
+            <p className="max-w-2xl mx-auto text-xl text-[#525252]">
+              Rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree). 
+              Your results will generate a personalised radar chart and insights.
+            </p>
+          </div>
+
+          <div className="space-y-16">
+            {dimensions.map((dim, dimIndex) => (
+              <div key={dimIndex} className="border border-black/10 rounded-3xl p-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div 
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                    style={{ backgroundColor: `${dim.color}15` }}
+                  >
+                    <Image src={dim.icon} alt={dim.name} width={48} height={48} />
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-semibold tracking-tight" style={{ color: dim.color }}>{dim.name}</h4>
+                    <p className="text-sm text-[#525252]">Rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree)</p>
+                  </div>
+                </div>
+
+                <div className="space-y-8">
+                  {assessmentQuestions[dim.name as keyof typeof assessmentQuestions].map((q, qIndex) => (
+                    <div key={qIndex} className="flex flex-col gap-3">
+                      <div className="text-lg text-[#171717]">{q}</div>
+                      <div className="flex gap-4">
+                        {[1, 2, 3, 4, 5].map(val => (
+                          <label key={val} className="flex flex-col items-center cursor-pointer">
+                            <input 
+                              type="radio" 
+                              name={`${dim.name}-${qIndex}`} 
+                              value={val}
+                              onChange={(e) => handleAnswer(dim.name, qIndex, parseInt(e.target.value))}
+                              className="w-5 h-5 accent-black"
+                            />
+                            <span className="text-xs mt-1 text-[#525252]">{val}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <button 
+              onClick={calculateResults}
+              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-16 py-5 rounded-full text-xl font-semibold hover:bg-[#111]"
+            >
+              CALCULATE MY SUPER-CUBE® PROFILE
+            </button>
+          </div>
+
+          {/* RESULTS */}
+          {showResults && (
+            <div ref={resultsRef} className="mt-16 bg-[#fafafa] border border-black/10 rounded-3xl p-12">
+              <h4 className="text-4xl font-semibold tracking-tighter text-center mb-8">Your Super-Cube® Leadership Profile</h4>
+              
+              <div className="flex justify-center mb-12">
+                <canvas ref={chartRef} width={500} height={500} className="max-w-full" />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-12">
+                {Object.entries(scores).map(([name, score]) => {
+                  const dim = dimensions.find(d => d.name === name);
+                  return (
+                    <div key={name} className="bg-white p-6 rounded-2xl border border-black/10">
+                      <div className="flex justify-between items-center mb-3">
+                        <div className="font-semibold text-xl" style={{ color: dim?.color }}>{name}</div>
+                        <div className="text-4xl font-bold tabular-nums" style={{ color: dim?.color }}>{score}</div>
+                      </div>
+                      <div className="text-sm text-[#525252]">Average score out of 5</div>
+                      <div className="mt-4 text-sm text-[#404040] leading-relaxed">
+                        <strong>Advice:</strong> {getAdvice(name, score)}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={downloadChart}
+                  className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold"
+                >
+                  <Download className="w-5 h-5" />
+                  DOWNLOAD RADAR CHART (PNG)
+                </button>
+                <button 
+                  onClick={printReport}
+                  className="premium-button inline-flex items-center justify-center gap-3 border border-black/30 text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-black/5"
+                >
+                  PRINT FULL REPORT
+                </button>
+              </div>
+
+              <div className="text-center mt-8">
+                <p className="text-xl text-[#404040] max-w-2xl mx-auto mb-8">
+                  Your profile shows strong areas and opportunities for growth. 
+                  The Super-Cube® model is designed to help you develop every dimension.
+                </p>
+                <Link 
+                  href="/connect" 
+                  className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-10 py-4 rounded-full text-lg font-semibold"
+                >
+                  BOOK A PERSONALIZED COACHING SESSION
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
