@@ -205,7 +205,7 @@ export default function Home() {
       <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-xs tracking-[3px] text-emerald-600 mb-4">THE TIME IS NOW</div>
-          <h2 className="section-heading mb-8 text-white">Ready to build the future of Africa with us?</h2>
+          <h2 className="section-heading mb-8 text-white !text-white">Ready to build the future of Africa with us?</h2>
          
           <p className="text-xl text-white/70 mb-10">
             Whether you are a government, investor, farmer, or conscious consumer — there is a place for you in the Big Five ecosystem.
