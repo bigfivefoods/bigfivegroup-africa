@@ -4,14 +4,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight, Leaf, Wheat, Truck, Landmark, Link as LinkIcon, Award, Heart, Feather } from "lucide-react";
 import { companies } from "./lib/companies";
-
 const statsData = [
   { number: 13, label: "African Nations", suffix: "" },
   { number: 124, label: "Hectares Regenerated", suffix: "k" },
   { number: 2.8, label: "Rands Facilitated", suffix: "B" },
   { number: 47, label: "Jobs Created", suffix: "k" },
 ];
-
 function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -36,34 +34,29 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
     </span>
   );
 }
-
 export default function Home() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
       {/* HERO - Bright African Artwork */}
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/home-hero.jpg')" }}
         />
         <div className="absolute inset-0 bg-black/55" />
-
         <div className="relative z-10 max-w-5xl px-6 text-center mt-[10px]">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-xs tracking-[3px] mb-6 text-white">
             EST. 2018 • KWAZULU-NATAL • AFRICA
           </div>
-
-          <h1 
+          <h1
             className="text-white text-[78px] md:text-[96px] font-black tracking-[-0.065em] leading-[0.92] mb-6"
             style={{ fontFamily: "Inter, system-ui, sans-serif" }}
           >
             ONE GROUP.<br />EIGHT PILLARS.<br />INFINITE IMPACT.
           </h1>
-
           <p className="max-w-[620px] mx-auto text-2xl md:text-3xl text-white font-light tracking-tight mb-12">
             Regenerative. Sovereign. Ethical.<br />The future of Africa is being built right now.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#pillars"
@@ -72,7 +65,7 @@ export default function Home() {
               EXPLORE THE 8 PILLARS
               <ArrowRight className="group-hover:translate-x-1 transition" />
             </Link>
-           
+          
             <Link
               href="/connect"
               className="premium-button inline-flex items-center justify-center gap-4 border border-white/40 hover:bg-white/10 px-10 py-4 rounded-full text-lg font-semibold text-white"
@@ -81,7 +74,6 @@ export default function Home() {
             </Link>
           </div>
         </div>
-
         <motion.div
           animate={{ y: [0, 12, 0] }}
           transition={{ duration: 2.2, repeat: Infinity }}
@@ -91,7 +83,6 @@ export default function Home() {
           <div className="w-px h-12 bg-white/30 mt-2" />
         </motion.div>
       </section>
-
       {/* TRUST BAR */}
       <div className="border-b border-black/10 py-5 bg-white">
         <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-xs uppercase tracking-[2.5px] text-[#525252]">
@@ -102,7 +93,6 @@ export default function Home() {
           <div>UN SDG ALIGNED</div>
         </div>
       </div>
-
       {/* THE 8 PILLARS */}
       <section id="pillars" className="max-w-7xl mx-auto px-6 pt-24 pb-20">
         <div className="flex justify-between items-end mb-12">
@@ -144,7 +134,7 @@ export default function Home() {
                 >
                   {company.name}
                 </div>
-               
+              
                 <div className="text-xl text-[#404040] mb-6 pr-4 leading-tight">
                   {company.tagline}
                 </div>
@@ -159,13 +149,12 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       {/* AFRICA SECTION */}
       <section className="bg-white py-24 border-y border-black/10">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="uppercase tracking-[3px] text-xs mb-4 text-emerald-600">CONTINENT-WIDE</div>
           <h2 className="section-heading mb-8 text-black">Africa is not a country.<br />It is our canvas.</h2>
-         
+        
           <p className="max-w-2xl mx-auto text-xl text-[#525252] mb-12">
             From the savannas of KwaZulu-Natal to the markets of Lagos and the highlands of Ethiopia —
             Big Five operates with deep local roots and continental ambition.
@@ -179,7 +168,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
       {/* IMPACT STATS */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
@@ -204,13 +192,12 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       {/* FINAL CTA */}
       <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-xs tracking-[3px] text-emerald-600 mb-4">THE TIME IS NOW</div>
-          <h2 className="section-heading mb-8 text-white">Ready to build the future of Africa with us?</h2>
-         
+          <h2 className="section-heading mb-8 text-white !text-white">Ready to build the future of Africa with us?</h2>
+        
           <p className="text-xl text-white/70 mb-10">
             Whether you are a government, investor, farmer, or conscious consumer — there is a place for you in the Big Five ecosystem.
           </p>
@@ -221,7 +208,7 @@ export default function Home() {
             LAUNCH CONNECT — SUPPLIERADVISOR®
             <ArrowRight className="w-6 h-6" />
           </Link>
-         
+        
           <div className="mt-6 text-xs text-white/40">No credit card required • Instant access for verified partners</div>
         </div>
       </section>
