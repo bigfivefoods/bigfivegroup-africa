@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, ExternalLink } from "lucide-react";
+import { Download, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useState, useRef } from "react";
 
@@ -214,7 +214,6 @@ export default function LeadershipPage() {
     const values = Object.values(scores).map(v => v / 5);
     const angleStep = (Math.PI * 2) / labels.length;
 
-    // Grid circles
     ctx.strokeStyle = '#e5e5e5';
     ctx.lineWidth = 1;
     for (let r = 1; r <= 5; r++) {
@@ -231,7 +230,6 @@ export default function LeadershipPage() {
       ctx.stroke();
     }
 
-    // Scale labels (1-5)
     ctx.fillStyle = '#525252';
     ctx.font = 'bold 12px Inter, system-ui, sans-serif';
     ctx.textAlign = 'center';
@@ -243,7 +241,6 @@ export default function LeadershipPage() {
       ctx.fillText(r.toString(), x + 12, y - 4);
     }
 
-    // Axes
     ctx.strokeStyle = '#ccc';
     ctx.lineWidth = 1;
     for (let i = 0; i < labels.length; i++) {
@@ -254,7 +251,6 @@ export default function LeadershipPage() {
       ctx.stroke();
     }
 
-    // Data polygon
     ctx.strokeStyle = '#fbbf24';
     ctx.fillStyle = 'rgba(251, 191, 36, 0.25)';
     ctx.lineWidth = 3;
@@ -271,7 +267,6 @@ export default function LeadershipPage() {
     ctx.fill();
     ctx.stroke();
 
-    // Coloured labels
     ctx.font = 'bold 14px Inter, system-ui, sans-serif';
     ctx.textAlign = 'center';
     for (let i = 0; i < labels.length; i++) {
@@ -334,12 +329,13 @@ export default function LeadershipPage() {
             >
               DISCOVER THE MODEL
             </Link>
-            <Link 
-              href="#programs" 
+            <a 
+              href="/the-super-cube-leadership-model.pdf" 
+              download
               className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10"
             >
-              JOIN THE PROGRAM
-            </Link>
+              DOWNLOAD THE BOOK
+            </a>
           </div>
         </div>
 
@@ -381,12 +377,10 @@ export default function LeadershipPage() {
             </p>
           </div>
 
-          {/* NEW RIPPLE EFFECT SECTION */}
           <div className="max-w-4xl mx-auto mt-16">
             <h3 className="text-3xl font-semibold tracking-tight text-black mb-10 text-center">The Ripple Effect: Super-Cube® Transforms Individuals, Teams, Governments & Society</h3>
             
             <div className="space-y-14 text-left">
-              {/* Individuals */}
               <div className="bg-white border border-black/10 rounded-3xl p-10">
                 <h4 className="text-2xl font-semibold text-black mb-4">For Individuals</h4>
                 <div className="space-y-3 text-[#404040]">
@@ -396,7 +390,6 @@ export default function LeadershipPage() {
                 </div>
               </div>
 
-              {/* Teams */}
               <div className="bg-white border border-black/10 rounded-3xl p-10">
                 <h4 className="text-2xl font-semibold text-black mb-4">For Teams</h4>
                 <div className="space-y-3 text-[#404040]">
@@ -406,7 +399,6 @@ export default function LeadershipPage() {
                 </div>
               </div>
 
-              {/* Governments */}
               <div className="bg-white border border-black/10 rounded-3xl p-10">
                 <h4 className="text-2xl font-semibold text-black mb-4">For Governments</h4>
                 <div className="space-y-3 text-[#404040]">
@@ -416,7 +408,6 @@ export default function LeadershipPage() {
                 </div>
               </div>
 
-              {/* Society */}
               <div className="bg-white border border-black/10 rounded-3xl p-10">
                 <h4 className="text-2xl font-semibold text-black mb-4">For Society</h4>
                 <div className="space-y-3 text-[#404040]">
@@ -429,7 +420,6 @@ export default function LeadershipPage() {
           </div>
         </div>
 
-        {/* 6 Dimensions with Dynamic Colors */}
         <div className="space-y-12">
           {dimensions.map((dim, index) => (
             <motion.div 
@@ -441,7 +431,6 @@ export default function LeadershipPage() {
               className="bg-white border border-black/10 rounded-3xl p-10 hover:border-black/20 transition-all"
             >
               <div className="flex flex-col md:flex-row gap-8">
-                {/* Icon + Title */}
                 <div className="flex-shrink-0 text-center md:text-left">
                   <Image 
                     src={dim.icon} 
@@ -452,7 +441,6 @@ export default function LeadershipPage() {
                   />
                   <h3 className="text-4xl font-semibold tracking-tight text-black">{dim.name}</h3>
                   
-                  {/* Big Call-out Card for Improvement % */}
                   <div 
                     className="mt-4 inline-flex items-center justify-center px-6 py-3 rounded-2xl text-white text-xl font-bold shadow-lg"
                     style={{ backgroundColor: dim.color }}
@@ -461,7 +449,6 @@ export default function LeadershipPage() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="flex-1">
                   <p className="italic text-[#525252] mb-6">“{dim.quote}”</p>
                   
@@ -511,7 +498,6 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* SUPER-CUBE® SELF-ASSESSMENT */}
       <section className="bg-white py-24 border-y border-black/10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -573,7 +559,6 @@ export default function LeadershipPage() {
             </button>
           </div>
 
-          {/* RESULTS */}
           {showResults && (
             <div ref={resultsRef} className="mt-16 bg-[#fafafa] border border-black/10 rounded-3xl p-12">
               <h4 className="text-4xl font-semibold tracking-tighter text-center mb-8">Your Super-Cube® Leadership Profile</h4>
@@ -633,7 +618,6 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* SUPER-CUBE® PROGRAMME BENEFITS */}
       <section className="bg-white py-24 border-y border-black/10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -684,7 +668,6 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* DOWNLOAD THE RESEARCH */}
       <section className="py-24 bg-white border-y border-black/10">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">PEER-REVIEWED RESEARCH</div>
@@ -725,7 +708,56 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
+      <section className="py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fbbf24]/40 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#fbbf24_0.8px,transparent_1px)] bg-[length:6px_6px] opacity-10" />
+        
+        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+          <div className="inline-flex items-center gap-3 bg-[#fbbf24] text-black px-8 py-3 rounded-full text-sm font-bold tracking-[2px] mb-8 shadow-xl">
+            EXCLUSIVE FREE DOWNLOAD — FOR ASPIRING LEADERS ONLY
+          </div>
+
+          <h2 className="text-6xl md:text-7xl font-semibold tracking-tighter text-black mb-6 leading-none">
+            Get the Complete<br />Super-Cube® Leadership Model Book
+          </h2>
+
+          <p className="text-2xl text-[#404040] max-w-3xl mx-auto mb-4 font-light">
+            Igniting Africa's Potential and Accelerating Humanity's Progress
+          </p>
+
+          <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-10">
+            A Proven, Human-Centric Blueprint for Developing Leaders Who Transform Individuals, Teams, Organisations, and Society.<br />
+            Based on the Groundbreaking Doctorate Research of Dr. Craig Ross Muller.
+          </p>
+
+          <div className="mb-10">
+            <a 
+              href="/the-super-cube-leadership-model.pdf" 
+              download="The-Super-Cube-Leadership-Model.pdf"
+              className="group inline-flex items-center justify-center gap-5 bg-black hover:bg-[#111] active:bg-black text-white px-20 py-7 rounded-3xl text-3xl font-semibold shadow-2xl transition-all duration-200 hover:shadow-[0_0_60px_-15px_#fbbf24] active:scale-[0.985]"
+            >
+              <Download className="w-10 h-10 group-hover:-translate-y-1 transition-transform" />
+              DOWNLOAD FREE BOOK (PDF)
+            </a>
+          </div>
+
+          <div className="max-w-xl mx-auto">
+            <p className="text-xl text-[#404040] mb-6">
+              For every aspiring leader who wants to help accelerate leadership development to progress humanity.
+            </p>
+            <p className="text-lg text-[#737373]">
+              No email. No signup. No catch. Just the full 70-page doctoral blueprint — yours to use, share, and transform with.
+            </p>
+          </div>
+
+          <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 text-sm text-[#525252]">
+            <div className="flex items-center gap-2">✓ Validated across 13 African nations</div>
+            <div className="flex items-center gap-2">✓ 6 dimensions • 5 levels of impact</div>
+            <div className="flex items-center gap-2">✓ Ready for immediate application</div>
+            <div className="flex items-center gap-2">✓ Built on Ubuntu & I-Thou philosophy</div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-24 border-y border-black/10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -771,7 +803,6 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
       <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-[#fbbf24] text-xs tracking-[3px] mb-6">THE FUTURE OF AFRICAN LEADERSHIP STARTS HERE</div>
