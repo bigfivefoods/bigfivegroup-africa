@@ -40,30 +40,34 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
 export default function Home() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
-      {/* HERO */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#fafafa]">
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] bg-[length:4px_4px]" />
-       
-        <div className="relative z-10 max-w-5xl px-6 text-center mt-[-20px]">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 text-xs tracking-[3px] mb-6 text-[#525252]">
+      {/* HERO - Bright African Artwork */}
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/home-hero.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-black/55" />
+
+        <div className="relative z-10 max-w-5xl px-6 text-center mt-[10px]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-xs tracking-[3px] mb-6 text-white">
             EST. 2018 • KWAZULU-NATAL • AFRICA
           </div>
 
           <h1 
-            className="text-black text-[78px] md:text-[96px] font-black tracking-[-0.065em] leading-[0.92] mb-6"
+            className="text-white text-[78px] md:text-[96px] font-black tracking-[-0.065em] leading-[0.92] mb-6"
             style={{ fontFamily: "Inter, system-ui, sans-serif" }}
           >
             ONE GROUP.<br />EIGHT PILLARS.<br />INFINITE IMPACT.
           </h1>
 
-          <p className="max-w-[620px] mx-auto text-2xl md:text-3xl text-[#525252] font-light tracking-tight mb-12">
+          <p className="max-w-[620px] mx-auto text-2xl md:text-3xl text-white font-light tracking-tight mb-12">
             Regenerative. Sovereign. Ethical.<br />The future of Africa is being built right now.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#pillars"
-              className="premium-button group inline-flex items-center justify-center gap-4 bg-black text-white px-10 py-4 rounded-full text-lg font-semibold"
+              className="premium-button group inline-flex items-center justify-center gap-4 bg-white text-black px-10 py-4 rounded-full text-lg font-semibold"
             >
               EXPLORE THE 8 PILLARS
               <ArrowRight className="group-hover:translate-x-1 transition" />
@@ -71,7 +75,7 @@ export default function Home() {
            
             <Link
               href="/connect"
-              className="premium-button inline-flex items-center justify-center gap-4 border border-black/20 hover:bg-black/5 px-10 py-4 rounded-full text-lg font-semibold text-black"
+              className="premium-button inline-flex items-center justify-center gap-4 border border-white/40 hover:bg-white/10 px-10 py-4 rounded-full text-lg font-semibold text-white"
             >
               LAUNCH CONNECT
             </Link>
@@ -81,10 +85,10 @@ export default function Home() {
         <motion.div
           animate={{ y: [0, 12, 0] }}
           transition={{ duration: 2.2, repeat: Infinity }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-[#525252] text-xs tracking-[2px]"
+          className="absolute bottom-[62px] left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70 text-xs tracking-[2px]"
         >
           SCROLL TO BEGIN
-          <div className="w-px h-12 bg-gradient-to-b from-black/20 to-transparent mt-2" />
+          <div className="w-px h-12 bg-white/30 mt-2" />
         </motion.div>
       </section>
 
@@ -205,7 +209,7 @@ export default function Home() {
       <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-xs tracking-[3px] text-emerald-600 mb-4">THE TIME IS NOW</div>
-          <h2 className="section-heading mb-8 text-white !text-white">Ready to build the future of Africa with us?</h2>
+          <h2 className="section-heading mb-8 text-white">Ready to build the future of Africa with us?</h2>
          
           <p className="text-xl text-white/70 mb-10">
             Whether you are a government, investor, farmer, or conscious consumer — there is a place for you in the Big Five ecosystem.
