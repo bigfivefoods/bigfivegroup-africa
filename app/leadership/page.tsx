@@ -362,10 +362,71 @@ export default function LeadershipPage() {
             />
           </div>
           <h2 className="text-5xl font-semibold tracking-tighter text-black mb-6">The Super-Cube® Leadership Model</h2>
-          <p className="max-w-3xl mx-auto text-xl text-[#525252]">
-            A doctoral framework that fuses ancient African wisdom with modern leadership science — 
-            designed to develop leaders who build nations, not just organisations.
-          </p>
+          
+          <div className="max-w-4xl mx-auto space-y-6 text-lg text-[#525252] leading-relaxed">
+            <p>
+              Developed by Dr. Craig Ross Muller as the core output of his Doctor of Business Administration thesis at the University of KwaZulu-Natal, the Super-Cube® model is one of the first empirically validated, Africa-centric leadership frameworks in the world.
+            </p>
+            
+            <p>
+              Tested rigorously in a leading African FMCG business network, the model structures leadership development around a unique cubic architecture. At its centre stands the individual (“you”), with six interconnected dimensions forming the faces of the cube. This design ensures that personal growth radiates outward to teams, organisations, supply chains, and ultimately the broader African economy.
+            </p>
+            
+            <p>
+              Rooted in the ancient African philosophy of <strong>Ubuntu</strong> (“I am because we are”) and Martin Buber’s <strong>I-Thou</strong> theory, Super-Cube® treats every human interaction as an encounter between equals. It recognises that leadership capacity is not fixed by genetics (only 24–30%) but is 70–76% developable through deliberate practice, structured learning, and real-world application.
+            </p>
+            
+            <p>
+              The model was validated through a mixed-methods study with confirmatory factor analysis confirming excellent model fit and high reliability across all six dimensions. It directly addresses Africa’s unique challenges — rapid population growth, skills shortages, corruption, poverty, conflict, and institutional weaknesses — while offering a powerful alternative to Western-centric leadership theories.
+            </p>
+          </div>
+
+          {/* NEW RIPPLE EFFECT SECTION */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <h3 className="text-3xl font-semibold tracking-tight text-black mb-10 text-center">The Ripple Effect: Super-Cube® Transforms Individuals, Teams, Governments & Society</h3>
+            
+            <div className="space-y-14 text-left">
+              {/* Individuals */}
+              <div className="bg-white border border-black/10 rounded-3xl p-10">
+                <h4 className="text-2xl font-semibold text-black mb-4">For Individuals</h4>
+                <div className="space-y-3 text-[#404040]">
+                  <p><strong>Why it matters:</strong> Personal leadership growth is the foundation of all progress. When you grow, everything around you improves.</p>
+                  <p><strong>How it happens:</strong> Through the 6 dimensions you build moral clarity, emotional resilience, strategic thinking, and deep purpose.</p>
+                  <p><strong>What the improvement looks like:</strong> You become a more confident, ethical, and effective leader who creates lasting positive impact in your career, family, and community — and models the leadership Africa needs.</p>
+                </div>
+              </div>
+
+              {/* Teams */}
+              <div className="bg-white border border-black/10 rounded-3xl p-10">
+                <h4 className="text-2xl font-semibold text-black mb-4">For Teams</h4>
+                <div className="space-y-3 text-[#404040]">
+                  <p><strong>Why it matters:</strong> High-performing teams are built on trust, shared purpose, and psychological safety.</p>
+                  <p><strong>How it happens:</strong> Leaders who embody Super-Cube® create environments where people feel valued, motivated, and empowered to contribute their best.</p>
+                  <p><strong>What the improvement looks like:</strong> Teams become dramatically more collaborative, innovative, and resilient — delivering extraordinary results together and achieving what was previously impossible.</p>
+                </div>
+              </div>
+
+              {/* Governments */}
+              <div className="bg-white border border-black/10 rounded-3xl p-10">
+                <h4 className="text-2xl font-semibold text-black mb-4">For Governments</h4>
+                <div className="space-y-3 text-[#404040]">
+                  <p><strong>Why it matters:</strong> Africa desperately needs ethical, visionary public leaders who can drive real development and build strong institutions.</p>
+                  <p><strong>How it happens:</strong> Super-Cube® equips public servants with the moral clarity, strategic thinking, and emotional intelligence to make principled decisions and lead with integrity.</p>
+                  <p><strong>What the improvement looks like:</strong> Governments become more transparent, effective, and trusted — accelerating national progress, reducing corruption, and delivering better services to citizens.</p>
+                </div>
+              </div>
+
+              {/* Society */}
+              <div className="bg-white border border-black/10 rounded-3xl p-10">
+                <h4 className="text-2xl font-semibold text-black mb-4">For Society</h4>
+                <div className="space-y-3 text-[#404040]">
+                  <p><strong>Why it matters:</strong> The future of Africa depends on leaders who serve the greater good and build a prosperous, united continent.</p>
+                  <p><strong>How it happens:</strong> When individuals, teams, and governments improve through Super-Cube®, the benefits multiply across society through job creation, poverty reduction, ethical governance, and sustainable development.</p>
+                  <p><strong>What the improvement looks like:</strong> A more prosperous, united, and self-reliant Africa where every citizen can thrive, where corruption is reduced, education and healthcare improve, and economic opportunities expand for millions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 6 Dimensions with Dynamic Colors */}
@@ -560,12 +621,12 @@ export default function LeadershipPage() {
                   Your profile shows strong areas and opportunities for growth. 
                   The Super-Cube® model is designed to help you develop every dimension.
                 </p>
-                <Link 
-                  href="/connect" 
+                <a 
+                  href="mailto:craig@bigfivegroup.africa?subject=Super-Cube®%20Personalised%20Coaching%20Session"
                   className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-10 py-4 rounded-full text-lg font-semibold"
                 >
                   BOOK A PERSONALIZED COACHING SESSION
-                </Link>
+                </a>
               </div>
             </div>
           )}
