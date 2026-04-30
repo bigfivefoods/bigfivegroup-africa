@@ -31,8 +31,9 @@ export default function TribalPage() {
           </h1>
 
           <p className="max-w-2xl mx-auto text-2xl text-white font-light tracking-tight mb-12">
-            With deep respect and unwavering commitment, Big Five Group aligns with the Zulu Kingdom — 
-            honouring its heritage, amplifying its voice, and advancing its future.
+            With deepest honour to His Majesty the late King Goodwill Zwelithini kaBhekuzulu and in full support of the Goodwill Foundation, 
+            Big Five Group stands with the Zulu Kingdom — honouring the Nguni tribe and their timeless ethics, respecting the 720 Tribal Authorities, 
+            amplifying its voice, and advancing its future.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -64,7 +65,9 @@ export default function TribalPage() {
           We honour the Zulu Kingdom
         </h2>
         <p className="text-2xl text-[#404040] max-w-3xl mx-auto leading-relaxed">
-          Big Five Group was born from the soil of KwaZulu-Natal. Our values, our vision, and our every action are rooted in the timeless wisdom, strength, and sovereignty of the Zulu people and their royal leadership.
+          Big Five Group was born from the soil of KwaZulu-Natal. With profound honour to His Majesty the late King Goodwill Zwelithini kaBhekuzulu 
+          and in support of the Goodwill Foundation, we pay the highest respect to the 720 Tribal Authorities and the rich ethical heritage of the Nguni tribe. 
+          Our values, our vision, and our every action are rooted in the timeless wisdom, strength, and sovereignty of the Zulu people and their royal leadership.
         </p>
       </section>
 
@@ -86,6 +89,10 @@ export default function TribalPage() {
                 </p>
                 <p>
                   We recognise the authority of the Zulu Royal House and traditional leadership. Our role is to serve — not to lead — and to use modern tools to protect and advance what has been entrusted to us.
+                </p>
+                <p className="font-medium">
+                  We honour the 720 Tribal Authorities who carry the sacred responsibility of traditional leadership across the Zulu Kingdom. 
+                  We also pay deepest respect to the Nguni tribe and their profound ethics of Ubuntu, dignity, respect, and communal harmony that continue to guide our every action.
                 </p>
               </div>
             </div>
@@ -197,7 +204,7 @@ export default function TribalPage() {
               { pillar: "Connect", impact: "SupplierAdvisor® gives Zulu businesses and the Kingdom transparent, ethical access to national and global markets." },
               { pillar: "Leadership", impact: "Super-Cube® leadership development is building the next generation of Zulu executives, traditional leaders, and public servants." },
               { pillar: "Foundation", impact: "On-chain philanthropy ensures every rand donated to Zulu causes is tracked, verified, and maximised for impact." },
-              { pillar: "Tribal", impact: "We are the cultural and spiritual engine — preserving heritage, activating royal protocols, and positioning the Zulu Kingdom as a global beacon of African excellence." },
+              { pillar: "Tribal", impact: "We honour the legacy of the late King Goodwill Zwelithini and the 720 Tribal Authorities. As cultural and spiritual partners to the Nguni people, we preserve heritage, activate royal protocols, and position the Zulu Kingdom as a global beacon of African excellence." },
               { pillar: "Agri Expansion", impact: "Scaling regenerative agriculture across KwaZulu-Natal to create food sovereignty and thousands of rural jobs for Zulu families." },
               { pillar: "Kingdom Legacy", impact: "Building long-term institutions, education programmes, and economic infrastructure that will serve the Zulu nation for generations." }
             ].map((item, index) => (
@@ -227,6 +234,7 @@ export default function TribalPage() {
           </h2>
 
           <p className="text-white/80 text-2xl max-w-2xl mx-auto mb-12">
+            In eternal honour of His Majesty the late King Goodwill Zwelithini kaBhekuzulu, the Goodwill Foundation, the 720 Tribal Authorities, and the Nguni people —<br />
             We do not build on the Kingdom.<br />We build <span className="text-white">for</span> the Kingdom.
           </p>
 
