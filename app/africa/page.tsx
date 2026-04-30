@@ -50,7 +50,7 @@ export default function AfricaPage() {
           <div className="text-xs tracking-[3px] text-emerald-600 mb-4">13 NATIONS • ONE ECOSYSTEM</div>
           <h2 className="text-5xl font-semibold tracking-tighter text-black mb-6">Our Continental Footprint</h2>
           <p className="max-w-2xl mx-auto text-xl text-[#525252]">
-            Big Five Group operates with deep roots and full presence across the African continent.
+            Big Five Group is planning operations with a full presence across the African continent.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ export default function AfricaPage() {
                     />
                     <div className="font-semibold text-2xl text-black">{country.name}</div>
                   </div>
-                  <div className="text-sm text-[#525252] mb-4">Active operations • Regional hub</div>
+                  <div className="text-sm text-[#525252] mb-4">Country Statistics</div>
                   
                   <p className="text-xs text-[#525252] leading-snug">
                     {country.name === "South Africa" && "South Africa faces severe food insecurity affecting 13.5 million people (Stats SA 2024). 32% unemployment and extreme inequality (Gini 0.63) drive poverty, while climate change cuts maize yields by 20%. Load-shedding disrupts supply chains and rural education access remains low — 18% of learners drop out before Grade 12 (DBE 2024). (Sources: Stats SA General Household Survey 2023; World Bank South Africa Economic Update 2024; FAO 2024)"}
@@ -141,7 +141,7 @@ export default function AfricaPage() {
                     />
                     <div className="font-semibold text-2xl text-black">{country.name}</div>
                   </div>
-                  <div className="text-sm text-[#525252] mb-4">Active operations • Growing presence</div>
+                  <div className="text-sm text-[#525252] mb-4">Country Statistics</div>
                   
                   <p className="text-xs text-[#525252] leading-snug">
                     {country.name === "Kenya" && "Kenya battles recurrent droughts in ASAL regions, locust invasions, and 30-40% post-harvest losses, leaving 4.4 million people food insecure in 2024. Youth unemployment stands at 35% and secondary school completion is only 52% (Kenya National Bureau of Statistics 2023). (Sources: FAO 2024; Kenya National Drought Management Authority 2024; UNESCO 2024)"}
@@ -196,7 +196,7 @@ export default function AfricaPage() {
                     />
                     <div className="font-semibold text-2xl text-black">{country.name}</div>
                   </div>
-                  <div className="text-sm text-[#525252] mb-4">Active operations • High-impact priority</div>
+                  <div className="text-sm text-[#525252] mb-4">Country Statistics</div>
                   
                   <p className="text-xs text-[#525252] leading-snug">
                     The Democratic Republic of the Congo faces one of the world’s most severe food crises, with 27.7 million people (over 25% of the population) in acute food insecurity due to conflict, displacement, and economic collapse (WFP & IPC 2025). Poverty affects 73% of the population and secondary school completion rates are extremely low at under 30% in many regions, with 97% learning poverty among 10-year-olds (World Bank 2025; UNESCO 2024). Over 7 million children are out of school and child stunting remains critically high. (Sources: WFP DRC 2025; World Bank Poverty and Equity Brief 2025; UNESCO Institute for Statistics 2024; UNICEF 2024)
@@ -250,7 +250,7 @@ export default function AfricaPage() {
                     />
                     <div className="font-semibold text-2xl text-black">{country.name}</div>
                   </div>
-                  <div className="text-sm text-[#525252] mb-4">Active operations • Strategic markets</div>
+                  <div className="text-sm text-[#525252] mb-4">Country Statistics</div>
                   
                   <p className="text-xs text-[#525252] leading-snug">
                     {country.name === "Nigeria" && "Nigeria faces severe food insecurity affecting 26 million people due to Boko Haram insurgency, farmer-herder conflicts, flooding, and 40%+ food inflation from naira devaluation. 1 in 5 children are out of school and poverty rate stands at 63% (NBS 2023). (Sources: WFP Nigeria 2024; FAO 2024; World Bank 2024; UNESCO 2024)"}
