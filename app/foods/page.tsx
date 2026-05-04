@@ -156,7 +156,7 @@ export default function FoodsPage() {
             <div className="mb-6 flex justify-center">
               <UtensilsCrossed className="w-14 h-14 text-[#ca8a04]" />
             </div>
-            <h3 className="text-3xl font-semibold tracking-tight text-black mb-4">124 Million+</h3>
+            <h3 className="text-3xl font-semibold tracking-tight text-black mb-4">10 Thousand+</h3>
             <p className="text-[#525252]">Nutritious meals delivered in 2025</p>
           </div>
           <div className="bg-white border border-black/10 rounded-3xl p-10 text-center">
@@ -170,8 +170,8 @@ export default function FoodsPage() {
             <div className="mb-6 flex justify-center">
               <Globe className="w-14 h-14 text-[#ca8a04]" />
             </div>
-            <h3 className="text-3xl font-semibold tracking-tight text-black mb-4">13 Countries</h3>
-            <p className="text-[#525252]">National school feeding programs</p>
+            <h3 className="text-3xl font-semibold tracking-tight text-black mb-4">54 Countries</h3>
+            <p className="text-[#525252]">Planned school feeding programs</p>
           </div>
         </div>
       </section>
