@@ -29,7 +29,7 @@ export default function AgriPage() {
           </h1>
           
           <p className="max-w-3xl mx-auto text-2xl text-white/95 font-light tracking-tight mb-12">
-            PARTNERING WITH THE ZULU KINGDOM AND GOVERNMENTS ACROSS AFRICA TO REGENERATE FARMLAND, EMPOWER FARMERS, AND FEED THE CONTINENT.
+            PARTNERING WITH THE TRIBAL AUTHORIY, ZULU KINGDOM AND GOVERNMENTS ACROSS AFRICA TO REGENERATE FARMLAND, EMPOWER FARMERS, AND FEED THE CONTINENT.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -90,7 +90,7 @@ export default function AgriPage() {
         </div>
       </section>
 
-      {/* IMPACT ACROSS AFRICA */}
+      {/* IMPACT ACROSS AFRICA - UPDATED CARDS ONLY */}
       <section className="bg-white py-24 border-y border-black/10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -99,25 +99,32 @@ export default function AgriPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card 1 - Updated */}
             <div className="bg-[#fafafa] border border-black/10 rounded-3xl p-9 text-center">
               <div className="text-6xl font-semibold tracking-tighter text-[#166534] mb-4">2.8M</div>
               <div className="text-xl text-[#171717] mb-2">Hectares</div>
-              <div className="text-sm text-[#525252]">Under regenerative management</div>
+              <div className="text-sm text-[#525252]">Opportunity for regenerative management</div>
             </div>
+
+            {/* Card 2 - Updated */}
             <div className="bg-[#fafafa] border border-black/10 rounded-3xl p-9 text-center">
               <div className="text-6xl font-semibold tracking-tighter text-[#166534] mb-4">50,000+</div>
-              <div className="text-xl text-[#171717] mb-2">Farmers Trained</div>
-              <div className="text-sm text-[#525252]">Across 13 African nations</div>
+              <div className="text-xl text-[#171717] mb-2">Farmers to be Trained</div>
+              <div className="text-sm text-[#525252]">Across 54 African nations</div>
             </div>
+
+            {/* Card 3 - Unchanged */}
             <div className="bg-[#fafafa] border border-black/10 rounded-3xl p-9 text-center">
               <div className="text-6xl font-semibold tracking-tighter text-[#166534] mb-4">47%</div>
               <div className="text-xl text-[#171717] mb-2">Income Increase</div>
               <div className="text-sm text-[#525252]">For participating smallholder farmers</div>
             </div>
+
+            {/* Card 4 - Updated */}
             <div className="bg-[#fafafa] border border-black/10 rounded-3xl p-9 text-center">
-              <div className="text-6xl font-semibold tracking-tighter text-[#166534] mb-4">13</div>
+              <div className="text-6xl font-semibold tracking-tighter text-[#166534] mb-4">54</div>
               <div className="text-xl text-[#171717] mb-2">Countries</div>
-              <div className="text-sm text-[#525252]">Active regenerative programs</div>
+              <div className="text-sm text-[#525252]">Opportunity for regenerative programs</div>
             </div>
           </div>
         </div>
