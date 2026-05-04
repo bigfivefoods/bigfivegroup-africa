@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Download, ExternalLink } from "lucide-react";
+import { Download, ExternalLink, User, Users, Building2, Globe } from "lucide-react";
 import Image from "next/image";
 import { useState, useRef } from "react";
 
@@ -294,6 +294,7 @@ export default function LeadershipPage() {
 
   return (
     <div className="overflow-hidden bg-[#fafafa]">
+      
       {/* HERO */}
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <div 
@@ -345,7 +346,7 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      {/* THE SUPER-CUBE® MODEL */}
+      {/* DISCOVER THE MODEL + TWO-ROW CARDS */}
       <section id="model" className="max-w-6xl mx-auto px-6 py-24">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
@@ -377,49 +378,79 @@ export default function LeadershipPage() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto mt-16">
-            <h3 className="text-3xl font-semibold tracking-tight text-black mb-10 text-center">The Ripple Effect: Super-Cube® Transforms Individuals, Teams, Governments & Society</h3>
+          {/* TWO HORIZONTAL LINES OF CARDS */}
+          <div className="max-w-5xl mx-auto mt-16">
+            <h3 className="text-3xl font-semibold tracking-tight text-black mb-10 text-center">
+              The Ripple Effect: Super-Cube® Transforms Individuals, Teams, Governments & Society
+            </h3>
             
-            <div className="space-y-14 text-left">
-              <div className="bg-white border border-black/10 rounded-3xl p-10">
-                <h4 className="text-2xl font-semibold text-black mb-4">For Individuals</h4>
-                <div className="space-y-3 text-[#404040]">
-                  <p><strong>Why it matters:</strong> Personal leadership growth is the foundation of all progress. When you grow, everything around you improves.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+              
+              {/* For Individuals */}
+              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <User className="w-6 h-6 text-[#fbbf24]" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-black">For Individuals</h4>
+                </div>
+                <div className="space-y-4 text-[#404040] flex-1">
+                  <p><strong>Why it matters:</strong> Personal leadership growth is the foundation of all progress.</p>
                   <p><strong>How it happens:</strong> Through the 6 dimensions you build moral clarity, emotional resilience, strategic thinking, and deep purpose.</p>
-                  <p><strong>What the improvement looks like:</strong> You become a more confident, ethical, and effective leader who creates lasting positive impact in your career, family, and community — and models the leadership Africa needs.</p>
+                  <p><strong>Result:</strong> You become a more confident, ethical, and effective leader who models the leadership Africa needs.</p>
                 </div>
               </div>
 
-              <div className="bg-white border border-black/10 rounded-3xl p-10">
-                <h4 className="text-2xl font-semibold text-black mb-4">For Teams</h4>
-                <div className="space-y-3 text-[#404040]">
+              {/* For Teams */}
+              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <Users className="w-6 h-6 text-[#fbbf24]" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-black">For Teams</h4>
+                </div>
+                <div className="space-y-4 text-[#404040] flex-1">
                   <p><strong>Why it matters:</strong> High-performing teams are built on trust, shared purpose, and psychological safety.</p>
-                  <p><strong>How it happens:</strong> Leaders who embody Super-Cube® create environments where people feel valued, motivated, and empowered to contribute their best.</p>
-                  <p><strong>What the improvement looks like:</strong> Teams become dramatically more collaborative, innovative, and resilient — delivering extraordinary results together and achieving what was previously impossible.</p>
+                  <p><strong>How it happens:</strong> Leaders who embody Super-Cube® create environments where people feel valued and empowered.</p>
+                  <p><strong>Result:</strong> Teams become dramatically more collaborative, innovative, and resilient.</p>
                 </div>
               </div>
 
-              <div className="bg-white border border-black/10 rounded-3xl p-10">
-                <h4 className="text-2xl font-semibold text-black mb-4">For Governments</h4>
-                <div className="space-y-3 text-[#404040]">
-                  <p><strong>Why it matters:</strong> Africa desperately needs ethical, visionary public leaders who can drive real development and build strong institutions.</p>
-                  <p><strong>How it happens:</strong> Super-Cube® equips public servants with the moral clarity, strategic thinking, and emotional intelligence to make principled decisions and lead with integrity.</p>
-                  <p><strong>What the improvement looks like:</strong> Governments become more transparent, effective, and trusted — accelerating national progress, reducing corruption, and delivering better services to citizens.</p>
+              {/* For Governments */}
+              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <Building2 className="w-6 h-6 text-[#fbbf24]" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-black">For Governments</h4>
+                </div>
+                <div className="space-y-4 text-[#404040] flex-1">
+                  <p><strong>Why it matters:</strong> Africa desperately needs ethical, visionary public leaders who can drive real development.</p>
+                  <p><strong>How it happens:</strong> Super-Cube® equips public servants with moral clarity, strategic thinking, and emotional intelligence.</p>
+                  <p><strong>Result:</strong> Governments become more transparent, effective, and trusted.</p>
                 </div>
               </div>
 
-              <div className="bg-white border border-black/10 rounded-3xl p-10">
-                <h4 className="text-2xl font-semibold text-black mb-4">For Society</h4>
-                <div className="space-y-3 text-[#404040]">
-                  <p><strong>Why it matters:</strong> The future of Africa depends on leaders who serve the greater good and build a prosperous, united continent.</p>
-                  <p><strong>How it happens:</strong> When individuals, teams, and governments improve through Super-Cube®, the benefits multiply across society through job creation, poverty reduction, ethical governance, and sustainable development.</p>
-                  <p><strong>What the improvement looks like:</strong> A more prosperous, united, and self-reliant Africa where every citizen can thrive, where corruption is reduced, education and healthcare improve, and economic opportunities expand for millions.</p>
+              {/* For Society */}
+              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <Globe className="w-6 h-6 text-[#fbbf24]" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-black">For Society</h4>
+                </div>
+                <div className="space-y-4 text-[#404040] flex-1">
+                  <p><strong>Why it matters:</strong> The future of Africa depends on leaders who serve the greater good.</p>
+                  <p><strong>How it happens:</strong> When individuals, teams, and governments improve through Super-Cube®, the benefits multiply across society.</p>
+                  <p><strong>Result:</strong> A more prosperous, united, and self-reliant Africa for every citizen.</p>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
 
+        {/* Dimensions Cards */}
         <div className="space-y-12">
           {dimensions.map((dim, index) => (
             <motion.div 
@@ -498,6 +529,150 @@ export default function LeadershipPage() {
         </div>
       </section>
 
+      {/* DOWNLOAD THE BOOK */}
+      <section className="py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fbbf24]/40 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#fbbf24_0.8px,transparent_1px)] bg-[length:6px_6px] opacity-10" />
+        
+        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+          <div className="inline-flex items-center gap-3 bg-[#fbbf24] text-black px-8 py-3 rounded-full text-sm font-bold tracking-[2px] mb-8 shadow-xl">
+            EXCLUSIVE FREE DOWNLOAD — FOR ASPIRING LEADERS ONLY
+          </div>
+
+          <h2 className="text-6xl md:text-7xl font-semibold tracking-tighter text-black mb-6 leading-none">
+            Get the Complete<br />Super-Cube® Leadership Model Book
+          </h2>
+
+          <p className="text-2xl text-[#404040] max-w-3xl mx-auto mb-4 font-light">
+            Igniting Africa's Potential and Accelerating Humanity's Progress
+          </p>
+
+          <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-10">
+            A Proven, Human-Centric Blueprint for Developing Leaders Who Transform Individuals, Teams, Organisations, and Society.<br />
+            Based on the Groundbreaking Doctorate Research of Dr. Craig Ross Muller.
+          </p>
+
+          <div className="mb-10">
+            <a 
+              href="/the-super-cube-leadership-model.pdf" 
+              download="The-Super-Cube-Leadership-Model.pdf"
+              className="group inline-flex items-center justify-center gap-5 bg-black hover:bg-[#111] active:bg-black text-white px-20 py-7 rounded-3xl text-3xl font-semibold shadow-2xl transition-all duration-200 hover:shadow-[0_0_60px_-15px_#fbbf24] active:scale-[0.985]"
+            >
+              <Download className="w-10 h-10 group-hover:-translate-y-1 transition-transform" />
+              DOWNLOAD FREE BOOK (PDF)
+            </a>
+          </div>
+
+          <div className="max-w-xl mx-auto">
+            <p className="text-xl text-[#404040] mb-6">
+              For every aspiring leader who wants to help accelerate leadership development to progress humanity.
+            </p>
+            <p className="text-lg text-[#737373]">
+              No email. No signup. No catch. Just the full 70-page doctoral blueprint — yours to use, share, and transform with.
+            </p>
+          </div>
+
+          <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 text-sm text-[#525252]">
+            <div className="flex items-center gap-2">✓ Validated across 13 African nations</div>
+            <div className="flex items-center gap-2">✓ 6 dimensions • 5 levels of impact</div>
+            <div className="flex items-center gap-2">✓ Ready for immediate application</div>
+            <div className="flex items-center gap-2">✓ Built on Ubuntu & I-Thou philosophy</div>
+          </div>
+        </div>
+      </section>
+
+      {/* DOWNLOAD THE RESEARCH */}
+      <section className="py-24 bg-white border-y border-black/10">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">PEER-REVIEWED RESEARCH</div>
+          <h3 className="text-5xl font-semibold tracking-tighter text-black mb-8">Download the Research</h3>
+          
+          <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-12">
+            The Super-Cube® model is backed by rigorous academic research published in leading journals.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a 
+              href="/research/sajems-2022.pdf" 
+              download
+              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
+            >
+              <Download className="w-5 h-5" />
+              SAJEMS Journal Article (2022)
+            </a>
+            
+            <a 
+              href="/research/jcm-2022.pdf" 
+              download
+              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
+            >
+              <Download className="w-5 h-5" />
+              JCM Journal Article (2022)
+            </a>
+          </div>
+
+          <a 
+            href="https://www.researchgate.net/profile/Craig-Muller" 
+            target="_blank"
+            className="inline-flex items-center gap-2 text-[#fbbf24] hover:text-[#f59e0b] text-lg font-medium"
+          >
+            View full profile & publications on ResearchGate 
+            <ExternalLink className="w-5 h-5" />
+          </a>
+        </div>
+      </section>
+
+      {/* PROGRAMME BENEFITS */}
+      <section className="bg-white py-24 border-y border-black/10">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">WHY SUPER-CUBE® IS DIFFERENT</div>
+            <h3 className="text-5xl font-semibold tracking-tighter text-black mb-6">Super-Cube® Programme Benefits</h3>
+            <p className="max-w-3xl mx-auto text-xl text-[#525252]">
+              Super-Cube® is not just another leadership course — it is the only doctoral, empirically validated model specifically designed for Africa. It delivers measurable, lifelong transformation that builds effective leadership at every level of society: from the individual to entire business networks and communities.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: "1. Coherent",
+                desc: "The Super-Cube® model is a coherent and scientific approach to leadership and leadership development. Grounded in academic literature and rigorously evaluated in real African FMCG business networks, it provides the most reliable, evidence-based pathway to genuine leadership growth."
+              },
+              {
+                title: "2. Longitudinal",
+                desc: "Super-Cube® is a lifetime journey. The content progresses with the learner, building knowledge, skills and abilities stage by stage. What begins as foundational understanding evolves into mastery — creating leaders who continue to grow and impact for decades."
+              },
+              {
+                title: "3. Multilevel",
+                desc: "The model applies at every level — individual, team, organisation and society. Rooted in I-Thou philosophy and Ubuntu (“I am because we are”), it fosters mutual respect and holistic development across all layers of African business and community life."
+              },
+              {
+                title: "4. Influential",
+                desc: "Exercising Super-Cube® leadership creates a profound ripple effect. Leaders positively influence their entire circle of influence — families, teams, organisations and communities — driving ethical growth, job creation and sustainable development across the continent."
+              }
+            ].map((benefit, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-[#fafafa] border border-black/10 rounded-3xl p-9 hover:border-black/20 transition-all"
+              >
+                <h4 className="text-2xl font-semibold tracking-tight text-black mb-6">{benefit.title}</h4>
+                <p className="text-lg text-[#404040] leading-relaxed">{benefit.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center max-w-3xl mx-auto">
+            <p className="text-xl text-[#171717] font-medium">
+              This is not incremental training. This is systemic transformation — the leadership infrastructure Africa needs to feed its people, empower its youth and build unbreakable economies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ASSESSMENT */}
       <section className="bg-white py-24 border-y border-black/10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -618,191 +793,7 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24 border-y border-black/10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">WHY SUPER-CUBE® IS DIFFERENT</div>
-            <h3 className="text-5xl font-semibold tracking-tighter text-black mb-6">Super-Cube® Programme Benefits</h3>
-            <p className="max-w-3xl mx-auto text-xl text-[#525252]">
-              Super-Cube® is not just another leadership course — it is the only doctoral, empirically validated model specifically designed for Africa. It delivers measurable, lifelong transformation that builds effective leadership at every level of society: from the individual to entire business networks and communities.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "1. Coherent",
-                desc: "The Super-Cube® model is a coherent and scientific approach to leadership and leadership development. Grounded in academic literature and rigorously evaluated in real African FMCG business networks, it provides the most reliable, evidence-based pathway to genuine leadership growth."
-              },
-              {
-                title: "2. Longitudinal",
-                desc: "Super-Cube® is a lifetime journey. The content progresses with the learner, building knowledge, skills and abilities stage by stage. What begins as foundational understanding evolves into mastery — creating leaders who continue to grow and impact for decades."
-              },
-              {
-                title: "3. Multilevel",
-                desc: "The model applies at every level — individual, team, organisation and society. Rooted in I-Thou philosophy and Ubuntu (“I am because we are”), it fosters mutual respect and holistic development across all layers of African business and community life."
-              },
-              {
-                title: "4. Influential",
-                desc: "Exercising Super-Cube® leadership creates a profound ripple effect. Leaders positively influence their entire circle of influence — families, teams, organisations and communities — driving ethical growth, job creation and sustainable development across the continent."
-              }
-            ].map((benefit, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-[#fafafa] border border-black/10 rounded-3xl p-9 hover:border-black/20 transition-all"
-              >
-                <h4 className="text-2xl font-semibold tracking-tight text-black mb-6">{benefit.title}</h4>
-                <p className="text-lg text-[#404040] leading-relaxed">{benefit.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-16 text-center max-w-3xl mx-auto">
-            <p className="text-xl text-[#171717] font-medium">
-              This is not incremental training. This is systemic transformation — the leadership infrastructure Africa needs to feed its people, empower its youth and build unbreakable economies.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-white border-y border-black/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">PEER-REVIEWED RESEARCH</div>
-          <h3 className="text-5xl font-semibold tracking-tighter text-black mb-8">Download the Research</h3>
-          
-          <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-12">
-            The Super-Cube® model is backed by rigorous academic research published in leading journals.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a 
-              href="/research/sajems-2022.pdf" 
-              download
-              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
-            >
-              <Download className="w-5 h-5" />
-              SAJEMS Journal Article (2022)
-            </a>
-            
-            <a 
-              href="/research/jcm-2022.pdf" 
-              download
-              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
-            >
-              <Download className="w-5 h-5" />
-              JCM Journal Article (2022)
-            </a>
-          </div>
-
-          <a 
-            href="https://www.researchgate.net/profile/Craig-Muller" 
-            target="_blank"
-            className="inline-flex items-center gap-2 text-[#fbbf24] hover:text-[#f59e0b] text-lg font-medium"
-          >
-            View full profile & publications on ResearchGate 
-            <ExternalLink className="w-5 h-5" />
-          </a>
-        </div>
-      </section>
-
-      <section className="py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fbbf24]/40 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#fbbf24_0.8px,transparent_1px)] bg-[length:6px_6px] opacity-10" />
-        
-        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
-          <div className="inline-flex items-center gap-3 bg-[#fbbf24] text-black px-8 py-3 rounded-full text-sm font-bold tracking-[2px] mb-8 shadow-xl">
-            EXCLUSIVE FREE DOWNLOAD — FOR ASPIRING LEADERS ONLY
-          </div>
-
-          <h2 className="text-6xl md:text-7xl font-semibold tracking-tighter text-black mb-6 leading-none">
-            Get the Complete<br />Super-Cube® Leadership Model Book
-          </h2>
-
-          <p className="text-2xl text-[#404040] max-w-3xl mx-auto mb-4 font-light">
-            Igniting Africa's Potential and Accelerating Humanity's Progress
-          </p>
-
-          <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-10">
-            A Proven, Human-Centric Blueprint for Developing Leaders Who Transform Individuals, Teams, Organisations, and Society.<br />
-            Based on the Groundbreaking Doctorate Research of Dr. Craig Ross Muller.
-          </p>
-
-          <div className="mb-10">
-            <a 
-              href="/the-super-cube-leadership-model.pdf" 
-              download="The-Super-Cube-Leadership-Model.pdf"
-              className="group inline-flex items-center justify-center gap-5 bg-black hover:bg-[#111] active:bg-black text-white px-20 py-7 rounded-3xl text-3xl font-semibold shadow-2xl transition-all duration-200 hover:shadow-[0_0_60px_-15px_#fbbf24] active:scale-[0.985]"
-            >
-              <Download className="w-10 h-10 group-hover:-translate-y-1 transition-transform" />
-              DOWNLOAD FREE BOOK (PDF)
-            </a>
-          </div>
-
-          <div className="max-w-xl mx-auto">
-            <p className="text-xl text-[#404040] mb-6">
-              For every aspiring leader who wants to help accelerate leadership development to progress humanity.
-            </p>
-            <p className="text-lg text-[#737373]">
-              No email. No signup. No catch. Just the full 70-page doctoral blueprint — yours to use, share, and transform with.
-            </p>
-          </div>
-
-          <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 text-sm text-[#525252]">
-            <div className="flex items-center gap-2">✓ Validated across 13 African nations</div>
-            <div className="flex items-center gap-2">✓ 6 dimensions • 5 levels of impact</div>
-            <div className="flex items-center gap-2">✓ Ready for immediate application</div>
-            <div className="flex items-center gap-2">✓ Built on Ubuntu & I-Thou philosophy</div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-24 border-y border-black/10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">THE JOURNEY</div>
-            <h3 className="text-5xl font-semibold tracking-tighter text-black">How Super-Cube® Works</h3>
-          </div>
-
-          <div className="space-y-12">
-            {[
-              {
-                step: "01",
-                title: "Assess & Diagnose",
-                desc: "Complete the proprietary Super-Cube® 360° assessment measuring all 6 dimensions. Receive a detailed personal leadership operating system report with clear development priorities."
-              },
-              {
-                step: "02",
-                title: "Develop & Embed",
-                desc: "Immersive 6–12 month programs combining AI coaching, peer masterminds, real-world projects, and on-chain credentialing. Every participant leaves with a personalised leadership framework rooted in Ubuntu."
-              },
-              {
-                step: "03",
-                title: "Scale & Multiply",
-                desc: "Graduates become certified Super-Cube® facilitators. They go on to transform organisations, governments, and communities — creating a multiplying effect across the continent."
-              }
-            ].map((item, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex flex-col md:flex-row gap-8 md:gap-12 items-start group"
-              >
-                <div className="flex-shrink-0 w-20 h-20 rounded-2xl bg-[#fafafa] flex items-center justify-center text-4xl font-light text-[#fbbf24] border border-black/10">
-                  {item.step}
-                </div>
-                <div className="flex-1 pt-2">
-                  <h4 className="text-4xl font-semibold tracking-tight text-black mb-4">{item.title}</h4>
-                  <p className="text-xl text-[#404040] leading-relaxed max-w-3xl">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* FINAL CTA */}
       <section className="bg-black py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-[#fbbf24] text-xs tracking-[3px] mb-6">THE FUTURE OF AFRICAN LEADERSHIP STARTS HERE</div>
@@ -831,6 +822,7 @@ export default function LeadershipPage() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }
