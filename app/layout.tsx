@@ -21,9 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} [--navbar-height:5rem]`}>
         <Navbar />
-        {children}
+        
+        <main className="pt-[var(--navbar-height)]">
+          {children}
+        </main>
+        
         <Footer />
       </body>
     </html>

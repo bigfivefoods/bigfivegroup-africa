@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* ============================================
+   GLOBAL NAVBAR HEIGHT VARIABLE
+   Change this one value if your navbar height changes
+============================================ */
+:root {
+  --navbar-height: 5rem; /* 80px - adjust if needed */
+}
+
+/* Optional but recommended */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   EXISTING STYLES (unchanged)
+============================================ */
+
 body {
   background: #fafafa;
   color: #171717;
