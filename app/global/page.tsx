@@ -185,7 +185,7 @@ export default function GlobalPage() {
     <div className="overflow-hidden bg-[#fafafa]">
       {/* HERO */}
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/africa-hero.jpg')" }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/global-hero.jpg')" }} />
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-15" />
         <div className="absolute inset-0 bg-black/35" />
         
