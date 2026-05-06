@@ -31,7 +31,6 @@ export default function GlobalPage() {
     "Eswatini": "Eswatini has 59% poverty and 30% facing food insecurity. (Sources: World Bank 2024; FAO 2024)",
     "Madagascar": "Madagascar has over 70% poverty and 8.8 million facing acute food insecurity. (Sources: WFP 2025; FAO 2024)",
     "Malawi": "Malawi has 50% poverty and recurrent food insecurity affecting 3.5 million people. (Sources: World Bank 2024; FAO 2024)",
-    "Mozambique": "Mozambique has 63% poverty and 2.8 million facing severe food insecurity. (Sources: WFP 2024; FAO 2024)",
     "Comoros": "Comoros faces 45% poverty and chronic food insecurity affecting 35% of households. (Sources: FAO 2024; UNICEF 2024)",
     "Mauritius": "Mauritius has reduced poverty to under 8% but faces rising food insecurity due to climate change. (Sources: World Bank 2024; FAO 2024)",
     "Seychelles": "Seychelles has very low poverty (under 5%) and strong food security. (Sources: FAO 2024; UNICEF 2024)",
