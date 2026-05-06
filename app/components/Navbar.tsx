@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ChevronDown, ArrowRight, Leaf, Wheat, Truck, Landmark, Link as LinkIcon, Award, Heart, Feather } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Leaf, Wheat, Truck, Landmark, Link as LinkIcon, Award, Heart, Feather, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { companies } from "../lib/companies";
 
@@ -10,7 +10,7 @@ export default function Navbar() {
   const [groupOpen, setGroupOpen] = useState(false);
 
   const navLinks = [
-    { href: "/tribal", label: "Tribal" },
+    { href: "/global", label: "Global" },
     { href: "/africa", label: "Africa" },
     { href: "#", label: "Group", isDropdown: true },
     { href: "/leadership", label: "Leadership" },
@@ -27,6 +27,7 @@ export default function Navbar() {
       case "Award": return <Award size={size} />;
       case "Heart": return <Heart size={size} />;
       case "Feather": return <Feather size={size} />;
+      case "Globe": return <Globe size={size} />;
       default: return <Leaf size={size} />;
     }
   };

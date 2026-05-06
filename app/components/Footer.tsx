@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="md:col-span-3">
             <div className="uppercase tracking-[2px] text-xs font-semibold mb-4">EXPLORE</div>
             <div className="space-y-2 text-sm">
-              <Link href="/tribal" className="block hover:text-black/70">Tribal</Link>
+              <Link href="/global" className="block hover:text-black/70">Global</Link>
               <Link href="/africa" className="block hover:text-black/70">Africa</Link>
               <Link href="/leadership" className="block hover:text-black/70">Leadership</Link>
               <Link href="/foundation" className="block hover:text-black/70">Foundation</Link>
@@ -35,7 +35,7 @@ export default function Footer() {
               <Link href="/connect" className="hover:text-black/70">Connect</Link>
               <Link href="/leadership" className="hover:text-black/70">Leadership</Link>
               <Link href="/foundation" className="hover:text-black/70">Foundation</Link>
-              <Link href="/tribal" className="hover:text-black/70">Tribal</Link>
+              <Link href="/global" className="hover:text-black/70">Global</Link>
             </div>
           </div>
         </div>

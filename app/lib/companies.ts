@@ -161,25 +161,25 @@ export const companies: Company[] = [
     impact: "R187 million deployed. 1.2 million direct beneficiaries. 94% of projects met or exceeded targets."
   },
   {
-    slug: "tribal",
-    name: "Tribal",
-    fullName: "Big Five Tribal",
-    color: "#1e3a8a",
-    icon: "Feather",
-    tagline: "Zulu Kingdom Heritage • Royal Wisdom • Modern African Excellence",
-    description: "The cultural and spiritual heart of the Big Five Group. We honor and activate Zulu Kingdom wisdom and ancestral knowledge.",
-    heroText: "Inkosi • Isizwe • Isikhathi. The Kingdom Rises.",
+    slug: "global",
+    name: "Global",
+    fullName: "Big Five Global",
+    color: "#0ea5e9",
+    icon: "Globe",
+    tagline: "International Partnerships • African Standards • Global Impact",
+    description: "Extending African sovereignty, ethical leadership, and regenerative commerce to the world stage through strategic global partnerships.",
+    heroText: "Africa Rising. The World Watching. Leading with Purpose.",
     howItWorks: [
-      { step: 1, title: "Honor & Activate", desc: "We begin every major initiative with traditional ceremonies and alignment to Zulu royal protocols." },
-      { step: 2, title: "Unite & Empower", desc: "Tribal councils, youth indabas, and women's circles feed directly into business decisions." },
-      { step: 3, title: "Legacy & Multiply", desc: "Building the modern Zulu Kingdom economy: tourism, cultural exports, and digital heritage platforms." }
+      { step: 1, title: "Build Global Alliances", desc: "Form strategic partnerships with governments, institutions, and corporations across continents." },
+      { step: 2, title: "Export African Excellence", desc: "Share Super-Cube® leadership, regenerative agriculture, and on-chain traceability models worldwide." },
+      { step: 3, title: "Create Global Impact", desc: "Position Africa as a global leader in ethical, sustainable, and sovereign development." }
     ],
     forStakeholders: [
-      { title: "For the Zulu Nation", desc: "Economic empowerment without cultural compromise. Revenue share models." },
-      { title: "For Global Partners", desc: "Authentic, high-end cultural experiences. Royal hospitality." },
-      { title: "For All Big Five Companies", desc: "Every decision passes through the lens of 'Does this honor the ancestors?'" }
+      { title: "For International Partners", desc: "Access to verified African supply chains, ethical leadership training, and high-impact investment opportunities." },
+      { title: "For African Companies", desc: "Global market access, international credibility, and world-class standards." },
+      { title: "For Global Citizens", desc: "Support African-led solutions to climate, nutrition, and leadership challenges." }
     ],
-    impact: "Aligned with zulukingdom.co.za. 7 royal partnerships active. 23 cultural enterprises incubated."
+    impact: "Partnerships across 4 continents. 12 global alliances active. Setting new international standards for ethical African business."
   }
 ];
 
