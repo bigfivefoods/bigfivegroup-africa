@@ -9,12 +9,12 @@ import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
 const navLinks = [
-  { href: "/global", label: "Global" },
   { href: "/africa", label: "Africa" },
-  { href: "#", label: "Group", isDropdown: true },
-  { href: "/leadership", label: "Leadership" },
-  { href: "/foundation", label: "Foundation" },
   { href: "/royal", label: "Royal" },
+  { href: "/leadership", label: "Leadership" },
+  { href: "#", label: "Group", isDropdown: true },
+  { href: "/global", label: "Global" },
+  { href: "/foundation", label: "Foundation" },
   { href: "/about", label: "About" },
 ];
 
