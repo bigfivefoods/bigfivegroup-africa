@@ -99,18 +99,27 @@ export default function FoundationPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <SectionHeading eyebrow="UN SDGs" title="Aligned to global goals" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {sdgGoals.map((g) => (
             <div
               key={g.number}
-              className="bg-white border border-black/10 rounded-3xl p-7 flex gap-4"
+              className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex items-start gap-4 min-w-0"
             >
-              <Image src={g.icon} alt={g.title} width={56} height={56} className="shrink-0" />
-              <div>
+              {/* Fixed square frame so icons never stretch (global img height:auto) */}
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 overflow-hidden rounded-md bg-[#fafafa] ring-1 ring-black/5">
+                <Image
+                  src={g.icon}
+                  alt={`UN SDG ${g.number}: ${g.title}`}
+                  fill
+                  sizes="64px"
+                  className="object-contain object-center p-0.5"
+                />
+              </div>
+              <div className="min-w-0 flex-1 pt-0.5">
                 <div className="text-xs tracking-[2px] text-[#737373] mb-1">SDG {g.number}</div>
-                <h3 className="font-semibold text-lg text-black mb-1">{g.title}</h3>
+                <h3 className="font-semibold text-base sm:text-lg text-black mb-1">{g.title}</h3>
                 <p className="text-sm text-[#525252] leading-relaxed">{g.desc}</p>
               </div>
             </div>

@@ -64,13 +64,19 @@ body {
   min-width: 0;
 }
 
-/* Prevent media from blowing out narrow viewports */
-img,
+/* Prevent media from blowing out narrow viewports.
+   Exclude Next/Image fixed-size icons that set explicit dimensions. */
+img:not([width]):not([style*="position:absolute"]),
 video,
 svg,
 canvas {
   max-width: 100%;
   height: auto;
+}
+
+/* Next.js Image with fill is position:absolute — keep full box */
+img[style*="position:absolute"] {
+  max-width: none;
 }
 
 /* Tables / long words */
