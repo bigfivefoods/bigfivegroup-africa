@@ -48,14 +48,23 @@ export default function DirectPage() {
 
       <SupplierTrust entityName="Big Five Foods (linked via Direct)" compact />
 
-      {/* Foods × SA network */}
-      <section id="network" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
-        <SectionHeading
-          eyebrow="SUPPLIERADVISOR® · BIG FIVE FOODS"
-          title="Containers, locations & food impact"
-          subtitle="Direct connects to Big Five Foods on SupplierAdvisor® so partners can see the distribution network and the nutrition impact behind every last-mile route."
-        />
-        <FoodsNetworkPanel />
+      {/* Foods × SA network — impact + live map */}
+      <section id="network" className="py-16 sm:py-20 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 text-center">
+          <div className="text-xs tracking-[3px] text-[#c2410c] mb-3 font-medium">
+            DIRECT × FOODS × SUPPLIERADVISOR®
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4 text-balance">
+            Logistics that feed people
+          </h2>
+          <p className="text-base sm:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed">
+            See the live container network and the nutrition impact behind every route — transparent
+            last-mile infrastructure built so communities eat with dignity.
+          </p>
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FoodsNetworkPanel />
+        </div>
       </section>
 
       <LocalNewsVideo accent={ACCENT} />
