@@ -33,6 +33,9 @@ export default function Footer() {
               Explore
             </div>
             <div className="space-y-2.5 text-sm">
+              <Link href="/group" className="block hover:text-black/70 transition-colors">
+                The Group
+              </Link>
               <Link href="/global" className="block hover:text-black/70 transition-colors">
                 Global
               </Link>

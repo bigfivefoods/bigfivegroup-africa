@@ -67,9 +67,10 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href !== "#" && (pathname === href || pathname.startsWith(`${href}/`));
 
-  const isGroupActive = companies.some(
-    (c) => pathname === `/${c.slug}` || pathname.startsWith(`/${c.slug}/`)
-  );
+  const isGroupActive =
+    pathname === "/group" ||
+    pathname.startsWith("/group/") ||
+    companies.some((c) => pathname === `/${c.slug}` || pathname.startsWith(`/${c.slug}/`));
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-black/10">
@@ -124,6 +125,26 @@ export default function Navbar() {
                     >
                       <div className="w-[min(22rem,calc(100vw-2rem))] 2xl:w-[25rem] bg-white rounded-3xl p-2 sm:p-3 shadow-xl border border-black/10 max-h-[min(70vh,32rem)] overflow-y-auto">
                         <div className="flex flex-col">
+                          <Link
+                            href="/group"
+                            className={`group flex items-center gap-3 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl transition-all mb-1 border-b border-black/5 ${
+                              pathname === "/group" ? "bg-[#f5f5f5]" : "hover:bg-[#fafafa]"
+                            }`}
+                            onClick={closeMenus}
+                          >
+                            <div className="w-9 h-9 rounded-xl shrink-0 flex items-center justify-center bg-black text-white">
+                              <span className="text-xs font-bold">10</span>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-black flex items-center gap-2">
+                                <span className="truncate">Group overview</span>
+                                <ArrowRight className="w-3.5 h-3.5 shrink-0 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all" />
+                              </div>
+                              <div className="text-xs text-[#525252] truncate">
+                                All ten pillars · one system
+                              </div>
+                            </div>
+                          </Link>
                           {companies.map((company) => {
                             const active = pathname === `/${company.slug}`;
                             return (
@@ -220,6 +241,20 @@ export default function Navbar() {
                       {link.label}
                     </div>
                     <div className="pl-0 sm:pl-1 space-y-1">
+                      <Link
+                        href="/group"
+                        className={`flex items-center gap-3 py-2.5 px-3 rounded-xl ${
+                          pathname === "/group"
+                            ? "bg-[#f5f5f5] font-semibold"
+                            : "hover:bg-[#fafafa]"
+                        }`}
+                        onClick={closeMenus}
+                      >
+                        <span className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-black text-white text-xs font-bold">
+                          10
+                        </span>
+                        <span className="truncate">Group overview</span>
+                      </Link>
                       {companies.map((c) => (
                         <Link
                           key={c.slug}
