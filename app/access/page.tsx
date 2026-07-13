@@ -19,6 +19,7 @@ import {
   Users,
   TrendingUp,
 } from "lucide-react";
+import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
 
 const ACCENT = "#3b82f6";
 
@@ -39,8 +40,13 @@ export default function AccessPage() {
         ctas={[
           { href: "#how", label: "How Access works", primary: true },
           {
-            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            href: SA_ONBOARDING,
             label: "Start free trial",
+            external: true,
+          },
+          {
+            href: SA_LOGIN,
+            label: "Existing user? Log in",
             external: true,
           },
         ]}
@@ -164,11 +170,11 @@ export default function AccessPage() {
       <FinalCta
         eyebrow="UNLOCK ACCESS"
         title="Start your Access journey"
-        subtitle="Verified capital. Clean procurement. Institutional partnerships."
-        primary={{ href: "/connect", label: "Talk to Access" }}
+        subtitle="Verified capital. Clean procurement. Institutional partnerships. Existing company users can log in to SupplierAdvisor®."
+        primary={{ href: SA_ONBOARDING, label: "Start free trial", external: true }}
         secondary={{
-          href: "https://www.supplieradvisor.com/onboarding?type=business",
-          label: "Start free trial",
+          href: SA_LOGIN,
+          label: "Log in to SupplierAdvisor®",
           external: true,
         }}
       />

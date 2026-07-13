@@ -10,6 +10,7 @@ import {
   FinalCta,
 } from "../components/PageSections";
 import { UtensilsCrossed, ChefHat, Beef, Soup, ShieldCheck } from "lucide-react";
+import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
 
 const ACCENT = "#d97706";
 
@@ -87,6 +88,7 @@ export default function FoodsPage() {
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/foods-hero.jpg"
+        logo={{ src: "/bigfivefoods-logo.png", alt: "Big Five Foods logo", width: 192, height: 192 }}
         eyebrow="PILLAR 02 · FORTIFIED NUTRITION"
         title={
           <>
@@ -99,8 +101,13 @@ export default function FoodsPage() {
         ctas={[
           { href: "#products", label: "Explore products", primary: true },
           {
-            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            href: SA_ONBOARDING,
             label: "Start free trial",
+            external: true,
+          },
+          {
+            href: SA_LOGIN,
+            label: "Existing user? Log in",
             external: true,
           },
         ]}
@@ -110,15 +117,6 @@ export default function FoodsPage() {
       <SupplierTrust entityName="Big Five Foods" compact />
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex justify-center mb-10">
-          <Image
-            src="/bigfivefoods-logo.png"
-            alt="Big Five Foods"
-            width={200}
-            height={80}
-            className="object-contain"
-          />
-        </div>
         <StatRow
           accent={ACCENT}
           stats={[
@@ -153,13 +151,19 @@ export default function FoodsPage() {
                     <div className="text-sm font-semibold text-[#92400e] mb-4">{cat.stats}</div>
                     <p className="text-[#404040] leading-relaxed">{cat.benefits}</p>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 p-4 sm:p-6 bg-white">
+                  <div className="grid grid-cols-2 gap-3 p-4 sm:p-6 bg-white">
                     {cat.images.map((src) => (
                       <div
                         key={src}
-                        className="relative aspect-square rounded-2xl overflow-hidden border border-black/5"
+                        className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-black/5 bg-[#f8f7f5] flex items-center justify-center"
                       >
-                        <Image src={src} alt={cat.title} fill className="object-cover" sizes="(max-width:768px) 50vw, 25vw" />
+                        <Image
+                          src={src}
+                          alt={cat.title}
+                          fill
+                          className="object-contain p-2 sm:p-3"
+                          sizes="(max-width:768px) 45vw, 22vw"
+                        />
                       </div>
                     ))}
                   </div>
@@ -230,12 +234,21 @@ export default function FoodsPage() {
             Big Five Foods is built for institutions that need reliable nutrition partners — with
             certifications on the factory floor and verification on{" "}
             <a
-              href="https://www.supplieradvisor.com/onboarding?type=business"
+              href={SA_ONBOARDING}
               target="_blank"
               rel="noopener noreferrer"
               className="text-white underline underline-offset-4"
             >
               SupplierAdvisor®
+            </a>
+            .{" "}
+            <a
+              href={SA_LOGIN}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white underline underline-offset-4"
+            >
+              Existing users log in here
             </a>
             .
           </p>
@@ -247,11 +260,11 @@ export default function FoodsPage() {
       <FinalCta
         eyebrow="FEED WITH PURPOSE"
         title="Partner with Big Five Foods"
-        subtitle="Schools, governments, retailers, and distributors — let's nourish Africa with integrity."
-        primary={{ href: "/connect", label: "Talk to Foods" }}
+        subtitle="Schools, governments, retailers, and distributors — let's nourish Africa with integrity. Existing company users can log in to SupplierAdvisor®."
+        primary={{ href: SA_ONBOARDING, label: "Start free trial", external: true }}
         secondary={{
-          href: "https://www.supplieradvisor.com/onboarding?type=business",
-          label: "Start free trial",
+          href: SA_LOGIN,
+          label: "Log in to SupplierAdvisor®",
           external: true,
         }}
       />

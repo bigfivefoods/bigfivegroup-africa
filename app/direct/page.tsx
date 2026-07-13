@@ -10,6 +10,7 @@ import {
   FinalCta,
 } from "../components/PageSections";
 import { Sun, Network, Package, Coins, MapPin, Users, BarChart3, Zap } from "lucide-react";
+import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
 
 const ACCENT = "#f97316";
 
@@ -30,8 +31,13 @@ export default function DirectPage() {
         ctas={[
           { href: "#model", label: "The Direct model", primary: true },
           {
-            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            href: SA_ONBOARDING,
             label: "Start free trial",
+            external: true,
+          },
+          {
+            href: SA_LOGIN,
+            label: "Existing user? Log in",
             external: true,
           },
         ]}
@@ -155,11 +161,11 @@ export default function DirectPage() {
       <FinalCta
         eyebrow="GO DIRECT"
         title="Join the Direct network"
-        subtitle="Hubs, producers, and buyers building last-mile sovereignty — with professional verification."
-        primary={{ href: "/connect", label: "Join Direct" }}
+        subtitle="Hubs, producers, and buyers building last-mile sovereignty — with professional verification. Existing company users can log in to SupplierAdvisor®."
+        primary={{ href: SA_ONBOARDING, label: "Start free trial", external: true }}
         secondary={{
-          href: "https://www.supplieradvisor.com/onboarding?type=business",
-          label: "Start free trial",
+          href: SA_LOGIN,
+          label: "Log in to SupplierAdvisor®",
           external: true,
         }}
       />
