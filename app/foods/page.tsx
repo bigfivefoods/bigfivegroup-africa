@@ -11,6 +11,7 @@ import {
 } from "../components/PageSections";
 import { UtensilsCrossed, ChefHat, Beef, Soup, ShieldCheck } from "lucide-react";
 import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
+import LocalNewsVideo from "../components/LocalNewsVideo";
 
 const ACCENT = "#d97706";
 
