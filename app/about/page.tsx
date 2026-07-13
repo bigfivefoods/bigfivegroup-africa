@@ -300,15 +300,15 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 items-start">
             <div className="lg:col-span-5 min-w-0">
-              <div className="relative mx-auto lg:mx-0 w-full max-w-xs sm:max-w-sm mb-8">
-                <div className="absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-amber-400/40 via-transparent to-emerald-500/20 blur-sm" />
-                <div className="relative aspect-[3/4] rounded-[1.75rem] overflow-hidden border border-white/15 shadow-2xl bg-white/5">
+              <div className="relative mx-auto lg:mx-0 w-full max-w-[11.5rem] sm:max-w-[13rem] md:max-w-[14.5rem] mb-8">
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-amber-400/40 via-transparent to-emerald-500/20 blur-sm" />
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-white/5">
                   <Image
                     src="/craig-muller.png"
                     alt="Dr. Craig R. Muller, Founder & CEO of Big Five Group"
                     fill
                     className="object-cover object-top"
-                    sizes="(max-width: 1024px) 100vw, 380px"
+                    sizes="(max-width: 768px) 184px, 232px"
                     priority
                   />
                 </div>
