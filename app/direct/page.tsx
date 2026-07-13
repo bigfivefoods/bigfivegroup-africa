@@ -18,7 +18,7 @@ export default function DirectPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
-        image="/direct-hero.jpg"
+        image="/container-action-1.jpg"
         eyebrow="PILLAR 03 · DIRECT MARKET ACCESS"
         title={
           <>

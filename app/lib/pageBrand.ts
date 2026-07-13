@@ -42,7 +42,7 @@ export const pageBrand = {
   },
   direct: {
     slug: "direct",
-    hero: "/direct-hero.jpg",
+    hero: "/container-action-1.jpg",
     accent: "#f97316",
     accentDark: "#c2410c",
     accentSoft: "#fff7ed",
