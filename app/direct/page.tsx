@@ -3,6 +3,7 @@
 import PageHero from "../components/PageHero";
 import SupplierTrust from "../components/SupplierTrust";
 import FoodsNetworkPanel from "../components/FoodsNetworkPanel";
+import LocalNewsVideo from "../components/LocalNewsVideo";
 import {
   SectionHeading,
   FeatureGrid,
@@ -31,7 +32,7 @@ export default function DirectPage() {
         subtitle="Eliminate middlemen. Solar micro-hubs, last-mile logistics, and transparent trade that keep value with African producers — powered by Big Five Foods on SupplierAdvisor®."
         ctas={[
           { href: "#network", label: "Containers & food impact", primary: true },
-          { href: "#model", label: "The Direct model" },
+          { href: "#in-the-news", label: "Watch on SABC News" },
           {
             href: SA_LOGIN,
             label: "Existing user? Log in",
@@ -52,6 +53,8 @@ export default function DirectPage() {
         />
         <FoodsNetworkPanel />
       </section>
+
+      <LocalNewsVideo accent={ACCENT} />
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
