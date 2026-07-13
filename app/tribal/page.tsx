@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Crown, Users, Heart } from "lucide-react";
+import { Crown, Users, Heart } from "lucide-react";
 export default function TribalPage() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
@@ -76,7 +76,7 @@ export default function TribalPage() {
                   Our work is not separate from the Kingdom; it is an extension of it.
                 </p>
                 <p>
-                  Every decision we make passes through the lens of <span className="font-semibold text-black">"Does this honour the ancestors and build the Kingdom?"</span>
+                  Every decision we make passes through the lens of <span className="font-semibold text-black">&ldquo;Does this honour the ancestors and build the Kingdom?&rdquo;</span>
                 </p>
                 <p>
                   We recognise the authority of the Zulu Royal House and traditional leadership. Our role is to serve — not to lead — and to use modern tools to protect and advance what has been entrusted to us.

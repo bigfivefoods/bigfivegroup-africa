@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Award, Globe, UtensilsCrossed, ChefHat, Beef, Soup, Factory } from "lucide-react";
+import { Award, Globe, UtensilsCrossed, ChefHat, Beef, Soup, Factory } from "lucide-react";
 
 export default function FoodsPage() {
   const productCategories = [

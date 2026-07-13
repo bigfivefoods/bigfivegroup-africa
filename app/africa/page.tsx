@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight, Globe } from "lucide-react";
 
 export default function AfricaPage() {
   const countryDescriptions: Record<string, string> = {

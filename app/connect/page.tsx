@@ -9,7 +9,7 @@ const CONNECT_COLOR = "#0ea5e9";
 
 export default function ConnectPage() {
   const [demoStep, setDemoStep] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [, setIsPlaying] = useState(false);
 
   const demoSteps = [
     {

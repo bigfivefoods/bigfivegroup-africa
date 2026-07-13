@@ -1,30 +1,59 @@
 @import "tailwindcss";
 
 /* ============================================
-   GLOBAL NAVBAR HEIGHT VARIABLE
-   Change this one value if your navbar height changes
+   DESIGN TOKENS
 ============================================ */
 :root {
-  --navbar-height: 5rem; /* 80px - adjust if needed */
+  --navbar-height: 5rem;
+  --color-bg: #fafafa;
+  --color-ink: #111111;
+  --color-muted: #525252;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-/* Optional but recommended */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
+  background: var(--color-bg);
+  color: #171717;
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.2);
+  color: #111;
+}
+
+:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 3px;
 }
 
 /* ============================================
-   EXISTING STYLES (unchanged)
+   PREMIUM UI PRIMITIVES
 ============================================ */
 
-body {
-  background: #fafafa;
-  color: #171717;
-  font-family: var(--font-geist-sans);
-}
-
-/* Tesla-Premium Light Theme */
 .glass {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -35,13 +64,13 @@ body {
 .premium-button {
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.23, 1.0, 0.32, 1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
 .premium-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -62,12 +91,13 @@ body {
 
 .premium-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 
-              0 10px 10px -5px rgb(0 0 0 / 0.04);
+  box-shadow:
+    0 10px 25px -5px rgb(0 0 0 / 0.1),
+    0 10px 10px -5px rgb(0 0 0 / 0.04);
 }
 
 .section-heading {
-  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  font-size: clamp(2.25rem, 5.5vw, 4.75rem);
   line-height: 1.05;
   font-weight: 700;
   letter-spacing: -0.045em;
@@ -75,8 +105,9 @@ body {
 }
 
 .card-hover {
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
-              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition:
+    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .card-hover:hover {
@@ -84,7 +115,6 @@ body {
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
 }
 
-/* Light theme accents */
 .text-premium {
   color: #111111;
 }
@@ -94,33 +124,44 @@ body {
 }
 
 .leopard-bg {
-  background-image: 
+  background-image:
     radial-gradient(circle at 25% 30%, rgba(234, 179, 8, 0.06) 1px, transparent 1px),
     radial-gradient(circle at 75% 70%, rgba(234, 179, 8, 0.04) 1.5px, transparent 1.5px);
-  background-size: 8px 8px, 12px 12px;
+  background-size:
+    8px 8px,
+    12px 12px;
 }
 
-/* SupplierAdvisor-style text formatting */
-h1, h2, h3 {
+/* Typography defaults */
+h1,
+h2,
+h3 {
   font-weight: 700;
   letter-spacing: -0.03em;
 }
 
 p {
   line-height: 1.7;
-  /* Global color removed so Tailwind text-white works */
 }
 
-strong, b {
+strong,
+b {
   font-weight: 700;
-  color: #111111;
 }
 
-/* Hero font */
 .hero-h1 {
-  font-family: Inter, system-ui, sans-serif !important;
+  font-family: var(--font-inter) !important;
   font-weight: 700 !important;
   letter-spacing: -0.065em !important;
-  line-height: 1.5 !important;
-  color: #000000 !important;
+  line-height: 1.05 !important;
+}
+
+/* Subtle grain for premium sections */
+.grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

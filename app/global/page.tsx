@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 export default function GlobalPage() {
   const countryDescriptions: Record<string, string> = {

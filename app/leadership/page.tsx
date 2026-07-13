@@ -543,7 +543,7 @@ export default function LeadershipPage() {
           </h2>
 
           <p className="text-2xl text-[#404040] max-w-3xl mx-auto mb-4 font-light">
-            Igniting Africa's Potential and Accelerating Humanity's Progress
+            Igniting Africa&apos;s Potential and Accelerating Humanity&apos;s Progress
           </p>
 
           <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-10">

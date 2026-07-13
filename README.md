@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Big Five Group Africa
 
-## Getting Started
+Corporate website for **Big Five Group** — eight pillars building regenerative, sovereign, and ethical impact across Africa.
 
-First, run the development server:
+**Live:** [bigfivegroup-africa.vercel.app](https://bigfivegroup-africa.vercel.app)  
+**Repo:** [github.com/bigfivefoods/bigfivegroup-africa](https://github.com/bigfivefoods/bigfivegroup-africa)
+
+## Stack
+
+- **Next.js 16** (App Router) + **React 19**
+- **Tailwind CSS 4**
+- **Framer Motion** + **Lucide** icons
+- Deployed on **Vercel** (GitHub integration)
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Serve production build |
+| `npm run lint` | ESLint |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+app/
+  page.tsx              # Home
+  layout.tsx            # Root layout, SEO metadata
+  components/           # Navbar, Footer, shared UI
+  lib/companies.ts      # Pillar data
+  agri|foods|direct|…   # Pillar & content pages
+  sitemap.ts / robots.ts
+public/                 # Images, PDFs, certifications
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploying to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This repo is already connected to the Vercel project **`bigfivegroup-africa`** under the **bigfivefoods-projects** team.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push to `main` on GitHub — production deploys automatically.
+2. Pull requests get preview deployments.
+3. Optional CLI (global, not a project dependency):
 
-## Deploy on Vercel
+```bash
+npm i -g vercel
+vercel link   # select bigfivegroup-africa
+vercel        # preview
+vercel --prod # production
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Vercel settings (recommended)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Setting | Value |
+|---------|--------|
+| Framework | Next.js (auto-detected) |
+| Build command | `next build` |
+| Install command | `npm install` |
+| Node.js | 20.x or 24.x |
+| Root directory | `.` (repo root) |
+
+No environment variables are required for the static marketing site.
+
+### Custom domain
+
+In the Vercel dashboard → Project → **Settings → Domains**, add `bigfivegroup.africa` (and `www`) and point DNS as instructed.
+
+## Notes
+
+- Hero and product assets live in `/public`.
+- Flag images for the Global page load from `flagcdn.com` (allowed in `next.config.ts`).
+- `/tribal` remains available as heritage content; primary nav uses **Global**.

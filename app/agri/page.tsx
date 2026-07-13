@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Users, Award, TrendingUp, Leaf, Handshake, Tractor, Coins, UserCheck } from "lucide-react";
+import { Users, Leaf, Handshake, Coins, UserCheck } from "lucide-react";
 
 export default function AgriPage() {
   return (
@@ -29,7 +28,7 @@ export default function AgriPage() {
           </h1>
           
           <p className="max-w-3xl mx-auto text-2xl text-white/95 font-light tracking-tight mb-12">
-            PARTNERING WITH THE TRIBAL AUTHORIY, ZULU KINGDOM AND GOVERNMENTS ACROSS AFRICA TO REGENERATE FARMLAND, EMPOWER FARMERS, AND FEED THE CONTINENT.
+            PARTNERING WITH THE TRIBAL AUTHORITY, ZULU KINGDOM AND GOVERNMENTS ACROSS AFRICA TO REGENERATE FARMLAND, EMPOWER FARMERS, AND FEED THE CONTINENT.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
