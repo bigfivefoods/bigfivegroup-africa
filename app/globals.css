@@ -9,7 +9,10 @@
   --color-ink: #111111;
   --color-muted: #525252;
   --color-border: rgba(0, 0, 0, 0.08);
-  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
+  /* Stack matches SupplierAdvisor®: Inter (via next/font) → system-ui */
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 html {
@@ -35,9 +38,18 @@ body {
   padding: 0;
   background: var(--color-bg);
   color: #171717;
-  font-family: var(--font-inter);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure Tailwind font-sans also uses Inter site-wide */
+@theme {
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 ::selection {
@@ -150,7 +162,7 @@ b {
 }
 
 .hero-h1 {
-  font-family: var(--font-inter) !important;
+  font-family: var(--font-sans) !important;
   font-weight: 700 !important;
   letter-spacing: -0.065em !important;
   line-height: 1.05 !important;

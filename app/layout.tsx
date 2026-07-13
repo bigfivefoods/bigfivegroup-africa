@@ -4,10 +4,12 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+/** Match SupplierAdvisor®: Inter + system-ui stack, full weight range */
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 const siteUrl = "https://bigfivegroup.africa";
@@ -90,8 +92,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} antialiased [--navbar-height:5rem]`}>
+    <html lang="en" className={`${inter.variable} h-full`}>
+      <body
+        className={`${inter.className} min-h-dvh antialiased text-[#171717] [--navbar-height:5rem]`}
+      >
         <Navbar />
         <main className="pt-[var(--navbar-height)] min-h-screen">{children}</main>
         <Footer />
