@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import type { FoodsNetworkPayload } from "../lib/saFoodsNetwork";
 import {
-  SA_LOGIN,
   SA_URL,
   SA_CONTAINERS,
   SA_CONTAINERS_MAP,
