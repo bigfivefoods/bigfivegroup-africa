@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Royal · Zulu Kingdom",
+  title: "Royal · Partnership with the Royal Family",
   description:
-    "Big Five Group stands with the Zulu Kingdom — honouring the late King Goodwill Zwelithini, the Goodwill Foundation, 720 Tribal Authorities, and Nguni ethics of Ubuntu.",
+    "Big Five Group partners with the royal family to serve communities with dignity, Ubuntu, and lasting impact — rooted in KwaZulu-Natal and carried across Africa.",
   openGraph: {
-    title: "Royal | Big Five Group & the Zulu Kingdom",
+    title: "Royal | Big Five Group & the Royal Family",
     description:
-      "We do not build on the Kingdom. We build for the Kingdom — with deepest respect and service.",
+      "In partnership with the royal family, we are here to serve our communities — with respect, integrity, and shared purpose.",
   },
 };
 

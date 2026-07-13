@@ -127,8 +127,8 @@ export const pageBrand = {
     accentDark: "#92400e",
     accentSoft: "#fffbeb",
     accentLight: "#fbbf24",
-    overlay: "bg-black/65",
-    eyebrow: "INKOSI · ISIZWE · ISIKHATHI",
+    overlay: "bg-black/60",
+    eyebrow: "ROYAL PARTNERSHIP · COMMUNITY FIRST",
   },
   about: {
     slug: "about",

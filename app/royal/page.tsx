@@ -1,106 +1,108 @@
 "use client";
 
 import Link from "next/link";
-import { Crown, Users, Heart, ExternalLink, Landmark, Leaf } from "lucide-react";
+import {
+  Crown,
+  Users,
+  Heart,
+  HandHeart,
+  Home,
+  Leaf,
+  GraduationCap,
+  Handshake,
+  Shield,
+  Sparkles,
+} from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
-
-const KINGDOM_URL = "https://www.zulukingdom.co.za/";
 
 export default function RoyalPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/tribal.jpg"
-        eyebrow="INKOSI · ISIZWE · ISIKHATHI"
+        eyebrow="ROYAL PARTNERSHIP · COMMUNITY FIRST"
         title={
           <>
-            The Kingdom rises.
+            In partnership with
             <br />
-            Big Five stands with it.
+            the royal family.
           </>
         }
-        subtitle="With deepest honour to His Majesty the late King Goodwill Zwelithini kaBhekuzulu and the Goodwill Foundation — Big Five stands with the Zulu Kingdom, the Nguni people, and the 720 Tribal Authorities."
+        subtitle="Big Five Group walks alongside the royal family — to serve our communities with dignity, respect, and lasting opportunity. We are here to serve, not to take."
         ctas={[
-          { href: "#heritage", label: "Heritage & alignment", primary: true },
-          { href: "#empower", label: "How we advance the Kingdom" },
+          { href: "#partnership", label: "Our partnership", primary: true },
+          { href: "#serve", label: "How we serve communities" },
         ]}
-        overlayClassName="bg-black/65"
+        overlayClassName="bg-black/60"
       />
 
-      {/* Honour intro */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
-        <div className="text-xs tracking-[3px] text-[#d97706] mb-4">WITH DEEPEST RESPECT</div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-6">
-          We honour the Zulu Kingdom
+      {/* Opening statement */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#fffbeb] border border-[#fde68a] mb-6">
+          <Crown className="w-7 h-7 text-[#d97706]" />
+        </div>
+        <div className="text-xs tracking-[3px] text-[#d97706] mb-4">A SHARED MANDATE</div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-6 text-balance">
+          We partner with the royal family
+          <br className="hidden sm:block" /> to serve our communities
         </h2>
-        <p className="text-lg sm:text-xl text-[#525252] leading-relaxed max-w-3xl mx-auto">
-          Big Five Group was born from the soil of KwaZulu-Natal. Our values, vision, and every
-          action are rooted in the wisdom, strength, and sovereignty of the Zulu people and their
-          royal leadership — and in the ethical heritage of the Nguni nation.
+        <p className="text-base sm:text-lg md:text-xl text-[#525252] leading-relaxed max-w-3xl mx-auto">
+          Big Five was born in KwaZulu-Natal. Our purpose is simple and steady: stand in partnership
+          with the royal family, honour traditional leadership, and put practical tools, jobs,
+          nutrition, and opportunity into the hands of the people we serve.
         </p>
       </section>
 
-      {/* Heritage */}
-      <section id="heritage" className="bg-white border-y border-black/10 py-20 sm:py-24">
+      {/* Partnership */}
+      <section id="partnership" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <div className="text-xs tracking-[3px] text-[#d97706] mb-4">OUR ROOTS</div>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-8">
-                Heritage & alignment
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div className="min-w-0">
+              <div className="text-xs tracking-[3px] text-[#d97706] mb-4">THE PARTNERSHIP</div>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-6 sm:mb-8 text-balance">
+                Royal family. Shared purpose. Community at the centre.
               </h3>
-              <div className="space-y-5 text-lg text-[#404040] leading-relaxed">
+              <div className="space-y-5 text-base sm:text-lg text-[#404040] leading-relaxed">
                 <p>
-                  We stand in full alignment with{" "}
-                  <a
-                    href={KINGDOM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-black font-semibold underline underline-offset-4 hover:no-underline"
-                  >
-                    www.zulukingdom.co.za
-                  </a>{" "}
-                  — the official voice of the Zulu Kingdom. Our work is not separate from the
-                  Kingdom; it is an extension of service to it.
+                  We work{" "}
+                  <strong className="text-black">in partnership with the royal family</strong> —
+                  with humility, accountability, and a clear commitment to community wellbeing.
                 </p>
                 <p>
-                  Every decision passes through the lens of{" "}
-                  <span className="font-semibold text-black">
-                    “Does this honour the ancestors and build the Kingdom?”
-                  </span>
+                  Our role is to{" "}
+                  <strong className="text-black">serve our communities</strong>: families,
+                  traditional authorities, youth, farmers, enterprises, and the places that raised
+                  us. Partnership means we listen first, align with local leadership, and deliver
+                  programmes that last.
                 </p>
                 <p>
-                  We recognise the authority of the Zulu Royal House and traditional leadership.
-                  Our role is to <strong className="text-black">serve — not to lead</strong> — and
-                  to use modern tools to protect and advance what has been entrusted to us.
-                </p>
-                <p>
-                  We honour the <strong className="text-black">720 Tribal Authorities</strong> and
-                  the Nguni ethics of Ubuntu, dignity, respect, and communal harmony that guide
-                  our work.
+                  We recognise the authority and guidance of the{" "}
+                  <strong className="text-black">royal house</strong> and traditional leadership.
+                  We bring enterprise capability, ethical platforms, and transparent delivery — so
+                  heritage and modern opportunity strengthen each other.
                 </p>
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative min-w-0">
               <div
-                className="aspect-[4/3] rounded-[1.75rem] bg-cover bg-center border border-black/10 shadow-xl"
+                className="aspect-[4/3] rounded-2xl sm:rounded-[1.75rem] bg-cover bg-center border border-black/10 shadow-xl"
                 style={{
                   backgroundImage: "url('/tribal.jpg')",
                   backgroundPosition: "center 30%",
                 }}
               />
-              <div className="mt-6 sm:absolute sm:-bottom-6 sm:right-6 sm:mt-0 bg-white p-7 rounded-3xl shadow-xl border border-black/10 max-w-sm">
+              <div className="mt-5 sm:absolute sm:-bottom-5 sm:right-5 sm:mt-0 bg-white p-6 sm:p-7 rounded-2xl sm:rounded-3xl shadow-xl border border-black/10 max-w-sm">
                 <div className="flex items-center gap-3 mb-3">
-                  <Crown className="w-5 h-5 text-[#d97706]" />
+                  <Handshake className="w-5 h-5 text-[#d97706]" />
                   <div className="text-sm font-semibold text-black tracking-wide">
-                    OFFICIAL ALIGNMENT
+                    PARTNERSHIP PLEDGE
                   </div>
                 </div>
                 <p className="text-sm text-[#525252] leading-relaxed">
-                  Big Five operates with respect for traditional leadership and in support of the
-                  Zulu Kingdom’s vision for its people.
+                  We walk with the royal family to uplift communities — with respect, integrity,
+                  and measurable service.
                 </p>
               </div>
             </div>
@@ -108,143 +110,146 @@ export default function RoyalPage() {
         </div>
       </section>
 
-      {/* Ubuntu */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      {/* Values of service */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <SectionHeading
-          eyebrow="THE PHILOSOPHY THAT SHAPES EVERYTHING"
-          title="Ubuntu at the centre"
-          subtitle="We exist because others exist. That truth is the operating system of the Big Five ecosystem."
+          eyebrow="HOW WE SHOW UP"
+          title="Service that communities can feel"
+          subtitle="Partnership is not a statement. It is how we plan, deliver, and stay accountable to the people we serve."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {[
             {
-              icon: Heart,
-              t: "Super-Cube® roots",
-              d: "Born at the University of KwaZulu-Natal and shaped by Zulu wisdom, community, and lived experience — not imported theory alone.",
+              icon: Crown,
+              t: "Respect for the royal family",
+              d: "We honour royal leadership and traditional authority. Guidance from the royal family shapes how we engage communities.",
+            },
+            {
+              icon: HandHeart,
+              t: "Here to serve",
+              d: "Our mandate is service — nutrition, livelihoods, skills, and fair access — designed with communities, not imposed on them.",
             },
             {
               icon: Users,
-              t: "Umuntu ngumuntu ngabantu",
-              d: "I am because we are. Every pillar is designed to strengthen the relationships that make nations strong.",
+              t: "Ubuntu in action",
+              d: "Umuntu ngumuntu ngabantu. We grow only when families, leaders, and local enterprises grow with us.",
             },
             {
-              icon: Crown,
-              t: "I–Thou dignity",
-              d: "We reject extractive models. Farmers, communities, governments, and the land are partners — never mere resources.",
+              icon: Shield,
+              t: "Dignity & transparency",
+              d: "Ethical commerce, clear reporting, and programmes people can trust — from village level to institutional partners.",
+            },
+            {
+              icon: Home,
+              t: "Rooted at home",
+              d: "Born of KwaZulu-Natal soil, we begin with our neighbours and extend service across Africa with the same values.",
+            },
+            {
+              icon: Sparkles,
+              t: "Legacy for the next generation",
+              d: "We invest in youth, leadership, and sustainable enterprise so communities inherit opportunity — not dependency.",
             },
           ].map((card) => (
             <div
               key={card.t}
-              className="bg-white border border-black/10 rounded-3xl p-8 hover:border-[#fbbf24]/50 transition-colors"
+              className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:border-[#fbbf24]/50 transition-colors min-w-0"
             >
-              <card.icon className="w-8 h-8 text-[#d97706] mb-5" />
-              <h3 className="text-xl font-semibold text-black mb-3">{card.t}</h3>
-              <p className="text-[#525252] leading-relaxed">{card.d}</p>
+              <card.icon className="w-8 h-8 text-[#d97706] mb-4 sm:mb-5" />
+              <h3 className="text-lg sm:text-xl font-semibold text-black mb-2 sm:mb-3">{card.t}</h3>
+              <p className="text-sm sm:text-base text-[#525252] leading-relaxed">{card.d}</p>
             </div>
           ))}
         </div>
-        <blockquote className="bg-white border-l-4 border-[#f59e0b] rounded-r-3xl p-8 sm:p-10">
-          <p className="text-xl sm:text-2xl text-black font-medium tracking-tight leading-snug italic">
-            “Our work begins at home — with the Zulu Nation. We advance humanity not by leaving our
-            heritage behind, but by carrying it forward with integrity, innovation, and love.”
-          </p>
-          <footer className="mt-5 text-sm text-[#737373]">
-            — Dr. Craig R. Muller, Founder of Big Five Group
-          </footer>
-        </blockquote>
       </section>
 
-      {/* How pillars serve Kingdom */}
-      <section id="empower" className="bg-white border-y border-black/10 py-20 sm:py-24">
+      {/* How we serve communities */}
+      <section id="serve" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="SERVICE TO THE KINGDOM"
-            title="How Big Five advances the Zulu Kingdom"
-            subtitle="Our pillars are instruments of empowerment, sovereignty, and legacy — not ends in themselves."
+            eyebrow="SERVICE TO OUR COMMUNITIES"
+            title="Where partnership becomes impact"
+            subtitle="Through Big Five pillars, we put royal partnership into daily service — farms, food, markets, skills, and care."
           />
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {[
               {
                 icon: Leaf,
-                pillar: "Agri & Foods",
+                pillar: "Farms & food",
                 impact:
-                  "Regenerative farming and fortified nutrition restore dignity and health in rural communities — the backbone of the Kingdom.",
+                  "Regenerative agriculture and fortified nutrition strengthen rural households — food security with dignity.",
               },
               {
-                icon: Landmark,
-                pillar: "Direct & Access",
+                icon: Handshake,
+                pillar: "Markets & access",
                 impact:
-                  "Micro-hubs and institutional access put economic power in the hands of families and cooperatives.",
+                  "Direct routes to market and fair institutional access help local producers and enterprises keep more value.",
               },
               {
-                icon: Users,
-                pillar: "Connect",
+                icon: GraduationCap,
+                pillar: "Leadership & skills",
                 impact:
-                  "SupplierAdvisor® gives Zulu enterprises transparent, ethical access to national and global markets.",
+                  "Leadership development and Super-Cube® programmes equip community leaders, youth, and professionals to serve well.",
               },
               {
                 icon: Heart,
-                pillar: "Leadership",
+                pillar: "Foundation & delivery",
                 impact:
-                  "Super-Cube® develops the next generation of Zulu executives, traditional leaders, and public servants.",
-              },
-              {
-                icon: Crown,
-                pillar: "Foundation & Impact",
-                impact:
-                  "Transparent philanthropy and professional project delivery ensure programmes land with integrity.",
-              },
-              {
-                icon: Landmark,
-                pillar: "Heritage & legacy",
-                impact:
-                  "We honour the late King Goodwill Zwelithini, the 720 Tribal Authorities, and the Nguni people — building institutions for generations.",
+                  "Transparent programmes and professional delivery ensure community projects land on the ground — and stay accountable.",
               },
             ].map((item) => (
               <div
                 key={item.pillar}
-                className="bg-[#fafafa] border border-black/10 rounded-3xl p-8 hover:border-[#fbbf24]/40 transition-colors"
+                className="bg-[#fafafa] border border-black/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:border-[#fbbf24]/40 transition-colors min-w-0"
               >
                 <item.icon className="w-7 h-7 text-[#d97706] mb-4" />
-                <h3 className="text-2xl font-semibold tracking-tight text-black mb-3">
+                <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-black mb-2 sm:mb-3">
                   {item.pillar}
                 </h3>
-                <p className="text-[#525252] leading-relaxed">{item.impact}</p>
+                <p className="text-sm sm:text-base text-[#525252] leading-relaxed">{item.impact}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Closing */}
-      <section className="bg-black py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-[#fbbf24] text-xs tracking-[4px] mb-6">
-            INKOSI · ISIZWE · ISIKHATHI
-          </div>
-          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] mb-8">
-            The Kingdom rises.
-            <br />
-            Big Five stands with it.
-          </h2>
-          <p className="text-white/70 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            In eternal honour of His Majesty the late King Goodwill Zwelithini kaBhekuzulu, the
-            Goodwill Foundation, the 720 Tribal Authorities, and the Nguni people — we do not build
-            on the Kingdom. We build <span className="text-white font-medium">for</span> the Kingdom.
+      {/* Quote / pledge band */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <blockquote className="bg-white border-l-4 border-[#f59e0b] rounded-r-2xl sm:rounded-r-3xl p-6 sm:p-10 shadow-sm border border-black/5 border-l-[#f59e0b]">
+          <p className="text-xl sm:text-2xl md:text-3xl text-black font-medium tracking-tight leading-snug">
+            “We are in partnership with the royal family — and we are here to serve our
+            communities. That is the heart of Big Five.”
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={KINGDOM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="premium-button inline-flex items-center justify-center gap-3 bg-[#f59e0b] text-black px-10 py-4 rounded-full text-lg font-semibold"
+          <footer className="mt-5 text-sm text-[#737373]">
+            — Big Five Group · Rooted in KwaZulu-Natal · Serving Africa
+          </footer>
+        </blockquote>
+      </section>
+
+      {/* Closing dark band */}
+      <section className="bg-[#0a0a0a] py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-[#fbbf24] text-xs tracking-[3px] sm:tracking-[4px] mb-5 sm:mb-6">
+            ROYAL PARTNERSHIP · COMMUNITY SERVICE
+          </div>
+          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] mb-6 sm:mb-8 text-balance">
+            Partnership with the royal family.
+            <br />
+            Service to our communities.
+          </h2>
+          <p className="text-white/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+            We do not stand above our people. We walk with the royal family to build opportunity,
+            dignity, and shared prosperity — starting at home.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
+            <Link
+              href="/agri"
+              className="premium-button inline-flex items-center justify-center gap-3 bg-[#f59e0b] text-black px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold"
             >
-              Visit zulukingdom.co.za
-              <ExternalLink className="w-5 h-5" />
-            </a>
+              Explore Agri
+            </Link>
             <Link
               href="/about"
-              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10"
+              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10"
             >
               About Big Five
             </Link>
@@ -253,11 +258,11 @@ export default function RoyalPage() {
       </section>
 
       <FinalCta
-        eyebrow="PARTNER IN HERITAGE"
-        title="Build with us — from KwaZulu-Natal outward"
-        subtitle="Explore how Agri, Leadership, Foundation, and Impact serve communities with dignity."
-        primary={{ href: "/agri", label: "Big Five Agri" }}
-        secondary={{ href: "/connect", label: "Partner with us" }}
+        eyebrow="SERVE WITH US"
+        title="Join a partnership that puts communities first"
+        subtitle="Whether you are a community leader, institution, or partner — walk with us as we serve alongside the royal family."
+        primary={{ href: "/connect", label: "Partner with Big Five" }}
+        secondary={{ href: "/foundation", label: "Foundation programmes" }}
       />
     </div>
   );
