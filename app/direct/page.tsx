@@ -2,6 +2,7 @@
 
 import PageHero from "../components/PageHero";
 import SupplierTrust from "../components/SupplierTrust";
+import FoodsNetworkPanel from "../components/FoodsNetworkPanel";
 import {
   SectionHeading,
   FeatureGrid,
@@ -27,14 +28,10 @@ export default function DirectPage() {
             Farm gate to market gate
           </>
         }
-        subtitle="Eliminate middlemen. Solar micro-hubs, last-mile logistics, and transparent trade that keep value with African producers — verified where commerce runs on SupplierAdvisor®."
+        subtitle="Eliminate middlemen. Solar micro-hubs, last-mile logistics, and transparent trade that keep value with African producers — powered by Big Five Foods on SupplierAdvisor®."
         ctas={[
-          { href: "#model", label: "The Direct model", primary: true },
-          {
-            href: SA_ONBOARDING,
-            label: "Start free trial",
-            external: true,
-          },
+          { href: "#network", label: "Containers & food impact", primary: true },
+          { href: "#model", label: "The Direct model" },
           {
             href: SA_LOGIN,
             label: "Existing user? Log in",
@@ -44,7 +41,17 @@ export default function DirectPage() {
         overlayClassName="bg-[#431407]/55"
       />
 
-      <SupplierTrust entityName="Big Five Direct network participants" compact />
+      <SupplierTrust entityName="Big Five Foods (linked via Direct)" compact />
+
+      {/* Foods × SA network */}
+      <section id="network" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
+        <SectionHeading
+          eyebrow="SUPPLIERADVISOR® · BIG FIVE FOODS"
+          title="Containers, locations & food impact"
+          subtitle="Direct connects to Big Five Foods on SupplierAdvisor® so partners can see the distribution network and the nutrition impact behind every last-mile route."
+        />
+        <FoodsNetworkPanel />
+      </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
