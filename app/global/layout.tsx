@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Global",
+  title: "Global Footprint",
   description:
-    "Big Five Global — international partnerships exporting African excellence, regenerative commerce, and Super-Cube® leadership.",
+    "Big Five Group active operations in South Africa, Kenya, Ghana, Zambia, DRC, Tanzania, Namibia, Zimbabwe and Lesotho — with expansion ambition across Africa and the world.",
   openGraph: {
-    title: "Global | Big Five Group",
+    title: "Global | Where We Work & Where We're Going",
     description:
-      "Africa rising on the world stage through strategic partnerships and ethical African business standards.",
+      "Nine active African nations today. A clear roadmap to reach the rest of the continent and the world — with African standards.",
   },
 };
 
