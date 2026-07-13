@@ -9,6 +9,7 @@ import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
 const navLinks = [
+  { href: "/about", label: "About" },
   { href: "/global", label: "Global" },
   { href: "/africa", label: "Africa" },
   { href: "#", label: "Group", isDropdown: true },
