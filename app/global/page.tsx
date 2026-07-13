@@ -282,6 +282,7 @@ const FLAG_CODES: Record<string, string> = {
   Philippines: "PH",
   "United Kingdom": "GB",
   Germany: "DE",
+  Hungary: "HU",
   France: "FR",
   Netherlands: "NL",
   Switzerland: "CH",
