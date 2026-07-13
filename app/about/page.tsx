@@ -308,7 +308,7 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://www.linkedin.com/in/craig-muller"
+                  href="https://za.linkedin.com/in/craigmuller"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-medium border border-white/20 rounded-full px-4 py-2 hover:bg-white/10"
