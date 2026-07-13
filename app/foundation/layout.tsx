@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Foundation",
   description:
-    "Big Five Foundation — registered NPO driving on-chain social, economic and environmental impact across Africa.",
+    "Big Five Foundation — registered NPO, registered on SupplierAdvisor®, driving transparent social, economic and environmental impact across Africa.",
   openGraph: {
-    title: "Big Five Foundation | On-Chain Impact",
+    title: "Big Five Foundation | Registered on SupplierAdvisor®",
     description:
-      "Transparent philanthropy with measurable outcomes aligned to the UN Sustainable Development Goals.",
+      "Transparent philanthropy with measurable outcomes — Big Five Foundation is registered on SupplierAdvisor® and aligned to the UN Sustainable Development Goals.",
   },
 };
 

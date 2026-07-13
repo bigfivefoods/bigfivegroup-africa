@@ -145,8 +145,9 @@ export const companies: Company[] = [
     fullName: "Big Five Foundation",
     color: "#0d9488",
     icon: "Heart",
-    tagline: "On-Chain NPO • Measurable Impact • Sovereign Philanthropy",
-    description: "The philanthropic engine of the group. We design, fund, and measure high-impact initiatives with radical transparency.",
+    tagline: "Registered NPO • SupplierAdvisor® Listed • Measurable Impact",
+    description:
+      "The philanthropic engine of the group — registered on SupplierAdvisor®. We design, fund, and measure high-impact initiatives with radical transparency.",
     heroText: "Every Rand Tracked. Every Life Changed. Forever.",
     howItWorks: [
       { step: 1, title: "Design & Fund", desc: "Co-create initiatives with communities. Every project has clear theory of change and on-chain escrow." },

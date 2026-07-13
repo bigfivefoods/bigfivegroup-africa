@@ -10,7 +10,8 @@ import {
   StatRow,
   FinalCta,
 } from "../components/PageSections";
-import { Heart, TrendingUp, Leaf, Users, ShieldCheck } from "lucide-react";
+import { Heart, TrendingUp, Leaf, Users, ShieldCheck, ExternalLink } from "lucide-react";
+import { SA_URL } from "../lib/saCopy";
 
 const ACCENT = "#0d9488";
 
@@ -58,7 +59,7 @@ export default function FoundationPage() {
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/foundation-hero.jpg"
-        eyebrow="REGISTERED NPO · SOUTH AFRICA"
+        eyebrow="REGISTERED NPO · LISTED ON SUPPLIERADVISOR®"
         title={
           <>
             Big Five Foundation
@@ -66,22 +67,61 @@ export default function FoundationPage() {
             Impact you can verify
           </>
         }
-        subtitle="The philanthropic engine of the group — designing, funding, and measuring high-impact initiatives with radical transparency across Africa."
+        subtitle="The philanthropic engine of the group — designing, funding, and measuring high-impact initiatives with radical transparency. Big Five Foundation is registered on SupplierAdvisor®."
         ctas={[
           { href: "#impact", label: "Our impact model", primary: true },
-          { href: "#donate", label: "Donate or partner" },
+          {
+            href: SA_URL,
+            label: "View on SupplierAdvisor®",
+            external: true,
+          },
         ]}
         overlayClassName="bg-black/40"
       />
 
-      <SupplierTrust entityName="Foundation programme suppliers (where applicable)" compact />
+      <SupplierTrust entityName="Big Five Foundation" compact />
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">
         <SectionHeading
           eyebrow="OUR PURPOSE"
           title="Why Big Five Foundation?"
           subtitle="Philanthropy without proof is marketing. We build programmes with theory of change, transparent capital, and delivery through Big Five Impact — so donors and communities see the same truth."
         />
+        <div className="mt-8 sm:mt-10 max-w-2xl mx-auto rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-6 sm:p-8 text-left">
+          <div className="flex items-start gap-3">
+            <ShieldCheck className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
+            <div className="min-w-0">
+              <div className="text-xs tracking-[2px] text-[#737373] mb-2">
+                SUPPLIERADVISOR® REGISTRATION
+              </div>
+              <h3 className="text-lg sm:text-xl font-semibold text-black mb-2">
+                Registered on SupplierAdvisor®
+              </h3>
+              <p className="text-sm sm:text-base text-[#525252] leading-relaxed mb-4">
+                Big Five Foundation has been registered on{" "}
+                <a
+                  href={SA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
+                >
+                  www.supplieradvisor.com
+                </a>
+                — so partners, donors, and counterparties can verify the organisation on the same
+                trusted network used for ethical trade and transparent commerce.
+              </p>
+              <a
+                href={SA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-black hover:opacity-70"
+              >
+                Open SupplierAdvisor®
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="impact" className="bg-white border-y border-black/10 py-20 sm:py-24">
@@ -180,8 +220,8 @@ export default function FoundationPage() {
             },
             {
               icon: ShieldCheck,
-              title: "Ethical procurement",
-              desc: "Suppliers verified on SupplierAdvisor® where commercial supply is required.",
+              title: "Registered on SupplierAdvisor®",
+              desc: "Big Five Foundation is registered on SupplierAdvisor® — verified presence for partners and transparent programme commerce.",
             },
             {
               icon: Heart,
@@ -197,25 +237,41 @@ export default function FoundationPage() {
           <h2 className="text-4xl font-semibold tracking-tighter mb-4">Donate or partner</h2>
           <p className="text-white/75 text-lg mb-8">
             Whether you are a foundation, corporate CSI lead, or family office — we structure
-            partnerships with the same professionalism as our commercial pillars.
+            partnerships with the same professionalism as our commercial pillars. Verify Big Five
+            Foundation on SupplierAdvisor®.
           </p>
-          <a
-            href="mailto:craig@bigfivegroup.africa"
-            className="premium-button inline-flex items-center gap-2 bg-white text-black px-10 py-4 rounded-full font-semibold"
-          >
-            Contact the Foundation
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
+            <a
+              href="mailto:craig@bigfivegroup.africa"
+              className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold"
+            >
+              Contact the Foundation
+            </a>
+            <a
+              href={SA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold hover:bg-white/10"
+            >
+              SupplierAdvisor®
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
-      <SupplierTrust entityName="Foundation delivery partners" />
+      <SupplierTrust entityName="Big Five Foundation" />
 
       <FinalCta
         eyebrow="CHANGE LIVES"
         title="Fund impact that can be proven"
-        subtitle="Every programme designed for transparency, delivery, and continental replication."
+        subtitle="Every programme designed for transparency, delivery, and continental replication. Big Five Foundation is registered on SupplierAdvisor®."
         primary={{ href: "/impact", label: "See Big Five Impact" }}
-        secondary={{ href: "/connect", label: "Partner with us" }}
+        secondary={{
+          href: SA_URL,
+          label: "View on SupplierAdvisor®",
+          external: true,
+        }}
       />
     </div>
   );
