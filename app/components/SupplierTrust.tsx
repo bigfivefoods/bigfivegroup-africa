@@ -12,7 +12,7 @@ export default function SupplierTrust({
   if (compact) {
     return (
       <div className="border-y border-black/10 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-start sm:items-center gap-3 text-sm text-[#404040]">
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 sm:mt-0" />
             <span>
@@ -44,7 +44,7 @@ export default function SupplierTrust({
 
   return (
     <section className="bg-[#0a0a0a] text-white py-16 sm:py-20">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-emerald-400 mb-4">

@@ -58,7 +58,7 @@ const pillars = [
 
 export default function LeadershipPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/leadership-hero.jpg"
         eyebrow="BIG FIVE LEADERSHIP · EDUCATION ARM"
@@ -84,7 +84,7 @@ export default function LeadershipPage() {
 
       {/* Positioning strip */}
       <section className="bg-white border-b border-black/10">
-        <div className="max-w-6xl mx-auto px-6 py-10 grid sm:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-8">
           {[
             {
               icon: GraduationCap,
@@ -116,7 +116,7 @@ export default function LeadershipPage() {
       </section>
 
       {/* Super-Cube intro */}
-      <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <div className="text-center mb-12">
           <Image
             src="/super-cube-logo.png"
@@ -192,12 +192,12 @@ export default function LeadershipPage() {
         id="book"
         className="py-20 sm:py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fde68a]/50"
       >
-        <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-[#eab308] text-black px-4 py-1.5 rounded-full text-xs font-bold tracking-[2px] mb-6">
             <BookOpen className="w-3.5 h-3.5" />
             FREE DOWNLOAD
           </div>
-          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4">
             The Super-Cube® Leadership Model book
           </h2>
           <p className="text-lg text-[#525252] mb-8 leading-relaxed">
@@ -216,7 +216,7 @@ export default function LeadershipPage() {
       </section>
 
       {/* RESEARCH */}
-      <section id="research" className="max-w-4xl mx-auto px-6 py-20 sm:py-24">
+      <section id="research" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="PEER-REVIEWED"
           title="The research behind the model"
@@ -255,7 +255,7 @@ export default function LeadershipPage() {
 
       {/* Hub CTA */}
       <section className="bg-[#0a0a0a] text-white py-20 sm:py-24">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tighter mb-4">
             Continue at www.super-cube.com
           </h2>

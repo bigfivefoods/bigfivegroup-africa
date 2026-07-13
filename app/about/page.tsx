@@ -24,7 +24,7 @@ const SUPPLIER_URL = "https://www.supplieradvisor.com/";
 
 export default function AboutPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/about-hero.jpg"
         eyebrow="ABOUT BIG FIVE GROUP"
@@ -44,7 +44,7 @@ export default function AboutPage() {
       />
 
       {/* Who we are */}
-      <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="WHO WE ARE"
           title="An African group with a human mission"
@@ -84,14 +84,14 @@ export default function AboutPage() {
 
       {/* Vision */}
       <section id="vision" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-4">
               <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-emerald-700 mb-4">
                 <Compass className="w-4 h-4" />
                 VISION
               </div>
-              <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
                 A prosperous Africa — for everyone on it
               </h2>
             </div>
@@ -121,14 +121,14 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-4">
             <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-sky-700 mb-4">
               <Target className="w-4 h-4" />
               MISSION
             </div>
-            <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
               Feed. Educate. Empower.
             </h2>
           </div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
 
       {/* Values */}
       <section className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="VALUES"
             title="What we refuse to compromise"
@@ -230,7 +230,7 @@ export default function AboutPage() {
       </section>
 
       {/* How the businesses serve the mission */}
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="WHY THE PILLARS EXIST"
           title="Business as a vehicle for mission"
@@ -297,10 +297,10 @@ export default function AboutPage() {
 
       {/* Founder */}
       <section id="founder" className="bg-[#0a0a0a] text-white py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-start">
-            <div className="lg:col-span-5">
-              <div className="relative mx-auto lg:mx-0 w-full max-w-sm mb-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-14 items-start">
+            <div className="lg:col-span-5 min-w-0">
+              <div className="relative mx-auto lg:mx-0 w-full max-w-xs sm:max-w-sm mb-8">
                 <div className="absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-amber-400/40 via-transparent to-emerald-500/20 blur-sm" />
                 <div className="relative aspect-[3/4] rounded-[1.75rem] overflow-hidden border border-white/15 shadow-2xl bg-white/5">
                   <Image
@@ -314,7 +314,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="text-xs tracking-[3px] text-amber-400 mb-4">FOUNDER & CEO</div>
-              <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter mb-3">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-3">
                 Dr. Craig R. Muller
               </h2>
               <p className="text-white/60 text-lg mb-6 leading-relaxed">
@@ -350,7 +350,7 @@ export default function AboutPage() {
                 </a>
               </div>
             </div>
-            <div className="lg:col-span-7 space-y-5 text-white/75 leading-relaxed text-lg">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-white/75 leading-relaxed text-base sm:text-lg min-w-0">
               <p>
                 Dr. Craig Muller is a driven innovator — a{" "}
                 <strong className="text-white">DBA-credentialed executive</strong> with over 20 years
@@ -392,7 +392,7 @@ export default function AboutPage() {
       </section>
 
       {/* Purpose engines */}
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="THREE INTEGRATED SOLUTIONS"
           title="How Craig’s purpose became the group"

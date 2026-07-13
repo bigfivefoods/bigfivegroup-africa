@@ -15,7 +15,7 @@ const ACCENT = "#f97316";
 
 export default function DirectPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/direct-hero.jpg"
         eyebrow="PILLAR 03 · DIRECT MARKET ACCESS"
@@ -40,7 +40,7 @@ export default function DirectPage() {
 
       <SupplierTrust entityName="Big Five Direct network participants" compact />
 
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="DIRECT. TRANSPARENT. POWERFUL."
           title="Cut the middle. Keep the margin."
@@ -58,7 +58,7 @@ export default function DirectPage() {
       </section>
 
       <section id="model" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="INFRASTRUCTURE" title="Micro-hubs that move markets" />
           <FeatureGrid
             accent={ACCENT}
@@ -98,7 +98,7 @@ export default function DirectPage() {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="PROCESS" title="Three steps to last-mile sovereignty" />
         <ProcessSteps
           accent={ACCENT}
@@ -123,7 +123,7 @@ export default function DirectPage() {
       </section>
 
       <section className="bg-[#c2410c] py-20 text-white">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-5">
           {[
             {
               icon: Users,

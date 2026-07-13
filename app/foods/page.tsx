@@ -84,7 +84,7 @@ const capabilities = [
 
 export default function FoodsPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/foods-hero.jpg"
         eyebrow="PILLAR 02 · FORTIFIED NUTRITION"
@@ -109,7 +109,7 @@ export default function FoodsPage() {
 
       <SupplierTrust entityName="Big Five Foods" compact />
 
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex justify-center mb-10">
           <Image
             src="/bigfivefoods-logo.png"
@@ -131,7 +131,7 @@ export default function FoodsPage() {
       </section>
 
       <section id="products" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="PRODUCT RANGES"
             title="Nutrition people actually eat"
@@ -144,9 +144,9 @@ export default function FoodsPage() {
                 className="rounded-[1.75rem] border border-black/10 bg-[#fafafa] overflow-hidden"
               >
                 <div className="grid lg:grid-cols-2 gap-0">
-                  <div className="p-8 sm:p-10 flex flex-col justify-center">
-                    <cat.icon className="w-10 h-10 text-[#d97706] mb-4" />
-                    <h3 className="text-3xl font-semibold tracking-tight text-black mb-2">
+                  <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center min-w-0">
+                    <cat.icon className="w-9 h-9 sm:w-10 sm:h-10 text-[#d97706] mb-4" />
+                    <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-black mb-2">
                       {cat.title}
                     </h3>
                     <p className="text-[#525252] mb-3">{cat.description}</p>
@@ -170,7 +170,7 @@ export default function FoodsPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="CERTIFICATIONS" title="Quality the market can audit" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {capabilities.map((c) => (
@@ -195,7 +195,7 @@ export default function FoodsPage() {
       </section>
 
       <section className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="FROM FARM TO FORK" title="How Foods works" />
           <ProcessSteps
             accent={ACCENT}
@@ -221,7 +221,7 @@ export default function FoodsPage() {
       </section>
 
       <section className="bg-[#78350f] text-white py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ShieldCheck className="w-12 h-12 text-[#fcd34d] mx-auto mb-4" />
           <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">
             Professional manufacturing. Ethical commerce.

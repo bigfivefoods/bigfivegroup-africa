@@ -24,7 +24,7 @@ const ACCENT = "#3b82f6";
 
 export default function AccessPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/access-hero.jpg"
         eyebrow="PILLAR 04 · GOVERNMENT & INSTITUTIONAL ACCESS"
@@ -49,7 +49,7 @@ export default function AccessPage() {
 
       <SupplierTrust entityName="Access programme suppliers and SMEs" compact />
 
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="BREAKING DOWN BARRIERS"
           title="Policy becomes projects. Projects become outcomes."
@@ -67,7 +67,7 @@ export default function AccessPage() {
       </section>
 
       <section className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="WHAT WE DELIVER" title="Sovereign capital, cleanly unlocked" />
           <FeatureGrid
             accent={ACCENT}
@@ -107,7 +107,7 @@ export default function AccessPage() {
         </div>
       </section>
 
-      <section id="how" className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section id="how" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="PROCESS" title="How Access works" />
         <ProcessSteps
           accent={ACCENT}
@@ -132,7 +132,7 @@ export default function AccessPage() {
       </section>
 
       <section className="bg-[#1d4ed8] py-20 text-white">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-5">
           {[
             {
               icon: Landmark,

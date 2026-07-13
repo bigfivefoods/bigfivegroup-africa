@@ -324,9 +324,9 @@ function CountryFlag({ name, size = 40 }: { name: string; size?: number }) {
 
 export default function GlobalPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       {/* HERO */}
-      <section className="relative min-h-[min(100dvh,880px)] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[min(88dvh,720px)] sm:min-h-[min(100dvh,880px)] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center scale-105"
           style={{ backgroundImage: "url('/global-hero.jpg')" }}
@@ -334,13 +334,13 @@ export default function GlobalPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/75" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(14,165,233,0.18),transparent_55%)]" />
 
-        <div className="relative z-10 max-w-5xl px-6 text-center py-24">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 sm:py-20 md:py-24">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/25 text-[11px] tracking-[3px] text-[#7dd3fc] mb-6"
+            className="inline-flex max-w-full items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-white/25 text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] text-[#7dd3fc] mb-5 sm:mb-6"
           >
-            <Globe2 className="w-3.5 h-3.5" />
+            <Globe2 className="w-3.5 h-3.5 shrink-0" />
             BIG FIVE GLOBAL
           </motion.div>
 
@@ -348,7 +348,7 @@ export default function GlobalPage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.06 }}
-            className="text-white text-[clamp(2.5rem,7vw,4.75rem)] font-semibold tracking-tighter leading-[0.95] mb-6"
+            className="text-white text-[clamp(1.85rem,5.5vw+0.5rem,4.75rem)] font-semibold tracking-tighter leading-[1.02] sm:leading-[0.95] mb-5 sm:mb-6 text-balance"
           >
             Active where it matters.
             <br />
@@ -359,7 +359,7 @@ export default function GlobalPage() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="max-w-2xl mx-auto text-lg sm:text-2xl text-white/90 font-light tracking-tight mb-10"
+            className="max-w-2xl mx-auto text-base sm:text-lg md:text-2xl text-white/90 font-light tracking-tight mb-8 sm:mb-10"
           >
             Eleven nations operational today — nine across Africa plus Germany and Hungary —
             including a company setup in Kenya, with a clear ambition to reach every market where African excellence can lead.
@@ -369,21 +369,21 @@ export default function GlobalPage() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.18 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto"
           >
             <Link
               href="#active"
-              className="premium-button inline-flex items-center justify-center gap-3 bg-white text-black px-9 py-4 rounded-full text-base sm:text-lg font-semibold"
+              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-black px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
             >
               Where we work now
-              <MapPin className="w-5 h-5" />
+              <MapPin className="w-5 h-5 shrink-0" />
             </Link>
             <Link
               href="#ambition"
-              className="premium-button inline-flex items-center justify-center gap-3 border border-white/35 text-white px-9 py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10"
+              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/35 text-white px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold hover:bg-white/10"
             >
               Where we will reach
-              <Compass className="w-5 h-5" />
+              <Compass className="w-5 h-5 shrink-0" />
             </Link>
           </motion.div>
         </div>
@@ -391,7 +391,7 @@ export default function GlobalPage() {
 
       {/* STATS */}
       <section className="bg-white border-b border-black/10">
-        <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[
             { n: "11", l: "Active nations today" },
             { n: "9", l: "Active across Africa" },
@@ -399,7 +399,7 @@ export default function GlobalPage() {
             { n: "1", l: "Company established in Kenya" },
           ].map((s) => (
             <div key={s.l} className="text-center lg:text-left">
-              <div className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
                 {s.n}
               </div>
               <div className="text-sm text-[#525252] mt-1">{s.l}</div>
@@ -409,7 +409,7 @@ export default function GlobalPage() {
       </section>
 
       {/* NARRATIVE */}
-      <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24 text-center">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
         <div className="text-xs tracking-[3px] text-[#0284c7] mb-4">THE GLOBAL STRATEGY</div>
         <h2 className="section-heading text-black mb-6">
           We do not claim the world.
@@ -425,14 +425,14 @@ export default function GlobalPage() {
 
       {/* ACTIVE OPERATIONS */}
       <section id="active" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div>
               <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-[#0369a1] mb-4">
                 <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
                 LIVE OPERATIONS
               </div>
-              <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
                 Where we are working now
               </h2>
               <p className="mt-4 text-lg text-[#525252] max-w-2xl">
@@ -502,7 +502,7 @@ export default function GlobalPage() {
       </section>
 
       {/* KENYA + SA CALL OUT */}
-      <section className="max-w-6xl mx-auto px-6 py-16 sm:py-20">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         <div className="grid md:grid-cols-2 gap-5">
           <div className="rounded-[1.75rem] bg-black text-white p-9 sm:p-10 relative overflow-hidden">
             <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-[#0ea5e9]/20 blur-2xl" />
@@ -538,13 +538,13 @@ export default function GlobalPage() {
 
       {/* AFRICA EXPANSION */}
       <section id="ambition" className="bg-[#0a0a0a] text-white py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-14 max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-[#7dd3fc] mb-4">
               <Target className="w-3.5 h-3.5" />
               EXPANSION ROADMAP
             </div>
-            <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter mb-5">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-5">
               Where we aim to reach next
             </h2>
             <p className="text-lg text-white/65 leading-relaxed">
@@ -608,10 +608,10 @@ export default function GlobalPage() {
       <SupplierTrust entityName="Big Five Group companies across active markets" />
 
       {/* HOW WE EXPAND */}
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <div className="text-center mb-14">
           <div className="text-xs tracking-[3px] text-[#0284c7] mb-4">HOW WE GROW</div>
-          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
             Expansion with integrity
           </h2>
         </div>
@@ -646,10 +646,10 @@ export default function GlobalPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-black py-20 sm:py-24 text-center px-6">
+      <section className="bg-black py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-xs tracking-[3px] text-[#38bdf8] mb-4">PARTNER GLOBALLY</div>
-          <h2 className="text-white text-4xl sm:text-5xl font-semibold tracking-tighter mb-6">
+          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-6">
             Bring Big Five to your market
           </h2>
           <p className="text-white/65 text-lg mb-10">

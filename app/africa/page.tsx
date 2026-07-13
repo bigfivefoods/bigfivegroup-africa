@@ -182,7 +182,7 @@ const ACTIVE_CARDS = [
 
 export default function AfricaPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/africa-hero.jpg"
         eyebrow="CONTINENT · 54 NATIONS"
@@ -203,13 +203,13 @@ export default function AfricaPage() {
 
       <SupplierTrust entityName="Big Five companies operating across Africa" compact />
 
-      <section id="active" className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section id="active" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <div className="mb-12 max-w-3xl">
           <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-[#047857] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse" />
             ACTIVE ON THE CONTINENT
           </div>
-          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4">
             Where we work in Africa today
           </h2>
           <p className="text-lg text-[#525252]">
@@ -257,10 +257,10 @@ export default function AfricaPage() {
       </section>
 
       <section id="regions" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 max-w-3xl mx-auto">
             <div className="text-xs tracking-[3px] text-[#059669] mb-4">54 NATIONS · ONE ECOSYSTEM</div>
-            <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4">
               Continental context
             </h2>
             <p className="text-lg text-[#525252]">

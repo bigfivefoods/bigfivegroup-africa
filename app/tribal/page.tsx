@@ -9,7 +9,7 @@ const KINGDOM_URL = "https://www.zulukingdom.co.za/";
 
 export default function TribalPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/tribal.jpg"
         eyebrow="INKOSI · ISIZWE · ISIKHATHI"
@@ -29,9 +29,9 @@ export default function TribalPage() {
       />
 
       {/* Honour intro */}
-      <section className="max-w-4xl mx-auto px-6 py-20 sm:py-24 text-center">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
         <div className="text-xs tracking-[3px] text-[#d97706] mb-4">WITH DEEPEST RESPECT</div>
-        <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-6">
           We honour the Zulu Kingdom
         </h2>
         <p className="text-lg sm:text-xl text-[#525252] leading-relaxed max-w-3xl mx-auto">
@@ -43,11 +43,11 @@ export default function TribalPage() {
 
       {/* Heritage */}
       <section id="heritage" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <div className="text-xs tracking-[3px] text-[#d97706] mb-4">OUR ROOTS</div>
-              <h3 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-8">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-8">
                 Heritage & alignment
               </h3>
               <div className="space-y-5 text-lg text-[#404040] leading-relaxed">
@@ -109,7 +109,7 @@ export default function TribalPage() {
       </section>
 
       {/* Ubuntu */}
-      <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="THE PHILOSOPHY THAT SHAPES EVERYTHING"
           title="Ubuntu at the centre"
@@ -156,7 +156,7 @@ export default function TribalPage() {
 
       {/* How pillars serve Kingdom */}
       <section id="empower" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="SERVICE TO THE KINGDOM"
             title="How Big Five advances the Zulu Kingdom"
@@ -217,12 +217,12 @@ export default function TribalPage() {
       </section>
 
       {/* Closing */}
-      <section className="bg-black py-20 sm:py-24 text-center px-6">
+      <section className="bg-black py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-[#fbbf24] text-xs tracking-[4px] mb-6">
             INKOSI · ISIZWE · ISIKHATHI
           </div>
-          <h2 className="text-white text-4xl sm:text-5xl font-semibold tracking-tighter leading-[1.05] mb-8">
+          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] mb-8">
             The Kingdom rises.
             <br />
             Big Five stands with it.

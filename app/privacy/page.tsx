@@ -5,22 +5,22 @@ import { ArrowLeft } from "lucide-react";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       {/* HERO */}
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-black text-white overflow-hidden">
+      <section className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center bg-black text-white overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-10" />
         
-        <div className="relative z-10 max-w-4xl px-6 text-center">
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16">
           <div className="text-[#fbbf24] text-xs tracking-[3px] mb-4">LEGAL</div>
-          <h1 className="text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-6">Privacy Policy</h1>
-          <p className="text-xl text-white/80">Last updated: 27 April 2026</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter leading-none mb-4 sm:mb-6 text-balance">Privacy Policy</h1>
+          <p className="text-base sm:text-xl text-white/80">Last updated: 27 April 2026</p>
         </div>
       </section>
 
       {/* CONTENT */}
-      <section className="max-w-4xl mx-auto px-6 py-20 text-[#171717]">
-        <div className="prose prose-lg max-w-none">
-          <p className="text-xl text-[#525252] mb-12">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 text-[#171717]">
+        <div className="prose prose-base sm:prose-lg max-w-none">
+          <p className="text-lg sm:text-xl text-[#525252] mb-10 sm:mb-12">
             Big Five Group Africa (“we”, “us”, “our”) is committed to protecting your personal information in accordance with the 
             Protection of Personal Information Act (POPIA) of South Africa and international best practices.
           </p>

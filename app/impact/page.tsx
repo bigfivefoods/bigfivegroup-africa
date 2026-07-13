@@ -23,7 +23,7 @@ const ACCENT = "#7c3aed";
 
 export default function ImpactPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/impact-hero.jpg"
         eyebrow="PILLAR · BIG FIVE IMPACT"
@@ -48,7 +48,7 @@ export default function ImpactPage() {
 
       <SupplierTrust entityName="Big Five Group entities (where applicable)" compact />
 
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="THE DELIVERY ARM"
           title="One PMO. Every pillar. Continental outcomes."
@@ -92,7 +92,7 @@ export default function ImpactPage() {
       </section>
 
       <section className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="PROOF OF DISCIPLINE"
             title="Delivery you can put in a board pack"
@@ -109,7 +109,7 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      <section id="how" className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section id="how" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="METHOD" title="How Big Five Impact works" />
         <ProcessSteps
           accent={ACCENT}
@@ -134,7 +134,7 @@ export default function ImpactPage() {
       </section>
 
       <section className="bg-[#0a0a0a] text-white py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             light
             eyebrow="WHO ENGAGES US"

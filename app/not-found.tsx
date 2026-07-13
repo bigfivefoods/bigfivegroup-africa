@@ -3,7 +3,7 @@ import { ArrowRight, Home } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-[#fafafa] px-6">
+    <div className="min-h-[70vh] flex items-center justify-center bg-[#fafafa] px-4 sm:px-6 lg:px-8">
       <div className="max-w-xl text-center">
         <div className="text-xs tracking-[3px] text-[#525252] mb-4">404</div>
         <h1 className="text-5xl md:text-6xl font-semibold tracking-tighter text-black mb-6">

@@ -55,7 +55,7 @@ const sdgGoals = [
 
 export default function FoundationPage() {
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/foundation-hero.jpg"
         eyebrow="REGISTERED NPO · SOUTH AFRICA"
@@ -76,7 +76,7 @@ export default function FoundationPage() {
 
       <SupplierTrust entityName="Foundation programme suppliers (where applicable)" compact />
 
-      <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24 text-center">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
         <SectionHeading
           eyebrow="OUR PURPOSE"
           title="Why Big Five Foundation?"
@@ -85,7 +85,7 @@ export default function FoundationPage() {
       </section>
 
       <section id="impact" className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="RESULTS" title="Measurable. Reportable. Replicable." />
           <StatRow
             accent={ACCENT}
@@ -99,7 +99,7 @@ export default function FoundationPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="UN SDGs" title="Aligned to global goals" />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {sdgGoals.map((g) => (
@@ -119,7 +119,7 @@ export default function FoundationPage() {
       </section>
 
       <section className="bg-white border-y border-black/10 py-20 sm:py-24">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="METHOD" title="How Foundation works" />
           <ProcessSteps
             accent={ACCENT}
@@ -144,7 +144,7 @@ export default function FoundationPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="WHO WE SERVE" title="Built for every stakeholder" />
         <FeatureGrid
           accent={ACCENT}
@@ -184,7 +184,7 @@ export default function FoundationPage() {
       </section>
 
       <section id="donate" className="bg-[#0f766e] text-white py-20 sm:py-24">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-semibold tracking-tighter mb-4">Donate or partner</h2>
           <p className="text-white/75 text-lg mb-8">
             Whether you are a foundation, corporate CSI lead, or family office — we structure

@@ -82,7 +82,7 @@ export default function ConnectPage() {
   };
 
   return (
-    <div className="overflow-hidden bg-[#fafafa]">
+    <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/connect-hero.jpg"
         eyebrow="PILLAR · CONNECT · SUPPLIERADVISOR®"
@@ -110,7 +110,7 @@ export default function ConnectPage() {
 
       <SupplierTrust entityName="Big Five Group companies" compact />
 
-      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="THE TRUST LAYER"
           title="Why serious buyers choose SupplierAdvisor®"
@@ -154,7 +154,7 @@ export default function ConnectPage() {
       </section>
 
       <section className="bg-white border-y border-black/10 py-16">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <StatRow
             accent={ACCENT}
             stats={[
@@ -167,7 +167,7 @@ export default function ConnectPage() {
         </div>
       </section>
 
-      <section id="demo" className="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+      <section id="demo" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="LIVE JOURNEY DEMO"
           title="Watch value move with verification"
