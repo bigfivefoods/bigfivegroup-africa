@@ -227,7 +227,7 @@ export default function RoyalPage() {
 
       {/* Closing dark band */}
       <section className="bg-[#0a0a0a] py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-[#fbbf24] text-xs tracking-[3px] sm:tracking-[4px] mb-5 sm:mb-6">
             ROYAL PARTNERSHIP · COMMUNITY SERVICE
           </div>
@@ -236,22 +236,58 @@ export default function RoyalPage() {
             <br />
             Service to our communities.
           </h2>
-          <p className="text-white/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-            We do not stand above our people. We walk with the royal family to build opportunity,
-            dignity, and shared prosperity — starting at home.
+          <p className="text-white/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed">
+            We do not stand above our people. We walk with the royal family to{" "}
+            <strong className="text-white font-semibold">feed</strong>,{" "}
+            <strong className="text-white font-semibold">educate</strong>, and{" "}
+            <strong className="text-white font-semibold">empower</strong> the communities we serve
+            — starting at home.
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-10 sm:mb-12 text-left max-w-3xl mx-auto">
+            {[
+              {
+                title: "Feed",
+                desc: "Nutrition, regenerative food systems, and food security that restore dignity at household and community level.",
+              },
+              {
+                title: "Educate",
+                desc: "Leadership development, skills, and Super-Cube® pathways that grow capability for the next generation.",
+              },
+              {
+                title: "Empower",
+                desc: "Markets, access, and enterprise tools that put opportunity into local hands — with the royal family as partners in service.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 min-w-0"
+              >
+                <div className="text-[#fbbf24] text-xs tracking-[2px] font-semibold mb-2">
+                  {item.title.toUpperCase()}
+                </div>
+                <h3 className="text-white text-xl font-semibold tracking-tight mb-2">{item.title}</h3>
+                <p className="text-white/65 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
             <Link
-              href="/agri"
+              href="/foods"
               className="premium-button inline-flex items-center justify-center gap-3 bg-[#f59e0b] text-black px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold"
             >
-              Explore Agri
+              Feed · Foods
             </Link>
             <Link
-              href="/about"
+              href="/leadership"
               className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10"
             >
-              About Big Five
+              Educate · Leadership
+            </Link>
+            <Link
+              href="/access"
+              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10"
+            >
+              Empower · Access
             </Link>
           </div>
         </div>

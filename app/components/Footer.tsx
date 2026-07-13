@@ -12,7 +12,7 @@ export default function Footer() {
               BIG FIVE GROUP
             </div>
             <p className="text-lg sm:text-xl font-light tracking-tight mb-3 max-w-md">
-              One Group. Nine Pillars. Infinite African Impact.
+              One Group. Ten Pillars. Infinite African Impact.
             </p>
             <p className="text-[#525252] text-sm mb-6">
               Regenerative. Sovereign. On-Chain. On-Purpose.
@@ -59,7 +59,7 @@ export default function Footer() {
 
           <div className="lg:col-span-3">
             <div className="uppercase tracking-[2px] text-xs font-semibold mb-4 text-[#525252]">
-              The 9 Pillars
+              The 10 Pillars
             </div>
             <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 text-sm">
               {companies.map((c) => (

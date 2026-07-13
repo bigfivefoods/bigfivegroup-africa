@@ -82,7 +82,7 @@ export default function Home() {
           >
             ONE GROUP.
             <br />
-            NINE PILLARS.
+            TEN PILLARS.
             <br />
             INFINITE IMPACT.
           </motion.h1>
@@ -108,7 +108,7 @@ export default function Home() {
               href="#pillars"
               className="premium-button group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-black px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
             >
-              EXPLORE THE 9 PILLARS
+              EXPLORE THE 10 PILLARS
               <ArrowRight className="group-hover:translate-x-1 transition w-5 h-5 shrink-0" />
             </Link>
             <Link
@@ -146,7 +146,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* THE 9 PILLARS */}
+      {/* THE 10 PILLARS */}
       <section
         id="pillars"
         className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-14 sm:pb-16 md:pb-20"
@@ -156,12 +156,12 @@ export default function Home() {
             The Ecosystem
           </div>
           <h2 className="section-heading text-black">
-            The Nine Pillars of
+            The Ten Pillars of
             <br />
             African Sovereignty
           </h2>
           <p className="mt-4 sm:mt-5 text-base sm:text-lg text-[#525252] max-w-2xl">
-            From regenerative farms and fortified nutrition to project delivery, ethical capital access, and doctoral-level leadership — every pillar compounds the others. Where applicable, our companies are listed on SupplierAdvisor® as verified ethical businesses.
+            From regenerative farms and fortified nutrition to royal partnership, project delivery, ethical capital access, and doctoral-level leadership — every pillar compounds the others. Where applicable, our companies are listed on SupplierAdvisor® as verified ethical businesses.
           </p>
         </div>
 

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Big Five Group Africa",
   },
   description:
-    "Building Africa's future with integrity, transparency, and measurable impact. Nine pillars spanning regenerative agriculture, fortified nutrition, project delivery, ethical commerce on SupplierAdvisor®, and Super-Cube® leadership.",
+    "Building Africa's future with integrity, transparency, and measurable impact. Ten pillars spanning regenerative agriculture, fortified nutrition, royal partnership, project delivery, ethical commerce on SupplierAdvisor®, and Super-Cube® leadership.",
   keywords: [
     "Big Five Group",
     "Africa",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: "en_ZA",
     url: siteUrl,
     siteName: "Big Five Group Africa",
-    title: "Big Five Group Africa | One Group. Nine Pillars. Infinite Impact.",
+    title: "Big Five Group Africa | One Group. Ten Pillars. Infinite Impact.",
     description:
       "Regenerative. Sovereign. Ethical. Building Africa's future with integrity, transparency, and measurable impact.",
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Big Five Group Africa",
     description:
-      "Regenerative. Sovereign. Ethical. Nine pillars building Africa's future.",
+      "Regenerative. Sovereign. Ethical. Ten pillars building Africa's future.",
     images: ["/home-hero.jpg"],
   },
   robots: {

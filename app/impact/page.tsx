@@ -101,7 +101,7 @@ export default function ImpactPage() {
             accent={ACCENT}
             stats={[
               { value: "PMO", label: "Cross-business programme office" },
-              { value: "9+", label: "Pillars integrated into delivery" },
+              { value: "10", label: "Pillars integrated into delivery" },
               { value: "11", label: "Active operating nations" },
               { value: "100%", label: "Outcome-linked workstreams" },
             ]}

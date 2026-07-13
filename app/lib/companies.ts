@@ -201,7 +201,51 @@ export const companies: Company[] = [
       { title: "For Global Citizens", desc: "Support African-led solutions to climate, nutrition, and leadership challenges." }
     ],
     impact: "Partnerships across 4 continents. 12 global alliances active. Setting new international standards for ethical African business."
-  }
+  },
+  {
+    slug: "royal",
+    name: "Royal",
+    fullName: "Big Five Royal",
+    color: "#d97706",
+    icon: "Crown",
+    tagline: "Royal Partnership • Community Service • Feed · Educate · Empower",
+    description:
+      "In partnership with the royal family, Big Five Royal serves communities with dignity — working to feed, educate, and empower people starting in KwaZulu-Natal and across Africa.",
+    heroText: "In partnership with the royal family. Service to our communities.",
+    howItWorks: [
+      {
+        step: 1,
+        title: "Partner with the royal family",
+        desc: "Align with royal leadership and traditional authority so every programme is rooted in respect and local guidance.",
+      },
+      {
+        step: 2,
+        title: "Serve communities",
+        desc: "Deliver food security, skills, leadership, and fair opportunity — designed with communities, not imposed on them.",
+      },
+      {
+        step: 3,
+        title: "Feed · Educate · Empower",
+        desc: "Through Foods, Leadership, Access, and Foundation pathways, we aim to feed, educate, and empower the communities we serve.",
+      },
+    ],
+    forStakeholders: [
+      {
+        title: "For the royal family & traditional leaders",
+        desc: "A trusted enterprise partner committed to service, accountability, and community wellbeing.",
+      },
+      {
+        title: "For communities",
+        desc: "Practical programmes that put nutrition, skills, and opportunity into local hands.",
+      },
+      {
+        title: "For institutional partners",
+        desc: "A clear channel to support community impact in partnership with royal and traditional leadership.",
+      },
+    ],
+    impact:
+      "Royal partnership that puts communities first — feed, educate, and empower as a living mandate.",
+  },
 ];
 
 export const getCompanyBySlug = (slug: string) => companies.find(c => c.slug === slug);
