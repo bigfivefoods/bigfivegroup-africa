@@ -11,13 +11,13 @@ import {
 } from "../components/PageSections";
 import { Sun, Network, Package, Coins, MapPin, Users, BarChart3, Zap } from "lucide-react";
 
-const ACCENT = "#1e40af";
+const ACCENT = "#f97316";
 
 export default function DirectPage() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
       <PageHero
-        image="/home-hero.jpg"
+        image="/direct-hero.jpg"
         eyebrow="PILLAR 03 · DIRECT MARKET ACCESS"
         title={
           <>
@@ -35,7 +35,7 @@ export default function DirectPage() {
             external: true,
           },
         ]}
-        overlayClassName="bg-[#0f172a]/70"
+        overlayClassName="bg-[#431407]/55"
       />
 
       <SupplierTrust entityName="Big Five Direct network participants" compact />
@@ -122,7 +122,7 @@ export default function DirectPage() {
         />
       </section>
 
-      <section className="bg-[#1e3a8a] py-20 text-white">
+      <section className="bg-[#c2410c] py-20 text-white">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-5">
           {[
             {
@@ -142,7 +142,7 @@ export default function DirectPage() {
             },
           ].map((x) => (
             <div key={x.t} className="bg-white/10 rounded-3xl p-8">
-              <x.icon className="w-9 h-9 text-sky-200 mb-4" />
+              <x.icon className="w-9 h-9 text-orange-200 mb-4" />
               <h3 className="text-xl font-semibold mb-2">{x.t}</h3>
               <p className="text-white/80 leading-relaxed">{x.d}</p>
             </div>

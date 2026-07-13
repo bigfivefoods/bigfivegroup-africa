@@ -20,7 +20,7 @@ import {
   LineChart,
 } from "lucide-react";
 
-const ACCENT = "#166534";
+const ACCENT = "#10b981";
 
 export default function AgriPage() {
   return (
@@ -57,7 +57,7 @@ export default function AgriPage() {
         />
         <div className="grid md:grid-cols-2 gap-5">
           <div className="bg-white border border-black/10 rounded-3xl p-9">
-            <Handshake className="w-11 h-11 text-emerald-700 mb-5" />
+            <Handshake className="w-11 h-11 text-[#047857] mb-5" />
             <h3 className="text-2xl font-semibold tracking-tight text-black mb-4">
               Our commitment
             </h3>
@@ -70,7 +70,7 @@ export default function AgriPage() {
             </ul>
           </div>
           <div className="bg-white border border-black/10 rounded-3xl p-9">
-            <Leaf className="w-11 h-11 text-emerald-700 mb-5" />
+            <Leaf className="w-11 h-11 text-[#047857] mb-5" />
             <h3 className="text-2xl font-semibold tracking-tight text-black mb-4">
               Regenerative with purpose
             </h3>
@@ -168,9 +168,9 @@ export default function AgriPage() {
         </div>
       </section>
 
-      <section className="bg-emerald-900 py-20 sm:py-24 text-white">
+      <section className="bg-[#047857] py-20 sm:py-24 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <Users className="w-14 h-14 mx-auto text-emerald-300 mb-6" />
+          <Users className="w-14 h-14 mx-auto text-[#6ee7b7] mb-6" />
           <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter mb-6">
             Our promise to African farmers
           </h2>

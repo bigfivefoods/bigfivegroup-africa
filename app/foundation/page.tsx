@@ -57,7 +57,7 @@ export default function FoundationPage() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
       <PageHero
-        image="/foundation.jpg"
+        image="/foundation-hero.jpg"
         eyebrow="REGISTERED NPO · SOUTH AFRICA"
         title={
           <>
@@ -183,7 +183,7 @@ export default function FoundationPage() {
         />
       </section>
 
-      <section id="donate" className="bg-teal-950 text-white py-20 sm:py-24">
+      <section id="donate" className="bg-[#0f766e] text-white py-20 sm:py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-semibold tracking-tighter mb-4">Donate or partner</h2>
           <p className="text-white/75 text-lg mb-8">

@@ -30,7 +30,7 @@ export default function TribalPage() {
 
       {/* Honour intro */}
       <section className="max-w-4xl mx-auto px-6 py-20 sm:py-24 text-center">
-        <div className="text-xs tracking-[3px] text-amber-600 mb-4">WITH DEEPEST RESPECT</div>
+        <div className="text-xs tracking-[3px] text-[#d97706] mb-4">WITH DEEPEST RESPECT</div>
         <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-6">
           We honour the Zulu Kingdom
         </h2>
@@ -46,7 +46,7 @@ export default function TribalPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
-              <div className="text-xs tracking-[3px] text-amber-600 mb-4">OUR ROOTS</div>
+              <div className="text-xs tracking-[3px] text-[#d97706] mb-4">OUR ROOTS</div>
               <h3 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-8">
                 Heritage & alignment
               </h3>
@@ -93,7 +93,7 @@ export default function TribalPage() {
               />
               <div className="mt-6 sm:absolute sm:-bottom-6 sm:right-6 sm:mt-0 bg-white p-7 rounded-3xl shadow-xl border border-black/10 max-w-sm">
                 <div className="flex items-center gap-3 mb-3">
-                  <Crown className="w-5 h-5 text-amber-500" />
+                  <Crown className="w-5 h-5 text-[#d97706]" />
                   <div className="text-sm font-semibold text-black tracking-wide">
                     OFFICIAL ALIGNMENT
                   </div>
@@ -135,15 +135,15 @@ export default function TribalPage() {
           ].map((card) => (
             <div
               key={card.t}
-              className="bg-white border border-black/10 rounded-3xl p-8 hover:border-amber-300/50 transition-colors"
+              className="bg-white border border-black/10 rounded-3xl p-8 hover:border-[#fbbf24]/50 transition-colors"
             >
-              <card.icon className="w-8 h-8 text-amber-500 mb-5" />
+              <card.icon className="w-8 h-8 text-[#d97706] mb-5" />
               <h3 className="text-xl font-semibold text-black mb-3">{card.t}</h3>
               <p className="text-[#525252] leading-relaxed">{card.d}</p>
             </div>
           ))}
         </div>
-        <blockquote className="bg-white border-l-4 border-amber-400 rounded-r-3xl p-8 sm:p-10">
+        <blockquote className="bg-white border-l-4 border-[#f59e0b] rounded-r-3xl p-8 sm:p-10">
           <p className="text-xl sm:text-2xl text-black font-medium tracking-tight leading-snug italic">
             “Our work begins at home — with the Zulu Nation. We advance humanity not by leaving our
             heritage behind, but by carrying it forward with integrity, innovation, and love.”
@@ -203,9 +203,9 @@ export default function TribalPage() {
             ].map((item) => (
               <div
                 key={item.pillar}
-                className="bg-[#fafafa] border border-black/10 rounded-3xl p-8 hover:border-amber-300/40 transition-colors"
+                className="bg-[#fafafa] border border-black/10 rounded-3xl p-8 hover:border-[#fbbf24]/40 transition-colors"
               >
-                <item.icon className="w-7 h-7 text-amber-500 mb-4" />
+                <item.icon className="w-7 h-7 text-[#d97706] mb-4" />
                 <h3 className="text-2xl font-semibold tracking-tight text-black mb-3">
                   {item.pillar}
                 </h3>
@@ -219,7 +219,7 @@ export default function TribalPage() {
       {/* Closing */}
       <section className="bg-black py-20 sm:py-24 text-center px-6">
         <div className="max-w-3xl mx-auto">
-          <div className="text-amber-400 text-xs tracking-[4px] mb-6">
+          <div className="text-[#fbbf24] text-xs tracking-[4px] mb-6">
             INKOSI · ISIZWE · ISIKHATHI
           </div>
           <h2 className="text-white text-4xl sm:text-5xl font-semibold tracking-tighter leading-[1.05] mb-8">
@@ -237,7 +237,7 @@ export default function TribalPage() {
               href={KINGDOM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="premium-button inline-flex items-center justify-center gap-3 bg-amber-400 text-black px-10 py-4 rounded-full text-lg font-semibold"
+              className="premium-button inline-flex items-center justify-center gap-3 bg-[#f59e0b] text-black px-10 py-4 rounded-full text-lg font-semibold"
             >
               Visit zulukingdom.co.za
               <ExternalLink className="w-5 h-5" />

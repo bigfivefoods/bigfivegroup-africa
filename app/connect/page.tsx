@@ -26,7 +26,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-const ACCENT = "#0ea5e9";
+const ACCENT = "#06b6d4";
 const SA_URL = "https://www.supplieradvisor.com/";
 
 export default function ConnectPage() {
@@ -205,12 +205,12 @@ export default function ConnectPage() {
                   scale: i === demoStep ? 1.01 : 1,
                 }}
                 className={`flex gap-4 rounded-3xl border p-6 sm:p-7 transition-colors ${
-                  active ? "bg-white border-sky-300 shadow-md" : "bg-white/50 border-black/10"
+                  active ? "bg-white border-cyan-300 shadow-md" : "bg-white/50 border-black/10"
                 }`}
               >
                 <div
                   className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
-                    active ? "bg-sky-100 text-sky-700" : "bg-black/5 text-[#737373]"
+                    active ? "bg-cyan-100 text-cyan-700" : "bg-black/5 text-[#737373]"
                   }`}
                 >
                   <Icon className="w-6 h-6" />
@@ -219,14 +219,14 @@ export default function ConnectPage() {
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <h3 className="font-semibold text-lg text-black">{step.title}</h3>
                     {active && (
-                      <CheckCircle className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle className="w-4 h-4 text-cyan-600" />
                     )}
                   </div>
                   <div className="text-xs text-[#737373] mb-2">
                     {step.location} · {step.time}
                   </div>
                   <p className="text-[#525252] leading-relaxed">{step.desc}</p>
-                  <div className="mt-2 font-mono text-xs text-sky-700">{step.tx}</div>
+                  <div className="mt-2 font-mono text-xs text-cyan-700">{step.tx}</div>
                 </div>
               </motion.div>
             );

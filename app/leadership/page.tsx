@@ -103,8 +103,8 @@ export default function LeadershipPage() {
             },
           ].map((item) => (
             <div key={item.t} className="flex gap-4">
-              <div className="w-11 h-11 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0">
-                <item.icon className="w-5 h-5 text-amber-600" />
+              <div className="w-11 h-11 rounded-2xl bg-[#fefce8] flex items-center justify-center shrink-0">
+                <item.icon className="w-5 h-5 text-[#ca8a04]" />
               </div>
               <div>
                 <div className="font-semibold text-black mb-1">{item.t}</div>
@@ -136,7 +136,7 @@ export default function LeadershipPage() {
           {pillars.map((p) => (
             <div
               key={p.name}
-              className="bg-white border border-black/10 rounded-3xl p-6 hover:border-amber-300/50 transition-colors"
+              className="bg-white border border-black/10 rounded-3xl p-6 hover:border-[#facc15]/50 transition-colors"
             >
               <div className="flex items-center gap-3 mb-3">
                 <Image src={p.icon} alt={p.name} width={40} height={40} />
@@ -157,7 +157,7 @@ export default function LeadershipPage() {
               key={x.t}
               className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white px-5 py-4"
             >
-              <x.icon className="w-5 h-5 text-amber-600 shrink-0" />
+              <x.icon className="w-5 h-5 text-[#ca8a04] shrink-0" />
               <span className="text-sm font-medium text-black">{x.t}</span>
             </div>
           ))}
@@ -190,10 +190,10 @@ export default function LeadershipPage() {
       {/* BOOK */}
       <section
         id="book"
-        className="py-20 sm:py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-amber-200/50"
+        className="py-20 sm:py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fde68a]/50"
       >
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-amber-400 text-black px-4 py-1.5 rounded-full text-xs font-bold tracking-[2px] mb-6">
+          <div className="inline-flex items-center gap-2 bg-[#eab308] text-black px-4 py-1.5 rounded-full text-xs font-bold tracking-[2px] mb-6">
             <BookOpen className="w-3.5 h-3.5" />
             FREE DOWNLOAD
           </div>
@@ -245,7 +245,7 @@ export default function LeadershipPage() {
             href="https://www.researchgate.net/profile/Craig-Muller"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-amber-800 hover:text-amber-900"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#854d0e] hover:text-[#713f12]"
           >
             View publications on ResearchGate
             <ArrowUpRight className="w-4 h-4" />
@@ -267,7 +267,7 @@ export default function LeadershipPage() {
             href={SUPER_CUBE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="premium-button inline-flex items-center gap-3 bg-amber-400 text-black px-10 py-4 rounded-full text-lg font-semibold"
+            className="premium-button inline-flex items-center gap-3 bg-[#eab308] text-black px-10 py-4 rounded-full text-lg font-semibold"
           >
             Visit super-cube.com
             <ExternalLink className="w-5 h-5" />

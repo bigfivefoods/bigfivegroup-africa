@@ -145,12 +145,12 @@ export default function FoodsPage() {
               >
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="p-8 sm:p-10 flex flex-col justify-center">
-                    <cat.icon className="w-10 h-10 text-amber-600 mb-4" />
+                    <cat.icon className="w-10 h-10 text-[#d97706] mb-4" />
                     <h3 className="text-3xl font-semibold tracking-tight text-black mb-2">
                       {cat.title}
                     </h3>
                     <p className="text-[#525252] mb-3">{cat.description}</p>
-                    <div className="text-sm font-semibold text-amber-800 mb-4">{cat.stats}</div>
+                    <div className="text-sm font-semibold text-[#92400e] mb-4">{cat.stats}</div>
                     <p className="text-[#404040] leading-relaxed">{cat.benefits}</p>
                   </div>
                   <div className="grid grid-cols-2 gap-2 p-4 sm:p-6 bg-white">
@@ -220,9 +220,9 @@ export default function FoodsPage() {
         </div>
       </section>
 
-      <section className="bg-amber-950 text-white py-16">
+      <section className="bg-[#78350f] text-white py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <ShieldCheck className="w-12 h-12 text-amber-300 mx-auto mb-4" />
+          <ShieldCheck className="w-12 h-12 text-[#fcd34d] mx-auto mb-4" />
           <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">
             Professional manufacturing. Ethical commerce.
           </h3>

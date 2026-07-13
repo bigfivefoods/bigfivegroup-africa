@@ -20,13 +20,13 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const ACCENT = "#6d28d9";
+const ACCENT = "#3b82f6";
 
 export default function AccessPage() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
       <PageHero
-        image="/global-hero.jpg"
+        image="/access-hero.jpg"
         eyebrow="PILLAR 04 · GOVERNMENT & INSTITUTIONAL ACCESS"
         title={
           <>
@@ -44,7 +44,7 @@ export default function AccessPage() {
             external: true,
           },
         ]}
-        overlayClassName="bg-[#3b0764]/65"
+        overlayClassName="bg-[#1e3a8a]/55"
       />
 
       <SupplierTrust entityName="Access programme suppliers and SMEs" compact />
@@ -131,7 +131,7 @@ export default function AccessPage() {
         />
       </section>
 
-      <section className="bg-[#4c1d95] py-20 text-white">
+      <section className="bg-[#1d4ed8] py-20 text-white">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-5">
           {[
             {
@@ -151,7 +151,7 @@ export default function AccessPage() {
             },
           ].map((x) => (
             <div key={x.t} className="bg-white/10 rounded-3xl p-8">
-              <x.icon className="w-9 h-9 text-violet-200 mb-4" />
+              <x.icon className="w-9 h-9 text-blue-200 mb-4" />
               <h3 className="text-xl font-semibold mb-2">{x.t}</h3>
               <p className="text-white/80 leading-relaxed">{x.d}</p>
             </div>

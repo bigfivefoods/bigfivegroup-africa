@@ -205,8 +205,8 @@ export default function AfricaPage() {
 
       <section id="active" className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
         <div className="mb-12 max-w-3xl">
-          <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-emerald-700 mb-4">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-[#047857] mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#059669] animate-pulse" />
             ACTIVE ON THE CONTINENT
           </div>
           <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-4">
@@ -221,7 +221,7 @@ export default function AfricaPage() {
           {ACTIVE_CARDS.map((c) => (
             <div
               key={c.n}
-              className="flex items-center gap-4 bg-white border border-emerald-200/80 rounded-3xl p-5 shadow-sm"
+              className="flex items-center gap-4 bg-white border border-[#a7f3d0]/80 rounded-3xl p-5 shadow-sm"
             >
               <Image
                 src={`https://flagcdn.com/w80/${c.f.toLowerCase()}.png`}
@@ -234,7 +234,7 @@ export default function AfricaPage() {
                 <div className="font-semibold text-black">
                   {c.n === "Democratic Republic of the Congo" ? "DRC" : c.n}
                 </div>
-                <div className="text-xs text-emerald-800 font-medium flex items-center gap-1 mt-0.5">
+                <div className="text-xs text-[#065f46] font-medium flex items-center gap-1 mt-0.5">
                   {c.n === "Kenya" ? (
                     <Building2 className="w-3 h-3" />
                   ) : (
@@ -259,7 +259,7 @@ export default function AfricaPage() {
       <section id="regions" className="bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14 max-w-3xl mx-auto">
-            <div className="text-xs tracking-[3px] text-emerald-600 mb-4">54 NATIONS · ONE ECOSYSTEM</div>
+            <div className="text-xs tracking-[3px] text-[#059669] mb-4">54 NATIONS · ONE ECOSYSTEM</div>
             <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black mb-4">
               Continental context
             </h2>
@@ -283,7 +283,7 @@ export default function AfricaPage() {
                         key={country.name}
                         className={`rounded-3xl border p-6 flex flex-col ${
                           isActive
-                            ? "bg-emerald-50/50 border-emerald-200"
+                            ? "bg-[#ecfdf5]/80 border-[#a7f3d0]"
                             : "bg-[#fafafa] border-black/10"
                         }`}
                       >
@@ -299,7 +299,7 @@ export default function AfricaPage() {
                             {country.name}
                           </div>
                           {isActive && (
-                            <span className="ml-auto text-[10px] uppercase tracking-wider font-semibold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full shrink-0">
+                            <span className="ml-auto text-[10px] uppercase tracking-wider font-semibold text-[#065f46] bg-[#d1fae5] px-2 py-0.5 rounded-full shrink-0">
                               Active
                             </span>
                           )}

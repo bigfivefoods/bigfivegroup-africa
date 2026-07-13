@@ -25,7 +25,7 @@ export default function ImpactPage() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
       <PageHero
-        image="/home-hero.jpg"
+        image="/impact-hero.jpg"
         eyebrow="PILLAR · BIG FIVE IMPACT"
         title={
           <>
@@ -43,7 +43,7 @@ export default function ImpactPage() {
             external: true,
           },
         ]}
-        overlayClassName="bg-black/55"
+        overlayClassName="bg-[#2e1065]/55"
       />
 
       <SupplierTrust entityName="Big Five Group entities (where applicable)" compact />
@@ -159,7 +159,7 @@ export default function ImpactPage() {
                 key={c.title}
                 className="rounded-3xl border border-white/10 bg-white/[0.04] p-8"
               >
-                <Target className="w-8 h-8 text-violet-400 mb-4" />
+                <Target className="w-8 h-8 text-[#c4b5fd] mb-4" />
                 <h3 className="text-xl font-semibold mb-3">{c.title}</h3>
                 <p className="text-white/65 leading-relaxed">{c.desc}</p>
               </div>

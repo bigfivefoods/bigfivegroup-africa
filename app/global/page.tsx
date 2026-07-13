@@ -338,7 +338,7 @@ export default function GlobalPage() {
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/25 text-[11px] tracking-[3px] text-sky-300 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/25 text-[11px] tracking-[3px] text-[#7dd3fc] mb-6"
           >
             <Globe2 className="w-3.5 h-3.5" />
             BIG FIVE GLOBAL
@@ -410,7 +410,7 @@ export default function GlobalPage() {
 
       {/* NARRATIVE */}
       <section className="max-w-5xl mx-auto px-6 py-20 sm:py-24 text-center">
-        <div className="text-xs tracking-[3px] text-sky-600 mb-4">THE GLOBAL STRATEGY</div>
+        <div className="text-xs tracking-[3px] text-[#0284c7] mb-4">THE GLOBAL STRATEGY</div>
         <h2 className="section-heading text-black mb-6">
           We do not claim the world.
           <br className="hidden sm:block" />
@@ -428,8 +428,8 @@ export default function GlobalPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-emerald-700 mb-4">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-[#0369a1] mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
                 LIVE OPERATIONS
               </div>
               <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
@@ -445,7 +445,7 @@ export default function GlobalPage() {
               {ACTIVE_COUNTRIES.map((c) => (
                 <span
                   key={c.name}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-medium text-emerald-900"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#f0f9ff] border border-[#bae6fd] text-xs font-medium text-[#0c4a6e]"
                 >
                   <CountryFlag name={c.name} size={18} />
                   {c.name === "Democratic Republic of the Congo" ? "DRC" : c.name}
@@ -462,10 +462,10 @@ export default function GlobalPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: Math.min(i * 0.04, 0.28) }}
-                className="group relative bg-[#fafafa] border border-black/10 rounded-[1.75rem] p-7 sm:p-8 hover:border-emerald-500/40 hover:shadow-[0_20px_50px_-20px_rgba(16,185,129,0.35)] transition-all"
+                className="group relative bg-[#fafafa] border border-black/10 rounded-[1.75rem] p-7 sm:p-8 hover:border-[#0ea5e9]/40 hover:shadow-[0_20px_50px_-20px_rgba(14,165,233,0.35)] transition-all"
               >
                 <div className="absolute top-6 right-6">
-                  <span className="text-[10px] uppercase tracking-[1.5px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">
+                  <span className="text-[10px] uppercase tracking-[1.5px] font-semibold text-[#0369a1] bg-[#e0f2fe] px-2.5 py-1 rounded-full">
                     Active
                   </span>
                 </div>
@@ -476,7 +476,7 @@ export default function GlobalPage() {
                     <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-black leading-tight">
                       {country.name}
                     </h3>
-                    <div className="text-sm text-emerald-800 font-medium mt-0.5">{country.role}</div>
+                    <div className="text-sm text-[#075985] font-medium mt-0.5">{country.role}</div>
                   </div>
                 </div>
 
@@ -485,7 +485,7 @@ export default function GlobalPage() {
                 </div>
                 <p className="text-[#404040] leading-relaxed text-[15px] mb-5">{country.summary}</p>
 
-                <div className="flex items-center gap-2 text-sm font-medium text-emerald-800">
+                <div className="flex items-center gap-2 text-sm font-medium text-[#075985]">
                   {country.name === "Kenya" ? (
                     <Building2 className="w-4 h-4 shrink-0" />
                   ) : country.name === "South Africa" ? (
@@ -505,8 +505,8 @@ export default function GlobalPage() {
       <section className="max-w-6xl mx-auto px-6 py-16 sm:py-20">
         <div className="grid md:grid-cols-2 gap-5">
           <div className="rounded-[1.75rem] bg-black text-white p-9 sm:p-10 relative overflow-hidden">
-            <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-emerald-500/20 blur-2xl" />
-            <div className="text-xs tracking-[3px] text-emerald-400 mb-4">HEADQUARTERS</div>
+            <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-[#0ea5e9]/20 blur-2xl" />
+            <div className="text-xs tracking-[3px] text-[#38bdf8] mb-4">HEADQUARTERS</div>
             <h3 className="text-3xl font-semibold tracking-tighter mb-3">South Africa</h3>
             <p className="text-white/70 leading-relaxed mb-6">
               KwaZulu-Natal is the nerve centre — leadership, manufacturing partnerships, regenerative
@@ -520,9 +520,9 @@ export default function GlobalPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="rounded-[1.75rem] bg-gradient-to-br from-sky-600 to-sky-900 text-white p-9 sm:p-10 relative overflow-hidden">
+          <div className="rounded-[1.75rem] bg-gradient-to-br from-[#0284c7] to-[#0c4a6e] text-white p-9 sm:p-10 relative overflow-hidden">
             <div className="absolute -left-8 -bottom-8 w-40 h-40 rounded-full bg-white/10 blur-2xl" />
-            <div className="text-xs tracking-[3px] text-sky-200 mb-4">COMPANY ESTABLISHED</div>
+            <div className="text-xs tracking-[3px] text-[#bae6fd] mb-4">COMPANY ESTABLISHED</div>
             <h3 className="text-3xl font-semibold tracking-tighter mb-3">Kenya</h3>
             <p className="text-white/85 leading-relaxed mb-6">
               Our East African company setup positions Big Five to scale regenerative commerce,
@@ -540,7 +540,7 @@ export default function GlobalPage() {
       <section id="ambition" className="bg-[#0a0a0a] text-white py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-14 max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-amber-400 mb-4">
+            <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-[#7dd3fc] mb-4">
               <Target className="w-3.5 h-3.5" />
               EXPANSION ROADMAP
             </div>
@@ -586,7 +586,7 @@ export default function GlobalPage() {
                 key={block.region}
                 className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 sm:p-8"
               >
-                <div className="text-xs tracking-[2px] text-sky-400 mb-2">{block.region.toUpperCase()}</div>
+                <div className="text-xs tracking-[2px] text-[#38bdf8] mb-2">{block.region.toUpperCase()}</div>
                 <h4 className="text-xl font-semibold mb-4">{block.region}</h4>
                 <div className="flex flex-wrap gap-2">
                   {block.countries.map((c) => (
@@ -610,7 +610,7 @@ export default function GlobalPage() {
       {/* HOW WE EXPAND */}
       <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
         <div className="text-center mb-14">
-          <div className="text-xs tracking-[3px] text-sky-600 mb-4">HOW WE GROW</div>
+          <div className="text-xs tracking-[3px] text-[#0284c7] mb-4">HOW WE GROW</div>
           <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
             Expansion with integrity
           </h2>
@@ -637,7 +637,7 @@ export default function GlobalPage() {
               key={item.title}
               className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-colors"
             >
-              <item.icon className="w-10 h-10 text-sky-600 mb-5" />
+              <item.icon className="w-10 h-10 text-[#0284c7] mb-5" />
               <h3 className="text-xl font-semibold tracking-tight text-black mb-3">{item.title}</h3>
               <p className="text-[#525252] leading-relaxed">{item.desc}</p>
             </div>
@@ -648,7 +648,7 @@ export default function GlobalPage() {
       {/* CTA */}
       <section className="bg-black py-20 sm:py-24 text-center px-6">
         <div className="max-w-2xl mx-auto">
-          <div className="text-xs tracking-[3px] text-sky-400 mb-4">PARTNER GLOBALLY</div>
+          <div className="text-xs tracking-[3px] text-[#38bdf8] mb-4">PARTNER GLOBALLY</div>
           <h2 className="text-white text-4xl sm:text-5xl font-semibold tracking-tighter mb-6">
             Bring Big Five to your market
           </h2>

@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <div className="overflow-hidden bg-[#fafafa]">
       <PageHero
-        image="/home-hero.jpg"
+        image="/about-hero.jpg"
         eyebrow="ABOUT BIG FIVE GROUP"
         title={
           <>
