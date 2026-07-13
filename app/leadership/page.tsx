@@ -1,159 +1,198 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Download, ExternalLink, User, Users, Building2, Globe } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  Download,
+  ExternalLink,
+  User,
+  Users,
+  Building2,
+  Globe,
+  ArrowRight,
+  BookOpen,
+  GraduationCap,
+  ShieldCheck,
+} from "lucide-react";
 import { useState, useRef } from "react";
+import PageHero from "../components/PageHero";
+import SupplierTrust from "../components/SupplierTrust";
+import { SectionHeading, FinalCta } from "../components/PageSections";
+
+const SUPER_CUBE_URL = "https://www.super-cube.com";
+const ACCENT = "#fbbf24";
+
+const dimensions = [
+  {
+    name: "Choices",
+    icon: "/choices-icon.png",
+    color: "#ef4444",
+    quote:
+      "The history of free man is never written by chance, but by choice, their choice. — Dwight D. Eisenhower",
+    overview:
+      "The Choices construct focuses on moral values, decision-making intelligence, judgement, and risk-taking. Grounded in choice theory, it equips leaders to evaluate options consistently and choose actions that serve humanity. In Africa, where corruption, poverty, and rapid change create constant high-stakes decisions, Super-Cube® develops ethical judgement and calculated risk-taking.",
+    courseOverview:
+      "This programme develops moral decision-making intelligence. Learners master identifying the components of moral problems, understanding corruption drivers, and applying proven ethical frameworks (Utilitarian, Rights, Justice, Common Good, Virtue).",
+    skills: [
+      "Moral reasoning & judgement",
+      "Corruption risk analysis",
+      "Ethical code application",
+      "Contextual decision-making",
+      "Personal values alignment",
+    ],
+    improvement: "26.6%",
+    impact:
+      "Leaders make more ethical and effective decisions in high-stakes African environments — reducing corruption risk and building trust across supply chains and communities.",
+  },
+  {
+    name: "Principles",
+    icon: "/principles-icon.png",
+    color: "#a855f7",
+    quote: "You must be the change you wish to see in the world. — Mahatma Gandhi",
+    overview:
+      "The Principles construct provides the foundation of ethics, governance, context, and standards. Deeply rooted in Ubuntu (“I am because we are”) and Buber’s I-Thou philosophy, it ensures leaders act with integrity and accountability in complex markets.",
+    courseOverview:
+      "Leaders learn that principles are natural laws that govern consequences. The course focuses on aligning personal and organisational values with ethical governance and strong codes of conduct.",
+    skills: [
+      "Corporate ethics implementation",
+      "Value-principle alignment",
+      "Ethical governance",
+      "Strengthening organisational culture",
+      "Code of conduct development",
+    ],
+    improvement: "45.1%",
+    impact:
+      "The largest measured gain — leaders operate from a rock-solid ethical foundation, creating organisations that withstand corruption and build long-term trust.",
+  },
+  {
+    name: "Mental",
+    icon: "/mental-icon.png",
+    color: "#f97316",
+    quote:
+      "Imagination is more important than knowledge. Memory is past. It's finite. Vision is future. It's infinite. — Albert Einstein",
+    overview:
+      "The Mental construct develops cognitive intelligence, strategic thinking, problem-solving, vision, and continuous learning. Africa faces multidimensional issues — growth, infrastructure, climate — and Super-Cube® turns talent into strategic capability.",
+    courseOverview:
+      "Advanced cognitive intelligence through critical, lateral, inductive and deductive thinking, combined with personal study methodology and learning-style optimisation.",
+    skills: [
+      "Strategic & critical thinking",
+      "Problem-solving frameworks",
+      "Knowledge synthesis",
+      "Self-directed learning",
+      "Analytical reasoning",
+    ],
+    improvement: "29.7%",
+    impact:
+      "Leaders solve complex problems with clarity — turning Africa’s talent into competitive advantage and innovation.",
+  },
+  {
+    name: "Emotional",
+    icon: "/emotional-icon.png",
+    color: "#22c55e",
+    quote:
+      "One of the most difficult things to give away is kindness, for it is often returned. — Mark Ortman",
+    overview:
+      "The Emotional construct focuses on emotional intelligence, empathy, motivation, and social skills. Leadership in Africa is highly relational; teams and communities thrive on trust and connection.",
+    courseOverview:
+      "Deep emotional intelligence across self-awareness, self-regulation, motivation, empathy and social skills for stronger relationships and leadership impact.",
+    skills: [
+      "Emotional self-management",
+      "Empathy & social skills",
+      "Motivation techniques",
+      "Interpersonal competence",
+    ],
+    improvement: "39.5%",
+    impact:
+      "Teams experience deeper trust and connection — the relational glue of Ubuntu-style, high-performing organisations.",
+  },
+  {
+    name: "Physical",
+    icon: "/physical-icon.png",
+    color: "#3b82f6",
+    quote: "Take care of your body, it is the only place you have to live. — Jim Rohn",
+    overview:
+      "The Physical construct emphasises well-being, energy management, fitness, nutrition, and resilience. African leaders operate under extreme pressure; Super-Cube® builds the foundation to prevent burnout.",
+    courseOverview:
+      "Wellness models and discipline for peak physical and mental performance through practical stress management and balanced lifestyle design.",
+    skills: [
+      "Wellness practices",
+      "Stress resilience",
+      "Discipline & alignment",
+      "Energy management",
+    ],
+    improvement: "27.7%",
+    impact:
+      "Leaders sustain peak energy under pressure — consistent, high-impact performance over years, not months.",
+  },
+  {
+    name: "Spiritual",
+    icon: "/spiritual-icon.png",
+    color: "#1e40af",
+    quote:
+      "Example is not the main thing in influencing people, it is the only thing. — Albert Schweitzer",
+    overview:
+      "The Spiritual construct integrates purpose, meaning, integrity, and spiritual intelligence. It connects all other dimensions and aligns personal purpose with a greater “why”, rooted in Ubuntu and I-Thou philosophy.",
+    courseOverview:
+      "Purpose, meaning, integrity and higher consciousness — connecting all dimensions and aligning daily action with a greater mission.",
+    skills: [
+      "Purpose discovery",
+      "Integrity building",
+      "Spiritual intelligence application",
+      "Meaning-making",
+    ],
+    improvement: "24.7%",
+    impact:
+      "Leaders operate with deep purpose and authenticity — the force that turns individual effort into continent-wide transformation.",
+  },
+];
+
+const assessmentQuestions: Record<string, string[]> = {
+  Choices: [
+    "I consistently make decisions that align with my core values even under pressure.",
+    "I can quickly identify ethical dilemmas in complex business situations.",
+    "I evaluate the long-term consequences of my choices on communities and stakeholders.",
+    "I take calculated risks when they serve the greater good.",
+    "I reflect on past decisions to improve future moral judgement.",
+  ],
+  Principles: [
+    "I operate from a clear set of ethical principles in all business dealings.",
+    "I hold myself and my team accountable to high standards of integrity.",
+    "I align personal and organisational values in decision-making.",
+    "I build strong codes of conduct that guide organisational culture.",
+    "I practice Ubuntu by treating every stakeholder with dignity and respect.",
+  ],
+  Mental: [
+    "I think strategically about long-term opportunities and risks for Africa.",
+    "I solve complex problems using critical and creative thinking.",
+    "I continuously learn and adapt to new knowledge and technologies.",
+    "I synthesize information from multiple sources to make informed decisions.",
+    "I maintain a clear vision for the future while managing day-to-day complexity.",
+  ],
+  Emotional: [
+    "I am highly aware of my own emotions and how they affect others.",
+    "I manage stress and emotions effectively in high-pressure situations.",
+    "I show genuine empathy and build strong relationships with team members.",
+    "I motivate others by understanding their needs and aspirations.",
+    "I handle conflict with emotional intelligence and respect.",
+  ],
+  Physical: [
+    "I maintain high energy levels through healthy habits and routines.",
+    "I manage stress through physical wellness practices.",
+    "I prioritise sleep, nutrition, and exercise to sustain performance.",
+    "I recover quickly from setbacks and maintain resilience.",
+    "I model healthy work-life balance for my team.",
+  ],
+  Spiritual: [
+    "I have a clear sense of purpose that guides my leadership.",
+    "I align my daily actions with a greater 'why' beyond profit.",
+    "I practice integrity and authenticity in all interactions.",
+    "I draw strength from faith, values, or higher consciousness.",
+    "I inspire others through my sense of meaning and contribution to society.",
+  ],
+};
 
 export default function LeadershipPage() {
-  const dimensions = [
-    {
-      name: "Choices",
-      icon: "/choices-icon.png",
-      color: "#ef4444",
-      quote: "“The history of free man is never written by chance, but by choice, their choice.” — Dwight D. Eisenhower",
-      overview: "The Choices construct focuses on moral values, decision-making intelligence, judgement, and risk-taking. Grounded in choice theory, it equips leaders to evaluate options consistently and choose actions that serve humanity. In Africa, where corruption, poverty, and rapid change create constant high-stakes decisions, Super-Cube® develops ethical judgement and calculated risk-taking — critical because poor choices destroy trust and sustainable business networks.",
-      courseOverview: "This programme develops moral decision-making intelligence. Learners master identifying the components of moral problems, understanding corruption drivers, and applying proven ethical frameworks (Utilitarian, Rights, Justice, Common Good, Virtue principles).",
-      skills: [
-        "Moral reasoning & judgement",
-        "Corruption risk analysis",
-        "Ethical code application",
-        "Contextual decision-making",
-        "Personal values alignment"
-      ],
-      improvement: "26.6%",
-      impact: "Leaders now make dramatically more ethical and effective decisions in high-stakes African environments — slashing corruption risk and building unbreakable trust across supply chains and communities."
-    },
-    {
-      name: "Principles",
-      icon: "/principles-icon.png",
-      color: "#a855f7",
-      quote: "“You must be the change you wish to see in the world.” — Mahatma Gandhi",
-      overview: "The Principles construct provides the foundation of ethics, governance, context, and standards. It draws from principle theory and is deeply rooted in Ubuntu (“I am because we are”) and Buber’s I-Thou philosophy of mutual respect. In Africa’s complex FMCG environment, where corruption and institutional weaknesses are prevalent, this construct ensures leaders act with integrity and accountability.",
-      courseOverview: "Leaders learn that principles are natural, impersonal laws that govern consequences. The course focuses on aligning personal and organisational values with ethical governance and building strong codes of conduct.",
-      skills: [
-        "Corporate ethics implementation",
-        "Value-principle alignment",
-        "Ethical governance",
-        "Strengthening organisational culture",
-        "Code of conduct development"
-      ],
-      improvement: "45.1%",
-      impact: "The largest gain across all constructs — leaders now operate from a rock-solid ethical foundation, creating resilient organisations that withstand corruption and build long-term trust in Africa’s complex markets."
-    },
-    {
-      name: "Mental",
-      icon: "/mental-icon.png",
-      color: "#f97316",
-      quote: "“Imagination is more important than knowledge. Memory is past. It's finite. Vision is future. It's infinite.” — Albert Einstein",
-      overview: "The Mental construct develops cognitive intelligence, strategic thinking, problem-solving, vision, and continuous learning. Supported by cognition theory, it enables leaders to process complexity and innovate. Africa faces multidimensional issues — population growth, infrastructure gaps, climate shocks — and a severe skills shortage despite abundant talent.",
-      courseOverview: "This module builds advanced cognitive intelligence through critical, lateral, inductive and deductive thinking, combined with personal study methodology and learning style optimisation.",
-      skills: [
-        "Strategic & critical thinking",
-        "Problem-solving frameworks",
-        "Knowledge synthesis",
-        "Self-directed learning",
-        "Analytical reasoning"
-      ],
-      improvement: "29.7%",
-      impact: "Leaders now think strategically and solve complex problems with clarity — turning Africa’s abundance of talent into real competitive advantage and driving innovation in fast-growing markets."
-    },
-    {
-      name: "Emotional",
-      icon: "/emotional-icon.png",
-      color: "#22c55e",
-      quote: "“One of the most difficult things to give away is kindness, for its often returned.” — Mark Ortman",
-      overview: "The Emotional construct focuses on emotional intelligence, empathy, motivation, and social skills. Based on the four-branch ability model, it develops the ability to perceive, use, understand, and manage emotions. Leadership in Africa is highly relational; teams and communities thrive on trust and connection.",
-      courseOverview: "Participants develop deep emotional intelligence across self-awareness, self-regulation, motivation, empathy and social skills for stronger relationships and leadership impact.",
-      skills: [
-        "Emotional self-management",
-        "Empathy & social skills",
-        "Motivation techniques",
-        "Interpersonal competence"
-      ],
-      improvement: "39.5%",
-      impact: "Teams and communities now experience deeper trust and connection — the relational glue that makes Ubuntu-style leadership and high-performing African organisations possible."
-    },
-    {
-      name: "Physical",
-      icon: "/physical-icon.png",
-      color: "#3b82f6",
-      quote: "“Take care of your body, its the only place you have to live.” — Jim Rohn",
-      overview: "The Physical construct emphasises bodily well-being, energy management, fitness, nutrition, and resilience. It is grounded in the Wheel of Wellness theory. African leaders operate under extreme pressure from rapid growth and resource constraints. Super-Cube® develops the physical foundation needed to prevent burnout and sustain long-term impact.",
-      courseOverview: "This programme explores wellness models and the discipline required to maintain peak physical and mental performance through practical stress management and balanced lifestyle design.",
-      skills: [
-        "Wellness practices",
-        "Stress resilience",
-        "Discipline & alignment",
-        "Energy management"
-      ],
-      improvement: "27.7%",
-      impact: "Leaders now sustain peak energy and resilience under intense African pressure — preventing burnout and delivering consistent, high-impact performance for years to come."
-    },
-    {
-      name: "Spiritual",
-      icon: "/spiritual-icon.png",
-      color: "#1e40af",
-      quote: "“Example is not the main thing in influencing people, it is the only thing.” — Albert Schweitzer",
-      overview: "The Spiritual construct integrates purpose, meaning, integrity, faith, and spiritual intelligence. It acts as the conduit connecting all other dimensions and aligns personal purpose with a greater “why”. Rooted in Ubuntu and I-Thou philosophy, it gives leaders authentic motivation and ethical depth.",
-      courseOverview: "The Spiritual construct integrates purpose, meaning, integrity and higher consciousness, connecting all other dimensions and aligning daily actions with a greater “why”.",
-      skills: [
-        "Purpose discovery",
-        "Integrity building",
-        "Spiritual intelligence application",
-        "Meaning-making"
-      ],
-      improvement: "24.7%",
-      impact: "Leaders now operate with deep purpose and authenticity — the invisible force that turns individual effort into continent-wide transformation aligned with Ubuntu values."
-    }
-  ];
-
-  const assessmentQuestions = {
-    "Choices": [
-      "I consistently make decisions that align with my core values even under pressure.",
-      "I can quickly identify ethical dilemmas in complex business situations.",
-      "I evaluate the long-term consequences of my choices on communities and stakeholders.",
-      "I take calculated risks when they serve the greater good.",
-      "I reflect on past decisions to improve future moral judgement."
-    ],
-    "Principles": [
-      "I operate from a clear set of ethical principles in all business dealings.",
-      "I hold myself and my team accountable to high standards of integrity.",
-      "I align personal and organisational values in decision-making.",
-      "I build strong codes of conduct that guide organisational culture.",
-      "I practice Ubuntu by treating every stakeholder with dignity and respect."
-    ],
-    "Mental": [
-      "I think strategically about long-term opportunities and risks for Africa.",
-      "I solve complex problems using critical and creative thinking.",
-      "I continuously learn and adapt to new knowledge and technologies.",
-      "I synthesize information from multiple sources to make informed decisions.",
-      "I maintain a clear vision for the future while managing day-to-day complexity."
-    ],
-    "Emotional": [
-      "I am highly aware of my own emotions and how they affect others.",
-      "I manage stress and emotions effectively in high-pressure situations.",
-      "I show genuine empathy and build strong relationships with team members.",
-      "I motivate others by understanding their needs and aspirations.",
-      "I handle conflict with emotional intelligence and respect."
-    ],
-    "Physical": [
-      "I maintain high energy levels through healthy habits and routines.",
-      "I manage stress through physical wellness practices.",
-      "I prioritise sleep, nutrition, and exercise to sustain performance.",
-      "I recover quickly from setbacks and maintain resilience.",
-      "I model healthy work-life balance for my team."
-    ],
-    "Spiritual": [
-      "I have a clear sense of purpose that guides my leadership.",
-      "I align my daily actions with a greater 'why' beyond profit.",
-      "I practice integrity and authenticity in all interactions.",
-      "I draw strength from faith, values, or higher consciousness.",
-      "I inspire others through my sense of meaning and contribution to society."
-    ]
-  };
-
   const [answers, setAnswers] = useState<Record<string, number[]>>({
     Choices: Array(5).fill(3),
     Principles: Array(5).fill(3),
@@ -168,53 +207,42 @@ export default function LeadershipPage() {
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const handleAnswer = (construct: string, qIndex: number, value: number) => {
-    setAnswers(prev => {
-      const newAnswers = { ...prev };
-      newAnswers[construct][qIndex] = value;
-      return newAnswers;
+    setAnswers((prev) => {
+      const next = { ...prev };
+      next[construct] = [...next[construct]];
+      next[construct][qIndex] = value;
+      return next;
     });
   };
 
   const getAdvice = (construct: string, score: number) => {
     if (score >= 4.5) {
-      return "Excellent! You are operating at a high level in this dimension. Continue leading by example and consider mentoring others in the Super-Cube® programme.";
+      return `Excellent strength in ${construct}. Continue leading by example and explore advanced Super-Cube® programmes at super-cube.com.`;
     }
     if (score >= 3.5) {
-      return "Strong foundation. Focus on consistent application in high-stakes African contexts and deepen your practice through our advanced modules.";
+      return `Strong foundation in ${construct}. Deepen application in high-stakes contexts via Super-Cube® advanced modules.`;
     }
     if (score >= 2.5) {
-      return "Good starting point. We recommend completing the foundational Super-Cube® course for this construct and building daily reflection habits.";
+      return `Solid starting point. Foundational Super-Cube® training for ${construct} will accelerate consistency.`;
     }
-    return "This is a key growth area. Start with our entry-level Super-Cube® programme for this construct to build core skills and confidence quickly.";
+    return `Priority growth area. Begin with Super-Cube® entry programmes for ${construct} at www.super-cube.com.`;
   };
 
-  const calculateResults = () => {
-    const newScores: Record<string, number> = {};
-    dimensions.forEach(dim => {
-      const avg = answers[dim.name].reduce((a, b) => a + b, 0) / 5;
-      newScores[dim.name] = parseFloat(avg.toFixed(1));
-    });
-    setScores(newScores);
-    setShowResults(true);
-    setTimeout(() => drawRadarChart(newScores), 100);
-  };
-
-  const drawRadarChart = (scores: Record<string, number>) => {
+  const drawRadarChart = (scoreMap: Record<string, number>) => {
     const canvas = chartRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const maxRadius = 180;
-    const labels = Object.keys(scores);
-    const values = Object.values(scores).map(v => v / 5);
+    const labels = Object.keys(scoreMap);
+    const values = Object.values(scoreMap).map((v) => v / 5);
     const angleStep = (Math.PI * 2) / labels.length;
 
-    ctx.strokeStyle = '#e5e5e5';
+    ctx.strokeStyle = "#e5e5e5";
     ctx.lineWidth = 1;
     for (let r = 1; r <= 5; r++) {
       const radius = (r / 5) * maxRadius;
@@ -230,19 +258,7 @@ export default function LeadershipPage() {
       ctx.stroke();
     }
 
-    ctx.fillStyle = '#525252';
-    ctx.font = 'bold 12px Inter, system-ui, sans-serif';
-    ctx.textAlign = 'center';
-    for (let r = 1; r <= 5; r++) {
-      const radius = (r / 5) * maxRadius;
-      const angle = -Math.PI / 2;
-      const x = centerX + Math.cos(angle) * radius;
-      const y = centerY + Math.sin(angle) * radius;
-      ctx.fillText(r.toString(), x + 12, y - 4);
-    }
-
-    ctx.strokeStyle = '#ccc';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = "#ccc";
     for (let i = 0; i < labels.length; i++) {
       const angle = i * angleStep - Math.PI / 2;
       ctx.beginPath();
@@ -251,8 +267,8 @@ export default function LeadershipPage() {
       ctx.stroke();
     }
 
-    ctx.strokeStyle = '#fbbf24';
-    ctx.fillStyle = 'rgba(251, 191, 36, 0.25)';
+    ctx.strokeStyle = "#fbbf24";
+    ctx.fillStyle = "rgba(251, 191, 36, 0.25)";
     ctx.lineWidth = 3;
     ctx.beginPath();
     for (let i = 0; i < labels.length; i++) {
@@ -267,454 +283,448 @@ export default function LeadershipPage() {
     ctx.fill();
     ctx.stroke();
 
-    ctx.font = 'bold 14px Inter, system-ui, sans-serif';
-    ctx.textAlign = 'center';
+    ctx.font = "bold 14px Inter, system-ui, sans-serif";
+    ctx.textAlign = "center";
     for (let i = 0; i < labels.length; i++) {
       const angle = i * angleStep - Math.PI / 2;
       const x = centerX + Math.cos(angle) * (maxRadius + 32);
       const y = centerY + Math.sin(angle) * (maxRadius + 32);
-      const dim = dimensions.find(d => d.name === labels[i]);
-      ctx.fillStyle = dim?.color || '#171717';
+      const dim = dimensions.find((d) => d.name === labels[i]);
+      ctx.fillStyle = dim?.color || "#171717";
       ctx.fillText(labels[i], x, y + 4);
     }
+  };
+
+  const calculateResults = () => {
+    const newScores: Record<string, number> = {};
+    dimensions.forEach((dim) => {
+      const avg = answers[dim.name].reduce((a, b) => a + b, 0) / 5;
+      newScores[dim.name] = parseFloat(avg.toFixed(1));
+    });
+    setScores(newScores);
+    setShowResults(true);
+    setTimeout(() => drawRadarChart(newScores), 100);
   };
 
   const downloadChart = () => {
     const canvas = chartRef.current;
     if (!canvas) return;
-    const link = document.createElement('a');
-    link.download = 'super-cube-leadership-radar.png';
-    link.href = canvas.toDataURL('image/png');
+    const link = document.createElement("a");
+    link.download = "super-cube-leadership-radar.png";
+    link.href = canvas.toDataURL("image/png");
     link.click();
-  };
-
-  const printReport = () => {
-    window.print();
   };
 
   return (
     <div className="overflow-hidden bg-[#fafafa]">
-      
-      {/* HERO */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: "url('/leadership-hero.jpg')",
-            backgroundPosition: "center 40%"
-          }}
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(#000000_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-30" />
-        <div className="absolute inset-0 bg-black/55" />
+      <PageHero
+        image="/leadership-hero.jpg"
+        eyebrow="DR. CRAIG R. MULLER · UNIVERSITY OF KWAZULU-NATAL"
+        title={
+          <>
+            Leadership that
+            <br />
+            builds nations
+          </>
+        }
+        subtitle="The Super-Cube® Doctoral Leadership Model — Africa-centric, empirically validated, and home at www.super-cube.com — redefining ethical, sovereign leadership for the 21st century."
+        ctas={[
+          { href: "#model", label: "Discover the model", primary: true },
+          {
+            href: SUPER_CUBE_URL,
+            label: "Visit super-cube.com",
+            external: true,
+          },
+        ]}
+        overlayClassName="bg-black/55"
+      />
 
-        <div className="relative z-10 max-w-4xl px-6 text-center mt-[-80px]">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-px h-8 bg-[#fbbf24]" />
-            <div className="uppercase tracking-[4px] text-xs text-[#fbbf24]">DR. CRAIG R. MULLER • UNIVERSITY OF KWAZULU-NATAL</div>
-            <div className="w-px h-8 bg-[#fbbf24]" />
+      {/* Super-Cube brand bar */}
+      <div className="border-b border-black/10 bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/super-cube-logo.png"
+              alt="Super-Cube®"
+              width={160}
+              height={40}
+              className="h-8 w-auto object-contain"
+            />
+            <p className="text-sm text-[#525252]">
+              Full programmes, cohorts, and resources live on{" "}
+              <a
+                href={SUPER_CUBE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-black underline underline-offset-2"
+              >
+                www.super-cube.com
+              </a>
+            </p>
           </div>
-
-          <h1 className="text-white text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-8">
-            Leadership That<br />Builds Nations.
-          </h1>
-
-          <p className="max-w-2xl mx-auto text-2xl text-white/90 font-light tracking-tight mb-12">
-            The Super-Cube® Doctoral Leadership Model — pioneered at the University of KwaZulu-Natal — 
-            is redefining ethical, sovereign African leadership for the 21st century.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="#model" 
-              className="premium-button inline-flex items-center justify-center gap-3 bg-[#fbbf24] text-black px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#f59e0b]"
-            >
-              DISCOVER THE MODEL
-            </Link>
-            <a 
-              href="/the-super-cube-leadership-model.pdf" 
-              download
-              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10"
-            >
-              DOWNLOAD THE BOOK
-            </a>
-          </div>
+          <a
+            href={SUPER_CUBE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-black shrink-0 hover:opacity-70"
+          >
+            Open Super-Cube®
+            <ExternalLink className="w-4 h-4" />
+          </a>
         </div>
+      </div>
 
-        <div className="absolute bottom-12 text-white/50 text-xs tracking-[2px] flex flex-col items-center">
-          SCROLL TO BEGIN YOUR JOURNEY
-          <div className="w-px h-10 bg-white/20 mt-2" />
-        </div>
-      </section>
+      <SupplierTrust entityName="Big Five Leadership programme partners" compact />
 
-      {/* DISCOVER THE MODEL + TWO-ROW CARDS */}
-      <section id="model" className="max-w-6xl mx-auto px-6 py-24">
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-6">
-            <Image 
-              src="/super-cube-logo.png" 
-              alt="Super-Cube®" 
-              width={380} 
-              height={85}
+      {/* MODEL INTRO */}
+      <section id="model" className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+        <div className="text-center mb-14">
+          <div className="flex justify-center mb-8">
+            <Image
+              src="/super-cube-logo.png"
+              alt="Super-Cube®"
+              width={320}
+              height={72}
               className="h-auto"
             />
           </div>
-          <h2 className="text-5xl font-semibold tracking-tighter text-black mb-6">The Super-Cube® Leadership Model</h2>
-          
-          <div className="max-w-4xl mx-auto space-y-6 text-lg text-[#525252] leading-relaxed">
-            <p>
-              Developed by Dr. Craig Ross Muller as the core output of his Doctor of Business Administration thesis at the University of KwaZulu-Natal, the Super-Cube® model is one of the first empirically validated, Africa-centric leadership frameworks in the world.
-            </p>
-            
-            <p>
-              Tested rigorously in a leading African FMCG business network, the model structures leadership development around a unique cubic architecture. At its centre stands the individual (“you”), with six interconnected dimensions forming the faces of the cube. This design ensures that personal growth radiates outward to teams, organisations, supply chains, and ultimately the broader African economy.
-            </p>
-            
-            <p>
-              Rooted in the ancient African philosophy of <strong>Ubuntu</strong> (“I am because we are”) and Martin Buber’s <strong>I-Thou</strong> theory, Super-Cube® treats every human interaction as an encounter between equals. It recognises that leadership capacity is not fixed by genetics (only 24–30%) but is 70–76% developable through deliberate practice, structured learning, and real-world application.
-            </p>
-            
-            <p>
-              The model was validated through a mixed-methods study with confirmatory factor analysis confirming excellent model fit and high reliability across all six dimensions. It directly addresses Africa’s unique challenges — rapid population growth, skills shortages, corruption, poverty, conflict, and institutional weaknesses — while offering a powerful alternative to Western-centric leadership theories.
-            </p>
-          </div>
-
-          {/* TWO HORIZONTAL LINES OF CARDS */}
-          <div className="max-w-5xl mx-auto mt-16">
-            <h3 className="text-3xl font-semibold tracking-tight text-black mb-10 text-center">
-              The Ripple Effect: Super-Cube® Transforms Individuals, Teams, Governments & Society
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-              
-              {/* For Individuals */}
-              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                    <User className="w-6 h-6 text-[#fbbf24]" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-black">For Individuals</h4>
-                </div>
-                <div className="space-y-4 text-[#404040] flex-1">
-                  <p><strong>Why it matters:</strong> Personal leadership growth is the foundation of all progress.</p>
-                  <p><strong>How it happens:</strong> Through the 6 dimensions you build moral clarity, emotional resilience, strategic thinking, and deep purpose.</p>
-                  <p><strong>Result:</strong> You become a more confident, ethical, and effective leader who models the leadership Africa needs.</p>
-                </div>
-              </div>
-
-              {/* For Teams */}
-              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                    <Users className="w-6 h-6 text-[#fbbf24]" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-black">For Teams</h4>
-                </div>
-                <div className="space-y-4 text-[#404040] flex-1">
-                  <p><strong>Why it matters:</strong> High-performing teams are built on trust, shared purpose, and psychological safety.</p>
-                  <p><strong>How it happens:</strong> Leaders who embody Super-Cube® create environments where people feel valued and empowered.</p>
-                  <p><strong>Result:</strong> Teams become dramatically more collaborative, innovative, and resilient.</p>
-                </div>
-              </div>
-
-              {/* For Governments */}
-              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                    <Building2 className="w-6 h-6 text-[#fbbf24]" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-black">For Governments</h4>
-                </div>
-                <div className="space-y-4 text-[#404040] flex-1">
-                  <p><strong>Why it matters:</strong> Africa desperately needs ethical, visionary public leaders who can drive real development.</p>
-                  <p><strong>How it happens:</strong> Super-Cube® equips public servants with moral clarity, strategic thinking, and emotional intelligence.</p>
-                  <p><strong>Result:</strong> Governments become more transparent, effective, and trusted.</p>
-                </div>
-              </div>
-
-              {/* For Society */}
-              <div className="bg-white border border-black/10 rounded-3xl p-8 hover:border-black/20 transition-all group h-full flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-[#fefce8] flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                    <Globe className="w-6 h-6 text-[#fbbf24]" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-black">For Society</h4>
-                </div>
-                <div className="space-y-4 text-[#404040] flex-1">
-                  <p><strong>Why it matters:</strong> The future of Africa depends on leaders who serve the greater good.</p>
-                  <p><strong>How it happens:</strong> When individuals, teams, and governments improve through Super-Cube®, the benefits multiply across society.</p>
-                  <p><strong>Result:</strong> A more prosperous, united, and self-reliant Africa for every citizen.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
+          <SectionHeading
+            eyebrow="DOCTORAL · EMPIRICALLY VALIDATED · AFRICA-CENTRIC"
+            title="The Super-Cube® Leadership Model"
+            subtitle="Developed by Dr. Craig Ross Muller (DBA, University of KwaZulu-Natal) — one of the first empirically validated leadership frameworks built for African realities, not imported wholesale from the West."
+          />
         </div>
 
-        {/* Dimensions Cards */}
-        <div className="space-y-12">
-          {dimensions.map((dim, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="bg-white border border-black/10 rounded-3xl p-10 hover:border-black/20 transition-all"
+        <div className="max-w-4xl mx-auto space-y-5 text-lg text-[#525252] leading-relaxed mb-16">
+          <p>
+            Tested in a leading African FMCG business network, Super-Cube® structures development
+            around a cubic architecture. At the centre is the individual (“you”); six interconnected
+            dimensions form the faces of the cube — so personal growth radiates to teams,
+            organisations, supply chains, and the broader economy.
+          </p>
+          <p>
+            Rooted in <strong className="text-black">Ubuntu</strong> (“I am because we are”) and
+            Martin Buber’s <strong className="text-black">I-Thou</strong> philosophy, the model
+            treats every interaction as an encounter between equals. Leadership capacity is{" "}
+            <strong className="text-black">70–76% developable</strong> through deliberate practice —
+            not fixed by genetics alone.
+          </p>
+          <p>
+            Validated through mixed-methods research with confirmatory factor analysis, Super-Cube®
+            addresses Africa’s challenges — skills gaps, corruption, institutional weakness, climate
+            and growth pressure — while remaining world-class in rigour.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-5 mb-6">
+          {[
+            {
+              icon: User,
+              title: "For individuals",
+              desc: "Moral clarity, emotional resilience, strategic thinking, and purpose — the leader Africa needs.",
+            },
+            {
+              icon: Users,
+              title: "For teams",
+              desc: "Trust, psychological safety, and shared purpose that unlock collaboration and innovation.",
+            },
+            {
+              icon: Building2,
+              title: "For governments",
+              desc: "Ethical, visionary public leadership with transparency and delivery discipline.",
+            },
+            {
+              icon: Globe,
+              title: "For society",
+              desc: "Ripple effects across communities — prosperity, unity, and self-reliance at scale.",
+            },
+          ].map((card) => (
+            <div
+              key={card.title}
+              className="bg-white border border-black/10 rounded-3xl p-8 hover:border-amber-300/60 transition-colors"
             >
-              <div className="flex flex-col md:flex-row gap-8">
-                <div className="flex-shrink-0 text-center md:text-left">
-                  <Image 
-                    src={dim.icon} 
-                    alt={dim.name} 
-                    width={100} 
-                    height={100}
-                    className="mx-auto md:mx-0 mb-4"
-                  />
-                  <h3 className="text-4xl font-semibold tracking-tight text-black">{dim.name}</h3>
-                  
-                  <div 
-                    className="mt-4 inline-flex items-center justify-center px-6 py-3 rounded-2xl text-white text-xl font-bold shadow-lg"
-                    style={{ backgroundColor: dim.color }}
-                  >
-                    +{dim.improvement} Improvement
-                  </div>
-                </div>
-
-                <div className="flex-1">
-                  <p className="italic text-[#525252] mb-6">“{dim.quote}”</p>
-                  
-                  <div className="mb-6">
-                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
-                      CONSTRUCT OVERVIEW
-                    </div>
-                    <p className="text-[#404040] leading-relaxed">{dim.overview}</p>
-                  </div>
-
-                  <div className="mb-6">
-                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
-                      COURSE OVERVIEW
-                    </div>
-                    <p className="text-[#404040] leading-relaxed">{dim.courseOverview}</p>
-                  </div>
-
-                  <div className="mb-6">
-                    <div className="text-sm font-semibold mb-3" style={{ color: dim.color }}>
-                      KEY SKILLS TO BE DEVELOPED
-                    </div>
-                    <ul className="grid md:grid-cols-2 gap-x-6 gap-y-2 text-[#404040]">
-                      {dim.skills.map((skill, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span style={{ color: dim.color }}>•</span> {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="pt-6 border-t border-black/10">
-                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
-                      COURSE RESULTS
-                    </div>
-                    <p className="text-[#171717] font-medium mb-4">{dim.name} improved by {dim.improvement}</p>
-                    <p className="text-[#404040] leading-relaxed mb-6">{dim.impact}</p>
-
-                    <div className="text-sm font-semibold mb-2" style={{ color: dim.color }}>
-                      WHY THIS IS POWERFUL IN THE AFRICAN CONTEXT
-                    </div>
-                    <p className="text-[#404040] leading-relaxed">{dim.impact}</p>
-                  </div>
-                </div>
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center mb-5">
+                <card.icon className="w-6 h-6 text-amber-600" />
               </div>
-            </motion.div>
+              <h3 className="text-xl font-semibold text-black mb-3">{card.title}</h3>
+              <p className="text-[#525252] leading-relaxed">{card.desc}</p>
+            </div>
           ))}
         </div>
-      </section>
 
-      {/* DOWNLOAD THE BOOK */}
-      <section className="py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fbbf24]/40 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#fbbf24_0.8px,transparent_1px)] bg-[length:6px_6px] opacity-10" />
-        
-        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
-          <div className="inline-flex items-center gap-3 bg-[#fbbf24] text-black px-8 py-3 rounded-full text-sm font-bold tracking-[2px] mb-8 shadow-xl">
-            EXCLUSIVE FREE DOWNLOAD — FOR ASPIRING LEADERS ONLY
-          </div>
-
-          <h2 className="text-6xl md:text-7xl font-semibold tracking-tighter text-black mb-6 leading-none">
-            Get the Complete<br />Super-Cube® Leadership Model Book
-          </h2>
-
-          <p className="text-2xl text-[#404040] max-w-3xl mx-auto mb-4 font-light">
-            Igniting Africa&apos;s Potential and Accelerating Humanity&apos;s Progress
-          </p>
-
-          <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-10">
-            A Proven, Human-Centric Blueprint for Developing Leaders Who Transform Individuals, Teams, Organisations, and Society.<br />
-            Based on the Groundbreaking Doctorate Research of Dr. Craig Ross Muller.
-          </p>
-
-          <div className="mb-10">
-            <a 
-              href="/the-super-cube-leadership-model.pdf" 
-              download="The-Super-Cube-Leadership-Model.pdf"
-              className="group inline-flex items-center justify-center gap-5 bg-black hover:bg-[#111] active:bg-black text-white px-20 py-7 rounded-3xl text-3xl font-semibold shadow-2xl transition-all duration-200 hover:shadow-[0_0_60px_-15px_#fbbf24] active:scale-[0.985]"
-            >
-              <Download className="w-10 h-10 group-hover:-translate-y-1 transition-transform" />
-              DOWNLOAD FREE BOOK (PDF)
-            </a>
-          </div>
-
-          <div className="max-w-xl mx-auto">
-            <p className="text-xl text-[#404040] mb-6">
-              For every aspiring leader who wants to help accelerate leadership development to progress humanity.
-            </p>
-            <p className="text-lg text-[#737373]">
-              No email. No signup. No catch. Just the full 70-page doctoral blueprint — yours to use, share, and transform with.
-            </p>
-          </div>
-
-          <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 text-sm text-[#525252]">
-            <div className="flex items-center gap-2">✓ Validated across 13 African nations</div>
-            <div className="flex items-center gap-2">✓ 6 dimensions • 5 levels of impact</div>
-            <div className="flex items-center gap-2">✓ Ready for immediate application</div>
-            <div className="flex items-center gap-2">✓ Built on Ubuntu & I-Thou philosophy</div>
-          </div>
-        </div>
-      </section>
-
-      {/* DOWNLOAD THE RESEARCH */}
-      <section className="py-24 bg-white border-y border-black/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">PEER-REVIEWED RESEARCH</div>
-          <h3 className="text-5xl font-semibold tracking-tighter text-black mb-8">Download the Research</h3>
-          
-          <p className="text-xl text-[#525252] max-w-2xl mx-auto mb-12">
-            The Super-Cube® model is backed by rigorous academic research published in leading journals.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a 
-              href="/research/sajems-2022.pdf" 
-              download
-              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
-            >
-              <Download className="w-5 h-5" />
-              SAJEMS Journal Article (2022)
-            </a>
-            
-            <a 
-              href="/research/jcm-2022.pdf" 
-              download
-              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111]"
-            >
-              <Download className="w-5 h-5" />
-              JCM Journal Article (2022)
-            </a>
-          </div>
-
-          <a 
-            href="https://www.researchgate.net/profile/Craig-Muller" 
+        <div className="text-center mt-10">
+          <a
+            href={SUPER_CUBE_URL}
             target="_blank"
-            className="inline-flex items-center gap-2 text-[#fbbf24] hover:text-[#f59e0b] text-lg font-medium"
+            rel="noopener noreferrer"
+            className="premium-button inline-flex items-center gap-3 bg-black text-white px-10 py-4 rounded-full font-semibold"
           >
-            View full profile & publications on ResearchGate 
-            <ExternalLink className="w-5 h-5" />
+            Explore programmes on super-cube.com
+            <ExternalLink className="w-4 h-4" />
           </a>
         </div>
       </section>
 
-      {/* PROGRAMME BENEFITS */}
-      <section className="bg-white py-24 border-y border-black/10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">WHY SUPER-CUBE® IS DIFFERENT</div>
-            <h3 className="text-5xl font-semibold tracking-tighter text-black mb-6">Super-Cube® Programme Benefits</h3>
-            <p className="max-w-3xl mx-auto text-xl text-[#525252]">
-              Super-Cube® is not just another leadership course — it is the only doctoral, empirically validated model specifically designed for Africa. It delivers measurable, lifelong transformation that builds effective leadership at every level of society: from the individual to entire business networks and communities.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "1. Coherent",
-                desc: "The Super-Cube® model is a coherent and scientific approach to leadership and leadership development. Grounded in academic literature and rigorously evaluated in real African FMCG business networks, it provides the most reliable, evidence-based pathway to genuine leadership growth."
-              },
-              {
-                title: "2. Longitudinal",
-                desc: "Super-Cube® is a lifetime journey. The content progresses with the learner, building knowledge, skills and abilities stage by stage. What begins as foundational understanding evolves into mastery — creating leaders who continue to grow and impact for decades."
-              },
-              {
-                title: "3. Multilevel",
-                desc: "The model applies at every level — individual, team, organisation and society. Rooted in I-Thou philosophy and Ubuntu (“I am because we are”), it fosters mutual respect and holistic development across all layers of African business and community life."
-              },
-              {
-                title: "4. Influential",
-                desc: "Exercising Super-Cube® leadership creates a profound ripple effect. Leaders positively influence their entire circle of influence — families, teams, organisations and communities — driving ethical growth, job creation and sustainable development across the continent."
-              }
-            ].map((benefit, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
+      {/* SIX DIMENSIONS */}
+      <section className="bg-white border-y border-black/10 py-20 sm:py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <SectionHeading
+            eyebrow="SIX FACES OF THE CUBE"
+            title="Dimensions that transform leaders"
+            subtitle="Each construct is measurable, teachable, and proven in African enterprise networks — with published improvement ranges from the doctoral research."
+          />
+          <div className="space-y-6">
+            {dimensions.map((dim, index) => (
+              <motion.article
+                key={dim.name}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-[#fafafa] border border-black/10 rounded-3xl p-9 hover:border-black/20 transition-all"
+                transition={{ delay: Math.min(index * 0.04, 0.2) }}
+                className="bg-[#fafafa] border border-black/10 rounded-[1.75rem] p-8 sm:p-10"
               >
-                <h4 className="text-2xl font-semibold tracking-tight text-black mb-6">{benefit.title}</h4>
-                <p className="text-lg text-[#404040] leading-relaxed">{benefit.desc}</p>
-              </motion.div>
+                <div className="flex flex-col lg:flex-row gap-8">
+                  <div className="lg:w-56 shrink-0 text-center lg:text-left">
+                    <Image
+                      src={dim.icon}
+                      alt={dim.name}
+                      width={88}
+                      height={88}
+                      className="mx-auto lg:mx-0 mb-4"
+                    />
+                    <h3 className="text-3xl font-semibold tracking-tight text-black">
+                      {dim.name}
+                    </h3>
+                    <div
+                      className="mt-4 inline-flex px-5 py-2.5 rounded-2xl text-white text-lg font-bold shadow-md"
+                      style={{ backgroundColor: dim.color }}
+                    >
+                      +{dim.improvement}
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="italic text-[#737373] mb-5 text-sm sm:text-base">
+                      “{dim.quote}”
+                    </p>
+                    <div className="mb-5">
+                      <div
+                        className="text-xs tracking-[2px] font-semibold mb-2"
+                        style={{ color: dim.color }}
+                      >
+                        OVERVIEW
+                      </div>
+                      <p className="text-[#404040] leading-relaxed">{dim.overview}</p>
+                    </div>
+                    <div className="mb-5">
+                      <div
+                        className="text-xs tracking-[2px] font-semibold mb-2"
+                        style={{ color: dim.color }}
+                      >
+                        COURSE FOCUS
+                      </div>
+                      <p className="text-[#404040] leading-relaxed">{dim.courseOverview}</p>
+                    </div>
+                    <div className="mb-5">
+                      <div
+                        className="text-xs tracking-[2px] font-semibold mb-3"
+                        style={{ color: dim.color }}
+                      >
+                        KEY SKILLS
+                      </div>
+                      <ul className="grid sm:grid-cols-2 gap-2 text-[#404040] text-sm">
+                        {dim.skills.map((skill) => (
+                          <li key={skill} className="flex gap-2">
+                            <span style={{ color: dim.color }}>•</span>
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="pt-5 border-t border-black/10">
+                      <div
+                        className="text-xs tracking-[2px] font-semibold mb-2"
+                        style={{ color: dim.color }}
+                      >
+                        IMPACT
+                      </div>
+                      <p className="text-[#171717] leading-relaxed">{dim.impact}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
             ))}
-          </div>
-
-          <div className="mt-16 text-center max-w-3xl mx-auto">
-            <p className="text-xl text-[#171717] font-medium">
-              This is not incremental training. This is systemic transformation — the leadership infrastructure Africa needs to feed its people, empower its youth and build unbreakable economies.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* ASSESSMENT */}
-      <section className="bg-white py-24 border-y border-black/10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="text-xs tracking-[3px] text-[#fbbf24] mb-4">KNOW YOUR LEADERSHIP OPERATING SYSTEM</div>
-            <h3 className="text-5xl font-semibold tracking-tighter text-black mb-6">Take the Super-Cube® Assessment</h3>
-            <p className="max-w-2xl mx-auto text-xl text-[#525252]">
-              Rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree). 
-              Your results will generate a personalised radar chart and insights.
-            </p>
+      {/* BOOK */}
+      <section className="py-20 sm:py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-amber-200/60">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 bg-amber-400 text-black px-5 py-2 rounded-full text-xs font-bold tracking-[2px] mb-8">
+            <BookOpen className="w-4 h-4" />
+            FREE DOCTORAL BLUEPRINT
           </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter text-black mb-5">
+            Get the Super-Cube® Leadership Model book
+          </h2>
+          <p className="text-xl text-[#525252] mb-8 max-w-2xl mx-auto">
+            Igniting Africa&apos;s potential — a human-centric blueprint based on the groundbreaking
+            doctorate research of Dr. Craig Ross Muller.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a
+              href="/the-super-cube-leadership-model.pdf"
+              download="The-Super-Cube-Leadership-Model.pdf"
+              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-10 py-5 rounded-full text-lg font-semibold"
+            >
+              <Download className="w-5 h-5" />
+              Download free PDF
+            </a>
+            <a
+              href={SUPER_CUBE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="premium-button inline-flex items-center justify-center gap-3 border border-black/20 text-black px-10 py-5 rounded-full text-lg font-semibold hover:bg-black/5"
+            >
+              Continue at super-cube.com
+              <ExternalLink className="w-5 h-5" />
+            </a>
+          </div>
+          <p className="text-sm text-[#737373]">
+            No email. No signup. Full ~70-page doctoral blueprint — free to use and share.
+          </p>
+        </div>
+      </section>
 
-          <div className="space-y-16">
-            {dimensions.map((dim, dimIndex) => (
-              <div key={dimIndex} className="border border-black/10 rounded-3xl p-10">
+      {/* RESEARCH */}
+      <section className="py-20 sm:py-24 bg-white border-b border-black/10">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <SectionHeading
+            eyebrow="PEER-REVIEWED RESEARCH"
+            title="Download the research"
+            subtitle="Super-Cube® is backed by rigorous academic publication — not marketing claims."
+          />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a
+              href="/research/sajems-2022.pdf"
+              download
+              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full font-semibold"
+            >
+              <Download className="w-5 h-5" />
+              SAJEMS Journal (2022)
+            </a>
+            <a
+              href="/research/jcm-2022.pdf"
+              download
+              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full font-semibold"
+            >
+              <Download className="w-5 h-5" />
+              JCM Journal (2022)
+            </a>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center text-sm">
+            <a
+              href="https://www.researchgate.net/profile/Craig-Muller"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-amber-700 font-medium hover:text-amber-800"
+            >
+              ResearchGate profile
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href={SUPER_CUBE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-amber-700 font-medium hover:text-amber-800"
+            >
+              super-cube.com
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFITS */}
+      <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+        <SectionHeading
+          eyebrow="WHY SUPER-CUBE® IS DIFFERENT"
+          title="Programme benefits"
+          subtitle="Not another generic leadership course — a doctoral, multilevel system designed for African enterprise and public leadership."
+        />
+        <div className="grid md:grid-cols-2 gap-5">
+          {[
+            {
+              title: "Coherent",
+              desc: "Scientific, literature-grounded, and evaluated in real African FMCG networks — the most reliable evidence-based path to leadership growth.",
+            },
+            {
+              title: "Longitudinal",
+              desc: "A lifetime journey. Content progresses with the learner from foundations to mastery over decades, not a weekend certificate.",
+            },
+            {
+              title: "Multilevel",
+              desc: "Applies at individual, team, organisation and society — rooted in Ubuntu and I-Thou mutual respect.",
+            },
+            {
+              title: "Influential",
+              desc: "Creates ripple effects across families, teams, organisations and communities — ethical growth and sustainable development.",
+            },
+          ].map((b) => (
+            <div
+              key={b.title}
+              className="bg-white border border-black/10 rounded-3xl p-8 hover:border-amber-300/50 transition-colors"
+            >
+              <GraduationCap className="w-8 h-8 text-amber-600 mb-4" />
+              <h3 className="text-2xl font-semibold text-black mb-3">{b.title}</h3>
+              <p className="text-[#525252] leading-relaxed text-lg">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ASSESSMENT */}
+      <section id="assessment" className="bg-white border-y border-black/10 py-20 sm:py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <SectionHeading
+            eyebrow="KNOW YOUR OPERATING SYSTEM"
+            title="Take the Super-Cube® assessment"
+            subtitle="Rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree). Generate a personalised radar profile — then continue your journey on super-cube.com."
+          />
+
+          <div className="space-y-8">
+            {dimensions.map((dim) => (
+              <div key={dim.name} className="border border-black/10 rounded-3xl p-8 sm:p-10 bg-[#fafafa]">
                 <div className="flex items-center gap-4 mb-8">
-                  <div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center"
-                    style={{ backgroundColor: `${dim.color}15` }}
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center"
+                    style={{ backgroundColor: `${dim.color}18` }}
                   >
-                    <Image src={dim.icon} alt={dim.name} width={48} height={48} />
+                    <Image src={dim.icon} alt={dim.name} width={40} height={40} />
                   </div>
                   <div>
-                    <h4 className="text-3xl font-semibold tracking-tight" style={{ color: dim.color }}>{dim.name}</h4>
-                    <p className="text-sm text-[#525252]">Rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree)</p>
+                    <h4 className="text-2xl font-semibold" style={{ color: dim.color }}>
+                      {dim.name}
+                    </h4>
+                    <p className="text-sm text-[#737373]">1 = Strongly disagree · 5 = Strongly agree</p>
                   </div>
                 </div>
-
-                <div className="space-y-8">
-                  {assessmentQuestions[dim.name as keyof typeof assessmentQuestions].map((q, qIndex) => (
-                    <div key={qIndex} className="flex flex-col gap-3">
-                      <div className="text-lg text-[#171717]">{q}</div>
+                <div className="space-y-7">
+                  {assessmentQuestions[dim.name].map((q, qIndex) => (
+                    <div key={q} className="flex flex-col gap-3">
+                      <div className="text-[#171717]">{q}</div>
                       <div className="flex gap-4">
-                        {[1, 2, 3, 4, 5].map(val => (
+                        {[1, 2, 3, 4, 5].map((val) => (
                           <label key={val} className="flex flex-col items-center cursor-pointer">
-                            <input 
-                              type="radio" 
-                              name={`${dim.name}-${qIndex}`} 
+                            <input
+                              type="radio"
+                              name={`${dim.name}-${qIndex}`}
                               value={val}
-                              onChange={(e) => handleAnswer(dim.name, qIndex, parseInt(e.target.value))}
+                              checked={answers[dim.name][qIndex] === val}
+                              onChange={() => handleAnswer(dim.name, qIndex, val)}
                               className="w-5 h-5 accent-black"
                             />
-                            <span className="text-xs mt-1 text-[#525252]">{val}</span>
+                            <span className="text-xs mt-1 text-[#737373]">{val}</span>
                           </label>
                         ))}
                       </div>
@@ -726,103 +736,130 @@ export default function LeadershipPage() {
           </div>
 
           <div className="mt-12 text-center">
-            <button 
+            <button
+              type="button"
               onClick={calculateResults}
-              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-16 py-5 rounded-full text-xl font-semibold hover:bg-[#111]"
+              className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-12 py-5 rounded-full text-lg font-semibold"
             >
-              CALCULATE MY SUPER-CUBE® PROFILE
+              Calculate my Super-Cube® profile
+              <ArrowRight className="w-5 h-5" />
             </button>
           </div>
 
           {showResults && (
-            <div ref={resultsRef} className="mt-16 bg-[#fafafa] border border-black/10 rounded-3xl p-12">
-              <h4 className="text-4xl font-semibold tracking-tighter text-center mb-8">Your Super-Cube® Leadership Profile</h4>
-              
-              <div className="flex justify-center mb-12">
+            <div
+              ref={resultsRef}
+              className="mt-14 bg-[#fafafa] border border-black/10 rounded-[1.75rem] p-8 sm:p-12"
+            >
+              <h4 className="text-3xl sm:text-4xl font-semibold tracking-tighter text-center mb-8">
+                Your Super-Cube® leadership profile
+              </h4>
+              <div className="flex justify-center mb-10">
                 <canvas ref={chartRef} width={500} height={500} className="max-w-full" />
               </div>
-
-              <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <div className="grid md:grid-cols-2 gap-4 mb-10">
                 {Object.entries(scores).map(([name, score]) => {
-                  const dim = dimensions.find(d => d.name === name);
+                  const dim = dimensions.find((d) => d.name === name);
                   return (
                     <div key={name} className="bg-white p-6 rounded-2xl border border-black/10">
-                      <div className="flex justify-between items-center mb-3">
-                        <div className="font-semibold text-xl" style={{ color: dim?.color }}>{name}</div>
-                        <div className="text-4xl font-bold tabular-nums" style={{ color: dim?.color }}>{score}</div>
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="font-semibold text-xl" style={{ color: dim?.color }}>
+                          {name}
+                        </div>
+                        <div className="text-3xl font-bold tabular-nums" style={{ color: dim?.color }}>
+                          {score}
+                        </div>
                       </div>
-                      <div className="text-sm text-[#525252]">Average score out of 5</div>
-                      <div className="mt-4 text-sm text-[#404040] leading-relaxed">
+                      <div className="text-xs text-[#737373] mb-3">Average out of 5</div>
+                      <p className="text-sm text-[#404040] leading-relaxed">
                         <strong>Advice:</strong> {getAdvice(name, score)}
-                      </div>
+                      </p>
                     </div>
                   );
                 })}
               </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button 
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <button
+                  type="button"
                   onClick={downloadChart}
-                  className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold"
+                  className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-8 py-4 rounded-full font-semibold"
                 >
                   <Download className="w-5 h-5" />
-                  DOWNLOAD RADAR CHART (PNG)
+                  Download radar chart
                 </button>
-                <button 
-                  onClick={printReport}
-                  className="premium-button inline-flex items-center justify-center gap-3 border border-black/30 text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-black/5"
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="premium-button inline-flex items-center justify-center gap-3 border border-black/20 text-black px-8 py-4 rounded-full font-semibold"
                 >
-                  PRINT FULL REPORT
+                  Print full report
                 </button>
               </div>
-
-              <div className="text-center mt-8">
-                <p className="text-xl text-[#404040] max-w-2xl mx-auto mb-8">
-                  Your profile shows strong areas and opportunities for growth. 
-                  The Super-Cube® model is designed to help you develop every dimension.
+              <div className="text-center">
+                <p className="text-[#525252] mb-6 max-w-xl mx-auto">
+                  Ready to develop every dimension? Full programmes, coaching, and cohorts live on
+                  Super-Cube®.
                 </p>
-                <a 
-                  href="mailto:craig@bigfivegroup.africa?subject=Super-Cube®%20Personalised%20Coaching%20Session"
-                  className="premium-button inline-flex items-center justify-center gap-3 bg-black text-white px-10 py-4 rounded-full text-lg font-semibold"
-                >
-                  BOOK A PERSONALIZED COACHING SESSION
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href={SUPER_CUBE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="premium-button inline-flex items-center justify-center gap-2 bg-amber-400 text-black px-8 py-4 rounded-full font-semibold"
+                  >
+                    Continue on super-cube.com
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="mailto:craig@bigfivegroup.africa?subject=Super-Cube%20Personalised%20Coaching"
+                    className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 px-8 py-4 rounded-full font-semibold"
+                  >
+                    Book coaching
+                  </a>
+                </div>
               </div>
             </div>
           )}
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="bg-black py-24 text-center px-6">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-[#fbbf24] text-xs tracking-[3px] mb-6">THE FUTURE OF AFRICAN LEADERSHIP STARTS HERE</div>
-          
-          <h2 className="text-white text-5xl font-semibold tracking-tighter mb-8">
-            Become the leader<br />Africa needs.
+      {/* SUPER-CUBE HUB CTA */}
+      <section className="bg-[#0a0a0a] text-white py-20 sm:py-24">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <ShieldCheck className="w-12 h-12 text-amber-400 mx-auto mb-6" />
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tighter mb-5">
+            Super-Cube® lives at www.super-cube.com
           </h2>
-
-          <p className="text-white/80 text-xl mb-12 max-w-lg mx-auto">
-            Join the next cohort of Super-Cube® certified leaders transforming the continent.
+          <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10">
+            Big Five Leadership is the group pillar. Super-Cube® is the dedicated platform for
+            programmes, research, assessments, and the global Super-Cube community — launching next
+            on its own domain.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/connect" 
-              className="premium-button inline-flex items-center justify-center gap-3 bg-white text-black px-10 py-4 rounded-full text-lg font-semibold"
-            >
-              APPLY FOR THE PROGRAM
-            </Link>
-            <Link 
-              href="/" 
-              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10"
-            >
-              RETURN TO THE EIGHT PILLARS
-            </Link>
-          </div>
+          <a
+            href={SUPER_CUBE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="premium-button inline-flex items-center gap-3 bg-amber-400 text-black px-10 py-4 rounded-full text-lg font-semibold"
+          >
+            Visit www.super-cube.com
+            <ExternalLink className="w-5 h-5" />
+          </a>
         </div>
       </section>
 
+      <SupplierTrust entityName="Big Five Leadership and Super-Cube® partners" />
+
+      <FinalCta
+        eyebrow="THE FUTURE OF AFRICAN LEADERSHIP"
+        title="Become the leader Africa needs"
+        subtitle="Join Super-Cube® certified leaders transforming individuals, institutions, and nations."
+        primary={{
+          href: SUPER_CUBE_URL,
+          label: "Go to super-cube.com",
+          external: true,
+        }}
+        secondary={{ href: "/connect", label: "Partner via Big Five Connect" }}
+      />
     </div>
   );
 }

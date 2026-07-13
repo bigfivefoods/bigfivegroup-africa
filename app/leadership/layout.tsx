@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Leadership",
+  title: "Leadership · Super-Cube®",
   description:
-    "Big Five Leadership — Super-Cube® doctoral model for ethical, sovereign decision-making across Africa.",
+    "Big Five Leadership and the Super-Cube® Doctoral Leadership Model by Dr. Craig R. Muller — programmes, assessment, and research. Full hub at www.super-cube.com.",
   openGraph: {
-    title: "Big Five Leadership | Super-Cube®",
+    title: "Leadership | Super-Cube® Doctoral Model",
     description:
-      "World-class leadership development rooted in Dr. Craig R. Muller's Super-Cube® doctoral model.",
+      "Africa-centric, empirically validated leadership development. Visit www.super-cube.com for programmes and cohorts.",
   },
 };
 
