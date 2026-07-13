@@ -44,6 +44,10 @@ export type FoodsNetworkPayload = {
     verified: boolean;
     verifiedOn?: string;
     platformUrl: string;
+    /** Live containers workspace on SupplierAdvisor® (login required) */
+    containersUrl: string;
+    containersMapUrl: string;
+    containersSettingsUrl: string;
     description: string;
   };
   impact: FoodsImpact;
@@ -62,8 +66,11 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
     verified: true,
     verifiedOn: "2026-06-16",
     platformUrl: "https://www.supplieradvisor.com/",
+    containersUrl: "https://www.supplieradvisor.com/dashboard/containers",
+    containersMapUrl: "https://www.supplieradvisor.com/dashboard/containers/map",
+    containersSettingsUrl: "https://www.supplieradvisor.com/dashboard/containers/settings",
     description:
-      "Verified on SupplierAdvisor® — fortified nutrition manufacturing and containerised distribution that Direct uses for last-mile route-to-market.",
+      "Verified on SupplierAdvisor® — fortified nutrition manufacturing and containerised distribution that Direct uses for last-mile route-to-market. Live container sites and settings are managed in the Foods workspace on SupplierAdvisor®.",
   },
   impact: {
     mealsDeliveredLabel: "Meals delivered (programme + trade)",

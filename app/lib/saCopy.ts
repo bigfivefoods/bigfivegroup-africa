@@ -7,6 +7,11 @@ export const SA_URL = "https://www.supplieradvisor.com/";
 export const SA_ONBOARDING = "https://www.supplieradvisor.com/onboarding?type=business";
 export const SA_PRICING = "https://www.supplieradvisor.com/pricing";
 export const SA_LOGIN = "https://www.supplieradvisor.com/login";
+/** Big Five Foods container network (requires SA login) */
+export const SA_CONTAINERS = "https://www.supplieradvisor.com/dashboard/containers";
+export const SA_CONTAINERS_MAP = "https://www.supplieradvisor.com/dashboard/containers/map";
+export const SA_CONTAINERS_SETTINGS =
+  "https://www.supplieradvisor.com/dashboard/containers/settings";
 export const SA_EMAIL = "mailto:connect@supplieradvisor.com?subject=Demo%20request%20%E2%80%94%20SupplierAdvisor";
 export const SA_WHATSAPP =
   "https://wa.me/27825814215?text=Hi%20%E2%80%94%20I'd%20like%20a%20SupplierAdvisor%20demo";

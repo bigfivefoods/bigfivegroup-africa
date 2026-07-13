@@ -12,7 +12,13 @@ import {
   Loader2,
 } from "lucide-react";
 import type { FoodsNetworkPayload } from "../lib/saFoodsNetwork";
-import { SA_LOGIN, SA_URL } from "../lib/saCopy";
+import {
+  SA_LOGIN,
+  SA_URL,
+  SA_CONTAINERS,
+  SA_CONTAINERS_MAP,
+  SA_CONTAINERS_SETTINGS,
+} from "../lib/saCopy";
 
 function formatNum(n: number) {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M`;
@@ -104,23 +110,32 @@ export default function FoodsNetworkPanel() {
                 As of {data.asOf}
               </span>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               <a
-                href={data.company.platformUrl}
+                href={data.company.containersUrl ?? SA_CONTAINERS}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-full text-sm font-semibold"
               >
-                View on SupplierAdvisor®
+                Open containers on SupplierAdvisor®
                 <ExternalLink className="w-4 h-4" />
               </a>
               <a
-                href={SA_LOGIN}
+                href={data.company.containersMapUrl ?? SA_CONTAINERS_MAP}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5"
               >
-                Log in for live ops
+                Container map
+                <MapPin className="w-4 h-4" />
+              </a>
+              <a
+                href={data.company.containersSettingsUrl ?? SA_CONTAINERS_SETTINGS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5"
+              >
+                Container settings
               </a>
               <a
                 href="/foods"
@@ -129,6 +144,18 @@ export default function FoodsNetworkPanel() {
                 Foods pillar
               </a>
             </div>
+            <p className="mt-4 text-xs text-[#737373] leading-relaxed max-w-xl">
+              Live sites are managed in the Big Five Foods workspace:{" "}
+              <a
+                href={SA_CONTAINERS_SETTINGS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-black underline underline-offset-2"
+              >
+                dashboard/containers/settings
+              </a>
+              . Log in with your SupplierAdvisor® account to edit locations and publish updates.
+            </p>
           </div>
           <div className="lg:col-span-5 p-6 sm:p-8 md:p-10 bg-[#0a0a0a] text-white flex flex-col justify-center min-w-0">
             <div className="relative h-14 w-40 mb-6">
@@ -222,12 +249,32 @@ export default function FoodsNetworkPanel() {
               Where our containers are located
             </h3>
             <p className="text-sm text-[#525252] mt-1 max-w-2xl">
-              Sites operated through Big Five Foods distribution — the physical layer Direct
-              activates for last-mile and institutional supply.
+              Sites operated through Big Five Foods on SupplierAdvisor® — the physical layer Direct
+              activates for last-mile and institutional supply. Source of truth:{" "}
+              <a
+                href={data.company.containersUrl ?? SA_CONTAINERS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-black underline underline-offset-2"
+              >
+                SA containers dashboard
+              </a>
+              .
             </p>
           </div>
-          <div className="text-xs text-[#737373] shrink-0">
-            {data.containers.length} sites · {activeCount} active
+          <div className="flex flex-col items-start sm:items-end gap-2 shrink-0">
+            <div className="text-xs text-[#737373]">
+              {data.containers.length} sites · {activeCount} active
+            </div>
+            <a
+              href={data.company.containersMapUrl ?? SA_CONTAINERS_MAP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-black underline underline-offset-2"
+            >
+              Open live map on SA
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
 
