@@ -127,10 +127,10 @@ export default function FoodsPage() {
         <StatRow
           accent={ACCENT}
           stats={[
-            { value: "24 mo", label: "Shelf life on key ranges" },
-            { value: "73.9%", label: "Superior nutrient retention" },
-            { value: "8+", label: "Certifications & memberships" },
-            { value: "SA", label: "Locally manufactured" },
+            { value: "150k", label: "Meals delivered" },
+            { value: "100k", label: "Children reached" },
+            { value: "83%", label: "Cheaper than alternatives" },
+            { value: "74%", label: "More nutrition" },
           ]}
         />
       </section>
