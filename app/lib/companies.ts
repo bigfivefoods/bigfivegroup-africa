@@ -53,7 +53,7 @@ export const companies: Company[] = [
       { title: "For Retail & Distributors", desc: "Premium margins, long shelf life, and story-driven products." },
       { title: "For Families", desc: "Affordable, delicious, life-changing nutrition. Every purchase funds the next generation's health." }
     ],
-    impact: "12.4 million meals delivered. 89,000 children reached. 73.9% higher nutrient retention."
+    impact: "150,000 meals delivered. 100,000 children reached. 74% more nutrition. 83% cheaper pathways."
   },
   {
     slug: "direct",

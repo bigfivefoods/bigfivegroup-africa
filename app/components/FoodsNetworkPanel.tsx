@@ -111,7 +111,7 @@ export default function FoodsNetworkPanel() {
               {
                 icon: UtensilsCrossed,
                 value: formatNum(data.impact.mealsDelivered),
-                label: "Meals enabled",
+                label: "Meals delivered",
               },
               {
                 icon: Users,
@@ -120,13 +120,13 @@ export default function FoodsNetworkPanel() {
               },
               {
                 icon: Package,
-                value: String(data.impact.productRanges),
-                label: "Product ranges",
+                value: "83%",
+                label: "Cheaper than alternatives",
               },
               {
                 icon: Leaf,
-                value: `${data.impact.shelfLifeMonths} mo`,
-                label: "Shelf life on key lines",
+                value: "74%",
+                label: "More nutrition",
               },
             ].map((s) => (
               <div

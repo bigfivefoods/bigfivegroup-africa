@@ -77,10 +77,10 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
       "Verified on SupplierAdvisor® — fortified nutrition manufacturing and containerised distribution that Direct uses for last-mile route-to-market. Live container sites and settings are managed in the Foods workspace on SupplierAdvisor®.",
   },
   impact: {
-    mealsDeliveredLabel: "Meals delivered (programme + trade)",
-    mealsDelivered: 12_400_000,
+    mealsDeliveredLabel: "Meals delivered",
+    mealsDelivered: 150_000,
     childrenReachedLabel: "Children reached",
-    childrenReached: 89_000,
+    childrenReached: 100_000,
     productRanges: 4,
     shelfLifeMonths: 24,
     certifications: [
@@ -102,7 +102,6 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
       role: "Fortified production · primary distribution",
       lat: -29.825,
       lng: 30.87,
-      mealsServed: 4_200_000,
       lastUpdated: "2026-07-01",
     },
     {
@@ -114,7 +113,6 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
       role: "Last-mile container · school & household nutrition",
       lat: -27.909,
       lng: 31.645,
-      mealsServed: 1_100_000,
       lastUpdated: "2026-07-01",
     },
     {
@@ -126,7 +124,6 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
       role: "Urban institutional supply · cold-chain handoff",
       lat: -29.858,
       lng: 31.021,
-      mealsServed: 2_800_000,
       lastUpdated: "2026-07-01",
     },
     {
@@ -138,7 +135,6 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
       role: "Route-to-market expansion · B2B buyers",
       lat: -26.204,
       lng: 28.047,
-      mealsServed: 900_000,
       lastUpdated: "2026-06-15",
     },
     {

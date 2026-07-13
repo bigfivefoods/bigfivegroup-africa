@@ -78,10 +78,10 @@ export default function DirectPage() {
         <StatRow
           accent={ACCENT}
           stats={[
-            { value: "34%", label: "Higher prices for producers" },
-            { value: "R1.2B", label: "Direct trade volume facilitated" },
-            { value: "47.8k", label: "Direct jobs created" },
-            { value: "92%", label: "Value retained by producers" },
+            { value: "150k", label: "Meals delivered" },
+            { value: "100k", label: "Children reached" },
+            { value: "83%", label: "Cheaper than alternatives" },
+            { value: "74%", label: "More nutrition" },
           ]}
         />
       </section>
@@ -109,8 +109,8 @@ export default function DirectPage() {
               },
               {
                 icon: Coins,
-                title: "Value retention",
-                desc: "Producers keep up to 92% of value, with working capital and training alongside market access.",
+                title: "Affordable nutrition",
+                desc: "83% cheaper pathways with 74% more nutrition — fortified food that reaches households and institutions with dignity.",
               },
               {
                 icon: MapPin,
