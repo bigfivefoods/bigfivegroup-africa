@@ -1,16 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-/** Match SupplierAdvisor®: Inter + system-ui stack, full weight range */
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
 
 const siteUrl = "https://bigfivegroup.africa";
 
@@ -61,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Big Five Group Africa",
     description:
-      "Regenerative. Sovereign. Ethical. Eight pillars building Africa's future.",
+      "Regenerative. Sovereign. Ethical. Nine pillars building Africa's future.",
     images: ["/home-hero.jpg"],
   },
   robots: {
@@ -92,10 +83,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
-      <body
-        className={`${inter.className} min-h-dvh antialiased text-[#171717] [--navbar-height:5rem]`}
-      >
+    <html lang="en" className="h-full scroll-smooth">
+      <body className="min-h-dvh antialiased text-[#171717] [--navbar-height:5rem]">
         <Navbar />
         <main className="pt-[var(--navbar-height)] min-h-screen">{children}</main>
         <Footer />
