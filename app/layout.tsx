@@ -8,20 +8,19 @@ const siteUrl = "https://bigfivegroup.africa";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Big Five Group Africa | ERP that ships. Trust that blocks risk.",
+    default: "Big Five Group Africa | Regenerative. Sovereign. Ethical.",
     template: "%s | Big Five Group Africa",
   },
   description:
-    "One group. Many companies. Shared discipline. Big Five runs Foods, Direct, Access and more on SupplierAdvisor® — the supply-chain OS for verified trade, OTIFEF ratings, SHEQ, lot traceability, and on-chain pedigree.",
+    "Building Africa's future with integrity, transparency, and measurable impact. Nine pillars spanning regenerative agriculture, fortified nutrition, project delivery, ethical commerce on SupplierAdvisor®, and Super-Cube® leadership.",
   keywords: [
     "Big Five Group",
+    "Africa",
+    "regenerative agriculture",
     "SupplierAdvisor",
-    "supply chain OS",
-    "OTIFEF",
-    "SHEQ",
-    "verified trade",
-    "on-chain pedigree",
     "Super-Cube leadership",
+    "Big Five Foods",
+    "ethical supply chain",
     "South Africa",
     "KwaZulu-Natal",
   ],
@@ -37,9 +36,9 @@ export const metadata: Metadata = {
     locale: "en_ZA",
     url: siteUrl,
     siteName: "Big Five Group Africa",
-    title: "Big Five Group Africa | One group. Many companies. Shared discipline.",
+    title: "Big Five Group Africa | One Group. Nine Pillars. Infinite Impact.",
     description:
-      "ERP that ships. Trust that blocks risk. Powered by SupplierAdvisor® — verified trade, inventory, manufacturing, distribution, SHEQ & food safety, finance, and on-chain pedigree.",
+      "Regenerative. Sovereign. Ethical. Building Africa's future with integrity, transparency, and measurable impact.",
     images: [
       {
         url: "/home-hero.jpg",
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Big Five Group Africa",
     description:
-      "One chain. Zero blind spots. Nine pillars on SupplierAdvisor® — the supply-chain operating system.",
+      "Regenerative. Sovereign. Ethical. Nine pillars building Africa's future.",
     images: ["/home-hero.jpg"],
   },
   robots: {

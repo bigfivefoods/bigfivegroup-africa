@@ -6,13 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { companies } from "./lib/companies";
 import { CompanyIcon } from "./lib/icons";
-import { sa, SA_ONBOARDING, SA_URL } from "./lib/saCopy";
 
 const statsData = [
-  { number: 25, label: "Modules on the OS", suffix: "+" },
-  { number: 30, label: "Day free trial", suffix: "" },
-  { number: 50, label: "Founding free slots", suffix: "" },
-  { number: 499, label: "From R / month", suffix: "" },
+  { number: 54, label: "African Nations Reach", suffix: "" },
+  { number: 124, label: "Hectares Regenerated", suffix: "k" },
+  { number: 2.8, label: "Rands Facilitated", suffix: "B" },
+  { number: 47, label: "Jobs Created", suffix: "k" },
 ];
 
 function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) {
@@ -54,13 +53,13 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
 export default function Home() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
-      {/* HERO — SupplierAdvisor® voice */}
+      {/* HERO */}
       <section className="relative min-h-[min(100dvh,900px)] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center scale-105"
           style={{ backgroundImage: "url('/home-hero.jpg')" }}
           role="img"
-          aria-label="Big Five Group powered by SupplierAdvisor"
+          aria-label="African landscape representing Big Five Group"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 
@@ -71,28 +70,32 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="inline-flex max-w-full items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-white/30 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-5 sm:mb-6 text-white/95"
           >
-            <span className="truncate">{sa.eyebrow}</span>
+            <span className="truncate">EST. 2018 · KWAZULU-NATAL · AFRICA</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="font-sans text-white text-[clamp(1.85rem,5.5vw+0.5rem,4.5rem)] font-semibold tracking-tighter leading-[1.02] sm:leading-[0.98] mb-5 sm:mb-6 text-balance"
+            className="font-sans text-white text-[clamp(1.85rem,5.5vw+0.5rem,4.5rem)] font-semibold tracking-tighter leading-[1.02] sm:leading-[0.98] mb-5 sm:mb-6"
             style={{ fontFamily: "Inter, system-ui, sans-serif" }}
           >
-            ERP that ships.
+            ONE GROUP.
             <br />
-            Trust that blocks risk.
+            NINE PILLARS.
+            <br />
+            INFINITE IMPACT.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="w-full max-w-2xl mx-auto text-base sm:text-xl md:text-2xl text-white/95 font-light tracking-tight mb-8 sm:mb-10"
+            className="w-full max-w-xl sm:max-w-2xl mx-auto text-base sm:text-2xl md:text-3xl text-white/95 font-light tracking-tight mb-8 sm:mb-10"
           >
-            {sa.heroSubtitle}
+            Regenerative. Sovereign. Ethical.
+            <br className="hidden sm:block" />
+            The future of Africa is being built right now.
           </motion.p>
 
           <motion.div
@@ -101,23 +104,20 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.24 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto"
           >
-            <a
-              href={SA_ONBOARDING}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="#pillars"
               className="premium-button group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-black px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
             >
-              {sa.ctaTrial}
+              EXPLORE THE 9 PILLARS
               <ArrowRight className="group-hover:translate-x-1 transition w-5 h-5 shrink-0" />
-            </a>
+            </Link>
             <Link
               href="/connect"
               className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/40 hover:bg-white/10 px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white"
             >
-              See how trust works
+              LAUNCH CONNECT
             </Link>
           </motion.div>
-          <p className="mt-5 text-xs sm:text-sm text-white/50">{sa.pricingNote}</p>
         </div>
 
         <motion.div
@@ -131,49 +131,37 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* TRUST BAR — SA capabilities */}
+      {/* TRUST BAR */}
       <div className="border-b border-black/10 py-4 sm:py-5 bg-white">
         <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-10 gap-y-2 sm:gap-y-3 text-[10px] sm:text-xs uppercase tracking-[1.5px] sm:tracking-[2px] text-[#525252]">
-          <div>Company verification</div>
+          <div>International Presence</div>
           <div className="hidden sm:block w-1 h-1 rounded-full bg-black/15" />
-          <div>OTIFEF ratings</div>
+          <div>SupplierAdvisor® Powered</div>
           <div className="hidden md:block w-1 h-1 rounded-full bg-black/15" />
-          <div className="hidden md:block">SHEQ · ISO 45001</div>
+          <div className="hidden md:block">Super-Cube® Leadership</div>
           <div className="hidden lg:block w-1 h-1 rounded-full bg-black/15" />
-          <div className="hidden lg:block">Lot traceability</div>
+          <div className="hidden lg:block">On-Chain Verified</div>
           <div className="hidden xl:block w-1 h-1 rounded-full bg-black/15" />
-          <div className="hidden xl:block">On-chain ready</div>
+          <div className="hidden xl:block">UN SDG Aligned</div>
         </div>
       </div>
-
-      {/* MULTI-ENTITY — SA core */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-12 text-center">
-        <div className="uppercase tracking-[3px] text-xs text-[#525252] mb-3">
-          Multi-entity pattern
-        </div>
-        <h2 className="section-heading text-black mb-5">{sa.multiEntityTitle}</h2>
-        <p className="text-base sm:text-lg text-[#525252] max-w-3xl mx-auto leading-relaxed">
-          {sa.multiEntityBody}
-        </p>
-      </section>
 
       {/* THE 9 PILLARS */}
       <section
         id="pillars"
-        className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-14 sm:pb-16 md:pb-20"
+        className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-14 sm:pb-16 md:pb-20"
       >
         <div className="mb-10 sm:mb-12 max-w-3xl">
           <div className="uppercase tracking-[3px] text-xs text-[#525252] mb-3">
-            {sa.missionTitle}
+            The Ecosystem
           </div>
           <h2 className="section-heading text-black">
-            Nine pillars.
+            The Nine Pillars of
             <br />
-            One operating system.
+            African Sovereignty
           </h2>
           <p className="mt-4 sm:mt-5 text-base sm:text-lg text-[#525252] max-w-2xl">
-            {sa.missionBody} Foods, Direct, Access, Agri and the rest of Big Five run as separate
-            workspaces on {sa.brand} — verified companies trading together on one chain.
+            From regenerative farms and fortified nutrition to project delivery, ethical capital access, and doctoral-level leadership — every pillar compounds the others. Where applicable, our companies are listed on SupplierAdvisor® as verified ethical businesses.
           </p>
         </div>
 
@@ -219,38 +207,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY OPERATORS JOIN */}
+      {/* AFRICA SECTION */}
       <section className="bg-white py-16 sm:py-20 md:py-24 border-y border-black/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="uppercase tracking-[3px] text-xs text-emerald-600 mb-3">Trust layer</div>
-            <h2 className="section-heading text-black mb-4">{sa.trustTitle}</h2>
-            <p className="text-base sm:text-lg text-[#525252]">{sa.trustBody}</p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="uppercase tracking-[3px] text-xs mb-4 text-emerald-600">
+            Continent-Wide
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {sa.trustPoints.map((point) => (
-              <div
-                key={point.title}
-                className="rounded-2xl sm:rounded-3xl border border-black/10 bg-[#fafafa] p-6 sm:p-8 min-w-0"
-              >
-                <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2">
-                  {point.title}
-                </h3>
-                <p className="text-sm sm:text-base text-[#525252] leading-relaxed">{point.desc}</p>
-              </div>
-            ))}
+          <h2 className="section-heading mb-5 sm:mb-6 text-black">
+            Africa is not a country.
+            <br />
+            It is our canvas.
+          </h2>
+          <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-[#525252] mb-8 sm:mb-10">
+            From the savannas of KwaZulu-Natal to the markets of Lagos and the highlands of Ethiopia —
+            Big Five operates with deep local roots and continental ambition.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+            <Link
+              href="/africa"
+              className="inline-flex items-center justify-center gap-3 text-xs sm:text-sm uppercase tracking-[2px] border-b border-black/30 pb-1 hover:border-black group text-black"
+            >
+              Discover our African footprint
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition shrink-0" />
+            </Link>
+            <Link
+              href="/global"
+              className="inline-flex items-center justify-center gap-3 text-xs sm:text-sm uppercase tracking-[2px] border-b border-black/20 pb-1 hover:border-black group text-[#525252] hover:text-black"
+            >
+              Explore global presence
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition shrink-0" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* STATS FROM SA */}
+      {/* IMPACT STATS */}
       <section className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <div className="text-center mb-10 sm:mb-14">
-          <div className="text-xs tracking-[3px] text-[#525252]">{sa.oneLiner}</div>
+          <div className="text-xs tracking-[3px] text-[#525252]">
+            Measurable. Verifiable. On-Chain.
+          </div>
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mt-3 sm:mt-4 text-black">
-            {sa.foundingPartners}
+            Real Impact.
+            <br />
+            Real Numbers.
           </h3>
-          <p className="mt-4 text-[#525252] max-w-xl mx-auto">{sa.foundingBody}</p>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {statsData.map((stat, index) => (
@@ -273,93 +274,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STAKEHOLDERS + SUPER-CUBE */}
+      {/* LEADERSHIP + FOUNDATION STRIP */}
       <section className="bg-[#0a0a0a] text-white py-16 sm:py-20 md:py-24">
-        <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="text-xs tracking-[3px] text-white/40 mb-3">Who it&apos;s for</div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-4">
-              One platform. Every stakeholder.
-            </h2>
-            <p className="text-white/65">{sa.betterWorld}</p>
+        <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-16">
+          <div className="min-w-0">
+            <div className="text-xs tracking-[3px] text-amber-400 mb-4">Leadership</div>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 text-balance">
+              Super-Cube® doctoral leadership for nations and enterprises.
+            </h3>
+            <p className="text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
+              Ethical decision-making, AI-augmented development, and sovereign capability — rooted in African excellence.
+            </p>
+            <Link
+              href="/leadership"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[2px] text-white border-b border-white/30 pb-1 hover:border-white"
+            >
+              Explore Leadership
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
-            {sa.stakeholders.map((s) => (
-              <div
-                key={s.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 min-w-0"
-              >
-                <h3 className="font-semibold text-lg mb-2">{s.title}</h3>
-                <p className="text-sm text-white/60 leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-16">
-            <div className="min-w-0">
-              <div className="text-xs tracking-[3px] text-amber-400 mb-4">Super-Cube®</div>
-              <h3 className="text-2xl sm:text-3xl font-semibold tracking-tighter mb-4 text-balance">
-                Leadership for the humans who run the system
-              </h3>
-              <p className="text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-                {sa.intelligenceSuperCube}
-              </p>
-              <Link
-                href="/leadership"
-                className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[2px] text-white border-b border-white/30 pb-1 hover:border-white"
-              >
-                Explore Leadership
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-            <div className="min-w-0">
-              <div className="text-xs tracking-[3px] text-teal-400 mb-4">Ethical sourcing & SDGs</div>
-              <h3 className="text-2xl sm:text-3xl font-semibold tracking-tighter mb-4 text-balance">
-                Transparent chains. Real impact.
-              </h3>
-              <p className="text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-                {sa.ethicalSdgs} Foundation programmes and Impact delivery share the same verified
-                network as trade.
-              </p>
-              <Link
-                href="/foundation"
-                className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[2px] text-white border-b border-white/30 pb-1 hover:border-white"
-              >
-                Explore Foundation
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+          <div className="min-w-0">
+            <div className="text-xs tracking-[3px] text-teal-400 mb-4">Foundation</div>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 text-balance">
+              On-chain philanthropy with measurable African impact.
+            </h3>
+            <p className="text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
+              Transparent funding, community co-ownership, and SDG-aligned programmes that turn intention into verified outcomes.
+            </p>
+            <Link
+              href="/foundation"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[2px] text-white border-b border-white/30 pb-1 hover:border-white"
+            >
+              Explore Foundation
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA — SA */}
+      {/* FINAL CTA */}
       <section className="bg-black py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
-          <div className="text-xs tracking-[3px] text-emerald-500 mb-4">The network is open</div>
+          <div className="text-xs tracking-[3px] text-emerald-500 mb-4">The Time Is Now</div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-5 sm:mb-6 text-white text-balance">
-            {sa.finalTitle}
+            Ready to build the future of Africa with us?
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 sm:mb-10">{sa.finalBody}</p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
-            <a
-              href={SA_ONBOARDING}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black text-sm sm:text-lg px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold shadow-xl"
-            >
-              Get started in under 5 minutes
-              <ArrowRight className="w-5 h-5 shrink-0" />
-            </a>
-            <a
-              href={SA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/30 text-white px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold hover:bg-white/10"
-            >
-              {sa.ctaOpen}
-            </a>
+          <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 sm:mb-10">
+            Whether you are a government, investor, farmer, or conscious consumer — there is a place for you in the Big Five ecosystem.
+          </p>
+          <Link
+            href="/connect"
+            className="premium-button w-full sm:w-auto mx-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black text-sm sm:text-lg md:text-xl px-6 sm:px-10 md:px-14 py-3.5 sm:py-4 md:py-5 rounded-full font-semibold shadow-xl max-w-md sm:max-w-none"
+          >
+            <span className="sm:hidden">LAUNCH CONNECT</span>
+            <span className="hidden sm:inline">LAUNCH CONNECT — SUPPLIERADVISOR®</span>
+            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
+          </Link>
+          <div className="mt-5 sm:mt-6 text-xs text-white/40">
+            Instant access for verified partners
           </div>
-          <div className="mt-5 sm:mt-6 text-xs text-white/40">{sa.pricingNote}</div>
         </div>
       </section>
     </div>
