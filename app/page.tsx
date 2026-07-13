@@ -77,7 +77,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="text-white text-[clamp(2.75rem,8vw,5.75rem)] font-black tracking-[-0.06em] leading-[0.95] mb-6"
+            className="font-sans text-white text-[clamp(2.4rem,6.5vw,4.5rem)] font-semibold tracking-tighter leading-[0.98] mb-6"
+            style={{ fontFamily: "Inter, system-ui, sans-serif" }}
           >
             ONE GROUP.
             <br />
