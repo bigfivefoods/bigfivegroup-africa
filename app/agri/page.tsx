@@ -178,7 +178,7 @@ export default function AgriPage() {
             Every farmer we work with becomes part of a movement that restores dignity, creates
             wealth, and builds food sovereignty. We don&apos;t just teach farming — we build futures.
           </p>
-          <div className="grid sm:grid-cols-3 gap-4 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
             {[
               { t: "Land restoration", d: "Fertile soil for the next generation, not desert." },
               { t: "Fair income", d: "Direct markets so producers keep more value." },

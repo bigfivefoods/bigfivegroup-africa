@@ -115,7 +115,7 @@ export default function TribalPage() {
           title="Ubuntu at the centre"
           subtitle="We exist because others exist. That truth is the operating system of the Big Five ecosystem."
         />
-        <div className="grid md:grid-cols-3 gap-5 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-10">
           {[
             {
               icon: Heart,

@@ -147,7 +147,7 @@ export function FinalCta({
   secondary?: { href: string; label: string; external?: boolean };
 }) {
   const btnBase =
-    "premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold";
+    "premium-button w-full sm:w-auto sm:min-w-[11rem] inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 md:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold";
 
   const primaryEl = primary.external ? (
     <a
@@ -187,20 +187,22 @@ export function FinalCta({
   ) : null;
 
   return (
-    <section className="bg-black py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
-      <div className="max-w-2xl mx-auto">
+    <section className="bg-black py-14 sm:py-20 md:py-24 text-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto min-w-0">
         {eyebrow && (
           <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-white/40 mb-3 sm:mb-4">
             {eyebrow}
           </div>
         )}
-        <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-4 sm:mb-5 text-balance">
+        <h2 className="text-white text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-4 sm:mb-5 text-balance px-1">
           {title}
         </h2>
         {subtitle && (
-          <p className="text-white/65 text-base sm:text-lg mb-8 sm:mb-10">{subtitle}</p>
+          <p className="text-white/65 text-sm sm:text-base md:text-lg mb-8 sm:mb-10 text-pretty">
+            {subtitle}
+          </p>
         )}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto">
           {primaryEl}
           {secondaryEl}
         </div>

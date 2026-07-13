@@ -86,7 +86,9 @@ export default function RootLayout({
     <html lang="en" className="h-full scroll-smooth overflow-x-clip">
       <body className="min-h-dvh min-w-0 antialiased text-[#171717] [--navbar-height:4.5rem] sm:[--navbar-height:5rem] overflow-x-clip">
         <Navbar />
-        <main className="pt-[var(--navbar-height)] min-h-screen min-w-0">{children}</main>
+        <main className="pt-[var(--navbar-height)] min-h-screen min-w-0 overflow-x-clip">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

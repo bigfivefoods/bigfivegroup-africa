@@ -50,7 +50,7 @@ export default function AboutPage() {
           title="An African group with a human mission"
           subtitle="Headquartered in KwaZulu-Natal, South Africa, Big Five Group brings together regenerative agriculture, fortified nutrition, ethical commerce, project delivery, leadership education, and philanthropy — not as separate brands, but as one system designed to serve people."
         />
-        <div className="grid sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {[
             {
               icon: UtensilsCrossed,
@@ -398,7 +398,7 @@ export default function AboutPage() {
           title="How Craig’s purpose became the group"
           subtitle="Three platforms — feed, educate, empower — sit at the heart of the Big Five story."
         />
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           <div className="rounded-3xl border border-black/10 bg-white p-8">
             <div className="text-xs tracking-[2px] text-emerald-700 font-semibold mb-3">FEED</div>
             <h3 className="text-2xl font-semibold text-black mb-3">Big Five Foods™</h3>

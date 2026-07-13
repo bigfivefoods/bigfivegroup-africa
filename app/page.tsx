@@ -56,14 +56,14 @@ export default function Home() {
       {/* HERO */}
       <section className="relative min-h-[min(100dvh,900px)] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105"
+          className="absolute inset-0 bg-cover bg-center sm:scale-105"
           style={{ backgroundImage: "url('/home-hero.jpg')" }}
           role="img"
           aria-label="African landscape representing Big Five Group"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 sm:py-20">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-14 sm:py-20">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

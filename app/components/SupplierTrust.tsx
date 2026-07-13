@@ -11,10 +11,10 @@ export default function SupplierTrust({
   if (compact) {
     return (
       <div className="border-y border-black/10 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="flex items-start sm:items-center gap-3 text-sm text-[#404040]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+          <div className="flex items-start sm:items-center gap-3 text-xs sm:text-sm text-[#404040] min-w-0">
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 sm:mt-0" />
-            <span>
+            <span className="min-w-0">
               <strong className="text-black">{entityName}</strong> run on{" "}
               <a
                 href={SA_URL}
@@ -31,7 +31,7 @@ export default function SupplierTrust({
             href={SA_ONBOARDING}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-black shrink-0 hover:opacity-70"
+            className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-black shrink-0 hover:opacity-70 self-start sm:self-auto"
           >
             {sa.ctaTrial}
             <ExternalLink className="w-4 h-4" />

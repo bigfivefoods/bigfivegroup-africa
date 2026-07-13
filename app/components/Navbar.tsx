@@ -53,9 +53,9 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  // Close mobile drawer when crossing to desktop
+  // Close mobile drawer when crossing to desktop (xl = 1280px)
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia("(min-width: 1280px)");
     const onChange = () => {
       if (mq.matches) setMobileOpen(false);
     };
@@ -86,8 +86,8 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop nav: lg+ with tighter spacing so laptops fit */}
-        <div className="hidden lg:flex items-center gap-4 xl:gap-7 2xl:gap-9 text-sm font-medium text-[#171717] shrink-0">
+        {/* Desktop nav from xl (1280px): tablets & small laptops keep hamburger */}
+        <div className="hidden xl:flex items-center gap-5 2xl:gap-8 text-sm font-medium text-[#171717] shrink-0">
           {navLinks.map((link) =>
             link.isDropdown ? (
               <div
@@ -180,15 +180,14 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="hidden lg:block shrink-0">
+        <div className="hidden xl:block shrink-0">
           <a
             href="https://www.supplieradvisor.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="premium-button inline-flex items-center gap-2 xl:gap-3 bg-black text-white px-4 xl:px-7 py-2.5 xl:py-3 rounded-full text-xs xl:text-sm font-semibold tracking-wide hover:bg-[#111] whitespace-nowrap"
+            className="premium-button inline-flex items-center gap-2 2xl:gap-3 bg-black text-white px-5 2xl:px-7 py-2.5 2xl:py-3 rounded-full text-xs 2xl:text-sm font-semibold tracking-wide hover:bg-[#111] whitespace-nowrap"
           >
-            <span className="hidden xl:inline">LAUNCH CONNECT</span>
-            <span className="xl:hidden">CONNECT</span>
+            LAUNCH CONNECT
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -196,7 +195,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden w-11 h-11 flex items-center justify-center text-black rounded-full hover:bg-black/5 shrink-0"
+          className="xl:hidden w-11 h-11 flex items-center justify-center text-black rounded-full hover:bg-black/5 shrink-0"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >
@@ -210,7 +209,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-black/10 max-h-[calc(100dvh-var(--navbar-height,4.5rem))] overflow-y-auto overscroll-contain"
+            className="xl:hidden bg-white border-t border-black/10 max-h-[calc(100dvh-var(--navbar-height,4.5rem))] overflow-y-auto overscroll-contain"
           >
             <div className="px-4 sm:px-6 py-6 sm:py-8 flex flex-col gap-4 sm:gap-5 text-base sm:text-lg text-[#171717]">
               {navLinks.map((link) =>

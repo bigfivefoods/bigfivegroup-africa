@@ -138,7 +138,7 @@ export default function AccessPage() {
       </section>
 
       <section className="bg-[#1d4ed8] py-20 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {[
             {
               icon: Landmark,

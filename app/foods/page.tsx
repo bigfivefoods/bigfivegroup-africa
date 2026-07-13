@@ -128,40 +128,40 @@ export default function FoodsPage() {
         />
       </section>
 
-      <section id="products" className="bg-white border-y border-black/10 py-20 sm:py-24">
+      <section id="products" className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="PRODUCT RANGES"
             title="Nutrition people actually eat"
             subtitle="Designed for households, schools, catering, and institutional feeding — affordable, fortified, proudly African."
           />
-          <div className="space-y-10">
+          <div className="space-y-6 sm:space-y-10">
             {productCategories.map((cat) => (
               <article
                 key={cat.title}
-                className="rounded-[1.75rem] border border-black/10 bg-[#fafafa] overflow-hidden"
+                className="rounded-2xl sm:rounded-[1.75rem] border border-black/10 bg-[#fafafa] overflow-hidden min-w-0"
               >
-                <div className="grid lg:grid-cols-2 gap-0">
-                  <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center min-w-0">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                  <div className="p-5 sm:p-8 md:p-10 flex flex-col justify-center min-w-0">
                     <cat.icon className="w-9 h-9 sm:w-10 sm:h-10 text-[#d97706] mb-4" />
-                    <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-black mb-2">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-black mb-2">
                       {cat.title}
                     </h3>
-                    <p className="text-[#525252] mb-3">{cat.description}</p>
+                    <p className="text-[#525252] text-sm sm:text-base mb-3">{cat.description}</p>
                     <div className="text-sm font-semibold text-[#92400e] mb-4">{cat.stats}</div>
-                    <p className="text-[#404040] leading-relaxed">{cat.benefits}</p>
+                    <p className="text-[#404040] text-sm sm:text-base leading-relaxed">{cat.benefits}</p>
                   </div>
-                  <div className="grid grid-cols-2 gap-3 p-4 sm:p-6 bg-white">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3 p-3 sm:p-4 md:p-6 bg-white min-w-0">
                     {cat.images.map((src) => (
                       <div
                         key={src}
-                        className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-black/5 bg-[#f8f7f5] flex items-center justify-center"
+                        className="relative aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden border border-black/5 bg-[#f8f7f5]"
                       >
                         <Image
                           src={src}
                           alt={cat.title}
                           fill
-                          className="object-contain p-2 sm:p-3"
+                          className="object-contain p-1.5 sm:p-2 md:p-3"
                           sizes="(max-width:768px) 45vw, 22vw"
                         />
                       </div>

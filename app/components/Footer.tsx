@@ -5,10 +5,10 @@ import { companies } from "../lib/companies";
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-black/10 text-black">
-      <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-10 sm:pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-y-10 sm:gap-y-12 gap-x-8">
-          <div className="sm:col-span-2 lg:col-span-5">
-            <div className="font-semibold text-2xl sm:text-3xl tracking-tighter mb-3 sm:mb-4">
+      <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-y-10 sm:gap-y-12 gap-x-6 lg:gap-x-8">
+          <div className="sm:col-span-2 lg:col-span-5 min-w-0">
+            <div className="font-semibold text-xl sm:text-2xl md:text-3xl tracking-tighter mb-3 sm:mb-4">
               BIG FIVE GROUP
             </div>
             <p className="text-lg sm:text-xl font-light tracking-tight mb-3 max-w-md">

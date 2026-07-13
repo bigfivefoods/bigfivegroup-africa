@@ -84,7 +84,7 @@ export default function LeadershipPage() {
 
       {/* Positioning strip */}
       <section className="bg-white border-b border-black/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {[
             {
               icon: GraduationCap,
@@ -147,7 +147,7 @@ export default function LeadershipPage() {
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {[
             { icon: Users, t: "Individuals & teams" },
             { icon: Building2, t: "Enterprises & governments" },
