@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  async redirects() {
+    return [
+      {
+        source: "/tribal",
+        destination: "/royal",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

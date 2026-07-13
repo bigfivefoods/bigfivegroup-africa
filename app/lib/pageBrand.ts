@@ -120,8 +120,8 @@ export const pageBrand = {
     overlay: "bg-black/40",
     eyebrow: "CONTINENT · 54 NATIONS",
   },
-  tribal: {
-    slug: "tribal",
+  royal: {
+    slug: "royal",
     hero: "/tribal.jpg",
     accent: "#d97706",
     accentDark: "#92400e",

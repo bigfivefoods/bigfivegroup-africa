@@ -33,9 +33,6 @@ export default function Footer() {
               Explore
             </div>
             <div className="space-y-2.5 text-sm">
-              <Link href="/about" className="block hover:text-black/70 transition-colors">
-                About
-              </Link>
               <Link href="/global" className="block hover:text-black/70 transition-colors">
                 Global
               </Link>
@@ -48,8 +45,11 @@ export default function Footer() {
               <Link href="/foundation" className="block hover:text-black/70 transition-colors">
                 Foundation
               </Link>
-              <Link href="/tribal" className="block hover:text-black/70 transition-colors">
-                Heritage
+              <Link href="/royal" className="block hover:text-black/70 transition-colors">
+                Royal
+              </Link>
+              <Link href="/about" className="block hover:text-black/70 transition-colors">
+                About
               </Link>
               <Link href="/connect" className="block hover:text-black/70 transition-colors">
                 Connect

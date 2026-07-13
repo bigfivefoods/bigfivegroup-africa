@@ -7,7 +7,7 @@ import { SectionHeading, FinalCta } from "../components/PageSections";
 
 const KINGDOM_URL = "https://www.zulukingdom.co.za/";
 
-export default function TribalPage() {
+export default function RoyalPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero

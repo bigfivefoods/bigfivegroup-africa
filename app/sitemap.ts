@@ -15,7 +15,7 @@ const routes = [
   "/impact",
   "/leadership",
   "/foundation",
-  "/tribal",
+  "/royal",
   "/privacy",
   "/terms",
 ];
