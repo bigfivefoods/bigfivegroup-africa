@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   Heart,
   Lightbulb,
@@ -297,8 +298,21 @@ export default function AboutPage() {
       {/* Founder */}
       <section id="founder" className="bg-[#0a0a0a] text-white py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-start">
             <div className="lg:col-span-5">
+              <div className="relative mx-auto lg:mx-0 w-full max-w-sm mb-8">
+                <div className="absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-amber-400/40 via-transparent to-emerald-500/20 blur-sm" />
+                <div className="relative aspect-[3/4] rounded-[1.75rem] overflow-hidden border border-white/15 shadow-2xl bg-white/5">
+                  <Image
+                    src="/craig-muller.png"
+                    alt="Dr. Craig R. Muller, Founder & CEO of Big Five Group"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 380px"
+                    priority
+                  />
+                </div>
+              </div>
               <div className="text-xs tracking-[3px] text-amber-400 mb-4">FOUNDER & CEO</div>
               <h2 className="text-4xl sm:text-5xl font-semibold tracking-tighter mb-3">
                 Dr. Craig R. Muller
