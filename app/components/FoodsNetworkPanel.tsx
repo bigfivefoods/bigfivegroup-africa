@@ -15,7 +15,6 @@ import type { FoodsNetworkPayload } from "../lib/saFoodsNetwork";
 import {
   SA_URL,
   SA_CONTAINERS,
-  SA_CONTAINERS_MAP,
   SA_CONTAINERS_SETTINGS,
   SA_CONTAINERS_EMBED,
 } from "../lib/saCopy";
