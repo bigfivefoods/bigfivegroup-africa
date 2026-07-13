@@ -41,8 +41,8 @@ const ACTIVE_COUNTRIES = [
     role: "West Africa",
     focus: "Markets · Partnerships · Access",
     summary:
-      "Strategic West African operations focused on institutional partnerships, fortified nutrition pathways, and ethical commerce corridors into ECOWAS markets.",
-    highlight: "Active operations",
+      "Building West African distribution and route-to-market strategy — institutional partnerships, fortified nutrition pathways, and ethical commerce corridors into ECOWAS markets.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Zambia",
@@ -50,8 +50,8 @@ const ACTIVE_COUNTRIES = [
     role: "Southern / Central Africa",
     focus: "Agriculture · Trade · Community impact",
     summary:
-      "Active engagement on regenerative agriculture, market access, and community-linked nutrition programmes that retain value for local producers.",
-    highlight: "Active operations",
+      "Building distribution and route-to-market pathways for regenerative agriculture, community-linked nutrition, and trade that retain value for local producers.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Democratic Republic of the Congo",
@@ -59,8 +59,8 @@ const ACTIVE_COUNTRIES = [
     role: "Central Africa",
     focus: "Food systems · Last-mile access",
     summary:
-      "Working where the need is greatest — supporting ethical supply chains, nutrition delivery, and transparent partnership models in complex markets.",
-    highlight: "Active operations",
+      "Building last-mile distribution and route-to-market strategy for ethical supply chains and nutrition delivery in complex markets.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Tanzania",
@@ -68,8 +68,8 @@ const ACTIVE_COUNTRIES = [
     role: "East Africa",
     focus: "Farming systems · Distribution",
     summary:
-      "Building regenerative and trade linkages that connect smallholders to verified markets while strengthening regional food sovereignty.",
-    highlight: "Active operations",
+      "Building regenerative trade and distribution linkages that connect smallholders to verified markets while strengthening regional food sovereignty.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Namibia",
@@ -77,8 +77,8 @@ const ACTIVE_COUNTRIES = [
     role: "Southern Africa",
     focus: "Climate-smart agri · Partnerships",
     summary:
-      "Advancing climate-resilient agriculture and ethical commercial partnerships across one of the region’s most strategically important corridors.",
-    highlight: "Active operations",
+      "Building distribution corridors and route-to-market partnerships for climate-resilient agriculture and ethical commerce.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Zimbabwe",
@@ -86,8 +86,8 @@ const ACTIVE_COUNTRIES = [
     role: "Southern Africa",
     focus: "Food security · Producer empowerment",
     summary:
-      "Supporting producers and institutions with nutrition solutions, market access, and leadership capability where food systems demand urgency and integrity.",
-    highlight: "Active operations",
+      "Building route-to-market strategy for producers and institutions — nutrition solutions, market access, and leadership capability.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Lesotho",
@@ -95,8 +95,8 @@ const ACTIVE_COUNTRIES = [
     role: "Southern Africa",
     focus: "Community · Nutrition · Sovereignty",
     summary:
-      "Working alongside communities and partners to strengthen local food security, skills, and dignified economic participation.",
-    highlight: "Active operations",
+      "Building community distribution and route-to-market models that strengthen local food security, skills, and dignified economic participation.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Germany",
@@ -104,8 +104,8 @@ const ACTIVE_COUNTRIES = [
     role: "Europe · Partnerships",
     focus: "Trade · Investment · Institutional alliances",
     summary:
-      "Active European engagement spanning strategic partnerships, investment dialogue, and corridors that connect African regenerative excellence with German and EU markets.",
-    highlight: "Active operations",
+      "Building European distribution and route-to-market strategy — partnerships and corridors that connect African regenerative excellence with German and EU markets.",
+    highlight: "Building distribution & route to market",
   },
   {
     name: "Hungary",
@@ -113,8 +113,8 @@ const ACTIVE_COUNTRIES = [
     role: "Europe · Central Europe",
     focus: "Partnerships · Market access · Collaboration",
     summary:
-      "Active work in Hungary building partnerships and market pathways that link Central European institutions and networks with Big Five’s African ecosystem.",
-    highlight: "Active operations",
+      "Building distribution and route-to-market pathways in Hungary that link Central European institutions and networks with Big Five’s African ecosystem.",
+    highlight: "Building distribution & route to market",
   },
 ] as const;
 
@@ -351,9 +351,9 @@ export default function GlobalPage() {
             transition={{ delay: 0.06 }}
             className="text-white text-[clamp(1.85rem,5.5vw+0.5rem,4.75rem)] font-semibold tracking-tighter leading-[1.02] sm:leading-[0.95] mb-5 sm:mb-6 text-balance"
           >
-            Active where it matters.
+            Building distribution.
             <br />
-            Expanding with purpose.
+            Route to market. Expanding with purpose.
           </motion.h1>
 
           <motion.p
@@ -362,8 +362,9 @@ export default function GlobalPage() {
             transition={{ delay: 0.12 }}
             className="max-w-2xl mx-auto text-base sm:text-lg md:text-2xl text-white/90 font-light tracking-tight mb-8 sm:mb-10"
           >
-            Eleven nations operational today — nine across Africa plus Germany and Hungary —
-            including a company setup in Kenya, with a clear ambition to reach every market where African excellence can lead.
+            Eleven priority nations — nine across Africa plus Germany and Hungary — where we are
+            building our distribution and route-to-market strategy, including a company setup in Kenya,
+            with a clear ambition to reach every market where African excellence can lead.
           </motion.p>
 
           <motion.div
@@ -376,7 +377,7 @@ export default function GlobalPage() {
               href="#active"
               className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-black px-6 sm:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
             >
-              Where we work now
+              Distribution markets
               <MapPin className="w-5 h-5 shrink-0" />
             </Link>
             <Link
@@ -394,9 +395,9 @@ export default function GlobalPage() {
       <section className="bg-white border-b border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[
-            { n: "11", l: "Active nations today" },
-            { n: "9", l: "Active across Africa" },
-            { n: "2", l: "Active in Europe (DE · HU)" },
+            { n: "11", l: "Priority distribution markets" },
+            { n: "9", l: "Africa route-to-market focus" },
+            { n: "2", l: "Europe corridors (DE · HU)" },
             { n: "1", l: "Company established in Kenya" },
           ].map((s) => (
             <div key={s.l} className="text-center lg:text-left">
@@ -419,27 +420,27 @@ export default function GlobalPage() {
         </h2>
         <p className="text-lg sm:text-xl text-[#525252] max-w-3xl mx-auto leading-relaxed">
           Big Five Group builds from African soil outward — regenerative farming, fortified nutrition,
-          ethical capital access, and Super-Cube® leadership. First we deepen where we already operate.
-          Then we expand with the same integrity into the rest of Africa and the world.
+          ethical capital access, and Super-Cube® leadership. First we build distribution and route-to-market
+          strategy in priority nations. Then we expand with the same integrity into the rest of Africa and the world.
         </p>
       </section>
 
-      {/* ACTIVE OPERATIONS */}
+      {/* DISTRIBUTION & ROUTE TO MARKET */}
       <section id="active" className="bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div>
               <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-[#0369a1] mb-4">
                 <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
-                LIVE OPERATIONS
+                DISTRIBUTION · ROUTE TO MARKET
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
-                Where we are working now
+                Building our distribution and route-to-market strategy
               </h2>
               <p className="mt-4 text-lg text-[#525252] max-w-2xl">
-                Eleven nations with active Big Five presence — nine across Africa plus Germany and Hungary.
-                Partnerships, programmes, and on-the-ground work are already underway. Kenya hosts a full
-                company setup for East Africa.
+                Eleven priority nations — nine across Africa plus Germany and Hungary — where we are
+                building distribution networks, market access, and go-to-market pathways. Kenya hosts a
+                full company setup for East Africa.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -467,7 +468,7 @@ export default function GlobalPage() {
               >
                 <div className="absolute top-6 right-6">
                   <span className="text-[10px] uppercase tracking-[1.5px] font-semibold text-[#0369a1] bg-[#e0f2fe] px-2.5 py-1 rounded-full">
-                    Active
+                    Route to market
                   </span>
                 </div>
 
@@ -606,7 +607,7 @@ export default function GlobalPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Big Five Group companies across active markets" />
+      <SupplierTrust entityName="Big Five Group companies across priority markets" />
 
       {/* HOW WE EXPAND */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
@@ -620,8 +621,8 @@ export default function GlobalPage() {
           {[
             {
               icon: MapPin,
-              title: "Deepen active markets",
-              desc: "Double down in our eleven active nations — including South Africa, Kenya, Germany, and Hungary — proof before scale.",
+              title: "Build distribution first",
+              desc: "In eleven priority nations — including South Africa, Kenya, Germany, and Hungary — we build distribution and route-to-market strategy before we scale.",
             },
             {
               icon: Handshake,
@@ -654,8 +655,8 @@ export default function GlobalPage() {
             Bring Big Five to your market
           </h2>
           <p className="text-white/65 text-lg mb-10">
-            Whether you sit in an active nation or on our expansion map — governments, investors,
-            producers, and institutions are welcome at the table.
+            Whether you sit in a priority distribution market or on our expansion map — governments,
+            investors, producers, and institutions are welcome at the table.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
