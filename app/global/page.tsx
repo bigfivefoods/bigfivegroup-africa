@@ -97,6 +97,24 @@ const ACTIVE_COUNTRIES = [
       "Working alongside communities and partners to strengthen local food security, skills, and dignified economic participation.",
     highlight: "Active operations",
   },
+  {
+    name: "Germany",
+    code: "DE",
+    role: "Europe · Partnerships",
+    focus: "Trade · Investment · Institutional alliances",
+    summary:
+      "Active European engagement spanning strategic partnerships, investment dialogue, and corridors that connect African regenerative excellence with German and EU markets.",
+    highlight: "Active operations",
+  },
+  {
+    name: "Hungary",
+    code: "HU",
+    role: "Europe · Central Europe",
+    focus: "Partnerships · Market access · Collaboration",
+    summary:
+      "Active work in Hungary building partnerships and market pathways that link Central European institutions and networks with Big Five’s African ecosystem.",
+    highlight: "Active operations",
+  },
 ] as const;
 
 const ACTIVE_NAMES = new Set<string>(ACTIVE_COUNTRIES.map((c) => c.name));
@@ -171,7 +189,6 @@ const GLOBAL_AMBITION: { region: string; countries: string[] }[] = [
     region: "Europe",
     countries: [
       "United Kingdom",
-      "Germany",
       "France",
       "Netherlands",
       "Switzerland",
@@ -343,8 +360,8 @@ export default function GlobalPage() {
             transition={{ delay: 0.12 }}
             className="max-w-2xl mx-auto text-lg sm:text-2xl text-white/90 font-light tracking-tight mb-10"
           >
-            Nine African nations operational today — including a company setup in Kenya —
-            and a clear ambition to reach every market where African excellence can lead.
+            Eleven nations operational today — nine across Africa plus Germany and Hungary —
+            including a company setup in Kenya, with a clear ambition to reach every market where African excellence can lead.
           </motion.p>
 
           <motion.div
@@ -375,10 +392,10 @@ export default function GlobalPage() {
       <section className="bg-white border-b border-black/10">
         <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { n: "9", l: "Active nations today" },
+            { n: "11", l: "Active nations today" },
+            { n: "9", l: "Active across Africa" },
+            { n: "2", l: "Active in Europe (DE · HU)" },
             { n: "1", l: "Company established in Kenya" },
-            { n: "54", l: "African nations in our vision" },
-            { n: "4+", l: "Continents of ambition" },
           ].map((s) => (
             <div key={s.l} className="text-center lg:text-left">
               <div className="text-4xl sm:text-5xl font-semibold tracking-tighter text-black">
@@ -418,8 +435,9 @@ export default function GlobalPage() {
                 Where we are working now
               </h2>
               <p className="mt-4 text-lg text-[#525252] max-w-2xl">
-                Nine nations with active Big Five presence — partnerships, programmes, and on-the-ground
-                work already underway. Kenya hosts a full company setup for East Africa.
+                Eleven nations with active Big Five presence — nine across Africa plus Germany and Hungary.
+                Partnerships, programmes, and on-the-ground work are already underway. Kenya hosts a full
+                company setup for East Africa.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -529,7 +547,7 @@ export default function GlobalPage() {
               Where we aim to reach next
             </h2>
             <p className="text-lg text-white/65 leading-relaxed">
-              Beyond our nine active nations, we are building partnerships and capability to serve the
+              Beyond our eleven active nations, we are building partnerships and capability to serve the
               rest of Africa — and, with African standards, the wider world. These markets are not yet
               full operations; they are our deliberate expansion horizon.
             </p>
@@ -599,7 +617,7 @@ export default function GlobalPage() {
             {
               icon: MapPin,
               title: "Deepen active markets",
-              desc: "Double down in South Africa, Kenya, Ghana, Zambia, DRC, Tanzania, Namibia, Zimbabwe, and Lesotho — proof before scale.",
+              desc: "Double down in our eleven active nations — including South Africa, Kenya, Germany, and Hungary — proof before scale.",
             },
             {
               icon: Handshake,
