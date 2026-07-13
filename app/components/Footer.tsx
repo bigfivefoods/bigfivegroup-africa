@@ -12,18 +12,18 @@ export default function Footer() {
               BIG FIVE GROUP
             </div>
             <p className="text-lg sm:text-xl font-light tracking-tight mb-3 max-w-md">
-              One Group. Nine Pillars. Infinite African Impact.
+              One group. Many companies. Shared discipline.
             </p>
             <p className="text-[#525252] text-sm mb-6">
-              Regenerative. Sovereign. On-Chain. On-Purpose.
+              ERP that ships. Trust that blocks risk. Powered by SupplierAdvisor®.
             </p>
             <a
-              href="https://www.supplieradvisor.com"
+              href="https://www.supplieradvisor.com/onboarding?type=business"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide hover:opacity-70 transition-opacity"
             >
-              Launch SupplierAdvisor®
+              Start 30-day free trial
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
@@ -125,7 +125,7 @@ export default function Footer() {
         © {new Date().getFullYear()} BIG FIVE GROUP (PTY) LTD · ALL RIGHTS RESERVED
         <br className="sm:hidden" />
         <span className="hidden sm:inline"> · </span>
-        PROUDLY AFRICAN · ON-CHAIN · SUPER-CUBE® POWERED
+        SUPPLIERADVISOR® · ON-CHAIN READY · SUPER-CUBE® · B2B · B2G · B2C
       </div>
     </footer>
   );

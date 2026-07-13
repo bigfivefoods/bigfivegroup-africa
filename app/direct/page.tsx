@@ -30,8 +30,8 @@ export default function DirectPage() {
         ctas={[
           { href: "#model", label: "The Direct model", primary: true },
           {
-            href: "https://www.supplieradvisor.com/",
-            label: "Trade on SupplierAdvisor®",
+            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            label: "Start free trial",
             external: true,
           },
         ]}
@@ -158,8 +158,8 @@ export default function DirectPage() {
         subtitle="Hubs, producers, and buyers building last-mile sovereignty — with professional verification."
         primary={{ href: "/connect", label: "Join Direct" }}
         secondary={{
-          href: "https://www.supplieradvisor.com/",
-          label: "SupplierAdvisor®",
+          href: "https://www.supplieradvisor.com/onboarding?type=business",
+          label: "Start free trial",
           external: true,
         }}
       />

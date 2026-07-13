@@ -326,8 +326,8 @@ export default function AfricaPage() {
         subtitle="From active markets to expansion horizons — verified ethical companies on SupplierAdvisor®, delivered through Big Five Impact."
         primary={{ href: "/connect", label: "Partner with Big Five" }}
         secondary={{
-          href: "https://www.supplieradvisor.com/",
-          label: "SupplierAdvisor®",
+          href: "https://www.supplieradvisor.com/onboarding?type=business",
+          label: "Start free trial",
           external: true,
         }}
       />

@@ -99,8 +99,8 @@ export default function FoodsPage() {
         ctas={[
           { href: "#products", label: "Explore products", primary: true },
           {
-            href: "https://www.supplieradvisor.com/",
-            label: "Verified on SupplierAdvisor®",
+            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            label: "Start free trial",
             external: true,
           },
         ]}
@@ -230,7 +230,7 @@ export default function FoodsPage() {
             Big Five Foods is built for institutions that need reliable nutrition partners — with
             certifications on the factory floor and verification on{" "}
             <a
-              href="https://www.supplieradvisor.com/"
+              href="https://www.supplieradvisor.com/onboarding?type=business"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white underline underline-offset-4"
@@ -250,8 +250,8 @@ export default function FoodsPage() {
         subtitle="Schools, governments, retailers, and distributors — let's nourish Africa with integrity."
         primary={{ href: "/connect", label: "Talk to Foods" }}
         secondary={{
-          href: "https://www.supplieradvisor.com/",
-          label: "SupplierAdvisor®",
+          href: "https://www.supplieradvisor.com/onboarding?type=business",
+          label: "Start free trial",
           external: true,
         }}
       />

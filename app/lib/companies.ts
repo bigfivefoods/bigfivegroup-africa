@@ -19,8 +19,9 @@ export const companies: Company[] = [
     fullName: "Big Five Agri",
     color: "#10b981",
     icon: "Leaf",
-    tagline: "Regenerative Farming • On-Chain Traceability • Carbon Negative",
-    description: "Africa's premier regenerative agriculture platform. From soil to soul, we restore ecosystems, empower smallholder farmers, and deliver verified, premium produce with full blockchain provenance.",
+    tagline: "Regenerative Farming • Lot Traceability • On-Chain Ready",
+    description:
+      "Regenerative agriculture on the SupplierAdvisor® supply-chain OS — verified farmers, lot pedigree, OTIFEF deliveries, and on-chain product passports when authenticity must be proven.",
     heroText: "Regenerating Africa's Soil. Feeding the World Ethically.",
     howItWorks: [
       { step: 1, title: "Regenerate & Verify", desc: "Farmers onboard with soil health data, satellite monitoring, and AI analysis. Every hectare is verified regenerative." },
@@ -40,8 +41,9 @@ export const companies: Company[] = [
     fullName: "Big Five Foods",
     color: "#f59e0b",
     icon: "Wheat",
-    tagline: "Fortified Nutrition • 24-Month Shelf Life • 73.9% Superior Formulation",
-    description: "Revolutionary African nutrition brand. Our fortified staples and ready-to-eat meals combat malnutrition at scale while creating sustainable jobs.",
+    tagline: "Fortified Nutrition • QA Holds & HACCP • Manufacturing OS",
+    description:
+      "Fortified nutrition run as a SupplierAdvisor® manufacturing entity — BOMs, work orders, QA holds that block ship, HACCP, and lot-level recall packs. Factory physics, not spreadsheets.",
     heroText: "Nourishing a Continent. One Fortified Meal at a Time.",
     howItWorks: [
       { step: 1, title: "Source & Fortify", desc: "Regeneratively grown grains are milled and precision-fortified with 18 essential micronutrients." },
@@ -61,8 +63,9 @@ export const companies: Company[] = [
     fullName: "Big Five Direct",
     color: "#f97316",
     icon: "Truck",
-    tagline: "Direct-to-Market • Micro-Franchise Ecosystems • Last-Mile Sovereignty",
-    description: "Eliminating middlemen through solar-powered micro-hubs and containerized distribution points across the continent.",
+    tagline: "Direct-to-Market • Distribution OS • Live OTIF Tracking",
+    description:
+      "Last-mile and direct trade on SupplierAdvisor® — inbound/outbound logistics, carriers, event-level tracking, and OTIF scorecards so every mile and handoff is visible.",
     heroText: "From Farm Gate to Market Gate. No Middlemen. Pure Value.",
     howItWorks: [
       { step: 1, title: "Hub Activation", desc: "Solar-powered, IoT-enabled micro-hubs deployed in underserved areas. Each hub creates 20+ local jobs." },
@@ -82,8 +85,9 @@ export const companies: Company[] = [
     fullName: "Big Five Access",
     color: "#3b82f6",
     icon: "Landmark",
-    tagline: "Government Funding • CSI Optimization • Sovereign Capital Access",
-    description: "Unlocking billions in government tenders, development finance, and corporate social investment for verified African enterprises.",
+    tagline: "Verified Network • B2G Procurement • Transparent Capital",
+    description:
+      "Capital and tender access for verified companies on the SupplierAdvisor® network — CIPC-style verification, auditable trading relationships, and institutional-grade process for B2G and CSI.",
     heroText: "Opening Doors to Capital. Closing the Gap Between Policy and People.",
     howItWorks: [
       { step: 1, title: "Verify & Onboard", desc: "Rigorous KYC, financials, and impact scoring. Every participant becomes a trusted node." },
@@ -103,20 +107,43 @@ export const companies: Company[] = [
     fullName: "Big Five Connect",
     color: "#06b6d4",
     icon: "Link",
-    tagline: "SupplierAdvisor® • Ethical Blockchain ERP • AI-Powered Trust",
-    description: "The operating system for ethical African commerce. Blockchain verification, real-time AI insights, and end-to-end traceability.",
-    heroText: "Verified. Transparent. Accelerating Humanity.",
+    tagline: "SupplierAdvisor® • Supply Chain OS • OTIFEF · SHEQ · On-chain",
+    description:
+      "The supply-chain OS for verified trade — inventory, manufacturing, distribution, SHEQ & food safety, finance, ratings, and on-chain pedigree in one light workspace. When a lot fails, the ship stops.",
+    heroText: "ERP that ships. Trust that blocks risk.",
     howItWorks: [
-      { step: 1, title: "Verify & Onboard", desc: "Every participant completes AI + human verification with certificates, bank details, and ethical scoring." },
-      { step: 2, title: "Connect & Transact", desc: "Smart matching, on-chain POs, live GPS/IoT tracking, automated payments, and RIAD risk scoring." },
-      { step: 3, title: "Track & Improve", desc: "QR scan reveals full journey. AI insights predict delays and link every purchase to UN SDGs." }
+      {
+        step: 1,
+        title: "Register & verify",
+        desc: "Company profile, team, certificates. Multi-entity groups get separate workspaces.",
+      },
+      {
+        step: 2,
+        title: "Connect & trade",
+        desc: "Discover or invite partners. Handshakes, POs, docs, and OTIFEF scorecards.",
+      },
+      {
+        step: 3,
+        title: "Operate · prove · improve",
+        desc: "Inventory, manufacturing, distribution, finance — plus SHEQ incidents, QA holds, traceability, CAPA, and auditor packs when it matters.",
+      },
     ],
     forStakeholders: [
-      { title: "For Conscious Consumers", desc: "Scan any product. See the complete verified story. Shop only verified ethical brands." },
-      { title: "For Business", desc: "Total visibility from farm to shelf. AI-powered supplier matching and predictive logistics." },
-      { title: "For Government", desc: "Transparent public procurement and real-time corruption detection." }
+      {
+        title: "Business",
+        desc: "Manufacturers, distributors, traders — full ops OS with verified network.",
+      },
+      {
+        title: "Government",
+        desc: "Transparent procurement and decision tools for public sector impact.",
+      },
+      {
+        title: "Consumers",
+        desc: "Scan passports, support ethical brands, shop with real provenance.",
+      },
     ],
-    impact: "The same platform trusted by SupplierAdvisor® users globally. Now supercharged for African sovereignty."
+    impact:
+      "One chain. Zero blind spots. 30-day free trial, then from R499/mo — first 50 companies free for life on SupplierAdvisor®.",
   },
   {
     slug: "leadership",
@@ -124,8 +151,9 @@ export const companies: Company[] = [
     fullName: "Big Five Leadership",
     color: "#eab308",
     icon: "Award",
-    tagline: "Super-Cube® Doctoral Model • Ethical AI Leadership • Sovereign Decision Making",
-    description: "World-class leadership development rooted in Dr. Craig R. Muller’s Super-Cube® doctoral model.",
+    tagline: "Super-Cube® • Signal over Noise • Leadership Intelligence",
+    description:
+      "Super-Cube® leadership development for the humans who run the system — the same Intelligence layer on SupplierAdvisor® that pairs enterprise health with doctoral-grade decision capability.",
     heroText: "Leadership That Builds Nations. Not Just Companies.",
     howItWorks: [
       { step: 1, title: "Assess & Diagnose", desc: "Proprietary Super-Cube® 360° assessment measuring 8 dimensions of ethical leadership." },
@@ -145,8 +173,9 @@ export const companies: Company[] = [
     fullName: "Big Five Foundation",
     color: "#0d9488",
     icon: "Heart",
-    tagline: "On-Chain NPO • Measurable Impact • Sovereign Philanthropy",
-    description: "The philanthropic engine of the group. We design, fund, and measure high-impact initiatives with radical transparency.",
+    tagline: "On-Chain Impact • Verified Spend • SDG Alignment",
+    description:
+      "Philanthropy with the same discipline as trade: verified counterparties, traceable deployment, and transparent chains that support Zero Hunger, Responsible Consumption, and Climate Action.",
     heroText: "Every Rand Tracked. Every Life Changed. Forever.",
     howItWorks: [
       { step: 1, title: "Design & Fund", desc: "Co-create initiatives with communities. Every project has clear theory of change and on-chain escrow." },
@@ -166,8 +195,9 @@ export const companies: Company[] = [
     fullName: "Big Five Impact",
     color: "#7c3aed",
     icon: "Target",
-    tagline: "Project Management • Cross-Pillar Delivery • Continental Results",
-    description: "The project management arm of Big Five Group — orchestrating programmes across Agri, Foods, Direct, Access, Connect, Leadership and Foundation to deliver measurable impact across the African continent.",
+    tagline: "Portfolio & Milestones • Cross-Entity Delivery • Live Controls",
+    description:
+      "Programme delivery across Big Five entities on one OS — projects, milestones, verified suppliers, and SHEQ/QA controls so trust and operations never diverge.",
     heroText: "From Strategy to Delivery. Across Africa. On Time. On Impact.",
     howItWorks: [
       { step: 1, title: "Scope & Design", desc: "Define outcomes with governments, funders, and communities. Align every workstream to SDGs and commercial sustainability." },
@@ -187,8 +217,9 @@ export const companies: Company[] = [
     fullName: "Big Five Global",
     color: "#0ea5e9",
     icon: "Globe",
-    tagline: "International Partnerships • African Standards • Global Impact",
-    description: "Extending African sovereignty, ethical leadership, and regenerative commerce to the world stage through strategic global partnerships.",
+    tagline: "Verified Network • Multi-Company Groups • Global Trade",
+    description:
+      "International partners join the same verified trading network — membership-scoped workspaces, OTIFEF ratings, and on-chain options when capital or pedigree must be proven across borders.",
     heroText: "Africa Rising. The World Watching. Leading with Purpose.",
     howItWorks: [
       { step: 1, title: "Build Global Alliances", desc: "Form strategic partnerships with governments, institutions, and corporations across continents." },

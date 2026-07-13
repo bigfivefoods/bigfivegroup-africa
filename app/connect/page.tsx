@@ -8,75 +8,57 @@ import {
   SectionHeading,
   FeatureGrid,
   StatRow,
+  ProcessSteps,
   FinalCta,
 } from "../components/PageSections";
 import {
   CheckCircle,
-  Users,
-  Building2,
-  Award,
-  QrCode,
   Play,
-  Leaf,
-  Factory,
-  Truck,
-  ShoppingCart,
   ShieldCheck,
   Activity,
+  BadgeCheck,
   ExternalLink,
+  Package,
+  Factory,
+  Truck,
+  ClipboardCheck,
+  Landmark,
+  Brain,
+  Users,
+  Building2,
+  School,
+  ShoppingBag,
 } from "lucide-react";
+import { sa, SA_URL, SA_ONBOARDING, SA_PRICING, SA_EMAIL } from "../lib/saCopy";
 
 const ACCENT = "#06b6d4";
-const SA_URL = "https://www.supplieradvisor.com/";
+
+const moduleIcons = [
+  Activity,
+  Users,
+  ShoppingBag,
+  Package,
+  Factory,
+  Truck,
+  ClipboardCheck,
+  BadgeCheck,
+  Landmark,
+  Brain,
+];
 
 export default function ConnectPage() {
   const [demoStep, setDemoStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const demoSteps = [
-    {
-      icon: Leaf,
-      title: "Farm sourcing",
-      location: "KwaZulu-Natal, South Africa",
-      desc: "Regenerative maize farm — verified leadership, soil health score 94%, carbon-negative practices.",
-      tx: "0x7f3a…9b2e",
-      time: "Live batch origin",
-    },
-    {
-      icon: Factory,
-      title: "Big Five Foods factory",
-      location: "Pinetown, KwaZulu-Natal",
-      desc: "Fortified production — FSSC 22000, ISO 9001, on-chain batch integrity.",
-      tx: "0x4c2b…1f9a",
-      time: "Manufacturing verified",
-    },
-    {
-      icon: Truck,
-      title: "Logistics network",
-      location: "National distribution",
-      desc: "Live GPS + integrity tracking — OTIF performance with carbon offset verification.",
-      tx: "0x9d1e…7c4b",
-      time: "In transit",
-    },
-    {
-      icon: ShoppingCart,
-      title: "Community delivery",
-      location: "Nongoma, Zululand, KZN",
-      desc: "Last-mile container — jobs created, fortified meals delivered, impact verified.",
-      tx: "0x2e8f…4a1d",
-      time: "Delivered · impact logged",
-    },
-  ];
 
   const startDemo = () => {
     setDemoStep(0);
     setIsPlaying(true);
     const interval = setInterval(() => {
       setDemoStep((prev) => {
-        if (prev < 3) return prev + 1;
+        if (prev < sa.storySteps.length - 1) return prev + 1;
         clearInterval(interval);
         setIsPlaying(false);
-        return 3;
+        return sa.storySteps.length - 1;
       });
     }, 1200);
   };
@@ -85,95 +67,53 @@ export default function ConnectPage() {
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/connect-hero.jpg"
-        eyebrow="PILLAR · CONNECT · SUPPLIERADVISOR®"
+        eyebrow={`CONNECT · ${sa.brand} · ${sa.productLine}`}
         title={
           <>
-            Verified.
+            ERP that ships.
             <br />
-            Transparent.
-            <br />
-            Professional.
+            Trust that blocks risk.
           </>
         }
-        subtitle="Big Five Connect is powered by SupplierAdvisor® — the platform where verified ethical companies trade with real-time order feedback, institutional trust, and end-to-end visibility."
+        subtitle={sa.heroSubtitle}
         ctas={[
           {
-            href: SA_URL,
-            label: "Launch SupplierAdvisor®",
+            href: SA_ONBOARDING,
+            label: sa.ctaTrial,
             primary: true,
             external: true,
           },
-          { href: "#demo", label: "See how it works" },
+          { href: "#how", label: "See how trust works" },
         ]}
         overlayClassName="bg-black/50"
       />
 
       <SupplierTrust entityName="Big Five Group companies" compact />
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-        <SectionHeading
-          eyebrow="THE TRUST LAYER"
-          title="Why serious buyers choose SupplierAdvisor®"
-          subtitle="This is not a brochure site for suppliers. It is a live commerce network where legitimacy is earned, published, and continuously proven."
-        />
-        <FeatureGrid
-          accent={ACCENT}
-          items={[
-            {
-              icon: ShieldCheck,
-              title: "Verified ethical companies",
-              desc: "Big Five entities and counterparties are listed as verified ethical companies — credentials counterparties can review.",
-            },
-            {
-              icon: Activity,
-              title: "Orders with real-time feedback",
-              desc: "Purchase orders, status, and fulfilment signals in real time — reducing risk for buyers and suppliers.",
-            },
-            {
-              icon: Award,
-              title: "Institutional-grade process",
-              desc: "Built for B2B, B2G, and complex supply chains that need auditability, not just marketing claims.",
-            },
-            {
-              icon: QrCode,
-              title: "Farm-to-fork visibility",
-              desc: "Trace journeys from regenerative origin through manufacturing to last-mile impact.",
-            },
-            {
-              icon: Building2,
-              title: "Enterprise & government ready",
-              desc: "Procurement teams and ministries get cleaner supplier bases and transparent delivery paths.",
-            },
-            {
-              icon: Users,
-              title: "Network effects for Africa",
-              desc: "The same rails power Big Five Agri, Foods, Direct, Access, and Impact programmes.",
-            },
-          ]}
-        />
-      </section>
-
-      <section className="bg-white border-y border-black/10 py-16">
+      {/* Pricing strip */}
+      <section className="bg-white border-b border-black/10 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <StatRow
             accent={ACCENT}
             stats={[
-              { value: "B2B", label: "Business commerce" },
-              { value: "B2G", label: "Government procurement" },
-              { value: "B2C", label: "Conscious consumer paths" },
-              { value: "Live", label: "Real-time order feedback" },
+              { value: "25+", label: "Modules" },
+              { value: "30d", label: "Free trial" },
+              { value: "Yes", label: "On-chain ready" },
+              { value: "R499", label: "From / month" },
             ]}
           />
+          <p className="text-center text-sm text-[#525252] mt-6">{sa.foundingBody}</p>
         </div>
       </section>
 
-      <section id="demo" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      {/* 60-second story */}
+      <section id="how" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <SectionHeading
-          eyebrow="LIVE JOURNEY DEMO"
-          title="Watch value move with verification"
-          subtitle="A simplified view of how a verified supply chain progresses — the full experience lives on SupplierAdvisor®."
+          eyebrow="60-second story"
+          title="How trust blocks risk — without a demo call"
+          subtitle="Connect · Trade · Inspect · SHEQ — live control on one chain."
         />
-        <div className="flex justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button
             type="button"
             onClick={startDemo}
@@ -181,7 +121,7 @@ export default function ConnectPage() {
             className="premium-button inline-flex items-center gap-2 bg-black text-white px-7 py-3 rounded-full font-semibold disabled:opacity-50"
           >
             <Play className="w-4 h-4" />
-            {isPlaying ? "Playing…" : "Play demo"}
+            {isPlaying ? "Playing…" : "Play story"}
           </button>
           <a
             href={SA_URL}
@@ -194,9 +134,8 @@ export default function ConnectPage() {
           </a>
         </div>
         <div className="space-y-3">
-          {demoSteps.map((step, i) => {
+          {sa.storySteps.map((step, i) => {
             const active = i <= demoStep;
-            const Icon = step.icon;
             return (
               <motion.div
                 key={step.title}
@@ -209,24 +148,18 @@ export default function ConnectPage() {
                 }`}
               >
                 <div
-                  className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
+                  className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 font-semibold ${
                     active ? "bg-cyan-100 text-cyan-700" : "bg-black/5 text-[#737373]"
                   }`}
                 >
-                  <Icon className="w-6 h-6" />
+                  {String(i + 1).padStart(2, "0")}
                 </div>
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <h3 className="font-semibold text-lg text-black">{step.title}</h3>
-                    {active && (
-                      <CheckCircle className="w-4 h-4 text-cyan-600" />
-                    )}
-                  </div>
-                  <div className="text-xs text-[#737373] mb-2">
-                    {step.location} · {step.time}
+                    {active && <CheckCircle className="w-4 h-4 text-cyan-600" />}
                   </div>
                   <p className="text-[#525252] leading-relaxed">{step.desc}</p>
-                  <div className="mt-2 font-mono text-xs text-cyan-700">{step.tx}</div>
                 </div>
               </motion.div>
             );
@@ -234,18 +167,146 @@ export default function ConnectPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Big Five Connect / SupplierAdvisor® network companies" />
+      {/* Multi-entity */}
+      <section className="bg-white border-y border-black/10 py-16 sm:py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-xs tracking-[3px] text-[#525252] mb-3">Multi-entity pattern</div>
+          <h2 className="section-heading text-black mb-5">{sa.multiEntityTitle}</h2>
+          <p className="text-lg text-[#525252] max-w-3xl mx-auto leading-relaxed mb-8">
+            {sa.multiEntityBody}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
+            {["Entity A · Foods", "Entity B · Direct", "Entity C · Access", "Entity D · Region"].map(
+              (label) => (
+                <span
+                  key={label}
+                  className="rounded-full border border-black/10 bg-[#fafafa] px-4 py-2 text-[#404040]"
+                >
+                  {label}
+                </span>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Modules */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
+        <SectionHeading
+          eyebrow="Product"
+          title={sa.missionTitle}
+          subtitle={sa.missionBody}
+        />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {sa.modules.map((mod, i) => {
+            const Icon = moduleIcons[i] ?? Activity;
+            return (
+              <div
+                key={mod.title}
+                className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 min-w-0"
+              >
+                <div className="text-xs tracking-[2px] text-[#737373] mb-2">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <Icon className="w-8 h-8 mb-3" style={{ color: ACCENT }} />
+                <h3 className="text-xl font-semibold tracking-tight text-black mb-1">{mod.title}</h3>
+                <div className="text-sm font-medium text-[#404040] mb-2">{mod.subtitle}</div>
+                <p className="text-sm text-[#525252] leading-relaxed">{mod.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Trust layer */}
+      <section className="bg-white border-y border-black/10 py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Trust layer" title={sa.trustTitle} subtitle={sa.trustBody} />
+          <FeatureGrid
+            accent={ACCENT}
+            items={sa.trustPoints.map((p, i) => ({
+              icon: [ShieldCheck, Activity, Package, ClipboardCheck, BadgeCheck, Landmark][i] ?? ShieldCheck,
+              title: p.title,
+              desc: p.desc,
+            }))}
+          />
+        </div>
+      </section>
+
+      {/* Four steps */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
+        <SectionHeading eyebrow="How it works" title={sa.howTitle} />
+        <ProcessSteps
+          accent={ACCENT}
+          steps={sa.steps.map((s) => ({
+            step: s.step,
+            title: s.title,
+            desc: s.desc,
+          }))}
+        />
+      </section>
+
+      {/* Stakeholders */}
+      <section className="bg-[#0a0a0a] text-white py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="text-xs tracking-[3px] text-white/40 mb-3">Who it&apos;s for</div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-4">
+              One platform. Every stakeholder.
+            </h2>
+            <p className="text-white/65 max-w-2xl mx-auto">{sa.networkBlurb}</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {sa.stakeholders.map((s, i) => {
+              const Icon = [Building2, ShoppingBag, Landmark, School][i] ?? Building2;
+              return (
+                <div
+                  key={s.title}
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] p-6"
+                >
+                  <Icon className="w-7 h-7 text-cyan-400 mb-3" />
+                  <h3 className="font-semibold text-lg mb-2">{s.title}</h3>
+                  <p className="text-sm text-white/60 leading-relaxed">{s.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={SA_ONBOARDING}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-full font-semibold"
+            >
+              {sa.ctaWorkspace}
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href={SA_EMAIL}
+              className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white/10"
+            >
+              {sa.ctaDemo}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <SupplierTrust entityName="Big Five Connect and group entities" />
 
       <FinalCta
-        eyebrow="LAUNCH CONNECT"
-        title="Trade with verified ethical companies"
-        subtitle="Open SupplierAdvisor® for live profiles, orders, and real-time feedback — the professional backbone of Big Five commerce."
+        eyebrow="The network is open"
+        title={sa.finalTitle}
+        subtitle={sa.finalBody}
         primary={{
-          href: SA_URL,
-          label: "Go to www.supplieradvisor.com",
+          href: SA_ONBOARDING,
+          label: "Get started in under 5 minutes",
           external: true,
         }}
-        secondary={{ href: "/impact", label: "See Big Five Impact PMO" }}
+        secondary={{
+          href: SA_PRICING,
+          label: "View pricing",
+          external: true,
+        }}
       />
     </div>
   );

@@ -20,7 +20,7 @@ import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
 
 const SUPER_CUBE_URL = "https://www.super-cube.com";
-const SUPPLIER_URL = "https://www.supplieradvisor.com/";
+const SUPPLIER_URL = "https://www.supplieradvisor.com/onboarding?type=business";
 
 export default function AboutPage() {
   return (
@@ -455,7 +455,7 @@ export default function AboutPage() {
         primary={{ href: "/connect", label: "Partner with Big Five" }}
         secondary={{
           href: SUPPLIER_URL,
-          label: "SupplierAdvisor®",
+          label: "Start free trial",
           external: true,
         }}
       />

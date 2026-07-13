@@ -10,8 +10,8 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="text-lg text-[#525252] mb-10">
-          The page you are looking for does not exist or has moved. Explore the
-          Big Five ecosystem instead.
+          The page you are looking for does not exist or has moved. Run trust on one OS instead —
+          SupplierAdvisor® for verified trade.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
@@ -21,13 +21,15 @@ export default function NotFound() {
             <Home className="w-4 h-4" />
             Back to Home
           </Link>
-          <Link
-            href="/connect"
+          <a
+            href="https://www.supplieradvisor.com/onboarding?type=business"
+            target="_blank"
+            rel="noopener noreferrer"
             className="premium-button inline-flex items-center justify-center gap-3 border border-black/15 px-8 py-4 rounded-full font-semibold text-black hover:bg-black/5"
           >
-            Launch Connect
+            Start free trial
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
         </div>
       </div>
     </div>

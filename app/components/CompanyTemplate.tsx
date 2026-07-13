@@ -47,12 +47,14 @@ export default function CompanyTemplate({ company }: { company: Company }) {
             >
               HOW IT WORKS
             </Link>
-            <Link
-              href="/connect"
+            <a
+              href="https://www.supplieradvisor.com/onboarding?type=business"
+              target="_blank"
+              rel="noopener noreferrer"
               className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/30 px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold text-white hover:bg-white/5 text-sm sm:text-base"
             >
-              LAUNCH CONNECT
-            </Link>
+              GET ACCESS
+            </a>
           </div>
         </div>
       </section>
@@ -125,13 +127,15 @@ export default function CompanyTemplate({ company }: { company: Company }) {
         <p className="text-lg sm:text-xl md:text-2xl text-[#404040] leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-12">
           {company.impact}
         </p>
-        <Link
-          href="/connect"
+        <a
+          href="https://www.supplieradvisor.com/onboarding?type=business"
+          target="_blank"
+          rel="noopener noreferrer"
           className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-black text-white px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base"
         >
-          Partner on {company.name}
+          Start free trial on SupplierAdvisor®
           <ArrowRight className="w-4 h-4 shrink-0" />
-        </Link>
+        </a>
       </section>
     </div>
   );

@@ -39,8 +39,8 @@ export default function AccessPage() {
         ctas={[
           { href: "#how", label: "How Access works", primary: true },
           {
-            href: "https://www.supplieradvisor.com/",
-            label: "Verified suppliers",
+            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            label: "Start free trial",
             external: true,
           },
         ]}
@@ -167,8 +167,8 @@ export default function AccessPage() {
         subtitle="Verified capital. Clean procurement. Institutional partnerships."
         primary={{ href: "/connect", label: "Talk to Access" }}
         secondary={{
-          href: "https://www.supplieradvisor.com/",
-          label: "SupplierAdvisor®",
+          href: "https://www.supplieradvisor.com/onboarding?type=business",
+          label: "Start free trial",
           external: true,
         }}
       />

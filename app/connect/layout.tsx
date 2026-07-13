@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Connect",
+  title: "Connect · SupplierAdvisor®",
   description:
-    "Big Five Connect — SupplierAdvisor® powered ethical blockchain ERP for verified African commerce.",
+    "ERP that ships. Trust that blocks risk. Big Five Connect is powered by SupplierAdvisor® — the supply-chain OS for verified trade, OTIFEF, SHEQ, lot traceability, and on-chain pedigree.",
   openGraph: {
-    title: "Big Five Connect | SupplierAdvisor®",
+    title: "Big Five Connect | SupplierAdvisor® Supply Chain OS",
     description:
-      "The operating system for ethical African commerce — blockchain verification and AI-powered trust.",
+      "One chain. Zero blind spots. Inventory, manufacturing, distribution, SHEQ & food safety, finance, and ratings in one light workspace.",
   },
 };
 

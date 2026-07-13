@@ -39,8 +39,8 @@ export default function AgriPage() {
         ctas={[
           { href: "#zulukingdom", label: "Zulu Kingdom partnership", primary: true },
           {
-            href: "https://www.supplieradvisor.com/",
-            label: "Verified on SupplierAdvisor®",
+            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            label: "Start free trial",
             external: true,
           },
         ]}
@@ -201,8 +201,8 @@ export default function AgriPage() {
         subtitle="Governments, institutions, investors, and farmers — there is a place for you in this movement."
         primary={{ href: "/connect", label: "Become an Agri partner" }}
         secondary={{
-          href: "https://www.supplieradvisor.com/",
-          label: "View on SupplierAdvisor®",
+          href: "https://www.supplieradvisor.com/onboarding?type=business",
+          label: "Start free trial",
           external: true,
         }}
       />

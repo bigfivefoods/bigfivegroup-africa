@@ -1,6 +1,5 @@
 import { ExternalLink, ShieldCheck, Activity, BadgeCheck } from "lucide-react";
-
-const SUPPLIER_URL = "https://www.supplieradvisor.com/";
+import { sa, SA_URL, SA_ONBOARDING } from "../lib/saCopy";
 
 export default function SupplierTrust({
   entityName = "Big Five companies",
@@ -16,25 +15,25 @@ export default function SupplierTrust({
           <div className="flex items-start sm:items-center gap-3 text-sm text-[#404040]">
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 sm:mt-0" />
             <span>
-              <strong className="text-black">{entityName}</strong> are listed on{" "}
+              <strong className="text-black">{entityName}</strong> run on{" "}
               <a
-                href={SUPPLIER_URL}
+                href={SA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
               >
-                SupplierAdvisor®
+                {sa.brand}
               </a>{" "}
-              as verified ethical companies — orders flow with real-time transparency.
+              — the supply-chain OS for verified trade. {sa.oneLiner}
             </span>
           </div>
           <a
-            href={SUPPLIER_URL}
+            href={SA_ONBOARDING}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-semibold text-black shrink-0 hover:opacity-70"
           >
-            Verify on SupplierAdvisor
+            {sa.ctaTrial}
             <ExternalLink className="w-4 h-4" />
           </a>
         </div>
@@ -49,42 +48,41 @@ export default function SupplierTrust({
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-emerald-400 mb-4">
               <BadgeCheck className="w-4 h-4" />
-              VERIFIED · ETHICAL · ON-PLATFORM
+              {sa.eyebrow}
             </div>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tighter mb-4">
-              Listed on SupplierAdvisor® as verified ethical companies
+              {sa.trustTitle}
             </h2>
-            <p className="text-white/70 text-lg leading-relaxed max-w-2xl">
-              Where applicable, {entityName} operate through{" "}
+            <p className="text-white/70 text-lg leading-relaxed max-w-2xl mb-4">
+              {sa.trustBody} Where applicable, {entityName} operate through{" "}
               <a
-                href={SUPPLIER_URL}
+                href={SA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white font-semibold underline underline-offset-4 hover:text-emerald-300"
               >
                 www.supplieradvisor.com
               </a>
-              — the same trusted network used for verified suppliers, ethical scoring, and live
-              transaction visibility. Buyers, governments, and partners can see legitimacy, not
-              just claims.
+              .
             </p>
+            <p className="text-white/50 text-sm">{sa.pricingNote}</p>
           </div>
           <div className="lg:col-span-5 space-y-3">
             {[
               {
                 icon: ShieldCheck,
-                title: "Verified ethical profiles",
-                desc: "Company credentials and ethical standards published for counterparties to review.",
+                title: "Verified companies",
+                desc: "CIPC-style verification and certificate metadata so counterparties know who they are trading with on the network.",
               },
               {
                 icon: Activity,
-                title: "Orders with real-time feedback",
-                desc: "Purchase orders, fulfilment signals, and live status reduce friction and risk.",
+                title: "Supplier ratings & OTIFEF",
+                desc: "Score every delivery On-Time, In-Full, Error-Free — peer ratings and RIAD risk that follow the trading edge.",
               },
               {
                 icon: BadgeCheck,
-                title: "Professional, auditable commerce",
-                desc: "Transparent pathways for B2B, B2G, and institutional procurement.",
+                title: "SHEQ that operators use",
+                desc: "ISO 45001-style incidents and ISO 9001-style NCR/CAPA — wired to the same inventory that runs the business.",
               },
             ].map((item) => (
               <div
@@ -99,12 +97,12 @@ export default function SupplierTrust({
               </div>
             ))}
             <a
-              href={SUPPLIER_URL}
+              href={SA_ONBOARDING}
               target="_blank"
               rel="noopener noreferrer"
               className="premium-button mt-2 w-full inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3.5 rounded-full font-semibold"
             >
-              Open SupplierAdvisor®
+              {sa.ctaTrial}
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>

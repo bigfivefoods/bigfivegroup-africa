@@ -38,8 +38,8 @@ export default function ImpactPage() {
         ctas={[
           { href: "#how", label: "How we deliver", primary: true },
           {
-            href: "https://www.supplieradvisor.com/",
-            label: "SupplierAdvisor®",
+            href: "https://www.supplieradvisor.com/onboarding?type=business",
+            label: "Start free trial",
             external: true,
           },
         ]}
@@ -176,8 +176,8 @@ export default function ImpactPage() {
         subtitle="From single-district pilots to multi-country programmes — Big Five Impact turns ambition into verified delivery."
         primary={{ href: "/connect", label: "Start a programme conversation" }}
         secondary={{
-          href: "https://www.supplieradvisor.com/",
-          label: "Open SupplierAdvisor®",
+          href: "https://www.supplieradvisor.com/onboarding?type=business",
+          label: "Start free trial",
           external: true,
         }}
       />
