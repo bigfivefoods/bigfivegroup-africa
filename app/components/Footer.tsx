@@ -61,12 +61,12 @@ export default function Footer() {
             <div className="uppercase tracking-[2px] text-xs font-semibold mb-4 text-[#525252]">
               The 10 Pillars
             </div>
-            <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 text-sm">
+            <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 text-sm min-w-0">
               {companies.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="hover:text-black/70 transition-colors"
+                  className="hover:text-black/70 transition-colors truncate"
                 >
                   {c.name}
                 </Link>

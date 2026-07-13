@@ -69,8 +69,8 @@ export default function PageHero({
           >
             {ctas.map((cta) => {
               const className = cta.primary
-                ? "premium-button w-full sm:w-auto sm:min-w-[12rem] inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-8 md:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
-                : "premium-button w-full sm:w-auto sm:min-w-[12rem] inline-flex items-center justify-center gap-2 sm:gap-3 border border-white/35 text-white px-5 sm:px-8 md:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold hover:bg-white/10";
+                ? "premium-button w-full sm:w-auto min-w-0 inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-8 md:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
+                : "premium-button w-full sm:w-auto min-w-0 inline-flex items-center justify-center gap-2 sm:gap-3 border border-white/35 text-white px-5 sm:px-8 md:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold hover:bg-white/10";
               if (cta.external) {
                 return (
                   <a

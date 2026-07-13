@@ -54,9 +54,9 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  // Close mobile drawer when crossing to desktop (xl = 1280px)
+  // Close mobile drawer when crossing to desktop (2xl = 1536px — room for 7 nav links)
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1280px)");
+    const mq = window.matchMedia("(min-width: 1536px)");
     const onChange = () => {
       if (mq.matches) setMobileOpen(false);
     };
@@ -87,8 +87,8 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop nav from xl (1280px): tablets & small laptops keep hamburger */}
-        <div className="hidden xl:flex items-center gap-5 2xl:gap-8 text-sm font-medium text-[#171717] shrink-0">
+        {/* Desktop nav from 2xl (1536px): phones/tablets/laptops use hamburger for 7 links */}
+        <div className="hidden 2xl:flex items-center gap-6 text-sm font-medium text-[#171717] shrink-0">
           {navLinks.map((link) =>
             link.isDropdown ? (
               <div
@@ -120,9 +120,9 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 xl:left-0 xl:translate-x-0 pt-3 z-50"
+                      className="absolute top-full left-0 pt-3 z-50"
                     >
-                      <div className="w-[min(22rem,calc(100vw-2rem))] sm:w-[min(25rem,calc(100vw-2rem))] bg-white rounded-3xl p-2 sm:p-3 shadow-xl border border-black/10 max-h-[min(70vh,32rem)] overflow-y-auto">
+                      <div className="w-[min(22rem,calc(100vw-2rem))] 2xl:w-[25rem] bg-white rounded-3xl p-2 sm:p-3 shadow-xl border border-black/10 max-h-[min(70vh,32rem)] overflow-y-auto">
                         <div className="flex flex-col">
                           {companies.map((company) => {
                             const active = pathname === `/${company.slug}`;
@@ -181,12 +181,12 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="hidden xl:block shrink-0">
+        <div className="hidden 2xl:block shrink-0">
           <a
             href="https://www.supplieradvisor.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="premium-button inline-flex items-center gap-2 2xl:gap-3 bg-black text-white px-5 2xl:px-7 py-2.5 2xl:py-3 rounded-full text-xs 2xl:text-sm font-semibold tracking-wide hover:bg-[#111] whitespace-nowrap"
+            className="premium-button inline-flex items-center gap-2 bg-black text-white px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide hover:bg-[#111] whitespace-nowrap"
           >
             LAUNCH CONNECT
             <ArrowRight className="w-4 h-4" />
@@ -196,7 +196,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="xl:hidden w-11 h-11 flex items-center justify-center text-black rounded-full hover:bg-black/5 shrink-0"
+          className="2xl:hidden w-11 h-11 flex items-center justify-center text-black rounded-full hover:bg-black/5 shrink-0"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >
@@ -210,7 +210,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="xl:hidden bg-white border-t border-black/10 max-h-[calc(100dvh-var(--navbar-height,4.5rem))] overflow-y-auto overscroll-contain"
+            className="2xl:hidden bg-white border-t border-black/10 max-h-[calc(100dvh-var(--navbar-height,4.5rem))] overflow-y-auto overscroll-contain"
           >
             <div className="px-4 sm:px-6 py-6 sm:py-8 flex flex-col gap-4 sm:gap-5 text-base sm:text-lg text-[#171717]">
               {navLinks.map((link) =>

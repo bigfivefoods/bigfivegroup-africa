@@ -176,23 +176,23 @@ export default function FoodsPage() {
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="CERTIFICATIONS" title="Quality the market can audit" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           {capabilities.map((c) => (
             <div
               key={c.name}
-              className="bg-white border border-black/10 rounded-3xl p-6 text-center hover:border-black/20 transition-colors"
+              className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center hover:border-black/20 transition-colors min-w-0"
             >
-              <div className="relative h-16 mb-4 flex items-center justify-center">
+              <div className="relative h-12 sm:h-16 mb-3 sm:mb-4 flex items-center justify-center">
                 <Image
                   src={c.logo}
                   alt={c.name}
                   width={80}
                   height={64}
-                  className="object-contain max-h-16"
+                  className="object-contain max-h-12 sm:max-h-16 w-auto max-w-full"
                 />
               </div>
-              <div className="font-semibold text-black text-sm mb-1">{c.name}</div>
-              <div className="text-xs text-[#525252] leading-snug">{c.desc}</div>
+              <div className="font-semibold text-black text-xs sm:text-sm mb-1">{c.name}</div>
+              <div className="text-[11px] sm:text-xs text-[#525252] leading-snug">{c.desc}</div>
             </div>
           ))}
         </div>

@@ -106,9 +106,10 @@ export default function Home() {
           >
             <Link
               href="#pillars"
-              className="premium-button group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-black px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
+              className="premium-button group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
             >
-              EXPLORE THE 10 PILLARS
+              <span className="sm:hidden">EXPLORE PILLARS</span>
+              <span className="hidden sm:inline">EXPLORE THE 10 PILLARS</span>
               <ArrowRight className="group-hover:translate-x-1 transition w-5 h-5 shrink-0" />
             </Link>
             <Link

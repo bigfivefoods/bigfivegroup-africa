@@ -217,30 +217,30 @@ export default function AfricaPage() {
             spanning Southern, East, West, and Central Africa.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {ACTIVE_CARDS.map((c) => (
             <div
               key={c.n}
-              className="flex items-center gap-4 bg-white border border-[#a7f3d0]/80 rounded-3xl p-5 shadow-sm"
+              className="flex items-center gap-3 sm:gap-4 bg-white border border-[#a7f3d0]/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-sm min-w-0"
             >
               <Image
                 src={`https://flagcdn.com/w80/${c.f.toLowerCase()}.png`}
                 alt={c.n}
                 width={44}
                 height={30}
-                className="rounded-sm border border-black/10 object-cover"
+                className="rounded-sm border border-black/10 object-cover shrink-0 w-11 h-[30px]"
               />
-              <div>
-                <div className="font-semibold text-black">
+              <div className="min-w-0">
+                <div className="font-semibold text-black truncate">
                   {c.n === "Democratic Republic of the Congo" ? "DRC" : c.n}
                 </div>
                 <div className="text-xs text-[#065f46] font-medium flex items-center gap-1 mt-0.5">
                   {c.n === "Kenya" ? (
-                    <Building2 className="w-3 h-3" />
+                    <Building2 className="w-3 h-3 shrink-0" />
                   ) : (
-                    <MapPin className="w-3 h-3" />
+                    <MapPin className="w-3 h-3 shrink-0" />
                   )}
-                  {c.r}
+                  <span className="truncate">{c.r}</span>
                 </div>
               </div>
             </div>
@@ -275,13 +275,13 @@ export default function AfricaPage() {
                 <h3 className="text-3xl font-semibold tracking-tighter text-black mb-6">
                   {region.name}
                 </h3>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {region.countries.map((country) => {
                     const isActive = ACTIVE.has(country.name);
                     return (
                       <div
                         key={country.name}
-                        className={`rounded-3xl border p-6 flex flex-col ${
+                        className={`rounded-2xl sm:rounded-3xl border p-4 sm:p-6 flex flex-col min-w-0 ${
                           isActive
                             ? "bg-[#ecfdf5]/80 border-[#a7f3d0]"
                             : "bg-[#fafafa] border-black/10"

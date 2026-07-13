@@ -270,22 +270,22 @@ export default function RoyalPage() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
+          <div className="flex flex-col md:flex-row gap-3 sm:gap-4 justify-center items-stretch md:items-center max-w-sm md:max-w-none mx-auto w-full">
             <Link
               href="/foods"
-              className="premium-button inline-flex items-center justify-center gap-3 bg-[#f59e0b] text-black px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold"
+              className="premium-button w-full md:w-auto inline-flex items-center justify-center gap-3 bg-[#f59e0b] text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold"
             >
               Feed · Foods
             </Link>
             <Link
               href="/leadership"
-              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10"
+              className="premium-button w-full md:w-auto inline-flex items-center justify-center gap-3 border border-white/30 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white/10"
             >
               Educate · Leadership
             </Link>
             <Link
               href="/access"
-              className="premium-button inline-flex items-center justify-center gap-3 border border-white/30 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/10"
+              className="premium-button w-full md:w-auto inline-flex items-center justify-center gap-3 border border-white/30 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white/10"
             >
               Empower · Access
             </Link>

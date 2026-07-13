@@ -302,11 +302,12 @@ function flagUrl(name: string) {
 
 function CountryFlag({ name, size = 40 }: { name: string; size?: number }) {
   const src = flagUrl(name);
+  const h = Math.round(size * 0.7);
   if (!src) {
     return (
       <div
-        className="rounded-md bg-black/5 border border-black/10 flex items-center justify-center text-[10px] font-semibold text-[#525252]"
-        style={{ width: size, height: Math.round(size * 0.7) }}
+        className="rounded-md bg-black/5 border border-black/10 flex items-center justify-center text-[10px] font-semibold text-[#525252] shrink-0"
+        style={{ width: size, height: h }}
       >
         ···
       </div>
@@ -317,8 +318,9 @@ function CountryFlag({ name, size = 40 }: { name: string; size?: number }) {
       src={src}
       alt={`${name} flag`}
       width={size}
-      height={Math.round(size * 0.7)}
-      className="rounded-sm border border-black/10 object-cover shadow-sm"
+      height={h}
+      className="rounded-sm border border-black/10 object-cover shadow-sm shrink-0"
+      style={{ width: size, height: h }}
     />
   );
 }
@@ -353,7 +355,9 @@ export default function GlobalPage() {
           >
             Building distribution.
             <br />
-            Route to market. Expanding with purpose.
+            Route to market.
+            <br />
+            Expanding with purpose.
           </motion.h1>
 
           <motion.p
@@ -434,7 +438,7 @@ export default function GlobalPage() {
                 <span className="w-2 h-2 rounded-full bg-[#0ea5e9] animate-pulse" />
                 DISTRIBUTION · ROUTE TO MARKET
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black text-balance">
                 Building our distribution and route-to-market strategy
               </h2>
               <p className="mt-4 text-lg text-[#525252] max-w-2xl">
@@ -456,7 +460,7 @@ export default function GlobalPage() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
             {ACTIVE_COUNTRIES.map((country, i) => (
               <motion.article
                 key={country.name}
@@ -464,38 +468,43 @@ export default function GlobalPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: Math.min(i * 0.04, 0.28) }}
-                className="group relative bg-[#fafafa] border border-black/10 rounded-[1.75rem] p-7 sm:p-8 hover:border-[#0ea5e9]/40 hover:shadow-[0_20px_50px_-20px_rgba(14,165,233,0.35)] transition-all"
+                className="group flex flex-col bg-[#fafafa] border border-black/10 rounded-2xl sm:rounded-[1.75rem] p-5 sm:p-7 md:p-8 hover:border-[#0ea5e9]/40 hover:shadow-[0_20px_50px_-20px_rgba(14,165,233,0.35)] transition-all min-w-0"
               >
-                <div className="absolute top-6 right-6">
-                  <span className="text-[10px] uppercase tracking-[1.5px] font-semibold text-[#0369a1] bg-[#e0f2fe] px-2.5 py-1 rounded-full">
-                    Route to market
+                <div className="flex items-start justify-between gap-3 mb-4 sm:mb-5">
+                  <div className="flex items-start gap-3 sm:gap-4 min-w-0">
+                    <CountryFlag name={country.name} size={40} />
+                    <div className="min-w-0">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-black leading-tight">
+                        {country.name === "Democratic Republic of the Congo"
+                          ? "DRC"
+                          : country.name}
+                      </h3>
+                      <div className="text-xs sm:text-sm text-[#075985] font-medium mt-0.5">
+                        {country.role}
+                      </div>
+                    </div>
+                  </div>
+                  <span className="shrink-0 text-[9px] sm:text-[10px] uppercase tracking-[1px] font-semibold text-[#0369a1] bg-[#e0f2fe] px-2 py-1 rounded-full whitespace-nowrap">
+                    RTM
                   </span>
                 </div>
 
-                <div className="flex items-start gap-4 mb-5 pr-16">
-                  <CountryFlag name={country.name} size={48} />
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-black leading-tight">
-                      {country.name}
-                    </h3>
-                    <div className="text-sm text-[#075985] font-medium mt-0.5">{country.role}</div>
-                  </div>
-                </div>
-
-                <div className="text-xs uppercase tracking-[1.5px] text-[#737373] mb-3">
+                <div className="text-[10px] sm:text-xs uppercase tracking-[1.5px] text-[#737373] mb-2 sm:mb-3">
                   {country.focus}
                 </div>
-                <p className="text-[#404040] leading-relaxed text-[15px] mb-5">{country.summary}</p>
+                <p className="text-[#404040] leading-relaxed text-sm sm:text-[15px] mb-4 sm:mb-5 flex-1">
+                  {country.summary}
+                </p>
 
-                <div className="flex items-center gap-2 text-sm font-medium text-[#075985]">
+                <div className="flex items-start gap-2 text-xs sm:text-sm font-medium text-[#075985]">
                   {country.name === "Kenya" ? (
-                    <Building2 className="w-4 h-4 shrink-0" />
+                    <Building2 className="w-4 h-4 shrink-0 mt-0.5" />
                   ) : country.name === "South Africa" ? (
-                    <Sparkles className="w-4 h-4 shrink-0" />
+                    <Sparkles className="w-4 h-4 shrink-0 mt-0.5" />
                   ) : (
-                    <MapPin className="w-4 h-4 shrink-0" />
+                    <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
                   )}
-                  {country.highlight}
+                  <span className="leading-snug">{country.highlight}</span>
                 </div>
               </motion.article>
             ))}

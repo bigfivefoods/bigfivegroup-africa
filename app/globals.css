@@ -16,6 +16,12 @@
     "Courier New", monospace;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* Tailwind v4 — override default ui-sans-serif so utilities match SA */
 @theme {
   --font-sans: Inter, system-ui, sans-serif;
@@ -79,10 +85,18 @@ img[style*="position:absolute"] {
   max-width: none;
 }
 
-/* Tables / long words */
+/* Tables / long words — keep layout stable on narrow screens */
 main {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   word-break: normal;
+  hyphens: auto;
+}
+
+/* Avoid iOS zoom on form fields if any appear later */
+input,
+select,
+textarea {
+  font-size: 16px;
 }
 
 /* Touch-friendly interactive targets on small screens */
