@@ -77,14 +77,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="font-sans text-white text-[clamp(1.85rem,5.5vw+0.5rem,4.5rem)] font-semibold tracking-tighter leading-[1.02] sm:leading-[0.98] mb-5 sm:mb-6"
+            className="font-sans text-white text-[clamp(1.85rem,5.5vw+0.5rem,4.5rem)] font-semibold tracking-tighter leading-[1.02] sm:leading-[0.98] mb-5 sm:mb-6 text-balance normal-case"
             style={{ fontFamily: "Inter, system-ui, sans-serif" }}
           >
-            ONE GROUP.
+            One Group.
             <br />
-            TEN PILLARS.
+            Ten Pillars.
             <br />
-            INFINITE IMPACT.
+            Infinite African Impact.
           </motion.h1>
 
           <motion.p
