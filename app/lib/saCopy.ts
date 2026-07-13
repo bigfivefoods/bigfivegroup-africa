@@ -12,6 +12,9 @@ export const SA_CONTAINERS = "https://www.supplieradvisor.com/dashboard/containe
 export const SA_CONTAINERS_MAP = "https://www.supplieradvisor.com/dashboard/containers/map";
 export const SA_CONTAINERS_SETTINGS =
   "https://www.supplieradvisor.com/dashboard/containers/settings";
+/** Public embed — live container map for website (no login for viewers) */
+export const SA_CONTAINERS_EMBED =
+  "https://www.supplieradvisor.com/embed/containers/7ed31309918440bdb71f1b02a6ff9313";
 export const SA_EMAIL = "mailto:connect@supplieradvisor.com?subject=Demo%20request%20%E2%80%94%20SupplierAdvisor";
 export const SA_WHATSAPP =
   "https://wa.me/27825814215?text=Hi%20%E2%80%94%20I'd%20like%20a%20SupplierAdvisor%20demo";

@@ -48,6 +48,8 @@ export type FoodsNetworkPayload = {
     containersUrl: string;
     containersMapUrl: string;
     containersSettingsUrl: string;
+    /** Public iframe embed of live container map */
+    containersEmbedUrl: string;
     description: string;
   };
   impact: FoodsImpact;
@@ -69,6 +71,8 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
     containersUrl: "https://www.supplieradvisor.com/dashboard/containers",
     containersMapUrl: "https://www.supplieradvisor.com/dashboard/containers/map",
     containersSettingsUrl: "https://www.supplieradvisor.com/dashboard/containers/settings",
+    containersEmbedUrl:
+      "https://www.supplieradvisor.com/embed/containers/7ed31309918440bdb71f1b02a6ff9313",
     description:
       "Verified on SupplierAdvisor® — fortified nutrition manufacturing and containerised distribution that Direct uses for last-mile route-to-market. Live container sites and settings are managed in the Foods workspace on SupplierAdvisor®.",
   },

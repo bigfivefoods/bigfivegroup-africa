@@ -17,6 +17,7 @@ import {
   SA_CONTAINERS,
   SA_CONTAINERS_MAP,
   SA_CONTAINERS_SETTINGS,
+  SA_CONTAINERS_EMBED,
 } from "../lib/saCopy";
 
 function formatNum(n: number) {
@@ -111,22 +112,20 @@ export default function FoodsNetworkPanel() {
             </div>
             <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               <a
-                href={data.company.containersUrl ?? SA_CONTAINERS}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#live-map"
                 className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-full text-sm font-semibold"
               >
-                Open containers on SupplierAdvisor®
-                <ExternalLink className="w-4 h-4" />
+                View live container map
+                <MapPin className="w-4 h-4" />
               </a>
               <a
-                href={data.company.containersMapUrl ?? SA_CONTAINERS_MAP}
+                href={data.company.containersUrl ?? SA_CONTAINERS}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5"
               >
-                Container map
-                <MapPin className="w-4 h-4" />
+                Open containers on SA
+                <ExternalLink className="w-4 h-4" />
               </a>
               <a
                 href={data.company.containersSettingsUrl ?? SA_CONTAINERS_SETTINGS}
@@ -134,7 +133,7 @@ export default function FoodsNetworkPanel() {
                 rel="noopener noreferrer"
                 className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5"
               >
-                Container settings
+                Manage settings
               </a>
               <a
                 href="/foods"
@@ -144,16 +143,16 @@ export default function FoodsNetworkPanel() {
               </a>
             </div>
             <p className="mt-4 text-xs text-[#737373] leading-relaxed max-w-xl">
-              Live sites are managed in the Big Five Foods workspace:{" "}
+              Live map is embedded from SupplierAdvisor®. Operators update sites in{" "}
               <a
                 href={SA_CONTAINERS_SETTINGS}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-black underline underline-offset-2"
               >
-                dashboard/containers/settings
+                container settings
               </a>
-              . Log in with your SupplierAdvisor® account to edit locations and publish updates.
+              .
             </p>
           </div>
           <div className="lg:col-span-5 p-6 sm:p-8 md:p-10 bg-[#0a0a0a] text-white flex flex-col justify-center min-w-0">
@@ -236,90 +235,95 @@ export default function FoodsNetworkPanel() {
         </div>
       </div>
 
-      {/* Container locations */}
-      <div>
+      {/* Live SA embed + snapshot list */}
+      <div id="live-map" className="scroll-mt-28">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
           <div>
             <div className="flex items-center gap-2 text-xs tracking-[2px] text-[#c2410c] mb-2">
               <Package className="w-4 h-4" />
-              CONTAINER NETWORK
+              LIVE ON SUPPLIERADVISOR®
             </div>
             <h3 className="text-xl sm:text-2xl font-semibold tracking-tighter text-black">
               Where our containers are located
             </h3>
             <p className="text-sm text-[#525252] mt-1 max-w-2xl">
-              Sites operated through Big Five Foods on SupplierAdvisor® — the physical layer Direct
-              activates for last-mile and institutional supply. Source of truth:{" "}
-              <a
-                href={data.company.containersUrl ?? SA_CONTAINERS}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-black underline underline-offset-2"
-              >
-                SA containers dashboard
-              </a>
-              .
+              Live embed from Big Five Foods on SupplierAdvisor® — updates when operators change
+              sites in the containers workspace.
             </p>
           </div>
           <div className="flex flex-col items-start sm:items-end gap-2 shrink-0">
-            <div className="text-xs text-[#737373]">
-              {data.containers.length} sites · {activeCount} active
-            </div>
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+              Live embed
+            </span>
             <a
-              href={data.company.containersMapUrl ?? SA_CONTAINERS_MAP}
+              href={data.company.containersEmbedUrl ?? SA_CONTAINERS_EMBED}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-semibold text-black underline underline-offset-2"
             >
-              Open live map on SA
+              Open embed full screen
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-          {data.containers.map((site) => (
-            <div
-              key={site.id}
-              className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 flex flex-col min-w-0"
-            >
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <div className="flex items-start gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#c2410c] flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="font-semibold text-black leading-snug">{site.name}</h4>
-                    <p className="text-sm text-[#525252]">{site.location}</p>
-                  </div>
-                </div>
-                <span
-                  className={`shrink-0 text-[10px] uppercase tracking-[1px] font-semibold px-2 py-1 rounded-full border ${statusStyle[site.status]}`}
-                >
-                  {site.status}
-                </span>
-              </div>
-              <p className="text-sm text-[#404040] leading-relaxed mb-3">{site.role}</p>
-              <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#737373]">
-                <span className="inline-flex items-center gap-1">
-                  <Activity className="w-3.5 h-3.5" />
-                  {site.region}
-                </span>
-                {typeof site.mealsServed === "number" && (
-                  <span>{formatNum(site.mealsServed)} meals impact</span>
-                )}
-                <a
-                  href={`https://www.openstreetmap.org/?mlat=${site.lat}&mlon=${site.lng}#map=10/${site.lat}/${site.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-black underline underline-offset-2 hover:opacity-70"
-                >
-                  Map
-                </a>
-              </div>
-            </div>
-          ))}
+        <div className="relative w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-black/10 bg-[#f5f5f5] shadow-sm min-h-[320px] sm:min-h-[420px] md:min-h-[520px] h-[min(70vh,640px)]">
+          <iframe
+            src={data.company.containersEmbedUrl ?? SA_CONTAINERS_EMBED}
+            title="Big Five Foods containers on SupplierAdvisor®"
+            className="absolute inset-0 h-full w-full border-0"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allow="geolocation; fullscreen"
+          />
         </div>
+
+        <details className="mt-6 group">
+          <summary className="cursor-pointer list-none flex items-center justify-between gap-3 rounded-2xl border border-black/10 bg-white px-5 py-4 text-sm font-semibold text-black hover:bg-[#fafafa]">
+            <span>
+              Published snapshot · {data.containers.length} sites · {activeCount} active
+            </span>
+            <span className="text-xs font-medium text-[#737373] group-open:hidden">Show list</span>
+            <span className="text-xs font-medium text-[#737373] hidden group-open:inline">
+              Hide list
+            </span>
+          </summary>
+          <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+            {data.containers.map((site) => (
+              <div
+                key={site.id}
+                className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 flex flex-col min-w-0"
+              >
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-start gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#c2410c] flex items-center justify-center shrink-0">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-semibold text-black leading-snug">{site.name}</h4>
+                      <p className="text-sm text-[#525252]">{site.location}</p>
+                    </div>
+                  </div>
+                  <span
+                    className={`shrink-0 text-[10px] uppercase tracking-[1px] font-semibold px-2 py-1 rounded-full border ${statusStyle[site.status]}`}
+                  >
+                    {site.status}
+                  </span>
+                </div>
+                <p className="text-sm text-[#404040] leading-relaxed mb-3">{site.role}</p>
+                <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#737373]">
+                  <span className="inline-flex items-center gap-1">
+                    <Activity className="w-3.5 h-3.5" />
+                    {site.region}
+                  </span>
+                  {typeof site.mealsServed === "number" && (
+                    <span>{formatNum(site.mealsServed)} meals impact</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
       </div>
 
       {data.note && (
