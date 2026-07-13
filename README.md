@@ -2,8 +2,9 @@
 
 Corporate website for **Big Five Group** — eight pillars building regenerative, sovereign, and ethical impact across Africa.
 
-**Live:** [bigfivegroup-africa.vercel.app](https://bigfivegroup-africa.vercel.app)  
-**Repo:** [github.com/bigfivefoods/bigfivegroup-africa](https://github.com/bigfivefoods/bigfivegroup-africa)
+**Live (production):** [bigfivegroup.africa](https://bigfivegroup.africa)  
+**Repo:** [github.com/bigfivefoods/bigfivegroup-africa](https://github.com/bigfivefoods/bigfivegroup-africa)  
+**Vercel project (active):** [bigfivegroup-africa-8rr7](https://vercel.com/bigfivefoods-projects/bigfivegroup-africa-8rr7)
 
 ## Stack
 
@@ -43,15 +44,22 @@ public/                 # Images, PDFs, certifications
 
 ## Deploying to Vercel
 
-This repo is already connected to the Vercel project **`bigfivegroup-africa`** under the **bigfivefoods-projects** team.
+Production is the Vercel project **`bigfivegroup-africa-8rr7`** on team **bigfivefoods-projects**, with custom domain **`bigfivegroup.africa`**.
 
-1. Push to `main` on GitHub — production deploys automatically.
+| Link | URL |
+|------|-----|
+| **Deployments (monitor)** | https://vercel.com/bigfivefoods-projects/bigfivegroup-africa-8rr7/deployments |
+| **Project overview** | https://vercel.com/bigfivefoods-projects/bigfivegroup-africa-8rr7 |
+| **Latest production deploy** | https://vercel.com/bigfivefoods-projects/bigfivegroup-africa-8rr7/ATdPg2SdTj2V3sL6wHMMjHWPQDaG |
+| **Live site** | https://bigfivegroup.africa |
+
+1. Push to `main` on GitHub — production deploys automatically to this project.
 2. Pull requests get preview deployments.
 3. Optional CLI (global, not a project dependency):
 
 ```bash
 npm i -g vercel
-vercel link   # select bigfivegroup-africa
+vercel link   # select bigfivegroup-africa-8rr7 (team: bigfivefoods-projects)
 vercel        # preview
 vercel --prod # production
 ```
@@ -70,7 +78,10 @@ No environment variables are required for the static marketing site.
 
 ### Custom domain
 
-In the Vercel dashboard → Project → **Settings → Domains**, add `bigfivegroup.africa` (and `www`) and point DNS as instructed.
+`bigfivegroup.africa` is already attached to the active project. Manage domains under  
+**Project → Settings → Domains**.
+
+> **Note:** Older duplicate projects (`bigfivegroup-africa`, `bigfivegroup-africa-dlya`) may still appear in the team. Prefer the **8rr7** project links above — that is the git-connected production project.
 
 ## Notes
 
