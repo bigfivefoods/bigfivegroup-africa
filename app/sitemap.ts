@@ -11,6 +11,7 @@ const routes = [
   "/direct",
   "/access",
   "/connect",
+  "/impact",
   "/leadership",
   "/foundation",
   "/tribal",

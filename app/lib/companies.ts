@@ -161,6 +161,27 @@ export const companies: Company[] = [
     impact: "R187 million deployed. 1.2 million direct beneficiaries. 94% of projects met or exceeded targets."
   },
   {
+    slug: "impact",
+    name: "Impact",
+    fullName: "Big Five Impact",
+    color: "#7c3aed",
+    icon: "Target",
+    tagline: "Project Management • Cross-Pillar Delivery • Continental Results",
+    description: "The project management arm of Big Five Group — orchestrating programmes across Agri, Foods, Direct, Access, Connect, Leadership and Foundation to deliver measurable impact across the African continent.",
+    heroText: "From Strategy to Delivery. Across Africa. On Time. On Impact.",
+    howItWorks: [
+      { step: 1, title: "Scope & Design", desc: "Define outcomes with governments, funders, and communities. Align every workstream to SDGs and commercial sustainability." },
+      { step: 2, title: "Orchestrate & Execute", desc: "Cross-pillar PMO delivery — agri, nutrition, logistics, capital access, and leadership — under one accountable programme office." },
+      { step: 3, title: "Measure & Report", desc: "Live dashboards, SupplierAdvisor®-linked commerce where applicable, and verified impact reporting stakeholders can trust." }
+    ],
+    forStakeholders: [
+      { title: "For Governments & DFIs", desc: "One delivery partner that can plan, execute, and report multi-sector programmes with institutional discipline." },
+      { title: "For Corporates & CSI", desc: "End-to-end programme management with ethical supply chains and transparent outcomes." },
+      { title: "For Communities", desc: "Projects that land on the ground — jobs, nutrition, markets, and skills — not slide decks." }
+    ],
+    impact: "The connective tissue of the group: turning multi-pillar ambition into continental delivery."
+  },
+  {
     slug: "global",
     name: "Global",
     fullName: "Big Five Global",

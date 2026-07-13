@@ -81,7 +81,7 @@ export default function Home() {
           >
             ONE GROUP.
             <br />
-            EIGHT PILLARS.
+            NINE PILLARS.
             <br />
             INFINITE IMPACT.
           </motion.h1>
@@ -107,7 +107,7 @@ export default function Home() {
               href="#pillars"
               className="premium-button group inline-flex items-center justify-center gap-3 bg-white text-black px-8 sm:px-10 py-4 rounded-full text-base sm:text-lg font-semibold"
             >
-              EXPLORE THE 8 PILLARS
+              EXPLORE THE 9 PILLARS
               <ArrowRight className="group-hover:translate-x-1 transition w-5 h-5" />
             </Link>
             <Link
@@ -151,16 +151,16 @@ export default function Home() {
             The Ecosystem
           </div>
           <h2 className="section-heading text-black">
-            The Eight Pillars of
+            The Nine Pillars of
             <br />
             African Sovereignty
           </h2>
           <p className="mt-5 text-lg text-[#525252] max-w-2xl">
-            From regenerative farms and fortified nutrition to ethical capital access and doctoral-level leadership — every pillar compounds the others.
+            From regenerative farms and fortified nutrition to project delivery, ethical capital access, and doctoral-level leadership — every pillar compounds the others. Where applicable, our companies are listed on SupplierAdvisor® as verified ethical businesses.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {companies.map((company, index) => (
             <motion.div
               key={company.slug}

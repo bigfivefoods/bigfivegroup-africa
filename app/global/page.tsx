@@ -13,6 +13,7 @@ import {
   Sparkles,
   Target,
 } from "lucide-react";
+import SupplierTrust from "../components/SupplierTrust";
 
 /** Nations where Big Five is actively working today */
 const ACTIVE_COUNTRIES = [
@@ -603,6 +604,8 @@ export default function GlobalPage() {
           </div>
         </div>
       </section>
+
+      <SupplierTrust entityName="Big Five Group companies across active markets" />
 
       {/* HOW WE EXPAND */}
       <section className="max-w-6xl mx-auto px-6 py-20 sm:py-24">
