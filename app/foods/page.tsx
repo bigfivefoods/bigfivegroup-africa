@@ -74,6 +74,12 @@ const productCategories = [
 ];
 
 const capabilities = [
+  {
+    name: "SupplierAdvisor®",
+    logo: "/foods/supplieradvisor-logo.png",
+    desc: "Registered verified ethical company — live trade & transparency",
+    href: "https://www.supplieradvisor.com/",
+  },
   { name: "ISO 9001", logo: "/foods/iso9001.png", desc: "Quality management excellence" },
   { name: "FSSC 22000", logo: "/foods/fssc22000.png", desc: "Global food safety certification" },
   { name: "Sedex", logo: "/foods/sedex.png", desc: "Ethical supply chain standards" },
@@ -122,7 +128,7 @@ export default function FoodsPage() {
           stats={[
             { value: "24 mo", label: "Shelf life on key ranges" },
             { value: "73.9%", label: "Superior nutrient retention" },
-            { value: "7+", label: "Certifications & memberships" },
+            { value: "8+", label: "Certifications & memberships" },
             { value: "SA", label: "Locally manufactured" },
           ]}
         />
@@ -177,24 +183,45 @@ export default function FoodsPage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="CERTIFICATIONS" title="Quality the market can audit" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-          {capabilities.map((c) => (
-            <div
-              key={c.name}
-              className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center hover:border-black/20 transition-colors min-w-0"
-            >
-              <div className="relative h-12 sm:h-16 mb-3 sm:mb-4 flex items-center justify-center">
-                <Image
-                  src={c.logo}
-                  alt={c.name}
-                  width={80}
-                  height={64}
-                  className="object-contain max-h-12 sm:max-h-16 w-auto max-w-full"
-                />
+          {capabilities.map((c) => {
+            const cardClass =
+              "bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center hover:border-black/20 transition-colors min-w-0 h-full flex flex-col";
+            const inner = (
+              <>
+                <div className="relative h-12 sm:h-16 mb-3 sm:mb-4 flex items-center justify-center">
+                  <Image
+                    src={c.logo}
+                    alt={c.name}
+                    width={120}
+                    height={64}
+                    className="object-contain max-h-12 sm:max-h-16 w-auto max-w-full"
+                  />
+                </div>
+                <div className="font-semibold text-black text-xs sm:text-sm mb-1">{c.name}</div>
+                <div className="text-[11px] sm:text-xs text-[#525252] leading-snug flex-1">
+                  {c.desc}
+                </div>
+              </>
+            );
+            if ("href" in c && c.href) {
+              return (
+                <a
+                  key={c.name}
+                  href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${cardClass} hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
+                >
+                  {inner}
+                </a>
+              );
+            }
+            return (
+              <div key={c.name} className={cardClass}>
+                {inner}
               </div>
-              <div className="font-semibold text-black text-xs sm:text-sm mb-1">{c.name}</div>
-              <div className="text-[11px] sm:text-xs text-[#525252] leading-snug">{c.desc}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
