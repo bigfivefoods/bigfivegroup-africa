@@ -12,6 +12,7 @@ import {
 import { UtensilsCrossed, ChefHat, Beef, Soup, ShieldCheck } from "lucide-react";
 import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
 import LocalNewsVideo from "../components/LocalNewsVideo";
+import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
 
 const ACCENT = "#d97706";
 
@@ -106,7 +107,8 @@ export default function FoodsPage() {
         }
         subtitle="Fortified staples and ready meals combating malnutrition at scale — certified manufacturing, ethical supply chains, and SupplierAdvisor® verification where commerce runs."
         ctas={[
-          { href: "#products", label: "Explore products", primary: true },
+          { href: "#foods-deck", label: "View product deck", primary: true },
+          { href: "#products", label: "Explore products" },
           {
             href: SA_ONBOARDING,
             label: "Start free trial",
@@ -137,7 +139,11 @@ export default function FoodsPage() {
 
       <LocalNewsVideo accent={ACCENT} />
 
-      <section id="products" className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+        <FoodsStrategyDeck />
+      </section>
+
+      <section id="products" className="bg-[#fafafa] border-b border-black/10 py-14 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="PRODUCT RANGES"
