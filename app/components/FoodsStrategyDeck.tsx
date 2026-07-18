@@ -193,20 +193,29 @@ function StatTile({
   );
 }
 
+/** Pack shot frame — fixed box so products never blow past the slide/page edge */
 function ProductThumb({
   src,
   alt,
   className = "",
+  sizes = "160px",
 }: {
   src: string;
   alt: string;
   className?: string;
+  sizes?: string;
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-xl border border-black/8 bg-[#f8f7f5] ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-black/8 bg-[#f8f7f5] min-h-0 min-w-0 ${className}`}
     >
-      <Image src={src} alt={alt} fill className="object-contain p-1.5 sm:p-2" sizes="160px" />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-contain object-center p-1.5 sm:p-2"
+        sizes={sizes}
+      />
     </div>
   );
 }
@@ -232,53 +241,67 @@ function Slide({ index }: SlideProps) {
       return (
         <SlideShell dark className="!p-0">
           <TitleSlideLayout>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 h-full items-center">
-              <div>
-                <Eyebrow light>BIG FIVE FOODS · PRODUCT & IMPACT DECK</Eyebrow>
-                <div className="relative w-28 h-14 sm:w-36 sm:h-18 mb-4">
-                  <Image
-                    src="/bigfivefoods-logo.png"
-                    alt="Big Five Foods"
-                    fill
-                    className="object-contain object-left"
-                    sizes="144px"
-                    priority
-                  />
-                </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] text-balance mb-4">
-                  Nourish a continent.
-                  <br />
-                  <span className="text-amber-300">One fortified meal at a time.</span>
-                </h2>
-                <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-lg">
-                  Fortified porridges, soya mince, one-pot meals and soups — certified manufacturing,
-                  24-month shelf life, and pathways that are 83% cheaper with 74% more nutrition.
-                </p>
-              </div>
-              <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
-                {[
-                  "/foods/porridge-chocolate.jpg",
-                  "/foods/soya-chilli-beef.jpg",
-                  "/foods/onepot-chakalaka.jpg",
-                  "/foods/soup-oxtail.jpg",
-                  "/foods/porridge-banana.jpg",
-                  "/foods/soya-beef.jpg",
-                  "/foods/onepot-chicken.jpg",
-                  "/foods/soup-chicken.jpg",
-                ].map((src) => (
-                  <div
-                    key={src}
-                    className="relative aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden border border-white/10 bg-[#2a1a0c]"
-                  >
-                    <Image src={src} alt="" fill className="object-contain p-1" sizes="100px" />
+            <div className="flex flex-col h-full min-h-0 justify-between gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 min-h-0 flex-1 items-center">
+                <div className="min-w-0 shrink-0">
+                  <Eyebrow light>BIG FIVE FOODS · PRODUCT & IMPACT DECK</Eyebrow>
+                  <div className="relative w-24 h-12 sm:w-32 sm:h-14 mb-3">
+                    <Image
+                      src="/bigfivefoods-logo.png"
+                      alt="Big Five Foods"
+                      fill
+                      className="object-contain object-left"
+                      sizes="128px"
+                      priority
+                    />
                   </div>
-                ))}
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter leading-[1.05] text-balance mb-3">
+                    Nourish a continent.
+                    <br />
+                    <span className="text-amber-300">One fortified meal at a time.</span>
+                  </h2>
+                  <p className="text-white/70 text-sm leading-relaxed max-w-lg mb-3">
+                    Fortified porridges, soya mince, one-pot meals and soups — certified manufacturing,
+                    24-month shelf life, and pathways that are 83% cheaper with 74% more nutrition.
+                  </p>
+                  <p className="text-xs sm:text-sm text-amber-200/90 leading-relaxed max-w-lg">
+                    <strong className="text-amber-100">Order on SupplierAdvisor®</strong> — our
+                    ethical, on-chain commerce OS. That&apos;s how we trade: verified, transparent,
+                    no blind spots.
+                  </p>
+                </div>
+                <div className="grid grid-cols-4 gap-1.5 sm:gap-2 min-h-0 content-center">
+                  {[
+                    "/foods/porridge-chocolate.jpg",
+                    "/foods/soya-chilli-beef.jpg",
+                    "/foods/onepot-chakalaka.jpg",
+                    "/foods/soup-oxtail.jpg",
+                    "/foods/porridge-banana.jpg",
+                    "/foods/soya-beef.jpg",
+                    "/foods/onepot-chicken.jpg",
+                    "/foods/soup-chicken.jpg",
+                  ].map((src) => (
+                    <div
+                      key={src}
+                      className="relative h-[4.5rem] sm:h-[5.5rem] md:h-[6.5rem] rounded-lg overflow-hidden border border-white/10 bg-[#2a1a0c]"
+                    >
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        className="object-contain object-center p-0.5"
+                        sizes="90px"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-4 text-xs text-white/45">
-              <span>KwaZulu-Natal · South Africa</span>
-              <span>bigfivegroup.africa/foods</span>
-              <span>14 slides · Downloadable · Shareable</span>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] sm:text-xs text-white/45 shrink-0">
+                <span>KwaZulu-Natal · South Africa</span>
+                <span>bigfivegroup.africa/foods</span>
+                <span>Order: supplieradvisor.com</span>
+                <span>14 slides · Downloadable</span>
+              </div>
             </div>
           </TitleSlideLayout>
         </SlideShell>
@@ -297,7 +320,7 @@ function Slide({ index }: SlideProps) {
               "Big Five Foods impact — meals, children, cost, nutrition",
               "Four product ranges with real packaging",
               "Porridges, soya, one-pots and soups — deep dive",
-              "Certifications the market can audit",
+              "Certifications & order on SupplierAdvisor® (ethical, on-chain)",
               "Farm to fork — how we manufacture and deliver",
               "Who we serve and how to partner",
             ].map((item, i) => (
@@ -342,29 +365,32 @@ function Slide({ index }: SlideProps) {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 text-balance">
             Fortified African staples people actually eat
           </h2>
-          <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-6">
-            Big Five Foods manufactures porridges, soya mince, one-pot meals and soups designed for
-            households, schools, catering and institutions — with professional certifications and
-            SupplierAdvisor® verification for partners who need proof, not promises.
+          <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-4">
+            Big Five Foods manufactures porridges, soya mince, one-pot meals and soups for
+            households, schools, catering and institutions — and{" "}
+            <strong className="text-black">you order them on SupplierAdvisor®</strong>, our ethical
+            on-chain commerce OS.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 min-h-0">
             {PRODUCT_RANGES.map((r) => (
               <div
                 key={r.title}
-                className="rounded-2xl border border-amber-100 bg-gradient-to-b from-white to-amber-50/40 p-4 min-w-0"
+                className="rounded-2xl border border-amber-100 bg-gradient-to-b from-white to-amber-50/40 p-3 min-w-0 flex flex-col"
               >
-                <div className="relative aspect-[3/4] rounded-xl overflow-hidden border border-black/5 bg-[#f8f7f5] mb-3">
+                <div className="relative h-24 sm:h-28 md:h-32 w-full rounded-xl overflow-hidden border border-black/5 bg-[#f8f7f5] mb-2.5 shrink-0">
                   <Image
                     src={r.images[0].src}
                     alt={r.title}
                     fill
-                    className="object-contain p-2"
-                    sizes="200px"
+                    className="object-contain object-center p-1.5"
+                    sizes="180px"
                   />
                 </div>
-                <r.icon className="w-5 h-5 text-amber-700 mb-1.5" />
-                <div className="font-semibold text-black text-sm mb-1">{r.title}</div>
-                <p className="text-xs text-[#525252] leading-snug">{r.blurb}</p>
+                <r.icon className="w-4 h-4 text-amber-700 mb-1" />
+                <div className="font-semibold text-black text-xs sm:text-sm mb-0.5">{r.title}</div>
+                <p className="text-[11px] sm:text-xs text-[#525252] leading-snug line-clamp-2">
+                  {r.blurb}
+                </p>
               </div>
             ))}
           </div>
@@ -403,30 +429,33 @@ function Slide({ index }: SlideProps) {
       return (
         <SlideShell>
           <Eyebrow>PRODUCT RANGE</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-5">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4">
             Four ranges. One nutrition system.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 min-h-0">
             {PRODUCT_RANGES.map((r) => (
               <div
                 key={r.title}
-                className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 flex gap-3 min-w-0"
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-3 sm:p-3.5 flex gap-3 min-w-0 items-center"
               >
-                <div className="grid grid-cols-2 gap-1.5 w-[7.5rem] sm:w-36 shrink-0">
+                <div className="grid grid-cols-2 gap-1 w-[5.5rem] sm:w-[6.5rem] shrink-0">
                   {r.images.map((img) => (
                     <ProductThumb
                       key={img.src}
                       src={img.src}
                       alt={img.name}
-                      className="aspect-square"
+                      className="h-11 sm:h-14 w-full"
+                      sizes="72px"
                     />
                   ))}
                 </div>
                 <div className="min-w-0 flex flex-col justify-center">
-                  <r.icon className="w-5 h-5 text-amber-700 mb-1.5" />
-                  <h3 className="font-semibold text-black text-base sm:text-lg mb-1">{r.title}</h3>
-                  <p className="text-xs sm:text-sm text-[#525252] leading-relaxed mb-2">{r.blurb}</p>
-                  <p className="text-xs font-semibold text-amber-900">{r.stats}</p>
+                  <r.icon className="w-4 h-4 text-amber-700 mb-1" />
+                  <h3 className="font-semibold text-black text-sm sm:text-base mb-0.5">{r.title}</h3>
+                  <p className="text-[11px] sm:text-xs text-[#525252] leading-snug mb-1 line-clamp-2">
+                    {r.blurb}
+                  </p>
+                  <p className="text-[11px] font-semibold text-amber-900">{r.stats}</p>
                 </div>
               </div>
             ))}
@@ -435,13 +464,13 @@ function Slide({ index }: SlideProps) {
       );
 
     case 6:
-      return productDeepDive(0);
+      return <ProductDeepDive rangeIndex={0} />;
     case 7:
-      return productDeepDive(1);
+      return <ProductDeepDive rangeIndex={1} />;
     case 8:
-      return productDeepDive(2);
+      return <ProductDeepDive rangeIndex={2} />;
     case 9:
-      return productDeepDive(3);
+      return <ProductDeepDive rangeIndex={3} />;
 
     case 10:
       return (
@@ -474,15 +503,16 @@ function Slide({ index }: SlideProps) {
               </div>
             ))}
           </div>
-          <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-4 flex gap-3 items-start">
+          <div className="rounded-2xl border border-amber-300 bg-gradient-to-br from-amber-50 to-orange-50 p-4 flex gap-3 items-start">
             <ShieldCheck className="w-5 h-5 text-amber-800 shrink-0 mt-0.5" />
-            <div>
+            <div className="min-w-0">
               <div className="font-semibold text-black text-sm mb-1">
-                Registered on SupplierAdvisor®
+                Order Big Five Foods on SupplierAdvisor®
               </div>
-              <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">
-                Verified ethical company status with live trade and transparency — partners can
-                verify at{" "}
+              <p className="text-xs sm:text-sm text-[#404040] leading-relaxed mb-2">
+                That&apos;s how we role: ethical, verified, on-chain-ready commerce — inventory,
+                POs, lots and trust in one OS. No spreadsheet handshakes. Register, verify, and
+                order fortified products from Big Five Foods on{" "}
                 <a
                   href={SA_URL}
                   target="_blank"
@@ -493,6 +523,24 @@ function Slide({ index }: SlideProps) {
                 </a>
                 .
               </p>
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href={SA_ONBOARDING}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex text-[11px] font-semibold px-3 py-1.5 rounded-full bg-amber-800 text-white"
+                >
+                  Start free trial → order
+                </a>
+                <a
+                  href={SA_LOGIN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex text-[11px] font-semibold px-3 py-1.5 rounded-full border border-amber-800/30 text-amber-950"
+                >
+                  Existing user? Log in
+                </a>
+              </div>
             </div>
           </div>
         </SlideShell>
@@ -519,8 +567,8 @@ function Slide({ index }: SlideProps) {
               },
               {
                 step: "03",
-                t: "Distribute & verify",
-                d: "Schools, institutions, retail and Direct containers. Trade via SupplierAdvisor® where partners need live feedback.",
+                t: "Order & trade on SA",
+                d: "Buyers order on SupplierAdvisor® — ethical, on-chain-ready OS with POs, lots, ratings and live transparency. That's how we role.",
               },
             ].map((s) => (
               <div
@@ -604,20 +652,21 @@ function Slide({ index }: SlideProps) {
                 <span className="text-amber-300">Start stocking nutrition that scales.</span>
               </h2>
               <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl mb-3">
-                If you run a school feeding programme, institutional tender, retail chain or CSI
-                nutrition portfolio — Big Five Foods is ready: certified manufacturing, four fortified
-                ranges, and proof on the plate.
+                Order Big Five Foods on{" "}
+                <strong className="text-white">SupplierAdvisor®</strong> — the ethical, on-chain
+                supply-chain OS. That&apos;s how we role: verified companies, transparent trade,
+                fortified products you can actually procure with proof.
               </p>
               <p className="text-sm sm:text-base text-amber-200/90 font-medium max-w-2xl mb-6">
-                Request a product sample pack, pricing for your channel, or a 30-minute supply briefing
-                this week.
+                Register free → verify → order porridge, soya, one-pots and soups. Schools,
+                institutions, retailers and CSI teams welcome.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-7 max-w-3xl">
                 {[
-                  { n: "01", t: "Pick your channel", d: "Schools · retail · institutions · CSI" },
-                  { n: "02", t: "Match the range", d: "Porridge · soya · one-pot · soup" },
-                  { n: "03", t: "Ship with proof", d: "Certs · SA verification · Direct rails" },
+                  { n: "01", t: "Join SupplierAdvisor®", d: "Free trial · ethical on-chain OS" },
+                  { n: "02", t: "Find Big Five Foods", d: "Verified company · full product range" },
+                  { n: "03", t: "Order with proof", d: "POs · lots · ratings · no blind spots" },
                 ].map((s) => (
                   <div
                     key={s.n}
@@ -633,41 +682,41 @@ function Slide({ index }: SlideProps) {
               </div>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-                <Link
-                  href="/connect"
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-sm sm:text-base font-semibold"
-                >
-                  Order & partner enquiry
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <a
-                  href="mailto:craig@bigfivegroup.africa?subject=Big%20Five%20Foods%20—%20partnership%20enquiry&body=Hello%20Big%20Five%20Foods%2C%0A%0AI%20would%20like%20to%20discuss%20supply%20%2F%20partnership.%0A%0AOrganisation%3A%0AChannel%20(school%2Fretail%2Finstitution%2FCSI)%3A%0AVolume%20interest%3A%0A%0AThank%20you."
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-8 py-4 rounded-full text-sm sm:text-base font-semibold border border-amber-400/40"
-                >
-                  Email Craig — Foods supply
-                </a>
                 <a
                   href={SA_ONBOARDING}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
+                  className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-sm sm:text-base font-semibold"
                 >
-                  Start free trial on SupplierAdvisor®
+                  Order on SupplierAdvisor® — start free
+                  <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href={SA_LOGIN}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="premium-button inline-flex items-center justify-center gap-2 bg-amber-600 text-white px-8 py-4 rounded-full text-sm sm:text-base font-semibold border border-amber-400/40"
+                >
+                  Existing user? Log in & order
+                </a>
+                <Link
+                  href="/connect"
                   className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
                 >
-                  Existing user? Log in
+                  Partner / high-volume enquiry
+                </Link>
+                <a
+                  href="mailto:craig@bigfivegroup.africa?subject=Big%20Five%20Foods%20—%20order%20%26%20partnership&body=Hello%20Big%20Five%20Foods%2C%0A%0AI%20would%20like%20to%20order%20%2F%20partner%20via%20SupplierAdvisor%C2%AE.%0A%0AOrganisation%3A%0AChannel%3A%0AProducts%20of%20interest%3A%0A%0AThank%20you."
+                  className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
+                >
+                  Email Craig
                 </a>
               </div>
             </div>
             <div className="mt-8 text-xs text-white/40 space-y-1">
               <p className="text-white/55 font-medium flex items-center gap-1.5">
                 <Heart className="w-3.5 h-3.5 text-amber-400" />
-                Feed with purpose. — bigfivegroup.africa/foods
+                Ethical · on-chain ready · order at supplieradvisor.com
               </p>
               <p>Big Five Foods · Big Five Group (Pty) Ltd · KwaZulu-Natal</p>
               <p>150k meals · 100k children · 83% cheaper · 74% more nutrition</p>
@@ -681,35 +730,61 @@ function Slide({ index }: SlideProps) {
   }
 }
 
-function productDeepDive(rangeIndex: number) {
+function ProductDeepDive({ rangeIndex }: { rangeIndex: number }) {
   const r = PRODUCT_RANGES[rangeIndex];
   const Icon = r.icon;
+  const forPrint = usePrintMode();
   return (
     <SlideShell>
-      <Eyebrow>PRODUCT DEEP DIVE · {rangeIndex + 1}/4</Eyebrow>
-      <div className="flex flex-wrap items-center gap-3 mb-3">
-        <Icon className="w-7 h-7 text-amber-700" />
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter">
-          {r.title}
-        </h2>
-      </div>
-      <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-2xl mb-2">{r.blurb}</p>
-      <p className="text-sm font-semibold text-amber-900 mb-5">{r.stats}</p>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 flex-1">
-        {r.images.map((img) => (
-          <div key={img.src} className="flex flex-col min-w-0">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-black/10 bg-[#f8f7f5] mb-2">
-              <Image
-                src={img.src}
-                alt={`${r.title} — ${img.name}`}
-                fill
-                className="object-contain p-2 sm:p-3"
-                sizes="(max-width:768px) 45vw, 22vw"
-              />
-            </div>
-            <div className="text-center text-xs sm:text-sm font-semibold text-black">{img.name}</div>
+      <div className="flex flex-col h-full min-h-0">
+        <div className="shrink-0 mb-3">
+          <Eyebrow>
+            PRODUCT DEEP DIVE · {rangeIndex + 1}/4 · Order on SupplierAdvisor®
+          </Eyebrow>
+          <div className="flex flex-wrap items-center gap-2 mb-1.5">
+            <Icon className="w-6 h-6 text-amber-700 shrink-0" />
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter">
+              {r.title}
+            </h2>
           </div>
-        ))}
+          <p className="text-xs sm:text-sm text-[#525252] leading-snug max-w-2xl">{r.blurb}</p>
+          <p className="text-xs sm:text-sm font-semibold text-amber-900 mt-1">{r.stats}</p>
+        </div>
+        {/* Fixed-height frames so all four packs fit on one slide / A4 page */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
+          {r.images.map((img) => (
+            <div key={img.src} className="flex flex-col min-w-0 min-h-0">
+              <div
+                className={`relative w-full rounded-xl sm:rounded-2xl overflow-hidden border border-black/10 bg-[#f8f7f5] mb-1.5 ${
+                  forPrint ? "h-[48mm]" : "h-[min(32vh,14rem)] sm:h-[min(38vh,16rem)]"
+                }`}
+              >
+                <Image
+                  src={img.src}
+                  alt={`${r.title} — ${img.name}`}
+                  fill
+                  className="object-contain object-center p-2 sm:p-2.5"
+                  sizes="(max-width:768px) 45vw, 22vw"
+                />
+              </div>
+              <div className="text-center text-[11px] sm:text-xs font-semibold text-black shrink-0">
+                {img.name}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="shrink-0 mt-2 text-[10px] sm:text-xs text-[#737373] text-center">
+          Available to order on{" "}
+          <a
+            href={SA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-amber-900 underline underline-offset-2"
+          >
+            supplieradvisor.com
+          </a>{" "}
+          — ethical · verified · on-chain ready
+        </p>
       </div>
     </SlideShell>
   );
