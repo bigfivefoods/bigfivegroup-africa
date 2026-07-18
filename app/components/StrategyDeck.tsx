@@ -8,6 +8,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  Compass,
   Copy,
   Download,
   Heart,
@@ -15,14 +16,36 @@ import {
   Maximize2,
   Minimize2,
   Shield,
+  Sparkles,
+  Target,
   UtensilsCrossed,
   GraduationCap,
   Activity,
+  Lightbulb,
+  Users,
+  Layers,
 } from "lucide-react";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
 const TOTAL = 15;
+
+/** Short pillar briefs for the “integrated enterprise” slide */
+const PILLAR_BRIEFS: Record<string, string> = {
+  agri: "Regenerative production and smallholder supply with verified provenance.",
+  foods: "Fortified, affordable nutrition for households, schools and institutions.",
+  direct: "Last-mile distribution and container hubs that keep value local.",
+  access: "Pathways to tenders, CSI and development capital for African enterprise.",
+  connect: "SupplierAdvisor® ethical commerce, verification and transparent trade.",
+  leadership: "Super-Cube® ethical leadership for business and public life.",
+  foundation: "Registered philanthropy funding community programmes with proof.",
+  impact: "Cross-pillar PMO — design, gates, KPIs and field delivery.",
+  global: "International corridors linking African capacity to world markets.",
+  royal: "Royal partnership for community service — feed, educate, empower.",
+};
+
+const GROUP_OVERVIEW =
+  "Big Five Group is one integrated African enterprise headquartered in KwaZulu-Natal. Ten pillars share governance, mission and values so regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership compound as a system — not ten separate vendors.";
 
 /** When true, slides render with print-friendly sizing (same design as web). */
 const PrintModeContext = createContext(false);
@@ -213,27 +236,42 @@ function Slide({ index }: SlideProps) {
       return (
         <SlideShell>
           <Eyebrow>WHO WE ARE</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-5 text-balance">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4 text-balance">
             An integrated African enterprise
           </h2>
-          <p className="text-[#525252] text-sm sm:text-base leading-relaxed max-w-3xl mb-6 sm:mb-8">
-            Headquartered in KwaZulu-Natal, Big Five Group unites regenerative production, fortified
-            nutrition, distribution, capital access, ethical commerce, leadership education,
-            philanthropy, programme delivery, global corridors and royal partnership.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3">
+
+          {/* Group overview */}
+          <div className="rounded-2xl border border-violet-200/80 bg-gradient-to-br from-violet-50 to-indigo-50/60 p-4 sm:p-5 mb-4 sm:mb-5 flex gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-xl bg-violet-700 text-white flex items-center justify-center shrink-0 shadow-sm">
+              <Layers className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-[10px] tracking-[2px] text-violet-800 font-semibold mb-1">
+                BIG FIVE GROUP
+              </div>
+              <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">{GROUP_OVERVIEW}</p>
+            </div>
+          </div>
+
+          {/* Ten pillars with short briefs */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-2.5">
             {companies.map((c) => (
               <div
                 key={c.slug}
-                className="rounded-xl border border-black/10 bg-gradient-to-b from-white to-[#fafafa] p-3 flex flex-col items-center text-center min-w-0 shadow-sm"
+                className="rounded-xl border border-black/10 bg-gradient-to-b from-white to-[#fafafa] p-3 flex gap-2.5 min-w-0 shadow-sm"
               >
                 <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center mb-2"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
                   style={{ backgroundColor: `${c.color}18`, color: c.color }}
                 >
-                  <CompanyIcon name={c.icon} size={18} />
+                  <CompanyIcon name={c.icon} size={16} />
                 </div>
-                <div className="text-xs font-semibold text-black truncate w-full">{c.name}</div>
+                <div className="min-w-0">
+                  <div className="text-xs font-semibold text-black truncate">{c.name}</div>
+                  <p className="text-[11px] sm:text-xs text-[#525252] leading-snug mt-0.5">
+                    {PILLAR_BRIEFS[c.slug] ?? c.tagline}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -244,33 +282,95 @@ function Slide({ index }: SlideProps) {
       return (
         <SlideShell>
           <Eyebrow>NORTH STAR</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 sm:mb-5">
             Vision · Mission · Values
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-5">
             {[
               {
                 t: "Vision",
-                d: "A prosperous Africa — for everyone on it. Food with dignity, ethical leadership, and economies communities own.",
+                icon: Compass,
+                color: "text-emerald-700",
+                bar: "from-emerald-500 to-teal-600",
+                title: "A prosperous Africa — for everyone on it",
+                d: "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, and communities build economies they own.",
               },
               {
                 t: "Mission",
-                d: "Feed. Educate. Empower. Deploy skills, capital, platforms and relationships where they create lasting opportunity.",
+                icon: Target,
+                color: "text-sky-700",
+                bar: "from-sky-500 to-blue-600",
+                title: "Feed. Educate. Empower.",
+                d: "Deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises — at scale and with proof.",
               },
               {
                 t: "Values",
-                d: "Humanity · Innovation · Integrity · Excellence · Impact — how we hire, partner, trade and deliver.",
+                icon: Shield,
+                color: "text-amber-700",
+                bar: "from-amber-500 to-orange-600",
+                title: "What we refuse to compromise",
+                d: "Humanity, innovation, integrity, excellence, and purposeful impact shape how we hire, partner, trade and deliver — across every pillar.",
               },
             ].map((x) => (
               <div
                 key={x.t}
-                className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 sm:p-6 min-w-0 relative overflow-hidden"
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 sm:p-5 min-w-0 relative overflow-hidden"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-600 to-indigo-500" />
-                <div className="text-xs tracking-[2px] text-violet-700 font-semibold mb-2 mt-1">
+                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${x.bar}`} />
+                <div className={`inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] font-semibold mb-2 mt-0.5 ${x.color}`}>
+                  <x.icon className="w-4 h-4" />
                   {x.t.toUpperCase()}
                 </div>
-                <p className="text-sm sm:text-base text-[#404040] leading-relaxed">{x.d}</p>
+                <h3 className="text-sm sm:text-base font-semibold text-black tracking-tight mb-1.5 leading-snug">
+                  {x.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">{x.d}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-[10px] tracking-[2px] text-[#737373] font-semibold mb-2.5">
+            OUR VALUES
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3">
+            {[
+              {
+                icon: Users,
+                title: "Humanity",
+                desc: "People first — Ubuntu in practice.",
+              },
+              {
+                icon: Lightbulb,
+                title: "Innovation",
+                desc: "Better systems for African progress.",
+              },
+              {
+                icon: Shield,
+                title: "Integrity",
+                desc: "Honesty, transparency, ethical commerce.",
+              },
+              {
+                icon: Sparkles,
+                title: "Excellence",
+                desc: "Professional standards, always.",
+              },
+              {
+                icon: Heart,
+                title: "Impact",
+                desc: "Outcomes communities can feel.",
+              },
+            ].map((v) => (
+              <div
+                key={v.title}
+                className="flex sm:flex-col items-start gap-2.5 rounded-2xl border border-black/10 bg-white p-3.5 sm:p-4 min-w-0 shadow-sm"
+              >
+                <div className="w-9 h-9 rounded-xl bg-violet-50 text-violet-800 flex items-center justify-center shrink-0">
+                  <v.icon className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-semibold text-black text-sm mb-0.5">{v.title}</div>
+                  <div className="text-xs text-[#525252] leading-relaxed">{v.desc}</div>
+                </div>
               </div>
             ))}
           </div>
