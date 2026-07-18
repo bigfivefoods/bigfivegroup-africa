@@ -355,103 +355,7 @@ function Slide({ index }: SlideProps) {
       );
 
     case 3:
-      return (
-        <SlideShell>
-          <Eyebrow>NORTH STAR</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 sm:mb-5">
-            Vision · Mission · Values
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-5">
-            {[
-              {
-                t: "Vision",
-                icon: Compass,
-                color: "text-emerald-700",
-                bar: "from-emerald-500 to-teal-600",
-                title: "A prosperous Africa — for everyone on it",
-                d: "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, and communities build economies they own.",
-              },
-              {
-                t: "Mission",
-                icon: Target,
-                color: "text-sky-700",
-                bar: "from-sky-500 to-blue-600",
-                title: "Feed. Educate. Empower.",
-                d: "Deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises — at scale and with proof.",
-              },
-              {
-                t: "Values",
-                icon: Shield,
-                color: "text-amber-700",
-                bar: "from-amber-500 to-orange-600",
-                title: "What we refuse to compromise",
-                d: "Humanity, innovation, integrity, excellence, and purposeful impact shape how we hire, partner, trade and deliver — across every pillar.",
-              },
-            ].map((x) => (
-              <div
-                key={x.t}
-                className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 sm:p-5 min-w-0 relative overflow-hidden"
-              >
-                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${x.bar}`} />
-                <div className={`inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] font-semibold mb-2 mt-0.5 ${x.color}`}>
-                  <x.icon className="w-4 h-4" />
-                  {x.t.toUpperCase()}
-                </div>
-                <h3 className="text-sm sm:text-base font-semibold text-black tracking-tight mb-1.5 leading-snug">
-                  {x.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">{x.d}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-[10px] tracking-[2px] text-[#737373] font-semibold mb-2.5">
-            OUR VALUES
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3">
-            {[
-              {
-                icon: Users,
-                title: "Humanity",
-                desc: "People first — Ubuntu in practice.",
-              },
-              {
-                icon: Lightbulb,
-                title: "Innovation",
-                desc: "Better systems for African progress.",
-              },
-              {
-                icon: Shield,
-                title: "Integrity",
-                desc: "Honesty, transparency, ethical commerce.",
-              },
-              {
-                icon: Sparkles,
-                title: "Excellence",
-                desc: "Professional standards, always.",
-              },
-              {
-                icon: Heart,
-                title: "Impact",
-                desc: "Outcomes communities can feel.",
-              },
-            ].map((v) => (
-              <div
-                key={v.title}
-                className="flex sm:flex-col items-start gap-2.5 rounded-2xl border border-black/10 bg-white p-3.5 sm:p-4 min-w-0"
-              >
-                <div className="w-9 h-9 rounded-xl bg-violet-50 text-violet-800 flex items-center justify-center shrink-0">
-                  <v.icon className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-semibold text-black text-sm mb-0.5">{v.title}</div>
-                  <div className="text-xs text-[#525252] leading-relaxed">{v.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </SlideShell>
-      );
+      return <VisionMissionValuesSlide />;
 
     case 4:
       return (
@@ -1112,6 +1016,163 @@ function TitleSlideLayout({ children }: { children: React.ReactNode }) {
     >
       {children}
     </div>
+  );
+}
+
+/** Compact layout so Vision · Mission · Values + five values fit on A4 landscape PDF */
+function VisionMissionValuesSlide() {
+  const forPrint = usePrintMode();
+
+  const pillars = [
+    {
+      t: "Vision",
+      icon: Compass,
+      color: "text-emerald-700",
+      bar: "from-emerald-500 to-teal-600",
+      title: "A prosperous Africa — for everyone on it",
+      d: forPrint
+        ? "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, communities own their economies."
+        : "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, and communities build economies they own.",
+    },
+    {
+      t: "Mission",
+      icon: Target,
+      color: "text-sky-700",
+      bar: "from-sky-500 to-blue-600",
+      title: "Feed. Educate. Empower.",
+      d: forPrint
+        ? "Deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises."
+        : "Deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises — at scale and with proof.",
+    },
+    {
+      t: "Values",
+      icon: Shield,
+      color: "text-amber-700",
+      bar: "from-amber-500 to-orange-600",
+      title: "What we refuse to compromise",
+      d: forPrint
+        ? "Humanity, innovation, integrity, excellence and impact — how we hire, partner, trade and deliver."
+        : "Humanity, innovation, integrity, excellence, and purposeful impact shape how we hire, partner, trade and deliver — across every pillar.",
+    },
+  ];
+
+  const values = [
+    { icon: Users, title: "Humanity", desc: "People first — Ubuntu in practice." },
+    { icon: Lightbulb, title: "Innovation", desc: "Better systems for African progress." },
+    { icon: Shield, title: "Integrity", desc: "Honesty, transparency, ethical commerce." },
+    { icon: Sparkles, title: "Excellence", desc: "Professional standards, always." },
+    { icon: Heart, title: "Impact", desc: "Outcomes communities can feel." },
+  ];
+
+  return (
+    <SlideShell>
+      <div className="flex flex-col h-full min-h-0">
+        <div className="shrink-0">
+          <Eyebrow>NORTH STAR</Eyebrow>
+          <h2
+            className={`font-semibold tracking-tighter ${
+              forPrint
+                ? "text-2xl mb-3"
+                : "text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-5"
+            }`}
+          >
+            Vision · Mission · Values
+          </h2>
+        </div>
+
+        <div
+          className={`grid grid-cols-1 md:grid-cols-3 min-h-0 shrink-0 ${
+            forPrint ? "gap-2 mb-3" : "gap-3 sm:gap-4 mb-4 sm:mb-5"
+          }`}
+        >
+          {pillars.map((x) => (
+            <div
+              key={x.t}
+              className={`rounded-2xl border border-black/10 bg-[#fafafa] min-w-0 relative overflow-hidden ${
+                forPrint ? "p-3" : "p-4 sm:p-5"
+              }`}
+            >
+              <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${x.bar}`} />
+              <div
+                className={`inline-flex items-center gap-1.5 tracking-[2px] font-semibold mb-1.5 mt-0.5 ${x.color} ${
+                  forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                }`}
+              >
+                <x.icon className={forPrint ? "w-3.5 h-3.5" : "w-4 h-4"} />
+                {x.t.toUpperCase()}
+              </div>
+              <h3
+                className={`font-semibold text-black tracking-tight mb-1 leading-snug ${
+                  forPrint ? "text-xs" : "text-sm sm:text-base"
+                }`}
+              >
+                {x.title}
+              </h3>
+              <p
+                className={`text-[#404040] leading-snug ${
+                  forPrint ? "text-[11px]" : "text-xs sm:text-sm leading-relaxed"
+                }`}
+              >
+                {x.d}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Always keep values visible — fixed 5-col on print/landscape so nothing clips */}
+        <div className="shrink-0 flex flex-col min-h-0">
+          <div
+            className={`tracking-[2px] text-[#737373] font-semibold ${
+              forPrint ? "text-[9px] mb-1.5" : "text-[10px] mb-2.5"
+            }`}
+          >
+            OUR VALUES
+          </div>
+          <div
+            className={`grid min-w-0 ${
+              forPrint
+                ? "grid-cols-5 gap-1.5"
+                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3"
+            }`}
+          >
+            {values.map((v) => (
+              <div
+                key={v.title}
+                className={`flex items-start min-w-0 rounded-xl border border-black/10 bg-white ${
+                  forPrint
+                    ? "flex-col gap-1 p-2"
+                    : "flex-row sm:flex-col gap-2.5 p-3.5 sm:p-4 rounded-2xl"
+                }`}
+              >
+                <div
+                  className={`rounded-lg bg-violet-50 text-violet-800 flex items-center justify-center shrink-0 ${
+                    forPrint ? "w-7 h-7 rounded-md" : "w-9 h-9 rounded-xl"
+                  }`}
+                >
+                  <v.icon className={forPrint ? "w-3.5 h-3.5" : "w-4 h-4"} />
+                </div>
+                <div className="min-w-0">
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[11px] mb-0.5" : "text-sm mb-0.5"
+                    }`}
+                  >
+                    {v.title}
+                  </div>
+                  <div
+                    className={`text-[#525252] leading-snug ${
+                      forPrint ? "text-[10px]" : "text-xs leading-relaxed"
+                    }`}
+                  >
+                    {v.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </SlideShell>
   );
 }
 
