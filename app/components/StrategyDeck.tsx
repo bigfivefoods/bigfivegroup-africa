@@ -828,27 +828,24 @@ function Slide({ index }: SlideProps) {
             Feed · Educate · Empower maps onto the UN 2030 Agenda. Official goal icons below —
             programmes designed so governments, DFIs and corporates can report contribution clearly.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5 min-h-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 min-h-0">
             {SDG_ALIGNMENT.map((g) => (
               <div
                 key={`sdg-${g.number}`}
-                className="rounded-xl border border-black/10 bg-white overflow-hidden min-w-0 flex flex-col sm:flex-row"
+                className="rounded-xl border border-black/10 bg-white p-2.5 sm:p-3 min-w-0 flex gap-2.5 sm:gap-3 items-start"
               >
-                {/* Official UN colour tile — full square, no crop of goal identity */}
-                <div
-                  className="relative w-full sm:w-[4.5rem] md:w-[5.25rem] aspect-square sm:aspect-auto sm:self-stretch sm:min-h-[5.25rem] shrink-0"
-                  style={{ backgroundColor: g.color }}
-                >
+                {/* Fixed small square — object-contain so the full official tile is visible (web + PDF) */}
+                <div className="relative w-10 h-10 sm:w-11 sm:h-11 shrink-0 overflow-hidden rounded-md ring-1 ring-black/10 bg-white">
                   <Image
                     src={g.icon}
                     alt={`United Nations SDG ${g.number} — ${g.title}`}
                     fill
-                    sizes="(max-width:640px) 45vw, 96px"
-                    className="object-cover object-center"
+                    sizes="44px"
+                    className="object-contain object-center"
                     priority={g.number === "1" || g.number === "2"}
                   />
                 </div>
-                <div className="min-w-0 p-2.5 sm:p-3 flex flex-col justify-center flex-1">
+                <div className="min-w-0 flex-1 pt-0.5">
                   <div
                     className="text-[10px] tracking-[1.5px] font-bold mb-0.5"
                     style={{ color: g.color }}
@@ -858,7 +855,7 @@ function Slide({ index }: SlideProps) {
                   <div className="text-xs sm:text-sm font-semibold text-black leading-tight mb-1">
                     {g.title}
                   </div>
-                  <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug mb-1.5 line-clamp-3">
+                  <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug mb-1 line-clamp-3">
                     {g.how}
                   </p>
                   <div className="text-[10px] font-medium text-emerald-800">{g.pillars}</div>
