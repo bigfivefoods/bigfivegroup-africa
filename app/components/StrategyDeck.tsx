@@ -998,38 +998,70 @@ function Slide({ index }: SlideProps) {
         <SlideShell dark className="!p-0">
           <TitleSlideLayout>
             <div>
-              <Eyebrow light>NEXT STEP</Eyebrow>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] mb-4 sm:mb-6 text-balance">
-                Put a professional delivery system on your African ambition
+              <Eyebrow light>CALL TO ACTION · ENGAGE NOW</Eyebrow>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-semibold tracking-tighter leading-[1.05] mb-4 sm:mb-5 text-balance">
+                Africa does not need another pitch deck.
+                <br />
+                <span className="text-violet-300">It needs a delivery system that works.</span>
               </h2>
-              <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-2xl mb-8">
-                Fortified nutrition at scale, last-mile distribution, SDG-aligned multi-pillar
-                programmes, or verified ethical commerce — start with Big Five Impact.
+              <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl mb-3 sm:mb-4">
+                If you are a government, DFI, corporate CSI team, implementer or royal partner
+                serious about{" "}
+                <strong className="text-white">Zero Hunger, SDG outcomes and last-mile proof</strong>
+                — partner with Big Five Group. One relationship. Ten pillars. Feed · Educate ·
+                Empower.
               </p>
+              <p className="text-sm sm:text-base text-violet-200/90 font-medium max-w-2xl mb-6 sm:mb-8">
+                Book a 30-minute strategy call this week. Leave with a clear next step — programme
+                design, fortified supply, container distribution, or multi-pillar delivery.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-7 sm:mb-8 max-w-3xl">
+                {[
+                  { n: "01", t: "Tell us the outcome", d: "Meals, schools, corridors, capital or PMO" },
+                  { n: "02", t: "We map the pillars", d: "Right mix of Foods, Direct, Access, Impact…" },
+                  { n: "03", t: "We deliver with proof", d: "Gates, KPIs, SupplierAdvisor® trails" },
+                ].map((s) => (
+                  <div
+                    key={s.n}
+                    className="rounded-xl border border-white/15 bg-white/[0.06] px-4 py-3 min-w-0"
+                  >
+                    <div className="text-[10px] tracking-[2px] text-violet-300 font-semibold mb-1">
+                      {s.n}
+                    </div>
+                    <div className="text-sm font-semibold text-white mb-0.5">{s.t}</div>
+                    <div className="text-xs text-white/55 leading-snug">{s.d}</div>
+                  </div>
+                ))}
+              </div>
+
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <Link
                   href="/connect"
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-full text-sm font-semibold"
+                  className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-sm sm:text-base font-semibold shadow-none"
                 >
-                  Start a conversation
+                  Partner with Big Five — start now
                   <ArrowRight className="w-4 h-4" />
                 </Link>
+                <a
+                  href="mailto:craig@bigfivegroup.africa?subject=Strategic%20partnership%20—%20Big%20Five%20Group&body=Hello%20Big%20Five%20team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20partnership%20%2F%20programme%20aligned%20to%20Feed%20·%20Educate%20·%20Empower.%0A%0AOrganisation%3A%0AOutcome%20we%20need%3A%0ATimeline%3A%0A%0AThank%20you."
+                  className="premium-button inline-flex items-center justify-center gap-2 bg-violet-600 text-white px-8 py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-violet-500 border border-violet-400/40"
+                >
+                  Email Craig — craig@bigfivegroup.africa
+                </a>
                 <Link
                   href="/group"
                   className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
                 >
-                  Explore the Group
+                  Explore the ten pillars
                 </Link>
-                <a
-                  href="mailto:craig@bigfivegroup.africa"
-                  className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
-                >
-                  craig@bigfivegroup.africa
-                </a>
               </div>
             </div>
-            <div className="mt-10 text-xs text-white/40 space-y-1">
-              <p>Big Five Group (Pty) Ltd · KwaZulu-Natal · bigfivegroup.africa</p>
+            <div className="mt-8 sm:mt-10 text-xs text-white/40 space-y-1">
+              <p className="text-white/55 font-medium">
+                Don&apos;t brief another silo. Brief a system. — bigfivegroup.africa
+              </p>
+              <p>Big Five Group (Pty) Ltd · KwaZulu-Natal · South Africa</p>
               <p>
                 Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; UNAIDS/WHO; UN SDGs; WFP
                 Zero Hunger agenda.
