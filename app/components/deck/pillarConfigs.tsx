@@ -27,7 +27,7 @@ export const agriDeckConfig: PillarDeckConfig = {
   id: "agri-deck",
   printRootId: "agri-deck-print-root",
   themeKey: "emerald",
-  eyebrow: `PILLAR DECK · AGRI · ${12} SLIDES`,
+  eyebrow: "PILLAR DECK · AGRI · 13 SLIDES",
   title: "Big Five Agri — strategic deck",
   description:
     "Regenerative production, smallholder livelihoods and verified provenance — the Feed foundation of the Group.",
@@ -43,9 +43,10 @@ export const agriDeckConfig: PillarDeckConfig = {
     "KwaZulu-Natal · Africa",
     "bigfivegroup.africa/agri",
     "Feed pillar",
-    "12 slides",
+    "13 slides",
   ],
   agenda: [
+    "Group vision, mission and values",
     "Why soil and smallholders are food-security infrastructure",
     "How Agri regenerates, verifies and supplies the Group",
     "Proof posture and how we work with Foods & Direct",
@@ -210,7 +211,7 @@ export const directDeckConfig: PillarDeckConfig = {
   id: "direct-deck",
   printRootId: "direct-deck-print-root",
   themeKey: "orange",
-  eyebrow: "PILLAR DECK · DIRECT · 12 SLIDES",
+  eyebrow: "PILLAR DECK · DIRECT · 13 SLIDES",
   title: "Big Five Direct — strategic deck",
   description:
     "Last-mile distribution, containers and micro-hubs so fortified food and produce reach communities with transparency.",
@@ -226,9 +227,10 @@ export const directDeckConfig: PillarDeckConfig = {
     "Last-mile · Containers",
     "bigfivegroup.africa/direct",
     "Empower + Feed",
-    "12 slides",
+    "13 slides",
   ],
   agenda: [
+    "Group vision, mission and values",
     "Why last-mile is where food security fails",
     "Containers, hubs and transparent trade",
     "How Direct multiplies Foods & Agri",
@@ -397,7 +399,7 @@ export const accessDeckConfig: PillarDeckConfig = {
   id: "access-deck",
   printRootId: "access-deck-print-root",
   themeKey: "blue",
-  eyebrow: "PILLAR DECK · ACCESS · 12 SLIDES",
+  eyebrow: "PILLAR DECK · ACCESS · 13 SLIDES",
   title: "Big Five Access — strategic deck",
   description:
     "Pathways to tenders, CSI and development capital for verified African enterprise — with delivery partners who can execute.",
@@ -413,9 +415,10 @@ export const accessDeckConfig: PillarDeckConfig = {
     "Tenders · CSI · DFI",
     "bigfivegroup.africa/access",
     "Empower pillar",
-    "12 slides",
+    "13 slides",
   ],
   agenda: [
+    "Group vision, mission and values",
     "Why capital fails to reach African implementers",
     "How Access verifies, matches and supports delivery",
     "Link to Connect, Impact and the operating pillars",
@@ -580,7 +583,7 @@ export const connectDeckConfig: PillarDeckConfig = {
   id: "connect-deck",
   printRootId: "connect-deck-print-root",
   themeKey: "cyan",
-  eyebrow: "PILLAR DECK · CONNECT · SAM · 13 SLIDES",
+  eyebrow: "PILLAR DECK · CONNECT · SAM · 14 SLIDES",
   title: "Big Five Connect — strategic deck",
   description:
     "SupplierAdvisor® supply-chain OS with SAM messenger, AI trust and on-chain-ready trade — the digital nervous system of the Group.",
@@ -595,9 +598,10 @@ export const connectDeckConfig: PillarDeckConfig = {
     "SupplierAdvisor® · SAM",
     "bigfivegroup.africa/connect",
     "AI · On-chain",
-    "13 slides",
+    "14 slides",
   ],
   agenda: [
+    "Group vision, mission and values",
     "Why African trade needs an OS, not more spreadsheets",
     "SupplierAdvisor® modules and trust layer",
     "SAM — Grok-powered messenger",

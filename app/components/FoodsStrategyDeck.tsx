@@ -11,14 +11,17 @@ import {
   ChefHat,
   ChevronLeft,
   ChevronRight,
+  Compass,
   Copy,
   Download,
   Heart,
   Maximize2,
   Minimize2,
   Share2,
+  Shield,
   ShieldCheck,
   Soup,
+  Target,
   UtensilsCrossed,
   School,
   Building2,
@@ -26,8 +29,9 @@ import {
   Users,
 } from "lucide-react";
 import { SA_LOGIN, SA_ONBOARDING, SA_URL, sa } from "../lib/saCopy";
+import { GROUP_VMV } from "./deck/GroupVmvContent";
 
-const TOTAL = 14;
+const TOTAL = 15;
 const PRINT_ROOT_ID = "foods-deck-print-root";
 
 const PRODUCT_RANGES = [
@@ -398,7 +402,7 @@ function TitleSlide() {
             <span>KwaZulu-Natal · SA</span>
             <span>bigfivegroup.africa/foods</span>
             <span>Order: supplieradvisor.com</span>
-            <span>14 slides</span>
+            <span>15 slides</span>
           </div>
         </div>
       </TitleSlideLayout>
@@ -409,6 +413,7 @@ function TitleSlide() {
 function AgendaSlide() {
   const forPrint = usePrintMode();
   const items = [
+    "Group vision, mission and values",
     "Why fortified nutrition is non-negotiable in Africa",
     "Big Five Foods impact — meals, children, cost, nutrition",
     "Four product ranges with real packaging",
@@ -438,6 +443,149 @@ function AgendaSlide() {
             </li>
           ))}
         </ol>
+      </div>
+    </SlideShell>
+  );
+}
+
+function FoodsGroupVmvSlide() {
+  const forPrint = usePrintMode();
+  const pillars = [
+    {
+      t: "Vision",
+      icon: Compass,
+      color: "text-emerald-700",
+      bar: "from-emerald-500 to-teal-600",
+      title: GROUP_VMV.vision.title,
+      d: forPrint
+        ? "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, communities own their economies."
+        : GROUP_VMV.vision.body,
+    },
+    {
+      t: "Mission",
+      icon: Target,
+      color: "text-sky-700",
+      bar: "from-sky-500 to-blue-600",
+      title: GROUP_VMV.mission.title,
+      d: forPrint
+        ? "Deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises."
+        : GROUP_VMV.mission.body,
+    },
+    {
+      t: "Values",
+      icon: Shield,
+      color: "text-amber-700",
+      bar: "from-amber-500 to-orange-600",
+      title: GROUP_VMV.valuesIntro.title,
+      d: forPrint
+        ? "Humanity, innovation, integrity, excellence and impact — how we hire, partner, trade and deliver."
+        : GROUP_VMV.valuesIntro.body,
+    },
+  ];
+
+  return (
+    <SlideShell>
+      <div className="flex flex-col h-full min-h-0">
+        <div className="shrink-0">
+          <Eyebrow>BIG FIVE GROUP · NORTH STAR</Eyebrow>
+          <SlideTitle>Vision · Mission · Values</SlideTitle>
+          <p
+            className={`text-[#525252] max-w-3xl ${
+              forPrint ? "text-[10px] mb-2 leading-snug" : "text-sm mb-4 leading-relaxed"
+            }`}
+          >
+            Foods is a pillar of one Group. Every product range answers to the same north star.
+          </p>
+        </div>
+        <div
+          className={`grid grid-cols-1 md:grid-cols-3 min-h-0 shrink-0 ${
+            forPrint ? "gap-1.5 mb-2" : "gap-3 mb-4"
+          }`}
+        >
+          {pillars.map((x) => (
+            <div
+              key={x.t}
+              className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 relative overflow-hidden ${
+                forPrint ? "p-2.5" : "p-4 sm:p-5 rounded-2xl"
+              }`}
+            >
+              <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${x.bar}`} />
+              <div
+                className={`inline-flex items-center gap-1.5 tracking-[2px] font-semibold mb-1 mt-0.5 ${x.color} ${
+                  forPrint ? "text-[8px]" : "text-[10px] sm:text-xs"
+                }`}
+              >
+                <x.icon className={forPrint ? "w-3 h-3" : "w-4 h-4"} />
+                {x.t.toUpperCase()}
+              </div>
+              <h3
+                className={`font-semibold text-black tracking-tight mb-1 leading-snug ${
+                  forPrint ? "text-[11px]" : "text-sm sm:text-base"
+                }`}
+              >
+                {x.title}
+              </h3>
+              <p
+                className={`text-[#404040] leading-snug ${
+                  forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                }`}
+              >
+                {x.d}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="shrink-0">
+          <div
+            className={`tracking-[2px] text-[#737373] font-semibold ${
+              forPrint ? "text-[8px] mb-1" : "text-[10px] mb-2"
+            }`}
+          >
+            OUR VALUES
+          </div>
+          <div
+            className={`grid min-w-0 ${
+              forPrint
+                ? "grid-cols-5 gap-1"
+                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3"
+            }`}
+          >
+            {GROUP_VMV.values.map((v) => (
+              <div
+                key={v.title}
+                className={`flex items-start min-w-0 rounded-lg border border-black/10 bg-white ${
+                  forPrint
+                    ? "flex-col gap-1 p-1.5"
+                    : "flex-row sm:flex-col gap-2 p-3 sm:p-4 rounded-xl"
+                }`}
+              >
+                <div
+                  className={`rounded-md bg-amber-50 text-amber-900 flex items-center justify-center shrink-0 ${
+                    forPrint ? "w-6 h-6" : "w-9 h-9 rounded-xl"
+                  }`}
+                >
+                  <v.icon className={forPrint ? "w-3 h-3" : "w-4 h-4"} />
+                </div>
+                <div className="min-w-0">
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[10px]" : "text-sm mb-0.5"
+                    }`}
+                  >
+                    {v.title}
+                  </div>
+                  <div
+                    className={`text-[#525252] leading-snug ${
+                      forPrint ? "text-[9px]" : "text-xs"
+                    }`}
+                  >
+                    {v.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </SlideShell>
   );
@@ -790,28 +938,30 @@ function Slide({ index }: SlideProps) {
     case 1:
       return <AgendaSlide />;
     case 2:
-      return <ChallengeSlide />;
+      return <FoodsGroupVmvSlide />;
     case 3:
-      return <SolutionSlide />;
+      return <ChallengeSlide />;
     case 4:
-      return <ProofSlide />;
+      return <SolutionSlide />;
     case 5:
-      return <RangeSlide />;
+      return <ProofSlide />;
     case 6:
-      return <ProductDeepDive rangeIndex={0} />;
+      return <RangeSlide />;
     case 7:
-      return <ProductDeepDive rangeIndex={1} />;
+      return <ProductDeepDive rangeIndex={0} />;
     case 8:
-      return <ProductDeepDive rangeIndex={2} />;
+      return <ProductDeepDive rangeIndex={1} />;
     case 9:
-      return <ProductDeepDive rangeIndex={3} />;
+      return <ProductDeepDive rangeIndex={2} />;
     case 10:
-      return <CertsSlide />;
+      return <ProductDeepDive rangeIndex={3} />;
     case 11:
-      return <FarmToForkSlide />;
+      return <CertsSlide />;
     case 12:
-      return <WhoWeServeSlide />;
+      return <FarmToForkSlide />;
     case 13:
+      return <WhoWeServeSlide />;
+    case 14:
       return <CtaSlide />;
     default:
       return null;
@@ -1411,7 +1561,7 @@ export default function FoodsStrategyDeck() {
     <div id="foods-deck" className="scroll-mt-24 sm:scroll-mt-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
         <div className="text-xs tracking-[3px] text-amber-800 mb-3 font-medium">
-          PRODUCT & IMPACT DECK · 14 SLIDES · SHAREABLE
+          PRODUCT & IMPACT DECK · 15 SLIDES · SHAREABLE
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4 text-balance">
           Big Five Foods — the deck

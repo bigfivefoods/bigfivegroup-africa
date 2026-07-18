@@ -16,6 +16,7 @@ import DeckShell, {
   useDeckPrintMode,
   type DeckTheme,
 } from "./DeckShell";
+import { GroupVmvSlide } from "./GroupVmvContent";
 import { SA_LOGIN, SA_ONBOARDING, SA_URL } from "../../lib/saCopy";
 
 export type PillarDeckConfig = {
@@ -67,8 +68,8 @@ export type PillarDeckConfig = {
   intelBody?: string;
 };
 
-const TOTAL_BASE = 12;
-// With intel: +1 slide
+/** Base: title, agenda, Group VMV, challenge… CTA = 13. Intel adds +1. */
+const TOTAL_BASE = 13;
 
 function slideCount(cfg: PillarDeckConfig) {
   return cfg.intelCards?.length ? TOTAL_BASE + 1 : TOTAL_BASE;
@@ -85,12 +86,14 @@ function Slide({
 }) {
   const forPrint = useDeckPrintMode();
   const hasIntel = Boolean(cfg.intelCards?.length);
-  // Map index if no intel: 0-11 standard; with intel insert at 8
+  /**
+   * Layout: 0 title, 1 agenda, 2 Group VMV, 3 challenge … 12 CTA
+   * With intel: insert at 9 (after stakeholders=8), shift SDG/why/CTA
+   */
   const map = (i: number) => {
     if (!hasIntel) return i;
-    // 0-7 same, 8 = intel, 9-12 = old 8-11
-    if (i <= 7) return i;
-    if (i === 8) return 100; // intel
+    if (i <= 8) return i;
+    if (i === 9) return 100; // intel
     return i - 1;
   };
   const s = map(index);
@@ -168,6 +171,9 @@ function Slide({
       );
 
     case 2:
+      return <GroupVmvSlide theme={theme} />;
+
+    case 3:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -191,7 +197,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 3:
+    case 4:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>OUR SOLUTION</DeckEyebrow>
@@ -237,7 +243,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 4:
+    case 5:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -263,7 +269,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 5:
+    case 6:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HOW IT WORKS</DeckEyebrow>
@@ -310,7 +316,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 6:
+    case 7:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>IN THE GROUP</DeckEyebrow>
@@ -338,7 +344,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 7:
+    case 8:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHO WE SERVE</DeckEyebrow>
@@ -429,7 +435,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 8:
+    case 9:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>UN SDGs</DeckEyebrow>
@@ -472,7 +478,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 9:
+    case 10:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY PARTNER</DeckEyebrow>
@@ -511,7 +517,7 @@ function Slide({
         </DeckSlideShell>
       );
 
-    case 10:
+    case 11:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <DeckTitleLayout>
