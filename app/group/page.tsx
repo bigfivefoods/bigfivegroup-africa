@@ -20,6 +20,7 @@ import {
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
 import IntelligenceNarrative from "../components/IntelligenceNarrative";
+import StrategyDeck from "../components/StrategyDeck";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
@@ -124,7 +125,8 @@ export default function GroupPage() {
         }
         subtitle="Big Five is not a collection of logos — it is an integrated African enterprise. Every pillar serves a prosperous Africa: feed, educate and empower — with ethical AI, robotics where it multiplies impact, and SAM on SupplierAdvisor®."
         ctas={[
-          { href: "#pillars", label: "Explore the 10 pillars", primary: true },
+          { href: "#strategy-deck", label: "View Group deck", primary: true },
+          { href: "#pillars", label: "Explore the 10 pillars" },
           { href: "#intelligence", label: "AI · SAM · future systems" },
           { href: "#vision", label: "Vision · mission · values" },
         ]}
@@ -169,6 +171,10 @@ export default function GroupPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="bg-[#fafafa] border-y border-black/10 py-14 sm:py-20 md:py-24">
+        <StrategyDeck />
       </section>
 
       <IntelligenceNarrative variant="full" />

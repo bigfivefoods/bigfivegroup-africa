@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { sa, SA_URL, SA_ONBOARDING, SA_EMAIL, SA_LOGIN } from "../lib/saCopy";
 import SamSection from "../components/SamSection";
+import ConnectStrategyDeck from "../components/ConnectStrategyDeck";
 import Link from "next/link";
 
 const ACCENT = "#06b6d4";
@@ -90,6 +91,7 @@ export default function ConnectPage() {
             primary: true,
             external: true,
           },
+          { href: "#connect-deck", label: "View Connect deck" },
           { href: "#sam", label: `Meet ${sa.sam.name}` },
           { href: "#how", label: "See how trust works" },
           {
@@ -102,6 +104,10 @@ export default function ConnectPage() {
       />
 
       <SupplierTrust entityName="Big Five Group companies" compact />
+
+      <section className="bg-[#fafafa] border-b border-black/10 py-14 sm:py-20 md:py-24">
+        <ConnectStrategyDeck />
+      </section>
 
       {/* Pricing strip */}
       <section className="bg-white border-b border-black/10 py-8">

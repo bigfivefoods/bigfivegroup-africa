@@ -13,6 +13,7 @@ import {
 } from "../components/PageSections";
 import { Sun, Network, Package, Coins, MapPin, Users, BarChart3, Zap } from "lucide-react";
 import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
+import DirectStrategyDeck from "../components/DirectStrategyDeck";
 
 const ACCENT = "#f97316";
 
@@ -31,7 +32,8 @@ export default function DirectPage() {
         }
         subtitle="Eliminate middlemen. Solar micro-hubs, last-mile logistics, and transparent trade that keep value with African producers — powered by Big Five Foods on SupplierAdvisor®."
         ctas={[
-          { href: "#network", label: "Containers & food impact", primary: true },
+          { href: "#direct-deck", label: "View Direct deck", primary: true },
+          { href: "#network", label: "Containers & food impact" },
           {
             href: "https://www.supplieradvisor.com/dashboard/containers",
             label: "SA containers",
@@ -47,6 +49,10 @@ export default function DirectPage() {
       />
 
       <SupplierTrust entityName="Big Five Foods (linked via Direct)" compact />
+
+      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+        <DirectStrategyDeck />
+      </section>
 
       {/* Foods × SA network — impact + live map */}
       <section id="network" className="py-16 sm:py-20 md:py-24">

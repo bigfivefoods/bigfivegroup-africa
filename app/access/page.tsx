@@ -20,6 +20,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
+import AccessStrategyDeck from "../components/AccessStrategyDeck";
 
 const ACCENT = "#3b82f6";
 
@@ -38,7 +39,8 @@ export default function AccessPage() {
         }
         subtitle="Unlock government funding, institutional partnerships, and policy pathways — with verified suppliers and transparent delivery African institutions can trust."
         ctas={[
-          { href: "#how", label: "How Access works", primary: true },
+          { href: "#access-deck", label: "View Access deck", primary: true },
+          { href: "#how", label: "How Access works" },
           {
             href: SA_ONBOARDING,
             label: "Start free trial",
@@ -54,6 +56,10 @@ export default function AccessPage() {
       />
 
       <SupplierTrust entityName="Access programme suppliers and SMEs" compact />
+
+      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+        <AccessStrategyDeck />
+      </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading

@@ -19,6 +19,7 @@ import {
   Droplets,
   LineChart,
 } from "lucide-react";
+import AgriStrategyDeck from "../components/AgriStrategyDeck";
 
 const ACCENT = "#10b981";
 
@@ -37,7 +38,8 @@ export default function AgriPage() {
         }
         subtitle="Partnering with Tribal Authorities, the Zulu Kingdom, and governments across Africa to regenerate farmland, empower farmers, and feed the continent with verified provenance."
         ctas={[
-          { href: "#zulukingdom", label: "Zulu Kingdom partnership", primary: true },
+          { href: "#agri-deck", label: "View Agri deck", primary: true },
+          { href: "#zulukingdom", label: "Zulu Kingdom partnership" },
           {
             href: "https://www.supplieradvisor.com/onboarding?type=business",
             label: "Start free trial",
@@ -48,6 +50,10 @@ export default function AgriPage() {
       />
 
       <SupplierTrust entityName="Big Five Agri and group suppliers" compact />
+
+      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+        <AgriStrategyDeck />
+      </section>
 
       <section id="zulukingdom" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
