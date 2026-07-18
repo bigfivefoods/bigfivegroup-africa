@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -23,6 +24,12 @@ import { CompanyIcon } from "../lib/icons";
 
 const TOTAL = 15;
 
+/** When true, slides render with print-friendly sizing (same design as web). */
+const PrintModeContext = createContext(false);
+function usePrintMode() {
+  return useContext(PrintModeContext);
+}
+
 type SlideProps = { index: number };
 
 function SlideShell({
@@ -36,6 +43,8 @@ function SlideShell({
   className?: string;
   accent?: "violet" | "emerald" | "rose" | "amber";
 }) {
+  const forPrint = usePrintMode();
+  const zeroPad = /\b!?p-0\b/.test(className);
   const accentBar =
     accent === "emerald"
       ? "from-emerald-500 to-teal-600"
@@ -47,7 +56,11 @@ function SlideShell({
 
   return (
     <div
-      className={`relative h-full w-full overflow-y-auto overflow-x-hidden rounded-2xl sm:rounded-3xl border ${
+      className={`relative h-full w-full overflow-x-hidden border ${
+        forPrint
+          ? "overflow-hidden rounded-xl"
+          : "overflow-y-auto rounded-2xl sm:rounded-3xl"
+      } ${
         dark
           ? "bg-[#0a0a0a] border-white/10 text-white"
           : "bg-white border-black/10 text-black"
@@ -62,7 +75,15 @@ function SlideShell({
       {dark && (
         <div className="pointer-events-none absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-violet-600/20 blur-3xl" />
       )}
-      <div className="relative p-5 sm:p-8 md:p-10 lg:p-12 min-h-full flex flex-col">
+      <div
+        className={`relative min-h-full flex flex-col h-full ${
+          zeroPad
+            ? "p-0"
+            : forPrint
+              ? "p-7 md:p-9"
+              : "p-5 sm:p-8 md:p-10 lg:p-12"
+        }`}
+      >
         {children}
       </div>
     </div>
@@ -130,7 +151,7 @@ function Slide({ index }: SlideProps) {
     case 0:
       return (
         <SlideShell dark className="!p-0">
-          <div className="relative min-h-[min(70dvh,36rem)] flex flex-col justify-between p-5 sm:p-8 md:p-10 lg:p-12">
+          <TitleSlideLayout>
             <div>
               <Eyebrow light>BIG FIVE GROUP · STRATEGIC OVERVIEW</Eyebrow>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter leading-[1.05] max-w-3xl text-balance">
@@ -152,7 +173,7 @@ function Slide({ index }: SlideProps) {
                 <p>15 slides · Downloadable · Shareable</p>
               </div>
             </div>
-          </div>
+          </TitleSlideLayout>
         </SlideShell>
       );
 
@@ -688,7 +709,7 @@ function Slide({ index }: SlideProps) {
     case 14:
       return (
         <SlideShell dark className="!p-0">
-          <div className="relative min-h-[min(70dvh,36rem)] flex flex-col justify-between p-5 sm:p-8 md:p-10 lg:p-12">
+          <TitleSlideLayout>
             <div>
               <Eyebrow light>NEXT STEP</Eyebrow>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] mb-4 sm:mb-6 text-balance">
@@ -727,7 +748,7 @@ function Slide({ index }: SlideProps) {
                 estimates.
               </p>
             </div>
-          </div>
+          </TitleSlideLayout>
         </SlideShell>
       );
 
@@ -736,198 +757,121 @@ function Slide({ index }: SlideProps) {
   }
 }
 
-/** Build printable multi-page HTML for PDF download via browser print */
-function buildPrintDocument() {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<title>Big Five Group — Strategic Overview</title>
-<style>
-  @page { size: landscape; margin: 12mm; }
-  * { box-sizing: border-box; }
-  body { font-family: Inter, system-ui, sans-serif; margin: 0; color: #111; background: #fff; }
-  h1 { font-size: 28px; letter-spacing: -0.04em; margin: 0 0 12px; }
-  h2 { font-size: 22px; letter-spacing: -0.03em; margin: 0 0 10px; }
-  p, li { font-size: 13px; line-height: 1.55; color: #404040; }
-  .slide { page-break-after: always; padding: 8mm 0; min-height: 160mm; }
-  .slide:last-child { page-break-after: auto; }
-  .eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #6d28d9; font-weight: 600; margin-bottom: 10px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
-  .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 14px; background: #fafafa; }
-  .stat { font-size: 26px; font-weight: 700; letter-spacing: -0.04em; color: #5b21b6; }
-  .ref { font-size: 10px; color: #737373; margin-top: 14px; }
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #eee; vertical-align: top; }
-  th { color: #737373; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
-  .footer { margin-top: 20px; font-size: 11px; color: #737373; }
-  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
-</style>
-</head>
-<body>
-<section class="slide">
-  <div class="eyebrow">Big Five Group · Strategic Overview</div>
-  <h1>One Group. Ten Pillars. Infinite African Impact.</h1>
-  <p>Strategic briefing for governments, DFIs, corporates and partners. KwaZulu-Natal · South Africa · bigfivegroup.africa</p>
-</section>
+/** Full-bleed layout for title / CTA slides — matches web; sized for print when needed. */
+function TitleSlideLayout({ children }: { children: React.ReactNode }) {
+  const forPrint = usePrintMode();
+  return (
+    <div
+      className={`relative flex flex-col justify-between ${
+        forPrint
+          ? "h-full min-h-0 p-8 md:p-10"
+          : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
 
-<section class="slide">
-  <div class="eyebrow">Agenda</div>
-  <h2>What this briefing covers</h2>
-  <ol>
-    <li>Who Big Five Group is — ten pillars as one system</li>
-    <li>Vision, mission and values</li>
-    <li>Hunger & food insecurity (SOFI / GRFC)</li>
-    <li>Child malnutrition (UNICEF/WHO/WB)</li>
-    <li>HIV & AIDS regional burden (UNAIDS/WHO)</li>
-    <li>How Big Five responds — Feed · Educate · Empower</li>
-    <li>How we resolve malnutrition and HIV-linked vulnerability</li>
-    <li>Why partners work with us</li>
-  </ol>
-</section>
+const PRINT_STYLES = `
+  #strategy-deck-print-root {
+    position: fixed;
+    left: -12000px;
+    top: 0;
+    width: 1120px;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+  }
+  #strategy-deck-print-root .deck-print-page {
+    width: 1120px;
+    height: 720px;
+    overflow: hidden;
+    margin: 0 0 24px;
+    box-sizing: border-box;
+  }
+  #strategy-deck-print-root .deck-print-page > * {
+    height: 100%;
+  }
+  @media print {
+    @page {
+      size: landscape;
+      margin: 7mm;
+    }
+    html, body {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+      background: #fff !important;
+      margin: 0 !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+    body * {
+      visibility: hidden !important;
+    }
+    #strategy-deck-print-root,
+    #strategy-deck-print-root * {
+      visibility: visible !important;
+    }
+    #strategy-deck-print-root {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      opacity: 1 !important;
+      z-index: 2147483647 !important;
+      pointer-events: auto !important;
+      background: transparent !important;
+    }
+    #strategy-deck-print-root .deck-print-page {
+      width: 100% !important;
+      height: 186mm !important;
+      max-height: 186mm !important;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 0 !important;
+      overflow: hidden !important;
+    }
+    #strategy-deck-print-root .deck-print-page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+    /* Keep slide chrome from clipping awkwardly */
+    #strategy-deck-print-root a {
+      text-decoration: none !important;
+      color: inherit !important;
+    }
+  }
+`;
 
-<section class="slide">
-  <div class="eyebrow">Who we are</div>
-  <h2>An integrated African enterprise</h2>
-  <p>Headquartered in KwaZulu-Natal. Ten pillars: Agri, Foods, Direct, Access, Connect, Leadership, Foundation, Impact, Global, Royal — designed so impact compounds.</p>
-</section>
+function PrintDeckPortal({ active }: { active: boolean }) {
+  // Client-only portal — avoid SSR / document access
+  if (!active || typeof document === "undefined") return null;
 
-<section class="slide">
-  <div class="eyebrow">North star</div>
-  <h2>Vision · Mission · Values</h2>
-  <div class="grid">
-    <div class="card"><strong>Vision</strong><p>A prosperous Africa — for everyone on it.</p></div>
-    <div class="card"><strong>Mission</strong><p>Feed. Educate. Empower.</p></div>
-    <div class="card"><strong>Values</strong><p>Humanity · Innovation · Integrity · Excellence · Impact.</p></div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Challenge · Hunger</div>
-  <h2>Hunger is rising in Africa</h2>
-  <div class="grid">
-    <div class="card"><div class="stat">307M</div><p>People in Africa faced hunger in 2024 (&gt;20% of population)</p></div>
-    <div class="card"><div class="stat">~60%</div><p>Of people projected undernourished by 2030 could be in Africa</p></div>
-    <div class="card"><div class="stat">673M</div><p>People globally experienced hunger in 2024</p></div>
-    <div class="card"><div class="stat">2.3B</div><p>Moderate or severe food insecurity (2024)</p></div>
-  </div>
-  <p class="ref">Sources: SOFI 2025 (FAO/IFAD/UNICEF/WFP/WHO); UNICEF SOFI brief; GRFC 2026.</p>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Challenge · Child malnutrition</div>
-  <h2>Stunting, wasting and micronutrient gaps</h2>
-  <div class="grid">
-    <div class="card"><div class="stat">62M</div><p>Stunted children under 5 in sub-Saharan Africa</p></div>
-    <div class="card"><div class="stat">13M</div><p>Children with acute malnutrition in Eastern & Southern Africa (UNICEF 2025)</p></div>
-    <div class="card"><div class="stat">~4M</div><p>Estimated SAM cases in ESA</p></div>
-    <div class="card"><div class="stat">150M</div><p>Children under 5 stunted globally (2024 JME)</p></div>
-  </div>
-  <p class="ref">Sources: UNICEF malnutrition data; UNICEF/WHO/WB JME; UNICEF ESA (Apr 2025).</p>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Challenge · HIV & AIDS</div>
-  <h2>Structural health and household vulnerability</h2>
-  <div class="grid">
-    <div class="card"><div class="stat">40.8M</div><p>People living with HIV globally (end 2024)</p></div>
-    <div class="card"><div class="stat">&gt;½</div><p>Live in eastern & southern Africa (~21.1M)</p></div>
-    <div class="card"><div class="stat">~65%</div><p>Of people living with HIV are in sub-Saharan Africa</p></div>
-    <div class="card"><div class="stat">3,300</div><p>New infections/week among AGYW 15–24 in SSA (2024)</p></div>
-  </div>
-  <p class="ref">Sources: UNAIDS / WHO / HIV.gov global statistics.</p>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Our response</div>
-  <h2>Feed · Educate · Empower</h2>
-  <div class="grid">
-    <div class="card"><strong>Feed</strong><p>Agri + Foods: regenerative production; fortified nutrition — 150k meals, 100k children, 83% cheaper, 74% more nutrition.</p></div>
-    <div class="card"><strong>Educate</strong><p>Leadership / Super-Cube® ethical capability for nations and enterprises.</p></div>
-    <div class="card"><strong>Empower</strong><p>Direct, Access, Connect, Global — distribution, capital, verified trade, corridors.</p></div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Resolving malnutrition</div>
-  <h2>From risk to plates, hubs and proof</h2>
-  <ul>
-    <li><strong>Fortified affordable food</strong> — Foods ranges for households, schools, institutions</li>
-    <li><strong>Regenerative supply</strong> — Agri local production integrity</li>
-    <li><strong>Containers & last mile</strong> — Direct + live SA container map</li>
-    <li><strong>PMO programmes</strong> — Impact + Foundation with gates and KPIs</li>
-  </ul>
-  <p class="ref">Complementary to clinical SAM treatment; we strengthen the food-security layer.</p>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Supporting HIV-affected households</div>
-  <h2>Nutrition, livelihoods and systems (not ART provider)</h2>
-  <ul>
-    <li>Nutrition security for vulnerable households</li>
-    <li>Livelihoods via Agri, Direct, Access</li>
-    <li>Ethical leadership development</li>
-    <li>Trusted delivery rails (SupplierAdvisor® + Impact PMO)</li>
-  </ul>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Challenge → response</div>
-  <h2>System map</h2>
-  <table>
-    <tr><th>Challenge</th><th>Response</th><th>Pillars</th></tr>
-    <tr><td>Hunger</td><td>Fortified food + regenerative + containers</td><td>Foods · Agri · Direct</td></tr>
-    <tr><td>Child malnutrition risk</td><td>Affordable fortified diets + institutions</td><td>Foods · Foundation · Impact</td></tr>
-    <tr><td>HIV household vulnerability</td><td>Nutrition + livelihoods + systems</td><td>Foods · Direct · Access · Leadership</td></tr>
-    <tr><td>Opaque chains</td><td>SupplierAdvisor® verification</td><td>Connect · Foods</td></tr>
-    <tr><td>Weak delivery</td><td>Cross-pillar PMO</td><td>Impact · Foundation</td></tr>
-  </table>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Proof points</div>
-  <h2>What we put on the table</h2>
-  <div class="grid">
-    <div class="card"><div class="stat">150k</div><p>Meals delivered</p></div>
-    <div class="card"><div class="stat">100k</div><p>Children reached</p></div>
-    <div class="card"><div class="stat">83%</div><p>Cheaper pathways</p></div>
-    <div class="card"><div class="stat">74%</div><p>More nutrition</p></div>
-  </div>
-  <p>Ten pillars · Foods & Foundation on SupplierAdvisor® · Live container embed · SABC coverage</p>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Why partner</div>
-  <h2>Why organisations choose Big Five</h2>
-  <ul>
-    <li>One system, not seven vendors</li>
-    <li>Addresses hunger, malnutrition vulnerability, trust and delivery capacity</li>
-    <li>Evidence over theatre</li>
-    <li>African HQ with global standards</li>
-    <li>Institutional fluency + royal partnership for community service</li>
-  </ul>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Next step</div>
-  <h1>Let's put a professional delivery system on your African ambition</h1>
-  <p>Contact: craig@bigfivegroup.africa · bigfivegroup.africa/connect · bigfivegroup.africa/impact#strategy-deck</p>
-  <p class="footer">Big Five Group (Pty) Ltd · KwaZulu-Natal · Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; UNICEF ESA; UNAIDS/WHO.</p>
-</section>
-
-<script>
-  window.onload = function () {
-    setTimeout(function () { window.print(); }, 400);
-  };
-</script>
-</body>
-</html>`;
+  return createPortal(
+    <PrintModeContext.Provider value={true}>
+      <style dangerouslySetInnerHTML={{ __html: PRINT_STYLES }} />
+      <div id="strategy-deck-print-root" aria-hidden="true">
+        {Array.from({ length: TOTAL }, (_, i) => (
+          <div key={i} className="deck-print-page">
+            <Slide index={i} />
+          </div>
+        ))}
+      </div>
+    </PrintModeContext.Provider>,
+    document.body
+  );
 }
 
 export default function StrategyDeck() {
   const [index, setIndex] = useState(0);
   const [shareState, setShareState] = useState<"idle" | "copied" | "shared">("idle");
   const [fullscreen, setFullscreen] = useState(false);
+  const [printMode, setPrintMode] = useState(false);
+  const [preparingPdf, setPreparingPdf] = useState(false);
 
   const go = useCallback((next: number) => {
     setIndex(Math.max(0, Math.min(TOTAL - 1, next)));
@@ -935,6 +879,7 @@ export default function StrategyDeck() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (printMode) return;
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         go(index + 1);
@@ -947,7 +892,39 @@ export default function StrategyDeck() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, index, fullscreen]);
+  }, [go, index, fullscreen, printMode]);
+
+  // Print the real React slides (identical design to the web deck)
+  useEffect(() => {
+    if (!printMode) return;
+
+    let cancelled = false;
+    const finish = () => {
+      if (cancelled) return;
+      setPrintMode(false);
+      setPreparingPdf(false);
+    };
+
+    const t = window.setTimeout(() => {
+      if (cancelled) return;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (cancelled) return;
+          window.print();
+        });
+      });
+    }, 400);
+
+    window.addEventListener("afterprint", finish);
+    const fallback = window.setTimeout(finish, 120_000);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(t);
+      window.clearTimeout(fallback);
+      window.removeEventListener("afterprint", finish);
+    };
+  }, [printMode]);
 
   const shareUrl =
     typeof window !== "undefined"
@@ -980,22 +957,8 @@ export default function StrategyDeck() {
   };
 
   const onDownload = () => {
-    const html = buildPrintDocument();
-    const w = window.open("", "_blank");
-    if (!w) {
-      // Popup blocked — fall back to blob download of HTML
-      const blob = new Blob([html], { type: "text/html" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Big-Five-Group-Strategic-Overview.html";
-      a.click();
-      URL.revokeObjectURL(url);
-      return;
-    }
-    w.document.open();
-    w.document.write(html);
-    w.document.close();
+    setPreparingPdf(true);
+    setPrintMode(true);
   };
 
   const deck = (
@@ -1036,11 +999,14 @@ export default function StrategyDeck() {
           <button
             type="button"
             onClick={onDownload}
-            className="inline-flex items-center gap-1.5 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-900 hover:bg-violet-100 shadow-sm"
+            disabled={preparingPdf}
+            className="inline-flex items-center gap-1.5 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-900 hover:bg-violet-100 shadow-sm disabled:opacity-60"
           >
             <Download className="w-3.5 h-3.5" />
-            <span className="hidden xs:inline sm:inline">Download PDF</span>
-            <span className="sm:hidden">PDF</span>
+            <span className="hidden sm:inline">
+              {preparingPdf ? "Preparing…" : "Download PDF"}
+            </span>
+            <span className="sm:hidden">{preparingPdf ? "…" : "PDF"}</span>
           </button>
           <button
             type="button"
@@ -1142,18 +1108,22 @@ export default function StrategyDeck() {
           <button
             type="button"
             onClick={onDownload}
-            className="premium-button inline-flex items-center gap-2 border border-violet-200 bg-white text-violet-900 px-6 py-3 rounded-full text-sm font-semibold hover:bg-violet-50"
+            disabled={preparingPdf}
+            className="premium-button inline-flex items-center gap-2 border border-violet-200 bg-white text-violet-900 px-6 py-3 rounded-full text-sm font-semibold hover:bg-violet-50 disabled:opacity-60"
           >
             <Download className="w-4 h-4" />
-            Download PDF
+            {preparingPdf ? "Preparing matching PDF…" : "Download PDF"}
           </button>
         </div>
       </div>
       {deck}
       <p className="mt-4 text-center text-xs text-[#737373] px-4">
         Keyboard: ← → · Share: <span className="font-medium text-black">/impact#strategy-deck</span> ·
-        Download opens a print dialog — choose <strong className="text-black">Save as PDF</strong>
+        Download uses the same slide design as the web — choose{" "}
+        <strong className="text-black">Save as PDF</strong> in the print dialog
+        {preparingPdf ? " (preparing slides…)" : ""}
       </p>
+      <PrintDeckPortal active={printMode} />
     </div>
   );
 }
