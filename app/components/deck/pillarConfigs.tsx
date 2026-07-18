@@ -19,6 +19,12 @@ import {
   Coins,
   Network,
   Handshake,
+  GraduationCap,
+  Award,
+  BookOpen,
+  Heart,
+  TrendingUp,
+  Globe,
 } from "lucide-react";
 import type { PillarDeckConfig } from "./PillarDeck";
 import { sa } from "../../lib/saCopy";
@@ -787,4 +793,376 @@ export const connectDeckConfig: PillarDeckConfig = {
   ctaEmail: "craig@bigfivegroup.africa",
   footerLine:
     "Big Five Connect · SupplierAdvisor® · SAM · bigfivegroup.africa/connect",
+};
+
+export const leadershipDeckConfig: PillarDeckConfig = {
+  id: "leadership-deck",
+  printRootId: "leadership-deck-print-root",
+  themeKey: "gold",
+  eyebrow: "PILLAR DECK · LEADERSHIP · SUPER-CUBE® · 13 SLIDES",
+  title: "Big Five Leadership — strategic deck",
+  description:
+    "Super-Cube® ethical leadership for nations and enterprises — the Educate pillar of Feed · Educate · Empower.",
+  sharePath: "/leadership#leadership-deck",
+  shareTitle: "Big Five Leadership — Strategic Deck",
+  shareText:
+    "Super-Cube® doctoral leadership model for ethical decision-makers across Africa — Big Five Leadership.",
+  heroImage: "/leadership-hero.jpg",
+  heroTitle: "Leadership that builds nations.",
+  heroHighlight: "Not just companies.",
+  heroBody:
+    "Big Five Leadership develops ethical, whole-person decision-makers through the Super-Cube® doctoral model — so public servants, executives and emerging leaders can run organisations and nations with integrity in an AI-enabled age.",
+  meta: [
+    "Super-Cube®",
+    "bigfivegroup.africa/leadership",
+    "Educate pillar",
+    "13 slides",
+  ],
+  agenda: [
+    "Group vision, mission and values",
+    "Why ethical leadership is African infrastructure",
+    "Super-Cube® model and how programmes work",
+    "Who we serve — governments, enterprises, youth",
+    "SDG alignment and how to partner",
+  ],
+  challengeTitle: "Skills gaps are also leadership gaps",
+  challengeStats: [
+    { value: "Ethics", label: "Public and private decisions shape food, capital and trust" },
+    { value: "Capacity", label: "Programmes fail when leaders cannot hold complexity" },
+    { value: "AI age", label: "Tools without ethical judgment multiply harm" },
+    { value: "Ubuntu", label: "Africa needs world-class models rooted in local values" },
+  ],
+  challengeBody:
+    "You can fund fortification and last-mile logistics and still fail if decision-makers lack ethical, whole-person capacity. Leadership is the Educate pillar that makes Feed and Empower sustainable.",
+  solutionTitle: "Super-Cube® ethical leadership development",
+  solutionBody:
+    "Assess, develop and multiply leaders with a doctoral-rooted model spanning choices, principles, mental, emotional, physical and spiritual dimensions — with ethical AI coaching as a force-multiplier, not a substitute for character.",
+  solutionCards: [
+    {
+      icon: Award,
+      t: "Super-Cube® model",
+      d: "Whole-person leadership framework for high-stakes African contexts.",
+    },
+    {
+      icon: GraduationCap,
+      t: "Assess & develop",
+      d: "360° diagnosis, immersive programmes and peer masterminds.",
+    },
+    {
+      icon: Brain,
+      t: "Ethical AI coaching",
+      d: "Intelligence that supports judgement — never replaces accountability.",
+    },
+    {
+      icon: BookOpen,
+      t: "Multiply facilitators",
+      d: "Graduates scale capability inside governments and enterprises.",
+    },
+  ],
+  proofTitle: "What Leadership puts on the table",
+  proofStats: [
+    { value: "Super-Cube®", label: "Doctoral-rooted model" },
+    { value: "Whole-person", label: "Ethics · mind · relationship · energy" },
+    { value: "Public + private", label: "Nations and enterprises" },
+    { value: "Group", label: "Educate pillar of the system" },
+  ],
+  proofPoints: [
+    "Designed by Dr. Craig R. Muller — Super-Cube® leadership model",
+    "Pairs with Connect (SAM) and Impact for decision culture + delivery",
+    "Serves governments seeking ethical public service capability",
+    "Youth and executive pathways under one African framework",
+  ],
+  howTitle: "How Leadership programmes work",
+  howSteps: [
+    {
+      step: "01",
+      t: "Assess & diagnose",
+      d: "Super-Cube® 360° across dimensions of ethical leadership.",
+    },
+    {
+      step: "02",
+      t: "Develop & embed",
+      d: "Immersive learning, AI coaching and peer accountability.",
+    },
+    {
+      step: "03",
+      t: "Scale & multiply",
+      d: "Facilitators and organisational transformation programmes.",
+    },
+  ],
+  ecosystemTitle: "Leadership inside One Group",
+  ecosystemBody:
+    "Leadership educates the humans who run Agri, Foods, Direct, Access, Connect, Foundation and Impact. Without ethical decision-makers, the system cannot hold trust or scale with dignity.",
+  ecosystemLinks: [
+    { label: "Super-Cube® site", href: "https://www.super-cube.com" },
+    { label: "Connect · SAM", href: "/connect" },
+    { label: "Impact", href: "/impact" },
+    { label: "Group", href: "/group" },
+    { label: "About", href: "/about" },
+  ],
+  stakeholdersTitle: "Who we develop",
+  stakeholders: [
+    {
+      icon: Building2,
+      t: "Executives & founders",
+      d: "High-trust teams and ethical enterprise decisions.",
+    },
+    {
+      icon: Landmark,
+      t: "Governments & public servants",
+      d: "Future-fit leadership for policy and delivery.",
+    },
+    {
+      icon: Users,
+      t: "Youth & emerging leaders",
+      d: "World-class formation rooted in African context.",
+    },
+    {
+      icon: Globe,
+      t: "Institutions & partners",
+      d: "Capability programmes that travel across borders.",
+    },
+  ],
+  sdgTitle: "How Leadership serves the Goals",
+  sdgs: [
+    {
+      n: "4",
+      t: "Quality Education",
+      d: "Leadership formation as lifelong, ethical education.",
+      color: "#C5192D",
+    },
+    {
+      n: "16",
+      t: "Peace & Institutions",
+      d: "Stronger public and private institutions through character.",
+      color: "#00689D",
+    },
+    {
+      n: "8",
+      t: "Decent Work",
+      d: "Leaders who create dignified jobs and fair organisations.",
+      color: "#A21942",
+    },
+  ],
+  whyTitle: "Why organisations choose Leadership",
+  whyPoints: [
+    {
+      t: "Not generic MBA theatre",
+      d: "Super-Cube® is whole-person and Africa-centred.",
+    },
+    {
+      t: "Mission-critical Educate pillar",
+      d: "Feed and Empower fail without ethical decision capacity.",
+    },
+    {
+      t: "AI with a conscience",
+      d: "Coaching supports judgement; humans remain accountable.",
+    },
+    {
+      t: "Group-integrated",
+      d: "Same north star as Foods, Connect and Impact.",
+    },
+  ],
+  ctaTitle: "Put Super-Cube® on your",
+  ctaHighlight: "nation or enterprise ambition.",
+  ctaBody:
+    "Governments, boards and leadership teams — develop ethical decision-makers who can hold complexity and serve people.",
+  ctaSteps: [
+    { n: "01", t: "Define the cohort", d: "Public · private · youth" },
+    { n: "02", t: "Assess & design", d: "Super-Cube® pathway" },
+    { n: "03", t: "Develop & multiply", d: "Capability that scales" },
+  ],
+  ctaPrimary: { label: "Start a leadership conversation", href: "/connect" },
+  ctaSecondary: {
+    label: "Explore Super-Cube®",
+    href: "https://www.super-cube.com",
+    external: true,
+  },
+  ctaEmail: "craig@bigfivegroup.africa",
+  footerLine:
+    "Big Five Leadership · Super-Cube® · Educate · bigfivegroup.africa/leadership",
+};
+
+export const foundationDeckConfig: PillarDeckConfig = {
+  id: "foundation-deck",
+  printRootId: "foundation-deck-print-root",
+  themeKey: "teal",
+  eyebrow: "PILLAR DECK · FOUNDATION · NPO · 13 SLIDES",
+  title: "Big Five Foundation — strategic deck",
+  description:
+    "Verified philanthropy for social, economic and environmental development — registered on SupplierAdvisor®, delivered with Impact.",
+  sharePath: "/foundation#foundation-deck",
+  shareTitle: "Big Five Foundation — Strategic Deck",
+  shareText:
+    "Social, economic and environmental development with proof — Big Five Foundation, registered on SupplierAdvisor®.",
+  heroImage: "/foundation-hero.jpg",
+  heroTitle: "Impact you can verify.",
+  heroHighlight: "Social. Economic. Environmental.",
+  heroBody:
+    "Big Five Foundation is the Group’s philanthropic engine — designing, funding and measuring programmes that advance people, prosperity and planet. Registered on SupplierAdvisor® so partners can trust who they fund.",
+  meta: [
+    "Registered NPO · SA listed",
+    "bigfivegroup.africa/foundation",
+    "Cross-cutting impact",
+    "13 slides",
+  ],
+  agenda: [
+    "Group vision, mission and values",
+    "Why philanthropy needs proof",
+    "Social, economic & environmental pillars of development",
+    "How Foundation designs, delivers and reports",
+    "SDGs and how to partner or donate",
+  ],
+  challengeTitle: "Intention without proof is not development",
+  challengeStats: [
+    { value: "Social", label: "Communities need dignity, skills and nutrition — not handouts alone" },
+    { value: "Economic", label: "Jobs and enterprise pathways must outlast projects" },
+    { value: "Environmental", label: "Soil, climate and land determine long-term food security" },
+    { value: "Trust", label: "Donors and CSI need audit trails, not theatre" },
+  ],
+  challengeBody:
+    "Africa’s development challenge is multi-dimensional. Funding that ignores social dignity, economic agency or environmental integrity will not hold. Foundation exists to fund what can be proven — and delivered through the Group.",
+  solutionTitle: "Development across three dimensions",
+  solutionBody:
+    "We co-design programmes with communities, deploy capital with transparent structure, and deliver via Big Five Impact PMO — linking Foods, Agri, Direct, Leadership and Connect where the outcome requires an operating system, not a one-off grant.",
+  solutionCards: [
+    {
+      icon: Users,
+      t: "Social development",
+      d: "Nutrition, skills, community co-ownership and dignity-first design.",
+    },
+    {
+      icon: TrendingUp,
+      t: "Economic development",
+      d: "Jobs, micro-enterprise, fair markets and pathways out of dependency.",
+    },
+    {
+      icon: Leaf,
+      t: "Environmental development",
+      d: "Regenerative land, resilient food systems and climate-aware programmes.",
+    },
+    {
+      icon: ShieldCheck,
+      t: "Verified philanthropy",
+      d: "Registered on SupplierAdvisor® — transparency partners can audit.",
+    },
+  ],
+  proofTitle: "What Foundation puts on the table",
+  proofStats: [
+    { value: "Social", label: "People · dignity · skills · nutrition" },
+    { value: "Economic", label: "Jobs · enterprise · fair value" },
+    { value: "Environmental", label: "Soil · resilience · stewardship" },
+    { value: "SA", label: "Registered · verifiable presence" },
+  ],
+  proofPoints: [
+    "Big Five Foundation registered on SupplierAdvisor®",
+    "Theory of change, budgets and delivery via Impact PMO",
+    "SDG-aligned design (Zero Hunger, education, work, partnerships)",
+    "Links to operating pillars so grants become systems, not silos",
+  ],
+  howTitle: "How Foundation works",
+  howSteps: [
+    {
+      step: "01",
+      t: "Design & fund",
+      d: "Co-create with communities. Clear theory of change and accountable capital.",
+    },
+    {
+      step: "02",
+      t: "Deliver & verify",
+      d: "Impact PMO + field evidence. Commerce rails where trade applies.",
+    },
+    {
+      step: "03",
+      t: "Report & learn",
+      d: "Shared truth for donors and communities. Replicate what works.",
+    },
+  ],
+  ecosystemTitle: "Foundation inside One Group",
+  ecosystemBody:
+    "Foundation funds and stewards. Impact delivers. Agri, Foods, Direct, Leadership and Connect supply the operating muscle — so social, economic and environmental outcomes reinforce each other.",
+  ecosystemLinks: [
+    { label: "Impact PMO", href: "/impact" },
+    { label: "Foods", href: "/foods" },
+    { label: "Agri", href: "/agri" },
+    { label: "Leadership", href: "/leadership" },
+    { label: "Group", href: "/group" },
+  ],
+  stakeholdersTitle: "Who partners with Foundation",
+  stakeholders: [
+    {
+      icon: Heart,
+      t: "Donors & family offices",
+      d: "Transparent capital with outcomes you can see.",
+    },
+    {
+      icon: Building2,
+      t: "Corporate CSI / ESG",
+      d: "Verified programmes with professional delivery.",
+    },
+    {
+      icon: Users,
+      t: "Communities",
+      d: "Co-ownership, skills transfer, sustainable exits.",
+    },
+    {
+      icon: Landmark,
+      t: "Governments & partners",
+      d: "Shared infrastructure and collective impact reporting.",
+    },
+  ],
+  sdgTitle: "How Foundation serves the Goals",
+  sdgs: [
+    {
+      n: "1",
+      t: "No Poverty",
+      d: "Economic pathways and dignity beyond short-term aid.",
+      color: "#E5243B",
+    },
+    {
+      n: "2",
+      t: "Zero Hunger",
+      d: "Nutrition programmes linked to Foods and last-mile delivery.",
+      color: "#DDA63A",
+    },
+    {
+      n: "17",
+      t: "Partnerships",
+      d: "Donors, CSI, communities and operating pillars as one system.",
+      color: "#19486A",
+    },
+  ],
+  whyTitle: "Why partners choose Foundation",
+  whyPoints: [
+    {
+      t: "Three-dimensional development",
+      d: "Social, economic and environmental — not single-issue theatre.",
+    },
+    {
+      t: "Proof culture",
+      d: "Registered on SupplierAdvisor®; delivered with Impact discipline.",
+    },
+    {
+      t: "Operating muscle",
+      d: "Grants can activate Foods, Agri, Direct and Leadership.",
+    },
+    {
+      t: "Same Group north star",
+      d: "Feed · Educate · Empower with values that do not compromise.",
+    },
+  ],
+  ctaTitle: "Fund development that can be",
+  ctaHighlight: "proven — and delivered.",
+  ctaBody:
+    "Foundations, CSI leads and partners — structure programmes with transparent capital and a Group that can execute social, economic and environmental outcomes.",
+  ctaSteps: [
+    { n: "01", t: "Define the outcome", d: "Social · economic · environment" },
+    { n: "02", t: "Design with proof", d: "Theory of change · budget" },
+    { n: "03", t: "Deliver & report", d: "Impact PMO · SA transparency" },
+  ],
+  ctaPrimary: { label: "Partner with Foundation", href: "/connect" },
+  ctaSecondary: { label: "See Big Five Impact", href: "/impact" },
+  ctaEmail: "craig@bigfivegroup.africa",
+  footerLine:
+    "Big Five Foundation · NPO · SupplierAdvisor® · social · economic · environmental · bigfivegroup.africa/foundation",
 };

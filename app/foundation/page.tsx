@@ -12,6 +12,7 @@ import {
 } from "../components/PageSections";
 import { Heart, TrendingUp, Leaf, Users, ShieldCheck, ExternalLink } from "lucide-react";
 import { SA_URL } from "../lib/saCopy";
+import FoundationStrategyDeck from "../components/FoundationStrategyDeck";
 
 const ACCENT = "#0d9488";
 
@@ -67,9 +68,10 @@ export default function FoundationPage() {
             Impact you can verify
           </>
         }
-        subtitle="The philanthropic engine of the group — designing, funding, and measuring high-impact initiatives with radical transparency. Big Five Foundation is registered on SupplierAdvisor®."
+        subtitle="Social, economic and environmental development with proof — the philanthropic engine of the Group, registered on SupplierAdvisor®."
         ctas={[
-          { href: "#impact", label: "Our impact model", primary: true },
+          { href: "#foundation-deck", label: "Foundation deck", primary: true },
+          { href: "#impact", label: "Impact model" },
           {
             href: SA_URL,
             label: "View on SupplierAdvisor®",
@@ -80,6 +82,10 @@ export default function FoundationPage() {
       />
 
       <SupplierTrust entityName="Big Five Foundation" compact />
+
+      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+        <FoundationStrategyDeck />
+      </section>
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">
         <SectionHeading

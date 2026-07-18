@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
+import LeadershipStrategyDeck from "../components/LeadershipStrategyDeck";
 
 const SUPER_CUBE_URL = "https://www.super-cube.com";
 
@@ -69,18 +70,22 @@ export default function LeadershipPage() {
             for Africa&apos;s future
           </>
         }
-        subtitle="Big Five Leadership is the education and development arm of the group — powered by the Super-Cube® doctoral model. World-class programmes, research, and resources live at super-cube.com."
+        subtitle="Big Five Leadership is the education arm of the group — Super-Cube® ethical leadership for nations and enterprises."
         ctas={[
+          { href: "#leadership-deck", label: "Leadership deck", primary: true },
           {
             href: SUPER_CUBE_URL,
             label: "Explore Super-Cube®",
-            primary: true,
             external: true,
           },
           { href: "#book", label: "Free leadership book" },
         ]}
         overlayClassName="bg-black/55"
       />
+
+      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+        <LeadershipStrategyDeck />
+      </section>
 
       {/* Positioning strip */}
       <section className="bg-white border-b border-black/10">

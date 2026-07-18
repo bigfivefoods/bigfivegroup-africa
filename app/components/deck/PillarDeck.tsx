@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Check,
@@ -29,6 +30,8 @@ export type PillarDeckConfig = {
   sharePath: string;
   shareTitle: string;
   shareText: string;
+  /** Optional full-bleed hero image behind title slide */
+  heroImage?: string;
   heroTitle: string;
   heroHighlight: string;
   heroBody: string;
@@ -102,40 +105,60 @@ function Slide({
     case 0:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
-          <DeckTitleLayout>
-            <div className="flex flex-col h-full justify-between min-h-0">
-              <div>
-                <DeckEyebrow light theme={theme}>
-                  {cfg.eyebrow}
-                </DeckEyebrow>
-                <h2
-                  className={`font-semibold tracking-tighter leading-[1.05] text-balance ${
-                    forPrint ? "text-xl mb-2" : "text-3xl sm:text-4xl md:text-5xl mb-4"
-                  }`}
-                >
-                  {cfg.heroTitle}
-                  <br />
-                  <span style={{ color: theme.gradientFrom }}>{cfg.heroHighlight}</span>
-                </h2>
-                <p
-                  className={`text-white/75 max-w-2xl ${
-                    forPrint ? "text-[11px] leading-snug" : "text-sm sm:text-base leading-relaxed"
-                  }`}
-                >
-                  {cfg.heroBody}
-                </p>
-              </div>
-              <div
-                className={`flex flex-wrap gap-x-3 text-white/45 ${
-                  forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
-                }`}
-              >
-                {cfg.meta.map((m) => (
-                  <span key={m}>{m}</span>
-                ))}
-              </div>
+          <div className="relative h-full w-full min-h-0">
+            {cfg.heroImage && (
+              <>
+                <Image
+                  src={cfg.heroImage}
+                  alt=""
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width:1280px) 100vw, 1200px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/45" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+              </>
+            )}
+            <div className="relative z-10 h-full">
+              <DeckTitleLayout>
+                <div className="flex flex-col h-full justify-between min-h-0">
+                  <div>
+                    <DeckEyebrow light theme={theme}>
+                      {cfg.eyebrow}
+                    </DeckEyebrow>
+                    <h2
+                      className={`font-semibold tracking-tighter leading-[1.05] text-balance text-white ${
+                        forPrint ? "text-xl mb-2" : "text-3xl sm:text-4xl md:text-5xl mb-4"
+                      }`}
+                    >
+                      {cfg.heroTitle}
+                      <br />
+                      <span style={{ color: theme.gradientFrom }}>{cfg.heroHighlight}</span>
+                    </h2>
+                    <p
+                      className={`text-white/80 max-w-2xl ${
+                        forPrint
+                          ? "text-[11px] leading-snug"
+                          : "text-sm sm:text-base leading-relaxed"
+                      }`}
+                    >
+                      {cfg.heroBody}
+                    </p>
+                  </div>
+                  <div
+                    className={`flex flex-wrap gap-x-3 text-white/50 ${
+                      forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                    }`}
+                  >
+                    {cfg.meta.map((m) => (
+                      <span key={m}>{m}</span>
+                    ))}
+                  </div>
+                </div>
+              </DeckTitleLayout>
             </div>
-          </DeckTitleLayout>
+          </div>
         </DeckSlideShell>
       );
 
