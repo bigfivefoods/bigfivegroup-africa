@@ -2,6 +2,7 @@
 
 import PageHero from "../components/PageHero";
 import SupplierTrust from "../components/SupplierTrust";
+import StrategyDeck from "../components/StrategyDeck";
 import {
   SectionHeading,
   FeatureGrid,
@@ -36,17 +37,18 @@ export default function ImpactPage() {
         }
         subtitle="Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results."
         ctas={[
-          { href: "#how", label: "How we deliver", primary: true },
-          {
-            href: "https://www.supplieradvisor.com/onboarding?type=business",
-            label: "Start free trial",
-            external: true,
-          },
+          { href: "#strategy-deck", label: "Strategic overview deck", primary: true },
+          { href: "#how", label: "How we deliver" },
         ]}
         overlayClassName="bg-[#2e1065]/55"
       />
 
       <SupplierTrust entityName="Big Five Group entities (where applicable)" compact />
+
+      {/* Online pitch / strategic briefing */}
+      <section className="bg-[#fafafa] py-14 sm:py-20 md:py-24 border-b border-black/10">
+        <StrategyDeck />
+      </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
