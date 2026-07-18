@@ -15,7 +15,6 @@ import {
   GraduationCap,
   Zap,
   Network,
-  Layers,
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
@@ -123,50 +122,46 @@ export default function GroupPage() {
             One mission.
           </>
         }
-        subtitle="Big Five is not a collection of logos — it is an integrated African enterprise. Every pillar serves a prosperous Africa: feed, educate and empower — with ethical AI, robotics where it multiplies impact, and SAM on SupplierAdvisor®."
+        subtitle="An integrated African enterprise headquartered in KwaZulu-Natal. Ten pillars. One mission: Feed · Educate · Empower."
         ctas={[
-          { href: "#strategy-deck", label: "View Group deck", primary: true },
-          { href: "#pillars", label: "Explore the 10 pillars" },
-          { href: "#intelligence", label: "AI · SAM · future systems" },
+          { href: "#strategy-deck", label: "Strategic deck", primary: true },
+          { href: "#pillars", label: "Ten pillars" },
           { href: "#vision", label: "Vision · mission · values" },
         ]}
         overlayClassName="bg-black/55"
       />
 
-      {/* Ecosystem intro */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-black/5 border border-black/10 mb-6">
-          <Layers className="w-7 h-7 text-black" />
-        </div>
+      {/* Ecosystem intro — short; deck carries full narrative */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
         <SectionHeading
           eyebrow="THE ECOSYSTEM"
           title="How the group works as one"
-          subtitle="Headquartered in KwaZulu-Natal, Big Five Group unites regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership education, philanthropy, programme delivery, global corridors and royal partnership — so impact compounds instead of competing."
+          subtitle="Regenerative production, fortified nutrition, last-mile, capital access, ethical commerce, leadership, philanthropy, delivery, global corridors and royal partnership — impact compounds instead of competing."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-2 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-2 text-left">
           {[
             {
               icon: Network,
               t: "Integrated, not siloed",
-              d: "Produce, process, distribute, fund, trade, lead and serve — designed so each pillar strengthens the others.",
+              d: "Each pillar strengthens the others — produce to plate to proof.",
             },
             {
               icon: Target,
               t: "Mission-led businesses",
-              d: "Commercial excellence and social purpose share the same boardroom. Profit funds scale; people define success.",
+              d: "Commercial excellence funds scale; people define success.",
             },
             {
               icon: Sparkles,
               t: "Standards that travel",
-              d: "SupplierAdvisor® + SAM, Super-Cube® leadership, AI trust and SDG alignment apply across the group — not only one brand.",
+              d: "Verification, Super-Cube® and SDG design across the group.",
             },
           ].map((x) => (
             <div
               key={x.t}
-              className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 min-w-0"
+              className="bg-white border border-black/10 rounded-2xl p-5 sm:p-6 min-w-0"
             >
-              <x.icon className="w-8 h-8 text-black mb-4" />
-              <h3 className="text-lg font-semibold text-black mb-2">{x.t}</h3>
+              <x.icon className="w-6 h-6 text-black mb-3" />
+              <h3 className="text-base font-semibold text-black mb-1.5">{x.t}</h3>
               <p className="text-sm text-[#525252] leading-relaxed">{x.d}</p>
             </div>
           ))}
@@ -177,9 +172,9 @@ export default function GroupPage() {
         <StrategyDeck />
       </section>
 
-      <IntelligenceNarrative variant="full" />
+      <IntelligenceNarrative variant="compact" />
 
-      {/* Vision · Mission · Values */}
+      {/* Vision · Mission · Values — full web detail; deck has the brief version */}
       <section id="vision" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading

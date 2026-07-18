@@ -318,18 +318,12 @@ export default function AfricaPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Big Five Group African operating companies" />
-
       <FinalCta
         eyebrow="BUILD WITH US"
         title="Partner across Africa with a professional group"
-        subtitle="From active markets to expansion horizons — verified ethical companies on SupplierAdvisor®, delivered through Big Five Impact."
+        subtitle="From active markets to expansion horizons — delivered through Big Five Impact and the Group pillars."
         primary={{ href: "/connect", label: "Partner with Big Five" }}
-        secondary={{
-          href: "https://www.supplieradvisor.com/onboarding?type=business",
-          label: "Start free trial",
-          external: true,
-        }}
+        secondary={{ href: "/impact", label: "See Impact" }}
       />
     </div>
   );

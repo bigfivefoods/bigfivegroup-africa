@@ -12,7 +12,7 @@ import {
   FinalCta,
 } from "../components/PageSections";
 import { Sun, Network, Package, Coins, MapPin, Users, BarChart3, Zap } from "lucide-react";
-import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
+import { SA_ONBOARDING } from "../lib/saCopy";
 import DirectStrategyDeck from "../components/DirectStrategyDeck";
 
 const ACCENT = "#f97316";
@@ -30,25 +30,20 @@ export default function DirectPage() {
             Farm gate to market gate
           </>
         }
-        subtitle="Eliminate middlemen. Solar micro-hubs, last-mile logistics, and transparent trade that keep value with African producers — powered by Big Five Foods on SupplierAdvisor®."
+        subtitle="Solar micro-hubs, container logistics and transparent last-mile so producers keep value and communities get product."
         ctas={[
-          { href: "#direct-deck", label: "View Direct deck", primary: true },
-          { href: "#network", label: "Containers & food impact" },
+          { href: "#direct-deck", label: "Direct deck", primary: true },
+          { href: "#network", label: "Live container network" },
           {
-            href: "https://www.supplieradvisor.com/dashboard/containers",
-            label: "SA containers",
-            external: true,
-          },
-          {
-            href: SA_LOGIN,
-            label: "Existing user? Log in",
+            href: SA_ONBOARDING,
+            label: "Start free trial",
             external: true,
           },
         ]}
         overlayClassName="bg-[#431407]/55"
       />
 
-      <SupplierTrust entityName="Big Five Foods (linked via Direct)" compact />
+      <SupplierTrust entityName="Big Five Direct · Foods distribution" compact />
 
       <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
         <DirectStrategyDeck />
@@ -185,16 +180,14 @@ export default function DirectPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Big Five Direct and verified trading partners" />
-
       <FinalCta
         eyebrow="GO DIRECT"
-        title="Join the Direct network"
-        subtitle="Hubs, producers, and buyers building last-mile sovereignty — with professional verification. Existing company users can log in to SupplierAdvisor®."
-        primary={{ href: SA_ONBOARDING, label: "Start free trial", external: true }}
+        title="Put last-mile rails on your nutrition ambition"
+        subtitle="Containers, hubs and transparent stock for schools, programmes and commercial partners."
+        primary={{ href: "/connect", label: "Partner on Direct" }}
         secondary={{
-          href: SA_LOGIN,
-          label: "Log in to SupplierAdvisor®",
+          href: "https://www.supplieradvisor.com/dashboard/containers",
+          label: "SA containers",
           external: true,
         }}
       />

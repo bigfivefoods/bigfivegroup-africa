@@ -170,18 +170,12 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="programme suppliers and Big Five operating companies" />
-
       <FinalCta
         eyebrow="LET'S DELIVER"
         title="Put a professional PMO on your African impact"
-        subtitle="From single-district pilots to multi-country programmes — Big Five Impact turns ambition into verified delivery."
-        primary={{ href: "/connect", label: "Start a programme conversation" }}
-        secondary={{
-          href: "https://www.supplieradvisor.com/onboarding?type=business",
-          label: "Start free trial",
-          external: true,
-        }}
+        subtitle="From single-district pilots to multi-country programmes — one accountable partner across the Group."
+        primary={{ href: "/connect", label: "Start a conversation" }}
+        secondary={{ href: "/group", label: "Explore the Group" }}
       />
     </div>
   );

@@ -28,14 +28,10 @@ import {
   Building2,
   School,
   ShoppingBag,
-  MessageSquare,
-  Cpu,
-  Bot,
 } from "lucide-react";
 import { sa, SA_URL, SA_ONBOARDING, SA_EMAIL, SA_LOGIN } from "../lib/saCopy";
 import SamSection from "../components/SamSection";
 import ConnectStrategyDeck from "../components/ConnectStrategyDeck";
-import Link from "next/link";
 
 const ACCENT = "#06b6d4";
 
@@ -83,7 +79,7 @@ export default function ConnectPage() {
             <span className="text-cyan-200">SAM that teaches the chain.</span>
           </>
         }
-        subtitle={`${sa.heroSubtitle} Meet ${sa.sam.name} — ${sa.sam.tagline}.`}
+        subtitle={sa.heroSubtitle}
         ctas={[
           {
             href: SA_ONBOARDING,
@@ -91,112 +87,33 @@ export default function ConnectPage() {
             primary: true,
             external: true,
           },
-          { href: "#connect-deck", label: "View Connect deck" },
+          { href: "#connect-deck", label: "Strategic deck" },
           { href: "#sam", label: `Meet ${sa.sam.name}` },
-          { href: "#how", label: "See how trust works" },
-          {
-            href: SA_LOGIN,
-            label: "Log in",
-            external: true,
-          },
         ]}
         overlayClassName="bg-black/50"
       />
 
-      <SupplierTrust entityName="Big Five Group companies" compact />
+      <SupplierTrust entityName="Big Five Connect" compact />
 
-      <section className="bg-[#fafafa] border-b border-black/10 py-14 sm:py-20 md:py-24">
-        <ConnectStrategyDeck />
-      </section>
-
-      {/* Pricing strip */}
-      <section className="bg-white border-b border-black/10 py-8">
+      <section className="bg-white border-b border-black/10 py-10 sm:py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <StatRow
             accent={ACCENT}
             stats={[
               { value: "25+", label: "Modules" },
               { value: "SAM", label: "Grok messenger" },
-              { value: "Yes", label: "On-chain ready" },
-              { value: "AI", label: "Trust intelligence" },
+              { value: "30d", label: "Free trial" },
+              { value: "On-chain", label: "When pedigree matters" },
             ]}
           />
-          <p className="text-center text-sm text-[#525252] mt-6">{sa.foundingBody}</p>
-        </div>
-      </section>
-
-      {/* Intelligence strip */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
-        <div className="text-xs tracking-[2px] text-cyan-700 font-semibold mb-3">
-          AI · ROBOTICS · ON-CHAIN · SAM
-        </div>
-        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-3 max-w-2xl">
-          The intelligence layer for ethical African commerce
-        </h2>
-        <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-6">
-          {sa.intelligence.body} Big Five Connect is the Group&apos;s digital nervous system on
-          SupplierAdvisor®.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          {[
-            {
-              icon: MessageSquare,
-              t: sa.sam.name,
-              d: "Grok-powered in-app messenger — how-to, trade guidance, ops Q&A.",
-              href: "/connect/sam",
-            },
-            {
-              icon: Brain,
-              t: "AI-powered trust",
-              d: "Verification, matching, ratings and risk intelligence on one chain.",
-              href: "#trust",
-            },
-            {
-              icon: Bot,
-              t: "Live pulse",
-              d: "Enterprise telemetry across supply, demand, finance and ops.",
-              href: SA_URL,
-              external: true,
-            },
-            {
-              icon: Cpu,
-              t: "Automation ready",
-              d: "Robotics and systems where packing, hubs and last-mile multiply impact.",
-              href: "/group#intelligence",
-            },
-          ].map((x) => {
-            const className =
-              "rounded-2xl border border-black/10 bg-white p-5 min-w-0 h-full hover:border-cyan-300 transition-colors";
-            const inner = (
-              <>
-                <x.icon className="w-5 h-5 text-cyan-700 mb-2" />
-                <div className="font-semibold text-black text-sm mb-1">{x.t}</div>
-                <p className="text-xs text-[#525252] leading-relaxed">{x.d}</p>
-              </>
-            );
-            if ("external" in x && x.external) {
-              return (
-                <a
-                  key={x.t}
-                  href={x.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={className}
-                >
-                  {inner}
-                </a>
-              );
-            }
-            return (
-              <Link key={x.t} href={x.href} className={className}>
-                {inner}
-              </Link>
-            );
-          })}
         </div>
       </section>
 
       <SamSection dark />
+
+      <section className="bg-[#fafafa] border-b border-black/10 py-14 sm:py-20 md:py-24">
+        <ConnectStrategyDeck />
+      </section>
 
       {/* 60-second story */}
       <section id="how" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
@@ -383,20 +300,19 @@ export default function ConnectPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Big Five Connect and group entities" />
-
       <FinalCta
-        eyebrow="The network is open · SAM is ready"
+        eyebrow="THE NETWORK IS OPEN"
         title={sa.finalTitle}
-        subtitle={`${sa.finalBody} Then open ${sa.sam.name} inside the OS — Grok-powered guidance for verified trade.`}
+        subtitle={sa.finalBody}
         primary={{
           href: SA_ONBOARDING,
-          label: "Get started · meet SAM",
+          label: "Get started free",
           external: true,
         }}
         secondary={{
-          href: "/connect/sam",
-          label: `About ${sa.sam.name}`,
+          href: SA_LOGIN,
+          label: "Log in",
+          external: true,
         }}
       />
     </div>

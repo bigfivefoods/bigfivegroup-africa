@@ -104,8 +104,8 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="w-full max-w-2xl mx-auto text-sm sm:text-base text-white/75 leading-relaxed mb-8 sm:mb-10"
           >
-            Powered by ethical AI, robotics where it multiplies impact, and SupplierAdvisor® with
-            SAM — the intelligence layer for Feed · Educate · Empower.
+            Feed · Educate · Empower — with ethical commerce, Super-Cube® leadership, and
+            intelligence that multiplies dignity.
           </motion.p>
 
           <motion.div
@@ -123,10 +123,10 @@ export default function Home() {
               <ArrowRight className="group-hover:translate-x-1 transition w-5 h-5 shrink-0" />
             </Link>
             <Link
-              href="/connect"
+              href="/group"
               className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/40 hover:bg-white/10 px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white"
             >
-              LAUNCH CONNECT · SAM
+              THE GROUP
             </Link>
           </motion.div>
         </div>
@@ -172,7 +172,8 @@ export default function Home() {
             African Sovereignty
           </h2>
           <p className="mt-4 sm:mt-5 text-base sm:text-lg text-[#525252] max-w-2xl">
-            From regenerative farms and fortified nutrition to royal partnership, project delivery, ethical capital access, and doctoral-level leadership — every pillar compounds the others. Where applicable, our companies are listed on SupplierAdvisor® as verified ethical businesses.
+            From regenerative farms and fortified nutrition to leadership, capital access and royal
+            partnership — every pillar compounds the others under one group.
           </p>
         </div>
 

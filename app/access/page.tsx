@@ -19,7 +19,7 @@ import {
   Users,
   TrendingUp,
 } from "lucide-react";
-import { SA_LOGIN, SA_ONBOARDING } from "../lib/saCopy";
+
 import AccessStrategyDeck from "../components/AccessStrategyDeck";
 
 const ACCENT = "#3b82f6";
@@ -37,20 +37,11 @@ export default function AccessPage() {
             Capital that reaches impact
           </>
         }
-        subtitle="Unlock government funding, institutional partnerships, and policy pathways — with verified suppliers and transparent delivery African institutions can trust."
+        subtitle="Tenders, CSI and development capital pathways for verified African enterprises — with Group delivery capacity attached."
         ctas={[
-          { href: "#access-deck", label: "View Access deck", primary: true },
+          { href: "#access-deck", label: "Access deck", primary: true },
           { href: "#how", label: "How Access works" },
-          {
-            href: SA_ONBOARDING,
-            label: "Start free trial",
-            external: true,
-          },
-          {
-            href: SA_LOGIN,
-            label: "Existing user? Log in",
-            external: true,
-          },
+          { href: "/connect", label: "Talk to us" },
         ]}
         overlayClassName="bg-[#1e3a8a]/55"
       />
@@ -171,18 +162,12 @@ export default function AccessPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Access-network SMEs and institutional suppliers" />
-
       <FinalCta
         eyebrow="UNLOCK ACCESS"
-        title="Start your Access journey"
-        subtitle="Verified capital. Clean procurement. Institutional partnerships. Existing company users can log in to SupplierAdvisor®."
-        primary={{ href: SA_ONBOARDING, label: "Start free trial", external: true }}
-        secondary={{
-          href: SA_LOGIN,
-          label: "Log in to SupplierAdvisor®",
-          external: true,
-        }}
+        title="Access that ends in delivery"
+        subtitle="Ministries, CSI teams and SMEs — pathways with implementers who can execute across the Group."
+        primary={{ href: "/connect", label: "Start a conversation" }}
+        secondary={{ href: "/group", label: "See the Group" }}
       />
     </div>
   );

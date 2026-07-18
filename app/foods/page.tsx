@@ -9,8 +9,8 @@ import {
   StatRow,
   FinalCta,
 } from "../components/PageSections";
-import { UtensilsCrossed, ChefHat, Beef, Soup, ShieldCheck } from "lucide-react";
-import { SA_LOGIN, SA_ONBOARDING, SA_URL } from "../lib/saCopy";
+import { UtensilsCrossed, ChefHat, Beef, Soup } from "lucide-react";
+import { SA_ONBOARDING } from "../lib/saCopy";
 import LocalNewsVideo from "../components/LocalNewsVideo";
 import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
 
@@ -105,20 +105,13 @@ export default function FoodsPage() {
             Nourish a continent
           </>
         }
-        subtitle="Fortified staples and ready meals combating malnutrition at scale. Order on SupplierAdvisor® — ethical, on-chain commerce with SAM (Grok messenger) to guide buyers. That's how we trade."
+        subtitle="Fortified porridges, soya, one-pots and soups — certified manufacturing, measurable impact, ordered on SupplierAdvisor®."
         ctas={[
+          { href: "#foods-deck", label: "Product deck", primary: true },
+          { href: "#products", label: "Explore products" },
           {
             href: SA_ONBOARDING,
             label: "Order on SupplierAdvisor®",
-            primary: true,
-            external: true,
-          },
-          { href: "/connect/sam", label: "Meet SAM" },
-          { href: "#foods-deck", label: "View product deck" },
-          { href: "#products", label: "Explore products" },
-          {
-            href: SA_LOGIN,
-            label: "Existing user? Log in",
             external: true,
           },
         ]}
@@ -127,99 +120,7 @@ export default function FoodsPage() {
 
       <SupplierTrust entityName="Big Five Foods" compact />
 
-      {/* Order on SupplierAdvisor — how we role */}
-      <section
-        id="order"
-        className="scroll-mt-24 border-y border-amber-900/20 bg-gradient-to-br from-[#78350f] via-[#92400e] to-[#b45309] text-white"
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            <div className="lg:col-span-7 min-w-0">
-              <div className="text-xs tracking-[2px] text-amber-200/90 font-semibold mb-3">
-                HOW WE ROLE · ETHICAL · ON-CHAIN READY
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-balance mb-4">
-                Order Big Five Foods on SupplierAdvisor®
-              </h2>
-              <p className="text-white/85 text-sm sm:text-base leading-relaxed mb-4 max-w-2xl">
-                We don&apos;t run nutrition on handshakes and spreadsheets. Big Five Foods is
-                registered and tradable on{" "}
-                <a
-                  href={SA_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-white underline underline-offset-4"
-                >
-                  supplieradvisor.com
-                </a>{" "}
-                — the supply-chain OS for verified, ethical commerce.{" "}
-                <strong className="text-white">SAM</strong> (SupplierAdvisor Messenger) is your
-                Grok-powered guide while you onboard, order fortified ranges and prove lots.
-              </p>
-              <ul className="space-y-2 text-sm text-white/80 mb-6 max-w-xl">
-                <li className="flex gap-2">
-                  <ShieldCheck className="w-4 h-4 text-amber-200 shrink-0 mt-0.5" />
-                  <span>Verified ethical company — same network for trust and trade</span>
-                </li>
-                <li className="flex gap-2">
-                  <ShieldCheck className="w-4 h-4 text-amber-200 shrink-0 mt-0.5" />
-                  <span>Order fortified porridges, soya, one-pots and soups with live proof</span>
-                </li>
-                <li className="flex gap-2">
-                  <ShieldCheck className="w-4 h-4 text-amber-200 shrink-0 mt-0.5" />
-                  <span>SAM · on-chain ready · ratings · inventory · no blind spots</span>
-                </li>
-              </ul>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-                <a
-                  href={SA_ONBOARDING}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-white text-[#78350f] px-7 py-3.5 rounded-full text-sm font-semibold"
-                >
-                  Start free trial — order Foods
-                </a>
-                <a
-                  href={SA_LOGIN}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="premium-button inline-flex items-center justify-center gap-2 border border-white/40 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
-                >
-                  Existing user? Log in
-                </a>
-              </div>
-            </div>
-            <div className="lg:col-span-5 min-w-0">
-              <div className="rounded-2xl sm:rounded-3xl border border-white/20 bg-black/20 backdrop-blur-sm p-5 sm:p-7">
-                <div className="relative h-10 w-40 mb-5">
-                  <Image
-                    src="/foods/supplieradvisor-logo.png"
-                    alt="SupplierAdvisor"
-                    fill
-                    className="object-contain object-left brightness-0 invert"
-                    sizes="160px"
-                  />
-                </div>
-                <p className="text-sm text-white/80 leading-relaxed mb-4">
-                  <strong className="text-white">That&apos;s how we role.</strong> One chain. Zero
-                  blind spots. Join the OS, find Big Five Foods, and order nutrition the market can
-                  audit.
-                </p>
-                <a
-                  href={SA_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-semibold text-amber-100 underline underline-offset-4 hover:text-white"
-                >
-                  www.supplieradvisor.com →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <StatRow
           accent={ACCENT}
           stats={[
@@ -354,51 +255,18 @@ export default function FoodsPage() {
         </div>
       </section>
 
-      <section className="bg-[#78350f] text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ShieldCheck className="w-12 h-12 text-[#fcd34d] mx-auto mb-4" />
-          <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">
-            Professional manufacturing. Order on SupplierAdvisor®.
-          </h3>
-          <p className="text-white/75 text-lg mb-4">
-            Certifications on the factory floor. Trade on the ethical, on-chain-ready OS — that&apos;s
-            how we role. Register free or log in to order Big Five Foods.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href={SA_ONBOARDING}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-white text-[#78350f] px-6 py-3 text-sm font-semibold"
-            >
-              Start free trial — order
-            </a>
-            <a
-              href={SA_LOGIN}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-white/40 text-white px-6 py-3 text-sm font-semibold hover:bg-white/10"
-            >
-              Existing users log in
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <SupplierTrust entityName="Big Five Foods" />
-
       <FinalCta
-        eyebrow="ORDER · FEED WITH PURPOSE"
-        title="Get Big Five Foods on SupplierAdvisor®"
-        subtitle="Ethical, on-chain-ready commerce with SAM — that's how we role. Schools, governments, retailers and distributors: start free, ask SAM, and order fortified nutrition with proof."
+        eyebrow="FEED WITH PURPOSE"
+        title="Stock nutrition that scales"
+        subtitle="Schools, governments, retailers and CSI partners — order fortified ranges on SupplierAdvisor®, or talk to us about institutional supply."
         primary={{
           href: SA_ONBOARDING,
           label: "Order on SupplierAdvisor®",
           external: true,
         }}
         secondary={{
-          href: "/connect/sam",
-          label: "Meet SAM",
+          href: "/connect",
+          label: "Talk to Big Five",
         }}
       />
     </div>

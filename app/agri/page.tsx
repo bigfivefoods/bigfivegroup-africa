@@ -38,18 +38,14 @@ export default function AgriPage() {
         }
         subtitle="Partnering with Tribal Authorities, the Zulu Kingdom, and governments across Africa to regenerate farmland, empower farmers, and feed the continent with verified provenance."
         ctas={[
-          { href: "#agri-deck", label: "View Agri deck", primary: true },
-          { href: "#zulukingdom", label: "Zulu Kingdom partnership" },
-          {
-            href: "https://www.supplieradvisor.com/onboarding?type=business",
-            label: "Start free trial",
-            external: true,
-          },
+          { href: "#agri-deck", label: "Agri deck", primary: true },
+          { href: "#zulukingdom", label: "Kingdom partnership" },
+          { href: "/connect", label: "Partner with us" },
         ]}
         overlayClassName="bg-black/45"
       />
 
-      <SupplierTrust entityName="Big Five Agri and group suppliers" compact />
+      <SupplierTrust entityName="Big Five Agri" compact />
 
       <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
         <AgriStrategyDeck />
@@ -199,18 +195,12 @@ export default function AgriPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Big Five Agri" />
-
       <FinalCta
         eyebrow="REGENERATE WITH US"
         title="Let's restore Africa's farmland together"
-        subtitle="Governments, institutions, investors, and farmers — there is a place for you in this movement."
+        subtitle="Governments, buyers, funds and traditional partners — regenerative supply that feeds the Group."
         primary={{ href: "/connect", label: "Become an Agri partner" }}
-        secondary={{
-          href: "https://www.supplieradvisor.com/onboarding?type=business",
-          label: "Start free trial",
-          external: true,
-        }}
+        secondary={{ href: "/group", label: "See the Group" }}
       />
     </div>
   );

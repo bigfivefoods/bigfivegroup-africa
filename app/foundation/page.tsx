@@ -260,18 +260,12 @@ export default function FoundationPage() {
         </div>
       </section>
 
-      <SupplierTrust entityName="Big Five Foundation" />
-
       <FinalCta
         eyebrow="CHANGE LIVES"
         title="Fund impact that can be proven"
-        subtitle="Every programme designed for transparency, delivery, and continental replication. Big Five Foundation is registered on SupplierAdvisor®."
+        subtitle="Programmes designed for transparency, delivery and replication — with Impact as the PMO."
         primary={{ href: "/impact", label: "See Big Five Impact" }}
-        secondary={{
-          href: SA_URL,
-          label: "View on SupplierAdvisor®",
-          external: true,
-        }}
+        secondary={{ href: "/connect", label: "Partner with us" }}
       />
     </div>
   );
