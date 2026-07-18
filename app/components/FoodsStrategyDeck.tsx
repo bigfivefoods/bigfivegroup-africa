@@ -334,78 +334,120 @@ function TitleSlide() {
   const thumbH =
     forPrint
       ? orientation === "portrait"
-        ? "h-[22mm]"
-        : "h-[28mm]"
-      : "h-[4.5rem] sm:h-[5.5rem] md:h-[6.5rem]";
+        ? "h-[18mm]"
+        : "h-[22mm]"
+      : "h-[4rem] sm:h-[4.75rem] md:h-[5.5rem]";
 
   return (
     <SlideShell dark className="!p-0">
-      <TitleSlideLayout>
-        <div className="flex flex-col h-full min-h-0 justify-between gap-2">
-          <div
-            className={`grid min-h-0 flex-1 items-center ${
-              forPrint ? "grid-cols-2 gap-3" : "grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8"
-            }`}
-          >
-            <div className="min-w-0">
-              <Eyebrow light>BIG FIVE FOODS · PRODUCT & IMPACT DECK</Eyebrow>
-              <div className={`relative mb-2 ${forPrint ? "w-20 h-10" : "w-24 h-12 sm:w-32 sm:h-14 mb-3"}`}>
-                <Image
-                  src="/bigfivefoods-logo.png"
-                  alt="Big Five Foods"
-                  fill
-                  className="object-contain object-left"
-                  sizes="128px"
-                  priority
-                />
-              </div>
-              <h2
-                className={`font-semibold tracking-tighter leading-[1.05] text-balance ${
-                  forPrint ? "text-xl mb-2" : "text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3"
+      <div className="relative h-full w-full min-h-0">
+        <Image
+          src="/foods-hero.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="(max-width:1280px) 100vw, 1200px"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35" />
+        <div className="relative z-10 h-full">
+          <TitleSlideLayout>
+            <div className="flex flex-col h-full min-h-0 justify-between gap-2">
+              <div
+                className={`grid min-h-0 flex-1 items-center ${
+                  forPrint ? "grid-cols-2 gap-3" : "grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8"
                 }`}
               >
-                Nourish a continent.
-                <br />
-                <span className="text-amber-300">One fortified meal at a time.</span>
-              </h2>
-              <p className={`text-white/70 leading-snug max-w-lg ${forPrint ? "text-[11px] mb-1.5" : "text-sm mb-3 leading-relaxed"}`}>
-                Fortified porridges, soya mince, one-pot meals and soups — certified manufacturing,
-                24-month shelf life, 83% cheaper · 74% more nutrition.
-              </p>
-              <p className={`text-amber-200/90 leading-snug max-w-lg ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"}`}>
-                <strong className="text-amber-100">Order on SupplierAdvisor®</strong> — ethical,
-                on-chain commerce with <strong className="text-amber-100">SAM</strong> (Grok
-                messenger) to guide buyers. That&apos;s how we trade.
-              </p>
-            </div>
-            <div className={`grid grid-cols-4 min-h-0 content-center ${forPrint ? "gap-1" : "gap-1.5 sm:gap-2"}`}>
-              {[
-                "/foods/porridge-chocolate.jpg",
-                "/foods/soya-chilli-beef.jpg",
-                "/foods/onepot-chakalaka.jpg",
-                "/foods/soup-oxtail.jpg",
-                "/foods/porridge-banana.jpg",
-                "/foods/soya-beef.jpg",
-                "/foods/onepot-chicken.jpg",
-                "/foods/soup-chicken.jpg",
-              ].map((src) => (
-                <div
-                  key={src}
-                  className={`relative rounded-md overflow-hidden border border-white/10 bg-[#2a1a0c] ${thumbH}`}
-                >
-                  <Image src={src} alt="" fill className="object-contain object-center p-0.5" sizes="80px" />
+                <div className="min-w-0">
+                  <Eyebrow light>BIG FIVE FOODS · PRODUCT & IMPACT DECK</Eyebrow>
+                  <div
+                    className={`relative mb-2 ${
+                      forPrint ? "w-20 h-10" : "w-24 h-12 sm:w-32 sm:h-14 mb-3"
+                    }`}
+                  >
+                    <Image
+                      src="/bigfivefoods-logo.png"
+                      alt="Big Five Foods"
+                      fill
+                      className="object-contain object-left"
+                      sizes="128px"
+                      priority
+                    />
+                  </div>
+                  <h2
+                    className={`font-semibold tracking-tighter leading-[1.05] text-balance text-white ${
+                      forPrint
+                        ? "text-xl mb-2"
+                        : "text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3"
+                    }`}
+                  >
+                    Nourish a continent.
+                    <br />
+                    <span className="text-amber-300">One fortified meal at a time.</span>
+                  </h2>
+                  <p
+                    className={`text-white/80 leading-snug max-w-lg ${
+                      forPrint ? "text-[11px] mb-1.5" : "text-sm mb-3 leading-relaxed"
+                    }`}
+                  >
+                    Fortified porridges, soya mince, one-pot meals and soups — certified manufacturing,
+                    24-month shelf life, 83% cheaper · 74% more nutrition.
+                  </p>
+                  <p
+                    className={`text-amber-200/90 leading-snug max-w-lg ${
+                      forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                    }`}
+                  >
+                    <strong className="text-amber-100">Order on SupplierAdvisor®</strong> — ethical,
+                    on-chain commerce with <strong className="text-amber-100">SAM</strong> to guide
+                    buyers.
+                  </p>
                 </div>
-              ))}
+                <div
+                  className={`grid grid-cols-4 min-h-0 content-center ${
+                    forPrint ? "gap-1" : "gap-1.5 sm:gap-2"
+                  }`}
+                >
+                  {[
+                    "/foods/porridge-chocolate.jpg",
+                    "/foods/soya-chilli-beef.jpg",
+                    "/foods/onepot-chakalaka.jpg",
+                    "/foods/soup-oxtail.jpg",
+                    "/foods/porridge-banana.jpg",
+                    "/foods/soya-beef.jpg",
+                    "/foods/onepot-chicken.jpg",
+                    "/foods/soup-chicken.jpg",
+                  ].map((src) => (
+                    <div
+                      key={src}
+                      className={`relative rounded-md overflow-hidden border border-white/20 bg-black/40 backdrop-blur-sm ${thumbH}`}
+                    >
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        className="object-contain object-center p-0.5"
+                        sizes="80px"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div
+                className={`flex flex-wrap gap-x-3 text-white/50 shrink-0 ${
+                  forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                }`}
+              >
+                <span>KwaZulu-Natal · SA</span>
+                <span>bigfivegroup.africa/foods</span>
+                <span>Order: supplieradvisor.com</span>
+                <span>15 slides</span>
+              </div>
             </div>
-          </div>
-          <div className={`flex flex-wrap gap-x-3 text-white/45 shrink-0 ${forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"}`}>
-            <span>KwaZulu-Natal · SA</span>
-            <span>bigfivegroup.africa/foods</span>
-            <span>Order: supplieradvisor.com</span>
-            <span>15 slides</span>
-          </div>
+          </TitleSlideLayout>
         </div>
-      </TitleSlideLayout>
+      </div>
     </SlideShell>
   );
 }

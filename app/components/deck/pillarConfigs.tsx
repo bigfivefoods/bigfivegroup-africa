@@ -41,6 +41,7 @@ export const agriDeckConfig: PillarDeckConfig = {
   shareTitle: "Big Five Agri — Strategic Deck",
   shareText:
     "Regenerative farming, soil health and verified supply for African food security — Big Five Agri.",
+  heroImage: "/agri-hero.jpg",
   heroTitle: "Regenerate Africa’s soil.",
   heroHighlight: "Feed the continent ethically.",
   heroBody:
@@ -225,6 +226,7 @@ export const directDeckConfig: PillarDeckConfig = {
   shareTitle: "Big Five Direct — Strategic Deck",
   shareText:
     "Last-mile sovereignty: containers, micro-hubs and transparent distribution — Big Five Direct.",
+  heroImage: "/container-action-1.jpg",
   heroTitle: "Farm gate to market gate.",
   heroHighlight: "No middlemen. Pure value.",
   heroBody:
@@ -413,6 +415,7 @@ export const accessDeckConfig: PillarDeckConfig = {
   shareTitle: "Big Five Access — Strategic Deck",
   shareText:
     "Capital and institutional access for verified African enterprises — Big Five Access.",
+  heroImage: "/access-hero.jpg",
   heroTitle: "Open doors to capital.",
   heroHighlight: "Close the gap between policy and people.",
   heroBody:
@@ -597,6 +600,7 @@ export const connectDeckConfig: PillarDeckConfig = {
   shareTitle: "Big Five Connect — Strategic Deck",
   shareText:
     "SupplierAdvisor® + SAM: ERP that ships, trust that blocks risk, messenger that teaches the chain.",
+  heroImage: "/connect-hero.jpg",
   heroTitle: "ERP that ships.",
   heroHighlight: "SAM that teaches the chain.",
   heroBody: `${sa.heroSubtitle} ${sa.sam.oneLiner}`,
