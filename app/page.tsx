@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { companies } from "./lib/companies";
 import { CompanyIcon } from "./lib/icons";
+import IntelligenceNarrative from "./components/IntelligenceNarrative";
 
 const statsData = [
   { number: 54, label: "African Nations Reach", suffix: "" },
@@ -91,18 +92,27 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="w-full max-w-xl sm:max-w-2xl mx-auto text-base sm:text-2xl md:text-3xl text-white/95 font-light tracking-tight mb-8 sm:mb-10"
+            className="w-full max-w-xl sm:max-w-2xl mx-auto text-base sm:text-2xl md:text-3xl text-white/95 font-light tracking-tight mb-4 sm:mb-5"
           >
             Regenerative. Sovereign. Ethical.
             <br className="hidden sm:block" />
             The future of Africa is being built right now.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full max-w-2xl mx-auto text-sm sm:text-base text-white/75 leading-relaxed mb-8 sm:mb-10"
+          >
+            Powered by ethical AI, robotics where it multiplies impact, and SupplierAdvisor® with
+            SAM — the intelligence layer for Feed · Educate · Empower.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.24 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-lg sm:max-w-none mx-auto"
           >
             <Link
               href="#pillars"
@@ -116,7 +126,7 @@ export default function Home() {
               href="/connect"
               className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/40 hover:bg-white/10 px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white"
             >
-              LAUNCH CONNECT
+              LAUNCH CONNECT · SAM
             </Link>
           </motion.div>
         </div>
@@ -137,11 +147,11 @@ export default function Home() {
         <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-10 gap-y-2 sm:gap-y-3 text-[10px] sm:text-xs uppercase tracking-[1.5px] sm:tracking-[2px] text-[#525252]">
           <div>International Presence</div>
           <div className="hidden sm:block w-1 h-1 rounded-full bg-black/15" />
-          <div>SupplierAdvisor® Powered</div>
+          <div>SupplierAdvisor® · SAM</div>
           <div className="hidden md:block w-1 h-1 rounded-full bg-black/15" />
           <div className="hidden md:block">Super-Cube® Leadership</div>
           <div className="hidden lg:block w-1 h-1 rounded-full bg-black/15" />
-          <div className="hidden lg:block">On-Chain Verified</div>
+          <div className="hidden lg:block">AI · On-Chain Verified</div>
           <div className="hidden xl:block w-1 h-1 rounded-full bg-black/15" />
           <div className="hidden xl:block">UN SDG Aligned</div>
         </div>
@@ -242,11 +252,13 @@ export default function Home() {
         </div>
       </section>
 
+      <IntelligenceNarrative variant="compact" />
+
       {/* IMPACT STATS */}
       <section className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <div className="text-center mb-10 sm:mb-14">
           <div className="text-xs tracking-[3px] text-[#525252]">
-            Measurable. Verifiable. On-Chain.
+            Measurable. Verifiable. On-Chain. AI-ready.
           </div>
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mt-3 sm:mt-4 text-black">
             Real Impact.

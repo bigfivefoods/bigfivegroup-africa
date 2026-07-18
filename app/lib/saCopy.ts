@@ -192,4 +192,60 @@ export const sa = {
   ethicalSdgs:
     "Transparent chains support Zero Hunger, Responsible Consumption, and Climate Action.",
   betterWorld: "A better world together — business, government, schools, and consumers on one verified network.",
+
+  /** SAM — SupplierAdvisor Messenger (Grok-powered in-app intelligence) */
+  sam: {
+    name: "SAM",
+    fullName: "SupplierAdvisor Messenger",
+    shortName: "SAM (Grok)",
+    tagline: "Grok-powered · in-app · ethical commerce",
+    oneLiner:
+      "Ask how to verify a supplier, raise a PO, check a lot, or run a school-feeding order — SAM answers inside the OS you already trade on.",
+    heroTitle: "SAM — your always-on ops co-pilot",
+    heroBody:
+      "SupplierAdvisor Messenger is Grok-powered intelligence inside the supply-chain OS. How-to guidance, trade walkthroughs, and operational answers without a manual — so African teams ramp, trade and improve on one chain.",
+    promise:
+      "Big Five Connect operationalises SupplierAdvisor® for the Group. SAM is the messenger that teaches the chain — Live pulse for the enterprise, Super-Cube® for the leaders, and AI that serves verified trade.",
+    useCases: [
+      {
+        title: "Onboard & verify",
+        desc: "Walk teams through company verification, certificates and workspace setup — without waiting for a support ticket.",
+      },
+      {
+        title: "Trade with confidence",
+        desc: "Raise POs, understand OTIFEF scorecards, lots and hold gates — guided in the same place you buy and ship.",
+      },
+      {
+        title: "Feed programmes at scale",
+        desc: "Schools, institutions and CSI buyers get answers on fortified supply, containers and audit trails while they order.",
+      },
+      {
+        title: "Lead the system",
+        desc: "Pair SAM with Super-Cube® leadership development — human judgment plus digital coaching for ethical decisions.",
+      },
+    ],
+    cta: "Open SupplierAdvisor® & meet SAM",
+    deepLinkNote: "SAM lives inside SupplierAdvisor® after you register or log in.",
+  },
+
+  intelligence: {
+    eyebrow: "AI · ROBOTICS · ON-CHAIN · SAM",
+    title: "The intelligence layer for Feed · Educate · Empower",
+    body:
+      "We feed Africa with fortified systems, educate leaders with Super-Cube®, and empower enterprise with SupplierAdvisor® and SAM — AI and robotics where they multiply dignity, not replace it.",
+    pillars: [
+      {
+        t: "Feed",
+        d: "Crop and demand intelligence, fortification quality, container routing and last-mile visibility so nutrition scales.",
+      },
+      {
+        t: "Educate",
+        d: "Super-Cube® ethical leadership with AI coaching — decision-makers who can run nations and enterprises.",
+      },
+      {
+        t: "Empower",
+        d: "Connect + SAM + on-chain trust — verified trade, capital pathways and programmes with proof.",
+      },
+    ],
+  },
 } as const;

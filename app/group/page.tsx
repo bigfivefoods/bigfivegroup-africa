@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
+import IntelligenceNarrative from "../components/IntelligenceNarrative";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
@@ -121,9 +122,10 @@ export default function GroupPage() {
             One mission.
           </>
         }
-        subtitle="Big Five is not a collection of logos — it is an integrated African enterprise. Every pillar exists to serve our vision of a prosperous Africa, our mission to feed, educate and empower, and values we refuse to compromise."
+        subtitle="Big Five is not a collection of logos — it is an integrated African enterprise. Every pillar serves a prosperous Africa: feed, educate and empower — with ethical AI, robotics where it multiplies impact, and SAM on SupplierAdvisor®."
         ctas={[
           { href: "#pillars", label: "Explore the 10 pillars", primary: true },
+          { href: "#intelligence", label: "AI · SAM · future systems" },
           { href: "#vision", label: "Vision · mission · values" },
         ]}
         overlayClassName="bg-black/55"
@@ -154,7 +156,7 @@ export default function GroupPage() {
             {
               icon: Sparkles,
               t: "Standards that travel",
-              d: "SupplierAdvisor® verification, Super-Cube® leadership and SDG alignment apply across the group — not only one brand.",
+              d: "SupplierAdvisor® + SAM, Super-Cube® leadership, AI trust and SDG alignment apply across the group — not only one brand.",
             },
           ].map((x) => (
             <div
@@ -168,6 +170,8 @@ export default function GroupPage() {
           ))}
         </div>
       </section>
+
+      <IntelligenceNarrative variant="full" />
 
       {/* Vision · Mission · Values */}
       <section id="vision" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">

@@ -103,20 +103,21 @@ export const companies: Company[] = [
     fullName: "Big Five Connect",
     color: "#06b6d4",
     icon: "Link",
-    tagline: "SupplierAdvisor® • Ethical Blockchain ERP • AI-Powered Trust",
-    description: "The operating system for ethical African commerce. Blockchain verification, real-time AI insights, and end-to-end traceability.",
-    heroText: "Verified. Transparent. Accelerating Humanity.",
+    tagline: "SupplierAdvisor® • SAM Messenger • AI-Powered Trust • On-Chain Ready",
+    description:
+      "The operating system for ethical African commerce — SupplierAdvisor® with SAM (Grok-powered messenger), AI trust, lot-level control and on-chain pedigree. Big Five Connect is how the Group trades the future.",
+    heroText: "Verified. Intelligent. Accelerating Humanity.",
     howItWorks: [
-      { step: 1, title: "Verify & Onboard", desc: "Every participant completes AI + human verification with certificates, bank details, and ethical scoring." },
-      { step: 2, title: "Connect & Transact", desc: "Smart matching, on-chain POs, live GPS/IoT tracking, automated payments, and RIAD risk scoring." },
-      { step: 3, title: "Track & Improve", desc: "QR scan reveals full journey. AI insights predict delays and link every purchase to UN SDGs." }
+      { step: 1, title: "Verify & Onboard", desc: "AI + human verification, certificates and ethical scoring — SAM guides teams through setup without a manual." },
+      { step: 2, title: "Connect, trade & ask SAM", desc: "Smart matching, on-chain POs, live tracking, RIAD risk — and SAM for in-app how-to while you operate." },
+      { step: 3, title: "Prove & improve", desc: "Traceability, Live pulse and AI insights so every purchase can prove OTIFEF, SHEQ and SDG contribution." }
     ],
     forStakeholders: [
       { title: "For Conscious Consumers", desc: "Scan any product. See the complete verified story. Shop only verified ethical brands." },
-      { title: "For Business", desc: "Total visibility from farm to shelf. AI-powered supplier matching and predictive logistics." },
-      { title: "For Government", desc: "Transparent public procurement and real-time corruption detection." }
+      { title: "For Business", desc: "Total visibility from farm to shelf. SAM + AI matching, predictive logistics and audit-ready trade." },
+      { title: "For Government", desc: "Transparent public procurement, verified suppliers and intelligence that supports ethical delivery." }
     ],
-    impact: "The same platform trusted by SupplierAdvisor® users globally. Now supercharged for African sovereignty."
+    impact: "SupplierAdvisor® globally — with SAM intelligence and Big Five Connect as the Group’s digital nervous system."
   },
   {
     slug: "leadership",
@@ -124,13 +125,14 @@ export const companies: Company[] = [
     fullName: "Big Five Leadership",
     color: "#eab308",
     icon: "Award",
-    tagline: "Super-Cube® Doctoral Model • Ethical AI Leadership • Sovereign Decision Making",
-    description: "World-class leadership development rooted in Dr. Craig R. Muller’s Super-Cube® doctoral model.",
+    tagline: "Super-Cube® Doctoral Model • Ethical AI Leadership • SAM-Ready Decision Culture",
+    description:
+      "World-class leadership development rooted in Dr. Craig R. Muller’s Super-Cube® doctoral model — paired with ethical AI coaching so leaders can run nations, enterprises and intelligent supply systems.",
     heroText: "Leadership That Builds Nations. Not Just Companies.",
     howItWorks: [
       { step: 1, title: "Assess & Diagnose", desc: "Proprietary Super-Cube® 360° assessment measuring 8 dimensions of ethical leadership." },
-      { step: 2, title: "Develop & Embed", desc: "Immersive programs combining AI coaching, peer masterminds, and on-chain credentialing." },
-      { step: 3, title: "Scale & Multiply", desc: "Graduates become certified facilitators. Organizational transformation programs for governments and corporates." }
+      { step: 2, title: "Develop with AI coaching", desc: "Immersive programmes combining Super-Cube®, AI coaching, peer masterminds and on-chain credentialing." },
+      { step: 3, title: "Scale & Multiply", desc: "Graduates become facilitators. Governments and corporates build ethical decision culture for an AI-enabled economy." }
     ],
     forStakeholders: [
       { title: "For Executives & Founders", desc: "Transform personal leadership. Build high-trust, high-performance teams." },

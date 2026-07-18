@@ -55,7 +55,13 @@ export default function Footer() {
                 About
               </Link>
               <Link href="/connect" className="block hover:text-black/70 transition-colors">
-                Connect
+                Connect · SAM
+              </Link>
+              <Link href="/connect/sam" className="block hover:text-black/70 transition-colors">
+                SAM Messenger
+              </Link>
+              <Link href="/group#intelligence" className="block hover:text-black/70 transition-colors">
+                AI · Future systems
               </Link>
             </div>
           </div>
@@ -128,7 +134,7 @@ export default function Footer() {
         © {new Date().getFullYear()} BIG FIVE GROUP (PTY) LTD · ALL RIGHTS RESERVED
         <br className="sm:hidden" />
         <span className="hidden sm:inline"> · </span>
-        PROUDLY AFRICAN · ON-CHAIN · SUPER-CUBE® POWERED
+        PROUDLY AFRICAN · ON-CHAIN · SAM · SUPER-CUBE® · AI-READY
       </div>
     </footer>
   );

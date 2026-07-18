@@ -28,11 +28,16 @@ import {
   Globe2,
   Truck,
   Package,
+  Brain,
+  Bot,
+  MessageSquare,
+  Cpu,
 } from "lucide-react";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
+import { sa, SA_ONBOARDING } from "../lib/saCopy";
 
-const TOTAL = 17;
+const TOTAL = 19;
 
 /**
  * Priority SDGs — official UN colour tiles (public/sdg/sdg-{n}.png).
@@ -268,7 +273,7 @@ function Slide({ index }: SlideProps) {
               <div className="text-xs sm:text-sm text-white/45 space-y-1">
                 <p>KwaZulu-Natal · South Africa</p>
                 <p>bigfivegroup.africa/impact#strategy-deck</p>
-                <p>17 slides · Downloadable · Shareable</p>
+                <p>19 slides · Downloadable · Shareable</p>
               </div>
             </div>
           </TitleSlideLayout>
@@ -293,6 +298,7 @@ function Slide({ index }: SlideProps) {
               "How Big Five responds: Feed · Educate · Empower",
               "How we resolve malnutrition and health-linked vulnerability",
               "UN SDGs & WFP Zero Hunger — how we align",
+              "AI, robotics & SAM — intelligence for the mission",
               "Why partners work with us — and how to engage",
             ].map((item, i) => (
               <li key={item} className="flex gap-3 sm:gap-4 items-start">
@@ -921,6 +927,90 @@ function Slide({ index }: SlideProps) {
       );
 
     case 16:
+      return (
+        <SlideShell dark>
+          <Eyebrow light>FUTURE SYSTEMS · AI & ROBOTICS</Eyebrow>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 text-balance">
+            The intelligence layer for Feed · Educate · Empower
+          </h2>
+          <p className="text-sm text-white/70 leading-relaxed max-w-3xl mb-5">
+            {sa.intelligence.body}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+            {sa.intelligence.pillars.map((p) => (
+              <div
+                key={p.t}
+                className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 min-w-0"
+              >
+                <div className="text-sm font-semibold text-violet-200 mb-1">{p.t}</div>
+                <p className="text-xs text-white/65 leading-relaxed">{p.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            {[
+              { icon: Brain, t: "AI trust" },
+              { icon: Cpu, t: "Robotics" },
+              { icon: Bot, t: "Live pulse" },
+              { icon: MessageSquare, t: "SAM" },
+            ].map((x) => (
+              <div
+                key={x.t}
+                className="rounded-xl border border-white/10 bg-white/[0.04] p-3 flex items-center gap-2"
+              >
+                <x.icon className="w-4 h-4 text-violet-300" />
+                <span className="text-xs font-semibold text-white">{x.t}</span>
+              </div>
+            ))}
+          </div>
+        </SlideShell>
+      );
+
+    case 17:
+      return (
+        <SlideShell accent="emerald">
+          <Eyebrow>SUPPLIERADVISOR® · SAM</Eyebrow>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 text-balance">
+            {sa.sam.heroTitle}
+          </h2>
+          <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-4">
+            {sa.sam.oneLiner}{" "}
+            <strong className="text-black">{sa.sam.promise}</strong>
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
+            {sa.sam.useCases.map((u) => (
+              <div
+                key={u.title}
+                className="rounded-xl border border-black/10 bg-[#fafafa] p-3.5 flex gap-2.5 min-w-0"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-sm font-semibold text-black mb-0.5">{u.title}</div>
+                  <p className="text-xs text-[#525252] leading-snug">{u.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={SA_ONBOARDING}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-emerald-800 text-white px-4 py-2 text-xs font-semibold"
+            >
+              {sa.sam.cta}
+            </a>
+            <Link
+              href="/connect/sam"
+              className="inline-flex items-center gap-1.5 rounded-full border border-black/15 px-4 py-2 text-xs font-semibold text-black"
+            >
+              bigfivegroup.africa/connect/sam
+            </Link>
+          </div>
+        </SlideShell>
+      );
+
+    case 18:
       return (
         <SlideShell dark className="!p-0">
           <TitleSlideLayout>
@@ -1691,7 +1781,7 @@ export default function StrategyDeck() {
     <div id="strategy-deck" className="scroll-mt-24 sm:scroll-mt-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
         <div className="text-xs tracking-[3px] text-violet-700 mb-3 font-medium">
-          STRATEGIC BRIEFING · ONLINE DECK · 17 SLIDES
+          STRATEGIC BRIEFING · ONLINE DECK · 19 SLIDES
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4 text-balance">
           Big Five Group — strategic overview

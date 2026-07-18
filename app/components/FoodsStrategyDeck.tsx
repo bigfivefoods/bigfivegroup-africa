@@ -25,7 +25,7 @@ import {
   Store,
   Users,
 } from "lucide-react";
-import { SA_LOGIN, SA_ONBOARDING, SA_URL } from "../lib/saCopy";
+import { SA_LOGIN, SA_ONBOARDING, SA_URL, sa } from "../lib/saCopy";
 
 const TOTAL = 14;
 const PRINT_ROOT_ID = "foods-deck-print-root";
@@ -310,7 +310,8 @@ function TitleSlide() {
               </p>
               <p className={`text-amber-200/90 leading-snug max-w-lg ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"}`}>
                 <strong className="text-amber-100">Order on SupplierAdvisor®</strong> — ethical,
-                on-chain commerce. That&apos;s how we trade.
+                on-chain commerce with <strong className="text-amber-100">SAM</strong> (Grok
+                messenger) to guide buyers. That&apos;s how we trade.
               </p>
             </div>
             <div className={`grid grid-cols-4 min-h-0 content-center ${forPrint ? "gap-1" : "gap-1.5 sm:gap-2"}`}>
@@ -578,7 +579,7 @@ function FarmToForkSlide() {
           {[
             { step: "01", t: "Source & fortify", d: "Local grains milled and precision-fortified with essential micronutrients." },
             { step: "02", t: "Certify & package", d: "ISO / FSSC / ethical certs. Batch traceability and long shelf life." },
-            { step: "03", t: "Order & trade on SA", d: "Buyers order on SupplierAdvisor® — POs, lots, ratings. That's how we role." },
+            { step: "03", t: "Order & ask SAM", d: "Buyers order on SupplierAdvisor® — POs, lots, ratings — with SAM for in-app how-to." },
           ].map((s) => (
             <div key={s.step} className={`rounded-xl border border-black/10 bg-[#fafafa] relative overflow-hidden ${forPrint ? "p-2.5" : "p-5 rounded-2xl"}`}>
               <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-500 to-orange-600" />
@@ -642,16 +643,17 @@ function CtaSlide() {
             </h2>
             <p className={`text-white/80 max-w-2xl ${forPrint ? "text-[11px] leading-snug mb-2" : "text-base sm:text-lg leading-relaxed mb-3"}`}>
               Order on <strong className="text-white">SupplierAdvisor®</strong> — ethical, on-chain
-              OS. Verified companies, transparent trade, fortified products with proof.
+              OS with <strong className="text-white">{sa.sam.name}</strong> to guide every step.
+              Verified companies, transparent trade, fortified products with proof.
             </p>
             <p className={`text-amber-200/90 font-medium max-w-2xl ${forPrint ? "text-[10px] mb-3" : "text-sm sm:text-base mb-6"}`}>
-              Register free → verify → order porridge, soya, one-pots and soups.
+              Register free → ask {sa.sam.name} → order porridge, soya, one-pots and soups.
             </p>
             <div className={`grid grid-cols-3 max-w-3xl ${forPrint ? "gap-1.5 mb-3" : "gap-2.5 mb-7"}`}>
               {[
-                { n: "01", t: "Join SupplierAdvisor®", d: "Free trial · ethical OS" },
+                { n: "01", t: "Join SupplierAdvisor®", d: "Free trial · meet SAM" },
                 { n: "02", t: "Find Big Five Foods", d: "Verified · full range" },
-                { n: "03", t: "Order with proof", d: "POs · lots · ratings" },
+                { n: "03", t: "Order with proof", d: "POs · lots · SAM help" },
               ].map((s) => (
                 <div key={s.n} className={`rounded-xl border border-white/15 bg-white/[0.06] ${forPrint ? "px-2 py-1.5" : "px-4 py-3"}`}>
                   <div className={`tracking-[2px] text-amber-300 font-semibold ${forPrint ? "text-[8px] mb-0.5" : "text-[10px] mb-1"}`}>{s.n}</div>

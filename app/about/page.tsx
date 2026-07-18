@@ -161,11 +161,19 @@ export default function AboutPage() {
               <li className="flex gap-3">
                 <span className="text-sky-600 font-bold shrink-0">Empower —</span>
                 <span>
-                  SupplierAdvisor®, Access, Direct, and Impact equip suppliers, entrepreneurs, and
-                  institutions with tools, markets, and delivery capacity for self-reliance.
+                  SupplierAdvisor® with SAM, Access, Direct, and Impact equip suppliers,
+                  entrepreneurs, and institutions with tools, markets, intelligence and delivery
+                  capacity for self-reliance.
                 </span>
               </li>
             </ul>
+            <p className="text-base sm:text-lg text-[#404040] leading-relaxed pt-2 border-t border-black/10 mt-2">
+              The future of this mission is intelligent: ethical AI and robotics where they multiply
+              dignity, Super-Cube® for human leaders, and{" "}
+              <strong className="text-black">SAM (SupplierAdvisor Messenger)</strong> as the
+              always-on guide inside the commerce OS we run on. We do not chase tech for theatre —
+              we use intelligence so Africa can feed, educate and empower at continental scale.
+            </p>
             <p className="text-xl text-black font-medium tracking-tight pt-2">
               We deploy evidence-based models that equip leaders and organisations for ethical
               decision-making, innovation, and meaningful societal impact — aligned with the UN SDGs,

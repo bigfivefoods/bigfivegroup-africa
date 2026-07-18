@@ -13,6 +13,7 @@ const routes = [
   "/direct",
   "/access",
   "/connect",
+  "/connect/sam",
   "/impact",
   "/leadership",
   "/foundation",

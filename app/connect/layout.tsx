@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Connect · SupplierAdvisor®",
+  title: "Connect · SupplierAdvisor® · SAM",
   description:
-    "ERP that ships. Trust that blocks risk. Big Five Connect is powered by SupplierAdvisor® — the supply-chain OS for verified trade, OTIFEF, SHEQ, lot traceability, and on-chain pedigree.",
+    "ERP that ships. Trust that blocks risk. SAM that teaches the chain. Big Five Connect is powered by SupplierAdvisor® — AI trust, SAM messenger, OTIFEF, SHEQ, and on-chain pedigree.",
   openGraph: {
-    title: "Big Five Connect | SupplierAdvisor® Supply Chain OS",
+    title: "Big Five Connect | SupplierAdvisor® · SAM · AI Trust",
     description:
-      "One chain. Zero blind spots. Inventory, manufacturing, distribution, SHEQ & food safety, finance, and ratings in one light workspace.",
+      "One chain. Zero blind spots. SAM (Grok-powered messenger), Live pulse, inventory, SHEQ, and ratings in one supply-chain OS.",
   },
 };
 

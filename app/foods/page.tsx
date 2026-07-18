@@ -105,7 +105,7 @@ export default function FoodsPage() {
             Nourish a continent
           </>
         }
-        subtitle="Fortified staples and ready meals combating malnutrition at scale. Order on SupplierAdvisor® — our ethical, on-chain commerce OS. That's how we trade."
+        subtitle="Fortified staples and ready meals combating malnutrition at scale. Order on SupplierAdvisor® — ethical, on-chain commerce with SAM (Grok messenger) to guide buyers. That's how we trade."
         ctas={[
           {
             href: SA_ONBOARDING,
@@ -113,6 +113,7 @@ export default function FoodsPage() {
             primary: true,
             external: true,
           },
+          { href: "/connect/sam", label: "Meet SAM" },
           { href: "#foods-deck", label: "View product deck" },
           { href: "#products", label: "Explore products" },
           {
@@ -151,8 +152,9 @@ export default function FoodsPage() {
                 >
                   supplieradvisor.com
                 </a>{" "}
-                — the supply-chain OS for verified, ethical commerce with on-chain-ready pedigree,
-                lots, POs and trust in one place.
+                — the supply-chain OS for verified, ethical commerce.{" "}
+                <strong className="text-white">SAM</strong> (SupplierAdvisor Messenger) is your
+                Grok-powered guide while you onboard, order fortified ranges and prove lots.
               </p>
               <ul className="space-y-2 text-sm text-white/80 mb-6 max-w-xl">
                 <li className="flex gap-2">
@@ -165,7 +167,7 @@ export default function FoodsPage() {
                 </li>
                 <li className="flex gap-2">
                   <ShieldCheck className="w-4 h-4 text-amber-200 shrink-0 mt-0.5" />
-                  <span>On-chain ready · ratings · inventory · no blind spots</span>
+                  <span>SAM · on-chain ready · ratings · inventory · no blind spots</span>
                 </li>
               </ul>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
@@ -388,16 +390,15 @@ export default function FoodsPage() {
       <FinalCta
         eyebrow="ORDER · FEED WITH PURPOSE"
         title="Get Big Five Foods on SupplierAdvisor®"
-        subtitle="Ethical, on-chain-ready commerce — that's how we role. Schools, governments, retailers and distributors: start free, log in, and order fortified nutrition with proof."
+        subtitle="Ethical, on-chain-ready commerce with SAM — that's how we role. Schools, governments, retailers and distributors: start free, ask SAM, and order fortified nutrition with proof."
         primary={{
           href: SA_ONBOARDING,
           label: "Order on SupplierAdvisor®",
           external: true,
         }}
         secondary={{
-          href: SA_LOGIN,
-          label: "Log in to order",
-          external: true,
+          href: "/connect/sam",
+          label: "Meet SAM",
         }}
       />
     </div>
