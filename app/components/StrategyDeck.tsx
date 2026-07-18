@@ -34,47 +34,62 @@ import { CompanyIcon } from "../lib/icons";
 
 const TOTAL = 17;
 
-/** Priority SDGs for the Group — same set as Foundation, with pillar alignment */
+/**
+ * Priority SDGs — official UN colour tiles (public/sdg/sdg-{n}.png).
+ * Paths must match goal numbers exactly (1, 2, 4, 8, 10, 17).
+ */
 const SDG_ALIGNMENT = [
   {
     number: "1",
     title: "No Poverty",
+    official: "End poverty in all its forms everywhere",
     icon: "/sdg/sdg-1.png",
+    color: "#E5243B",
     how: "Livelihoods via Agri, Direct micro-hubs, Access capital pathways and Foundation programmes that raise household income with dignity.",
     pillars: "Agri · Direct · Access · Foundation",
   },
   {
     number: "2",
     title: "Zero Hunger",
+    official: "End hunger, achieve food security and improved nutrition",
     icon: "/sdg/sdg-2.png",
+    color: "#DDA63A",
     how: "Fortified nutrition, regenerative supply and last-mile containers so households, schools and institutions can eat affordably and well.",
     pillars: "Foods · Agri · Direct · Foundation",
   },
   {
     number: "4",
     title: "Quality Education",
+    official: "Ensure inclusive and equitable quality education",
     icon: "/sdg/sdg-4.png",
+    color: "#C5192D",
     how: "Super-Cube® ethical leadership for decision-makers — and school-channel nutrition so children can learn while fed.",
     pillars: "Leadership · Foods · Foundation",
   },
   {
     number: "8",
-    title: "Decent Work",
+    title: "Decent Work and Economic Growth",
+    official: "Promote sustained, inclusive economic growth and decent work",
     icon: "/sdg/sdg-8.png",
+    color: "#A21942",
     how: "Ethical trade rails, local jobs in production and distribution, and verified commerce that keeps value in communities.",
     pillars: "Connect · Direct · Agri · Global",
   },
   {
     number: "10",
     title: "Reduced Inequalities",
+    official: "Reduce inequality within and among countries",
     icon: "/sdg/sdg-10.png",
+    color: "#DD1367",
     how: "Inclusive routes to markets, capital and programmes for producers and communities historically left out of formal systems.",
     pillars: "Access · Connect · Royal · Foundation",
   },
   {
     number: "17",
-    title: "Partnerships",
+    title: "Partnerships for the Goals",
+    official: "Strengthen the means of implementation and global partnership",
     icon: "/sdg/sdg-17.png",
+    color: "#19486A",
     how: "Governments, DFIs, corporates, kingdoms and implementers — one group relationship with audit trails and shared KPIs.",
     pillars: "Impact · Global · Royal · Connect",
   },
@@ -794,57 +809,68 @@ function Slide({ index }: SlideProps) {
     case 12:
       return (
         <SlideShell accent="emerald">
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-3 sm:mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-2 sm:mb-3">
             <Eyebrow>GLOBAL FRAMEWORK · UN SDGs</Eyebrow>
-            <div className="relative w-20 h-10 sm:w-24 sm:h-12 shrink-0">
+            <div className="relative w-24 h-12 sm:w-28 sm:h-14 shrink-0">
               <Image
                 src="/sdg/un-sdg-logo.png"
                 alt="United Nations Sustainable Development Goals"
                 fill
-                sizes="96px"
+                sizes="112px"
                 className="object-contain object-right"
               />
             </div>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-2 sm:mb-3 text-balance">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-2 text-balance">
             Aligned to the Sustainable Development Goals
           </h2>
-          <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-4 sm:mb-5">
-            Feed · Educate · Empower maps directly onto the UN 2030 Agenda. Programmes are designed
-            with SDG outcomes in mind — so governments, DFIs and corporates can report contribution
-            with the same language they already use.
+          <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3 sm:mb-4">
+            Feed · Educate · Empower maps onto the UN 2030 Agenda. Official goal icons below —
+            programmes designed so governments, DFIs and corporates can report contribution clearly.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5 min-h-0">
             {SDG_ALIGNMENT.map((g) => (
               <div
-                key={g.number}
-                className="rounded-xl border border-black/10 bg-white p-3 sm:p-3.5 flex gap-3 min-w-0"
+                key={`sdg-${g.number}`}
+                className="rounded-xl border border-black/10 bg-white overflow-hidden min-w-0 flex flex-col sm:flex-row"
               >
-                <div className="relative w-11 h-11 sm:w-12 sm:h-12 shrink-0 overflow-hidden rounded-md bg-[#fafafa] ring-1 ring-black/5">
+                {/* Official UN colour tile — full square, no crop of goal identity */}
+                <div
+                  className="relative w-full sm:w-[4.5rem] md:w-[5.25rem] aspect-square sm:aspect-auto sm:self-stretch sm:min-h-[5.25rem] shrink-0"
+                  style={{ backgroundColor: g.color }}
+                >
                   <Image
                     src={g.icon}
-                    alt={`UN SDG ${g.number}: ${g.title}`}
+                    alt={`United Nations SDG ${g.number} — ${g.title}`}
                     fill
-                    sizes="48px"
-                    className="object-contain object-center p-0.5"
+                    sizes="(max-width:640px) 45vw, 96px"
+                    className="object-cover object-center"
+                    priority={g.number === "1" || g.number === "2"}
                   />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-[10px] tracking-[1.5px] text-[#737373] font-semibold">
+                <div className="min-w-0 p-2.5 sm:p-3 flex flex-col justify-center flex-1">
+                  <div
+                    className="text-[10px] tracking-[1.5px] font-bold mb-0.5"
+                    style={{ color: g.color }}
+                  >
                     SDG {g.number}
                   </div>
-                  <div className="text-sm font-semibold text-black leading-tight mb-1">{g.title}</div>
-                  <p className="text-[11px] sm:text-xs text-[#525252] leading-snug mb-1.5">{g.how}</p>
+                  <div className="text-xs sm:text-sm font-semibold text-black leading-tight mb-1">
+                    {g.title}
+                  </div>
+                  <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug mb-1.5 line-clamp-3">
+                    {g.how}
+                  </p>
                   <div className="text-[10px] font-medium text-emerald-800">{g.pillars}</div>
                 </div>
               </div>
             ))}
           </div>
-          <p className="mt-3 sm:mt-4 text-xs text-[#737373] leading-relaxed">
-            Sources:{" "}
-            <Ref href="https://sdgs.un.org/goals">UN Sustainable Development Goals</Ref>
+          <p className="mt-2.5 sm:mt-3 text-[10px] sm:text-xs text-[#737373] leading-relaxed">
+            Icons: official UN SDG colour tiles ·{" "}
+            <Ref href="https://sdgs.un.org/goals">sdgs.un.org/goals</Ref>
             {" · "}
-            Design practice mirrors Big Five Foundation&apos;s SDG-aligned programme framework.
+            Goals 1, 2, 4, 8, 10 & 17
           </p>
         </SlideShell>
       );
