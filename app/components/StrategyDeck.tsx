@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -24,11 +25,60 @@ import {
   Lightbulb,
   Users,
   Layers,
+  Globe2,
+  Truck,
+  Package,
 } from "lucide-react";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
-const TOTAL = 15;
+const TOTAL = 17;
+
+/** Priority SDGs for the Group — same set as Foundation, with pillar alignment */
+const SDG_ALIGNMENT = [
+  {
+    number: "1",
+    title: "No Poverty",
+    icon: "/sdg/sdg-1.png",
+    how: "Livelihoods via Agri, Direct micro-hubs, Access capital pathways and Foundation programmes that raise household income with dignity.",
+    pillars: "Agri · Direct · Access · Foundation",
+  },
+  {
+    number: "2",
+    title: "Zero Hunger",
+    icon: "/sdg/sdg-2.png",
+    how: "Fortified nutrition, regenerative supply and last-mile containers so households, schools and institutions can eat affordably and well.",
+    pillars: "Foods · Agri · Direct · Foundation",
+  },
+  {
+    number: "4",
+    title: "Quality Education",
+    icon: "/sdg/sdg-4.png",
+    how: "Super-Cube® ethical leadership for decision-makers — and school-channel nutrition so children can learn while fed.",
+    pillars: "Leadership · Foods · Foundation",
+  },
+  {
+    number: "8",
+    title: "Decent Work",
+    icon: "/sdg/sdg-8.png",
+    how: "Ethical trade rails, local jobs in production and distribution, and verified commerce that keeps value in communities.",
+    pillars: "Connect · Direct · Agri · Global",
+  },
+  {
+    number: "10",
+    title: "Reduced Inequalities",
+    icon: "/sdg/sdg-10.png",
+    how: "Inclusive routes to markets, capital and programmes for producers and communities historically left out of formal systems.",
+    pillars: "Access · Connect · Royal · Foundation",
+  },
+  {
+    number: "17",
+    title: "Partnerships",
+    icon: "/sdg/sdg-17.png",
+    how: "Governments, DFIs, corporates, kingdoms and implementers — one group relationship with audit trails and shared KPIs.",
+    pillars: "Impact · Global · Royal · Connect",
+  },
+] as const;
 
 /** Short pillar briefs for the “integrated enterprise” slide */
 const PILLAR_BRIEFS: Record<string, string> = {
@@ -203,7 +253,7 @@ function Slide({ index }: SlideProps) {
               <div className="text-xs sm:text-sm text-white/45 space-y-1">
                 <p>KwaZulu-Natal · South Africa</p>
                 <p>bigfivegroup.africa/impact#strategy-deck</p>
-                <p>15 slides · Downloadable · Shareable</p>
+                <p>17 slides · Downloadable · Shareable</p>
               </div>
             </div>
           </TitleSlideLayout>
@@ -221,12 +271,13 @@ function Slide({ index }: SlideProps) {
             {[
               "Who Big Five Group is — ten pillars as one system",
               "Vision, mission and values",
-              "Hunger & food insecurity in Africa (SOFI / GRFC)",
+              "Hunger & food insecurity in Africa (SOFI / GRFC / WFP)",
               "Child malnutrition — stunting, wasting, micronutrients (UNICEF/WHO/WB)",
               "HIV & AIDS — regional burden and treatment gaps (UNAIDS/WHO)",
               "Markets, last-mile and institutional trust gaps",
               "How Big Five responds: Feed · Educate · Empower",
               "How we resolve malnutrition and health-linked vulnerability",
+              "UN SDGs & WFP Zero Hunger — how we align",
               "Why partners work with us — and how to engage",
             ].map((item, i) => (
               <li key={item} className="flex gap-3 sm:gap-4 items-start">
@@ -742,6 +793,131 @@ function Slide({ index }: SlideProps) {
 
     case 12:
       return (
+        <SlideShell accent="emerald">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-3 sm:mb-4">
+            <Eyebrow>GLOBAL FRAMEWORK · UN SDGs</Eyebrow>
+            <div className="relative w-20 h-10 sm:w-24 sm:h-12 shrink-0">
+              <Image
+                src="/sdg/un-sdg-logo.png"
+                alt="United Nations Sustainable Development Goals"
+                fill
+                sizes="96px"
+                className="object-contain object-right"
+              />
+            </div>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-2 sm:mb-3 text-balance">
+            Aligned to the Sustainable Development Goals
+          </h2>
+          <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-4 sm:mb-5">
+            Feed · Educate · Empower maps directly onto the UN 2030 Agenda. Programmes are designed
+            with SDG outcomes in mind — so governments, DFIs and corporates can report contribution
+            with the same language they already use.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3">
+            {SDG_ALIGNMENT.map((g) => (
+              <div
+                key={g.number}
+                className="rounded-xl border border-black/10 bg-white p-3 sm:p-3.5 flex gap-3 min-w-0"
+              >
+                <div className="relative w-11 h-11 sm:w-12 sm:h-12 shrink-0 overflow-hidden rounded-md bg-[#fafafa] ring-1 ring-black/5">
+                  <Image
+                    src={g.icon}
+                    alt={`UN SDG ${g.number}: ${g.title}`}
+                    fill
+                    sizes="48px"
+                    className="object-contain object-center p-0.5"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[10px] tracking-[1.5px] text-[#737373] font-semibold">
+                    SDG {g.number}
+                  </div>
+                  <div className="text-sm font-semibold text-black leading-tight mb-1">{g.title}</div>
+                  <p className="text-[11px] sm:text-xs text-[#525252] leading-snug mb-1.5">{g.how}</p>
+                  <div className="text-[10px] font-medium text-emerald-800">{g.pillars}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 sm:mt-4 text-xs text-[#737373] leading-relaxed">
+            Sources:{" "}
+            <Ref href="https://sdgs.un.org/goals">UN Sustainable Development Goals</Ref>
+            {" · "}
+            Design practice mirrors Big Five Foundation&apos;s SDG-aligned programme framework.
+          </p>
+        </SlideShell>
+      );
+
+    case 13:
+      return (
+        <SlideShell dark accent="amber">
+          <Eyebrow light>GLOBAL FRAMEWORK · WFP & ZERO HUNGER</Eyebrow>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4 text-balance">
+            How we align with the WFP hunger agenda
+          </h2>
+          <p className="text-sm text-white/70 leading-relaxed max-w-3xl mb-5">
+            The{" "}
+            <strong className="text-white">World Food Programme</strong> leads the global fight
+            against hunger — emergency response, school feeding, nutrition and resilient food
+            systems. Big Five is not WFP and does not replace UN humanitarian mandates. We are the{" "}
+            <strong className="text-white">African enterprise layer</strong> that helps governments,
+            corporates and implementers deliver complementary Zero Hunger outcomes with fortification,
+            production, last-mile rails and proof.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-5">
+            {[
+              {
+                icon: UtensilsCrossed,
+                t: "Nutrition quality at scale",
+                d: "Fortified, shelf-stable foods designed for schools, institutions and households — aligned with the same Zero Hunger (SDG 2) priority WFP advances through school meals and nutrition support.",
+              },
+              {
+                icon: Package,
+                t: "Local supply & resilience",
+                d: "Regenerative Agri + Foods manufacturing so programmes are not import-only theatre — supporting resilient food systems and shorter, more transparent chains.",
+              },
+              {
+                icon: Truck,
+                t: "Last-mile that can be seen",
+                d: "Direct containers and SupplierAdvisor® live logistics so partners know where product sits — critical for institutional feeding and multi-site programmes.",
+              },
+              {
+                icon: Globe2,
+                t: "Partnerships that report",
+                d: "Impact PMO + Foundation design programmes with KPIs, gates and audit trails — so CSI, DFIs and ministries can show contribution to WFP-aligned national hunger goals.",
+              },
+            ].map((x) => (
+              <div
+                key={x.t}
+                className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 sm:p-5 flex gap-3 min-w-0"
+              >
+                <x.icon className="w-5 h-5 text-amber-300 shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-semibold text-white mb-1 text-sm sm:text-base">{x.t}</h3>
+                  <p className="text-xs sm:text-sm text-white/65 leading-relaxed">{x.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-white/40 leading-relaxed max-w-3xl">
+            Context sources:{" "}
+            <Ref href="https://www.wfp.org/overview">WFP mandate & overview</Ref>
+            {" · "}
+            <Ref href="https://www.wfp.org/publications/global-report-food-crises-grfc">
+              Global Report on Food Crises (WFP co-published)
+            </Ref>
+            {" · "}
+            <Ref href="https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report">
+              SOFI 2025 (FAO/IFAD/UNICEF/WFP/WHO)
+            </Ref>
+            . We complement — we do not claim WFP sponsorship or agency status.
+          </p>
+        </SlideShell>
+      );
+
+    case 14:
+      return (
         <SlideShell dark>
           <Eyebrow light>PROOF POINTS</Eyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-6">
@@ -759,15 +935,16 @@ function Slide({ index }: SlideProps) {
           </div>
           <ul className="space-y-2 text-sm text-white/70 max-w-2xl">
             <li>· Ten pillars under one group governance</li>
+            <li>· SDG-aligned programme design (1 · 2 · 4 · 8 · 10 · 17)</li>
+            <li>· Zero Hunger delivery layer complementary to WFP / national agendas</li>
             <li>· Big Five Foods verified on SupplierAdvisor® with live container embed</li>
             <li>· Foundation registered on SupplierAdvisor®</li>
             <li>· Priority distribution markets across Africa + DE · HU corridors</li>
-            <li>· SABC News coverage of KZN food insecurity response</li>
           </ul>
         </SlideShell>
       );
 
-    case 13:
+    case 15:
       return (
         <SlideShell>
           <Eyebrow>WHY WORK WITH US</Eyebrow>
@@ -785,6 +962,10 @@ function Slide({ index }: SlideProps) {
                 d: "Hunger, malnutrition vulnerability, market trust and delivery capacity — not single-point projects.",
               },
               {
+                t: "SDG & Zero Hunger fluent",
+                d: "Programmes map to SDGs 1, 2, 4, 8, 10, 17 and complement WFP-aligned national hunger priorities with private-sector rails.",
+              },
+              {
                 t: "Evidence over theatre",
                 d: "Published impact metrics, live container transparency, certifications markets can audit.",
               },
@@ -793,12 +974,8 @@ function Slide({ index }: SlideProps) {
                 d: "KwaZulu-Natal base with ISO/FSSC-grade manufacturing and verified trade rails.",
               },
               {
-                t: "Institutional fluency",
-                d: "Ministries, DFIs, CSI, traditional leadership and operators — without losing field reality.",
-              },
-              {
-                t: "Royal partnership & service",
-                d: "Mandate to feed, educate and empower — with respect for heritage and local authority.",
+                t: "Institutional fluency + royal partnership",
+                d: "Ministries, DFIs, CSI and traditional authority — feed, educate and empower with local legitimacy.",
               },
             ].map((x) => (
               <div
@@ -816,7 +993,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 14:
+    case 16:
       return (
         <SlideShell dark className="!p-0">
           <TitleSlideLayout>
@@ -826,8 +1003,8 @@ function Slide({ index }: SlideProps) {
                 Put a professional delivery system on your African ambition
               </h2>
               <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-2xl mb-8">
-                Fortified nutrition at scale, last-mile distribution, multi-pillar programmes, or
-                verified ethical commerce — start with Big Five Impact.
+                Fortified nutrition at scale, last-mile distribution, SDG-aligned multi-pillar
+                programmes, or verified ethical commerce — start with Big Five Impact.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <Link
@@ -854,8 +1031,8 @@ function Slide({ index }: SlideProps) {
             <div className="mt-10 text-xs text-white/40 space-y-1">
               <p>Big Five Group (Pty) Ltd · KwaZulu-Natal · bigfivegroup.africa</p>
               <p>
-                Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; UNICEF ESA; UNAIDS/WHO HIV
-                estimates.
+                Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; UNAIDS/WHO; UN SDGs; WFP
+                Zero Hunger agenda.
               </p>
             </div>
           </TitleSlideLayout>
@@ -1398,7 +1575,7 @@ export default function StrategyDeck() {
     <div id="strategy-deck" className="scroll-mt-24 sm:scroll-mt-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
         <div className="text-xs tracking-[3px] text-violet-700 mb-3 font-medium">
-          STRATEGIC BRIEFING · ONLINE DECK · 15 SLIDES
+          STRATEGIC BRIEFING · ONLINE DECK · 17 SLIDES
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4 text-balance">
           Big Five Group — strategic overview
