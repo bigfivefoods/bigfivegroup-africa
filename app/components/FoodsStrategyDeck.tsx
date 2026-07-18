@@ -34,31 +34,62 @@ const PRODUCT_RANGES = [
   {
     title: "Fortified Porridges",
     icon: UtensilsCrossed,
-    blurb: "Instant, vitamin-enriched porridges for children and families.",
-    stats: "74% more nutrition · 185% more fortification",
+    blurb:
+      "Instant, vitamin-enriched porridges for children and families — Banana, Strawberry, Chocolate and Original on local maize where formulation allows.",
+    stats: "74% more nutrition · 185% more fortification · school & household ready",
     images: [
       { src: "/foods/porridge-chocolate.jpg", name: "Chocolate" },
       { src: "/foods/porridge-banana.jpg", name: "Banana" },
       { src: "/foods/porridge-original.jpg", name: "Original" },
       { src: "/foods/porridge-strawberry.jpg", name: "Strawberry" },
     ],
+    nutrition:
+      "Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron — designed for growing children and care settings.",
+    foodSecurity:
+      "Shelf-stable breakfast/staple that schools and households can store, portion and serve without cold chain — reliable calories when markets fail.",
+    malnutrition:
+      "Closes micronutrient gaps that drive stunting and hidden hunger. High fortification density vs empty cereal calories.",
+    sdgs: [
+      { n: "2", t: "Zero Hunger", d: "Nutrient-dense meals at affordability for feeding schemes." },
+      { n: "3", t: "Good Health", d: "Micronutrients support immunity and development." },
+      { n: "4", t: "Quality Education", d: "Fed learners concentrate; school-channel friendly." },
+    ],
+    wfp:
+      "Complements WFP-aligned school meals and national feeding: fortified, familiar flavours, easy prep, institutional pack sizes.",
+    channels: "Schools · ECD · households · clinics · CSI · institutional catering",
   },
   {
     title: "Soya Mince",
     icon: Beef,
-    blurb: "Plant-based protein mince — affordable, versatile, high protein.",
-    stats: "From R1.30 / meal · 24.4% more protein",
+    blurb:
+      "Plant-based protein mince — Chilli Beef, Rich Beef, Beef & Onion, Mutton — affordable protein for stews, pap and institutional menus.",
+    stats: "From R1.30 / meal · 24.4% more protein · long shelf life",
     images: [
       { src: "/foods/soya-chilli-beef.jpg", name: "Chilli Beef" },
       { src: "/foods/soya-beef-onion.jpg", name: "Beef & Onion" },
       { src: "/foods/soya-beef.jpg", name: "Rich Beef" },
       { src: "/foods/soya-mutton.jpg", name: "Mutton" },
     ],
+    nutrition:
+      "High plant protein at low cost — stretches meat budgets and lifts protein quality in starch-heavy diets.",
+    foodSecurity:
+      "Protein security without cold-chain meat logistics. Stable inventory for remote hubs, containers and emergency stocks.",
+    malnutrition:
+      "Addresses protein-energy malnutrition risk; pairs with staples so plates are not only starch and oil.",
+    sdgs: [
+      { n: "2", t: "Zero Hunger", d: "Affordable protein density at scale budgets." },
+      { n: "1", t: "No Poverty", d: "Lower cost per protein gram protects household spend." },
+      { n: "12", t: "Responsible Consumption", d: "Efficient plant protein vs high-impact livestock only." },
+    ],
+    wfp:
+      "Supports protein-forward institutional menus and crisis response when animal protein is scarce or costly — still culturally familiar mince formats.",
+    channels: "Households · catering · schools · NGOs · retail · Direct containers",
   },
   {
     title: "One-Pot Meals",
     icon: ChefHat,
-    blurb: "Complete ready-to-cook meals with balanced fortification.",
+    blurb:
+      "Complete ready-to-cook meals — Chakalaka, Beef, Chicken, Chilli Beef — balanced fortification, authentic African flavours, ~20 minutes.",
     stats: "From R2.50 / meal · ~20 min cook · 24-month shelf life",
     images: [
       { src: "/foods/onepot-chakalaka.jpg", name: "Chakalaka" },
@@ -66,18 +97,47 @@ const PRODUCT_RANGES = [
       { src: "/foods/onepot-chicken.jpg", name: "Chicken" },
       { src: "/foods/onepot-chilli-beef.jpg", name: "Chilli Beef" },
     ],
+    nutrition:
+      "Protein plus vitamins A & D, iron and calcium in a complete meal format — not a single-nutrient top-up.",
+    foodSecurity:
+      "One SKU feeds a plate: reduces dependency on multi-ingredient shopping when prices spike or shops empty.",
+    malnutrition:
+      "Whole-meal fortification fights both calorie gaps and micronutrient deficiency in working families and programmes.",
+    sdgs: [
+      { n: "2", t: "Zero Hunger", d: "Complete meal pathways for institutions & homes." },
+      { n: "8", t: "Decent Work", d: "Catering and micro-enterprise ready formats." },
+      { n: "11", t: "Sustainable Cities", d: "Urban/rural shelf-stable meals for dense populations." },
+    ],
+    wfp:
+      "Aligned with complementary feeding logistics: long shelf life, simple cook, dignified flavours — suitable where school or community kitchens run under pressure.",
+    channels: "Institutions · CSI · retail · workplaces · Direct last-mile hubs",
   },
   {
     title: "Soups",
     icon: Soup,
-    blurb: "Fortified instant soup thickeners — classic SA flavours.",
-    stats: "From R1.10 / meal · nutrient dense",
+    blurb:
+      "Fortified instant soup thickeners — Brown Onion, Oxtail, Minestrone, Chicken — classic SA flavours, nutrient dense, lowest cost pathways.",
+    stats: "From R1.10 / meal · vitamins A & C · iron · calcium",
     images: [
       { src: "/foods/soup-brown-onion.jpg", name: "Brown Onion" },
       { src: "/foods/soup-oxtail.jpg", name: "Oxtail" },
       { src: "/foods/soup-minestrone.jpg", name: "Minestrone" },
       { src: "/foods/soup-chicken.jpg", name: "Chicken" },
     ],
+    nutrition:
+      "Vitamins A & C, iron and calcium in a format elders, children and clinics already accept — warmth and micronutrients together.",
+    foodSecurity:
+      "Lowest price point in the range: extends food budgets, fills the plate between main meals, works when fuel and time are scarce.",
+    malnutrition:
+      "Micronutrient top-up for starch-heavy diets; supports recovery diets and care settings without medical claims beyond fortification design.",
+    sdgs: [
+      { n: "2", t: "Zero Hunger", d: "Ultra-affordable nutrient-dense entry point." },
+      { n: "3", t: "Good Health", d: "Vitamins A & C and minerals in everyday format." },
+      { n: "1", t: "No Poverty", d: "From ±R1.10 — protects the poorest households." },
+    ],
+    wfp:
+      "Useful as a complementary item in broader food baskets and community kitchens — light logistics, high acceptance, fortification without stigma.",
+    channels: "Households · clinics · ECD · retail · emergency / community kitchens",
   },
 ] as const;
 
@@ -352,7 +412,7 @@ function AgendaSlide() {
     "Why fortified nutrition is non-negotiable in Africa",
     "Big Five Foods impact — meals, children, cost, nutrition",
     "Four product ranges with real packaging",
-    "Porridges, soya, one-pots and soups — deep dive",
+    "Each range: food security, malnutrition, SDGs & WFP",
     "Certifications & order on SupplierAdvisor®",
     "Farm to fork — manufacture and deliver",
     "Who we serve and how to partner",
@@ -484,6 +544,17 @@ function RangeSlide() {
       <div className="flex flex-col h-full min-h-0">
         <Eyebrow>PRODUCT RANGE</Eyebrow>
         <SlideTitle>Four ranges. One nutrition system.</SlideTitle>
+        <p
+          className={`text-[#525252] max-w-3xl ${
+            forPrint ? "text-[10px] mb-1.5 leading-snug" : "text-sm mb-3 leading-relaxed"
+          }`}
+        >
+          Next slides map each range to <strong className="text-black">food security</strong>,{" "}
+          <strong className="text-black">malnutrition</strong>,{" "}
+          <strong className="text-black">UN SDGs</strong> and{" "}
+          <strong className="text-black">WFP-aligned Zero Hunger</strong> practice — complementary
+          to humanitarian and national programmes, not a claim of UN agency status.
+        </p>
         <div className={`grid grid-cols-2 min-h-0 flex-1 content-start ${forPrint ? "gap-1.5" : "gap-2.5 sm:gap-3"}`}>
           {PRODUCT_RANGES.map((r) => (
             <div
@@ -508,6 +579,9 @@ function RangeSlide() {
                 <h3 className={`font-semibold text-black ${forPrint ? "text-[11px]" : "text-sm sm:text-base"}`}>{r.title}</h3>
                 <p className={`text-[#525252] leading-snug line-clamp-2 ${forPrint ? "text-[9px]" : "text-[11px] sm:text-xs"}`}>{r.blurb}</p>
                 <p className={`font-semibold text-amber-900 ${forPrint ? "text-[9px] mt-0.5" : "text-[11px]"}`}>{r.stats}</p>
+                <p className={`text-[#737373] ${forPrint ? "text-[8px] mt-0.5" : "text-[10px] mt-1"}`}>
+                  SDG {r.sdgs.map((s) => s.n).join(" · ")} · {r.channels.split("·")[0].trim()}
+                </p>
               </div>
             </div>
           ))}
@@ -749,58 +823,211 @@ function ProductDeepDive({ rangeIndex }: { rangeIndex: number }) {
   const Icon = r.icon;
   const forPrint = usePrintMode();
   const orientation = usePrintOrientation();
-  // Landscape: shorter thumbs so 4-up fits; portrait: taller but still within page
   const imgH = forPrint
     ? orientation === "portrait"
-      ? "h-[48mm]"
-      : "h-[38mm]"
-    : "h-[min(32vh,14rem)] sm:h-[min(38vh,16rem)]";
+      ? "h-[22mm]"
+      : "h-[26mm]"
+    : "h-[5.5rem] sm:h-[6.5rem] md:h-[7.5rem]";
+
+  const impactCards = [
+    { label: "Food security", body: r.foodSecurity, tone: "bg-amber-50 border-amber-100 text-amber-950" },
+    { label: "Malnutrition", body: r.malnutrition, tone: "bg-rose-50 border-rose-100 text-rose-950" },
+    { label: "WFP / Zero Hunger", body: r.wfp, tone: "bg-sky-50 border-sky-100 text-sky-950" },
+    { label: "Nutrition design", body: r.nutrition, tone: "bg-emerald-50 border-emerald-100 text-emerald-950" },
+  ];
 
   return (
     <SlideShell>
       <div className="flex flex-col h-full min-h-0">
-        <div className={`shrink-0 ${forPrint ? "mb-1.5" : "mb-3"}`}>
+        <div className={`shrink-0 ${forPrint ? "mb-1.5" : "mb-2.5"}`}>
           <Eyebrow>
-            PRODUCT DEEP DIVE · {rangeIndex + 1}/4 · Order on SupplierAdvisor®
+            PRODUCT · IMPACT · {rangeIndex + 1}/4 · SDG · WFP-ALIGNED
           </Eyebrow>
           <div className="flex flex-wrap items-center gap-2 mb-0.5">
-            <Icon className={`text-amber-700 shrink-0 ${forPrint ? "w-5 h-5" : "w-6 h-6"}`} />
-            <h2 className={`font-semibold tracking-tighter ${forPrint ? "text-lg" : "text-xl sm:text-2xl md:text-3xl"}`}>
+            <Icon className={`text-amber-700 shrink-0 ${forPrint ? "w-4 h-4" : "w-6 h-6"}`} />
+            <h2
+              className={`font-semibold tracking-tighter ${
+                forPrint ? "text-base" : "text-xl sm:text-2xl md:text-3xl"
+              }`}
+            >
               {r.title}
             </h2>
           </div>
-          <p className={`text-[#525252] leading-snug max-w-2xl ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"}`}>{r.blurb}</p>
-          <p className={`font-semibold text-amber-900 ${forPrint ? "text-[10px]" : "text-xs sm:text-sm mt-1"}`}>{r.stats}</p>
+          <p
+            className={`text-[#525252] leading-snug max-w-3xl ${
+              forPrint ? "text-[10px] line-clamp-2" : "text-xs sm:text-sm"
+            }`}
+          >
+            {r.blurb}
+          </p>
+          <p
+            className={`font-semibold text-amber-900 ${
+              forPrint ? "text-[9px] mt-0.5" : "text-xs sm:text-sm mt-1"
+            }`}
+          >
+            {r.stats}
+          </p>
         </div>
+
+        {/* Products + impact side by side so content fits one A4 page */}
         <div
-          className={`grid min-h-0 flex-1 content-start ${
-            forPrint ? "grid-cols-4 gap-1.5" : "grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3"
+          className={`grid min-h-0 flex-1 gap-2 ${
+            forPrint
+              ? orientation === "portrait"
+                ? "grid-cols-1 content-start"
+                : "grid-cols-2"
+              : "grid-cols-1 lg:grid-cols-2 gap-3"
           }`}
         >
-          {r.images.map((img) => (
-            <div key={img.src} className="flex flex-col min-w-0 min-h-0">
-              <div className={`relative w-full rounded-xl overflow-hidden border border-black/10 bg-[#f8f7f5] mb-1 ${imgH}`}>
-                <Image
-                  src={img.src}
-                  alt={`${r.title} — ${img.name}`}
-                  fill
-                  className="object-contain object-center p-1.5"
-                  sizes="(max-width:768px) 45vw, 22vw"
-                />
-              </div>
-              <div className={`text-center font-semibold text-black shrink-0 ${forPrint ? "text-[10px]" : "text-[11px] sm:text-xs"}`}>
-                {img.name}
-              </div>
+          {/* Pack shots */}
+          <div className="min-w-0 min-h-0 flex flex-col">
+            <div
+              className={`grid grid-cols-4 min-h-0 ${forPrint ? "gap-1" : "gap-1.5 sm:gap-2"}`}
+            >
+              {r.images.map((img) => (
+                <div key={img.src} className="flex flex-col min-w-0">
+                  <div
+                    className={`relative w-full rounded-lg overflow-hidden border border-black/10 bg-[#f8f7f5] mb-0.5 ${imgH}`}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={`${r.title} — ${img.name}`}
+                      fill
+                      className="object-contain object-center p-1"
+                      sizes="120px"
+                    />
+                  </div>
+                  <div
+                    className={`text-center font-semibold text-black ${
+                      forPrint ? "text-[8px]" : "text-[10px] sm:text-xs"
+                    }`}
+                  >
+                    {img.name}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+            <p
+              className={`text-[#737373] mt-1.5 ${
+                forPrint ? "text-[9px] leading-snug" : "text-[11px] sm:text-xs mt-2"
+              }`}
+            >
+              <span className="font-semibold text-black">Channels: </span>
+              {r.channels}
+            </p>
+          </div>
+
+          {/* Food security · malnutrition · WFP · nutrition */}
+          <div
+            className={`grid min-h-0 content-start ${
+              forPrint ? "grid-cols-2 gap-1" : "grid-cols-1 sm:grid-cols-2 gap-2"
+            }`}
+          >
+            {impactCards.map((c) => (
+              <div
+                key={c.label}
+                className={`rounded-lg border min-w-0 ${c.tone} ${
+                  forPrint ? "p-1.5" : "p-2.5 sm:p-3 rounded-xl"
+                }`}
+              >
+                <div
+                  className={`font-semibold tracking-wide uppercase ${
+                    forPrint ? "text-[8px] mb-0.5" : "text-[10px] mb-1"
+                  }`}
+                >
+                  {c.label}
+                </div>
+                <p
+                  className={`leading-snug ${
+                    forPrint ? "text-[9px] line-clamp-4" : "text-[11px] sm:text-xs line-clamp-5"
+                  }`}
+                >
+                  {c.body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-        <p className={`shrink-0 text-center text-[#737373] ${forPrint ? "text-[9px] mt-1" : "text-[10px] sm:text-xs mt-2"}`}>
-          Order on{" "}
-          <a href={SA_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-amber-900 underline underline-offset-2">
-            supplieradvisor.com
-          </a>{" "}
-          — ethical · verified · on-chain ready
-        </p>
+
+        {/* SDG row */}
+        <div className={`shrink-0 ${forPrint ? "mt-1.5" : "mt-2.5"}`}>
+          <div
+            className={`font-semibold text-[#737373] tracking-[1.5px] uppercase ${
+              forPrint ? "text-[8px] mb-1" : "text-[10px] mb-1.5"
+            }`}
+          >
+            UN SDG contribution
+          </div>
+          <div className={`grid grid-cols-3 ${forPrint ? "gap-1" : "gap-2"}`}>
+            {r.sdgs.map((s) => (
+              <div
+                key={s.n}
+                className={`rounded-lg border border-black/10 bg-white min-w-0 flex gap-1.5 items-start ${
+                  forPrint ? "p-1.5" : "p-2.5"
+                }`}
+              >
+                <div
+                  className={`shrink-0 rounded font-bold text-white flex items-center justify-center ${
+                    forPrint ? "w-5 h-5 text-[9px]" : "w-7 h-7 text-xs"
+                  }`}
+                  style={{
+                    backgroundColor:
+                      s.n === "2"
+                        ? "#DDA63A"
+                        : s.n === "1"
+                          ? "#E5243B"
+                          : s.n === "3"
+                            ? "#4C9F38"
+                            : s.n === "4"
+                              ? "#C5192D"
+                              : s.n === "8"
+                                ? "#A21942"
+                                : s.n === "11"
+                                  ? "#FD9D24"
+                                  : s.n === "12"
+                                    ? "#BF8B2E"
+                                    : "#0d9488",
+                  }}
+                >
+                  {s.n}
+                </div>
+                <div className="min-w-0">
+                  <div
+                    className={`font-semibold text-black leading-tight ${
+                      forPrint ? "text-[9px]" : "text-[11px] sm:text-xs"
+                    }`}
+                  >
+                    SDG {s.n} · {s.t}
+                  </div>
+                  <p
+                    className={`text-[#525252] leading-snug ${
+                      forPrint ? "text-[8px] line-clamp-2" : "text-[10px] sm:text-[11px]"
+                    }`}
+                  >
+                    {s.d}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p
+            className={`text-center text-[#737373] ${
+              forPrint ? "text-[8px] mt-1" : "text-[10px] sm:text-xs mt-2"
+            }`}
+          >
+            Order on{" "}
+            <a
+              href={SA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-amber-900 underline underline-offset-2"
+            >
+              supplieradvisor.com
+            </a>
+            {" · "}
+            guided by SAM · complementary to WFP / national Zero Hunger programmes
+          </p>
+        </div>
       </div>
     </SlideShell>
   );
