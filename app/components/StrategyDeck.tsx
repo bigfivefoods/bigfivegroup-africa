@@ -81,21 +81,26 @@ function SlideShell({
     <div
       className={`relative h-full w-full overflow-x-hidden border ${
         forPrint
-          ? "overflow-hidden rounded-xl"
+          ? "overflow-hidden rounded-2xl"
           : "overflow-y-auto rounded-2xl sm:rounded-3xl"
       } ${
         dark
-          ? "bg-[#0a0a0a] border-white/10 text-white"
-          : "bg-white border-black/10 text-black"
+          ? forPrint
+            ? "bg-[#0a0a0a] border-[#262626] text-white"
+            : "bg-[#0a0a0a] border-white/10 text-white"
+          : forPrint
+            ? "bg-white border-[#e5e5e5] text-black"
+            : "bg-white border-black/10 text-black"
       } ${className}`}
     >
       <div
         className={`pointer-events-none absolute top-0 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r ${accentBar}`}
       />
-      {!dark && (
+      {/* Soft blur orbs look great on screen but print as muddy shadow blobs — skip in PDF */}
+      {!forPrint && !dark && (
         <div className="pointer-events-none absolute -top-24 -right-24 w-64 h-64 rounded-full bg-violet-100/40 blur-3xl" />
       )}
-      {dark && (
+      {!forPrint && dark && (
         <div className="pointer-events-none absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-violet-600/20 blur-3xl" />
       )}
       <div
@@ -103,7 +108,7 @@ function SlideShell({
           zeroPad
             ? "p-0"
             : forPrint
-              ? "p-7 md:p-9"
+              ? "p-8 md:p-10"
               : "p-5 sm:p-8 md:p-10 lg:p-12"
         }`}
       >
@@ -147,12 +152,17 @@ function StatTile({
   label: string;
   dark?: boolean;
 }) {
+  const forPrint = usePrintMode();
   return (
     <div
       className={`rounded-2xl border p-4 sm:p-5 min-w-0 ${
         dark
-          ? "border-white/10 bg-white/[0.06]"
-          : "border-black/10 bg-[#fafafa]"
+          ? forPrint
+            ? "border-[#2a2a2a] bg-[#141414]"
+            : "border-white/10 bg-white/[0.06]"
+          : forPrint
+            ? "border-[#e5e5e5] bg-[#fafafa]"
+            : "border-black/10 bg-[#fafafa]"
       }`}
     >
       <div
@@ -220,7 +230,7 @@ function Slide({ index }: SlideProps) {
               "Why partners work with us — and how to engage",
             ].map((item, i) => (
               <li key={item} className="flex gap-3 sm:gap-4 items-start">
-                <span className="shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-700 text-white text-xs font-semibold flex items-center justify-center shadow-sm">
+                <span className="shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-700 text-white text-xs font-semibold flex items-center justify-center">
                   {i + 1}
                 </span>
                 <span className="text-sm sm:text-base text-[#404040] leading-relaxed pt-1.5">
@@ -242,7 +252,7 @@ function Slide({ index }: SlideProps) {
 
           {/* Group overview */}
           <div className="rounded-2xl border border-violet-200/80 bg-gradient-to-br from-violet-50 to-indigo-50/60 p-4 sm:p-5 mb-4 sm:mb-5 flex gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-xl bg-violet-700 text-white flex items-center justify-center shrink-0 shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-violet-700 text-white flex items-center justify-center shrink-0">
               <Layers className="w-5 h-5" />
             </div>
             <div className="min-w-0">
@@ -258,7 +268,7 @@ function Slide({ index }: SlideProps) {
             {companies.map((c) => (
               <div
                 key={c.slug}
-                className="rounded-xl border border-black/10 bg-gradient-to-b from-white to-[#fafafa] p-3 flex gap-2.5 min-w-0 shadow-sm"
+                className="rounded-xl border border-black/10 bg-gradient-to-b from-white to-[#fafafa] p-3 flex gap-2.5 min-w-0"
               >
                 <div
                   className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
@@ -362,7 +372,7 @@ function Slide({ index }: SlideProps) {
             ].map((v) => (
               <div
                 key={v.title}
-                className="flex sm:flex-col items-start gap-2.5 rounded-2xl border border-black/10 bg-white p-3.5 sm:p-4 min-w-0 shadow-sm"
+                className="flex sm:flex-col items-start gap-2.5 rounded-2xl border border-black/10 bg-white p-3.5 sm:p-4 min-w-0"
               >
                 <div className="w-9 h-9 rounded-xl bg-violet-50 text-violet-800 flex items-center justify-center shrink-0">
                   <v.icon className="w-4 h-4" />
@@ -874,29 +884,51 @@ function TitleSlideLayout({ children }: { children: React.ReactNode }) {
 }
 
 const PRINT_STYLES = `
+  /* Park print tree off-screen without opacity/visibility hacks that ghost in some browsers */
   #strategy-deck-print-root {
     position: fixed;
-    left: -12000px;
+    left: 0;
     top: 0;
-    width: 1120px;
+    width: 1280px;
+    transform: translate3d(-200vw, 0, 0);
     z-index: -1;
     pointer-events: none;
-    opacity: 0;
   }
   #strategy-deck-print-root .deck-print-page {
-    width: 1120px;
+    width: 1280px;
     height: 720px;
     overflow: hidden;
-    margin: 0 0 24px;
+    margin: 0 0 16px;
     box-sizing: border-box;
+    background: transparent;
   }
   #strategy-deck-print-root .deck-print-page > * {
     height: 100%;
+    width: 100%;
   }
+
+  /* Screen-only prep: strip effects that print engines turn into muddy halos */
+  #strategy-deck-print-root,
+  #strategy-deck-print-root * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  #strategy-deck-print-root .premium-button::before {
+    content: none !important;
+    display: none !important;
+  }
+  #strategy-deck-print-root [class*="blur-"] {
+    display: none !important;
+  }
+
   @media print {
     @page {
       size: landscape;
-      margin: 7mm;
+      margin: 6mm;
     }
     html, body {
       -webkit-print-color-adjust: exact !important;
@@ -907,42 +939,75 @@ const PRINT_STYLES = `
       height: auto !important;
       overflow: visible !important;
     }
-    body * {
-      visibility: hidden !important;
+
+    /* Hide site chrome without the classic visibility ghosting pattern */
+    body > *:not(#strategy-deck-print-root) {
+      display: none !important;
     }
-    #strategy-deck-print-root,
-    #strategy-deck-print-root * {
-      visibility: visible !important;
-    }
+
     #strategy-deck-print-root {
-      position: absolute !important;
-      left: 0 !important;
-      top: 0 !important;
+      display: block !important;
+      position: static !important;
+      left: auto !important;
+      top: auto !important;
       width: 100% !important;
-      opacity: 1 !important;
-      z-index: 2147483647 !important;
+      transform: none !important;
+      z-index: auto !important;
       pointer-events: auto !important;
       background: transparent !important;
     }
+
+    #strategy-deck-print-root,
+    #strategy-deck-print-root * {
+      box-shadow: none !important;
+      text-shadow: none !important;
+      filter: none !important;
+      -webkit-filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    #strategy-deck-print-root .premium-button,
+    #strategy-deck-print-root .premium-button:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    #strategy-deck-print-root .premium-button::before {
+      content: none !important;
+      display: none !important;
+    }
+
     #strategy-deck-print-root .deck-print-page {
       width: 100% !important;
-      height: 186mm !important;
-      max-height: 186mm !important;
+      height: 188mm !important;
+      max-height: 188mm !important;
       page-break-after: always;
       break-after: page;
       page-break-inside: avoid;
       break-inside: avoid;
       margin: 0 !important;
+      padding: 0 !important;
       overflow: hidden !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
     #strategy-deck-print-root .deck-print-page:last-child {
       page-break-after: auto;
       break-after: auto;
     }
-    /* Keep slide chrome from clipping awkwardly */
+
     #strategy-deck-print-root a {
       text-decoration: none !important;
       color: inherit !important;
+    }
+
+    /* Flat cards — no soft elevation that prints as grey rings */
+    #strategy-deck-print-root .shadow-sm,
+    #strategy-deck-print-root [class*="shadow"] {
+      box-shadow: none !important;
     }
   }
 `;
@@ -953,8 +1018,8 @@ function PrintDeckPortal({ active }: { active: boolean }) {
 
   return createPortal(
     <PrintModeContext.Provider value={true}>
-      <style dangerouslySetInnerHTML={{ __html: PRINT_STYLES }} />
       <div id="strategy-deck-print-root" aria-hidden="true">
+        <style dangerouslySetInnerHTML={{ __html: PRINT_STYLES }} />
         {Array.from({ length: TOTAL }, (_, i) => (
           <div key={i} className="deck-print-page">
             <Slide index={i} />
