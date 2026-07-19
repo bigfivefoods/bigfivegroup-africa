@@ -19,7 +19,7 @@ const assets = [
   {
     name: "Big Five Group logo",
     src: "/bigfivegroup-logo.png",
-    note: "Primary group mark (identical layout to Foods; GROUP wordmark).",
+    note: "Primary group mark — white silhouettes on black disc (use as-is on dark; on light use on a dark plate).",
   },
   {
     name: "Big Five Foods logo",

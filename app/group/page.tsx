@@ -117,7 +117,6 @@ export default function GroupPage() {
           alt: "Big Five Group logo",
           width: 192,
           height: 192,
-          className: "brightness-0 invert",
         }}
         eyebrow="THE GROUP · TEN PILLARS · ONE SYSTEM"
         title={

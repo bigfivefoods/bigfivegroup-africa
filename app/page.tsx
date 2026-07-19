@@ -143,7 +143,7 @@ export default function Home() {
               alt="Big Five Group logo"
               width={192}
               height={192}
-              className="h-14 w-14 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain drop-shadow-lg brightness-0 invert"
+              className="h-14 w-14 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain drop-shadow-lg"
               priority
             />
           </motion.div>
