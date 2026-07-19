@@ -42,9 +42,14 @@ const assets = [
     note: "Full-colour wordmark with cube.",
   },
   {
-    name: "SupplierAdvisor® logo",
+    name: "SupplierAdvisor® logo (transparent)",
+    src: "/supplieradvisor-logo-transparent.png",
+    note: "Preferred on dark and light backgrounds. Third-party brand — use with permission; always include ® where practical.",
+  },
+  {
+    name: "SupplierAdvisor® logo (original)",
     src: "/supplieradvisor-logo.png",
-    note: "Connect / commerce OS mark. Third-party brand — use with permission; always include ® where practical.",
+    note: "Full-colour mark on white field.",
   },
 ];
 
