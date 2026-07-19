@@ -40,33 +40,27 @@ cp .env.example .env.local
 npm run dev
 ```
 
-`.env.local` is gitignored. Non-secret defaults (contact inbox) are pre-filled.
+`.env.local` is gitignored.
+
+**Contact form:** opens the visitor’s own email app with a draft to
+`craig@bigfivegroup.africa` (same as the footer). No third-party mail service.
 
 ### Vercel (production / preview)
 
 **Project:** [bigfivegroup-africa-8rr7](https://vercel.com/bigfivefoods-projects/bigfivegroup-africa-8rr7)  
 **Dashboard env UI:** Project → Settings → Environment Variables
 
-Or sync from this repo with a [Vercel token](https://vercel.com/account/tokens):
+Optional keys only (Calendly / analytics / SAM video):
 
 ```bash
-# 1. Put secrets in a gitignored file
 cp .env.vercel.secrets.example .env.vercel.secrets
-# edit .env.vercel.secrets (RESEND_API_KEY, Calendly URL, etc.)
-
-# 2. Export token and push to Production + Preview + Development
+# edit optional values
 export VERCEL_TOKEN=vercel_xxxx
 npm run env:vercel
 ```
 
-Then **Redeploy** production so new env vars load.
-
 | Variable | Required? | Purpose |
 |----------|-----------|---------|
-| `RESEND_API_KEY` | For inbox delivery | [Resend](https://resend.com) API key — without it, contact form uses mailto |
-| `CONTACT_FROM_EMAIL` | With Resend | Verified sender, e.g. `Big Five Group <hello@yourdomain.com>` |
-| `CONTACT_TO_EMAIL` | Recommended | Inbox (default `craig@bigfivegroup.africa`) |
-| `CONTACT_WEBHOOK_URL` | Optional | Zapier / Make / Formspree webhook |
 | `NEXT_PUBLIC_CALENDLY_URL` | Optional | Booking link on `/contact` |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Optional | Plausible analytics domain |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | GA4 ID |
