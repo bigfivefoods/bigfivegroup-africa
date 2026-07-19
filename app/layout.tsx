@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/bigfivegroup-logo.jpg", type: "image/jpeg" }],
+    icon: [{ url: "/favicon.ico" }, { url: "/bigfivegroup-logo.png", type: "image/png" }],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   category: "business",

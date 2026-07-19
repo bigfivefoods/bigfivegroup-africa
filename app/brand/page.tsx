@@ -17,9 +17,14 @@ export const metadata = {
 
 const assets = [
   {
-    name: "Big Five Group logo",
+    name: "Big Five Group logo (hero / dark)",
+    src: "/bigfivegroup-logo.png",
+    note: "Official mark with white→transparent, black→white for dark heroes.",
+  },
+  {
+    name: "Big Five Group logo (original)",
     src: "/bigfivegroup-logo.jpg",
-    note: "Primary group mark (official import: BIG FIVE GROUP LOGO.JPEG). White on black — use as-is on dark backgrounds.",
+    note: "Official import (black disc, white cutouts on white field).",
   },
   {
     name: "Big Five Foods logo",
