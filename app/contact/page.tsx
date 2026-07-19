@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Calendar } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, ArrowRight } from "lucide-react";
 import ContactForm from "../components/ContactForm";
+import CalendlyPanel from "../components/CalendlyPanel";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -71,32 +72,19 @@ export default function ContactPage() {
 
           <aside className="lg:col-span-5 space-y-6 sm:space-y-8 min-w-0">
             {CALENDLY_URL ? (
-              <div className="rounded-2xl sm:rounded-3xl border border-emerald-200 bg-emerald-50/50 p-5 sm:p-7">
-                <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
-                  Prefer a calendar slot?
-                </h3>
-                <p className="text-sm text-[#525252] mb-4 leading-relaxed">
-                  Book a strategic briefing directly — we&apos;ll prepare the right pillar mix.
-                </p>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-5 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
-                  data-analytics="calendly_click"
-                >
-                  <Calendar className="w-4 h-4" />
-                  Open booking calendar
-                </a>
-              </div>
+              <CalendlyPanel url={CALENDLY_URL} />
             ) : (
               <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
                 <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
                   Book a briefing
                 </h3>
-                <p className="text-sm text-[#525252] leading-relaxed">
-                  Use the form and we&apos;ll schedule a conversation — typically within 1–2 business
-                  days. Email and WhatsApp remain open for urgent follow-up.
+                <p className="text-sm text-[#525252] leading-relaxed mb-3">
+                  Use the form to email us — your mail app opens a draft to the address in the footer.
+                  Or reach us on WhatsApp / phone for a faster chat.
+                </p>
+                <p className="text-xs text-[#737373] leading-relaxed">
+                  Calendar booking (Calendly) can be enabled on this page once a public scheduling link
+                  is configured — see docs/CALENDLY-SETUP.md.
                 </p>
               </div>
             )}
