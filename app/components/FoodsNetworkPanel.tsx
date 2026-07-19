@@ -204,8 +204,8 @@ export default function FoodsNetworkPanel() {
           */}
           <div
             className="relative w-full bg-[#f8fafc] overflow-hidden
-              h-[min(78dvh,34rem)]
-              sm:h-[min(80dvh,40rem)]
+              h-[min(62dvh,28rem)]
+              sm:h-[min(78dvh,36rem)]
               md:h-[min(82dvh,46rem)]
               lg:h-[min(85dvh,52rem)]
               xl:h-[min(88dvh,56rem)]"

@@ -90,6 +90,23 @@ main {
   overflow-wrap: break-word;
   word-break: normal;
   hyphens: auto;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Deck / card grids: never force horizontal page scroll */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+/* Safer touch targets on mobile for icon-only controls */
+@media (max-width: 639px) {
+  button,
+  a.premium-button {
+    touch-action: manipulation;
+  }
 }
 
 /* Avoid iOS zoom on form fields if any appear later */

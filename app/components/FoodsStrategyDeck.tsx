@@ -659,7 +659,11 @@ function ProofSlide() {
           <StatTile dark value="83%" label="Cheaper pathways vs alternatives" />
           <StatTile dark value="74%" label="More nutrition by design" />
         </div>
-        <div className={`grid grid-cols-3 ${forPrint ? "gap-1.5" : "gap-3"}`}>
+        <div
+          className={`grid ${
+            forPrint ? "grid-cols-3 gap-1.5" : "grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3"
+          }`}
+        >
           {[
             { t: "24-month shelf life", d: "Stock institutions without waste panic." },
             { t: "From ±R1.10 / meal", d: "Soups and soya for scale budgets." },
@@ -694,7 +698,11 @@ function RangeSlide() {
           <strong className="text-black">WFP-aligned Zero Hunger</strong> practice — complementary
           to humanitarian and national programmes, not a claim of UN agency status.
         </p>
-        <div className={`grid grid-cols-2 min-h-0 flex-1 content-start ${forPrint ? "gap-1.5" : "gap-2.5 sm:gap-3"}`}>
+        <div
+          className={`grid min-h-0 flex-1 content-start ${
+            forPrint ? "grid-cols-2 gap-1.5" : "grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3"
+          }`}
+        >
           {PRODUCT_RANGES.map((r) => (
             <div
               key={r.title}
@@ -740,7 +748,11 @@ function CertsSlide() {
         <p className={`text-[#525252] max-w-3xl ${forPrint ? "text-[11px] mb-2 leading-snug" : "text-sm mb-5 leading-relaxed"}`}>
           Factory-floor standards and ethical commerce rails — not claims on a brochure.
         </p>
-        <div className={`grid grid-cols-4 min-h-0 ${forPrint ? "gap-1.5 mb-2" : "gap-2.5 sm:gap-3 mb-5"}`}>
+        <div
+          className={`grid min-h-0 ${
+            forPrint ? "grid-cols-4 gap-1.5 mb-2" : "grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-5"
+          }`}
+        >
           {CERTS.map((c) => (
             <div key={c.name} className={`rounded-xl border border-black/10 bg-white text-center min-w-0 ${forPrint ? "p-1.5" : "p-3"}`}>
               <div className={`relative flex items-center justify-center mx-auto mb-1 ${forPrint ? "h-7" : "h-10 sm:h-12 mb-2"}`}>
@@ -788,7 +800,11 @@ function FarmToForkSlide() {
       <div className="flex flex-col h-full min-h-0">
         <Eyebrow>FROM FARM TO FORK</Eyebrow>
         <SlideTitle>How Foods works</SlideTitle>
-        <div className={`grid grid-cols-3 min-h-0 ${forPrint ? "gap-2 mb-2" : "gap-4 mb-6"}`}>
+        <div
+          className={`grid min-h-0 ${
+            forPrint ? "grid-cols-3 gap-2 mb-2" : "grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6"
+          }`}
+        >
           {[
             { step: "01", t: "Source & fortify", d: "Local grains milled and precision-fortified with essential micronutrients." },
             { step: "02", t: "Certify & package", d: "ISO / FSSC / ethical certs. Batch traceability and long shelf life." },
@@ -818,7 +834,11 @@ function WhoWeServeSlide() {
       <div className="flex flex-col h-full min-h-0">
         <Eyebrow>WHO WE SERVE</Eyebrow>
         <SlideTitle>Built for institutions and families</SlideTitle>
-        <div className={`grid grid-cols-2 min-h-0 flex-1 content-start ${forPrint ? "gap-1.5" : "gap-3 sm:gap-4"}`}>
+        <div
+          className={`grid min-h-0 flex-1 content-start ${
+            forPrint ? "grid-cols-2 gap-1.5" : "grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+          }`}
+        >
           {[
             { icon: School, t: "Schools & feeding schemes", d: "Shelf-stable fortified staples for consistent school nutrition." },
             { icon: Building2, t: "Governments & NGOs", d: "Zero Hunger contribution — fortification, affordability, audit-ready." },
@@ -862,7 +882,13 @@ function CtaSlide() {
             <p className={`text-amber-200/90 font-medium max-w-2xl ${forPrint ? "text-[10px] mb-3" : "text-sm sm:text-base mb-6"}`}>
               Register free → ask {sa.sam.name} → order porridge, soya, one-pots and soups.
             </p>
-            <div className={`grid grid-cols-3 max-w-3xl ${forPrint ? "gap-1.5 mb-3" : "gap-2.5 mb-7"}`}>
+            <div
+              className={`grid max-w-3xl ${
+                forPrint
+                  ? "grid-cols-3 gap-1.5 mb-3"
+                  : "grid-cols-1 sm:grid-cols-3 gap-2.5 mb-7"
+              }`}
+            >
               {[
                 { n: "01", t: "Join SupplierAdvisor®", d: "Free trial · meet SAM" },
                 { n: "02", t: "Find Big Five Foods", d: "Verified · full range" },
@@ -1023,7 +1049,9 @@ function ProductDeepDive({ rangeIndex }: { rangeIndex: number }) {
           {/* Pack shots */}
           <div className="min-w-0 min-h-0 flex flex-col">
             <div
-              className={`grid grid-cols-4 min-h-0 ${forPrint ? "gap-1" : "gap-1.5 sm:gap-2"}`}
+              className={`grid min-h-0 ${
+                forPrint ? "grid-cols-4 gap-1" : "grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2"
+              }`}
             >
               {r.images.map((img) => (
                 <div key={img.src} className="flex flex-col min-w-0">
@@ -1099,7 +1127,11 @@ function ProductDeepDive({ rangeIndex }: { rangeIndex: number }) {
           >
             UN SDG contribution
           </div>
-          <div className={`grid grid-cols-3 ${forPrint ? "gap-1" : "gap-2"}`}>
+          <div
+            className={`grid ${
+              forPrint ? "grid-cols-3 gap-1" : "grid-cols-1 sm:grid-cols-3 gap-2"
+            }`}
+          >
             {r.sdgs.map((s) => (
               <div
                 key={s.n}
@@ -1420,81 +1452,84 @@ export default function FoodsStrategyDeck() {
 
   const deck = (
     <div
-      className={`flex flex-col min-w-0 ${
+      className={`flex flex-col min-w-0 w-full max-w-full ${
         fullscreen
-          ? "fixed inset-0 z-[100] bg-[#1a1008] p-3 sm:p-5"
-          : "rounded-2xl sm:rounded-[1.75rem] border border-black/10 bg-gradient-to-b from-amber-50 to-[#f3f4f6] p-2 sm:p-3 shadow-[0_25px_60px_-15px_rgb(180_83_9_/0.25)]"
+          ? "fixed inset-0 z-[100] bg-[#1a1008] p-2 sm:p-4 md:p-5"
+          : "rounded-2xl sm:rounded-[1.75rem] border border-black/10 bg-gradient-to-b from-amber-50 to-[#f3f4f6] p-1.5 sm:p-3 shadow-[0_25px_60px_-15px_rgb(180_83_9_/0.25)]"
       }`}
     >
-      <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 px-2 sm:px-3 py-2 mb-2">
-        <div className="text-xs sm:text-sm font-medium text-[#404040]">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-3 px-1.5 sm:px-3 py-2 mb-1 sm:mb-2 min-w-0">
+        <div className="text-xs sm:text-sm font-medium text-[#404040] truncate min-w-0">
           Big Five Foods deck{" "}
           <span className="text-[#737373] font-normal">
             · {index + 1} / {TOTAL}
           </span>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
           <button
             type="button"
             onClick={onShare}
-            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5"
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5 min-h-9"
           >
             {shareState === "copied" ? (
               <>
-                <Copy className="w-3.5 h-3.5" /> Link copied
+                <Copy className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Link copied</span>
               </>
             ) : shareState === "shared" ? (
               <>
-                <Check className="w-3.5 h-3.5" /> Shared
+                <Check className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Shared</span>
               </>
             ) : (
               <>
-                <Share2 className="w-3.5 h-3.5" /> Share
+                <Share2 className="w-3.5 h-3.5 shrink-0" />
+                Share
               </>
             )}
           </button>
-          <div className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 p-0.5">
+          <div className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 p-0.5 min-w-0">
             <button
               type="button"
               onClick={() => onDownload("landscape")}
               disabled={preparingPdf}
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-amber-950 hover:bg-white disabled:opacity-60"
+              className="inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold text-amber-950 hover:bg-white disabled:opacity-60 min-h-8"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">
+              <Download className="w-3.5 h-3.5 shrink-0" />
+              <span className="hidden md:inline">
                 {preparingPdf && printOrientation === "landscape"
                   ? "Preparing…"
                   : "A4 Landscape"}
               </span>
-              <span className="sm:hidden">A4 L</span>
+              <span className="md:hidden">A4 L</span>
             </button>
             <button
               type="button"
               onClick={() => onDownload("portrait")}
               disabled={preparingPdf}
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-amber-950 hover:bg-white disabled:opacity-60"
+              className="inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold text-amber-950 hover:bg-white disabled:opacity-60 min-h-8"
             >
-              <span className="hidden sm:inline">
+              <span className="hidden md:inline">
                 {preparingPdf && printOrientation === "portrait"
                   ? "Preparing…"
                   : "A4 Portrait"}
               </span>
-              <span className="sm:hidden">A4 P</span>
+              <span className="md:hidden">A4 P</span>
             </button>
           </div>
           <button
             type="button"
             onClick={() => setFullscreen((v) => !v)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5"
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5 min-h-9"
             aria-label={fullscreen ? "Exit fullscreen" : "Fullscreen"}
           >
             {fullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline">{fullscreen ? "Exit" : "Fullscreen"}</span>
+            <span className="hidden sm:inline">{fullscreen ? "Exit" : "Full"}</span>
           </button>
         </div>
       </div>
 
-      <div className="mx-2 sm:mx-3 mb-2 h-1 rounded-full bg-black/10 overflow-hidden">
+      <div className="mx-1.5 sm:mx-3 mb-2 h-1 rounded-full bg-black/10 overflow-hidden">
         <div
           className="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-600 transition-all duration-300"
           style={{ width: `${((index + 1) / TOTAL) * 100}%` }}
@@ -1502,26 +1537,32 @@ export default function FoodsStrategyDeck() {
       </div>
 
       <div
-        className={`relative flex-1 min-h-0 ${
-          fullscreen ? "min-h-0" : "min-h-[min(74dvh,42rem)] sm:min-h-[min(76dvh,46rem)]"
+        className={`relative flex-1 min-h-0 min-w-0 overflow-hidden ${
+          fullscreen
+            ? "min-h-0"
+            : "min-h-[min(70dvh,36rem)] sm:min-h-[min(74dvh,42rem)] md:min-h-[min(76dvh,46rem)]"
         }`}
-        style={fullscreen ? { height: "calc(100dvh - 8.5rem)" } : undefined}
+        style={
+          fullscreen
+            ? { height: "calc(100dvh - 7.5rem - env(safe-area-inset-bottom, 0px))" }
+            : undefined
+        }
       >
         <Slide index={index} />
       </div>
 
-      <div className="flex items-center justify-between gap-3 px-1 sm:px-2 pt-3 pb-1">
+      <div className="flex items-center justify-between gap-2 sm:gap-3 px-1 sm:px-2 pt-2 sm:pt-3 pb-1 min-w-0">
         <button
           type="button"
           onClick={() => go(index - 1)}
           disabled={index === 0}
-          className="inline-flex items-center gap-1 rounded-full border border-black/10 bg-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-black disabled:opacity-30 hover:bg-black/5"
+          className="inline-flex items-center gap-0.5 sm:gap-1 rounded-full border border-black/10 bg-white px-2.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-black disabled:opacity-30 hover:bg-black/5 min-h-10 shrink-0"
         >
           <ChevronLeft className="w-4 h-4" />
-          Prev
+          <span className="hidden sm:inline">Prev</span>
         </button>
 
-        <div className="flex flex-wrap justify-center gap-1 max-w-[45%] sm:max-w-none">
+        <div className="flex flex-wrap justify-center gap-1 max-w-[50%] sm:max-w-none min-w-0">
           {Array.from({ length: TOTAL }).map((_, i) => (
             <button
               key={i}
@@ -1529,7 +1570,7 @@ export default function FoodsStrategyDeck() {
               onClick={() => go(i)}
               aria-label={`Go to slide ${i + 1}`}
               className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-5 bg-amber-700" : "w-1.5 bg-black/15 hover:bg-black/30"
+                i === index ? "w-4 sm:w-5 bg-amber-700" : "w-1.5 bg-black/15 hover:bg-black/30"
               }`}
             />
           ))}
@@ -1539,9 +1580,9 @@ export default function FoodsStrategyDeck() {
           type="button"
           onClick={() => go(index + 1)}
           disabled={index === TOTAL - 1}
-          className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-600 to-orange-700 text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold disabled:opacity-30"
+          className="inline-flex items-center gap-0.5 sm:gap-1 rounded-full bg-gradient-to-r from-amber-600 to-orange-700 text-white px-2.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold disabled:opacity-30 min-h-10 shrink-0"
         >
-          Next
+          <span className="hidden sm:inline">Next</span>
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
@@ -1549,25 +1590,25 @@ export default function FoodsStrategyDeck() {
   );
 
   return (
-    <div id="foods-deck" className="scroll-mt-24 sm:scroll-mt-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
-        <div className="text-xs tracking-[3px] text-amber-800 mb-3 font-medium">
+    <div id="foods-deck" className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center min-w-0">
+        <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-amber-800 mb-3 font-medium px-1">
           PRODUCT & IMPACT DECK · 15 SLIDES · SHAREABLE
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4 text-balance">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-black mb-3 sm:mb-4 text-balance px-1">
           Big Five Foods — the deck
         </h2>
-        <p className="text-base sm:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-6">
-          A compelling product briefing for schools, governments, retailers and partners —
-          real packaging, real metrics, certifications and a clear call to partner.
+        <p className="text-sm sm:text-base md:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-5 sm:mb-6 px-1">
+          Product briefing for schools, governments, retailers and partners — packaging, metrics,
+          certifications and a clear call to partner.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto">
           <button
             type="button"
             onClick={onShare}
-            className="premium-button inline-flex items-center gap-2 bg-amber-700 text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-amber-800"
+            className="premium-button inline-flex items-center justify-center gap-2 bg-amber-700 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-amber-800 w-full sm:w-auto"
           >
-            <Share2 className="w-4 h-4" />
+            <Share2 className="w-4 h-4 shrink-0" />
             {shareState === "copied"
               ? "Link copied"
               : shareState === "shared"
@@ -1578,27 +1619,31 @@ export default function FoodsStrategyDeck() {
             type="button"
             onClick={() => onDownload("landscape")}
             disabled={preparingPdf}
-            className="premium-button inline-flex items-center gap-2 border border-amber-200 bg-white text-amber-950 px-6 py-3 rounded-full text-sm font-semibold hover:bg-amber-50 disabled:opacity-60"
+            className="premium-button inline-flex items-center justify-center gap-2 border border-amber-200 bg-white text-amber-950 px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-amber-50 disabled:opacity-60 w-full sm:w-auto"
           >
-            <Download className="w-4 h-4" />
-            {preparingPdf && printOrientation === "landscape"
-              ? "Preparing A4 landscape…"
-              : "PDF · A4 Landscape"}
+            <Download className="w-4 h-4 shrink-0" />
+            <span className="truncate">
+              {preparingPdf && printOrientation === "landscape"
+                ? "Preparing…"
+                : "PDF · A4 Landscape"}
+            </span>
           </button>
           <button
             type="button"
             onClick={() => onDownload("portrait")}
             disabled={preparingPdf}
-            className="premium-button inline-flex items-center gap-2 border border-black/10 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60"
+            className="premium-button inline-flex items-center justify-center gap-2 border border-black/10 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 w-full sm:w-auto"
           >
-            <Download className="w-4 h-4" />
-            {preparingPdf && printOrientation === "portrait"
-              ? "Preparing A4 portrait…"
-              : "PDF · A4 Portrait"}
+            <Download className="w-4 h-4 shrink-0" />
+            <span className="truncate">
+              {preparingPdf && printOrientation === "portrait"
+                ? "Preparing…"
+                : "PDF · A4 Portrait"}
+            </span>
           </button>
         </div>
       </div>
-      {deck}
+      <div className="w-full min-w-0 max-w-6xl mx-auto sm:px-6 lg:px-8">{deck}</div>
       <p className="mt-4 text-center text-xs text-[#737373] px-4 max-w-2xl mx-auto">
         Keyboard: ← → · Share:{" "}
         <span className="font-medium text-black">/foods#foods-deck</span>

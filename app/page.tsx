@@ -277,10 +277,10 @@ export default function Home() {
               transition={{ delay: index * 0.08 }}
               className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 text-center hover:border-black/20 transition-all min-w-0"
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter text-black mb-2 sm:mb-3">
+              <div className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter text-black mb-2 sm:mb-3 break-words">
                 <AnimatedNumber end={stat.number} suffix={stat.suffix} />
               </div>
-              <div className="text-[#171717] text-sm sm:text-base md:text-lg font-medium">
+              <div className="text-[#171717] text-xs sm:text-base md:text-lg font-medium leading-snug">
                 {stat.label}
               </div>
             </motion.div>

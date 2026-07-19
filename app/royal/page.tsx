@@ -57,7 +57,7 @@ export default function RoyalPage() {
       {/* Partnership */}
       <section id="partnership" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="min-w-0">
               <div className="text-xs tracking-[3px] text-[#d97706] mb-4">THE PARTNERSHIP</div>
               <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-6 sm:mb-8 text-balance">

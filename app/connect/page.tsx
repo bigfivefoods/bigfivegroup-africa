@@ -122,12 +122,12 @@ export default function ConnectPage() {
           title="How trust blocks risk — without a demo call"
           subtitle="Connect · Trade · Inspect · SHEQ — live control on one chain."
         />
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-stretch sm:items-center gap-3 mb-10 max-w-sm sm:max-w-none mx-auto">
           <button
             type="button"
             onClick={startDemo}
             disabled={isPlaying}
-            className="premium-button inline-flex items-center gap-2 bg-black text-white px-7 py-3 rounded-full font-semibold disabled:opacity-50"
+            className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-7 py-3 rounded-full font-semibold disabled:opacity-50 w-full sm:w-auto"
           >
             <Play className="w-4 h-4" />
             {isPlaying ? "Playing…" : "Play story"}
@@ -136,7 +136,7 @@ export default function ConnectPage() {
             href={SA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="premium-button inline-flex items-center gap-2 border border-black/15 px-7 py-3 rounded-full font-semibold text-black"
+            className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 px-7 py-3 rounded-full font-semibold text-black w-full sm:w-auto"
           >
             Open live platform
             <ExternalLink className="w-4 h-4" />
@@ -152,7 +152,7 @@ export default function ConnectPage() {
                   opacity: active ? 1 : 0.4,
                   scale: i === demoStep ? 1.01 : 1,
                 }}
-                className={`flex gap-4 rounded-3xl border p-6 sm:p-7 transition-colors ${
+                className={`flex gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border p-4 sm:p-6 md:p-7 transition-colors min-w-0 ${
                   active ? "bg-white border-cyan-300 shadow-md" : "bg-white/50 border-black/10"
                 }`}
               >

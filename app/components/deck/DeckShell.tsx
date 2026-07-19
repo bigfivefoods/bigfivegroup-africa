@@ -595,10 +595,10 @@ export default function DeckShell({
 
   const deck = (
     <div
-      className={`flex flex-col min-w-0 ${
+      className={`flex flex-col min-w-0 w-full max-w-full ${
         fullscreen
-          ? "fixed inset-0 z-[100] p-3 sm:p-5"
-          : "rounded-2xl sm:rounded-[1.75rem] border border-black/10 p-2 sm:p-3"
+          ? "fixed inset-0 z-[100] p-2 sm:p-4 md:p-5"
+          : "rounded-2xl sm:rounded-[1.75rem] border border-black/10 p-1.5 sm:p-3"
       }`}
       style={
         fullscreen
@@ -609,72 +609,76 @@ export default function DeckShell({
             }
       }
     >
-      <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 px-2 sm:px-3 py-2 mb-2">
-        <div className="text-xs sm:text-sm font-medium text-[#404040]">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-3 px-1.5 sm:px-3 py-2 mb-1 sm:mb-2 min-w-0">
+        <div className="text-xs sm:text-sm font-medium text-[#404040] truncate min-w-0">
           {title.split("—")[0].trim()}{" "}
           <span className="text-[#737373] font-normal">
             · {index + 1} / {total}
           </span>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
           <button
             type="button"
             onClick={onShare}
-            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5"
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5 min-h-9"
           >
             {shareState === "copied" ? (
               <>
-                <Copy className="w-3.5 h-3.5" /> Link copied
+                <Copy className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Link copied</span>
               </>
             ) : shareState === "shared" ? (
               <>
-                <Check className="w-3.5 h-3.5" /> Shared
+                <Check className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Shared</span>
               </>
             ) : (
               <>
-                <Share2 className="w-3.5 h-3.5" /> Share
+                <Share2 className="w-3.5 h-3.5 shrink-0" />
+                <span className="sm:inline">Share</span>
               </>
             )}
           </button>
           <div
-            className={`inline-flex items-center rounded-full border p-0.5 ${theme.softBorder} ${theme.softBg}`}
+            className={`inline-flex items-center rounded-full border p-0.5 min-w-0 ${theme.softBorder} ${theme.softBg}`}
           >
             <button
               type="button"
               onClick={() => onDownload("landscape")}
               disabled={preparingPdf}
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1.5 text-xs font-semibold hover:bg-white disabled:opacity-60 ${theme.softText}`}
+              className={`inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold hover:bg-white disabled:opacity-60 min-h-8 ${theme.softText}`}
             >
-              <Download className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">
+              <Download className="w-3.5 h-3.5 shrink-0" />
+              <span className="hidden md:inline">
                 {preparingPdf && printOrientation === "landscape" ? "Preparing…" : "A4 Landscape"}
               </span>
-              <span className="sm:hidden">A4 L</span>
+              <span className="md:hidden">A4 L</span>
             </button>
             <button
               type="button"
               onClick={() => onDownload("portrait")}
               disabled={preparingPdf}
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1.5 text-xs font-semibold hover:bg-white disabled:opacity-60 ${theme.softText}`}
+              className={`inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold hover:bg-white disabled:opacity-60 min-h-8 ${theme.softText}`}
             >
-              <span className="hidden sm:inline">
+              <span className="hidden md:inline">
                 {preparingPdf && printOrientation === "portrait" ? "Preparing…" : "A4 Portrait"}
               </span>
-              <span className="sm:hidden">A4 P</span>
+              <span className="md:hidden">A4 P</span>
             </button>
           </div>
           <button
             type="button"
             onClick={() => setFullscreen((v) => !v)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5"
+            className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5 min-h-9"
+            aria-label={fullscreen ? "Exit fullscreen" : "Fullscreen"}
           >
             {fullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline">{fullscreen ? "Exit" : "Fullscreen"}</span>
+            <span className="hidden sm:inline">{fullscreen ? "Exit" : "Full"}</span>
           </button>
         </div>
       </div>
 
-      <div className="mx-2 sm:mx-3 mb-2 h-1 rounded-full bg-black/10 overflow-hidden">
+      <div className="mx-1.5 sm:mx-3 mb-2 h-1 rounded-full bg-black/10 overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-300"
           style={{
@@ -685,25 +689,31 @@ export default function DeckShell({
       </div>
 
       <div
-        className={`relative flex-1 min-h-0 ${
-          fullscreen ? "min-h-0" : "min-h-[min(74dvh,42rem)] sm:min-h-[min(76dvh,46rem)]"
+        className={`relative flex-1 min-h-0 min-w-0 overflow-hidden ${
+          fullscreen
+            ? "min-h-0"
+            : "min-h-[min(70dvh,36rem)] sm:min-h-[min(74dvh,42rem)] md:min-h-[min(76dvh,46rem)]"
         }`}
-        style={fullscreen ? { height: "calc(100dvh - 8.5rem)" } : undefined}
+        style={
+          fullscreen
+            ? { height: "calc(100dvh - 7.5rem - env(safe-area-inset-bottom, 0px))" }
+            : undefined
+        }
       >
         {renderSlide(index)}
       </div>
 
-      <div className="flex items-center justify-between gap-3 px-1 sm:px-2 pt-3 pb-1">
+      <div className="flex items-center justify-between gap-2 sm:gap-3 px-1 sm:px-2 pt-2 sm:pt-3 pb-1 min-w-0">
         <button
           type="button"
           onClick={() => go(index - 1)}
           disabled={index === 0}
-          className="inline-flex items-center gap-1 rounded-full border border-black/10 bg-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-black disabled:opacity-30 hover:bg-black/5"
+          className="inline-flex items-center gap-0.5 sm:gap-1 rounded-full border border-black/10 bg-white px-2.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-black disabled:opacity-30 hover:bg-black/5 min-h-10 shrink-0"
         >
           <ChevronLeft className="w-4 h-4" />
-          Prev
+          <span className="hidden sm:inline">Prev</span>
         </button>
-        <div className="flex flex-wrap justify-center gap-1 max-w-[45%] sm:max-w-none">
+        <div className="flex flex-wrap justify-center gap-1 max-w-[50%] sm:max-w-none min-w-0">
           {Array.from({ length: total }).map((_, i) => (
             <button
               key={i}
@@ -711,7 +721,7 @@ export default function DeckShell({
               onClick={() => go(i)}
               aria-label={`Go to slide ${i + 1}`}
               className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-5" : "w-1.5 bg-black/15 hover:bg-black/30"
+                i === index ? "w-4 sm:w-5" : "w-1.5 bg-black/15 hover:bg-black/30"
               }`}
               style={i === index ? { backgroundColor: theme.accentDark } : undefined}
             />
@@ -721,12 +731,12 @@ export default function DeckShell({
           type="button"
           onClick={() => go(index + 1)}
           disabled={index === total - 1}
-          className="inline-flex items-center gap-1 rounded-full text-white px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold disabled:opacity-30"
+          className="inline-flex items-center gap-0.5 sm:gap-1 rounded-full text-white px-2.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold disabled:opacity-30 min-h-10 shrink-0"
           style={{
             background: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`,
           }}
         >
-          Next
+          <span className="hidden sm:inline">Next</span>
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
@@ -734,28 +744,28 @@ export default function DeckShell({
   );
 
   return (
-    <div id={id} className="scroll-mt-24 sm:scroll-mt-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 text-center">
+    <div id={id} className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center min-w-0">
         <div
-          className="text-xs tracking-[3px] mb-3 font-medium"
+          className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-3 font-medium px-1"
           style={{ color: theme.accentDark }}
         >
           {eyebrow}
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-4 text-balance">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-black mb-3 sm:mb-4 text-balance px-1">
           {title}
         </h2>
-        <p className="text-base sm:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-6">
+        <p className="text-sm sm:text-base md:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-5 sm:mb-6 px-1">
           {description}
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto">
           <button
             type="button"
             onClick={onShare}
-            className="premium-button inline-flex items-center gap-2 text-white px-6 py-3 rounded-full text-sm font-semibold"
+            className="premium-button inline-flex items-center justify-center gap-2 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
             style={{ backgroundColor: theme.accentDark }}
           >
-            <Share2 className="w-4 h-4" />
+            <Share2 className="w-4 h-4 shrink-0" />
             {shareState === "copied"
               ? "Link copied"
               : shareState === "shared"
@@ -766,36 +776,40 @@ export default function DeckShell({
             type="button"
             onClick={() => onDownload("landscape")}
             disabled={preparingPdf}
-            className={`premium-button inline-flex items-center gap-2 border bg-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 ${theme.softBorder} ${theme.softText}`}
+            className={`premium-button inline-flex items-center justify-center gap-2 border bg-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 w-full sm:w-auto ${theme.softBorder} ${theme.softText}`}
           >
-            <Download className="w-4 h-4" />
-            {preparingPdf && printOrientation === "landscape"
-              ? "Preparing A4 landscape…"
-              : "PDF · A4 Landscape"}
+            <Download className="w-4 h-4 shrink-0" />
+            <span className="truncate">
+              {preparingPdf && printOrientation === "landscape"
+                ? "Preparing…"
+                : "PDF · A4 Landscape"}
+            </span>
           </button>
           <button
             type="button"
             onClick={() => onDownload("portrait")}
             disabled={preparingPdf}
-            className="premium-button inline-flex items-center gap-2 border border-black/10 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60"
+            className="premium-button inline-flex items-center justify-center gap-2 border border-black/10 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 w-full sm:w-auto"
           >
-            <Download className="w-4 h-4" />
-            {preparingPdf && printOrientation === "portrait"
-              ? "Preparing A4 portrait…"
-              : "PDF · A4 Portrait"}
+            <Download className="w-4 h-4 shrink-0" />
+            <span className="truncate">
+              {preparingPdf && printOrientation === "portrait"
+                ? "Preparing…"
+                : "PDF · A4 Portrait"}
+            </span>
           </button>
         </div>
       </div>
-      {deck}
-      <p className="mt-4 text-center text-xs text-[#737373] px-4 max-w-2xl mx-auto">
-        Keyboard: ← → · Share:{" "}
-        <span className="font-medium text-black">{sharePath}</span>
+      <div className="px-0 sm:px-0 min-w-0 w-full max-w-6xl mx-auto sm:px-6 lg:px-8">
+        {deck}
+      </div>
+      <p className="mt-4 text-center text-[11px] sm:text-xs text-[#737373] px-4 max-w-2xl mx-auto leading-relaxed">
+        <span className="hidden sm:inline">Keyboard: ← → · </span>
+        Share: <span className="font-medium text-black break-all">{sharePath}</span>
         {" · "}
-        PDF is exact <strong className="text-black">A4</strong> with{" "}
-        <strong className="text-black">6mm</strong> margins — choose{" "}
-        <strong className="text-black">Save as PDF</strong>
+        PDF: choose <strong className="text-black">Save as PDF</strong>
         {preparingPdf
-          ? ` · paper: ${printOrientation === "landscape" ? "Landscape" : "Portrait"}`
+          ? ` · ${printOrientation === "landscape" ? "Landscape" : "Portrait"}`
           : ""}
         .
       </p>

@@ -274,7 +274,7 @@ function Slide({
           </DeckEyebrow>
           <DeckTitle>{cfg.proofTitle}</DeckTitle>
           <div
-            className={`grid grid-cols-2 lg:grid-cols-4 ${forPrint ? "gap-2 mb-2" : "gap-3 mb-5"}`}
+            className={`grid grid-cols-2 lg:grid-cols-4 ${forPrint ? "gap-2 mb-2" : "gap-2 sm:gap-3 mb-5"}`}
           >
             {cfg.proofStats.map((st) => (
               <DeckStatTile key={st.label} dark theme={theme} value={st.value} label={st.label} />
@@ -297,7 +297,11 @@ function Slide({
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HOW IT WORKS</DeckEyebrow>
           <DeckTitle>{cfg.howTitle}</DeckTitle>
-          <div className={`grid grid-cols-3 ${forPrint ? "gap-2" : "gap-4"}`}>
+          <div
+            className={`grid ${
+              forPrint ? "grid-cols-3 gap-2" : "grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"
+            }`}
+          >
             {cfg.howSteps.map((s) => (
               <div
                 key={s.step}
@@ -566,7 +570,11 @@ function Slide({
                   {cfg.ctaBody}
                 </p>
                 <div
-                  className={`grid grid-cols-3 max-w-3xl ${forPrint ? "gap-1.5 mb-3" : "gap-2.5 mb-6"}`}
+                  className={`grid max-w-3xl ${
+                    forPrint
+                      ? "grid-cols-3 gap-1.5 mb-3"
+                      : "grid-cols-1 sm:grid-cols-3 gap-2.5 mb-6"
+                  }`}
                 >
                   {cfg.ctaSteps.map((s) => (
                     <div

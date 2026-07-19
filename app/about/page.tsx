@@ -85,7 +85,7 @@ export default function AboutPage() {
       {/* Vision */}
       <section id="vision" className="bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
             <div className="lg:col-span-4">
               <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-emerald-700 mb-4">
                 <Compass className="w-4 h-4" />
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 A prosperous Africa — for everyone on it
               </h2>
             </div>
-            <div className="lg:col-span-8 space-y-5 text-lg text-[#404040] leading-relaxed">
+            <div className="lg:col-span-8 space-y-4 sm:space-y-5 text-base sm:text-lg text-[#404040] leading-relaxed min-w-0">
               <p>
                 We envision an Africa where{" "}
                 <strong className="text-black">well-being is not a privilege</strong> — where
@@ -122,7 +122,7 @@ export default function AboutPage() {
 
       {/* Mission */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-4">
             <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-sky-700 mb-4">
               <Target className="w-4 h-4" />

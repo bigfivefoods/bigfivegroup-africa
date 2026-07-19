@@ -397,18 +397,18 @@ export default function GlobalPage() {
 
       {/* STATS */}
       <section className="bg-white border-b border-black/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {[
             { n: "11", l: "Priority distribution markets" },
             { n: "9", l: "Africa route-to-market focus" },
             { n: "2", l: "Europe corridors (DE · HU)" },
             { n: "1", l: "Company established in Kenya" },
           ].map((s) => (
-            <div key={s.l} className="text-center lg:text-left">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
+            <div key={s.l} className="text-center lg:text-left min-w-0">
+              <div className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black">
                 {s.n}
               </div>
-              <div className="text-sm text-[#525252] mt-1">{s.l}</div>
+              <div className="text-xs sm:text-sm text-[#525252] mt-1 leading-snug">{s.l}</div>
             </div>
           ))}
         </div>

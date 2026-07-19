@@ -44,7 +44,7 @@ export default function SupplierTrust({
   return (
     <section className="bg-[#0a0a0a] text-white py-16 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 text-xs tracking-[3px] text-emerald-400 mb-4">
               <BadgeCheck className="w-4 h-4" />
