@@ -976,6 +976,12 @@ export const leadershipDeckConfig: PillarDeckConfig = {
         lift: l.lift,
         label: l.label,
       })),
+      continentalTitle: SUPER_CUBE_FMCG_CASE.continentalTitle,
+      continentalBody: SUPER_CUBE_FMCG_CASE.continentalBody,
+      continentalImpacts: SUPER_CUBE_FMCG_CASE.continentalImpacts.map((x) => ({
+        t: x.t,
+        d: x.d,
+      })),
       note: SUPER_CUBE_FMCG_CASE.note,
     },
   },

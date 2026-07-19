@@ -59,6 +59,9 @@ export type SuperCubeModelConfig = {
       lift: string;
       label: string;
     }[];
+    continentalTitle?: string;
+    continentalBody?: string;
+    continentalImpacts?: { t: string; d: string }[];
     note?: string;
   };
 };
@@ -191,12 +194,13 @@ function Slide({
                         <Image
                           src={sc.logoSrc}
                           alt={sc.logoAlt}
-                          width={220}
-                          height={48}
-                          className={`h-auto object-contain brightness-0 invert opacity-95 ${
-                            forPrint ? "w-36" : "w-40 sm:w-52"
+                          width={280}
+                          height={60}
+                          className={`h-auto w-auto max-w-full object-contain object-left ${
+                            forPrint ? "max-h-8" : "max-h-10 sm:max-h-12"
                           }`}
                           priority
+                          unoptimized
                         />
                       </div>
                     )}
@@ -642,47 +646,38 @@ function Slide({
       if (!cs) return null;
       return (
         <DeckSlideShell theme={theme}>
-          <div className="flex flex-col h-full min-h-0">
+          <div className="flex flex-col h-full min-h-0 overflow-hidden">
             <DeckEyebrow theme={theme}>{cs.eyebrow}</DeckEyebrow>
             <DeckTitle>{cs.title}</DeckTitle>
             <p
               className={`text-[#525252] max-w-3xl ${
-                forPrint ? "text-[10px] mb-2 leading-snug" : "text-sm mb-3 leading-relaxed"
+                forPrint ? "text-[10px] mb-1.5 leading-snug line-clamp-2" : "text-sm mb-2 leading-relaxed"
               }`}
             >
               {cs.body}
             </p>
-            {cs.context && (
-              <p
-                className={`text-[#404040] max-w-3xl ${
-                  forPrint ? "text-[9px] mb-2 leading-snug" : "text-xs sm:text-sm mb-4 leading-relaxed"
-                }`}
-              >
-                {cs.context}
-              </p>
-            )}
             <div
-              className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 min-h-0 flex-1 content-start ${
-                forPrint ? "gap-1.5" : "gap-2 sm:gap-2.5"
+              className={`grid grid-cols-3 sm:grid-cols-6 shrink-0 ${
+                forPrint ? "gap-1 mb-2" : "gap-1.5 sm:gap-2 mb-3"
               }`}
             >
               {cs.lifts.map((l) => (
                 <div
                   key={l.name}
-                  className={`rounded-xl border border-black/10 bg-[#fafafa] text-center min-w-0 flex flex-col items-center ${
-                    forPrint ? "p-1.5" : "p-2.5 sm:p-3"
+                  className={`rounded-lg border border-black/10 bg-[#fafafa] text-center min-w-0 flex flex-col items-center ${
+                    forPrint ? "p-1" : "p-2"
                   }`}
                 >
                   <Image
                     src={l.icon}
                     alt={l.name}
-                    width={forPrint ? 28 : 36}
-                    height={forPrint ? 28 : 36}
-                    className={`object-contain ${forPrint ? "w-7 h-7" : "w-8 h-8 sm:w-9 sm:h-9"}`}
+                    width={forPrint ? 22 : 28}
+                    height={forPrint ? 22 : 28}
+                    className={`object-contain ${forPrint ? "w-5 h-5" : "w-6 h-6 sm:w-7 sm:h-7"}`}
                   />
                   <div
-                    className={`font-semibold tracking-tighter mt-1 ${
-                      forPrint ? "text-base" : "text-xl sm:text-2xl"
+                    className={`font-semibold tracking-tighter mt-0.5 ${
+                      forPrint ? "text-sm" : "text-base sm:text-lg"
                     }`}
                     style={{ color: l.color }}
                   >
@@ -690,25 +685,73 @@ function Slide({
                   </div>
                   <div
                     className={`font-semibold text-black ${
-                      forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                      forPrint ? "text-[8px]" : "text-[9px] sm:text-[10px]"
                     }`}
                   >
                     {l.name}
                   </div>
-                  <div
-                    className={`text-[#737373] leading-snug ${
-                      forPrint ? "text-[8px] line-clamp-2" : "text-[10px] line-clamp-2"
-                    }`}
-                  >
-                    {l.label}
-                  </div>
                 </div>
               ))}
             </div>
+            {(cs.continentalTitle || cs.continentalImpacts?.length) && (
+              <div className="min-h-0 flex-1 flex flex-col">
+                {cs.continentalTitle && (
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[10px] mb-0.5" : "text-xs sm:text-sm mb-1"
+                    }`}
+                  >
+                    {cs.continentalTitle}
+                  </div>
+                )}
+                {cs.continentalBody && (
+                  <p
+                    className={`text-[#525252] ${
+                      forPrint
+                        ? "text-[9px] mb-1.5 leading-snug line-clamp-2"
+                        : "text-[11px] sm:text-xs mb-2 leading-relaxed line-clamp-2 sm:line-clamp-3"
+                    }`}
+                  >
+                    {cs.continentalBody}
+                  </p>
+                )}
+                {cs.continentalImpacts && cs.continentalImpacts.length > 0 && (
+                  <div
+                    className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 min-h-0 content-start ${
+                      forPrint ? "gap-1" : "gap-1.5 sm:gap-2"
+                    }`}
+                  >
+                    {cs.continentalImpacts.map((x) => (
+                      <div
+                        key={x.t}
+                        className={`rounded-lg border border-black/10 bg-white min-w-0 ${
+                          forPrint ? "p-1.5" : "p-2 sm:p-2.5"
+                        }`}
+                      >
+                        <div
+                          className={`font-semibold text-black ${
+                            forPrint ? "text-[9px] mb-0.5" : "text-[10px] sm:text-xs mb-0.5"
+                          }`}
+                        >
+                          {x.t}
+                        </div>
+                        <p
+                          className={`text-[#525252] leading-snug ${
+                            forPrint ? "text-[8px] line-clamp-3" : "text-[10px] sm:text-[11px] line-clamp-3"
+                          }`}
+                        >
+                          {x.d}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             {cs.note && (
               <p
                 className={`text-[#737373] shrink-0 ${
-                  forPrint ? "text-[8px] mt-1.5 leading-snug" : "text-[10px] sm:text-xs mt-3 leading-relaxed"
+                  forPrint ? "text-[8px] mt-1 leading-snug" : "text-[10px] mt-2 leading-relaxed"
                 }`}
               >
                 {cs.note}

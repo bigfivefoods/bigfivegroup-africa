@@ -262,7 +262,7 @@ export default function LeadershipPage() {
             {SUPER_CUBE_FMCG_CASE.context}
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-10">
             {SUPER_CUBE_FMCG_CASE.lifts.map((l) => (
               <div
                 key={l.name}
@@ -287,6 +287,26 @@ export default function LeadershipPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.04] p-5 sm:p-8 mb-8">
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-white mb-2">
+              {SUPER_CUBE_FMCG_CASE.continentalTitle}
+            </h3>
+            <p className="text-sm sm:text-base text-white/65 leading-relaxed max-w-3xl mb-6">
+              {SUPER_CUBE_FMCG_CASE.continentalBody}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              {SUPER_CUBE_FMCG_CASE.continentalImpacts.map((x) => (
+                <div
+                  key={x.t}
+                  className="rounded-xl border border-white/10 bg-black/30 p-4 min-w-0"
+                >
+                  <div className="text-sm font-semibold text-amber-200 mb-1.5">{x.t}</div>
+                  <p className="text-xs sm:text-sm text-white/60 leading-relaxed">{x.d}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <p className="text-[11px] sm:text-xs text-white/40 leading-relaxed max-w-3xl mb-6">
