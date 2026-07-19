@@ -803,7 +803,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
   id: "leadership-deck",
   printRootId: "leadership-deck-print-root",
   themeKey: "gold",
-  eyebrow: "PILLAR DECK · LEADERSHIP · SUPER-CUBE® · 13 SLIDES",
+  eyebrow: "PILLAR DECK · LEADERSHIP · SUPER-CUBE® · 16 SLIDES",
   title: "Big Five Leadership — strategic deck",
   description:
     "Super-Cube® ethical leadership for nations and enterprises — the Educate pillar of Feed · Educate · Empower.",
@@ -820,14 +820,14 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     "Super-Cube®",
     "bigfivegroup.africa/leadership",
     "Educate pillar",
-    "13 slides",
+    "16 slides",
   ],
   agenda: [
     "Group vision, mission and values",
     "Why ethical leadership is African infrastructure",
-    "Super-Cube® model and how programmes work",
-    "Who we serve — governments, enterprises, youth",
-    "SDG alignment and how to partner",
+    "The Super-Cube® Leadership Model — six constructs, you at the centre",
+    "Origins, theory foundations and empirical validation",
+    "How programmes work · who we serve · SDGs · partner",
   ],
   challengeTitle: "Skills gaps are also leadership gaps",
   challengeStats: [
@@ -837,20 +837,20 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     { value: "Ubuntu", label: "Africa needs world-class models rooted in local values" },
   ],
   challengeBody:
-    "You can fund fortification and last-mile logistics and still fail if decision-makers lack ethical, whole-person capacity. Leadership is the Educate pillar that makes Feed and Empower sustainable.",
+    "You can fund fortification and last-mile logistics and still fail if decision-makers lack ethical, whole-person capacity. Leadership is the Educate pillar that makes Feed and Empower sustainable — especially where rapid population growth, talent abundance, skills shortages, poverty and institutional weaknesses collide.",
   solutionTitle: "Super-Cube® ethical leadership development",
   solutionBody:
-    "Assess, develop and multiply leaders with a doctoral-rooted model spanning choices, principles, mental, emotional, physical and spiritual dimensions — with ethical AI coaching as a force-multiplier, not a substitute for character.",
+    "A multidimensional, human-centric framework that integrates six constructs into a cubic structure with the individual (“you”) at the centre — building leadership capacity at personal, organisational and network levels for Africa’s complex FMCG and public-service environments.",
   solutionCards: [
     {
       icon: Award,
       t: "Super-Cube® model",
-      d: "Whole-person leadership framework for high-stakes African contexts.",
+      d: "Six faces · Choices · Principles · Mental · Emotional · Physical · Spiritual — around you.",
     },
     {
       icon: GraduationCap,
       t: "Assess & develop",
-      d: "360° diagnosis, immersive programmes and peer masterminds.",
+      d: "360° diagnosis, blended NQF-aligned programmes and peer masterminds.",
     },
     {
       icon: Brain,
@@ -859,46 +859,148 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     },
     {
       icon: BookOpen,
-      t: "Multiply facilitators",
-      d: "Graduates scale capability inside governments and enterprises.",
+      t: "Empirically grounded",
+      d: "DBA thesis (UKZN, 2020) · CFA + qualitative validation · peer-reviewed papers.",
     },
   ],
+  superCubeModel: {
+    logoSrc: "/super-cube-logo.png",
+    logoAlt: "Super-Cube®",
+    modelTitle: "The Super-Cube® Leadership Model",
+    modelSubtitle:
+      "A multidimensional, human-centric leadership skills development framework — developed by Dr. Craig Ross Muller (DBA) in 2020 as the core output of his doctoral thesis at the University of KwaZulu-Natal.",
+    modelBody:
+      "The model positions the individual (“you”) at the centre of a cube whose six faces are Choices, Principles, Mental, Emotional, Physical and Spiritual. Development begins with deliberate investment in the person, then radiates to organisations, networks and industry — so Africa’s leaders can navigate complexity with integrity.",
+    highlights: [
+      { value: "You", label: "At the centre of the cube" },
+      { value: "6 faces", label: "Human-centric constructs" },
+      { value: "70–76%", label: "Leadership is developable" },
+      { value: "2020", label: "DBA · UKZN · Kwaden case" },
+    ],
+    constructs: [
+      {
+        name: "Choices",
+        icon: "/choices-icon.png",
+        color: "#ef4444",
+        blurb:
+          "Decision-making intelligence for complex, dynamic contexts — balancing ethics and outcomes.",
+        elements: "Moral values · judgement · risk-taking · choice theory",
+      },
+      {
+        name: "Principles",
+        icon: "/principles-icon.png",
+        color: "#a855f7",
+        blurb:
+          "Ethical foundations and governance that build trust — especially where institutions are under stress.",
+        elements: "Integrity · contextual awareness · situational judgement · governance",
+      },
+      {
+        name: "Mental",
+        icon: "/mental-icon.png",
+        color: "#f97316",
+        blurb:
+          "Cognitive capacity to process complexity, set vision and apply knowledge in African markets.",
+        elements: "Strategic thinking · problem-solving · vision · knowledge application",
+      },
+      {
+        name: "Emotional",
+        icon: "/emotional-icon.png",
+        color: "#22c55e",
+        blurb:
+          "Emotional intelligence that builds trust, motivation and high-quality relationships.",
+        elements: "Empathy · social relationships · motivation · inspiration",
+      },
+      {
+        name: "Physical",
+        icon: "/physical-icon.png",
+        color: "#3b82f6",
+        blurb:
+          "Bodily resilience and energy management so leaders can sustain high performance.",
+        elements: "Health · fitness · nutrition · energy · resilience",
+      },
+      {
+        name: "Spiritual",
+        icon: "/spiritual-icon.png",
+        color: "#1e40af",
+        blurb:
+          "Purpose, meaning and transcendence that anchor authentic integrity over time.",
+        elements: "Purpose · meaning · faith · spiritual intelligence",
+      },
+    ],
+    originsTitle: "From DBA thesis to Africa-centric practice",
+    originsBody:
+      "Created for the Kwaden Group — an African FMCG business-network — the Super-Cube® model addresses leadership capacity where population growth, talent abundance, skills shortages, corruption pressures and weak institutions demand whole-person leaders. It is among the first empirically validated, Africa-centric leadership development frameworks of its kind.",
+    foundations: [
+      {
+        t: "Integrated leadership theories",
+        d: "Trait · relational · charismatic · evolutionary · entrepreneurial leadership — synthesised for African FMCG networks.",
+      },
+      {
+        t: "Buber’s I–Thou philosophy",
+        d: "Leaders and followers as multidimensional equals — mutual respect, not people as objects.",
+      },
+      {
+        t: "Illeris learning theory",
+        d: "Content · incentive · interaction — blended programmes aligned with South Africa’s NQF.",
+      },
+    ],
+    levelsTitle: "Five progressive levels of application",
+    levels: [
+      { n: "01", t: "Individual", d: "Personal development plans at the core" },
+      { n: "02", t: "Business", d: "Leadership pipelines in single organisations" },
+      { n: "03", t: "Group", d: "Enterprise-wide capacity (e.g. Kwaden Group)" },
+      { n: "04", t: "Network", d: "Supply-chain and alliance leadership" },
+      { n: "05", t: "Industry", d: "Broader African FMCG / sector impact" },
+    ],
+    validationTitle: "Empirical validation & open resources",
+    validationPoints: [
+      "Mixed-methods design: confirmatory factor analysis (online survey, n=132) with acceptable model fit",
+      "Qualitative validation: thematic analysis of interviews with 10 senior decision-makers",
+      "Peer-reviewed publications (SAJEMS 2022 · JCM 2022) · free Super-Cube® book PDF",
+      "Honest scope: single-case study (Kwaden Group) — wider industry testing is recommended",
+    ],
+    bookHref: "/the-super-cube-leadership-model.pdf",
+    bookLabel: "Download free book",
+    siteHref: "https://www.super-cube.com",
+    siteLabel: "Explore super-cube.com",
+  },
   proofTitle: "What Leadership puts on the table",
   proofStats: [
     { value: "Super-Cube®", label: "Doctoral-rooted model" },
-    { value: "Whole-person", label: "Ethics · mind · relationship · energy" },
+    { value: "Whole-person", label: "Six constructs · you at the centre" },
+    { value: "70–76%", label: "Developable through practice" },
     { value: "Public + private", label: "Nations and enterprises" },
-    { value: "Group", label: "Educate pillar of the system" },
   ],
   proofPoints: [
-    "Designed by Dr. Craig R. Muller — Super-Cube® leadership model",
-    "Pairs with Connect (SAM) and Impact for decision culture + delivery",
-    "Serves governments seeking ethical public service capability",
-    "Youth and executive pathways under one African framework",
+    "Dr. Craig Ross Muller (DBA, UKZN) — Super-Cube® Leadership Model, 2020",
+    "Empirically tested in an African FMCG business-network; peer-reviewed outputs",
+    "Pairs with Connect (SAM) and Impact for decision culture + programme delivery",
+    "Youth, executive and public-service pathways under one Africa-centric framework",
   ],
   howTitle: "How Leadership programmes work",
   howSteps: [
     {
       step: "01",
       t: "Assess & diagnose",
-      d: "Super-Cube® 360° across dimensions of ethical leadership.",
+      d: "Super-Cube® 360° across the six human-centric constructs.",
     },
     {
       step: "02",
       t: "Develop & embed",
-      d: "Immersive learning, AI coaching and peer accountability.",
+      d: "Blended learning (Illeris content · incentive · interaction), AI coaching and peer accountability.",
     },
     {
       step: "03",
       t: "Scale & multiply",
-      d: "Facilitators and organisational transformation programmes.",
+      d: "Facilitators and organisational transformation across the five application levels.",
     },
   ],
   ecosystemTitle: "Leadership inside One Group",
   ecosystemBody:
-    "Leadership educates the humans who run Agri, Foods, Direct, Access, Connect, Foundation and Impact. Without ethical decision-makers, the system cannot hold trust or scale with dignity.",
+    "Leadership educates the humans who run Agri, Foods, Direct, Access, Connect, Foundation and Impact. Without ethical, whole-person decision-makers, the system cannot hold trust or scale with dignity.",
   ecosystemLinks: [
     { label: "Super-Cube® site", href: "https://www.super-cube.com" },
+    { label: "Free book PDF", href: "/the-super-cube-leadership-model.pdf" },
     { label: "Connect · SAM", href: "/connect" },
     { label: "Impact", href: "/impact" },
     { label: "Group", href: "/group" },
@@ -909,22 +1011,22 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     {
       icon: Building2,
       t: "Executives & founders",
-      d: "High-trust teams and ethical enterprise decisions.",
+      d: "High-trust teams and ethical enterprise decisions under Super-Cube®.",
     },
     {
       icon: Landmark,
       t: "Governments & public servants",
-      d: "Future-fit leadership for policy and delivery.",
+      d: "Future-fit leadership for policy, delivery and institutional integrity.",
     },
     {
       icon: Users,
       t: "Youth & emerging leaders",
-      d: "World-class formation rooted in African context.",
+      d: "World-class formation rooted in African context and Ubuntu.",
     },
     {
       icon: Globe,
       t: "Institutions & partners",
-      d: "Capability programmes that travel across borders.",
+      d: "Capability programmes that travel across borders and networks.",
     },
   ],
   sdgTitle: "How Leadership serves the Goals",
@@ -932,13 +1034,13 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     {
       n: "4",
       t: "Quality Education",
-      d: "Leadership formation as lifelong, ethical education.",
+      d: "Leadership formation as lifelong, ethical education — NQF-aligned pathways.",
       color: "#C5192D",
     },
     {
       n: "16",
       t: "Peace & Institutions",
-      d: "Stronger public and private institutions through character.",
+      d: "Stronger public and private institutions through character and governance.",
       color: "#00689D",
     },
     {
@@ -952,29 +1054,29 @@ export const leadershipDeckConfig: PillarDeckConfig = {
   whyPoints: [
     {
       t: "Not generic MBA theatre",
-      d: "Super-Cube® is whole-person and Africa-centred.",
+      d: "Super-Cube® is whole-person, Africa-centric and empirically validated.",
     },
     {
       t: "Mission-critical Educate pillar",
       d: "Feed and Empower fail without ethical decision capacity.",
     },
     {
-      t: "AI with a conscience",
-      d: "Coaching supports judgement; humans remain accountable.",
+      t: "Developable leadership (70–76%)",
+      d: "Deliberate practice and structured interventions beat pure heredity.",
     },
     {
-      t: "Group-integrated",
-      d: "Same north star as Foods, Connect and Impact.",
+      t: "Group-integrated · AI with conscience",
+      d: "Same north star as Foods, Connect and Impact — humans remain accountable.",
     },
   ],
   ctaTitle: "Put Super-Cube® on your",
   ctaHighlight: "nation or enterprise ambition.",
   ctaBody:
-    "Governments, boards and leadership teams — develop ethical decision-makers who can hold complexity and serve people.",
+    "Governments, boards and leadership teams — develop ethical, whole-person decision-makers who can hold complexity and serve people.",
   ctaSteps: [
     { n: "01", t: "Define the cohort", d: "Public · private · youth" },
-    { n: "02", t: "Assess & design", d: "Super-Cube® pathway" },
-    { n: "03", t: "Develop & multiply", d: "Capability that scales" },
+    { n: "02", t: "Assess & design", d: "Super-Cube® six-construct pathway" },
+    { n: "03", t: "Develop & multiply", d: "Five levels · capability that scales" },
   ],
   ctaPrimary: { label: "Start a leadership conversation", href: "/connect" },
   ctaSecondary: {

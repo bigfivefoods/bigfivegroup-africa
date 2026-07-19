@@ -23,37 +23,43 @@ const pillars = [
     name: "Choices",
     color: "#ef4444",
     icon: "/choices-icon.png",
-    blurb: "Ethical judgement and high-stakes decision intelligence.",
+    blurb:
+      "Decision-making intelligence, moral values, judgement and risk-taking — so leaders choose well under ambiguity.",
   },
   {
     name: "Principles",
     color: "#a855f7",
     icon: "/principles-icon.png",
-    blurb: "Integrity, governance, and Ubuntu-rooted standards.",
+    blurb:
+      "Ethical foundations, contextual awareness, situational judgement and governance — the bedrock of trust.",
   },
   {
     name: "Mental",
     color: "#f97316",
     icon: "/mental-icon.png",
-    blurb: "Strategic thinking, problem-solving, and vision.",
+    blurb:
+      "Cognitive intelligence, strategic thinking, problem-solving, vision and knowledge application.",
   },
   {
     name: "Emotional",
     color: "#22c55e",
     icon: "/emotional-icon.png",
-    blurb: "Empathy, trust, and relational leadership.",
+    blurb:
+      "Emotional intelligence, empathy, social relationships, motivation and inspiration.",
   },
   {
     name: "Physical",
     color: "#3b82f6",
     icon: "/physical-icon.png",
-    blurb: "Energy, resilience, and sustainable performance.",
+    blurb:
+      "Physical health, energy management, fitness, nutrition and bodily resilience for sustained performance.",
   },
   {
     name: "Spiritual",
     color: "#1e40af",
     icon: "/spiritual-icon.png",
-    blurb: "Purpose, meaning, and authentic integrity.",
+    blurb:
+      "Purpose, meaning, faith, transcendence and spiritual intelligence — authentic integrity over time.",
   },
 ];
 
@@ -132,38 +138,83 @@ export default function LeadershipPage() {
           />
           <SectionHeading
             eyebrow="THE SUPER-CUBE® MODEL"
-            title="Six dimensions. One coherent system."
-            subtitle="Developed by Dr. Craig Ross Muller (DBA), Super-Cube® develops the whole leader — so growth radiates from the individual to teams, organisations, and society."
+            title="You at the centre. Six faces of the cube."
+            subtitle="Developed by Dr. Craig Ross Muller (DBA, University of KwaZulu-Natal, 2020), Super-Cube® is a multidimensional, human-centric framework — empirically validated in an African FMCG business-network. Leadership is substantially developable (≈70–76%) through deliberate practice."
           />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-12">
+          {[
+            { v: "You", l: "At the centre of the cube" },
+            { v: "6 faces", l: "Human-centric constructs" },
+            { v: "70–76%", l: "Developable through practice" },
+            { v: "5 levels", l: "Person → industry scale" },
+          ].map((s) => (
+            <div
+              key={s.l}
+              className="rounded-2xl border border-black/10 bg-white p-4 sm:p-5 text-center min-w-0"
+            >
+              <div className="text-xl sm:text-2xl font-semibold tracking-tighter text-[#ca8a04]">
+                {s.v}
+              </div>
+              <div className="text-xs sm:text-sm text-[#525252] mt-1 leading-snug">{s.l}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10 sm:mb-12">
           {pillars.map((p) => (
             <div
               key={p.name}
-              className="bg-white border border-black/10 rounded-3xl p-6 hover:border-[#facc15]/50 transition-colors"
+              className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6 hover:border-[#facc15]/50 transition-colors min-w-0"
             >
               <div className="flex items-center gap-3 mb-3">
-                <Image src={p.icon} alt={p.name} width={40} height={40} />
-                <h3 className="font-semibold text-lg text-black">{p.name}</h3>
+                <Image src={p.icon} alt={p.name} width={40} height={40} className="shrink-0" />
+                <h3 className="font-semibold text-lg text-black" style={{ color: p.color }}>
+                  {p.name}
+                </h3>
               </div>
               <p className="text-sm text-[#525252] leading-relaxed">{p.blurb}</p>
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-8 mb-10 sm:mb-12">
+          <div className="text-xs tracking-[2px] text-[#854d0e] font-semibold mb-3">
+            ORIGINS · THEORY · VALIDATION
+          </div>
+          <p className="text-sm sm:text-base text-[#404040] leading-relaxed mb-4">
+            Core output of Dr. Muller&apos;s DBA thesis at UKZN —{" "}
+            <em>
+              A Leadership Skills Development Model for the Kwaden Group: A Case Study of an African
+              FMCG Business-Network
+            </em>
+            . Integrates trait, relational, charismatic, evolutionary and entrepreneurial leadership
+            theory; Martin Buber&apos;s I–Thou philosophy; and Illeris&apos;s three-dimensional learning
+            (content · incentive · interaction). Validated via confirmatory factor analysis (n=132)
+            and interviews with 10 senior decision-makers; peer-reviewed in SAJEMS and JCM (2022).
+          </p>
+          <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
+            Scope note: single-case study focus — results are context-specific; wider industry testing
+            is recommended and welcomed.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10 sm:mb-12">
           {[
-            { icon: Users, t: "Individuals & teams" },
-            { icon: Building2, t: "Enterprises & governments" },
-            { icon: Globe, t: "Networks & society" },
+            { icon: Users, t: "Individuals & teams", d: "Personal development plans" },
+            { icon: Building2, t: "Enterprises & governments", d: "Pipelines and public service" },
+            { icon: Globe, t: "Networks & industry", d: "Alliance to African FMCG scale" },
           ].map((x) => (
             <div
               key={x.t}
-              className="flex items-center gap-3 rounded-2xl border border-black/10 bg-white px-5 py-4"
+              className="flex gap-3 rounded-2xl border border-black/10 bg-white px-5 py-4 min-w-0"
             >
-              <x.icon className="w-5 h-5 text-[#ca8a04] shrink-0" />
-              <span className="text-sm font-medium text-black">{x.t}</span>
+              <x.icon className="w-5 h-5 text-[#ca8a04] shrink-0 mt-0.5" />
+              <div>
+                <span className="text-sm font-medium text-black block">{x.t}</span>
+                <span className="text-xs text-[#525252]">{x.d}</span>
+              </div>
             </div>
           ))}
         </div>

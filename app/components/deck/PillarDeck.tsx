@@ -20,6 +20,34 @@ import DeckShell, {
 import { GroupVmvSlide } from "./GroupVmvContent";
 import { SA_LOGIN, SA_ONBOARDING, SA_URL } from "../../lib/saCopy";
 
+/** Optional Super-Cube® deep-dive (Leadership deck) */
+export type SuperCubeModelConfig = {
+  logoSrc: string;
+  logoAlt: string;
+  modelTitle: string;
+  modelSubtitle: string;
+  modelBody: string;
+  highlights: { value: string; label: string }[];
+  constructs: {
+    name: string;
+    icon: string;
+    color: string;
+    blurb: string;
+    elements: string;
+  }[];
+  originsTitle: string;
+  originsBody: string;
+  foundations: { t: string; d: string }[];
+  levelsTitle: string;
+  levels: { n: string; t: string; d: string }[];
+  validationTitle: string;
+  validationPoints: string[];
+  bookHref?: string;
+  bookLabel?: string;
+  siteHref?: string;
+  siteLabel?: string;
+};
+
 export type PillarDeckConfig = {
   id: string;
   printRootId: string;
@@ -69,13 +97,34 @@ export type PillarDeckConfig = {
   intelCards?: { t: string; d: string; icon: LucideIcon }[];
   intelTitle?: string;
   intelBody?: string;
+  /** Optional Super-Cube® model deep-dive (Leadership) — adds 3 slides after solution */
+  superCubeModel?: SuperCubeModelConfig;
 };
 
-/** Base: title, agenda, Group VMV, challenge… CTA = 13. Intel adds +1. */
+/**
+ * Base: title, agenda, Group VMV, challenge, solution, proof… CTA = 13.
+ * Super-Cube model adds +3 after solution. Intel adds +1 after stakeholders.
+ */
 const TOTAL_BASE = 13;
+const SUPER_CUBE_SLIDE_COUNT = 3;
 
 function slideCount(cfg: PillarDeckConfig) {
-  return cfg.intelCards?.length ? TOTAL_BASE + 1 : TOTAL_BASE;
+  let n = TOTAL_BASE;
+  if (cfg.superCubeModel) n += SUPER_CUBE_SLIDE_COUNT;
+  if (cfg.intelCards?.length) n += 1;
+  return n;
+}
+
+/** Map linear index → logical case id (handles Super-Cube + intel inserts). */
+function logicalSlide(index: number, cfg: PillarDeckConfig): number {
+  const hasSC = Boolean(cfg.superCubeModel);
+  const hasIntel = Boolean(cfg.intelCards?.length);
+  const keys: number[] = [0, 1, 2, 3, 4];
+  if (hasSC) keys.push(50, 51, 52);
+  keys.push(5, 6, 7, 8);
+  if (hasIntel) keys.push(100);
+  keys.push(9, 10, 11);
+  return keys[index] ?? -1;
 }
 
 function Slide({
@@ -88,18 +137,8 @@ function Slide({
   theme: DeckTheme;
 }) {
   const forPrint = useDeckPrintMode();
-  const hasIntel = Boolean(cfg.intelCards?.length);
-  /**
-   * Layout: 0 title, 1 agenda, 2 Group VMV, 3 challenge … 12 CTA
-   * With intel: insert at 9 (after stakeholders=8), shift SDG/why/CTA
-   */
-  const map = (i: number) => {
-    if (!hasIntel) return i;
-    if (i <= 8) return i;
-    if (i === 9) return 100; // intel
-    return i - 1;
-  };
-  const s = map(index);
+  const s = logicalSlide(index, cfg);
+  const sc = cfg.superCubeModel;
 
   switch (s) {
     case 0:
@@ -124,6 +163,20 @@ function Slide({
               <DeckTitleLayout>
                 <div className="flex flex-col h-full justify-between min-h-0">
                   <div>
+                    {sc && (
+                      <div className={`mb-3 sm:mb-4 ${forPrint ? "mb-2" : ""}`}>
+                        <Image
+                          src={sc.logoSrc}
+                          alt={sc.logoAlt}
+                          width={220}
+                          height={48}
+                          className={`h-auto object-contain brightness-0 invert opacity-95 ${
+                            forPrint ? "w-36" : "w-40 sm:w-52"
+                          }`}
+                          priority
+                        />
+                      </div>
+                    )}
                     <DeckEyebrow light theme={theme}>
                       {cfg.eyebrow}
                     </DeckEyebrow>
@@ -262,6 +315,300 @@ function Slide({
                 </div>
               </div>
             ))}
+          </div>
+        </DeckSlideShell>
+      );
+
+    /* —— Super-Cube® model overview —— */
+    case 50:
+      if (!sc) return null;
+      return (
+        <DeckSlideShell theme={theme}>
+          <div className="flex flex-col h-full min-h-0">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2 sm:mb-3">
+              <div className="min-w-0">
+                <DeckEyebrow theme={theme}>SUPER-CUBE® LEADERSHIP MODEL</DeckEyebrow>
+                <DeckTitle>{sc.modelTitle}</DeckTitle>
+              </div>
+              <Image
+                src={sc.logoSrc}
+                alt={sc.logoAlt}
+                width={200}
+                height={44}
+                className={`shrink-0 h-auto object-contain self-start ${
+                  forPrint ? "w-28" : "w-32 sm:w-44"
+                }`}
+              />
+            </div>
+            <p
+              className={`text-[#525252] max-w-3xl ${
+                forPrint ? "text-[10px] mb-2 leading-snug" : "text-sm mb-4 leading-relaxed"
+              }`}
+            >
+              {sc.modelSubtitle}
+            </p>
+            <p
+              className={`text-[#404040] max-w-3xl ${
+                forPrint ? "text-[10px] mb-2 leading-snug" : "text-sm mb-4 leading-relaxed"
+              }`}
+            >
+              {sc.modelBody}
+            </p>
+            <div
+              className={`grid grid-cols-2 lg:grid-cols-4 ${
+                forPrint ? "gap-1.5 mb-2" : "gap-2 sm:gap-3 mb-4"
+              }`}
+            >
+              {sc.highlights.map((h) => (
+                <DeckStatTile key={h.label} theme={theme} value={h.value} label={h.label} />
+              ))}
+            </div>
+            <div
+              className={`grid grid-cols-3 sm:grid-cols-6 ${
+                forPrint ? "gap-1 mt-auto" : "gap-2 sm:gap-3 mt-auto"
+              }`}
+            >
+              {sc.constructs.map((c) => (
+                <div
+                  key={c.name}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] text-center min-w-0 ${
+                    forPrint ? "p-1.5" : "p-2 sm:p-3"
+                  }`}
+                >
+                  <Image
+                    src={c.icon}
+                    alt={c.name}
+                    width={forPrint ? 28 : 40}
+                    height={forPrint ? 28 : 40}
+                    className={`mx-auto object-contain ${forPrint ? "w-7 h-7" : "w-8 h-8 sm:w-10 sm:h-10"}`}
+                  />
+                  <div
+                    className={`font-semibold text-black mt-1 ${
+                      forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                    }`}
+                  >
+                    {c.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </DeckSlideShell>
+      );
+
+    /* —— Six constructs deep-dive —— */
+    case 51:
+      if (!sc) return null;
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>THE SIX FACES OF THE CUBE</DeckEyebrow>
+          <DeckTitle>You at the centre. Six constructs around you.</DeckTitle>
+          <p
+            className={`text-[#525252] max-w-3xl ${
+              forPrint ? "text-[10px] mb-2 leading-snug" : "text-sm mb-4 leading-relaxed"
+            }`}
+          >
+            Each face of the Super-Cube® develops a human-centric capacity. Leadership radiates
+            outward from personal agency to organisations and networks — balanced, interdependent
+            development for Africa&apos;s complex environments.
+          </p>
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 min-h-0 flex-1 content-start ${
+              forPrint ? "gap-1.5" : "gap-2 sm:gap-3"
+            }`}
+          >
+            {sc.constructs.map((c) => (
+              <div
+                key={c.name}
+                className={`rounded-xl border border-black/10 bg-[#fafafa] flex gap-2 min-w-0 ${
+                  forPrint ? "p-2" : "p-3 sm:p-4"
+                }`}
+              >
+                <div
+                  className={`shrink-0 rounded-lg flex items-center justify-center ${
+                    forPrint ? "w-8 h-8" : "w-10 h-10 sm:w-11 sm:h-11"
+                  }`}
+                  style={{ backgroundColor: `${c.color}18` }}
+                >
+                  <Image
+                    src={c.icon}
+                    alt={c.name}
+                    width={forPrint ? 24 : 32}
+                    height={forPrint ? 24 : 32}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[11px] mb-0.5" : "text-sm mb-0.5"
+                    }`}
+                    style={{ color: c.color }}
+                  >
+                    {c.name}
+                  </div>
+                  <p
+                    className={`text-[#525252] leading-snug ${
+                      forPrint ? "text-[9px] line-clamp-2" : "text-xs sm:text-sm line-clamp-3"
+                    }`}
+                  >
+                    {c.blurb}
+                  </p>
+                  <p
+                    className={`text-[#737373] leading-snug mt-0.5 ${
+                      forPrint ? "text-[8px] line-clamp-1" : "text-[10px] sm:text-xs line-clamp-2"
+                    }`}
+                  >
+                    {c.elements}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </DeckSlideShell>
+      );
+
+    /* —— Origins, foundations, levels, validation —— */
+    case 52:
+      if (!sc) return null;
+      return (
+        <DeckSlideShell theme={theme}>
+          <div className="flex flex-col h-full min-h-0">
+            <div className="flex items-start justify-between gap-3 mb-1">
+              <div className="min-w-0">
+                <DeckEyebrow theme={theme}>ORIGINS · THEORY · VALIDATION</DeckEyebrow>
+                <DeckTitle>{sc.originsTitle}</DeckTitle>
+              </div>
+              <Image
+                src={sc.logoSrc}
+                alt={sc.logoAlt}
+                width={160}
+                height={36}
+                className={`shrink-0 h-auto object-contain hidden sm:block ${
+                  forPrint ? "w-24" : "w-28 sm:w-36"
+                }`}
+              />
+            </div>
+            <p
+              className={`text-[#525252] max-w-3xl ${
+                forPrint ? "text-[10px] mb-2 leading-snug" : "text-sm mb-3 leading-relaxed"
+              }`}
+            >
+              {sc.originsBody}
+            </p>
+            <div
+              className={`grid grid-cols-1 sm:grid-cols-3 ${
+                forPrint ? "gap-1.5 mb-2" : "gap-2 sm:gap-3 mb-3"
+              }`}
+            >
+              {sc.foundations.map((f) => (
+                <div
+                  key={f.t}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
+                    forPrint ? "p-2" : "p-3"
+                  }`}
+                >
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[10px] mb-0.5" : "text-xs sm:text-sm mb-1"
+                    }`}
+                  >
+                    {f.t}
+                  </div>
+                  <p
+                    className={`text-[#525252] leading-snug ${
+                      forPrint ? "text-[9px] line-clamp-3" : "text-[11px] sm:text-xs line-clamp-4"
+                    }`}
+                  >
+                    {f.d}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className={`font-semibold text-[#737373] tracking-[1.5px] uppercase ${forPrint ? "text-[8px] mb-1" : "text-[10px] mb-1.5"}`}>
+              {sc.levelsTitle}
+            </div>
+            <div
+              className={`grid grid-cols-1 sm:grid-cols-5 ${
+                forPrint ? "gap-1 mb-2" : "gap-1.5 sm:gap-2 mb-3"
+              }`}
+            >
+              {sc.levels.map((lv) => (
+                <div
+                  key={lv.n}
+                  className={`rounded-lg border border-black/10 bg-white min-w-0 ${
+                    forPrint ? "p-1.5" : "p-2 sm:p-2.5"
+                  }`}
+                >
+                  <div
+                    className={`font-semibold ${forPrint ? "text-[9px]" : "text-[10px]"}`}
+                    style={{ color: theme.accentDark }}
+                  >
+                    {lv.n}
+                  </div>
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[9px]" : "text-[11px] sm:text-xs"
+                    }`}
+                  >
+                    {lv.t}
+                  </div>
+                  <p
+                    className={`text-[#525252] leading-snug ${
+                      forPrint ? "text-[8px] line-clamp-2" : "text-[10px] line-clamp-2 sm:line-clamp-3"
+                    }`}
+                  >
+                    {lv.d}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div
+              className={`rounded-xl border border-black/10 bg-gradient-to-br from-amber-50/80 to-white mt-auto ${
+                forPrint ? "p-2" : "p-3 sm:p-4"
+              }`}
+            >
+              <div
+                className={`font-semibold text-black ${
+                  forPrint ? "text-[10px] mb-1" : "text-xs sm:text-sm mb-1.5"
+                }`}
+              >
+                {sc.validationTitle}
+              </div>
+              <ul
+                className={`text-[#525252] space-y-0.5 ${
+                  forPrint ? "text-[9px]" : "text-[11px] sm:text-xs"
+                }`}
+              >
+                {sc.validationPoints.map((p) => (
+                  <li key={p}>· {p}</li>
+                ))}
+              </ul>
+              {!forPrint && (sc.bookHref || sc.siteHref) && (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {sc.bookHref && (
+                    <a
+                      href={sc.bookHref}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-semibold text-black hover:bg-black/5"
+                      download={sc.bookHref.endsWith(".pdf") ? true : undefined}
+                    >
+                      {sc.bookLabel ?? "Free book"}
+                    </a>
+                  )}
+                  {sc.siteHref && (
+                    <a
+                      href={sc.siteHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-black text-white px-3 py-1.5 text-xs font-semibold hover:bg-[#111]"
+                    >
+                      {sc.siteLabel ?? "super-cube.com"}
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </DeckSlideShell>
       );
