@@ -139,7 +139,7 @@ export default function Home() {
             className="flex justify-center mb-4 sm:mb-6"
           >
             <Image
-              src="/bigfivegroup-logo.png"
+              src="/bigfivegroup-logo.jpg"
               alt="Big Five Group logo"
               width={192}
               height={192}

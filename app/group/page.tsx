@@ -113,7 +113,7 @@ export default function GroupPage() {
       <PageHero
         image="/home-hero.jpg"
         logo={{
-          src: "/bigfivegroup-logo.png",
+          src: "/bigfivegroup-logo.jpg",
           alt: "Big Five Group logo",
           width: 192,
           height: 192,
