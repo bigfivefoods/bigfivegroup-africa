@@ -42,15 +42,16 @@ npm run dev
 
 `.env.local` is gitignored.
 
-**Contact form:** opens the visitor’s own email app with a draft to
-`craig@bigfivegroup.africa` (same as the footer). No third-party mail service.
+**Contact:** visitors email `craig@bigfivegroup.africa` from their own mail app
+(same as the footer), or use WhatsApp / phone to schedule a meeting. No Calendly
+or third-party mail service.
 
 ### Vercel (production / preview)
 
 **Project:** [bigfivegroup-africa-8rr7](https://vercel.com/bigfivefoods-projects/bigfivegroup-africa-8rr7)  
 **Dashboard env UI:** Project → Settings → Environment Variables
 
-Optional keys only (Calendly / analytics / SAM video):
+Optional keys only (analytics / SAM video):
 
 ```bash
 cp .env.vercel.secrets.example .env.vercel.secrets
@@ -61,7 +62,6 @@ npm run env:vercel
 
 | Variable | Required? | Purpose |
 |----------|-----------|---------|
-| `NEXT_PUBLIC_CALENDLY_URL` | Optional | Calendly event link — embeds on `/contact` (see `docs/CALENDLY-SETUP.md`) |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Optional | Plausible analytics domain |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | GA4 ID |
 | `NEXT_PUBLIC_SAM_VIDEO_URL` | Optional | YouTube/Vimeo embed for `/connect/sam` |

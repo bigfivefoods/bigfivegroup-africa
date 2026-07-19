@@ -6,7 +6,7 @@
  *   1. Create a Vercel token: https://vercel.com/account/tokens
  *   2. export VERCEL_TOKEN=...
  *   3. Optionally create .env.vercel.secrets (gitignored) with optional values:
- *        NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/...
+ *        NEXT_PUBLIC_PLAUSIBLE_DOMAIN=bigfivegroup.africa
  *
  * Usage:
  *   node scripts/sync-vercel-env.mjs
@@ -71,9 +71,8 @@ const secrets = {
 
 const TARGETS = ["production", "preview", "development"];
 
-// Keys we manage (contact is mailto-only — no mail API keys)
+// Keys we manage (contact is mailto-only — no mail/calendar API keys)
 const KEYS = [
-  "NEXT_PUBLIC_CALENDLY_URL",
   "NEXT_PUBLIC_PLAUSIBLE_DOMAIN",
   "NEXT_PUBLIC_GA_MEASUREMENT_ID",
   "NEXT_PUBLIC_SAM_VIDEO_URL",
@@ -165,8 +164,8 @@ async function main() {
   console.log("  vercel --prod");
   console.log("  or push an empty commit / Redeploy in the Vercel dashboard.");
   console.log("\nEmpty optional keys were skipped.");
-  console.log("Add Calendly/analytics values to .env.vercel.secrets and re-run if needed.");
-  console.log("Contact form uses mailto to craig@bigfivegroup.africa — no mail API required.");
+  console.log("Add analytics/video values to .env.vercel.secrets and re-run if needed.");
+  console.log("Contact uses mailto to craig@bigfivegroup.africa — no mail/calendar API required.");
 }
 
 main().catch((e) => {

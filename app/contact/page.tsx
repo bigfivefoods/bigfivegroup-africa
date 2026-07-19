@@ -1,14 +1,12 @@
 import Link from "next/link";
 import { Mail, Phone, MessageCircle, MapPin, ArrowRight } from "lucide-react";
 import ContactForm from "../components/ContactForm";
-import CalendlyPanel from "../components/CalendlyPanel";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
   CONTACT_PHONE_E164,
   CONTACT_WHATSAPP,
   CONTACT_LOCATION,
-  CALENDLY_URL,
 } from "../lib/contact";
 
 const pathways = [
@@ -71,23 +69,19 @@ export default function ContactPage() {
           </div>
 
           <aside className="lg:col-span-5 space-y-6 sm:space-y-8 min-w-0">
-            {CALENDLY_URL ? (
-              <CalendlyPanel url={CALENDLY_URL} />
-            ) : (
-              <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
-                <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
-                  Book a briefing
-                </h3>
-                <p className="text-sm text-[#525252] leading-relaxed mb-3">
-                  Use the form to email us — your mail app opens a draft to the address in the footer.
-                  Or reach us on WhatsApp / phone for a faster chat.
-                </p>
-                <p className="text-xs text-[#737373] leading-relaxed">
-                  Calendar booking (Calendly) can be enabled on this page once a public scheduling link
-                  is configured — see docs/CALENDLY-SETUP.md.
-                </p>
-              </div>
-            )}
+            <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
+              <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
+                Schedule a meeting
+              </h3>
+              <p className="text-sm text-[#525252] leading-relaxed mb-4">
+                Send a short note with your organisation, what you need, and a few times that work for
+                you. We&apos;ll reply and confirm a briefing — typically within 1–2 business days.
+              </p>
+              <ul className="text-sm text-[#404040] space-y-2 mb-1">
+                <li>· Email draft opens to the address below (same as the footer)</li>
+                <li>· WhatsApp or phone for a quicker back-and-forth</li>
+              </ul>
+            </div>
 
             <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
               <h3 className="text-lg font-semibold tracking-tight text-black mb-4">

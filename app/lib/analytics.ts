@@ -10,7 +10,6 @@ export type AnalyticsEvent =
   | "deck_pdf"
   | "book_download"
   | "cta_click"
-  | "calendly_click"
   | "sample_request";
 
 declare global {

@@ -335,12 +335,12 @@ export default function ContactForm({
       </button>
       <p className="text-xs text-[#737373] leading-relaxed max-w-lg">
         Submitting opens <strong className="text-black">your</strong> email app with a draft to{" "}
-        {CONTACT_EMAIL} (same as the footer). You send from your own address — we never send on your
-        behalf. See our{" "}
+        {CONTACT_EMAIL} (same as the footer). Include a few times that work for you and we&apos;ll
+        confirm a meeting. You send from your own address — we never send on your behalf. See our{" "}
         <a href="/privacy" className="underline underline-offset-2 text-black">
           Privacy Policy
         </a>
-        . We typically reply within 1–2 business days.
+        .
       </p>
     </form>
   );

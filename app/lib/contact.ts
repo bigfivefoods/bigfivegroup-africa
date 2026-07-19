@@ -5,10 +5,6 @@ export const CONTACT_PHONE_E164 = "+27825814215";
 export const CONTACT_WHATSAPP = "https://wa.me/27825814215";
 export const CONTACT_LOCATION = "KwaZulu-Natal · South Africa · Continent-wide";
 
-/** Optional Calendly (or similar) booking URL — set NEXT_PUBLIC_CALENDLY_URL in env */
-export const CALENDLY_URL =
-  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_CALENDLY_URL) || "";
-
 export const ENQUIRY_INTERESTS = [
   { value: "partnership", label: "Strategic partnership" },
   { value: "foods", label: "Big Five Foods · nutrition programmes" },

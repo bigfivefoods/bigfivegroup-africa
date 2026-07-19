@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { ArrowRight, Check, Mail, MessageCircle, Calendar } from "lucide-react";
+import { ArrowRight, Check, Mail, MessageCircle, Phone } from "lucide-react";
 import {
   CONTACT_EMAIL,
   CONTACT_WHATSAPP,
-  CALENDLY_URL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_E164,
 } from "../../lib/contact";
 
 export const metadata = {
@@ -23,22 +24,18 @@ export default function ContactThanksPage() {
         </h1>
         <p className="text-base sm:text-lg text-[#525252] leading-relaxed mb-8">
           If your mail app opened a draft to{" "}
-          <strong className="text-black">{CONTACT_EMAIL}</strong>, press send to complete your
-          enquiry. You can also reach us directly below.
+          <strong className="text-black">{CONTACT_EMAIL}</strong>, press send. Include a few times
+          that work for you and we&apos;ll confirm a meeting.
         </p>
 
         <div className="flex flex-col gap-3 max-w-sm mx-auto mb-10">
-          {CALENDLY_URL && (
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3.5 rounded-full text-sm font-semibold"
-            >
-              <Calendar className="w-4 h-4" />
-              Book a calendar slot
-            </a>
-          )}
+          <a
+            href={`mailto:${CONTACT_EMAIL}?subject=Big%20Five%20briefing%20—%20schedule%20a%20meeting`}
+            className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3.5 rounded-full text-sm font-semibold"
+          >
+            <Mail className="w-4 h-4" />
+            Email {CONTACT_EMAIL}
+          </a>
           <a
             href={CONTACT_WHATSAPP}
             target="_blank"
@@ -46,14 +43,14 @@ export default function ContactThanksPage() {
             className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold"
           >
             <MessageCircle className="w-4 h-4" />
-            Continue on WhatsApp
+            WhatsApp
           </a>
           <a
-            href={`mailto:${CONTACT_EMAIL}`}
+            href={`tel:${CONTACT_PHONE_E164}`}
             className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold"
           >
-            <Mail className="w-4 h-4" />
-            Email {CONTACT_EMAIL}
+            <Phone className="w-4 h-4" />
+            {CONTACT_PHONE_DISPLAY}
           </a>
         </div>
 
@@ -66,10 +63,10 @@ export default function ContactThanksPage() {
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
           <Link
-            href="/leadership"
+            href="/connect#case-study-sa"
             className="inline-flex items-center justify-center gap-1 font-medium text-[#525252] hover:text-black"
           >
-            Super-Cube® leadership
+            SupplierAdvisor® case
           </Link>
           <Link
             href="/"
