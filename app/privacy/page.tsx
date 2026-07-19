@@ -37,11 +37,13 @@ export default function PrivacyPolicy() {
 
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">2. Website enquiries</h2>
           <p>
-            When you submit the contact form at <strong>/contact</strong>, we collect the details you
-            provide (name, email, organisation, phone, interest area, and message) solely to respond to
-            your enquiry and, where relevant, prepare a briefing. We do not sell this information.
-            Messages may be transmitted via email systems or a configured secure webhook. Retention is
-            limited to what is needed for legitimate business follow-up and legal requirements.
+            When you use the contact form at <strong>/contact</strong>, your device opens your own
+            email application with a draft addressed to{" "}
+            <strong>craig@bigfivegroup.africa</strong> (the same address shown in the site footer).
+            You send the message from your own email account — we do not use a third-party bulk email
+            service to send enquiries on your behalf. Details you include in that draft are only
+            received when you press send. We use them solely to respond and, where relevant, prepare a
+            briefing. We do not sell this information.
           </p>
 
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">3. How We Use Your Information</h2>

@@ -100,7 +100,6 @@ export default function ContactForm({
         ok: boolean;
         error?: string;
         mailto?: string | null;
-        emailed?: boolean;
       };
 
       if (!res.ok || !data.ok) {
@@ -111,23 +110,14 @@ export default function ContactForm({
 
       setMailto(data.mailto ?? null);
       setWhatsApp(buildWhatsAppLink(payload));
-
-      track("contact_submit_success", {
-        interest: payload.interest,
-        emailed: Boolean(data.emailed),
-      });
-
-      if (data.emailed) {
-        window.location.href = `/contact/thanks?emailed=1&interest=${encodeURIComponent(payload.interest)}`;
-        return;
-      }
-
+      track("contact_submit_success", { interest: payload.interest });
       setStatus("success");
+
+      // Open the visitor’s own email app, addressed to Big Five (footer address)
       if (data.mailto) {
-        // Open the user's mail client with a pre-filled enquiry, then offer next steps
         window.setTimeout(() => {
           window.location.href = data.mailto!;
-        }, 100);
+        }, 150);
       }
     } catch {
       setError("Network error. Please email us directly or use WhatsApp.");
@@ -142,12 +132,12 @@ export default function ContactForm({
           <Check className="w-6 h-6" />
         </div>
         <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-black mb-2">
-          Enquiry ready
+          Open your email to send
         </h3>
         <p className="text-sm sm:text-base text-[#525252] leading-relaxed mb-6 max-w-md mx-auto">
-          Your mail app should open with a pre-filled message to{" "}
-          <strong className="text-black">{CONTACT_EMAIL}</strong>. If it didn&apos;t, use the
-          options below.
+          Your mail app should open a draft <strong className="text-black">from your address</strong>{" "}
+          to <strong className="text-black">{CONTACT_EMAIL}</strong>. Press send in your app to
+          complete the enquiry. If nothing opened, use the buttons below.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center max-w-md mx-auto">
           {mailto && (
@@ -344,12 +334,13 @@ export default function ContactForm({
         )}
       </button>
       <p className="text-xs text-[#737373] leading-relaxed max-w-lg">
-        By submitting, you agree we may use your details to respond to this enquiry (see our{" "}
+        Submitting opens <strong className="text-black">your</strong> email app with a draft to{" "}
+        {CONTACT_EMAIL} (same as the footer). You send from your own address — we never send on your
+        behalf. See our{" "}
         <a href="/privacy" className="underline underline-offset-2 text-black">
           Privacy Policy
         </a>
-        ). If server email is configured, we send directly; otherwise your mail app opens a draft to{" "}
-        {CONTACT_EMAIL}. We typically respond within 1–2 business days.
+        . We typically reply within 1–2 business days.
       </p>
     </form>
   );

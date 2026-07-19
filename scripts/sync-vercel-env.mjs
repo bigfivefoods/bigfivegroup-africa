@@ -5,8 +5,7 @@
  * Prerequisites:
  *   1. Create a Vercel token: https://vercel.com/account/tokens
  *   2. export VERCEL_TOKEN=...
- *   3. Optionally create .env.vercel.secrets (gitignored) with secret values:
- *        RESEND_API_KEY=re_...
+ *   3. Optionally create .env.vercel.secrets (gitignored) with optional values:
  *        NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/...
  *
  * Usage:
@@ -64,13 +63,7 @@ function parseEnvFile(path) {
   return out;
 }
 
-// Non-secret defaults we can set now
-const defaults = {
-  CONTACT_TO_EMAIL: "craig@bigfivegroup.africa",
-  CONTACT_FROM_EMAIL: "Big Five Group <craig@bigfivegroup.africa>",
-};
-
-// Secrets / optional public config from local files (never commit secrets)
+// Optional public config from local files (never commit secrets)
 const secrets = {
   ...parseEnvFile(resolve(root, ".env.local")),
   ...parseEnvFile(resolve(root, ".env.vercel.secrets")),
@@ -78,17 +71,15 @@ const secrets = {
 
 const TARGETS = ["production", "preview", "development"];
 
-// Keys we manage
+// Keys we manage (contact is mailto-only — no mail API keys)
 const KEYS = [
-  "RESEND_API_KEY",
-  "CONTACT_FROM_EMAIL",
-  "CONTACT_TO_EMAIL",
-  "CONTACT_WEBHOOK_URL",
   "NEXT_PUBLIC_CALENDLY_URL",
   "NEXT_PUBLIC_PLAUSIBLE_DOMAIN",
   "NEXT_PUBLIC_GA_MEASUREMENT_ID",
   "NEXT_PUBLIC_SAM_VIDEO_URL",
 ];
+
+const defaults = {};
 
 async function vercel(path, options = {}) {
   const url = `https://api.vercel.com${path}${path.includes("?") ? "&" : "?"}teamId=${orgId}`;
@@ -173,8 +164,9 @@ async function main() {
   console.log("\nDone. Redeploy production for changes to take effect:");
   console.log("  vercel --prod");
   console.log("  or push an empty commit / Redeploy in the Vercel dashboard.");
-  console.log("\nEmpty secrets (RESEND_API_KEY, Calendly, etc.) were skipped.");
-  console.log("Add them to .env.vercel.secrets and re-run this script.");
+  console.log("\nEmpty optional keys were skipped.");
+  console.log("Add Calendly/analytics values to .env.vercel.secrets and re-run if needed.");
+  console.log("Contact form uses mailto to craig@bigfivegroup.africa — no mail API required.");
 }
 
 main().catch((e) => {

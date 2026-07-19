@@ -8,7 +8,7 @@ test.describe("Big Five Group smoke", () => {
     await expect(page.getByRole("link", { name: /Book a briefing/i }).first()).toBeVisible();
   });
 
-  test("contact API accepts a valid enquiry", async ({ request }) => {
+  test("contact API returns mailto for a valid enquiry", async ({ request }) => {
     const res = await request.post("/api/contact", {
       data: {
         name: "Test Partner",
@@ -21,6 +21,7 @@ test.describe("Big Five Group smoke", () => {
     expect(res.ok()).toBeTruthy();
     const body = await res.json();
     expect(body.ok).toBe(true);
+    expect(body.mailto).toContain("mailto:craig@bigfivegroup.africa");
   });
 
   test("contact page renders form", async ({ page }) => {

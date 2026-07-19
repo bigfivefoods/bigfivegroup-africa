@@ -7,18 +7,11 @@ import {
 } from "../../lib/contact";
 
 export const metadata = {
-  title: "Thank you · Enquiry received",
+  title: "Thank you · Next steps",
   robots: { index: false, follow: false },
 };
 
-export default async function ContactThanksPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ emailed?: string; interest?: string }>;
-}) {
-  const params = await searchParams;
-  const emailed = params.emailed === "1";
-
+export default function ContactThanksPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa] min-h-[70vh] flex items-center">
       <div className="max-w-xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center w-full">
@@ -26,12 +19,12 @@ export default async function ContactThanksPage({
           <Check className="w-7 h-7" />
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tighter text-black mb-3 text-balance">
-          {emailed ? "Enquiry sent" : "Thank you"}
+          Almost there
         </h1>
         <p className="text-base sm:text-lg text-[#525252] leading-relaxed mb-8">
-          {emailed
-            ? "We’ve received your message and will respond within 1–2 business days."
-            : "If your mail app opened, send the draft to complete your enquiry. You can also reach us below."}
+          If your mail app opened a draft to{" "}
+          <strong className="text-black">{CONTACT_EMAIL}</strong>, press send to complete your
+          enquiry. You can also reach us directly below.
         </p>
 
         <div className="flex flex-col gap-3 max-w-sm mx-auto mb-10">
