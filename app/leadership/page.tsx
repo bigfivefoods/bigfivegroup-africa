@@ -15,6 +15,7 @@ import {
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
 import LeadershipStrategyDeck from "../components/LeadershipStrategyDeck";
+import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
 
 const SUPER_CUBE_URL = "https://www.super-cube.com";
 
@@ -79,6 +80,7 @@ export default function LeadershipPage() {
         subtitle="Big Five Leadership is the education arm of the group — Super-Cube® ethical leadership for nations and enterprises."
         ctas={[
           { href: "#leadership-deck", label: "Leadership deck", primary: true },
+          { href: "#case-study", label: "FMCG case study" },
           {
             href: SUPER_CUBE_URL,
             label: "Explore Super-Cube®",
@@ -241,6 +243,64 @@ export default function LeadershipPage() {
         </div>
       </section>
 
+      {/* FMCG CASE STUDY */}
+      <section
+        id="case-study"
+        className="bg-[#0a0a0a] text-white py-16 sm:py-20 md:py-24 border-y border-white/5"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-[10px] sm:text-xs tracking-[2px] text-amber-400/90 font-semibold mb-3">
+            {SUPER_CUBE_FMCG_CASE.eyebrow}
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-balance mb-3 max-w-3xl">
+            {SUPER_CUBE_FMCG_CASE.headline}
+          </h2>
+          <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-3xl mb-3">
+            {SUPER_CUBE_FMCG_CASE.body}
+          </p>
+          <p className="text-xs sm:text-sm text-white/50 leading-relaxed max-w-3xl mb-8 sm:mb-10">
+            {SUPER_CUBE_FMCG_CASE.context}
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-8">
+            {SUPER_CUBE_FMCG_CASE.lifts.map((l) => (
+              <div
+                key={l.name}
+                className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 sm:p-5 text-center min-w-0"
+              >
+                <Image
+                  src={l.icon}
+                  alt={l.name}
+                  width={40}
+                  height={40}
+                  className="mx-auto w-9 h-9 sm:w-10 sm:h-10 object-contain"
+                />
+                <div
+                  className="text-2xl sm:text-3xl font-semibold tracking-tighter mt-2"
+                  style={{ color: l.color }}
+                >
+                  +{l.lift}
+                </div>
+                <div className="text-sm font-semibold text-white mt-0.5">{l.name}</div>
+                <div className="text-[10px] sm:text-xs text-white/50 leading-snug mt-1">
+                  {l.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-[11px] sm:text-xs text-white/40 leading-relaxed max-w-3xl mb-6">
+            {SUPER_CUBE_FMCG_CASE.note}
+          </p>
+          <a
+            href={SUPER_CUBE_FMCG_CASE.ctaHref}
+            className="premium-button inline-flex items-center gap-2 bg-[#eab308] text-black px-7 py-3.5 rounded-full text-sm font-semibold"
+          >
+            {SUPER_CUBE_FMCG_CASE.ctaLabel}
+          </a>
+        </div>
+      </section>
+
       {/* BOOK */}
       <section
         id="book"
@@ -266,6 +326,55 @@ export default function LeadershipPage() {
             <Download className="w-5 h-5" />
             Download the book
           </a>
+        </div>
+      </section>
+
+      {/* PROGRAMME OFFER */}
+      <section id="programmes" className="bg-white border-y border-black/10 py-16 sm:py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="PROGRAMMES"
+            title="What a Super-Cube® engagement looks like"
+            subtitle="Practical pathways for organisations and public institutions — not abstract theory alone."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+            {[
+              {
+                t: "Assess",
+                d: "Super-Cube® 360° across six constructs — baseline for individuals and cohorts.",
+                meta: "2–4 weeks",
+              },
+              {
+                t: "Develop",
+                d: "Blended learning, peer masterminds and ethical AI coaching — NQF-aware design.",
+                meta: "Cohorts · 8–16 weeks typical",
+              },
+              {
+                t: "Multiply",
+                d: "Facilitator pathways and organisational embedding so capability scales beyond one workshop.",
+                meta: "Enterprise & public sector",
+              },
+            ].map((x) => (
+              <div
+                key={x.t}
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 sm:p-6 min-w-0"
+              >
+                <div className="text-[10px] tracking-[2px] text-[#854d0e] font-semibold mb-2">
+                  {x.meta}
+                </div>
+                <h3 className="text-lg font-semibold text-black mb-2">{x.t}</h3>
+                <p className="text-sm text-[#525252] leading-relaxed">{x.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <a
+              href="/contact?interest=leadership"
+              className="premium-button inline-flex items-center gap-2 bg-black text-white px-8 py-3.5 rounded-full font-semibold text-sm"
+            >
+              Book a Leadership briefing
+            </a>
+          </div>
         </div>
       </section>
 

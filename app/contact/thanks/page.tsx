@@ -1,0 +1,91 @@
+import Link from "next/link";
+import { ArrowRight, Check, Mail, MessageCircle, Calendar } from "lucide-react";
+import {
+  CONTACT_EMAIL,
+  CONTACT_WHATSAPP,
+  CALENDLY_URL,
+} from "../../lib/contact";
+
+export const metadata = {
+  title: "Thank you · Enquiry received",
+  robots: { index: false, follow: false },
+};
+
+export default async function ContactThanksPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ emailed?: string; interest?: string }>;
+}) {
+  const params = await searchParams;
+  const emailed = params.emailed === "1";
+
+  return (
+    <div className="overflow-x-clip bg-[#fafafa] min-h-[70vh] flex items-center">
+      <div className="max-w-xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center w-full">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-100 text-emerald-800 mb-6">
+          <Check className="w-7 h-7" />
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tighter text-black mb-3 text-balance">
+          {emailed ? "Enquiry sent" : "Thank you"}
+        </h1>
+        <p className="text-base sm:text-lg text-[#525252] leading-relaxed mb-8">
+          {emailed
+            ? "We’ve received your message and will respond within 1–2 business days."
+            : "If your mail app opened, send the draft to complete your enquiry. You can also reach us below."}
+        </p>
+
+        <div className="flex flex-col gap-3 max-w-sm mx-auto mb-10">
+          {CALENDLY_URL && (
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3.5 rounded-full text-sm font-semibold"
+            >
+              <Calendar className="w-4 h-4" />
+              Book a calendar slot
+            </a>
+          )}
+          <a
+            href={CONTACT_WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold"
+          >
+            <MessageCircle className="w-4 h-4" />
+            Continue on WhatsApp
+          </a>
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold"
+          >
+            <Mail className="w-4 h-4" />
+            Email {CONTACT_EMAIL}
+          </a>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
+          <Link
+            href="/foods#case-study"
+            className="inline-flex items-center justify-center gap-1 font-medium text-black hover:underline"
+          >
+            NSNP school nutrition case
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+          <Link
+            href="/leadership"
+            className="inline-flex items-center justify-center gap-1 font-medium text-[#525252] hover:text-black"
+          >
+            Super-Cube® leadership
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center gap-1 font-medium text-[#525252] hover:text-black"
+          >
+            Home
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

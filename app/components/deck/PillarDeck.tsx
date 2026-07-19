@@ -46,6 +46,21 @@ export type SuperCubeModelConfig = {
   bookLabel?: string;
   siteHref?: string;
   siteLabel?: string;
+  /** Optional measured intervention case study (adds +1 slide) */
+  caseStudy?: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    context?: string;
+    lifts: {
+      name: string;
+      icon: string;
+      color: string;
+      lift: string;
+      label: string;
+    }[];
+    note?: string;
+  };
 };
 
 export type PillarDeckConfig = {
@@ -103,14 +118,18 @@ export type PillarDeckConfig = {
 
 /**
  * Base: title, agenda, Group VMV, challenge, solution, proof… CTA = 13.
- * Super-Cube model adds +3 after solution. Intel adds +1 after stakeholders.
+ * Super-Cube model adds +3 after solution (+1 more if case study). Intel adds +1 after stakeholders.
  */
 const TOTAL_BASE = 13;
-const SUPER_CUBE_SLIDE_COUNT = 3;
+
+function superCubeSlideCount(cfg: PillarDeckConfig) {
+  if (!cfg.superCubeModel) return 0;
+  return cfg.superCubeModel.caseStudy ? 4 : 3;
+}
 
 function slideCount(cfg: PillarDeckConfig) {
   let n = TOTAL_BASE;
-  if (cfg.superCubeModel) n += SUPER_CUBE_SLIDE_COUNT;
+  n += superCubeSlideCount(cfg);
   if (cfg.intelCards?.length) n += 1;
   return n;
 }
@@ -118,9 +137,13 @@ function slideCount(cfg: PillarDeckConfig) {
 /** Map linear index → logical case id (handles Super-Cube + intel inserts). */
 function logicalSlide(index: number, cfg: PillarDeckConfig): number {
   const hasSC = Boolean(cfg.superCubeModel);
+  const hasCase = Boolean(cfg.superCubeModel?.caseStudy);
   const hasIntel = Boolean(cfg.intelCards?.length);
   const keys: number[] = [0, 1, 2, 3, 4];
-  if (hasSC) keys.push(50, 51, 52);
+  if (hasSC) {
+    keys.push(50, 51, 52);
+    if (hasCase) keys.push(53);
+  }
   keys.push(5, 6, 7, 8);
   if (hasIntel) keys.push(100);
   keys.push(9, 10, 11);
@@ -612,6 +635,89 @@ function Slide({
           </div>
         </DeckSlideShell>
       );
+
+    /* —— Super-Cube® FMCG intervention case study —— */
+    case 53: {
+      const cs = sc?.caseStudy;
+      if (!cs) return null;
+      return (
+        <DeckSlideShell theme={theme}>
+          <div className="flex flex-col h-full min-h-0">
+            <DeckEyebrow theme={theme}>{cs.eyebrow}</DeckEyebrow>
+            <DeckTitle>{cs.title}</DeckTitle>
+            <p
+              className={`text-[#525252] max-w-3xl ${
+                forPrint ? "text-[10px] mb-2 leading-snug" : "text-sm mb-3 leading-relaxed"
+              }`}
+            >
+              {cs.body}
+            </p>
+            {cs.context && (
+              <p
+                className={`text-[#404040] max-w-3xl ${
+                  forPrint ? "text-[9px] mb-2 leading-snug" : "text-xs sm:text-sm mb-4 leading-relaxed"
+                }`}
+              >
+                {cs.context}
+              </p>
+            )}
+            <div
+              className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 min-h-0 flex-1 content-start ${
+                forPrint ? "gap-1.5" : "gap-2 sm:gap-2.5"
+              }`}
+            >
+              {cs.lifts.map((l) => (
+                <div
+                  key={l.name}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] text-center min-w-0 flex flex-col items-center ${
+                    forPrint ? "p-1.5" : "p-2.5 sm:p-3"
+                  }`}
+                >
+                  <Image
+                    src={l.icon}
+                    alt={l.name}
+                    width={forPrint ? 28 : 36}
+                    height={forPrint ? 28 : 36}
+                    className={`object-contain ${forPrint ? "w-7 h-7" : "w-8 h-8 sm:w-9 sm:h-9"}`}
+                  />
+                  <div
+                    className={`font-semibold tracking-tighter mt-1 ${
+                      forPrint ? "text-base" : "text-xl sm:text-2xl"
+                    }`}
+                    style={{ color: l.color }}
+                  >
+                    +{l.lift.replace(/^\+/, "")}
+                  </div>
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                    }`}
+                  >
+                    {l.name}
+                  </div>
+                  <div
+                    className={`text-[#737373] leading-snug ${
+                      forPrint ? "text-[8px] line-clamp-2" : "text-[10px] line-clamp-2"
+                    }`}
+                  >
+                    {l.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {cs.note && (
+              <p
+                className={`text-[#737373] shrink-0 ${
+                  forPrint ? "text-[8px] mt-1.5 leading-snug" : "text-[10px] sm:text-xs mt-3 leading-relaxed"
+                }`}
+              >
+                {cs.note}
+              </p>
+            )}
+          </div>
+        </DeckSlideShell>
+      );
+    }
 
     case 5:
       return (

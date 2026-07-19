@@ -28,6 +28,19 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run build` | Production build |
 | `npm run start` | Serve production build |
 | `npm run lint` | ESLint |
+| `npm run test:e2e` | Playwright smoke tests (needs build first) |
+
+## Contact form (optional env)
+
+Copy `.env.example` → `.env.local` (or set in Vercel):
+
+| Variable | Purpose |
+|----------|---------|
+| `RESEND_API_KEY` | Send enquiries via [Resend](https://resend.com) instead of only `mailto:` |
+| `CONTACT_FROM_EMAIL` | Verified Resend sender |
+| `CONTACT_TO_EMAIL` | Inbox for enquiries |
+| `CONTACT_WEBHOOK_URL` | Zapier / Make / Formspree JSON webhook |
+| `NEXT_PUBLIC_CALENDLY_URL` | Public booking link on `/contact` |
 
 ## Project structure
 

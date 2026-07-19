@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
         <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16">
           <div className="text-[#fbbf24] text-xs tracking-[3px] mb-4">LEGAL</div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter leading-none mb-4 sm:mb-6 text-balance">Privacy Policy</h1>
-          <p className="text-base sm:text-xl text-white/80">Last updated: 27 April 2026</p>
+          <p className="text-base sm:text-xl text-white/80">Last updated: 19 July 2026</p>
         </div>
       </section>
 
@@ -33,22 +33,32 @@ export default function PrivacyPolicy() {
             <li>Make a donation or submit an inquiry</li>
             <li>Scan QR codes or interact with on-chain features</li>
           </ul>
-          <p className="mt-4">This may include name, email, phone number, business details, IP address, and transaction data.</p>
+          <p className="mt-4">This may include name, email, phone number, organisation name, business details, IP address, and transaction data.</p>
 
-          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">2. How We Use Your Information</h2>
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">2. Website enquiries</h2>
+          <p>
+            When you submit the contact form at <strong>/contact</strong>, we collect the details you
+            provide (name, email, organisation, phone, interest area, and message) solely to respond to
+            your enquiry and, where relevant, prepare a briefing. We do not sell this information.
+            Messages may be transmitted via email systems or a configured secure webhook. Retention is
+            limited to what is needed for legitimate business follow-up and legal requirements.
+          </p>
+
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">3. How We Use Your Information</h2>
           <p>We use your information to:</p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
+            <li>Respond to partnership and programme enquiries</li>
             <li>Provide and improve our services</li>
             <li>Process donations and issue Section 18A certificates</li>
             <li>Verify businesses on Big Five Connect</li>
-            <li>Send important updates and impact reports</li>
+            <li>Send important updates and impact reports (where you have opted in or have a legitimate relationship)</li>
             <li>Comply with legal and regulatory requirements</li>
           </ul>
 
-          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">3. Data Sharing & Third Parties</h2>
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">4. Data Sharing & Third Parties</h2>
           <p>We do not sell your personal information. We only share data with trusted partners (e.g., payment processors, auditors, government regulators) when necessary to deliver our services or comply with law.</p>
 
-          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">4. Your Rights (POPIA)</h2>
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">5. Your Rights (POPIA)</h2>
           <p>You have the right to:</p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
             <li>Access your personal information</li>
@@ -57,10 +67,10 @@ export default function PrivacyPolicy() {
             <li>Withdraw consent at any time</li>
           </ul>
 
-          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">5. Data Security</h2>
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">6. Data Security</h2>
           <p>We implement industry-standard security measures, including encryption, access controls, and regular audits. All sensitive data related to donations and on-chain transactions is protected with blockchain-level security.</p>
 
-          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">6. Contact Us</h2>
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">7. Contact Us</h2>
           <p>If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us:</p>
           <div className="mt-4">
             <p><strong>Dr. Craig R. Muller</strong><br />

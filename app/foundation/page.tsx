@@ -145,6 +145,42 @@ export default function FoundationPage() {
         </div>
       </section>
 
+      <section id="programmes" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <SectionHeading
+          eyebrow="PROGRAMME TYPES"
+          title="Where Foundation capital goes to work"
+          subtitle="Two flagship programme families — social development and economic agency — delivered with Impact PMO discipline."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+          <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+            <div className="text-xs tracking-[2px] text-teal-700 font-semibold mb-2">SOCIAL</div>
+            <h3 className="text-xl font-semibold text-black mb-2">School & community nutrition</h3>
+            <p className="text-sm text-[#525252] leading-relaxed mb-4">
+              Grants and co-funding that activate Big Five Foods fortified supply, Direct last-mile,
+              and school-day feeding pathways — including NSNP-aligned institutional programmes.
+            </p>
+            <ul className="text-sm text-[#404040] space-y-1.5">
+              <li>· Fortified porridge & soya for learners</li>
+              <li>· Partner schools and community kitchens</li>
+              <li>· Verified delivery with Impact reporting</li>
+            </ul>
+          </div>
+          <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+            <div className="text-xs tracking-[2px] text-teal-700 font-semibold mb-2">ECONOMIC</div>
+            <h3 className="text-xl font-semibold text-black mb-2">Livelihoods & youth capability</h3>
+            <p className="text-sm text-[#525252] leading-relaxed mb-4">
+              Micro-enterprise, agri livelihoods and Super-Cube® leadership pathways for youth and
+              community leaders — so capital builds agency, not dependency.
+            </p>
+            <ul className="text-sm text-[#404040] space-y-1.5">
+              <li>· Skills and Super-Cube® formation</li>
+              <li>· Regenerative agri and local enterprise</li>
+              <li>· Transparent funding on SupplierAdvisor®</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <SectionHeading eyebrow="UN SDGs" title="Aligned to global goals" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">

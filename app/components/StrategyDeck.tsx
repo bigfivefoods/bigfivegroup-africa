@@ -1604,10 +1604,21 @@ export default function StrategyDeck() {
     };
   }, [printMode, printOrientation]);
 
-  const shareUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/impact#strategy-deck`
-      : "https://bigfivegroup.africa/impact#strategy-deck";
+  const shareUrl = (() => {
+    const base =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/impact#strategy-deck`
+        : "https://bigfivegroup.africa/impact#strategy-deck";
+    try {
+      const u = new URL(base);
+      u.searchParams.set("utm_source", "deck_share");
+      u.searchParams.set("utm_medium", "share");
+      u.searchParams.set("utm_campaign", "group_strategy_deck");
+      return u.toString();
+    } catch {
+      return base;
+    }
+  })();
 
   const onShare = async () => {
     const payload = {

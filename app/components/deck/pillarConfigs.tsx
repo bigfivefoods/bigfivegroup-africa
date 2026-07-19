@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import type { PillarDeckConfig } from "./PillarDeck";
 import { sa } from "../../lib/saCopy";
+import { SUPER_CUBE_FMCG_CASE } from "../../lib/superCubeCase";
 
 export const agriDeckConfig: PillarDeckConfig = {
   id: "agri-deck",
@@ -803,7 +804,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
   id: "leadership-deck",
   printRootId: "leadership-deck-print-root",
   themeKey: "gold",
-  eyebrow: "PILLAR DECK · LEADERSHIP · SUPER-CUBE® · 16 SLIDES",
+  eyebrow: "PILLAR DECK · LEADERSHIP · SUPER-CUBE® · 17 SLIDES",
   title: "Big Five Leadership — strategic deck",
   description:
     "Super-Cube® ethical leadership for nations and enterprises — the Educate pillar of Feed · Educate · Empower.",
@@ -820,13 +821,13 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     "Super-Cube®",
     "bigfivegroup.africa/leadership",
     "Educate pillar",
-    "16 slides",
+    "17 slides",
   ],
   agenda: [
     "Group vision, mission and values",
     "Why ethical leadership is African infrastructure",
     "The Super-Cube® Leadership Model — six constructs, you at the centre",
-    "Origins, theory foundations and empirical validation",
+    "Case study: African FMCG value-chain intervention & measured lifts",
     "How programmes work · who we serve · SDGs · partner",
   ],
   challengeTitle: "Skills gaps are also leadership gaps",
@@ -963,17 +964,31 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     bookLabel: "Download free book",
     siteHref: "https://www.super-cube.com",
     siteLabel: "Explore super-cube.com",
+    caseStudy: {
+      eyebrow: SUPER_CUBE_FMCG_CASE.eyebrow,
+      title: SUPER_CUBE_FMCG_CASE.title,
+      body: SUPER_CUBE_FMCG_CASE.body,
+      context: SUPER_CUBE_FMCG_CASE.context,
+      lifts: SUPER_CUBE_FMCG_CASE.lifts.map((l) => ({
+        name: l.name,
+        icon: l.icon,
+        color: l.color,
+        lift: l.lift,
+        label: l.label,
+      })),
+      note: SUPER_CUBE_FMCG_CASE.note,
+    },
   },
   proofTitle: "What Leadership puts on the table",
   proofStats: [
-    { value: "Super-Cube®", label: "Doctoral-rooted model" },
-    { value: "Whole-person", label: "Six constructs · you at the centre" },
-    { value: "70–76%", label: "Developable through practice" },
-    { value: "Public + private", label: "Nations and enterprises" },
+    { value: "+45.1%", label: "Principles lift · FMCG case" },
+    { value: "+39.5%", label: "Emotional intelligence lift" },
+    { value: "+29.7%", label: "Mental intelligence lift" },
+    { value: "6 faces", label: "All Super-Cube® constructs improved" },
   ],
   proofPoints: [
+    "FMCG value-chain intervention (local + international businesses): Choices +26.6% · Principles +45.1% · Mental +29.7% · Emotional +39.5% · Physical +27.7% · Spiritual +24.7%",
     "Dr. Craig Ross Muller (DBA, UKZN) — Super-Cube® Leadership Model, 2020",
-    "Empirically tested in an African FMCG business-network; peer-reviewed outputs",
     "Pairs with Connect (SAM) and Impact for decision culture + programme delivery",
     "Youth, executive and public-service pathways under one Africa-centric framework",
   ],

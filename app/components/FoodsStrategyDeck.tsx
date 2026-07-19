@@ -654,8 +654,8 @@ function ProofSlide() {
         <Eyebrow light>PROOF · IMPACT</Eyebrow>
         <SlideTitle>Numbers partners can put in a brief</SlideTitle>
         <div className={`grid grid-cols-2 lg:grid-cols-4 ${forPrint ? "gap-2 mb-2" : "gap-3 sm:gap-4 mb-6"}`}>
-          <StatTile dark value="150k" label="Meals delivered" />
-          <StatTile dark value="100k" label="Children reached" />
+          <StatTile dark value="2.5m" label="Children/day ambition · NSNP pathway" />
+          <StatTile dark value="150k" label="Meals delivered to date" />
           <StatTile dark value="83%" label="Cheaper pathways vs alternatives" />
           <StatTile dark value="74%" label="More nutrition by design" />
         </div>
@@ -1414,10 +1414,21 @@ export default function FoodsStrategyDeck() {
     };
   }, [printMode, printOrientation]);
 
-  const shareUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/foods#foods-deck`
-      : "https://bigfivegroup.africa/foods#foods-deck";
+  const shareUrl = (() => {
+    const base =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/foods#foods-deck`
+        : "https://bigfivegroup.africa/foods#foods-deck";
+    try {
+      const u = new URL(base);
+      u.searchParams.set("utm_source", "deck_share");
+      u.searchParams.set("utm_medium", "share");
+      u.searchParams.set("utm_campaign", "foods_deck");
+      return u.toString();
+    } catch {
+      return base;
+    }
+  })();
 
   const onShare = async () => {
     const payload = {

@@ -429,6 +429,36 @@ export default function GlobalPage() {
         </p>
       </section>
 
+      {/* CORRIDOR VIGNETTE */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
+        <div className="rounded-2xl sm:rounded-3xl border border-[#bae6fd] bg-gradient-to-br from-[#f0f9ff] to-white p-6 sm:p-8 md:p-10">
+          <div className="text-xs tracking-[2px] text-[#0369a1] font-semibold mb-3">
+            CORRIDOR VIGNETTE · SOUTH AFRICA → CONTINENT
+          </div>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black mb-3 text-balance">
+            KwaZulu-Natal manufacturing, national school pathways, regional routes
+          </h3>
+          <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-4">
+            Fortified porridges and soya minces produced for South African institutional demand —
+            including the{" "}
+            <a
+              href="https://www.education.gov.za/Programmes/NationalSchoolNutritionProgramme.aspx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-[#0369a1] underline underline-offset-2"
+            >
+              National School Nutrition Programme (NSNP)
+            </a>{" "}
+            pathway — form the home base of a wider distribution story. From KZN we build
+            route-to-market into priority African nations and European corridors (Germany · Hungary),
+            with Kenya as East Africa company hub. Same product integrity; local logistics and partners.
+          </p>
+          <p className="text-xs text-[#737373]">
+            High-level overview — ask for a market-by-market brief when you partner with Global or Foods.
+          </p>
+        </div>
+      </section>
+
       {/* DISTRIBUTION & ROUTE TO MARKET */}
       <section id="active" className="bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -538,10 +538,26 @@ export default function DeckShell({
     };
   }, [printMode, printOrientation]);
 
-  const shareUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}${sharePath}`
-      : `https://bigfivegroup.africa${sharePath}`;
+  const shareUrl = (() => {
+    const base =
+      typeof window !== "undefined"
+        ? `${window.location.origin}${sharePath}`
+        : `https://bigfivegroup.africa${sharePath}`;
+    try {
+      const u = new URL(base, "https://bigfivegroup.africa");
+      if (!u.searchParams.has("utm_source")) {
+        u.searchParams.set("utm_source", "deck_share");
+        u.searchParams.set("utm_medium", "share");
+        u.searchParams.set(
+          "utm_campaign",
+          sharePath.replace(/[^a-z0-9]+/gi, "_").replace(/^_|_$/g, "") || "deck"
+        );
+      }
+      return u.toString();
+    } catch {
+      return base;
+    }
+  })();
 
   const onShare = async () => {
     try {
@@ -699,7 +715,13 @@ export default function DeckShell({
             ? { height: "calc(100dvh - 7.5rem - env(safe-area-inset-bottom, 0px))" }
             : undefined
         }
+        role="region"
+        aria-roledescription="slide"
+        aria-label={`Slide ${index + 1} of ${total}`}
       >
+        <div className="sr-only" aria-live="polite" aria-atomic="true">
+          Slide {index + 1} of {total}
+        </div>
         {renderSlide(index)}
       </div>
 

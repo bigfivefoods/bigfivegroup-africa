@@ -15,6 +15,7 @@ import {
 import { companies } from "./lib/companies";
 import { CompanyIcon } from "./lib/icons";
 import IntelligenceNarrative from "./components/IntelligenceNarrative";
+import CaseStudyNsnp from "./components/CaseStudyNsnp";
 
 const statsData = [
   { number: 54, label: "African Nations Reach", suffix: "", note: "Continental ambition & corridor presence" },
@@ -58,14 +59,14 @@ const audiences = [
 
 const proofMetrics = [
   {
-    value: "150k+",
-    label: "Meals delivered",
-    source: "Big Five Foods programme delivery (partner-reported)",
+    value: "2.5m",
+    label: "Children / day ambition",
+    source: "NSNP-approved fortified porridges & soya pathway (DBE)",
   },
   {
-    value: "100k+",
-    label: "Children reached",
-    source: "School & institutional feeding pathways",
+    value: "150k+",
+    label: "Meals delivered to date",
+    source: "Big Five Foods programme delivery (partner-reported)",
   },
   {
     value: "83%",
@@ -395,6 +396,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="bg-[#fafafa] border-y border-black/10">
+        <CaseStudyNsnp />
+      </div>
 
       <IntelligenceNarrative variant="compact" />
 

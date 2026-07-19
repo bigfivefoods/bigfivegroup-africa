@@ -19,6 +19,7 @@ import {
   Shield,
   Workflow,
 } from "lucide-react";
+import CaseStudyNsnp from "../components/CaseStudyNsnp";
 
 const ACCENT = "#7c3aed";
 
@@ -38,6 +39,7 @@ export default function ImpactPage() {
         subtitle="Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results."
         ctas={[
           { href: "#strategy-deck", label: "Strategic overview deck", primary: true },
+          { href: "#case-study", label: "NSNP case study" },
           { href: "#how", label: "How we deliver" },
         ]}
         overlayClassName="bg-[#2e1065]/55"
@@ -48,6 +50,46 @@ export default function ImpactPage() {
       {/* Online pitch / strategic briefing */}
       <section className="bg-[#fafafa] py-14 sm:py-20 md:py-24 border-b border-black/10">
         <StrategyDeck />
+      </section>
+
+      <div className="bg-white border-b border-black/10">
+        <CaseStudyNsnp />
+      </div>
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="rounded-2xl sm:rounded-3xl border border-violet-200 bg-gradient-to-br from-violet-50 to-white p-6 sm:p-8">
+          <div className="text-xs tracking-[2px] text-violet-800 font-semibold mb-2">
+            IMPACT DASHBOARD · PUBLIC SNAPSHOT
+          </div>
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tighter text-black mb-4">
+            High-level metrics partners can cite
+          </h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
+            {[
+              { v: "2.5m", l: "Children/day ambition (NSNP pathway)" },
+              { v: "150k+", l: "Meals delivered to date" },
+              { v: "10", l: "Pillars under one PMO" },
+              { v: "SDG", l: "1 · 2 · 4 · 8 · 10 · 17 design" },
+            ].map((x) => (
+              <div
+                key={x.l}
+                className="rounded-xl border border-black/10 bg-white p-3 sm:p-4 min-w-0"
+              >
+                <div className="text-2xl sm:text-3xl font-semibold tracking-tighter text-violet-900">
+                  {x.v}
+                </div>
+                <div className="text-[11px] sm:text-xs text-[#525252] mt-1 leading-snug">{x.l}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] sm:text-xs text-[#737373] leading-relaxed">
+            Last updated: July 2026 · Group-reported and pathway ambitions — request a formal brief
+            for partner-grade audit packs.{" "}
+            <a href="/contact" className="underline text-black font-medium">
+              Book a briefing
+            </a>
+          </p>
+        </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">

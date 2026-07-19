@@ -46,7 +46,31 @@ export default function SamPage() {
         overlayClassName="bg-black/55"
       />
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <SectionHeading
+          eyebrow="60-SECOND WALKTHROUGH"
+          title="How to meet SAM"
+          subtitle="A simple path from this site into the live SupplierAdvisor® messenger."
+        />
+        <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-4">
+          {[
+            { n: "01", t: "Open SupplierAdvisor®", d: "Start a free trial or log in to your workspace." },
+            { n: "02", t: "Enter the messenger", d: "SAM sits inside the OS — ask about trade, compliance, or ops." },
+            { n: "03", t: "Act on verified data", d: "Pair answers with Live pulse and on-chain pedigree where it matters." },
+          ].map((s) => (
+            <li
+              key={s.n}
+              className="rounded-2xl border border-black/10 bg-white p-5 list-none min-w-0"
+            >
+              <div className="text-2xl font-semibold tracking-tighter text-cyan-700/40 mb-1">{s.n}</div>
+              <div className="font-semibold text-black mb-1">{s.t}</div>
+              <p className="text-sm text-[#525252] leading-relaxed">{s.d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
         <SectionHeading
           eyebrow="WHAT SAM HELPS WITH"
           title="Four jobs inside the OS"

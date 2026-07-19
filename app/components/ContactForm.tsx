@@ -78,6 +78,7 @@ export default function ContactForm({
         ok: boolean;
         error?: string;
         mailto?: string | null;
+        emailed?: boolean;
       };
 
       if (!res.ok || !data.ok) {
@@ -88,11 +89,18 @@ export default function ContactForm({
 
       setMailto(data.mailto ?? null);
       setWhatsApp(buildWhatsAppLink(payload));
-      setStatus("success");
 
+      if (data.emailed) {
+        window.location.href = `/contact/thanks?emailed=1&interest=${encodeURIComponent(payload.interest)}`;
+        return;
+      }
+
+      setStatus("success");
       if (data.mailto) {
-        // Open the user's mail client with a pre-filled enquiry
-        window.location.href = data.mailto;
+        // Open the user's mail client with a pre-filled enquiry, then offer next steps
+        window.setTimeout(() => {
+          window.location.href = data.mailto!;
+        }, 100);
       }
     } catch {
       setError("Network error. Please email us directly or use WhatsApp.");
@@ -136,16 +144,24 @@ export default function ContactForm({
             </a>
           )}
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            setStatus("idle");
-            setForm((f) => ({ ...f, message: "" }));
-          }}
-          className="mt-6 text-sm text-[#525252] underline underline-offset-2 hover:text-black"
-        >
-          Send another enquiry
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+          <a
+            href="/contact/thanks"
+            className="text-sm font-medium text-black underline underline-offset-2"
+          >
+            Continue to next steps
+          </a>
+          <button
+            type="button"
+            onClick={() => {
+              setStatus("idle");
+              setForm((f) => ({ ...f, message: "" }));
+            }}
+            className="text-sm text-[#525252] underline underline-offset-2 hover:text-black"
+          >
+            Send another enquiry
+          </button>
+        </div>
       </div>
     );
   }
@@ -155,7 +171,7 @@ export default function ContactForm({
   const label = "block text-xs font-semibold tracking-wide text-[#404040] mb-1.5 uppercase";
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5" noValidate>
+    <form onSubmit={onSubmit} className="relative space-y-4 sm:space-y-5" noValidate>
       {/* Honeypot */}
       <div className="absolute -left-[9999px] opacity-0 h-0 overflow-hidden" aria-hidden>
         <label htmlFor="website">Website</label>
@@ -301,9 +317,12 @@ export default function ContactForm({
         )}
       </button>
       <p className="text-xs text-[#737373] leading-relaxed max-w-lg">
-        Submitting opens your email app with a draft to {CONTACT_EMAIL}. We typically respond within
-        1–2 business days. Prefer WhatsApp? Use the button after submit, or message us from the
-        footer.
+        By submitting, you agree we may use your details to respond to this enquiry (see our{" "}
+        <a href="/privacy" className="underline underline-offset-2 text-black">
+          Privacy Policy
+        </a>
+        ). If server email is configured, we send directly; otherwise your mail app opens a draft to{" "}
+        {CONTACT_EMAIL}. We typically respond within 1–2 business days.
       </p>
     </form>
   );

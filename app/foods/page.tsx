@@ -13,6 +13,7 @@ import { UtensilsCrossed, ChefHat, Beef, Soup } from "lucide-react";
 import { SA_ONBOARDING } from "../lib/saCopy";
 import LocalNewsVideo from "../components/LocalNewsVideo";
 import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
+import CaseStudyNsnp from "../components/CaseStudyNsnp";
 
 const ACCENT = "#d97706";
 
@@ -124,21 +125,25 @@ export default function FoodsPage() {
         <StatRow
           accent={ACCENT}
           stats={[
-            { value: "150k", label: "Meals delivered" },
-            { value: "100k", label: "Children reached" },
+            { value: "2.5m", label: "Children / day ambition (NSNP pathway)" },
+            { value: "150k", label: "Meals delivered to date" },
             { value: "83%", label: "Cheaper than alternatives" },
             { value: "74%", label: "More nutrition" },
           ]}
         />
         <p className="mt-5 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
-          Meals and children reached are programme-reported delivery figures. Cost and nutrition
-          comparisons are internal analyses vs alternative pathways — request the latest brief when
-          you enquire.{" "}
+          2.5m/day is our high-level NSNP school-nutrition delivery ambition with fortified porridges
+          and soya minces. Historic meals delivered are programme-reported. Cost and nutrition
+          comparisons are internal analyses — request the latest brief when you enquire.{" "}
           <a href="/contact?interest=foods" className="underline underline-offset-2 text-black font-medium">
             Partner with Foods
           </a>
         </p>
       </section>
+
+      <div className="bg-white border-y border-black/10">
+        <CaseStudyNsnp />
+      </div>
 
       <LocalNewsVideo accent={ACCENT} />
 

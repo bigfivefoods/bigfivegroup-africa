@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MessageCircle, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Calendar } from "lucide-react";
 import ContactForm from "../components/ContactForm";
 import {
   CONTACT_EMAIL,
@@ -7,6 +7,7 @@ import {
   CONTACT_PHONE_E164,
   CONTACT_WHATSAPP,
   CONTACT_LOCATION,
+  CALENDLY_URL,
 } from "../lib/contact";
 
 const pathways = [
@@ -69,6 +70,26 @@ export default function ContactPage() {
           </div>
 
           <aside className="lg:col-span-5 space-y-6 sm:space-y-8 min-w-0">
+            {CALENDLY_URL ? (
+              <div className="rounded-2xl sm:rounded-3xl border border-emerald-200 bg-emerald-50/50 p-5 sm:p-7">
+                <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
+                  Prefer a calendar slot?
+                </h3>
+                <p className="text-sm text-[#525252] mb-4 leading-relaxed">
+                  Book a strategic briefing directly — we&apos;ll prepare the right pillar mix.
+                </p>
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-5 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
+                >
+                  <Calendar className="w-4 h-4" />
+                  Open booking calendar
+                </a>
+              </div>
+            ) : null}
+
             <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
               <h3 className="text-lg font-semibold tracking-tight text-black mb-4">
                 Direct channels
