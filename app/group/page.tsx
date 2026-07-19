@@ -505,10 +505,10 @@ export default function GroupPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/connect"
+              href="/contact"
               className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/30 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white/10"
             >
-              Partner with the group
+              Book a briefing
             </Link>
           </div>
         </div>

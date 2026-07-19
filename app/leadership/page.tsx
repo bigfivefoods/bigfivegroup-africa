@@ -227,7 +227,8 @@ export default function LeadershipPage() {
             <ExternalLink className="w-4 h-4" />
           </a>
           <p className="mt-4 text-sm text-[#737373]">
-            Cohorts, coaching, and the Super-Cube® learning platform — launching and growing at{" "}
+            Cohorts, coaching, and organisational programmes — book a briefing with Big Five Leadership
+            or continue at{" "}
             <a
               href={SUPER_CUBE_URL}
               target="_blank"
@@ -314,7 +315,8 @@ export default function LeadershipPage() {
           </h2>
           <p className="text-white/65 text-lg mb-8 leading-relaxed">
             Big Five Leadership is the group education pillar. Super-Cube® is the dedicated home for
-            programmes, cohorts, and the global Super-Cube community — next to be built out in full.
+            the model, research, and programme pathways — partner with us for organisational and
+            public-sector cohorts.
           </p>
           <a
             href={SUPER_CUBE_URL}
@@ -337,7 +339,7 @@ export default function LeadershipPage() {
           label: "Go to super-cube.com",
           external: true,
         }}
-        secondary={{ href: "/connect", label: "Partner with Big Five" }}
+        secondary={{ href: "/contact?interest=leadership", label: "Book a Leadership briefing" }}
       />
     </div>
   );

@@ -16,6 +16,7 @@ const navLinks = [
   { href: "/global", label: "Global" },
   { href: "/foundation", label: "Foundation" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -202,16 +203,22 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="hidden 2xl:block shrink-0">
+        <div className="hidden 2xl:flex items-center gap-3 shrink-0">
           <a
             href="https://www.supplieradvisor.com"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-sm font-medium text-[#404040] hover:text-black whitespace-nowrap"
+          >
+            Launch Connect
+          </a>
+          <Link
+            href="/contact"
             className="premium-button inline-flex items-center gap-2 bg-black text-white px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide hover:bg-[#111] whitespace-nowrap"
           >
-            LAUNCH CONNECT
+            Book a briefing
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
 
         <button
@@ -292,23 +299,23 @@ export default function Navbar() {
               )}
 
               <div className="pt-4 border-t border-black/10 space-y-3">
+                <Link
+                  href="/contact"
+                  onClick={closeMenus}
+                  className="premium-button w-full inline-flex items-center justify-center gap-3 bg-black text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl text-base font-semibold"
+                >
+                  Book a briefing
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
                 <a
                   href="https://www.supplieradvisor.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMenus}
-                  className="premium-button w-full inline-flex items-center justify-center gap-3 bg-black text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl text-base font-semibold"
-                >
-                  LAUNCH CONNECT
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-                <Link
-                  href="/connect"
-                  onClick={closeMenus}
                   className="w-full inline-flex items-center justify-center gap-2 text-sm text-[#525252] hover:text-black py-2"
                 >
-                  Learn about Connect
-                </Link>
+                  Launch Connect · SupplierAdvisor®
+                </a>
               </div>
             </div>
           </motion.div>

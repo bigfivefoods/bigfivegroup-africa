@@ -18,6 +18,7 @@ const routes = [
   "/leadership",
   "/foundation",
   "/royal",
+  "/contact",
   "/privacy",
   "/terms",
 ];

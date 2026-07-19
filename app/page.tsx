@@ -3,16 +3,80 @@
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  GraduationCap,
+  Landmark,
+  School,
+  ShoppingBag,
+  Sprout,
+} from "lucide-react";
 import { companies } from "./lib/companies";
 import { CompanyIcon } from "./lib/icons";
 import IntelligenceNarrative from "./components/IntelligenceNarrative";
 
 const statsData = [
-  { number: 54, label: "African Nations Reach", suffix: "" },
-  { number: 124, label: "Hectares Regenerated", suffix: "k" },
-  { number: 2.8, label: "Rands Facilitated", suffix: "B" },
-  { number: 47, label: "Jobs Created", suffix: "k" },
+  { number: 54, label: "African Nations Reach", suffix: "", note: "Continental ambition & corridor presence" },
+  { number: 124, label: "Hectares Regenerated", suffix: "k", note: "Programme-reported regenerative footprint" },
+  { number: 2.8, label: "Rands Facilitated", suffix: "B", note: "Trade & capital pathways (group network)" },
+  { number: 47, label: "Jobs Created", suffix: "k", note: "Direct & enabled livelihoods (programme-reported)" },
+];
+
+const audiences = [
+  {
+    icon: Landmark,
+    t: "Governments & public sector",
+    d: "Nutrition programmes, leadership capacity, and delivery partners who can hold complexity.",
+  },
+  {
+    icon: Building2,
+    t: "Enterprises & boards",
+    d: "Ethical commerce, Super-Cube® development, and verified supply systems.",
+  },
+  {
+    icon: School,
+    t: "Schools & institutions",
+    d: "Fortified meals at scale — affordable, shelf-stable, ordered on SupplierAdvisor®.",
+  },
+  {
+    icon: ShoppingBag,
+    t: "Retail & distribution",
+    d: "African staples with certifications, provenance, and route-to-market support.",
+  },
+  {
+    icon: GraduationCap,
+    t: "Leadership cohorts",
+    d: "Whole-person formation for executives, public servants, and emerging leaders.",
+  },
+  {
+    icon: Sprout,
+    t: "DFIs, NGOs & funders",
+    d: "Measurable Feed · Educate · Empower outcomes with Impact PMO discipline.",
+  },
+];
+
+const proofMetrics = [
+  {
+    value: "150k+",
+    label: "Meals delivered",
+    source: "Big Five Foods programme delivery (partner-reported)",
+  },
+  {
+    value: "100k+",
+    label: "Children reached",
+    source: "School & institutional feeding pathways",
+  },
+  {
+    value: "83%",
+    label: "Cheaper pathways",
+    source: "Foods cost comparison vs alternative formulations (internal)",
+  },
+  {
+    value: "70–76%",
+    label: "Leadership developable",
+    source: "Super-Cube® DBA research · deliberate practice thesis",
+  },
 ];
 
 function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) {
@@ -157,6 +221,85 @@ export default function Home() {
         </div>
       </div>
 
+      {/* WHO WE SERVE + PROOF */}
+      <section
+        id="who"
+        className="border-b border-black/10 bg-white py-14 sm:py-16 md:py-20"
+      >
+        <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-8 sm:mb-10">
+            <div className="uppercase tracking-[3px] text-xs text-emerald-700 mb-3 font-medium">
+              Who this is for
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance">
+              Outcomes first. Pillars second.
+            </h2>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-[#525252] leading-relaxed">
+              Big Five is an integrated African group — Feed · Educate · Empower. Tell us the
+              outcome you need; we map the right mix of pillars.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-10 sm:mb-12">
+            {audiences.map((a) => (
+              <div
+                key={a.t}
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 sm:p-6 min-w-0 flex gap-3 sm:gap-4"
+              >
+                <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center shrink-0">
+                  <a.icon className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <div className="font-semibold text-black text-sm sm:text-base mb-1">{a.t}</div>
+                  <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">{a.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-[#0a0a0a] text-white p-5 sm:p-8 md:p-10">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 sm:mb-8">
+              <div>
+                <div className="text-[10px] sm:text-xs tracking-[2px] text-emerald-400/90 mb-2 font-medium">
+                  SIGNATURE PROOF
+                </div>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-balance">
+                  Numbers partners put in briefs
+                </h3>
+              </div>
+              <Link
+                href="/contact"
+                className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto shrink-0"
+              >
+                Book a briefing
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              {proofMetrics.map((m) => (
+                <div
+                  key={m.label}
+                  className="rounded-xl border border-white/10 bg-white/[0.05] p-3 sm:p-4 min-w-0"
+                >
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-white">
+                    {m.value}
+                  </div>
+                  <div className="text-xs sm:text-sm font-medium text-white/90 mt-1">{m.label}</div>
+                  <div className="text-[10px] sm:text-[11px] text-white/45 mt-1.5 leading-snug">
+                    {m.source}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 sm:mt-6 text-[11px] sm:text-xs text-white/40 leading-relaxed max-w-3xl">
+              Programme metrics are partner- and group-reported unless noted. Super-Cube®
+              developability draws on doctoral research (UKZN, 2020). Ask us for the latest brief when
+              you enquire.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* THE 10 PILLARS */}
       <section
         id="pillars"
@@ -283,9 +426,18 @@ export default function Home() {
               <div className="text-[#171717] text-xs sm:text-base md:text-lg font-medium leading-snug">
                 {stat.label}
               </div>
+              {stat.note && (
+                <div className="text-[10px] sm:text-xs text-[#737373] mt-2 leading-snug">
+                  {stat.note}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
+        <p className="mt-6 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
+          Figures are group-reported indicators of scale and ambition. For partner-grade detail,
+          request a briefing.
+        </p>
       </section>
 
       {/* LEADERSHIP + FOUNDATION STRIP */}
@@ -336,16 +488,23 @@ export default function Home() {
           <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 sm:mb-10">
             Whether you are a government, investor, farmer, or conscious consumer — there is a place for you in the Big Five ecosystem.
           </p>
-          <Link
-            href="/connect"
-            className="premium-button w-full sm:w-auto mx-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black text-sm sm:text-lg md:text-xl px-6 sm:px-10 md:px-14 py-3.5 sm:py-4 md:py-5 rounded-full font-semibold shadow-xl max-w-md sm:max-w-none"
-          >
-            <span className="sm:hidden">LAUNCH CONNECT</span>
-            <span className="hidden sm:inline">LAUNCH CONNECT — SUPPLIERADVISOR®</span>
-            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-lg sm:max-w-none mx-auto">
+            <Link
+              href="/contact"
+              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black text-sm sm:text-base md:text-lg px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold shadow-xl"
+            >
+              Book a briefing
+              <ArrowRight className="w-5 h-5 shrink-0" />
+            </Link>
+            <Link
+              href="/connect"
+              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm sm:text-base md:text-lg px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold hover:bg-white/10"
+            >
+              Launch Connect
+            </Link>
+          </div>
           <div className="mt-5 sm:mt-6 text-xs text-white/40">
-            Instant access for verified partners
+            Strategic enquiry · or open SupplierAdvisor® for verified trade
           </div>
         </div>
       </section>

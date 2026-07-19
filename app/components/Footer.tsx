@@ -54,6 +54,9 @@ export default function Footer() {
               <Link href="/about" className="block hover:text-black/70 transition-colors">
                 About
               </Link>
+              <Link href="/contact" className="block hover:text-black/70 transition-colors">
+                Contact · Book a briefing
+              </Link>
               <Link href="/connect" className="block hover:text-black/70 transition-colors">
                 Connect · SAM
               </Link>

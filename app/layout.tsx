@@ -79,6 +79,49 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Big Five Group Africa",
+  legalName: "Big Five Group (Pty) Ltd",
+  url: siteUrl,
+  logo: `${siteUrl}/super-cube-logo.png`,
+  description:
+    "Integrated African enterprise: regenerative agriculture, fortified nutrition, Super-Cube® leadership, SupplierAdvisor® commerce, and verified impact.",
+  email: "craig@bigfivegroup.africa",
+  telephone: "+27-82-581-4215",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "KwaZulu-Natal",
+    addressCountry: "ZA",
+  },
+  sameAs: [
+    "https://www.supplieradvisor.com",
+    "https://www.super-cube.com",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "partnerships",
+    email: "craig@bigfivegroup.africa",
+    telephone: "+27-82-581-4215",
+    areaServed: "Africa",
+    availableLanguage: ["en"],
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Big Five Group Africa",
+  url: siteUrl,
+  description:
+    "One Group. Ten Pillars. Infinite African Impact — Feed · Educate · Empower.",
+  publisher: {
+    "@type": "Organization",
+    name: "Big Five Group Africa",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -87,6 +130,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth overflow-x-clip">
       <body className="min-h-dvh min-w-0 antialiased text-[#171717] [--navbar-height:4.5rem] sm:[--navbar-height:5rem] overflow-x-clip">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
+          }}
+        />
         <Navbar />
         <main className="pt-[var(--navbar-height)] min-h-screen min-w-0 overflow-x-clip">
           {children}

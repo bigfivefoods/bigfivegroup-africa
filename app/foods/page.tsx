@@ -130,6 +130,14 @@ export default function FoodsPage() {
             { value: "74%", label: "More nutrition" },
           ]}
         />
+        <p className="mt-5 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
+          Meals and children reached are programme-reported delivery figures. Cost and nutrition
+          comparisons are internal analyses vs alternative pathways — request the latest brief when
+          you enquire.{" "}
+          <a href="/contact?interest=foods" className="underline underline-offset-2 text-black font-medium">
+            Partner with Foods
+          </a>
+        </p>
       </section>
 
       <LocalNewsVideo accent={ACCENT} />
@@ -265,8 +273,8 @@ export default function FoodsPage() {
           external: true,
         }}
         secondary={{
-          href: "/connect",
-          label: "Talk to Big Five",
+          href: "/contact?interest=foods",
+          label: "Book a Foods briefing",
         }}
       />
     </div>
