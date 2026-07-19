@@ -252,33 +252,7 @@ function StatTile({
 function Slide({ index }: SlideProps) {
   switch (index) {
     case 0:
-      return (
-        <SlideShell dark className="!p-0">
-          <TitleSlideLayout>
-            <div>
-              <Eyebrow light>BIG FIVE GROUP · STRATEGIC OVERVIEW</Eyebrow>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter leading-[1.05] max-w-3xl text-balance">
-                One Group.
-                <br />
-                Ten Pillars.
-                <br />
-                Infinite African Impact.
-              </h2>
-            </div>
-            <div className="mt-10 sm:mt-14 grid sm:grid-cols-2 gap-6 max-w-3xl">
-              <p className="text-white/75 text-sm sm:text-base leading-relaxed">
-                A shareable strategic briefing for governments, DFIs, corporates and partners —
-                African challenges with credible sources, and how Big Five delivers.
-              </p>
-              <div className="text-xs sm:text-sm text-white/45 space-y-1">
-                <p>KwaZulu-Natal · South Africa</p>
-                <p>bigfivegroup.africa/impact#strategy-deck</p>
-                <p>19 slides · Downloadable · Shareable</p>
-              </div>
-            </div>
-          </TitleSlideLayout>
-        </SlideShell>
-      );
+      return <GroupTitleSlide />;
 
     case 1:
       return (
@@ -1106,6 +1080,71 @@ function TitleSlideLayout({ children }: { children: React.ReactNode }) {
     >
       {children}
     </div>
+  );
+}
+
+/** Slide 1 — Group strategic overview title with official white Group mark */
+function GroupTitleSlide() {
+  const forPrint = usePrintMode();
+
+  return (
+    <SlideShell dark className="!p-0">
+      <TitleSlideLayout>
+        <div>
+          <Eyebrow light>BIG FIVE GROUP · STRATEGIC OVERVIEW</Eyebrow>
+          <div
+            className={`relative mb-4 sm:mb-6 ${
+              forPrint ? "w-24 h-24" : "w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40"
+            }`}
+          >
+            <Image
+              src="/bigfivegroup-logo.png"
+              alt="Big Five Group"
+              fill
+              className="object-contain object-left drop-shadow-lg"
+              sizes="160px"
+              priority
+            />
+          </div>
+          <h2
+            className={`font-semibold tracking-tighter leading-[1.05] max-w-3xl text-balance text-white ${
+              forPrint
+                ? "text-2xl sm:text-3xl"
+                : "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+            }`}
+          >
+            One Group.
+            <br />
+            Ten Pillars.
+            <br />
+            Infinite African Impact.
+          </h2>
+        </div>
+        <div
+          className={`grid sm:grid-cols-2 gap-6 max-w-3xl ${
+            forPrint ? "mt-6" : "mt-10 sm:mt-14"
+          }`}
+        >
+          <p
+            className={`text-white/75 leading-relaxed ${
+              forPrint ? "text-xs" : "text-sm sm:text-base"
+            }`}
+          >
+            A shareable strategic briefing for governments, DFIs, corporates and partners —
+            African challenges with credible sources, and how Big Five delivers.
+          </p>
+          <div
+            className={`text-white/45 space-y-1 ${
+              forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+            }`}
+          >
+            <p>KwaZulu-Natal · South Africa</p>
+            <p>bigfivegroup.africa/impact#strategy-deck</p>
+            <p>19 slides · Downloadable · Shareable</p>
+          </div>
+        </div>
+      </TitleSlideLayout>
+    </SlideShell>
   );
 }
 
