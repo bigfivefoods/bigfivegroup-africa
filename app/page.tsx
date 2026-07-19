@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -132,9 +133,25 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-14 sm:py-20">
           <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="flex justify-center mb-4 sm:mb-6"
+          >
+            <Image
+              src="/bigfivegroup-logo.png"
+              alt="Big Five Group logo"
+              width={192}
+              height={192}
+              className="h-14 w-14 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain drop-shadow-lg brightness-0 invert"
+              priority
+            />
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.04 }}
             className="inline-flex max-w-full items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-white/30 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-5 sm:mb-6 text-white/95"
           >
             <span className="truncate">EST. 2018 · KWAZULU-NATAL · AFRICA</span>

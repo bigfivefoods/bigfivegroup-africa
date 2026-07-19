@@ -17,6 +17,16 @@ export const metadata = {
 
 const assets = [
   {
+    name: "Big Five Group logo",
+    src: "/bigfivegroup-logo.png",
+    note: "Primary group mark (identical layout to Foods; GROUP wordmark).",
+  },
+  {
+    name: "Big Five Foods logo",
+    src: "/bigfivefoods-logo.png",
+    note: "Foods pillar mark.",
+  },
+  {
     name: "Super-Cube® logo (transparent)",
     src: "/super-cube-logo-transparent.png",
     note: "Preferred on dark and light backgrounds.",
@@ -25,11 +35,6 @@ const assets = [
     name: "Super-Cube® logo (original)",
     src: "/super-cube-logo.png",
     note: "Full-colour wordmark with cube.",
-  },
-  {
-    name: "Big Five Foods logo",
-    src: "/bigfivefoods-logo.png",
-    note: "Foods pillar mark.",
   },
 ];
 

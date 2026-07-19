@@ -112,6 +112,13 @@ export default function GroupPage() {
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/home-hero.jpg"
+        logo={{
+          src: "/bigfivegroup-logo.png",
+          alt: "Big Five Group logo",
+          width: 192,
+          height: 192,
+          className: "brightness-0 invert",
+        }}
         eyebrow="THE GROUP · TEN PILLARS · ONE SYSTEM"
         title={
           <>
