@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Check, School } from "lucide-react";
+import { ArrowRight, ExternalLink, Check } from "lucide-react";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
 
 export default function CaseStudyNsnp({
@@ -22,8 +23,17 @@ export default function CaseStudyNsnp({
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-5 bg-gradient-to-br from-amber-950 via-[#1c1006] to-black text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between min-w-0">
               <div>
-                <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] text-amber-300/90 font-semibold mb-4">
-                  <School className="w-3.5 h-3.5" />
+                <div className="mb-5">
+                  <Image
+                    src="/bigfivefoods-logo.png"
+                    alt="Big Five Foods"
+                    width={160}
+                    height={160}
+                    className="h-14 w-14 sm:h-16 sm:w-16 object-contain brightness-0 invert"
+                    priority
+                  />
+                </div>
+                <div className="text-[10px] sm:text-xs tracking-[2px] text-amber-300/90 font-semibold mb-4">
                   {NSNP_CASE.eyebrow}
                 </div>
                 <div className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-2">
