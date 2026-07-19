@@ -57,6 +57,32 @@ export default function MethodologyPage() {
 
         <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
           <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
+            SupplierAdvisor® product claims
+          </h2>
+          <p className="text-sm text-[#404040] leading-relaxed mb-3">
+            Positioning such as “the world&apos;s most trusted supplier advice”, B2B/B2G/B2C network,
+            blockchain-ready pedigree, OTIFEF and module scope are aligned with the live product site{" "}
+            <a
+              href="https://www.supplieradvisor.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline underline-offset-2"
+            >
+              supplieradvisor.com
+            </a>
+            . Pricing, trial terms and founding-partner offers change on that platform — confirm there.
+          </p>
+          <Link
+            href="/connect#case-study-sa"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-black"
+          >
+            View case study
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </article>
+
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
+          <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
             Super-Cube® construct lifts (FMCG case)
           </h2>
           <p className="text-sm text-[#404040] leading-relaxed mb-3">

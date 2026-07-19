@@ -11,6 +11,7 @@ import {
   ProcessSteps,
   FinalCta,
 } from "../components/PageSections";
+import CaseStudySupplierAdvisor from "../components/CaseStudySupplierAdvisor";
 import {
   CheckCircle,
   Play,
@@ -87,6 +88,7 @@ export default function ConnectPage() {
             primary: true,
             external: true,
           },
+          { href: "#case-study-sa", label: "SupplierAdvisor case" },
           { href: "#connect-deck", label: "Strategic deck" },
           { href: "#sam", label: `Meet ${sa.sam.name}` },
         ]}
@@ -109,9 +111,13 @@ export default function ConnectPage() {
         </div>
       </section>
 
+      <div className="bg-[#fafafa] border-b border-black/10">
+        <CaseStudySupplierAdvisor />
+      </div>
+
       <SamSection dark />
 
-      <section className="bg-[#fafafa] border-b border-black/10 py-14 sm:py-20 md:py-24">
+      <section className="bg-white border-b border-black/10 py-14 sm:py-20 md:py-24">
         <ConnectStrategyDeck />
       </section>
 

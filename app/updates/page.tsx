@@ -25,6 +25,14 @@ const posts = [
   },
   {
     date: "2026",
+    tag: "Connect · SupplierAdvisor®",
+    title: "The world’s most trusted supplier advice — blockchain ERP for B2B, B2G & B2C",
+    body: "SupplierAdvisor® unites private trade, public procurement and consumer provenance on one verified OS — transparency, efficiency and live trust controls that can reshape how African and global businesses operate.",
+    href: "/connect#case-study-sa",
+    linkLabel: "Read the SupplierAdvisor case",
+  },
+  {
+    date: "2026",
     tag: "Leadership · FMCG",
     title: "Super-Cube® lifts across the African FMCG value chain",
     body: "Measured construct improvements after a Super-Cube® intervention for local and international FMCG businesses — Principles +45.1%, Emotional +39.5%, and lifts across all six faces of the cube.",

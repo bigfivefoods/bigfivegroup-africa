@@ -16,6 +16,7 @@ import { companies } from "./lib/companies";
 import { CompanyIcon } from "./lib/icons";
 import IntelligenceNarrative from "./components/IntelligenceNarrative";
 import CaseStudyNsnp from "./components/CaseStudyNsnp";
+import CaseStudySupplierAdvisor from "./components/CaseStudySupplierAdvisor";
 
 const statsData = [
   { number: 54, label: "African Nations Reach", suffix: "", note: "Continental ambition & corridor presence" },
@@ -399,6 +400,10 @@ export default function Home() {
 
       <div className="bg-[#fafafa] border-y border-black/10">
         <CaseStudyNsnp />
+      </div>
+
+      <div className="bg-white border-b border-black/10">
+        <CaseStudySupplierAdvisor />
       </div>
 
       <IntelligenceNarrative variant="compact" />

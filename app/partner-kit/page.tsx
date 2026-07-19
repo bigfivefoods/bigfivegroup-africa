@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { NSNP_CASE, NSNP } from "../lib/nsnp";
 import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
+import { SA_CASE } from "../lib/supplierAdvisorCase";
 import PrintButton from "../components/PrintButton";
 
 export const metadata = {
@@ -103,6 +104,41 @@ export default function PartnerKitPage() {
             ))}
           </div>
           <p className="text-xs text-[#737373]">{SUPER_CUBE_FMCG_CASE.continentalBody}</p>
+        </div>
+
+        <div className="rounded-2xl border border-cyan-200 bg-cyan-50/30 p-6 print:p-4">
+          <Image
+            src={SA_CASE.logoSrc}
+            alt={SA_CASE.logoAlt}
+            width={140}
+            height={100}
+            className="h-14 w-auto object-contain mb-3"
+            unoptimized
+          />
+          <h2 className="text-lg font-semibold text-black mb-2">
+            Case · SupplierAdvisor® · trusted supplier OS
+          </h2>
+          <p className="text-base font-semibold text-cyan-900 mb-2 tracking-tight">
+            &ldquo;{SA_CASE.tagline}&rdquo;
+          </p>
+          <p className="text-sm text-[#404040] leading-relaxed mb-3">{SA_CASE.body}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+            {SA_CASE.pillars.map((p) => (
+              <div key={p.t} className="rounded-lg border border-cyan-100 bg-white px-3 py-2">
+                <div className="text-xs font-bold text-cyan-900">{p.t}</div>
+                <p className="text-[11px] text-[#525252] leading-snug line-clamp-3">{p.d}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-[#737373] mb-2">{SA_CASE.revolutionBody}</p>
+          <a
+            href={SA_CASE.siteUrl}
+            className="text-xs font-medium text-cyan-900 underline break-all"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {SA_CASE.siteUrl}
+          </a>
         </div>
 
         <div className="rounded-2xl border border-black/10 bg-white p-6 print:p-4">
