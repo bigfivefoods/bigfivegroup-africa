@@ -41,6 +41,9 @@ Copy `.env.example` → `.env.local` (or set in Vercel):
 | `CONTACT_TO_EMAIL` | Inbox for enquiries |
 | `CONTACT_WEBHOOK_URL` | Zapier / Make / Formspree JSON webhook |
 | `NEXT_PUBLIC_CALENDLY_URL` | Public booking link on `/contact` |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Plausible analytics domain |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 measurement ID (optional) |
+| `NEXT_PUBLIC_SAM_VIDEO_URL` | Embed URL for SAM walkthrough video |
 
 ## Project structure
 

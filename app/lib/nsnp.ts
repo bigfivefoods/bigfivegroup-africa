@@ -41,7 +41,7 @@ export const NSNP_CASE = {
   productFocus:
     "Fortified porridges and soya minces — designed for institutional and school-day feeding at scale.",
   approval:
-    "Big Five Foods has been approved under South Africa’s National School Nutrition Programme (NSNP), overseen by the Department of Basic Education, to supply fortified porridges and soya minces for daily school nutrition pathways.",
+    "Big Five Foods is approved to supply fortified porridges and soya minces on pathways aligned with South Africa’s National School Nutrition Programme (NSNP), overseen by the Department of Basic Education — supporting daily school nutrition menus at institutional scale.",
   whatWeDeliver: [
     "Fortified porridge ranges suitable for high-volume school kitchens and feeding schemes",
     "Soya mince products for protein-forward, cost-efficient daily menus",

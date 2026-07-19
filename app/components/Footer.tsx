@@ -60,6 +60,15 @@ export default function Footer() {
               <Link href="/updates" className="block hover:text-black/70 transition-colors">
                 Updates
               </Link>
+              <Link href="/methodology" className="block hover:text-black/70 transition-colors">
+                Methodology
+              </Link>
+              <Link href="/partner-kit" className="block hover:text-black/70 transition-colors">
+                Partner kit
+              </Link>
+              <Link href="/brand" className="block hover:text-black/70 transition-colors">
+                Brand kit
+              </Link>
               <Link href="/connect" className="block hover:text-black/70 transition-colors">
                 Connect · SAM
               </Link>

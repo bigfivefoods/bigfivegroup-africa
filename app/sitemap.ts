@@ -20,6 +20,9 @@ const routes = [
   "/royal",
   "/contact",
   "/updates",
+  "/methodology",
+  "/partner-kit",
+  "/brand",
   "/privacy",
   "/terms",
 ];

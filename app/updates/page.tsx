@@ -24,6 +24,14 @@ const posts = [
     linkLabel: "Read the case study",
   },
   {
+    date: "2026",
+    tag: "Leadership · FMCG",
+    title: "Super-Cube® lifts across the African FMCG value chain",
+    body: "Measured construct improvements after a Super-Cube® intervention for local and international FMCG businesses — Principles +45.1%, Emotional +39.5%, and lifts across all six faces of the cube.",
+    href: "/leadership#case-study",
+    linkLabel: "View FMCG case study",
+  },
+  {
     date: "2020–2026",
     tag: "Leadership",
     title: "Super-Cube® — from DBA thesis to group Educate pillar",

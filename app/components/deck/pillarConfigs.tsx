@@ -865,7 +865,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     },
   ],
   superCubeModel: {
-    logoSrc: "/super-cube-logo.png",
+    logoSrc: "/super-cube-logo-transparent.png",
     logoAlt: "Super-Cube®",
     modelTitle: "The Super-Cube® Leadership Model",
     modelSubtitle:

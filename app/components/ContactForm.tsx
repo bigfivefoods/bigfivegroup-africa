@@ -8,6 +8,7 @@ import {
   type EnquiryPayload,
   CONTACT_EMAIL,
 } from "../lib/contact";
+import { track } from "../lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -16,6 +17,21 @@ function interestFromSearch(): string {
   const q = new URLSearchParams(window.location.search).get("interest");
   if (q && ENQUIRY_INTERESTS.some((i) => i.value === q)) return q;
   return "partnership";
+}
+
+function messageFromSearch(): string {
+  if (typeof window === "undefined") return "";
+  const intent = new URLSearchParams(window.location.search).get("intent");
+  if (intent === "sample") {
+    return "I would like a sample pack and/or volume quote for Big Five Foods (porridges / soya). Region: · Estimated monthly volume: · Preferred pack format: ·";
+  }
+  if (intent === "cohort") {
+    return "I am interested in a Super-Cube® leadership cohort for our organisation. Audience (exec / public / youth): · Preferred format (in-person / blended): · Approximate cohort size: · Timing: ·";
+  }
+  if (intent === "foundation") {
+    return "I would like to discuss funding or partnering with Big Five Foundation. Focus area (nutrition / livelihoods / other): ·";
+  }
+  return "";
 }
 
 export default function ContactForm({
@@ -39,10 +55,15 @@ export default function ContactForm({
   });
 
   useEffect(() => {
-    if (defaultInterest) return;
-    const fromUrl = interestFromSearch();
-    if (fromUrl !== "partnership") {
-      setForm((f) => ({ ...f, interest: fromUrl }));
+    const interest = defaultInterest ?? interestFromSearch();
+    const message = messageFromSearch();
+    setForm((f) => ({
+      ...f,
+      interest: interest || f.interest,
+      message: message || f.message,
+    }));
+    if (message.includes("sample")) {
+      track("sample_request", { source: "contact_prefill" });
     }
   }, [defaultInterest]);
 
@@ -57,6 +78,7 @@ export default function ContactForm({
     e.preventDefault();
     setStatus("submitting");
     setError(null);
+    track("contact_submit", { interest: form.interest });
 
     const payload: EnquiryPayload = {
       name: form.name,
@@ -89,6 +111,11 @@ export default function ContactForm({
 
       setMailto(data.mailto ?? null);
       setWhatsApp(buildWhatsAppLink(payload));
+
+      track("contact_submit_success", {
+        interest: payload.interest,
+        emailed: Boolean(data.emailed),
+      });
 
       if (data.emailed) {
         window.location.href = `/contact/thanks?emailed=1&interest=${encodeURIComponent(payload.interest)}`;

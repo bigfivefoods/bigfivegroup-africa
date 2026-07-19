@@ -70,7 +70,15 @@ export default function PrivacyPolicy() {
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">6. Data Security</h2>
           <p>We implement industry-standard security measures, including encryption, access controls, and regular audits. All sensitive data related to donations and on-chain transactions is protected with blockchain-level security.</p>
 
-          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">7. Contact Us</h2>
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">7. Analytics</h2>
+          <p>
+            We may use privacy-aware analytics (for example Plausible and/or Google Analytics with IP
+            anonymisation) to understand site usage. Analytics scripts only load when configured by
+            the site operator. You can use browser settings to limit tracking. We do not sell personal
+            data collected via analytics.
+          </p>
+
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">8. Contact Us</h2>
           <p>If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us:</p>
           <div className="mt-4">
             <p><strong>Dr. Craig R. Muller</strong><br />

@@ -52,6 +52,24 @@ export default function SamPage() {
           title="How to meet SAM"
           subtitle="A simple path from this site into the live SupplierAdvisor® messenger."
         />
+        {process.env.NEXT_PUBLIC_SAM_VIDEO_URL ? (
+          <div className="max-w-3xl mx-auto mb-10 rounded-2xl overflow-hidden border border-black/10 bg-black aspect-video">
+            <iframe
+              src={process.env.NEXT_PUBLIC_SAM_VIDEO_URL}
+              title="SAM walkthrough"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        ) : (
+          <div className="max-w-3xl mx-auto mb-8 rounded-2xl border border-dashed border-cyan-200 bg-cyan-50/40 px-5 py-6 text-center">
+            <p className="text-sm text-[#404040] leading-relaxed">
+              Screen recording coming soon — meanwhile follow the three steps below, or open a free
+              trial and explore SAM inside SupplierAdvisor®.
+            </p>
+          </div>
+        )}
         <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-4">
           {[
             { n: "01", t: "Open SupplierAdvisor®", d: "Start a free trial or log in to your workspace." },

@@ -19,6 +19,7 @@ import {
   Minimize2,
   Share2,
 } from "lucide-react";
+import { track } from "../../lib/analytics";
 
 export type PrintOrientation = "landscape" | "portrait";
 
@@ -500,6 +501,16 @@ export default function DeckShell({
     return () => window.removeEventListener("keydown", onKey);
   }, [go, index, fullscreen, printMode]);
 
+  // Prevent background scroll in fullscreen and restore focus when exiting
+  useEffect(() => {
+    if (!fullscreen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [fullscreen]);
+
   useEffect(() => {
     if (!printMode) return;
     let cancelled = false;
@@ -560,6 +571,7 @@ export default function DeckShell({
   })();
 
   const onShare = async () => {
+    track("deck_share", { path: sharePath });
     try {
       if (navigator.share) {
         await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
@@ -580,6 +592,7 @@ export default function DeckShell({
   };
 
   const onDownload = (orientation: PrintOrientation) => {
+    track("deck_pdf", { path: sharePath, orientation });
     setPrintOrientation(orientation);
     setPreparingPdf(true);
     setPrintMode(true);

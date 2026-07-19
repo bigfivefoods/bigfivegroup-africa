@@ -109,7 +109,10 @@ export default function FoodsPage() {
         subtitle="Fortified porridges, soya, one-pots and soups — certified manufacturing, measurable impact, ordered on SupplierAdvisor®."
         ctas={[
           { href: "#foods-deck", label: "Product deck", primary: true },
-          { href: "#products", label: "Explore products" },
+          {
+            href: "/contact?interest=foods&intent=sample",
+            label: "Request sample / quote",
+          },
           {
             href: SA_ONBOARDING,
             label: "Order on SupplierAdvisor®",
@@ -120,6 +123,29 @@ export default function FoodsPage() {
       />
 
       <SupplierTrust entityName="Big Five Foods" compact />
+
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div className="rounded-2xl border border-amber-200 bg-amber-50/50 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="min-w-0">
+            <div className="text-xs tracking-[2px] text-amber-900 font-semibold mb-1">
+              SCHOOLS · INSTITUTIONS · RETAIL
+            </div>
+            <h2 className="text-lg sm:text-xl font-semibold text-black">
+              Request a sample pack or volume quote
+            </h2>
+            <p className="text-sm text-[#525252] mt-1 leading-relaxed">
+              Fortified porridges and soya minces for NSNP-aligned and institutional menus — tell us
+              volumes, region and pack format.
+            </p>
+          </div>
+          <a
+            href="/contact?interest=foods&intent=sample"
+            className="premium-button shrink-0 inline-flex items-center justify-center gap-2 bg-amber-800 text-white px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
+          >
+            Sample / quote enquiry
+          </a>
+        </div>
+      </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <StatRow

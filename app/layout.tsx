@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Analytics from "./components/Analytics";
+import SkipToContent from "./components/SkipToContent";
 
 const siteUrl = "https://bigfivegroup.africa";
 
@@ -67,7 +69,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: "/favicon.ico" }, { url: "/bigfivefoods-logo.png", type: "image/png" }],
-    apple: [{ url: "/bigfivefoods-logo.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   category: "business",
 };
@@ -86,7 +88,7 @@ const organizationJsonLd = {
   name: "Big Five Group Africa",
   legalName: "Big Five Group (Pty) Ltd",
   url: siteUrl,
-  logo: `${siteUrl}/super-cube-logo.png`,
+  logo: `${siteUrl}/super-cube-logo-transparent.png`,
   description:
     "Integrated African enterprise: regenerative agriculture, fortified nutrition, Super-Cube® leadership, SupplierAdvisor® commerce, and verified impact.",
   email: "craig@bigfivegroup.africa",
@@ -137,8 +139,14 @@ export default function RootLayout({
             __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
           }}
         />
+        <SkipToContent />
+        <Analytics />
         <Navbar />
-        <main className="pt-[var(--navbar-height)] min-h-screen min-w-0 overflow-x-clip">
+        <main
+          id="main-content"
+          className="pt-[var(--navbar-height)] min-h-screen min-w-0 overflow-x-clip"
+          tabIndex={-1}
+        >
           {children}
         </main>
         <Footer />

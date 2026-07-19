@@ -276,18 +276,34 @@ export default function FoundationPage() {
 
       <section id="donate" className="bg-[#0f766e] text-white py-20 sm:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-semibold tracking-tighter mb-4">Donate or partner</h2>
-          <p className="text-white/75 text-lg mb-8">
-            Whether you are a foundation, corporate CSI lead, or family office — we structure
-            partnerships with the same professionalism as our commercial pillars. Verify Big Five
-            Foundation on SupplierAdvisor®.
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tighter mb-4">
+            How to fund or partner
+          </h2>
+          <p className="text-white/75 text-base sm:text-lg mb-6 leading-relaxed">
+            Foundations, corporate CSI, family offices and DFIs — we structure capital with the same
+            discipline as commercial pillars: theory of change, Impact PMO delivery, and verification
+            on SupplierAdvisor®.
           </p>
+          <ol className="text-left max-w-lg mx-auto space-y-3 text-sm text-white/80 mb-8">
+            <li>
+              <strong className="text-white">1. Tell us the outcome</strong> — nutrition, livelihoods,
+              youth leadership, or multi-pillar.
+            </li>
+            <li>
+              <strong className="text-white">2. We design the vehicle</strong> — grant, co-fund, or
+              programme partnership with reporting cadence.
+            </li>
+            <li>
+              <strong className="text-white">3. Deliver & verify</strong> — Impact PMO + Foods / Agri /
+              Leadership where needed.
+            </li>
+          </ol>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
             <a
-              href="mailto:craig@bigfivegroup.africa"
+              href="/contact?interest=foundation&intent=foundation"
               className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold"
             >
-              Contact the Foundation
+              Partner with the Foundation
             </a>
             <a
               href={SA_URL}
@@ -306,8 +322,8 @@ export default function FoundationPage() {
         eyebrow="CHANGE LIVES"
         title="Fund impact that can be proven"
         subtitle="Programmes designed for transparency, delivery and replication — with Impact as the PMO."
-        primary={{ href: "/impact", label: "See Big Five Impact" }}
-        secondary={{ href: "/connect", label: "Partner with us" }}
+        primary={{ href: "/contact?interest=foundation", label: "Start a funding conversation" }}
+        secondary={{ href: "/impact", label: "See Big Five Impact" }}
       />
     </div>
   );

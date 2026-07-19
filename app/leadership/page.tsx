@@ -132,11 +132,12 @@ export default function LeadershipPage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <div className="text-center mb-12">
           <Image
-            src="/super-cube-logo.png"
+            src="/super-cube-logo-transparent.png"
             alt="Super-Cube®"
             width={280}
             height={64}
-            className="mx-auto mb-8 h-auto"
+            className="mx-auto mb-8 h-auto object-contain"
+            unoptimized
           />
           <SectionHeading
             eyebrow="THE SUPER-CUBE® MODEL"
@@ -357,7 +358,7 @@ export default function LeadershipPage() {
             title="What a Super-Cube® engagement looks like"
             subtitle="Practical pathways for organisations and public institutions — not abstract theory alone."
           />
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
             {[
               {
                 t: "Assess",
@@ -387,10 +388,41 @@ export default function LeadershipPage() {
               </div>
             ))}
           </div>
-          <div className="mt-8 text-center">
+
+          <div className="rounded-2xl sm:rounded-3xl border border-amber-200 bg-amber-50/40 p-5 sm:p-8 mb-8">
+            <h3 className="text-lg sm:text-xl font-semibold text-black mb-3">
+              Cohort snapshot (on application)
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm text-[#404040]">
+              <div>
+                <div className="font-semibold text-black mb-1">Who</div>
+                Executives, public servants, emerging leaders, FMCG network operators
+              </div>
+              <div>
+                <div className="font-semibold text-black mb-1">Format</div>
+                Blended (in-person intensives + virtual) · peer masterminds · optional AI coaching
+              </div>
+              <div>
+                <div className="font-semibold text-black mb-1">Duration</div>
+                Typical closed cohort 8–16 weeks after 2–4 week assessment design
+              </div>
+              <div>
+                <div className="font-semibold text-black mb-1">Investment</div>
+                Custom quotation by cohort size and sector — not a public list price
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-2 text-center flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="/contact?interest=leadership&intent=cohort"
+              className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-full font-semibold text-sm"
+            >
+              Apply for a cohort
+            </a>
             <a
               href="/contact?interest=leadership"
-              className="premium-button inline-flex items-center gap-2 bg-black text-white px-8 py-3.5 rounded-full font-semibold text-sm"
+              className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-8 py-3.5 rounded-full font-semibold text-sm"
             >
               Book a Leadership briefing
             </a>

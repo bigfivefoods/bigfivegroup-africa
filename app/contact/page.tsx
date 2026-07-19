@@ -83,12 +83,23 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-5 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
+                  data-analytics="calendly_click"
                 >
                   <Calendar className="w-4 h-4" />
                   Open booking calendar
                 </a>
               </div>
-            ) : null}
+            ) : (
+              <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
+                <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
+                  Book a briefing
+                </h3>
+                <p className="text-sm text-[#525252] leading-relaxed">
+                  Use the form and we&apos;ll schedule a conversation — typically within 1–2 business
+                  days. Email and WhatsApp remain open for urgent follow-up.
+                </p>
+              </div>
+            )}
 
             <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
               <h3 className="text-lg font-semibold tracking-tight text-black mb-4">
