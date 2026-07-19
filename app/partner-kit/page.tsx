@@ -58,12 +58,11 @@ export default function PartnerKitPage() {
 
         <div className="rounded-2xl border border-amber-200 bg-amber-50/40 p-6 print:p-4">
           <Image
-            src="/super-cube-logo-transparent.png"
-            alt="Super-Cube®"
-            width={160}
-            height={34}
-            className="h-8 w-auto object-contain mb-3"
-            unoptimized
+            src="/bigfivefoods-logo.png"
+            alt="Big Five Foods"
+            width={120}
+            height={120}
+            className="h-14 w-14 sm:h-16 sm:w-16 object-contain mb-3"
           />
           <h2 className="text-lg font-semibold text-black mb-2">Case · School nutrition (NSNP)</h2>
           <p className="text-2xl font-semibold tracking-tighter text-amber-900 mb-2">
@@ -81,6 +80,14 @@ export default function PartnerKitPage() {
         </div>
 
         <div className="rounded-2xl border border-black/10 bg-white p-6 print:p-4">
+          <Image
+            src="/super-cube-logo-transparent.png"
+            alt="Super-Cube®"
+            width={180}
+            height={38}
+            className="h-8 w-auto object-contain mb-3"
+            unoptimized
+          />
           <h2 className="text-lg font-semibold text-black mb-2">
             Case · Super-Cube® FMCG intervention
           </h2>
