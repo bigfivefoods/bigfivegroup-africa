@@ -518,8 +518,8 @@ export default function GroupPage() {
         eyebrow="ENTER THE ECOSYSTEM"
         title="Find the pillar that fits your partnership"
         subtitle="Explore any of the ten businesses — or start a conversation about multi-pillar programmes."
-        primary={{ href: "/#pillars", label: "View all pillars" }}
-        secondary={{ href: "/connect", label: "Talk to us" }}
+        primary={{ href: "/contact", label: "Book a briefing" }}
+        secondary={{ href: "/#pillars", label: "View all pillars" }}
       />
     </div>
   );
