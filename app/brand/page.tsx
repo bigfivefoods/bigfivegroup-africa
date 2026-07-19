@@ -41,6 +41,11 @@ const assets = [
     src: "/super-cube-logo.png",
     note: "Full-colour wordmark with cube.",
   },
+  {
+    name: "SupplierAdvisor® logo",
+    src: "/supplieradvisor-logo.png",
+    note: "Connect / commerce OS mark. Third-party brand — use with permission; always include ® where practical.",
+  },
 ];
 
 export default function BrandPage() {
