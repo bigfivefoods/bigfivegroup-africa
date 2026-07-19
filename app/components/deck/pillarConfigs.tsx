@@ -875,7 +875,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
       { value: "You", label: "At the centre of the cube" },
       { value: "6 faces", label: "Human-centric constructs" },
       { value: "70–76%", label: "Leadership is developable" },
-      { value: "2020", label: "DBA · UKZN · Kwaden case" },
+      { value: "2020", label: "DBA · UKZN · Africa FMCG" },
     ],
     constructs: [
       {
@@ -929,7 +929,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     ],
     originsTitle: "From DBA thesis to Africa-centric practice",
     originsBody:
-      "Created for the Kwaden Group — an African FMCG business-network — the Super-Cube® model addresses leadership capacity where population growth, talent abundance, skills shortages, corruption pressures and weak institutions demand whole-person leaders. It is among the first empirically validated, Africa-centric leadership development frameworks of its kind.",
+      "Developed and tested within an African FMCG business-network, the Super-Cube® model addresses leadership capacity where population growth, talent abundance, skills shortages, corruption pressures and weak institutions demand whole-person leaders. It is among the first empirically validated, Africa-centric leadership development frameworks of its kind.",
     foundations: [
       {
         t: "Integrated leadership theories",
@@ -948,7 +948,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     levels: [
       { n: "01", t: "Individual", d: "Personal development plans at the core" },
       { n: "02", t: "Business", d: "Leadership pipelines in single organisations" },
-      { n: "03", t: "Group", d: "Enterprise-wide capacity (e.g. Kwaden Group)" },
+      { n: "03", t: "Group", d: "Enterprise-wide capacity across a business group" },
       { n: "04", t: "Network", d: "Supply-chain and alliance leadership" },
       { n: "05", t: "Industry", d: "Broader African FMCG / sector impact" },
     ],
@@ -957,7 +957,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
       "Mixed-methods design: confirmatory factor analysis (online survey, n=132) with acceptable model fit",
       "Qualitative validation: thematic analysis of interviews with 10 senior decision-makers",
       "Peer-reviewed publications (SAJEMS 2022 · JCM 2022) · free Super-Cube® book PDF",
-      "Honest scope: single-case study (Kwaden Group) — wider industry testing is recommended",
+      "Honest scope: single-case study within an African FMCG network — wider industry testing is recommended",
     ],
     bookHref: "/the-super-cube-leadership-model.pdf",
     bookLabel: "Download free book",

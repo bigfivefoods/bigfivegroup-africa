@@ -184,15 +184,12 @@ export default function LeadershipPage() {
             ORIGINS · THEORY · VALIDATION
           </div>
           <p className="text-sm sm:text-base text-[#404040] leading-relaxed mb-4">
-            Core output of Dr. Muller&apos;s DBA thesis at UKZN —{" "}
-            <em>
-              A Leadership Skills Development Model for the Kwaden Group: A Case Study of an African
-              FMCG Business-Network
-            </em>
-            . Integrates trait, relational, charismatic, evolutionary and entrepreneurial leadership
-            theory; Martin Buber&apos;s I–Thou philosophy; and Illeris&apos;s three-dimensional learning
-            (content · incentive · interaction). Validated via confirmatory factor analysis (n=132)
-            and interviews with 10 senior decision-makers; peer-reviewed in SAJEMS and JCM (2022).
+            Core output of Dr. Muller&apos;s DBA thesis at UKZN — a leadership skills development
+            model for an African FMCG business-network. Integrates trait, relational, charismatic,
+            evolutionary and entrepreneurial leadership theory; Martin Buber&apos;s I–Thou philosophy;
+            and Illeris&apos;s three-dimensional learning (content · incentive · interaction).
+            Validated via confirmatory factor analysis (n=132) and interviews with 10 senior
+            decision-makers; peer-reviewed in SAJEMS and JCM (2022).
           </p>
           <p className="text-xs sm:text-sm text-[#737373] leading-relaxed">
             Scope note: single-case study focus — results are context-specific; wider industry testing
