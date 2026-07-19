@@ -18,8 +18,8 @@ export const metadata = {
 const assets = [
   {
     name: "Big Five Group logo",
-    src: "/BIG FIVE GROUP LOGO.JPEG",
-    note: "Primary group mark (official import). White on black — use as-is on dark backgrounds.",
+    src: "/bigfivegroup-logo.jpg",
+    note: "Primary group mark (official import: BIG FIVE GROUP LOGO.JPEG). White on black — use as-is on dark backgrounds.",
   },
   {
     name: "Big Five Foods logo",
