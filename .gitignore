@@ -13,3 +13,8 @@ next-env.d.ts
 test-results/
 playwright-report/
 .env.local
+
+# Env secrets
+.env.local
+.env.vercel.secrets
+.env*.local

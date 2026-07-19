@@ -30,20 +30,57 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run lint` | ESLint |
 | `npm run test:e2e` | Playwright smoke tests (needs build first) |
 
-## Contact form (optional env)
+## Environment variables
 
-Copy `.env.example` → `.env.local` (or set in Vercel):
+### Local
 
-| Variable | Purpose |
-|----------|---------|
-| `RESEND_API_KEY` | Send enquiries via [Resend](https://resend.com) instead of only `mailto:` |
-| `CONTACT_FROM_EMAIL` | Verified Resend sender |
-| `CONTACT_TO_EMAIL` | Inbox for enquiries |
-| `CONTACT_WEBHOOK_URL` | Zapier / Make / Formspree JSON webhook |
-| `NEXT_PUBLIC_CALENDLY_URL` | Public booking link on `/contact` |
-| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Plausible analytics domain |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 measurement ID (optional) |
-| `NEXT_PUBLIC_SAM_VIDEO_URL` | Embed URL for SAM walkthrough video |
+```bash
+cp .env.example .env.local
+# edit .env.local with your keys
+npm run dev
+```
+
+`.env.local` is gitignored. Non-secret defaults (contact inbox) are pre-filled.
+
+### Vercel (production / preview)
+
+**Project:** [bigfivegroup-africa-8rr7](https://vercel.com/bigfivefoods-projects/bigfivegroup-africa-8rr7)  
+**Dashboard env UI:** Project → Settings → Environment Variables
+
+Or sync from this repo with a [Vercel token](https://vercel.com/account/tokens):
+
+```bash
+# 1. Put secrets in a gitignored file
+cp .env.vercel.secrets.example .env.vercel.secrets
+# edit .env.vercel.secrets (RESEND_API_KEY, Calendly URL, etc.)
+
+# 2. Export token and push to Production + Preview + Development
+export VERCEL_TOKEN=vercel_xxxx
+npm run env:vercel
+```
+
+Then **Redeploy** production so new env vars load.
+
+| Variable | Required? | Purpose |
+|----------|-----------|---------|
+| `RESEND_API_KEY` | For inbox delivery | [Resend](https://resend.com) API key — without it, contact form uses mailto |
+| `CONTACT_FROM_EMAIL` | With Resend | Verified sender, e.g. `Big Five Group <hello@yourdomain.com>` |
+| `CONTACT_TO_EMAIL` | Recommended | Inbox (default `craig@bigfivegroup.africa`) |
+| `CONTACT_WEBHOOK_URL` | Optional | Zapier / Make / Formspree webhook |
+| `NEXT_PUBLIC_CALENDLY_URL` | Optional | Booking link on `/contact` |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Optional | Plausible analytics domain |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | GA4 ID |
+| `NEXT_PUBLIC_SAM_VIDEO_URL` | Optional | YouTube/Vimeo embed for `/connect/sam` |
+
+Files:
+
+| File | Commit? | Role |
+|------|---------|------|
+| `.env.example` | Yes | Template for all vars |
+| `.env.local` | No | Local Next.js |
+| `.env.vercel.secrets.example` | Yes | Template for Vercel secrets |
+| `.env.vercel.secrets` | No | Real secrets for `npm run env:vercel` |
+| `scripts/sync-vercel-env.mjs` | Yes | Pushes env to Vercel API |
 
 ## Project structure
 
