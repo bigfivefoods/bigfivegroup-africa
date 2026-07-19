@@ -24,7 +24,14 @@ export default function PageHero({
   subtitle: string;
   ctas?: Cta[];
   overlayClassName?: string;
-  logo?: { src: string; alt: string; width?: number; height?: number };
+  logo?: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+    /** Extra classes e.g. brightness-0 invert for white logo on dark heroes */
+    className?: string;
+  };
 }) {
   const manyCtas = ctas.length > 2;
 
@@ -45,7 +52,9 @@ export default function PageHero({
               alt={logo.alt}
               width={logo.width ?? 160}
               height={logo.height ?? 160}
-              className="h-14 w-14 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain drop-shadow-lg"
+              className={`h-14 w-14 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain drop-shadow-lg ${
+                logo.className ?? ""
+              }`}
               priority
             />
           </div>

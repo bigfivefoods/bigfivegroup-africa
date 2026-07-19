@@ -358,7 +358,7 @@ function TitleSlide() {
                     src="/bigfivefoods-logo.png"
                     alt="Big Five Foods"
                     fill
-                    className="object-contain object-left"
+                    className="object-contain object-left brightness-0 invert"
                     sizes="208px"
                     priority
                   />

@@ -97,7 +97,13 @@ export default function FoodsPage() {
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/foods-hero.jpg"
-        logo={{ src: "/bigfivefoods-logo.png", alt: "Big Five Foods logo", width: 192, height: 192 }}
+        logo={{
+          src: "/bigfivefoods-logo.png",
+          alt: "Big Five Foods logo",
+          width: 192,
+          height: 192,
+          className: "brightness-0 invert",
+        }}
         eyebrow="PILLAR 02 · FORTIFIED NUTRITION"
         title={
           <>
