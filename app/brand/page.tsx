@@ -15,11 +15,18 @@ export const metadata = {
   alternates: { canonical: "/brand" },
 };
 
-const assets = [
+const assets: {
+  name: string;
+  src: string;
+  note: string;
+  /** Dark plate so white hero marks are visible in the kit preview */
+  previewDark?: boolean;
+}[] = [
   {
     name: "Big Five Group logo (hero / dark)",
     src: "/bigfivegroup-logo.png",
-    note: "Official mark with white→transparent, black→white for dark heroes.",
+    note: "White mark for dark heroes and dark UI. Use as-is on dark backgrounds.",
+    previewDark: true,
   },
   {
     name: "Big Five Group logo (original)",
@@ -27,9 +34,15 @@ const assets = [
     note: "Official import (black disc, white cutouts on white field).",
   },
   {
-    name: "Big Five Foods logo",
+    name: "Big Five Foods logo (hero / dark)",
+    src: "/bigfivefoods-logo-white.png",
+    note: "White mark for dark heroes and dark UI (same layout as the black Foods seal).",
+    previewDark: true,
+  },
+  {
+    name: "Big Five Foods logo (original)",
     src: "/bigfivefoods-logo.png",
-    note: "Foods pillar mark.",
+    note: "Foods pillar mark — black disc with transparent cutouts (for light backgrounds or CSS invert).",
   },
   {
     name: "Super-Cube® logo (transparent)",
