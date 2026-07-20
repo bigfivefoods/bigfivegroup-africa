@@ -144,7 +144,7 @@ export default function RootLayout({
         <Navbar />
         <main
           id="main-content"
-          className="pt-[var(--navbar-height)] min-h-screen min-w-0 overflow-x-clip"
+          className="pt-[var(--navbar-height)] min-h-[calc(100dvh-var(--navbar-height))] min-w-0 w-full max-w-[100vw] overflow-x-clip"
           tabIndex={-1}
         >
           {children}

@@ -10,9 +10,9 @@ export default function CompanyTemplate({ company }: { company: Company }) {
   const accent = company.color;
 
   return (
-    <div className="overflow-x-clip bg-[#fafafa]">
+    <div className="page-shell overflow-x-clip bg-[#fafafa]">
       <section
-        className="relative min-h-[min(80dvh,640px)] sm:min-h-[min(85dvh,720px)] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[min(78dvh,560px)] sm:min-h-[min(82dvh,640px)] md:min-h-[min(88dvh,720px)] flex items-center justify-center overflow-hidden w-full min-w-0"
         style={{ background: `linear-gradient(180deg, #0a0a0a 0%, #111 100%)` }}
       >
         <div
@@ -21,23 +21,23 @@ export default function CompanyTemplate({ company }: { company: Company }) {
             background: `radial-gradient(circle at 50% 30%, ${accent}20 0%, transparent 70%)`,
           }}
         />
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 sm:py-20">
+        <div className="relative z-10 w-full max-w-4xl 2xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-16 md:py-20 min-w-0">
           <div
-            className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl sm:rounded-3xl mb-6 sm:mb-8 mx-auto"
+            className="inline-flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl sm:rounded-3xl mb-5 sm:mb-8 mx-auto"
             style={{ backgroundColor: `${accent}20`, color: accent }}
           >
             <CompanyIcon name={company.icon} size={40} />
           </div>
           <div
-            className="uppercase tracking-[3px] sm:tracking-[4px] text-[10px] sm:text-xs mb-3 sm:mb-4"
+            className="uppercase tracking-[2px] sm:tracking-[4px] text-[10px] sm:text-xs mb-3 sm:mb-4"
             style={{ color: accent }}
           >
             BIG FIVE {company.name.toUpperCase()}
           </div>
-          <h1 className="text-white text-[clamp(1.75rem,5vw+0.5rem,3.75rem)] font-semibold tracking-tighter leading-[1.05] mb-5 sm:mb-6 text-balance">
+          <h1 className="text-white text-[clamp(1.6rem,4.8vw+0.5rem,3.75rem)] font-semibold tracking-tighter leading-[1.06] mb-4 sm:mb-6 text-balance px-1">
             {company.heroText}
           </h1>
-          <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-2xl text-white/70 tracking-tight mb-8 sm:mb-10">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-2xl text-white/70 tracking-tight mb-7 sm:mb-10 text-pretty px-1">
             {company.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">

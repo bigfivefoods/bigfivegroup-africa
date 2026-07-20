@@ -41,6 +41,8 @@ html {
   font-variation-settings: normal;
   -webkit-tap-highlight-color: transparent;
   overflow-x: clip;
+  /* Prevent iOS horizontal bounce from fixed elements */
+  max-width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -109,9 +111,52 @@ img[style*="position:absolute"] {
 main {
   overflow-wrap: break-word;
   word-break: normal;
-  hyphens: auto;
   min-width: 0;
   width: 100%;
+  max-width: 100%;
+}
+
+/* Site-wide page shell: every route roots should clip overflow */
+.page-shell {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Prefer balanced headings and readable body copy on all viewports */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Long URLs / unbroken strings in content */
+a {
+  overflow-wrap: break-word;
+}
+
+/* Tables, pre, and embeds: scroll inside, never expand the page */
+table {
+  max-width: 100%;
+}
+
+pre,
+code {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+iframe,
+embed,
+object,
+video {
   max-width: 100%;
 }
 
@@ -119,6 +164,33 @@ main {
 .overflow-x-auto {
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
+}
+
+/* Responsive section vertical rhythm */
+.section-y {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .section-y {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-y {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-y {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
 }
 
 /* Safer touch targets on mobile for icon-only controls */
@@ -152,6 +224,8 @@ textarea {
   margin-right: auto;
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
   padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -173,6 +247,24 @@ textarea {
     max-width: 90rem; /* slightly wider on big desktops */
     padding-left: max(2.5rem, env(safe-area-inset-left, 0px));
     padding-right: max(2.5rem, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* Narrow content column (prose / forms) */
+.site-prose {
+  width: 100%;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 0;
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 640px) {
+  .site-prose {
+    padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
   }
 }
 

@@ -120,9 +120,9 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
 
 export default function Home() {
   return (
-    <div className="overflow-x-clip bg-[#fafafa]">
+    <div className="page-shell overflow-x-clip bg-[#fafafa]">
       {/* HERO */}
-      <section className="relative min-h-[min(100dvh,900px)] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[min(88dvh,680px)] sm:min-h-[min(92dvh,780px)] md:min-h-[min(96dvh,860px)] lg:min-h-[min(100dvh,920px)] flex items-center justify-center overflow-hidden w-full min-w-0">
         <div
           className="absolute inset-0 bg-cover bg-center sm:scale-105"
           style={{ backgroundImage: "url('/home-hero.jpg')" }}
@@ -131,7 +131,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-14 sm:py-20">
+        <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-16 md:py-20 min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -161,7 +161,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="font-sans text-white text-[clamp(1.85rem,5.5vw+0.5rem,4.5rem)] font-semibold tracking-tighter leading-[1.02] sm:leading-[0.98] mb-5 sm:mb-6 text-balance normal-case"
+            className="font-sans text-white text-[clamp(1.7rem,5vw+0.5rem,4.5rem)] font-semibold tracking-tighter leading-[1.05] sm:leading-[1.0] md:leading-[0.98] mb-4 sm:mb-6 text-balance normal-case px-1"
             style={{ fontFamily: "Inter, system-ui, sans-serif" }}
           >
             One Group.
@@ -175,7 +175,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="w-full max-w-xl sm:max-w-2xl mx-auto text-base sm:text-2xl md:text-3xl text-white/95 font-light tracking-tight mb-4 sm:mb-5"
+            className="w-full max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-lg md:text-2xl lg:text-3xl text-white/95 font-light tracking-tight mb-3 sm:mb-5 text-pretty px-1"
           >
             Regenerative. Sovereign. Ethical.
             <br className="hidden sm:block" />
@@ -185,7 +185,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full max-w-2xl mx-auto text-sm sm:text-base text-white/75 leading-relaxed mb-8 sm:mb-10"
+            className="w-full max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-white/75 leading-relaxed mb-7 sm:mb-10 text-pretty px-1"
           >
             Feed · Educate · Empower — with ethical commerce, Super-Cube® leadership, and
             intelligence that multiplies dignity.
@@ -195,19 +195,19 @@ export default function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.24 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-lg sm:max-w-none mx-auto"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto w-full"
           >
             <Link
               href="#pillars"
-              className="premium-button group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
+              className="premium-button group w-full sm:w-auto min-w-0 inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-8 md:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
             >
-              <span className="sm:hidden">EXPLORE PILLARS</span>
-              <span className="hidden sm:inline">EXPLORE THE 10 PILLARS</span>
+              <span className="sm:hidden text-center leading-snug">EXPLORE PILLARS</span>
+              <span className="hidden sm:inline text-center leading-snug">EXPLORE THE 10 PILLARS</span>
               <ArrowRight className="group-hover:translate-x-1 transition w-5 h-5 shrink-0" />
             </Link>
             <Link
               href="/group"
-              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/40 hover:bg-white/10 px-6 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white"
+              className="premium-button w-full sm:w-auto min-w-0 inline-flex items-center justify-center gap-3 border border-white/40 hover:bg-white/10 px-5 sm:px-8 md:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white"
             >
               THE GROUP
             </Link>
