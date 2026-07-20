@@ -110,7 +110,11 @@ export default function BrandPage() {
               key={a.src}
               className="rounded-2xl border border-black/10 bg-white p-5 flex flex-col min-w-0"
             >
-              <div className="relative h-24 mb-4 flex items-center justify-center bg-[#f5f5f5] rounded-xl">
+              <div
+                className={`relative h-24 mb-4 flex items-center justify-center rounded-xl ${
+                  a.previewDark ? "bg-[#0a0a0a]" : "bg-[#f5f5f5]"
+                }`}
+              >
                 <Image
                   src={a.src}
                   alt={a.name}
