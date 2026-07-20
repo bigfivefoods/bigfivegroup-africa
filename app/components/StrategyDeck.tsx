@@ -847,7 +847,7 @@ function Slide({ index }: SlideProps) {
             <li>· Zero Hunger delivery layer complementary to WFP / national agendas</li>
             <li>· Big Five Foods verified on SupplierAdvisor® with live container embed</li>
             <li>· Foundation registered on SupplierAdvisor®</li>
-            <li>· Priority distribution markets across Africa + DE · HU corridors</li>
+            <li>· Priority distribution markets across Africa + DE · HU · GE corridors</li>
           </ul>
         </SlideShell>
       );
