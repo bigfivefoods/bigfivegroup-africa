@@ -156,7 +156,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6"
+            className="flex justify-center mb-4 sm:mb-6"
           >
             <Image
               src="/bigfivegroup-logo.png"
@@ -164,14 +164,6 @@ export default function Home() {
               width={192}
               height={192}
               className="h-14 w-14 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain drop-shadow-lg"
-              priority
-            />
-            <Image
-              src="/supplieradvisor-logo-transparent.png"
-              alt="SupplierAdvisor®"
-              width={240}
-              height={106}
-              className="h-10 sm:h-12 md:h-14 w-auto max-w-[min(100%,14rem)] object-contain drop-shadow-lg"
               priority
             />
           </motion.div>
