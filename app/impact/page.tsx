@@ -146,8 +146,8 @@ export default function ImpactPage() {
             stats={[
               { value: "PMO", label: "Cross-business programme office" },
               { value: "10", label: "Pillars integrated into delivery" },
-              { value: "11", label: "Active operating nations" },
-              { value: "100%", label: "Outcome-linked workstreams" },
+              { value: "12", label: "Priority distribution markets (Group Global)" },
+              { value: "PMO", label: "Outcome-linked workstreams & gates" },
             ]}
           />
         </div>

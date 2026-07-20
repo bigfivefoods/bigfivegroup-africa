@@ -6,7 +6,7 @@ import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
 export const metadata = {
   title: "Methodology & sources",
   description:
-    "How Big Five Group defines key metrics: NSNP school-nutrition ambition, Super-Cube® construct lifts, meals delivered, and programme-reported figures.",
+    "How Big Five Group states impact: ambition vs programme-reported delivery vs internal analysis vs research — NSNP, Agri, Global, Super-Cube® and Foods figures.",
   openGraph: {
     title: "Methodology & sources | Big Five Group",
     url: "/methodology",
@@ -120,13 +120,66 @@ export default function MethodologyPage() {
 
         <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
           <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
-            Group-scale indicators (home stats)
+            How we state numbers on this site
+          </h2>
+          <ul className="text-sm text-[#404040] leading-relaxed space-y-2 list-disc pl-5">
+            <li>
+              <strong>Ambition / plan</strong> — what we are building toward (e.g. 2.5m children/day
+              NSNP pathway; 2.8M ha regenerative opportunity; 54-nation African vision; 12 priority
+              distribution markets).
+            </li>
+            <li>
+              <strong>Programme-reported</strong> — delivery totals from operating programmes
+              (e.g. meals / children reached) shared for partner context; not statutory audits.
+            </li>
+            <li>
+              <strong>Internal analysis</strong> — cost and nutrition design comparisons versus
+              alternatives; worksheets available in a formal brief.
+            </li>
+            <li>
+              <strong>Research</strong> — Super-Cube® developability and construct lifts from DBA /
+              published work, with sources on Leadership.
+            </li>
+          </ul>
+          <p className="text-sm text-[#525252] leading-relaxed mt-3">
+            We do not publish inflated contract, hub-count or capital figures as fact. Request a
+            dated partner brief for audit-grade packs.
+          </p>
+        </article>
+
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
+          <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
+            Agri continental reach (2.8M ha · 50k+ farmers · 47% · 54 nations)
           </h2>
           <p className="text-sm text-[#404040] leading-relaxed">
-            Continental reach, hectares, capital facilitated and jobs are{" "}
-            <strong>group-reported indicators of scale and ambition</strong>. They are not
-            independently audited public financial statements. Use a briefing for partner-grade
-            numbers with dates and scopes.
+            These are <strong>plan and ambition</strong> indicators for regenerative agriculture
+            across Africa — land opportunity we aim to unlock, farmers we plan to train, income
+            increase potential we target, and nations in our long-term vision. They are{" "}
+            <strong>not</strong> claims of completed programmes at that scale today.
+          </p>
+        </article>
+
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
+          <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
+            Global distribution (12 priority markets)
+          </h2>
+          <p className="text-sm text-[#404040] leading-relaxed">
+            Priority markets are countries where we are <strong>building distribution and
+            route-to-market</strong> (nine African nations plus Germany, Hungary and Georgia in
+            Europe), including a company setup in Kenya. Wider lists are expansion horizons, not
+            live full operations.
+          </p>
+        </article>
+
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
+          <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
+            Group-scale indicators (home)
+          </h2>
+          <p className="text-sm text-[#404040] leading-relaxed">
+            Home page counters reflect <strong>ambition and priority footprint</strong> (nations
+            vision, distribution markets, regenerative opportunity, NSNP plan) — not audited
+            financial statements or jobs ledgers. Use a briefing for partner-grade numbers with
+            dates and scopes.
           </p>
         </article>
 

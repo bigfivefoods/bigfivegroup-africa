@@ -20,10 +20,30 @@ import CaseStudyNsnp from "./components/CaseStudyNsnp";
 import CaseStudySupplierAdvisor from "./components/CaseStudySupplierAdvisor";
 
 const statsData = [
-  { number: 54, label: "African Nations Reach", suffix: "", note: "Continental ambition & corridor presence" },
-  { number: 124, label: "Hectares Regenerated", suffix: "k", note: "Programme-reported regenerative footprint" },
-  { number: 2.8, label: "Rands Facilitated", suffix: "B", note: "Trade & capital pathways (group network)" },
-  { number: 47, label: "Jobs Created", suffix: "k", note: "Direct & enabled livelihoods (programme-reported)" },
+  {
+    number: 54,
+    label: "Nations in our African vision",
+    suffix: "",
+    note: "Continental ambition — not full operations in every country",
+  },
+  {
+    number: 12,
+    label: "Priority distribution markets",
+    suffix: "",
+    note: "Africa + Europe corridors (incl. DE · HU · GE) where we are building RTM",
+  },
+  {
+    number: 2.8,
+    label: "Ha regenerative opportunity",
+    suffix: "M",
+    note: "Agri plan & ambition — land we aim to unlock over time",
+  },
+  {
+    number: 2.5,
+    label: "Children / day NSNP plan",
+    suffix: "M",
+    note: "School-nutrition ambition via DBE NSNP pathway (Foods)",
+  },
 ];
 
 const audiences = [

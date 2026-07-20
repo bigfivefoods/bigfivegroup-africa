@@ -498,7 +498,7 @@ function Slide({ index }: SlideProps) {
                 t: "Feed",
                 color: "#6ee7b7",
                 d: "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for households, schools and institutions.",
-                proof: "150k meals · 100k children · 83% cheaper · 74% more nutrition",
+                proof: "150k meals · 100k children (programme-reported) · 83% / 74% internal analyses",
               },
               {
                 icon: GraduationCap,
@@ -833,10 +833,10 @@ function Slide({ index }: SlideProps) {
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-5 sm:mb-6">
             {[
-              { v: "150k", l: "Meals delivered" },
-              { v: "100k", l: "Children reached" },
-              { v: "83%", l: "Cheaper pathways" },
-              { v: "74%", l: "More nutrition" },
+              { v: "150k", l: "Meals delivered (programme-reported)" },
+              { v: "100k", l: "Children reached (programme-reported)" },
+              { v: "83%", l: "Cheaper pathways (internal)" },
+              { v: "74%", l: "More nutrition (internal)" },
             ].map((s) => (
               <StatTile key={s.l} dark value={s.v} label={s.l} />
             ))}

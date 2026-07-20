@@ -79,12 +79,19 @@ export default function DirectPage() {
         <StatRow
           accent={ACCENT}
           stats={[
-            { value: "150k", label: "Meals delivered" },
-            { value: "100k", label: "Children reached" },
-            { value: "83%", label: "Cheaper than alternatives" },
-            { value: "74%", label: "More nutrition" },
+            { value: "150k", label: "Meals delivered (programme-reported, with Foods)" },
+            { value: "100k", label: "Children reached (programme-reported)" },
+            { value: "83%", label: "Cheaper pathways (internal analysis)" },
+            { value: "74%", label: "More nutrition design (internal analysis)" },
           ]}
         />
+        <p className="mt-5 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
+          Direct shares Foods nutrition impact where logistics and last-mile delivery serve the same
+          programmes. Figures are programme-reported or internal analyses — not audited financials.{" "}
+          <a href="/methodology" className="underline underline-offset-2 text-black font-medium">
+            Methodology
+          </a>
+        </p>
       </section>
 
       <section id="model" className="bg-white border-y border-black/10 py-20 sm:py-24">

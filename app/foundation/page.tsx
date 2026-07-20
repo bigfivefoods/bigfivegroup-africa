@@ -132,13 +132,17 @@ export default function FoundationPage() {
 
       <section id="impact" className="bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="RESULTS" title="Measurable. Reportable. Replicable." />
+          <SectionHeading
+            eyebrow="HOW WE WORK"
+            title="Measurable. Reportable. Replicable."
+            subtitle="We design for transparency and SDG-aligned outcomes. Specific deployment totals and beneficiary counts are shared in dated partner briefs — not as open website vanity figures."
+          />
           <StatRow
             accent={ACCENT}
             stats={[
-              { value: "R187M", label: "Deployed to programmes" },
-              { value: "1.2M", label: "Direct beneficiaries" },
-              { value: "94%", label: "Projects met or exceeded targets" },
+              { value: "NPO", label: "Philanthropic engine of the Group" },
+              { value: "SA®", label: "Listed on SupplierAdvisor®" },
+              { value: "PMO", label: "Delivery via Big Five Impact" },
               { value: "SDG", label: "Aligned design framework" },
             ]}
           />

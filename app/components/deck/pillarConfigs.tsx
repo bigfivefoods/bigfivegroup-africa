@@ -283,7 +283,7 @@ export const directDeckConfig: PillarDeckConfig = {
   proofTitle: "What Direct puts on the table",
   proofStats: [
     { value: "Live map", label: "SupplierAdvisor® container embed" },
-    { value: "Foods", label: "150k meals · 100k children (Group Foods)" },
+    { value: "Foods", label: "150k meals · 100k children (programme-reported)" },
     { value: "Hubs", label: "Micro-franchise distribution model" },
     { value: "SA", label: "Verified trade rails" },
   ],
