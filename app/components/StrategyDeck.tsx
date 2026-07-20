@@ -111,7 +111,8 @@ const PILLAR_BRIEFS: Record<string, string> = {
   foundation: "Registered philanthropy funding community programmes with proof.",
   impact: "Cross-pillar PMO — design, gates, KPIs and field delivery.",
   global: "International corridors linking African capacity to world markets.",
-  royal: "Royal partnership for community service — feed, educate, empower.",
+  royal:
+    "Planned partnership with the royal family and tribal authorities — community service: feed, educate, empower.",
 };
 
 const GROUP_OVERVIEW =
