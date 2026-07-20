@@ -5,7 +5,7 @@
 
 export const SA_CASE = {
   id: "supplieradvisor-os",
-  logoSrc: "/supplieradvisor-logo.png.jpeg",
+  logoSrc: "/supplieradvisor-logo-transparent.png",
   logoAlt: "SupplierAdvisor®",
   siteUrl: "https://www.supplieradvisor.com/",
   eyebrow: "CASE STUDY · SUPPLIERADVISOR®",
