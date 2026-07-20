@@ -89,16 +89,43 @@ export default function AgriPage() {
 
       <section className="bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="CONTINENTAL REACH" title="Impact opportunity across Africa" />
+          <SectionHeading
+            eyebrow="CONTINENTAL REACH · OUR PLAN & AMBITION"
+            title="Impact opportunity across Africa"
+            subtitle="These figures describe what we are planning to do — our continental ambition for regenerative agriculture, farmer development, and income opportunity. They are not claims of programmes already completed at this scale."
+          />
           <StatRow
             accent={ACCENT}
             stats={[
-              { value: "2.8M", label: "Hectares of regenerative opportunity" },
-              { value: "50k+", label: "Farmers to be trained" },
-              { value: "47%", label: "Income increase potential" },
-              { value: "54", label: "Nations in our African vision" },
+              {
+                value: "2.8M",
+                label: "Hectares of regenerative opportunity we plan to unlock",
+              },
+              {
+                value: "50k+",
+                label: "Farmers we plan to train",
+              },
+              {
+                value: "47%",
+                label: "Income increase potential we aim for",
+              },
+              {
+                value: "54",
+                label: "Nations in our African vision & expansion plan",
+              },
             ]}
           />
+          <p className="mt-6 sm:mt-8 max-w-3xl mx-auto text-center text-sm sm:text-base text-[#525252] leading-relaxed">
+            Big Five Agri is building toward a continental footprint:{" "}
+            <strong className="text-black">2.8 million hectares</strong> of regenerative
+            opportunity,{" "}
+            <strong className="text-black">50,000+ farmers</strong> trained,{" "}
+            <strong className="text-black">~47% income increase potential</strong> for participating
+            producers, and a vision that reaches{" "}
+            <strong className="text-black">54 African nations</strong>. That is our plan and
+            ambition — delivered step by step with partners, traditional authorities, and verified
+            markets.
+          </p>
         </div>
       </section>
 

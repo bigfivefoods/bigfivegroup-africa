@@ -32,7 +32,8 @@ export const companies: Company[] = [
       { title: "For Buyers & Retailers", desc: "100% traceable, regenerative-certified supply with live ESG dashboards." },
       { title: "For Governments & Impact Funds", desc: "Verifiable data for subsidies, carbon markets, and national food security." }
     ],
-    impact: "Over 124,000 hectares under regenerative management. 47,000+ smallholder families lifted. 2.1M tonnes CO₂ sequestered."
+    impact:
+      "Continental ambition: plan to unlock 2.8M hectares of regenerative opportunity, train 50k+ farmers, target ~47% income increase potential, and reach 54 nations in our African vision — delivered step by step with partners.",
   },
   {
     slug: "foods",
