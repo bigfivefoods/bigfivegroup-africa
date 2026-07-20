@@ -34,6 +34,14 @@ export default function PageHero({
   };
 }) {
   const manyCtas = ctas.length > 2;
+  const logoW = logo?.width ?? 160;
+  const logoH = logo?.height ?? 160;
+  const logoWide = logoW > logoH * 1.25;
+  const logoSizeClass = logo?.className
+    ? logo.className
+    : logoWide
+      ? "h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[min(100%,16rem)] sm:max-w-[18rem] object-contain drop-shadow-lg"
+      : "h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 object-contain drop-shadow-lg";
 
   return (
     <section className="relative min-h-[min(82dvh,620px)] sm:min-h-[min(88dvh,720px)] md:min-h-[min(90dvh,780px)] lg:min-h-[min(92dvh,840px)] flex items-center justify-center overflow-hidden w-full min-w-0">
@@ -52,11 +60,9 @@ export default function PageHero({
             <Image
               src={logo.src}
               alt={logo.alt}
-              width={logo.width ?? 160}
-              height={logo.height ?? 160}
-              className={`h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 object-contain drop-shadow-lg ${
-                logo.className ?? ""
-              }`}
+              width={logoW}
+              height={logoH}
+              className={logoSizeClass}
               priority
             />
           </div>

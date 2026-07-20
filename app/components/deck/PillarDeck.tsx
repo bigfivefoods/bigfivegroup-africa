@@ -78,6 +78,9 @@ export type PillarDeckConfig = {
   shareText: string;
   /** Optional full-bleed hero image behind title slide */
   heroImage?: string;
+  /** Optional brand mark on title slide (e.g. SupplierAdvisor® for Connect) */
+  titleLogoSrc?: string;
+  titleLogoAlt?: string;
   heroTitle: string;
   heroHighlight: string;
   heroBody: string;
@@ -189,11 +192,11 @@ function Slide({
               <DeckTitleLayout>
                 <div className="flex flex-col h-full justify-between min-h-0">
                   <div>
-                    {sc && (
+                    {(sc || cfg.titleLogoSrc) && (
                       <div className={`mb-3 sm:mb-4 ${forPrint ? "mb-2" : ""}`}>
                         <Image
-                          src={sc.logoSrc}
-                          alt={sc.logoAlt}
+                          src={sc ? sc.logoSrc : (cfg.titleLogoSrc as string)}
+                          alt={sc ? sc.logoAlt : (cfg.titleLogoAlt ?? "")}
                           width={280}
                           height={60}
                           className={`h-auto w-auto max-w-full object-contain object-left ${

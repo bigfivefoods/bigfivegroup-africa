@@ -602,6 +602,8 @@ export const connectDeckConfig: PillarDeckConfig = {
   shareText:
     "SupplierAdvisor® + SAM: ERP that ships, trust that blocks risk, messenger that teaches the chain.",
   heroImage: "/connect-hero.jpg",
+  titleLogoSrc: "/supplieradvisor-logo-transparent.png",
+  titleLogoAlt: "SupplierAdvisor®",
   heroTitle: "ERP that ships.",
   heroHighlight: "SAM that teaches the chain.",
   heroBody: `${sa.heroSubtitle} ${sa.sam.oneLiner}`,

@@ -70,6 +70,12 @@ export default function ConnectPage() {
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/connect-hero.jpg"
+        logo={{
+          src: "/supplieradvisor-logo-transparent.png",
+          alt: "SupplierAdvisor®",
+          width: 280,
+          height: 124,
+        }}
         eyebrow={`CONNECT · ${sa.brand} · ${sa.productLine}`}
         title={
           <>
