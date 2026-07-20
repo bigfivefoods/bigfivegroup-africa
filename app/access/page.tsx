@@ -150,7 +150,7 @@ export default function AccessPage() {
             {
               step: "03",
               title: "Win & deliver",
-              desc: "Win rates above industry average. Project management and transparent reporting for funders.",
+              desc: "Secure awards with clean process, then deliver with Group capacity and transparent reporting for funders.",
             },
           ]}
         />
