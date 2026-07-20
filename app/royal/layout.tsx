@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Royal · Planned Partnership with the Royal Family & Tribal Authorities",
+  title: "Royal · Close Ties & Planned Partnership with the Royal Family",
   description:
-    "Big Five Group is planning to partner with the royal family and tribal authorities to serve communities with dignity, Ubuntu, and lasting impact — rooted in KwaZulu-Natal and carried across Africa.",
+    "Big Five Group has close ties to the royal family, is planning to partner with the royal family and tribal authorities, and supports them and the work they do — serving communities with dignity, Ubuntu, and lasting impact.",
   openGraph: {
-    title: "Royal | Big Five Group — Planned Partnership",
+    title: "Royal | Big Five Group — Close Ties & Planned Partnership",
     description:
-      "We are planning to partner with the royal family and tribal authorities to serve our communities — with respect, integrity, and shared purpose.",
+      "Close ties to the royal family. Planning to partner. Supporting them and the work they do — for our communities.",
   },
 };
 

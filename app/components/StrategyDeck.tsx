@@ -112,7 +112,7 @@ const PILLAR_BRIEFS: Record<string, string> = {
   impact: "Cross-pillar PMO — design, gates, KPIs and field delivery.",
   global: "International corridors linking African capacity to world markets.",
   royal:
-    "Planned partnership with the royal family and tribal authorities — community service: feed, educate, empower.",
+    "Close ties to the royal family; planning to partner; supports them and the work they do — feed, educate, empower.",
 };
 
 const GROUP_OVERVIEW =

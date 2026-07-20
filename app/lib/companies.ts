@@ -211,21 +211,21 @@ export const companies: Company[] = [
     fullName: "Big Five Royal",
     color: "#d97706",
     icon: "Crown",
-    tagline: "Planned Royal & Tribal Partnership • Community Service • Feed · Educate · Empower",
+    tagline: "Close Ties · Planned Partnership · Support · Feed · Educate · Empower",
     description:
-      "Big Five is planning to partner with the royal family and tribal authorities to serve communities with dignity — working to feed, educate, and empower people starting in KwaZulu-Natal and across Africa.",
+      "Big Five has close ties to the royal family, is planning to partner with the royal family and tribal authorities, and supports them and the work they do — serving communities with dignity starting in KwaZulu-Natal and across Africa.",
     heroText:
-      "Planning partnership with the royal family and tribal authorities. Service to our communities.",
+      "Close ties to the royal family. Planning to partner. Supporting them and the work they do.",
     howItWorks: [
       {
         step: 1,
-        title: "Plan partnership with royal & tribal leadership",
-        desc: "Build alignment with the royal family and tribal authorities so every programme is rooted in respect and local guidance.",
+        title: "Close ties & planned partnership",
+        desc: "Build on close ties to the royal family and plan formal partnership with the royal family and tribal authorities — rooted in respect and local guidance.",
       },
       {
         step: 2,
-        title: "Serve communities",
-        desc: "Deliver food security, skills, leadership, and fair opportunity — designed with communities, not imposed on them.",
+        title: "Support their work",
+        desc: "Support the royal family and the work they do for communities — and deliver food security, skills, leadership, and fair opportunity with people, not imposed on them.",
       },
       {
         step: 3,
@@ -236,7 +236,7 @@ export const companies: Company[] = [
     forStakeholders: [
       {
         title: "For the royal family & tribal authorities",
-        desc: "A trusted enterprise partner committed to service, accountability, and community wellbeing.",
+        desc: "A trusted enterprise partner with close ties, planning formal partnership, and committed to supporting their work and community wellbeing.",
       },
       {
         title: "For communities",
@@ -244,11 +244,11 @@ export const companies: Company[] = [
       },
       {
         title: "For institutional partners",
-        desc: "A clear channel to support community impact alongside planned royal and tribal leadership partnerships.",
+        desc: "A clear channel to support community impact alongside royal and tribal leadership.",
       },
     ],
     impact:
-      "Planned royal and tribal partnership that puts communities first — feed, educate, and empower as a living mandate.",
+      "Close ties and planned partnership with the royal family — supporting their work and putting communities first: feed, educate, and empower.",
   },
 ];
 
