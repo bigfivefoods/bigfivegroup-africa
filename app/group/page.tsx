@@ -94,7 +94,7 @@ const pillarSupport: Record<
   royal: {
     mission: "Cross-cutting",
     serves:
-      "Partners with the royal family to feed, educate and empower communities with respect and service.",
+      "Plans partnership with the royal family and tribal authorities to feed, educate and empower communities with respect and service.",
     system:
       "Anchors the group in heritage and community mandate — service that legitimises every pillar.",
   },

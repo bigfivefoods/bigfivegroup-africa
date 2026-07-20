@@ -529,7 +529,7 @@ function Slide({ index }: SlideProps) {
           </div>
           <p className="mt-6 text-sm text-white/50 leading-relaxed max-w-3xl">
             Foundation, Impact and Royal cut across all three — funding, programme delivery and
-            community partnership with the royal family.
+            planned community partnership with the royal family and tribal authorities.
           </p>
         </SlideShell>
       );

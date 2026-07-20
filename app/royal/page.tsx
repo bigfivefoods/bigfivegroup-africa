@@ -21,17 +21,19 @@ export default function RoyalPage() {
     <div className="overflow-x-clip bg-[#fafafa]">
       <PageHero
         image="/tribal.jpg"
-        eyebrow="ROYAL PARTNERSHIP · COMMUNITY FIRST"
+        eyebrow="ROYAL & TRIBAL PARTNERSHIP · PLANNED"
         title={
           <>
-            In partnership with
+            Planning partnership with
             <br />
-            the royal family.
+            the royal family and
+            <br />
+            tribal authorities.
           </>
         }
-        subtitle="Big Five Group walks alongside the royal family — to serve our communities with dignity, respect, and lasting opportunity. We are here to serve, not to take."
+        subtitle="Big Five Group is planning to partner with the royal family and tribal authorities — to serve our communities with dignity, respect, and lasting opportunity. We are here to serve, not to take."
         ctas={[
-          { href: "#partnership", label: "Our partnership", primary: true },
+          { href: "#partnership", label: "Our planned partnership", primary: true },
           { href: "#serve", label: "How we serve communities" },
         ]}
         overlayClassName="bg-black/60"
@@ -42,15 +44,16 @@ export default function RoyalPage() {
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#fffbeb] border border-[#fde68a] mb-6">
           <Crown className="w-7 h-7 text-[#d97706]" />
         </div>
-        <div className="text-xs tracking-[3px] text-[#d97706] mb-4">A SHARED MANDATE</div>
+        <div className="text-xs tracking-[3px] text-[#d97706] mb-4">A SHARED MANDATE · IN PLANNING</div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-6 text-balance">
-          We partner with the royal family
-          <br className="hidden sm:block" /> to serve our communities
+          We are planning to partner with the royal family
+          <br className="hidden sm:block" /> and tribal authorities to serve our communities
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-[#525252] leading-relaxed max-w-3xl mx-auto">
-          Big Five was born in KwaZulu-Natal. Our purpose is simple and steady: stand in partnership
-          with the royal family, honour traditional leadership, and put practical tools, jobs,
-          nutrition, and opportunity into the hands of the people we serve.
+          Big Five was born in KwaZulu-Natal. Our purpose is simple and steady: plan and build
+          partnership with the royal family and tribal authorities, honour traditional leadership,
+          and put practical tools, jobs, nutrition, and opportunity into the hands of the people we
+          serve.
         </p>
       </section>
 
@@ -59,15 +62,17 @@ export default function RoyalPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="min-w-0">
-              <div className="text-xs tracking-[3px] text-[#d97706] mb-4">THE PARTNERSHIP</div>
+              <div className="text-xs tracking-[3px] text-[#d97706] mb-4">THE PLANNED PARTNERSHIP</div>
               <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black mb-6 sm:mb-8 text-balance">
-                Royal family. Shared purpose. Community at the centre.
+                Royal family. Tribal authorities. Shared purpose. Community at the centre.
               </h3>
               <div className="space-y-5 text-base sm:text-lg text-[#404040] leading-relaxed">
                 <p>
-                  We work{" "}
-                  <strong className="text-black">in partnership with the royal family</strong> —
-                  with humility, accountability, and a clear commitment to community wellbeing.
+                  We are{" "}
+                  <strong className="text-black">
+                    planning to partner with the royal family and tribal authorities
+                  </strong>{" "}
+                  — with humility, accountability, and a clear commitment to community wellbeing.
                 </p>
                 <p>
                   Our role is to{" "}
@@ -78,9 +83,10 @@ export default function RoyalPage() {
                 </p>
                 <p>
                   We recognise the authority and guidance of the{" "}
-                  <strong className="text-black">royal house</strong> and traditional leadership.
-                  We bring enterprise capability, ethical platforms, and transparent delivery — so
-                  heritage and modern opportunity strengthen each other.
+                  <strong className="text-black">royal house</strong> and{" "}
+                  <strong className="text-black">tribal authorities</strong>. We bring enterprise
+                  capability, ethical platforms, and transparent delivery — so heritage and modern
+                  opportunity strengthen each other as these relationships take shape.
                 </p>
               </div>
             </div>
@@ -97,12 +103,12 @@ export default function RoyalPage() {
                 <div className="flex items-center gap-3 mb-3">
                   <Handshake className="w-5 h-5 text-[#d97706]" />
                   <div className="text-sm font-semibold text-black tracking-wide">
-                    PARTNERSHIP PLEDGE
+                    PARTNERSHIP INTENT
                   </div>
                 </div>
                 <p className="text-sm text-[#525252] leading-relaxed">
-                  We walk with the royal family to uplift communities — with respect, integrity,
-                  and measurable service.
+                  We are planning to walk with the royal family and tribal authorities to uplift
+                  communities — with respect, integrity, and measurable service.
                 </p>
               </div>
             </div>
@@ -121,8 +127,8 @@ export default function RoyalPage() {
           {[
             {
               icon: Crown,
-              t: "Respect for the royal family",
-              d: "We honour royal leadership and traditional authority. Guidance from the royal family shapes how we engage communities.",
+              t: "Respect for royal & tribal leadership",
+              d: "We honour the royal family and tribal authorities. Guidance from traditional leadership shapes how we plan to engage communities.",
             },
             {
               icon: HandHeart,
@@ -167,8 +173,8 @@ export default function RoyalPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="SERVICE TO OUR COMMUNITIES"
-            title="Where partnership becomes impact"
-            subtitle="Through Big Five pillars, we put royal partnership into daily service — farms, food, markets, skills, and care."
+            title="Where planned partnership becomes impact"
+            subtitle="Through Big Five pillars, we put royal and tribal partnership intent into daily service — farms, food, markets, skills, and care."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {[
@@ -216,8 +222,8 @@ export default function RoyalPage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         <blockquote className="bg-white border-l-4 border-[#f59e0b] rounded-r-2xl sm:rounded-r-3xl p-6 sm:p-10 shadow-sm border border-black/5 border-l-[#f59e0b]">
           <p className="text-xl sm:text-2xl md:text-3xl text-black font-medium tracking-tight leading-snug">
-            “We are in partnership with the royal family — and we are here to serve our
-            communities. That is the heart of Big Five.”
+            “We are planning to partner with the royal family and tribal authorities — and we are
+            here to serve our communities. That is the heart of Big Five.”
           </p>
           <footer className="mt-5 text-sm text-[#737373]">
             — Big Five Group · Rooted in KwaZulu-Natal · Serving Africa
@@ -229,15 +235,18 @@ export default function RoyalPage() {
       <section className="bg-[#0a0a0a] py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-[#fbbf24] text-xs tracking-[3px] sm:tracking-[4px] mb-5 sm:mb-6">
-            ROYAL PARTNERSHIP · COMMUNITY SERVICE
+            PLANNED PARTNERSHIP · COMMUNITY SERVICE
           </div>
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter leading-[1.05] mb-6 sm:mb-8 text-balance">
-            Partnership with the royal family.
+            Planning partnership with the royal family
+            <br />
+            and tribal authorities.
             <br />
             Service to our communities.
           </h2>
           <p className="text-white/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed">
-            We do not stand above our people. We walk with the royal family to{" "}
+            We do not stand above our people. We plan to walk with the royal family and tribal
+            authorities to{" "}
             <strong className="text-white font-semibold">feed</strong>,{" "}
             <strong className="text-white font-semibold">educate</strong>, and{" "}
             <strong className="text-white font-semibold">empower</strong> the communities we serve
@@ -255,7 +264,7 @@ export default function RoyalPage() {
               },
               {
                 title: "Empower",
-                desc: "Markets, access, and enterprise tools that put opportunity into local hands — with the royal family as partners in service.",
+                desc: "Markets, access, and enterprise tools that put opportunity into local hands — with royal and tribal leadership as partners in service.",
               },
             ].map((item) => (
               <div
@@ -295,8 +304,8 @@ export default function RoyalPage() {
 
       <FinalCta
         eyebrow="SERVE WITH US"
-        title="Join a partnership that puts communities first"
-        subtitle="Whether you are a community leader, institution, or partner — walk with us as we serve alongside the royal family."
+        title="Join a partnership path that puts communities first"
+        subtitle="Whether you are a community leader, institution, or partner — walk with us as we plan to serve alongside the royal family and tribal authorities."
         primary={{ href: "/connect", label: "Partner with Big Five" }}
         secondary={{ href: "/foundation", label: "Foundation programmes" }}
       />

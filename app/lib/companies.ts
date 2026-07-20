@@ -211,15 +211,16 @@ export const companies: Company[] = [
     fullName: "Big Five Royal",
     color: "#d97706",
     icon: "Crown",
-    tagline: "Royal Partnership • Community Service • Feed · Educate · Empower",
+    tagline: "Planned Royal & Tribal Partnership • Community Service • Feed · Educate · Empower",
     description:
-      "In partnership with the royal family, Big Five Royal serves communities with dignity — working to feed, educate, and empower people starting in KwaZulu-Natal and across Africa.",
-    heroText: "In partnership with the royal family. Service to our communities.",
+      "Big Five is planning to partner with the royal family and tribal authorities to serve communities with dignity — working to feed, educate, and empower people starting in KwaZulu-Natal and across Africa.",
+    heroText:
+      "Planning partnership with the royal family and tribal authorities. Service to our communities.",
     howItWorks: [
       {
         step: 1,
-        title: "Partner with the royal family",
-        desc: "Align with royal leadership and traditional authority so every programme is rooted in respect and local guidance.",
+        title: "Plan partnership with royal & tribal leadership",
+        desc: "Build alignment with the royal family and tribal authorities so every programme is rooted in respect and local guidance.",
       },
       {
         step: 2,
@@ -234,7 +235,7 @@ export const companies: Company[] = [
     ],
     forStakeholders: [
       {
-        title: "For the royal family & traditional leaders",
+        title: "For the royal family & tribal authorities",
         desc: "A trusted enterprise partner committed to service, accountability, and community wellbeing.",
       },
       {
@@ -243,11 +244,11 @@ export const companies: Company[] = [
       },
       {
         title: "For institutional partners",
-        desc: "A clear channel to support community impact in partnership with royal and traditional leadership.",
+        desc: "A clear channel to support community impact alongside planned royal and tribal leadership partnerships.",
       },
     ],
     impact:
-      "Royal partnership that puts communities first — feed, educate, and empower as a living mandate.",
+      "Planned royal and tribal partnership that puts communities first — feed, educate, and empower as a living mandate.",
   },
 ];
 
