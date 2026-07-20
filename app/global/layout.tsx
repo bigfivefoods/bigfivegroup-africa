@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Global Footprint",
   description:
-    "Big Five Group is building distribution and route-to-market strategy across South Africa, Kenya, Ghana, Zambia, DRC, Tanzania, Namibia, Zimbabwe, Lesotho, Germany and Hungary — with expansion ambition across Africa and the world.",
+    "Big Five Group is building distribution and route-to-market strategy across South Africa, Kenya, Ghana, Zambia, DRC, Tanzania, Namibia, Zimbabwe, Lesotho, Germany, Hungary and Georgia (Europe) — with expansion ambition across Africa and the world.",
   openGraph: {
     title: "Global | Distribution & Route to Market",
     description:
-      "Eleven priority nations across Africa and Europe where we are building distribution and route-to-market strategy — with a clear roadmap to reach further.",
+      "Twelve priority nations across Africa and Europe — including Germany, Hungary, and Georgia — where we are building distribution and route-to-market strategy.",
   },
 };
 

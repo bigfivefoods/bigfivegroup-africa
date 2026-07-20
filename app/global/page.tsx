@@ -116,6 +116,15 @@ const ACTIVE_COUNTRIES = [
       "Building distribution and route-to-market pathways in Hungary that link Central European institutions and networks with Big Five’s African ecosystem.",
     highlight: "Building distribution & route to market",
   },
+  {
+    name: "Georgia",
+    code: "GE",
+    role: "Europe · Caucasus / Black Sea",
+    focus: "Distribution · Route to market · Partnerships",
+    summary:
+      "Building distribution and route-to-market pathways in Georgia (Europe) — linking Black Sea and Caucasus corridors with Big Five’s African regenerative supply, fortified nutrition, and ethical trade network.",
+    highlight: "Building distribution & route to market",
+  },
 ] as const;
 
 const ACTIVE_NAMES = new Set<string>(ACTIVE_COUNTRIES.map((c) => c.name));
@@ -283,6 +292,7 @@ const FLAG_CODES: Record<string, string> = {
   "United Kingdom": "GB",
   Germany: "DE",
   Hungary: "HU",
+  Georgia: "GE",
   France: "FR",
   Netherlands: "NL",
   Switzerland: "CH",
@@ -366,9 +376,9 @@ export default function GlobalPage() {
             transition={{ delay: 0.12 }}
             className="max-w-2xl mx-auto text-base sm:text-lg md:text-2xl text-white/90 font-light tracking-tight mb-8 sm:mb-10"
           >
-            Eleven priority nations — nine across Africa plus Germany and Hungary — where we are
-            building our distribution and route-to-market strategy, including a company setup in Kenya,
-            with a clear ambition to reach every market where African excellence can lead.
+            Twelve priority nations — nine across Africa plus Germany, Hungary, and Georgia (Europe) —
+            where we are building our distribution and route-to-market strategy, including a company
+            setup in Kenya, with a clear ambition to reach every market where African excellence can lead.
           </motion.p>
 
           <motion.div
@@ -399,9 +409,9 @@ export default function GlobalPage() {
       <section className="bg-white border-b border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {[
-            { n: "11", l: "Priority distribution markets" },
+            { n: "12", l: "Priority distribution markets" },
             { n: "9", l: "Africa route-to-market focus" },
-            { n: "2", l: "Europe corridors (DE · HU)" },
+            { n: "3", l: "Europe corridors (DE · HU · GE)" },
             { n: "1", l: "Company established in Kenya" },
           ].map((s) => (
             <div key={s.l} className="text-center lg:text-left min-w-0">
@@ -450,8 +460,9 @@ export default function GlobalPage() {
               National School Nutrition Programme (NSNP)
             </a>{" "}
             pathway — form the home base of a wider distribution story. From KZN we build
-            route-to-market into priority African nations and European corridors (Germany · Hungary),
-            with Kenya as East Africa company hub. Same product integrity; local logistics and partners.
+            route-to-market into priority African nations and European corridors (Germany · Hungary ·
+            Georgia), with Kenya as East Africa company hub. Same product integrity; local logistics
+            and partners.
           </p>
           <p className="text-xs text-[#737373]">
             High-level overview — ask for a market-by-market brief when you partner with Global or Foods.
@@ -472,9 +483,9 @@ export default function GlobalPage() {
                 Building our distribution and route-to-market strategy
               </h2>
               <p className="mt-4 text-lg text-[#525252] max-w-2xl">
-                Eleven priority nations — nine across Africa plus Germany and Hungary — where we are
-                building distribution networks, market access, and go-to-market pathways. Kenya hosts a
-                full company setup for East Africa.
+                Twelve priority nations — nine across Africa plus Germany, Hungary, and Georgia
+                (Europe) — where we are building distribution networks, market access, and go-to-market
+                pathways. Kenya hosts a full company setup for East Africa.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -589,7 +600,7 @@ export default function GlobalPage() {
               Where we aim to reach next
             </h2>
             <p className="text-lg text-white/65 leading-relaxed">
-              Beyond our eleven active nations, we are building partnerships and capability to serve the
+              Beyond our twelve active nations, we are building partnerships and capability to serve the
               rest of Africa — and, with African standards, the wider world. These markets are not yet
               full operations; they are our deliberate expansion horizon.
             </p>
@@ -661,7 +672,7 @@ export default function GlobalPage() {
             {
               icon: MapPin,
               title: "Build distribution first",
-              desc: "In eleven priority nations — including South Africa, Kenya, Germany, and Hungary — we build distribution and route-to-market strategy before we scale.",
+              desc: "In twelve priority nations — including South Africa, Kenya, Germany, Hungary, and Georgia (Europe) — we build distribution and route-to-market strategy before we scale.",
             },
             {
               icon: Handshake,
