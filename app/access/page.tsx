@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import AccessStrategyDeck from "../components/AccessStrategyDeck";
+import { NSNP, NSNP_CASE } from "../lib/nsnp";
 
 const ACCENT = "#3b82f6";
 
@@ -54,19 +55,40 @@ export default function AccessPage() {
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
-          eyebrow="BREAKING DOWN BARRIERS"
+          eyebrow="SCHOOL NUTRITION AMBITION"
           title="Policy becomes projects. Projects become outcomes."
-          subtitle="We help governments, corporates, and African enterprises navigate tenders, DFIs, and CSI with clean processes and verified counterparties."
+          subtitle={`We are planning to feed ${NSNP_CASE.ambition} ${NSNP_CASE.ambitionUnit} through the ${NSNP.shortName} for the ${NSNP.departmentShort} — institutional access that turns public nutrition mandates into daily meals.`}
         />
         <StatRow
           accent={ACCENT}
           stats={[
-            { value: "R2.8B", label: "Contracts facilitated" },
-            { value: "14.7k", label: "SMEs onboarded" },
-            { value: "92%", label: "Repeat funding rate" },
-            { value: "3.2×", label: "Industry win-rate multiple" },
+            {
+              value: "2.5m",
+              label: "Children a day — planned NSNP feeding ambition (DBE)",
+            },
+            {
+              value: "NSNP",
+              label: "National School Nutrition Programme pathway",
+            },
+            {
+              value: "DBE",
+              label: "Department of Basic Education",
+            },
+            {
+              value: "Plan",
+              label: "Ambition — not a delivered claim yet",
+            },
           ]}
         />
+        <p className="mt-6 sm:mt-8 max-w-3xl mx-auto text-center text-sm sm:text-base text-[#525252] leading-relaxed">
+          Big Five is planning to feed{" "}
+          <strong className="text-black">2.5 million children a day</strong> with fortified
+          nutrition on the{" "}
+          <strong className="text-black">{NSNP.name} ({NSNP.shortName})</strong> for the{" "}
+          <strong className="text-black">{NSNP.department} ({NSNP.departmentShort})</strong>.
+          That is our institutional scale ambition for school-day feeding — Access helps open the
+          government and programme pathways that make delivery possible.
+        </p>
       </section>
 
       <section className="bg-white border-y border-black/10 py-20 sm:py-24">

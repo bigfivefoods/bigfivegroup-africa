@@ -83,19 +83,21 @@ export const companies: Company[] = [
     color: "#3b82f6",
     icon: "Landmark",
     tagline: "Government Funding • CSI Optimization • Sovereign Capital Access",
-    description: "Unlocking billions in government tenders, development finance, and corporate social investment for verified African enterprises.",
+    description:
+      "Government, CSI and development capital pathways for verified African enterprises — including institutional access that supports school nutrition ambitions such as NSNP for the DBE.",
     heroText: "Opening Doors to Capital. Closing the Gap Between Policy and People.",
     howItWorks: [
-      { step: 1, title: "Verify & Onboard", desc: "Rigorous KYC, financials, and impact scoring. Every participant becomes a trusted node." },
-      { step: 2, title: "Match & Apply", desc: "AI matches opportunities. Automated bid writing and real-time tender tracking. 70% faster." },
-      { step: 3, title: "Win & Deliver", desc: "Win rate 3.2x industry average. Full project management and on-chain reporting." }
+      { step: 1, title: "Verify & Onboard", desc: "KYC, financials, and impact scoring. Trusted nodes only — counterparties you can put in front of auditors." },
+      { step: 2, title: "Match & Apply", desc: "Match opportunities to capability. Bid support and tracking keep you ahead of deadlines." },
+      { step: 3, title: "Win & Deliver", desc: "Secure awards with clean process, then deliver with Group capacity and transparent reporting for funders." }
     ],
     forStakeholders: [
       { title: "For Government", desc: "Clean, auditable supplier base. Reduced corruption risk." },
       { title: "For Corporations (CSI/ESG)", desc: "Verified, high-impact projects with full traceability." },
       { title: "For SMEs & Cooperatives", desc: "Level playing field. Access to capital and contracts previously out of reach." }
     ],
-    impact: "R2.8 billion in contracts facilitated. 14,700 SMEs onboarded. 92% repeat funding rate."
+    impact:
+      "Planning to feed 2.5 million children a day via the National School Nutrition Programme (NSNP) for the Department of Basic Education (DBE) — institutional access that turns public mandates into daily meals.",
   },
   {
     slug: "connect",
