@@ -8,5 +8,6 @@
  */
 export const INVESTOR_ALLOWLIST: string[] = [
   "craig@bigfivegroup.africa",
+  "craig@bigfvegroup.africa",
   "clint@kencrete.co.za",
 ];
