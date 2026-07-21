@@ -407,6 +407,7 @@ function Slide({ index }: { index: number }) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
               {RANGES.map((range) => {
                 const heroFlavour = range.flavours[0]?.name ?? "";
+                const allFlavours = range.flavours.map((f) => f.name).join(" · ");
                 return (
                   <div key={range.id} className="min-w-0 flex flex-col">
                     <div className="relative w-full aspect-[3/4] max-h-[15rem] sm:max-h-[17rem] rounded-xl border border-black/8 bg-white overflow-hidden shrink-0">
@@ -417,15 +418,12 @@ function Slide({ index }: { index: number }) {
                         fit="contain"
                       />
                     </div>
-                    <div className="text-center mt-1.5 shrink-0">
+                    <div className="text-center mt-1.5 shrink-0 px-0.5">
                       <div className="text-[10px] sm:text-xs font-semibold text-black leading-tight">
                         {range.title}
                       </div>
-                      <div className="text-[9px] sm:text-[10px] text-[#737373] leading-tight">
-                        {heroFlavour}
-                        {range.flavours.length > 1
-                          ? ` · +${range.flavours.length - 1} more`
-                          : ""}
+                      <div className="text-[8px] sm:text-[9px] text-[#737373] leading-snug mt-0.5">
+                        {allFlavours}
                       </div>
                     </div>
                   </div>
