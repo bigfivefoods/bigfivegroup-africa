@@ -20,6 +20,7 @@ const resourceLinks = [
   { href: "/partner-kit", label: "Partner kit" },
   { href: "/methodology", label: "Methodology" },
   { href: "/brand", label: "Brand kit" },
+  { href: "/investor", label: "Investor portal" },
   { href: "/connect#case-study-sa", label: "SupplierAdvisor® case" },
   { href: "/connect", label: "Connect · SAM" },
 ];
