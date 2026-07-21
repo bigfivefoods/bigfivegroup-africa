@@ -5,10 +5,11 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
-import { createPortal } from "react-dom";
+import { createPortal, flushSync } from "react-dom";
 import {
   Check,
   ChevronLeft,
@@ -226,6 +227,10 @@ const A4 = {
   margin: "6mm",
 } as const;
 
+/**
+ * WYSIWYG print styles: each page is A4, digital slide clone is scaled to fit
+ * so the PDF matches the on-screen deck exactly (same DOM/CSS as digital).
+ */
 function buildPrintStyles(printRootId: string, pageName: string) {
   return `
   #${printRootId} {
@@ -242,23 +247,42 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     box-sizing: border-box;
     overflow: hidden;
     margin: 0 0 12px;
-    background: #fff;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   #${printRootId}[data-orientation="landscape"] .deck-print-page {
-    width: 297mm; height: 210mm; padding: 6mm;
+    width: 297mm; height: 210mm; padding: 5mm;
   }
   #${printRootId}[data-orientation="portrait"] .deck-print-page {
-    width: 210mm; height: 297mm; padding: 6mm;
+    width: 210mm; height: 297mm; padding: 5mm;
   }
-  #${printRootId} .deck-print-page > * {
+  #${printRootId} .deck-print-scale-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  #${printRootId} .deck-print-slide-clone {
+    flex-shrink: 0;
+    transform-origin: center center;
+    overflow: hidden;
+  }
+  #${printRootId} .deck-print-slide-clone > * {
     width: 100% !important;
     height: 100% !important;
-    border-radius: 10px !important;
+    max-width: none !important;
+    max-height: none !important;
   }
-  #${printRootId} .premium-button::before { content: none !important; display: none !important; }
-  /* Soft decorative blurs can hide content in print engines — hide only pure blur orbs */
-  #${printRootId} .blur-3xl { display: none !important; }
-  /* Email CTAs: black on white even when print prep sets a { color: inherit } */
+  #${printRootId} img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
   #${printRootId} a.deck-email-cta,
   #${printRootId} a.deck-email-cta * {
     color: #000000 !important;
@@ -266,28 +290,6 @@ function buildPrintStyles(printRootId: string, pageName: string) {
   }
   #${printRootId} a.deck-email-cta {
     background-color: #ffffff !important;
-  }
-  /* Product / logo images must paint in PDF (eager native imgs + Next Image) */
-  #${printRootId} img {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    max-width: 100%;
-  }
-  #${printRootId} .deck-print-img-fill {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain;
-  }
-  #${printRootId} .deck-print-img-cover {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
   }
 
   @page ${pageName}-landscape { size: A4 landscape; margin: 0; }
@@ -319,8 +321,6 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       print-color-adjust: exact !important;
     }
     #${printRootId} img {
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
       opacity: 1 !important;
       visibility: visible !important;
     }
@@ -331,18 +331,21 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       page-break-after: always;
       break-after: page;
       page-break-inside: avoid;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
     #${printRootId}[data-orientation="landscape"] .deck-print-page {
       page: ${pageName}-landscape;
       width: ${A4.landscape.w} !important;
       height: ${A4.landscape.h} !important;
-      padding: ${A4.margin} !important;
+      padding: 5mm !important;
     }
     #${printRootId}[data-orientation="portrait"] .deck-print-page {
       page: ${pageName}-portrait;
       width: ${A4.portrait.w} !important;
       height: ${A4.portrait.h} !important;
-      padding: ${A4.margin} !important;
+      padding: 5mm !important;
     }
     #${printRootId} .deck-print-page:last-child {
       page-break-after: auto;
@@ -597,6 +600,8 @@ export default function DeckShell({
   const [printMode, setPrintMode] = useState(false);
   const [preparingPdf, setPreparingPdf] = useState(false);
   const [printOrientation, setPrintOrientation] = useState<PrintOrientation>("landscape");
+  const slideViewportRef = useRef<HTMLDivElement>(null);
+  const resumeIndexRef = useRef(0);
 
   const go = useCallback(
     (next: number) => {
@@ -607,7 +612,7 @@ export default function DeckShell({
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (printMode) return;
+      if (printMode || preparingPdf) return;
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         go(index + 1);
@@ -620,7 +625,7 @@ export default function DeckShell({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, index, fullscreen, printMode]);
+  }, [go, index, fullscreen, printMode, preparingPdf]);
 
   // Prevent background scroll in fullscreen and restore focus when exiting
   useEffect(() => {
@@ -632,67 +637,148 @@ export default function DeckShell({
     };
   }, [fullscreen]);
 
+  /**
+   * WYSIWYG PDF: walk every digital slide, clone the live DOM (exact screen layout),
+   * scale each clone into an A4 page, then print. No separate re-layout of slides.
+   */
   useEffect(() => {
     if (!printMode) return;
     let cancelled = false;
     const rootEl = document.documentElement;
     rootEl.setAttribute("data-deck-print", printOrientation);
     rootEl.setAttribute("data-deck-print-active", "true");
+    const pageName = printRootId.replace(/[^a-z0-9-]/gi, "");
+
+    const waitForImages = async (root: ParentNode) => {
+      const imgs = Array.from(root.querySelectorAll("img"));
+      await Promise.all(
+        imgs.map(
+          (img) =>
+            new Promise<void>((resolve) => {
+              const el = img as HTMLImageElement;
+              const done = () => resolve();
+              if (el.complete && el.naturalWidth > 0) {
+                done();
+                return;
+              }
+              el.addEventListener("load", done, { once: true });
+              el.addEventListener("error", done, { once: true });
+              try {
+                el.loading = "eager";
+                if (typeof el.decode === "function") {
+                  el.decode().then(done).catch(done);
+                }
+              } catch {
+                /* ignore */
+              }
+              window.setTimeout(done, 5000);
+            })
+        )
+      );
+    };
 
     const finish = () => {
       if (cancelled) return;
       rootEl.removeAttribute("data-deck-print");
       rootEl.removeAttribute("data-deck-print-active");
+      const portal = document.getElementById(printRootId);
+      if (portal) portal.innerHTML = "";
+      flushSync(() => {
+        setIndex(resumeIndexRef.current);
+      });
       setPrintMode(false);
       setPreparingPdf(false);
     };
 
-    /** Wait until product/logo images in the print portal have decoded so PDF includes them. */
-    const waitForPrintImages = async () => {
-      const portal = document.getElementById(printRootId);
-      if (!portal) return;
-      const imgs = Array.from(portal.querySelectorAll("img"));
-      await Promise.all(
-        imgs.map(
-          (img) =>
-            new Promise<void>((resolve) => {
-              const done = () => resolve();
-              if (img.complete && img.naturalWidth > 0) {
-                done();
-                return;
-              }
-              img.addEventListener("load", done, { once: true });
-              img.addEventListener("error", done, { once: true });
-              // Force eager decode for off-screen portal images
-              try {
-                img.loading = "eager";
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                if (typeof (img as any).decode === "function") {
-                  (img as HTMLImageElement)
-                    .decode()
-                    .then(done)
-                    .catch(done);
-                }
-              } catch {
-                /* ignore */
-              }
-              // Fallback if load never fires
-              window.setTimeout(done, 4000);
-            })
-        )
-      );
-      // Brief settle so layout paints absolute/fill images
-      await new Promise((r) => window.setTimeout(r, 200));
-    };
-
-    let fallback = 0;
     const run = async () => {
-      try {
-        await waitForPrintImages();
-      } catch {
-        /* print anyway */
-      }
+      // Mount empty portal shell
+      await new Promise((r) => window.setTimeout(r, 50));
       if (cancelled) return;
+
+      let portal = document.getElementById(printRootId);
+      if (!portal) {
+        portal = document.createElement("div");
+        portal.id = printRootId;
+        document.body.appendChild(portal);
+      }
+      portal.setAttribute("aria-hidden", "true");
+      portal.setAttribute("data-orientation", printOrientation);
+      portal.innerHTML = "";
+      const style = document.createElement("style");
+      style.textContent =
+        buildPrintStyles(printRootId, pageName) + printPageCss(printOrientation);
+      portal.appendChild(style);
+
+      const viewport = slideViewportRef.current;
+      if (!viewport) {
+        finish();
+        return;
+      }
+
+      for (let i = 0; i < total; i++) {
+        if (cancelled) return;
+        flushSync(() => setIndex(i));
+        await new Promise<void>((r) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => r()))
+        );
+        await waitForImages(viewport);
+        await new Promise((r) => window.setTimeout(r, 100));
+
+        // Exact digital frame: clone the live slide at the on-screen viewport size
+        const source =
+          (Array.from(viewport.children).find(
+            (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
+          ) as HTMLElement | undefined) ?? viewport;
+        const w = Math.max(1, viewport.clientWidth);
+        const h = Math.max(1, viewport.clientHeight);
+
+        const page = document.createElement("div");
+        page.className = "deck-print-page";
+
+        const scaleWrap = document.createElement("div");
+        scaleWrap.className = "deck-print-scale-wrap";
+
+        const cloneHost = document.createElement("div");
+        cloneHost.className = "deck-print-slide-clone";
+        cloneHost.style.width = `${w}px`;
+        cloneHost.style.height = `${h}px`;
+        cloneHost.style.overflow = "hidden";
+        cloneHost.style.position = "relative";
+
+        const clone = source.cloneNode(true) as HTMLElement;
+        clone.style.width = "100%";
+        clone.style.height = "100%";
+        clone.style.maxWidth = "none";
+        clone.style.maxHeight = "none";
+        clone.querySelectorAll("img").forEach((node) => {
+          const img = node as HTMLImageElement;
+          if (img.currentSrc) img.src = img.currentSrc;
+          else if (img.src) img.setAttribute("src", img.src);
+          img.loading = "eager";
+          img.style.opacity = "1";
+          img.style.visibility = "visible";
+        });
+        clone.querySelectorAll("button, a").forEach((el) => {
+          (el as HTMLElement).style.pointerEvents = "none";
+        });
+
+        cloneHost.appendChild(clone);
+        scaleWrap.appendChild(cloneHost);
+        page.appendChild(scaleWrap);
+        portal.appendChild(page);
+
+        // Scale the exact digital frame into the A4 page
+        await new Promise<void>((r) => requestAnimationFrame(() => r()));
+        const availW = page.clientWidth || page.getBoundingClientRect().width;
+        const availH = page.clientHeight || page.getBoundingClientRect().height;
+        const scale = Math.min(availW / w, availH / h);
+        cloneHost.style.transform = `scale(${scale})`;
+      }
+
+      await waitForImages(portal);
+      await new Promise((r) => window.setTimeout(r, 150));
+      if (cancelled) return;
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           if (cancelled) return;
@@ -701,23 +787,19 @@ export default function DeckShell({
       });
     };
 
-    // Allow portal DOM to mount first
-    const t = window.setTimeout(() => {
-      void run();
-    }, 300);
+    void run();
 
     window.addEventListener("afterprint", finish);
-    fallback = window.setTimeout(finish, 120_000);
+    const fallback = window.setTimeout(finish, 180_000);
 
     return () => {
       cancelled = true;
       rootEl.removeAttribute("data-deck-print");
       rootEl.removeAttribute("data-deck-print-active");
-      window.clearTimeout(t);
       window.clearTimeout(fallback);
       window.removeEventListener("afterprint", finish);
     };
-  }, [printMode, printOrientation, printRootId]);
+  }, [printMode, printOrientation, printRootId, total]);
 
   const shareUrl = (() => {
     const base =
@@ -763,38 +845,17 @@ export default function DeckShell({
 
   const onDownload = (orientation: PrintOrientation) => {
     track("deck_pdf", { path: sharePath, orientation });
+    resumeIndexRef.current = index;
     setPrintOrientation(orientation);
     setPreparingPdf(true);
     setPrintMode(true);
   };
 
-  const pageName = printRootId.replace(/[^a-z0-9-]/gi, "");
-
+  // Empty portal host for WYSIWYG clones (filled imperatively)
   const printPortal =
     printMode && typeof document !== "undefined"
       ? createPortal(
-          <PrintModeContext.Provider
-            value={{
-              active: true,
-              orientation: printOrientation,
-              // Match digital layout in PDF (not compact squeeze)
-              compact: false,
-            }}
-          >
-            <div id={printRootId} aria-hidden="true" data-orientation={printOrientation}>
-              <style
-                dangerouslySetInnerHTML={{
-                  __html:
-                    buildPrintStyles(printRootId, pageName) + printPageCss(printOrientation),
-                }}
-              />
-              {Array.from({ length: total }, (_, i) => (
-                <div key={i} className="deck-print-page">
-                  {renderSlide(i)}
-                </div>
-              ))}
-            </div>
-          </PrintModeContext.Provider>,
+          <div id={printRootId} aria-hidden="true" data-orientation={printOrientation} />,
           document.body
         )
       : null;
@@ -895,6 +956,7 @@ export default function DeckShell({
       </div>
 
       <div
+        ref={slideViewportRef}
         className={`relative flex-1 min-h-0 min-w-0 overflow-hidden ${
           fullscreen
             ? "min-h-0"
