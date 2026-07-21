@@ -18,6 +18,7 @@ const exploreLinks = [
 const resourceLinks = [
   { href: "/updates", label: "Updates" },
   { href: "/partner-kit", label: "Partner kit" },
+  { href: "/partner", label: "Partner portal" },
   { href: "/methodology", label: "Methodology" },
   { href: "/brand", label: "Brand kit" },
   { href: "/investor", label: "Investor portal" },
