@@ -11,9 +11,26 @@ import {
   StatRow,
   FinalCta,
 } from "../components/PageSections";
-import { Sun, Network, Package, Coins, MapPin, Users, BarChart3, Zap } from "lucide-react";
+import {
+  Sun,
+  Network,
+  Package,
+  Coins,
+  MapPin,
+  Users,
+  BarChart3,
+  Zap,
+  Wifi,
+  GraduationCap,
+  ExternalLink,
+} from "lucide-react";
 import { SA_ONBOARDING } from "../lib/saCopy";
 import DirectStrategyDeck from "../components/DirectStrategyDeck";
+import {
+  SANTACO,
+  SANTACO_PARTNERSHIP,
+  TAXI_INDUSTRY_CONTEXT,
+} from "../lib/santaco";
 
 const ACCENT = "#f97316";
 
@@ -30,9 +47,10 @@ export default function DirectPage() {
             Farm gate to market gate
           </>
         }
-        subtitle="Solar micro-hubs, container logistics and transparent last-mile so producers keep value and communities get product."
+        subtitle="Solar micro-hubs, SANTACO taxi-rank containers and transparent last-mile so producers keep value and communities get product — with Wi‑Fi surveys, marketing revenue and Super-Cube® education in the node."
         ctas={[
           { href: "#direct-deck", label: "Direct deck", primary: true },
+          { href: "#santaco", label: "SANTACO partnership" },
           { href: "#network", label: "Live container network" },
           {
             href: SA_ONBOARDING,
@@ -44,6 +62,122 @@ export default function DirectPage() {
       />
 
       <SupplierTrust entityName="Big Five Direct · Foods distribution" compact />
+
+      <section
+        id="santaco"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16 md:py-20"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-[#c2410c] font-semibold mb-3">
+            {SANTACO_PARTNERSHIP.eyebrow}
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 text-balance max-w-3xl">
+            {SANTACO_PARTNERSHIP.title}
+          </h2>
+          <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-6">
+            {SANTACO_PARTNERSHIP.containers.detail} {SANTACO_PARTNERSHIP.purpose}
+          </p>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+            <div className="rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-50 p-4 sm:p-5">
+              <div className="text-2xl sm:text-3xl font-semibold tracking-tighter text-[#9a3412] tabular-nums">
+                {SANTACO_PARTNERSHIP.containers.value}
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-black mt-1">
+                {SANTACO_PARTNERSHIP.containers.label}
+              </div>
+              <div className="text-[10px] sm:text-xs text-[#737373] mt-1">
+                Major taxi ranks · rural communities
+              </div>
+            </div>
+            {TAXI_INDUSTRY_CONTEXT.stats.slice(0, 3).map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 sm:p-5"
+              >
+                <div className="text-lg sm:text-xl font-semibold tracking-tight text-black">
+                  {s.value}
+                </div>
+                <div className="text-xs sm:text-sm font-semibold text-black mt-1 leading-snug">
+                  {s.label}
+                </div>
+                <div className="text-[10px] sm:text-xs text-[#737373] mt-1.5 leading-snug line-clamp-3">
+                  {s.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+            {SANTACO_PARTNERSHIP.inContainer.map((item) => {
+              const Icon =
+                item.t.startsWith("Food")
+                  ? Package
+                  : item.t.startsWith("Wi")
+                    ? Wifi
+                    : item.t.startsWith("Marketing")
+                      ? Coins
+                      : GraduationCap;
+              return (
+                <div
+                  key={item.t}
+                  className="rounded-2xl border border-black/10 bg-white p-4 sm:p-5"
+                >
+                  <Icon className="w-6 h-6 text-[#c2410c] mb-3" />
+                  <h3 className="text-sm sm:text-base font-semibold text-black mb-1.5">{item.t}</h3>
+                  <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">{item.d}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="rounded-2xl border border-orange-200/80 bg-gradient-to-br from-[#fff7ed] to-white p-5 sm:p-6 mb-6">
+            <div className="text-[10px] tracking-[2px] text-[#c2410c] font-semibold mb-2">
+              INVESTOR LEVERAGE · TAXI-RANK ECONOMY
+            </div>
+            <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-3">
+              {SANTACO_PARTNERSHIP.investorLeverage}
+            </p>
+            <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl">
+              {TAXI_INDUSTRY_CONTEXT.investorNote}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:items-center text-xs sm:text-sm text-[#525252]">
+            <a
+              href={SANTACO.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-semibold text-black underline underline-offset-2"
+            >
+              {SANTACO.shortName} · {SANTACO.name}
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <span className="hidden sm:inline text-[#d4d4d4]">·</span>
+            <a
+              href="https://www.statssa.gov.za/publications/P0320/P03202020.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 underline underline-offset-2"
+            >
+              Stats SA NHTS 2020 (public transport mode share)
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <span className="hidden sm:inline text-[#d4d4d4]">·</span>
+            <a href="/methodology" className="underline underline-offset-2">
+              Methodology & honesty notes
+            </a>
+          </div>
+          <ul className="mt-4 space-y-1.5 text-[11px] sm:text-xs text-[#737373] max-w-3xl">
+            {SANTACO_PARTNERSHIP.honesty.map((h) => (
+              <li key={h} className="leading-relaxed flex gap-1.5">
+                <span className="text-[#c2410c] shrink-0">•</span>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
         <DirectStrategyDeck />
@@ -101,6 +235,21 @@ export default function DirectPage() {
             accent={ACCENT}
             items={[
               {
+                icon: Package,
+                title: "SANTACO containers",
+                desc: "Partnered with SANTACO to roll out 15,000 containers at major taxi ranks and rural communities — Foods supply at high-footfall nodes.",
+              },
+              {
+                icon: Wifi,
+                title: "Wi‑Fi · surveys · marketing",
+                desc: "Connectivity for surveys and on-site marketing that generates sales revenue — multi-use nodes, not empty shells.",
+              },
+              {
+                icon: GraduationCap,
+                title: "Super-Cube® education",
+                desc: "Big Five Leadership / Super-Cube® touchpoints in-container — educate where taxis move people every day.",
+              },
+              {
                 icon: Sun,
                 title: "Solar micro-hubs",
                 desc: "IoT-enabled, solar-powered hubs — storage, cold chain, and digital commerce under one roof.",
@@ -111,24 +260,9 @@ export default function DirectPage() {
                 desc: "AI-powered matching of producers to verified buyers with transparent fees (max 8%).",
               },
               {
-                icon: Package,
-                title: "Last-mile logistics",
-                desc: "Containerised points and coordinated logistics that cut spoilage and leakage.",
-              },
-              {
-                icon: Coins,
-                title: "Affordable nutrition",
-                desc: "83% cheaper pathways with 74% more nutrition — fortified food that reaches households and institutions with dignity.",
-              },
-              {
-                icon: MapPin,
-                title: "Urban reliability",
-                desc: "Traceable supply, volume guarantees, and quality CoAs for cities and institutions.",
-              },
-              {
                 icon: BarChart3,
-                title: "Investable unit economics",
-                desc: "Asset-backed hubs with measurable job creation and proven payback pathways.",
+                title: "Investable rank economics",
+                desc: "Taxi-rank footfall + recurring food demand + media/data/education layers — phased density toward the 15k plan.",
               },
             ]}
           />
@@ -175,7 +309,7 @@ export default function DirectPage() {
             {
               icon: Zap,
               t: "For investors",
-              d: "Infrastructure-backed models with job and trade metrics.",
+              d: "SANTACO rank nodes: leverage SA’s dominant public-transport mode for food offtake, data, marketing and Super-Cube® reach.",
             },
           ].map((x) => (
             <div key={x.t} className="bg-white/10 rounded-3xl p-8">

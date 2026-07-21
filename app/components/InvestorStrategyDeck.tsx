@@ -947,15 +947,15 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "With the raise",
-                d: "Working capital to convert the ~$3.0m (R50m) pipeline into recurring Foods offtake that should sustain and grow; stand up NSNP; advance SA DoH pathway via Impact; Seychelles holdco + IP; 90/10 deploy; board governance.",
+                d: "Working capital to convert the ~$3.0m (R50m) pipeline into recurring Foods offtake; pilot and densify SANTACO taxi-rank containers (toward 15k plan); stand up NSNP; advance SA DoH pathway via Impact; Seychelles holdco + IP; 90/10 deploy.",
               },
               {
                 t: "Without it",
-                d: "Slower pipeline conversion, thinner inventory for institutional reorders, delayed DoH and multi-country health introductions, weaker multi-department and continental public pathways.",
+                d: "Slower pipeline conversion, thinner inventory for institutional and rank reorders, delayed SANTACO density, delayed DoH introductions, weaker multi-department pathways.",
               },
               {
                 t: "Prove in 18 months",
-                d: "Pipeline → contracted recurring offtake; NSNP rhythm; DoH channel progress; reorder retention; corridors + unit-economics dashboard; second market opco.",
+                d: "Pipeline → recurring offtake; SANTACO pilot ranks live (Foods + Wi‑Fi + media + Super-Cube®); NSNP rhythm; DoH progress; unit-economics dashboard; second market opco.",
               },
             ].map((c) => (
               <div

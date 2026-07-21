@@ -231,9 +231,9 @@ export const directDeckConfig: PillarDeckConfig = {
   heroTitle: "Farm gate to market gate.",
   heroHighlight: "No middlemen. Pure value.",
   heroBody:
-    "Big Five Direct builds distribution rails — solar micro-hubs, containerised points and transparent logistics — so producers keep value and institutions can see where product sits. Powered with Foods on SupplierAdvisor®.",
+    "Big Five Direct builds distribution rails — solar micro-hubs, containerised points and transparent logistics — so producers keep value and institutions can see where product sits. Partnered with SANTACO to roll out 15,000 containers at major taxi ranks and rural communities. Powered with Foods on SupplierAdvisor®.",
   meta: [
-    "Last-mile · Containers",
+    "SANTACO · 15k containers",
     "bigfivegroup.africa/direct",
     "Empower + Feed",
     "13 slides",
@@ -241,28 +241,28 @@ export const directDeckConfig: PillarDeckConfig = {
   agenda: [
     "Group vision, mission and values",
     "Why last-mile is where food security fails",
-    "Containers, hubs and transparent trade",
-    "How Direct multiplies Foods & Agri",
+    "SANTACO partnership · taxi-rank containers",
+    "Foods + Wi‑Fi + marketing + Super-Cube®",
     "Who we serve and SDG alignment",
     "How to partner",
   ],
   challengeTitle: "Value and nutrition die in the last mile",
   challengeStats: [
     { value: "Last mile", label: "Where spoilage, opacity and mark-ups explode" },
-    { value: "Producers", label: "Lose margin to stacked intermediaries" },
-    { value: "Buyers", label: "Need location, quality and proof — not rumours" },
+    { value: "Taxis", label: "Dominant SA public-transport mode (Stats SA NHTS)" },
+    { value: "Ranks", label: "High-footfall nodes millions of trips touch daily" },
     { value: "Jobs", label: "Local hubs create dignified distribution work" },
   ],
   challengeBody:
-    "You can fortify a porridge and still fail a child if the product never arrives. Direct is the Group’s answer to fragmented logistics and invisible stock.",
-  solutionTitle: "Distribution you can see",
+    "You can fortify a porridge and still fail a child if the product never arrives. Direct is the Group’s answer to fragmented logistics — and with SANTACO, we place multi-use containers where South Africans already move: taxi ranks and rural communities.",
+  solutionTitle: "Distribution you can see — at the rank",
   solutionBody:
-    "Micro-hubs, container networks and AI-assisted matching move Foods and Agri outputs to markets and programmes — with SupplierAdvisor® visibility and fairer producer economics.",
+    "Partnered with SANTACO for a 15,000-container rollout plan: Foods supply at ranks, Wi‑Fi for surveys, marketing/sales revenue, and Big Five Leadership / Super-Cube® education — with micro-hubs and SupplierAdvisor® visibility.",
   solutionCards: [
     {
       icon: Package,
-      t: "Container network",
-      d: "Deployable distribution points with live map visibility for partners.",
+      t: "SANTACO containers",
+      d: "15,000-unit partnership plan at major taxi ranks and rural communities.",
     },
     {
       icon: Sun,
@@ -271,52 +271,53 @@ export const directDeckConfig: PillarDeckConfig = {
     },
     {
       icon: Truck,
-      t: "Direct matching",
-      d: "Connect producers to verified buyers with leaner fee structures.",
+      t: "Foods at the last mile",
+      d: "Recurring food supply where taxis concentrate daily demand.",
     },
     {
       icon: MapPin,
-      t: "Transparent locations",
-      d: "Know where fortified stock sits — critical for institutional feeding.",
+      t: "Wi‑Fi · media · Super-Cube®",
+      d: "Surveys, marketing revenue and Leadership education in each node.",
     },
   ],
   proofTitle: "What Direct puts on the table",
   proofStats: [
-    { value: "Live map", label: "SupplierAdvisor® container embed" },
+    { value: "15k", label: "Containers · SANTACO partnership plan" },
     { value: "Foods", label: "150k meals · 100k children (programme-reported)" },
-    { value: "Hubs", label: "Micro-franchise distribution model" },
-    { value: "SA", label: "Verified trade rails" },
+    { value: "NHTS", label: "Taxis ~80% of public-transport trips (Stats SA)" },
+    { value: "SA", label: "Verified trade rails · live map" },
   ],
   proofPoints: [
-    "Live container network for Big Five Foods on SupplierAdvisor®",
-    "Designed to keep more value with producers and communities",
-    "Complements school, institutional and retail channels",
-    "Part of one Group PMO with Impact — not a lone logistics vendor",
+    "Partnered with SANTACO — national representative body of SA’s taxi industry (santaco.org)",
+    "15,000 containers planned for major ranks and rural communities (phased rollout)",
+    "In-container stack: Foods · Wi‑Fi surveys · marketing sales · Super-Cube® / Leadership",
+    "Investor leverage: high-footfall nodes on SA’s dominant public-transport mode",
   ],
   howTitle: "How Direct works",
   howSteps: [
     {
       step: "01",
-      t: "Activate hubs",
-      d: "Deploy micro-hubs and containers where communities need access.",
+      t: "Partner & place",
+      d: "SANTACO partnership — containers at ranks and rural stops.",
     },
     {
       step: "02",
-      t: "Match & move",
-      d: "Connect supply to buyers with transparent tracking.",
+      t: "Stock · connect · teach",
+      d: "Foods supply, Wi‑Fi surveys, marketing sales, Super-Cube® education.",
     },
     {
       step: "03",
       t: "Scale & prove",
-      d: "Replicate unit economics; report jobs and reach with partners.",
+      d: "Phased density toward 15k; report offtake, jobs and engagement.",
     },
   ],
   ecosystemTitle: "Direct inside One Group",
   ecosystemBody:
-    "Direct is the blood vessel. Agri and Foods create value; Direct delivers it; Connect verifies it; Impact runs multi-pillar programmes with gates and KPIs.",
+    "Direct is the blood vessel. Agri and Foods create value; Direct delivers it at taxi ranks via SANTACO; Connect verifies it; Leadership educates in-container; Impact runs multi-pillar programmes with gates and KPIs.",
   ecosystemLinks: [
     { label: "Foods", href: "/foods" },
     { label: "Agri", href: "/agri" },
+    { label: "Leadership", href: "/leadership" },
     { label: "Connect", href: "/connect" },
     { label: "Impact", href: "/impact" },
     { label: "Group", href: "/group" },
@@ -336,12 +337,12 @@ export const directDeckConfig: PillarDeckConfig = {
     {
       icon: Coins,
       t: "Investors",
-      d: "Infrastructure with measurable jobs and coverage.",
+      d: "Taxi-rank infrastructure: food offtake, data, media and education at scale.",
     },
     {
       icon: Network,
-      t: "Retail & programmes",
-      d: "Transparent stock positions and distribution partners.",
+      t: "SANTACO & taxi communities",
+      d: "Economic nodes at ranks — food, connectivity and learning for people on the move.",
     },
   ],
   sdgTitle: "How Direct serves the Goals",
@@ -368,30 +369,30 @@ export const directDeckConfig: PillarDeckConfig = {
   whyTitle: "Why organisations choose Direct",
   whyPoints: [
     {
-      t: "Visibility",
-      d: "Live container transparency beats black-box logistics.",
+      t: "Rank footfall",
+      d: "SANTACO-linked sites sit where SA public-transport users already gather.",
+    },
+    {
+      t: "Multi-revenue node",
+      d: "Food + surveys + marketing + Super-Cube® education — not haulage alone.",
     },
     {
       t: "Mission-aligned",
-      d: "Built for fortified food and regenerative produce — not generic haulage.",
-    },
-    {
-      t: "Producer fairness",
-      d: "Designed to cut wasteful intermediaries.",
+      d: "Built for fortified food and regenerative produce — not generic logistics.",
     },
     {
       t: "One accountable Group",
-      d: "Foods + Direct + Connect + Impact under one relationship.",
+      d: "Foods + Direct + Leadership + Connect + Impact under one relationship.",
     },
   ],
   ctaTitle: "Put a last-mile system on your",
   ctaHighlight: "nutrition ambition.",
   ctaBody:
-    "Governments, programmes and commercial partners — deploy containers and hubs that keep value local and stock visible.",
+    "Governments, programmes, SANTACO partners and investors — deploy containers and hubs that keep value local, stock visible, and rank footfall monetisable.",
   ctaSteps: [
-    { n: "01", t: "Map the corridor", d: "Origins · destinations" },
-    { n: "02", t: "Deploy rails", d: "Hubs · containers · SA" },
-    { n: "03", t: "Prove delivery", d: "Jobs · reach · visibility" },
+    { n: "01", t: "Map the ranks", d: "SANTACO · rural stops" },
+    { n: "02", t: "Deploy rails", d: "15k plan · Foods · Wi‑Fi" },
+    { n: "03", t: "Prove delivery", d: "Offtake · data · education" },
   ],
   ctaPrimary: { label: "Partner on Direct", href: "/connect" },
   ctaSecondary: {
@@ -401,7 +402,7 @@ export const directDeckConfig: PillarDeckConfig = {
   },
   ctaEmail: "craig@bigfivegroup.africa",
   footerLine:
-    "Big Five Direct · containers · micro-hubs · bigfivegroup.africa/direct",
+    "Big Five Direct · SANTACO · 15k containers · bigfivegroup.africa/direct",
 };
 
 export const accessDeckConfig: PillarDeckConfig = {

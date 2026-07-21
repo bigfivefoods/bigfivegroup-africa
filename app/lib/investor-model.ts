@@ -281,21 +281,23 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
     name: "Direct",
     fullName: "Big Five Direct",
     color: "#f97316",
-    avenue: "Route-to-market · micro-hubs · last-mile dignity",
+    avenue: "SANTACO containers · taxi-rank last-mile · multi-use nodes · micro-hubs",
     currentState: {
-      markets: "Building with Foods corridors; container / hub model narrative",
+      markets:
+        "Building with Foods corridors; SANTACO partnership for taxi-rank & rural container rollout (SA)",
       traction: [
-        "Last-mile and route-to-market design with Foods impact linkage",
-        "Micro-hub / container staging concepts for underserved areas",
-        "SupplierAdvisor® visibility where trade is verified",
+        "Partnered with SANTACO to roll out 15,000 containers at major taxi ranks and rural communities (programme plan scale)",
+        "Containers supply Big Five Foods; Wi‑Fi for surveys, marketing/sales revenue, and Leadership / Super-Cube® education",
+        "Investor thesis: taxi ranks concentrate the majority of SA public-transport users (Stats SA NHTS) — high-footfall nodes for recurring offtake and engagement",
+        "Micro-hub / container staging + SupplierAdvisor® visibility where trade is verified",
       ],
-      constraints: "Capex for hubs, partner operators, density economics",
+      constraints: "Capex for 15k-site density, rank operator partnerships, connectivity ops, unit economics per site",
     },
     futureState:
-      "Replicable hub network that keeps more value with producers and lands fortified supply on time.",
+      "National SANTACO-linked container grid feeding recurring Foods demand, survey insight, marketing revenue and Super-Cube® education — replicable hub model that keeps more value with communities.",
     problemsAddressed: ["markets", "hunger", "malnutrition"],
     howWeAddress:
-      "Cut opaque middle layers, stage inventory closer to demand, and instrument routes for OTIF proof.",
+      "Stage inventory at taxi ranks and rural stops where people already move; cut opaque middle layers; instrument routes for OTIF proof; monetise multi-use container nodes (food + Wi‑Fi + media + education).",
     scenarios: {
       conservative: {
         y5RevenueUSDm: 12,
@@ -784,7 +786,7 @@ export const MARKET_TRACTION = {
   credibility: {
     title: "Credibility → multi-department & continental government pathways",
     detail:
-      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee).",
+      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee). Direct’s SANTACO partnership places multi-use containers at taxi ranks — high-footfall nodes on SA’s dominant public-transport mode (Stats SA NHTS) — so investors can leverage population mobility for food offtake, surveys, marketing and Super-Cube® education (15,000-container plan scale, phased).",
   },
   healthChannel: {
     title: "Director General of Health · Big Five Impact",
@@ -840,18 +842,18 @@ export const MILESTONES_12_18 = [
     items: [
       "Convert ~$3.0m (R50m) commercial pipeline into contracted offtake (working capital + delivery)",
       "Stand up NSNP delivery rhythm toward 2.5m children/day plan scale",
+      "SANTACO container pilot corridors: first live ranks with Foods + Wi‑Fi + marketing + Super-Cube® modules",
       "Advance SA Department of Health product pathway via Impact (Director General of Health)",
-      "Advance Seychelles holdco + IP architecture with counsel",
     ],
   },
   {
     q: "6–12 mo",
     title: "Corridors",
     items: [
+      "Scale SANTACO rank density toward the 15,000-container partnership plan (phased)",
       "Use NSNP + DoH channel credibility for adjacent SA government pathways",
       "First health-system product introductions outside education-only menus where appropriate",
       "2–3 priority African corridors with measurable offtake / logistics",
-      "Connect: verified supplier activation on Group + pilot enterprises",
     ],
   },
   {
@@ -903,6 +905,7 @@ export const TRACTION_VS_AMBITION = {
     "Director General of Health within Big Five Impact — channel to help drive Group products into SA DoH and African health pathways",
     "Foods is a repeat / recurring purchase category — as traction lands, offtake should sustain and grow with penetration (model thesis, not a guarantee)",
     "Foods fortified product story + programme-reported meals / children where stated",
+    "SANTACO partnership (Direct): 15,000-container rollout plan at major taxi ranks & rural communities — Foods + Wi‑Fi surveys + marketing + Super-Cube® education",
     "Kenya company setup as East Africa hub template",
     "12 priority distribution markets listed (9 Africa + DE · HU · GE)",
     "SupplierAdvisor® live product (Connect); SAM positioning",
@@ -912,6 +915,7 @@ export const TRACTION_VS_AMBITION = {
   notYetTrue: [
     "~$3.0m (R50m) pipeline fully converted to contracted / recognised revenue",
     "2.5m children fed per day as current operational headcount",
+    "All 15,000 SANTACO containers live and monetised at full national density",
     "Department of Health supply awards closed at multi-country scale",
     "Other SA government departments and pan-African public awards already closed at scale",
     "Full Seychelles holdco + IP stack live as final legal structure",

@@ -58,6 +58,51 @@ export default function MethodologyPage() {
 
         <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
           <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
+            SANTACO · 15,000 containers (Direct)
+          </h2>
+          <p className="text-sm text-[#404040] leading-relaxed mb-3">
+            Big Five Direct states a <strong>partnership with SANTACO</strong> (South African National
+            Taxi Council) to <strong>roll out 15,000 containers</strong> at major taxi ranks and rural
+            communities. That figure is a <strong>partnership programme plan / rollout target</strong> —
+            not a claim that all units are already live. In-container uses include Foods supply, Wi‑Fi
+            for surveys, marketing (sales revenue), and Big Five Leadership / Super-Cube® education.
+          </p>
+          <p className="text-sm text-[#525252] leading-relaxed mb-3">
+            Industry context for investors: minibus taxis are South Africa’s dominant public-transport
+            mode. Stats SA’s National Household Travel Survey (2020) reports taxis account for about{" "}
+            <strong>80% of public-transport trips</strong>. Industry sources often cite on the order of
+            millions of daily taxi trips (sometimes ~15 million); independent fact-checks note the exact
+            national headcount is hard to pin from surveys — we use “millions of daily movements” as
+            order-of-magnitude context, not a Big Five audited passenger count.
+          </p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 text-sm">
+            <a
+              href="https://santaco.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-semibold text-black underline underline-offset-2"
+            >
+              SANTACO
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://www.statssa.gov.za/publications/P0320/P03202020.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-semibold text-black underline underline-offset-2"
+            >
+              Stats SA NHTS 2020
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <Link href="/direct#santaco" className="inline-flex items-center gap-1 font-semibold text-black">
+              Direct · SANTACO section
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </article>
+
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
+          <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
             SupplierAdvisor® product claims
           </h2>
           <p className="text-sm text-[#404040] leading-relaxed mb-3">

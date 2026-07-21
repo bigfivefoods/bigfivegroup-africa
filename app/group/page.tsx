@@ -45,9 +45,9 @@ const pillarSupport: Record<
   direct: {
     mission: "Empower",
     serves:
-      "Builds distribution and last-mile routes so producers keep value and communities access goods fairly.",
+      "Builds distribution and last-mile routes so producers keep value and communities access goods fairly. Partnered with SANTACO for 15,000 containers at taxi ranks and rural communities — Foods, Wi‑Fi surveys, marketing and Super-Cube® education.",
     system:
-      "Moves Foods and Agri products to market while creating local jobs and micro-hub infrastructure.",
+      "Moves Foods and Agri products to market at high-footfall taxi nodes while creating local jobs and multi-use container infrastructure.",
   },
   access: {
     mission: "Empower",

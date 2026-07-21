@@ -105,7 +105,8 @@ const PILLAR_BRIEFS: Record<string, string> = {
   agri: "Regenerative production and smallholder supply with verified provenance.",
   foods:
     "Fortified, affordable nutrition for households, schools and institutions — repeat purchase that should sustain and grow with traction.",
-  direct: "Last-mile distribution and container hubs that keep value local.",
+  direct:
+    "Last-mile distribution and SANTACO taxi-rank containers (15k plan) — Foods, Wi‑Fi surveys, marketing and Super-Cube® education where people already move.",
   access: "Pathways to tenders, CSI and development capital for African enterprise.",
   connect: "SupplierAdvisor® ethical commerce, verification and transparent trade.",
   leadership: "Super-Cube® ethical leadership for business and public life.",

@@ -107,25 +107,30 @@ export const companies: Company[] = [
     fullName: "Big Five Direct",
     color: "#f97316",
     icon: "Truck",
-    tagline: "Route-to-Market • Micro-Hubs • Last-Mile Dignity",
+    tagline: "Route-to-Market • SANTACO Containers • Last-Mile Dignity",
     description:
-      "Last-mile and route-to-market infrastructure — micro-hubs, containerised distribution and digital matching — so producers and institutions keep more value and communities eat with dignity.",
+      "Last-mile and route-to-market infrastructure — micro-hubs, containerised distribution and digital matching — so producers and institutions keep more value and communities eat with dignity. Partnered with SANTACO to roll out 15,000 containers at major taxi ranks and rural communities for Foods supply, with Wi‑Fi for surveys, marketing (sales revenue) and Big Five Leadership / Super-Cube® education.",
     heroText: "From Farm Gate to Market Gate. Clear Routes. Pure Value.",
     howItWorks: [
       {
         step: 1,
-        title: "Hub design",
-        desc: "Solar-capable micro-hub and container models for storage, staging and local jobs where programmes require them.",
+        title: "Hub & container design",
+        desc: "Solar-capable micro-hubs and container models for storage, staging, retail and local jobs — including SANTACO rank and rural sites.",
       },
       {
         step: 2,
-        title: "Direct matching",
-        desc: "Connect producers to verified buyers with transparent commerce rails — including SupplierAdvisor® where applicable.",
+        title: "SANTACO rank rollout",
+        desc: "Partnered with SANTACO to place containers at major taxi ranks and rural communities — supply Big Five Foods where millions of daily public-transport movements already concentrate.",
       },
       {
         step: 3,
+        title: "Multi-use nodes",
+        desc: "Wi‑Fi for surveys, marketing and sales revenue, plus Leadership / Super-Cube® education — logistics that also capture insight, commerce and learning.",
+      },
+      {
+        step: 4,
         title: "Scale with proof",
-        desc: "Replicate routes that work — measured by OTIF delivery, community reach and partner reporting, not vanity hub counts.",
+        desc: "Replicate routes that work — measured by offtake, live sites, community reach and partner reporting, not vanity hub counts alone.",
       },
     ],
     forStakeholders: [
@@ -135,15 +140,19 @@ export const companies: Company[] = [
       },
       {
         title: "For Urban Markets & Institutions",
-        desc: "Reliable, traceable supply with logistics built for real African conditions.",
+        desc: "Reliable, traceable supply with logistics built for real African conditions — including taxi-rank last-mile.",
+      },
+      {
+        title: "For SANTACO & taxi communities",
+        desc: "Container nodes at ranks and rural stops that sell food, offer connectivity and host education — economic activity where taxis already serve people.",
       },
       {
         title: "For Investors & Partners",
-        desc: "Infrastructure models tied to measurable jobs, meals and corridor growth.",
+        desc: "Infrastructure at high-footfall taxi ranks: leverage SA’s dominant public-transport mode for recurring food sales, survey data, marketing revenue and Super-Cube® reach — phased 15,000-container partnership plan with SANTACO.",
       },
     ],
     impact:
-      "Logistics pillar for Foods and institutional programmes — route-to-market ambition across priority nations, with programme-reported nutrition impact shared where Direct and Foods deliver together.",
+      "Logistics pillar for Foods and institutional programmes — plus SANTACO partnership to roll out 15,000 containers at taxi ranks and rural communities (plan scale). Programme-reported nutrition impact where Direct and Foods deliver together. See /methodology and /direct#santaco.",
   },
   {
     slug: "access",
