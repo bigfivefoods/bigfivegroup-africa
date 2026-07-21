@@ -498,22 +498,45 @@ export default function PartnerPortalClient({
             Decks and pages for this partnership
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {resources.map((r) => (
-              <Link
-                key={r.href}
-                href={r.href}
-                className="rounded-2xl border border-black/10 bg-white p-5 hover:border-emerald-300/80 transition-colors min-w-0 group"
-              >
-                <div className="text-sm font-semibold text-black group-hover:underline underline-offset-2 mb-1">
-                  {r.label}
-                </div>
-                <p className="text-xs text-[#525252] leading-relaxed mb-3">{r.desc}</p>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-800">
-                  Open
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </Link>
-            ))}
+            {resources.map((r) => {
+              const external = /^https?:\/\//i.test(r.href);
+              const cardClass =
+                "rounded-2xl border border-black/10 bg-white p-5 hover:border-emerald-300/80 transition-colors min-w-0 group block";
+              const body = (
+                <>
+                  <div className="text-sm font-semibold text-black group-hover:underline underline-offset-2 mb-1">
+                    {r.label}
+                  </div>
+                  <p className="text-xs text-[#525252] leading-relaxed mb-3">{r.desc}</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-800">
+                    {external ? "Visit site" : "Open"}
+                    {external ? (
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    ) : (
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    )}
+                  </span>
+                </>
+              );
+              if (external) {
+                return (
+                  <a
+                    key={r.href}
+                    href={r.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cardClass}
+                  >
+                    {body}
+                  </a>
+                );
+              }
+              return (
+                <Link key={r.href} href={r.href} className={cardClass}>
+                  {body}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -283,6 +283,63 @@ export const PARTNERS: PartnerProfile[] = [
     contactNote: "Primary Group contact: craig@bigfivegroup.africa · Sharks partnership coordination via Group leadership",
   },
   {
+    slug: "santaco",
+    name: "SANTACO",
+    organisation: "South African National Taxi Council",
+    emails: [],
+    role: "National taxi industry body · last-mile nodes",
+    headline: "SANTACO × Big Five Direct",
+    summary:
+      "Partnership workspace for SANTACO (South African National Taxi Council) and Big Five Group — national voice of the minibus-taxi industry since 2001, and Direct’s partner for multi-use containers at major taxi ranks and rural communities: Foods supply, Wi‑Fi surveys, marketing revenue and Super-Cube® education (santaco.org).",
+    focus: ["Direct", "Foods", "Leadership", "Impact", "Last mile"],
+    programmes: ["santaco", "nsnp", "connect", "leadership", "impact"],
+    logoSrc: "/partners/santaco-logo.png",
+    brandColor: "#0B3D2E",
+    website: "https://santaco.org/about-us/",
+    websiteLabel: "santaco.org · About us",
+    notes: [
+      "Official SANTACO site: https://santaco.org/ — About us: https://santaco.org/about-us/",
+      "SANTACO is the national representative body of South Africa’s minibus-taxi industry — formed in 2001 as the unified voice of the sector.",
+      "Big Five Direct partnership: plan to roll out 15,000 containers at major taxi ranks and rural communities — Foods, Wi‑Fi surveys, marketing and Super-Cube® / Leadership education where people already move.",
+      "Industry context (mode share, ridership order of magnitude) is external (e.g. Stats SA NHTS) — not Big Five audited passenger counts.",
+      "Add authorised SANTACO emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "https://santaco.org/about-us/",
+        label: "SANTACO · About us",
+        desc: "Official about page — national taxi council mission and industry voice (santaco.org).",
+      },
+      {
+        href: "https://santaco.org/",
+        label: "SANTACO website",
+        desc: "Home of the South African National Taxi Council.",
+      },
+      {
+        href: "/direct#santaco",
+        label: "Direct × SANTACO programme",
+        desc: "15,000-container rollout plan at taxi ranks and rural communities.",
+      },
+      {
+        href: "/direct",
+        label: "Big Five Direct",
+        desc: "Last-mile distribution, hubs and route-to-market.",
+      },
+      {
+        href: "/foods",
+        label: "Big Five Foods",
+        desc: "Fortified product for high-footfall rank and community nodes.",
+      },
+      {
+        href: "/leadership",
+        label: "Leadership · Super-Cube®",
+        desc: "Education touchpoints delivered where people already move.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · SANTACO coordination via Big Five Direct partnership lead",
+  },
+  {
     slug: "kencrete",
     name: "Kencrete",
     organisation: "Kencrete",

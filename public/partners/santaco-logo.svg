@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" role="img" aria-label="SANTACO">
+  <rect width="480" height="160" rx="12" fill="#0B3D2E"/>
+  <rect x="0" y="0" width="480" height="12" fill="#F4C430"/>
+  <rect x="0" y="148" width="480" height="12" fill="#F4C430"/>
+  <text x="240" y="78" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="48" font-weight="700" fill="#FFFFFF" letter-spacing="4">SANTACO</text>
+  <text x="240" y="112" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="14" font-weight="500" fill="#F4C430" letter-spacing="2">SOUTH AFRICAN NATIONAL TAXI COUNCIL</text>
+</svg>
