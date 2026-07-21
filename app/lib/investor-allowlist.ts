@@ -8,6 +8,7 @@
  */
 export const INVESTOR_ALLOWLIST: string[] = [
   "craig@bigfivegroup.africa",
-  "craig@bigfvegroup.africa",
+  "craig@bigfvegroup.africa", // common typo of bigfivegroup — keep for access
   "clint@kencrete.co.za",
+  "daniel@dmafrica.com",
 ];
