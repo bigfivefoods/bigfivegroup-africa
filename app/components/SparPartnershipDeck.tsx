@@ -3,19 +3,15 @@
 import Image from "next/image";
 import {
   ArrowRight,
-  Beef,
   Building2,
-  ChefHat,
   Gift,
   HandHeart,
   Heart,
   Scale,
   ShoppingCart,
-  Soup,
   Store,
   Target,
   Users,
-  UtensilsCrossed,
 } from "lucide-react";
 import DeckShell, {
   DECK_THEMES,
@@ -400,14 +396,14 @@ function Slide({ index }: { index: number }) {
     case 5:
       return (
         <DeckSlideShell theme={theme}>
-          {/* One product pack image per category */}
+          {/* Same product image layout as PRODUCT SPAR CAN TRUST (format, size, grid) */}
           <div className="flex h-full min-h-0 flex-col overflow-hidden">
-            <div className="shrink-0 mb-2 sm:mb-3">
+            <div className="shrink-0">
               <DeckEyebrow theme={theme}>MANDELA PACK · FULL RANGE</DeckEyebrow>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-balance text-black mb-1">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2 sm:mb-3">
                 Four categories. Sixteen flavours. One purpose pack story.
               </h2>
-              <p className="text-[10px] sm:text-xs text-[#525252] leading-snug max-w-4xl">
+              <p className="text-[10px] sm:text-xs text-[#525252] leading-snug max-w-4xl mb-2 sm:mb-3">
                 Full Big Five Foods packaging for SPAR — trade{" "}
                 <strong className="text-black">{P.product.tradePriceExVatLabel} ex. VAT</strong> · RRP{" "}
                 <strong className="text-black">{P.product.rrpInclVatLabel} incl. VAT</strong> ·
@@ -415,57 +411,38 @@ function Slide({ index }: { index: number }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
               {RANGES.map((range) => {
-                const Icon = RANGE_ICONS[range.id as keyof typeof RANGE_ICONS] ?? UtensilsCrossed;
-                const flavourNames = range.flavours.map((f) => f.name).join(" · ");
+                const heroFlavour = range.flavours[0]?.name ?? "";
                 return (
-                  <div
-                    key={range.id}
-                    className="rounded-xl border border-black/10 bg-[#fafafa] min-w-0 flex flex-col overflow-hidden p-2 sm:p-3"
-                  >
-                    <div className="flex items-center gap-1.5 mb-2 shrink-0 min-w-0">
-                      <Icon className="w-4 h-4 shrink-0" style={{ color: theme.accentDark }} />
-                      <div className="min-w-0">
-                        <div className="text-xs sm:text-sm font-semibold text-black leading-tight truncate">
-                          {range.title}
-                        </div>
-                        <div
-                          className="text-[9px] sm:text-[10px] leading-tight truncate"
-                          style={{ color: theme.accentDark }}
-                        >
-                          {range.tagline}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* One product image per category — fixed aspect so pack always paints fully */}
-                    <div className="relative w-full aspect-[3/4] max-h-[14rem] sm:max-h-[16rem] mx-auto rounded-lg border border-black/8 bg-white overflow-hidden shrink-0">
+                  <div key={range.id} className="min-w-0 flex flex-col">
+                    <div className="relative w-full aspect-[3/4] max-h-[15rem] sm:max-h-[17rem] rounded-xl border border-black/8 bg-white overflow-hidden shrink-0">
                       <DeckPrintImage
                         src={range.heroImage}
-                        alt={`${range.title} product packaging`}
+                        alt={`${range.title} — ${heroFlavour}`}
                         paddingClass="p-2 sm:p-3"
                         fit="contain"
                       />
                     </div>
-
-                    <p className="text-[9px] sm:text-[10px] font-medium text-black leading-snug mt-2 shrink-0 line-clamp-2">
-                      {flavourNames}
-                    </p>
-                    <p className="text-[8px] sm:text-[9px] text-[#525252] leading-snug mt-1 line-clamp-2 shrink-0">
-                      <strong className="text-black">Nutrition:</strong> {range.nutrition}
-                    </p>
-                    <p className="text-[8px] text-[#737373] leading-tight mt-0.5 line-clamp-1 shrink-0">
-                      {range.stats}
-                    </p>
+                    <div className="text-center mt-1.5 shrink-0">
+                      <div className="text-[10px] sm:text-xs font-semibold text-black leading-tight">
+                        {range.title}
+                      </div>
+                      <div className="text-[9px] sm:text-[10px] text-[#737373] leading-tight">
+                        {heroFlavour}
+                        {range.flavours.length > 1
+                          ? ` · +${range.flavours.length - 1} more`
+                          : ""}
+                      </div>
+                    </div>
                   </div>
                 );
               })}
             </div>
 
-            <p className="shrink-0 mt-2 text-[9px] sm:text-[10px] text-[#737373] leading-snug">
-              One product image per category (16 flavours across the range). SKUs, sizes & Mandela
-              wraps on term sheet · bigfivegroup.africa/foods
+            <p className="text-[9px] sm:text-[10px] text-[#737373] leading-snug mt-2 shrink-0">
+              One pack per category (16 flavours across the range) · SKUs & Mandela wraps on term
+              sheet · bigfivegroup.africa/foods
             </p>
           </div>
         </DeckSlideShell>
