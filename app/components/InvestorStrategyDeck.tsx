@@ -71,53 +71,69 @@ function Slide({ index }: { index: number }) {
     case 0:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
-          <DeckTitleLayout>
-            <div>
-              <DeckEyebrow light theme={theme}>
-                BIG FIVE GROUP · INVESTOR PRESENTATION · CONFIDENTIAL
-              </DeckEyebrow>
-              <div
-                className={`relative mb-4 sm:mb-6 ${
-                  forPrint ? "w-20 h-20" : "w-24 h-24 sm:w-28 sm:h-28"
-                }`}
-              >
-                <Image
-                  src="/bigfivegroup-logo.png"
-                  alt="Big Five Group"
-                  fill
-                  className="object-contain object-left drop-shadow-lg"
-                  sizes="112px"
-                  priority
-                />
-              </div>
-              <h2
-                className={`font-semibold tracking-tighter leading-[1.05] text-white text-balance max-w-3xl ${
-                  forPrint ? "text-2xl" : "text-3xl sm:text-4xl md:text-5xl"
-                }`}
-              >
-                Continental growth platform.
-                <br />
-                <span style={{ color: theme.gradientFrom }}>
-                  USD 10m · 10% equity · board seat.
-                </span>
-              </h2>
-              <p
-                className={`text-white/75 max-w-2xl mt-4 ${
-                  forPrint ? "text-xs" : "text-sm sm:text-base"
-                } leading-relaxed`}
-              >
-                Market traction (~$45k · ~$3.0m pipeline · NSNP landed) · USD scenarios · unit economics ·
-                milestones · risks · Seychelles holdco + end-market opcos.
-              </p>
+          <div className="relative h-full w-full min-h-0">
+            <Image
+              src="/home-hero.jpg"
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="(max-width:1280px) 100vw, 1200px"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30" />
+            <div className="relative z-10 h-full">
+              <DeckTitleLayout>
+                <div>
+                  <DeckEyebrow light theme={theme}>
+                    BIG FIVE GROUP · INVESTOR PRESENTATION · CONFIDENTIAL
+                  </DeckEyebrow>
+                  <div
+                    className={`relative mb-4 sm:mb-6 ${
+                      forPrint ? "w-20 h-20" : "w-24 h-24 sm:w-28 sm:h-28"
+                    }`}
+                  >
+                    <Image
+                      src="/bigfivegroup-logo.png"
+                      alt="Big Five Group"
+                      fill
+                      className="object-contain object-left drop-shadow-lg"
+                      sizes="112px"
+                      priority
+                    />
+                  </div>
+                  <h2
+                    className={`font-semibold tracking-tighter leading-[1.05] text-white text-balance max-w-3xl ${
+                      forPrint ? "text-2xl" : "text-3xl sm:text-4xl md:text-5xl"
+                    }`}
+                  >
+                    Continental growth platform.
+                    <br />
+                    <span style={{ color: theme.gradientFrom }}>
+                      USD 10m · 10% equity · board seat.
+                    </span>
+                  </h2>
+                  <p
+                    className={`text-white/75 max-w-2xl mt-4 ${
+                      forPrint ? "text-xs" : "text-sm sm:text-base"
+                    } leading-relaxed`}
+                  >
+                    Market traction (~$45k · ~$3.0m pipeline · NSNP landed) · USD scenarios · unit
+                    economics · milestones · risks · Seychelles holdco + end-market opcos.
+                  </p>
+                </div>
+                <div
+                  className={`text-white/45 space-y-1 ${
+                    forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                  }`}
+                >
+                  <p>Holding company · Feed · Educate · Empower</p>
+                  <p>bigfivegroup.africa/investor#investor-deck</p>
+                  <p>{TOTAL} slides · Shareable · Printable · Not a prospectus</p>
+                </div>
+              </DeckTitleLayout>
             </div>
-            <div
-              className={`text-white/45 space-y-1 ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"}`}
-            >
-              <p>Holding company · Feed · Educate · Empower</p>
-              <p>bigfivegroup.africa/investor#investor-deck</p>
-              <p>{TOTAL} slides · Shareable · Printable · Not a prospectus</p>
-            </div>
-          </DeckTitleLayout>
+          </div>
         </DeckSlideShell>
       );
 
