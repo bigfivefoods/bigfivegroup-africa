@@ -58,9 +58,9 @@ const resourceGroups: { label: string; links: { href: string; label: string }[] 
   {
     label: "Toolkits",
     links: [
+      { href: "/brand", label: "Brand kit" },
       { href: "/partner-kit", label: "Partner kit" },
       { href: "/methodology", label: "Methodology" },
-      { href: "/brand", label: "Brand kit" },
     ],
   },
   {
