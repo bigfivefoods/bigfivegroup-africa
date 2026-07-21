@@ -237,6 +237,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       traction: [
         "Fortified porridges, soya, one-pots, soups — certified manufacturing narrative",
         "NSNP programme landed (DBE) — planned to feed 2.5m children/day (plan scale, not current daily count)",
+        "Department of Health pathway via Impact (Director General of Health) — SA DoH + African health systems over time",
         "Initial-stage group turnover ~R750k (management-reported); ~R50m pipeline next 6 months as market penetration builds",
         "Programme-reported delivery totals (meals / children) + internal cost/nutrition analyses",
       ],
@@ -332,6 +333,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       traction: [
         "Positioning as clean capital pathways for verified enterprises",
         "NSNP programme landed with Foods — credibility platform into other SA departments and African public sector as proof compounds",
+        "Impact channel: Director General of Health helps open Department of Health product pathways (SA + Africa)",
         "PMO hand-off so awards become delivery, not paper",
       ],
       constraints: "Public cycle times, compliance capacity, reputation risk",
@@ -514,21 +516,22 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
     name: "Impact",
     fullName: "Big Five Impact",
     color: "#7c3aed",
-    avenue: "Cross-pillar PMO · programme fees · delivery assurance",
+    avenue: "Cross-pillar PMO · health-system channel · programme fees · delivery assurance",
     currentState: {
-      markets: "Group programmes; government / CSI multi-pillar briefs",
+      markets: "Group programmes; government / CSI multi-pillar briefs; SA DoH pathway building",
       traction: [
+        "Director General of Health within Big Five Impact — helps drive Group products into SA Department of Health and African health pathways",
         "PMO narrative: gates, KPIs, field assurance",
         "Strategic overview deck for partner briefing",
-        "Connective tissue across all operating pillars",
+        "Connective tissue across all operating pillars (incl. Foods institutional supply)",
       ],
-      constraints: "Talent density, multi-country programme risk",
+      constraints: "Talent density, multi-country programme risk, public procurement cycle times",
     },
     futureState:
-      "Default continental delivery office for complex Feed · Educate · Empower programmes.",
+      "Default continental delivery office for complex Feed · Educate · Empower programmes — with Group products in health-system supply where programmes require them.",
     problemsAddressed: ["markets", "hunger", "malnutrition", "disease", "leadership"],
     howWeAddress:
-      "Design, orchestrate and report multi-pillar programmes so funding becomes outcomes.",
+      "Design, orchestrate and report multi-pillar programmes so funding becomes outcomes; use Impact leadership (incl. Director General of Health) to open Department of Health and multi-country health channels for Group products.",
     scenarios: {
       conservative: {
         y5RevenueUSDm: 10,
@@ -772,7 +775,12 @@ export const MARKET_TRACTION = {
   credibility: {
     title: "Credibility → multi-department & continental government pathways",
     detail:
-      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached.",
+      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards).",
+  },
+  healthChannel: {
+    title: "Director General of Health · Big Five Impact",
+    detail:
+      "The Director General of Health is within Big Five Impact and will help drive Group products into South Africa’s Department of Health and counterpart health departments across Africa as programmes mature.",
   },
   asOfNote:
     "Management-reported · ZAR · for authorised investor discussion. Convert pipeline only under NDA diligence packs.",
@@ -816,18 +824,18 @@ export const MILESTONES_12_18 = [
     items: [
       "Convert R50m commercial pipeline into contracted offtake (working capital + delivery)",
       "Stand up NSNP delivery rhythm toward 2.5m children/day plan scale",
+      "Advance SA Department of Health product pathway via Impact (Director General of Health)",
       "Advance Seychelles holdco + IP architecture with counsel",
-      "Investor governance: board seat process + reporting cadence",
     ],
   },
   {
     q: "6–12 mo",
     title: "Corridors",
     items: [
-      "Use NSNP credibility to open adjacent SA government department pathways",
+      "Use NSNP + DoH channel credibility for adjacent SA government pathways",
+      "First health-system product introductions outside education-only menus where appropriate",
       "2–3 priority African corridors with measurable offtake / logistics",
       "Connect: verified supplier activation on Group + pilot enterprises",
-      "Direct: hub/container staging on proven Foods lanes only",
     ],
   },
   {
@@ -835,7 +843,7 @@ export const MILESTONES_12_18 = [
     title: "Compound",
     items: [
       "Second end-market opco setup (beyond Kenya template)",
-      "Cross-border public-sector briefs on the back of SA institutional proof",
+      "Cross-border health and public-sector briefs on SA institutional proof",
       "Impact PMO on multi-pillar programmes with gates & KPIs",
       "Unit-economics dashboard: Foods volume/margin + Connect seats/ARPU",
     ],
@@ -876,6 +884,7 @@ export const TRACTION_VS_AMBITION = {
     "Initial-stage turnover ~R750k (management-reported) as market traction starts",
     "~R50m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
     "NSNP programme landed with DBE — planned to feed 2.5m children/day (programme plan scale)",
+    "Director General of Health within Big Five Impact — channel to help drive Group products into SA DoH and African health pathways",
     "Foods fortified product story + programme-reported meals / children where stated",
     "Kenya company setup as East Africa hub template",
     "12 priority distribution markets listed (9 Africa + DE · HU · GE)",
@@ -886,6 +895,7 @@ export const TRACTION_VS_AMBITION = {
   notYetTrue: [
     "R50m pipeline fully converted to contracted / recognised revenue",
     "2.5m children fed per day as current operational headcount",
+    "Department of Health supply awards closed at multi-country scale",
     "Other SA government departments and pan-African public awards already closed at scale",
     "Full Seychelles holdco + IP stack live as final legal structure",
     "2.8M ha regenerative land under management as completed fact",

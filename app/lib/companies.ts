@@ -329,7 +329,7 @@ export const companies: Company[] = [
     icon: "Target",
     tagline: "Project Management • Cross-Pillar Delivery • Continental Results",
     description:
-      "The project management arm of Big Five Group — orchestrating programmes across Agri, Foods, Direct, Access, Connect, Leadership and Foundation to deliver measurable impact across the African continent.",
+      "The project management arm of Big Five Group — orchestrating programmes across Agri, Foods, Direct, Access, Connect, Leadership and Foundation to deliver measurable impact across the African continent. Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries.",
     heroText: "From Strategy to Delivery. Across Africa. On Time. On Impact.",
     howItWorks: [
       {
@@ -344,6 +344,11 @@ export const companies: Company[] = [
       },
       {
         step: 3,
+        title: "Institutional health channel",
+        desc: "With the Director General of Health in Big Five Impact, open pathways for Group products into South Africa’s Department of Health and counterpart health departments across Africa — as relationships and programmes mature.",
+      },
+      {
+        step: 4,
         title: "Measure & report",
         desc: "Live dashboards, SupplierAdvisor®-linked commerce where applicable, and verified impact reporting stakeholders can trust.",
       },
@@ -351,7 +356,11 @@ export const companies: Company[] = [
     forStakeholders: [
       {
         title: "For Governments & DFIs",
-        desc: "One delivery partner that can plan, execute and report multi-sector programmes with institutional discipline.",
+        desc: "One delivery partner that can plan, execute and report multi-sector programmes with institutional discipline — including health-system product pathways via Impact leadership.",
+      },
+      {
+        title: "For Department of Health & ministries",
+        desc: "A Group channel, led from Impact with the Director General of Health, to introduce fortified nutrition and related products into SA DoH and African health systems over time.",
       },
       {
         title: "For Corporates & CSI",
@@ -363,7 +372,7 @@ export const companies: Company[] = [
       },
     ],
     impact:
-      "The connective tissue of the group: turning multi-pillar ambition into continental delivery with gates, KPIs and field proof.",
+      "The connective tissue of the group: multi-pillar delivery with gates and KPIs — and a health-system channel via the Director General of Health in Big Five Impact (pathways into SA DoH and African health departments; not claimed as closed multi-country awards).",
   },
   {
     slug: "global",

@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Impact · Strategic Overview",
   description:
-    "Big Five Impact — continental PMO delivery plus an online strategic briefing: African challenges with credible sources, how Big Five responds, and why partners work with us.",
+    "Big Five Impact — continental PMO delivery, Director General of Health institutional channel into SA Department of Health and African health pathways, plus strategic briefing deck.",
   openGraph: {
     title: "Big Five Impact | Strategic Overview Deck",
     description:
-      "Shareable online pitch: group overview, Africa challenges (SOFI/GRFC), Feed·Educate·Empower response, and partnership case.",
+      "Cross-pillar PMO with Director General of Health helping drive Group products into SA DoH and African health systems. Shareable strategic overview.",
     url: "https://bigfivegroup.africa/impact#strategy-deck",
   },
 };

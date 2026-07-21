@@ -18,8 +18,10 @@ import {
   Map,
   Shield,
   Workflow,
+  HeartPulse,
 } from "lucide-react";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
+import { MARKET_TRACTION } from "../lib/investor-model";
 
 const ACCENT = "#7c3aed";
 
@@ -36,9 +38,10 @@ export default function ImpactPage() {
             that delivers Africa
           </>
         }
-        subtitle="Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results."
+        subtitle="Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. The Director General of Health is within Impact, helping drive Group products into South Africa’s Department of Health and health pathways across Africa."
         ctas={[
           { href: "#strategy-deck", label: "Strategic overview deck", primary: true },
+          { href: "#health-channel", label: "Health channel" },
           { href: "#case-study", label: "NSNP case study" },
           { href: "#how", label: "How we deliver" },
         ]}
@@ -46,6 +49,43 @@ export default function ImpactPage() {
       />
 
       <SupplierTrust entityName="Big Five Group entities (where applicable)" compact />
+
+      <section
+        id="health-channel"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl sm:rounded-3xl border border-violet-200 bg-gradient-to-br from-violet-50 via-white to-emerald-50/40 p-6 sm:p-8 md:p-10">
+            <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 items-start">
+              <div
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center shrink-0 text-white"
+                style={{ backgroundColor: ACCENT }}
+              >
+                <HeartPulse className="w-6 h-6 sm:w-7 sm:h-7" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-violet-800 font-semibold mb-2">
+                  INSTITUTIONAL HEALTH CHANNEL
+                </div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black mb-3 text-balance">
+                  {MARKET_TRACTION.healthChannel.title}
+                </h2>
+                <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-4">
+                  {MARKET_TRACTION.healthChannel.detail} Together with the NSNP pathway under Basic
+                  Education, this strengthens multi-department credibility in South Africa and
+                  supports Group product introduction into public health systems as programmes
+                  mature — always with delivery capacity attached.
+                </p>
+                <p className="text-[11px] sm:text-xs text-[#737373] leading-relaxed max-w-3xl">
+                  Framed as a relationship and channel inside Big Five Impact — not a claim that
+                  multi-country Department of Health supply awards are already closed. Request a
+                  dated partner brief for diligence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Online pitch / strategic briefing */}
       <section className="bg-[#fafafa] py-14 sm:py-20 md:py-24 border-b border-black/10">
@@ -112,6 +152,11 @@ export default function ImpactPage() {
               desc: "Gates, risk registers, RAID logs, stakeholder maps, and reporting cadence built for public-sector and DFI standards.",
             },
             {
+              icon: HeartPulse,
+              title: "Department of Health channel",
+              desc: "With the Director General of Health in Big Five Impact, we help drive Group products into South Africa’s Department of Health and health pathways in other African countries.",
+            },
+            {
               icon: Map,
               title: "Continent-aware delivery",
               desc: "Field reality across active markets — South Africa, Kenya, Ghana, Zambia, DRC, Tanzania, Namibia, Zimbabwe, Lesotho, Germany, and Hungary.",
@@ -170,6 +215,11 @@ export default function ImpactPage() {
             },
             {
               step: "03",
+              title: "Institutional health channel",
+              desc: "With the Director General of Health in Big Five Impact, help drive Group products into South Africa’s Department of Health and health pathways in other African countries as programmes mature.",
+            },
+            {
+              step: "04",
               title: "Measure & assure",
               desc: "Live reporting, field verification, and where applicable SupplierAdvisor® order rails so every commercial touchpoint is transparent.",
             },
@@ -184,11 +234,15 @@ export default function ImpactPage() {
             eyebrow="WHO ENGAGES US"
             title="Built for institutions that need results"
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {[
               {
                 title: "Governments & DFIs",
                 desc: "Multi-year programmes with clear milestones, procurement integrity, and continental reach.",
+              },
+              {
+                title: "Department of Health",
+                desc: "Product pathways into SA DoH and African health systems, supported by the Director General of Health within Big Five Impact.",
               },
               {
                 title: "Corporates & CSI",

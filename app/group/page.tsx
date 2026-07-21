@@ -80,9 +80,9 @@ const pillarSupport: Record<
   impact: {
     mission: "Cross-cutting",
     serves:
-      "Orchestrates multi-pillar programmes so strategy becomes delivery — on time and on impact.",
+      "Orchestrates multi-pillar programmes so strategy becomes delivery — on time and on impact. Includes the Director General of Health, helping drive Group products into South Africa’s Department of Health and health pathways across Africa.",
     system:
-      "The PMO glue: plans, executes and reports work that spans the full ecosystem.",
+      "The PMO glue: plans, executes and reports work that spans the full ecosystem — including institutional health channels for Group products.",
   },
   global: {
     mission: "Empower",

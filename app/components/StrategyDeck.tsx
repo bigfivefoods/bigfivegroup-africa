@@ -109,7 +109,8 @@ const PILLAR_BRIEFS: Record<string, string> = {
   connect: "SupplierAdvisor® ethical commerce, verification and transparent trade.",
   leadership: "Super-Cube® ethical leadership for business and public life.",
   foundation: "Registered philanthropy funding community programmes with proof.",
-  impact: "Cross-pillar PMO — design, gates, KPIs and field delivery.",
+  impact:
+    "Cross-pillar PMO — design, gates, KPIs and field delivery. Director General of Health within Impact helps drive Group products into SA DoH and African health pathways.",
   global: "International corridors linking African capacity to world markets.",
   royal:
     "Close ties to the royal family; planning to partner; supports them and the work they do — feed, educate, empower.",

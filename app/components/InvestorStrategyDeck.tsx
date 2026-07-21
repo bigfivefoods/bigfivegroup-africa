@@ -937,15 +937,15 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "With the raise",
-                d: "Working capital to convert the ~R50m pipeline; stand up NSNP delivery toward plan scale; Seychelles holdco + IP; 90% assets/product · 10% ops; board governance.",
+                d: "Working capital to convert the ~R50m pipeline; stand up NSNP delivery; advance SA DoH product pathway via Impact (Director General of Health); Seychelles holdco + IP; 90/10 deploy; board governance.",
               },
               {
                 t: "Without it",
-                d: "Slower pipeline conversion, thinner inventory/capacity for institutional offtake, delayed opcos, weaker multi-department and continental public pathways.",
+                d: "Slower pipeline conversion, thinner inventory for institutional offtake, delayed DoH and multi-country health introductions, weaker multi-department and continental public pathways.",
               },
               {
                 t: "Prove in 18 months",
-                d: "Pipeline → contracted offtake; NSNP rhythm; SA department adjacency; corridors + unit-economics dashboard; second market opco.",
+                d: "Pipeline → contracted offtake; NSNP rhythm; DoH channel progress; SA department adjacency; corridors + unit-economics dashboard; second market opco.",
               },
             ].map((c) => (
               <div

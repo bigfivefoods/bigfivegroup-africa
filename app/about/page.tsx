@@ -274,7 +274,7 @@ export default function AboutPage() {
               href: "/impact",
               title: "Big Five Impact",
               role: "Deliver",
-              desc: "Cross-pillar project management for real outcomes.",
+              desc: "Cross-pillar PMO — and a health-system channel via the Director General of Health (SA DoH and African pathways).",
             },
             {
               href: "/foundation",
