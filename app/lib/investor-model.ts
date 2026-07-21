@@ -231,11 +231,12 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
     name: "Foods",
     fullName: "Big Five Foods",
     color: "#f59e0b",
-    avenue: "Fortified nutrition · institutional & household · NSNP pathway",
+    avenue: "Fortified nutrition · repeat purchase · institutional & household · NSNP pathway",
     currentState: {
       markets: "South Africa manufacturing / institutional focus; Kenya company setup supports East Africa ambition",
       traction: [
         "Fortified porridges, soya, one-pots, soups — certified manufacturing narrative",
+        "Repeat / recurring demand model: schools, institutions and households reorder as menus and shelves turn — traction should sustain and compound as penetration deepens",
         "NSNP programme landed (DBE) — planned to feed 2.5m children/day (plan scale, not current daily count)",
         "Department of Health pathway via Impact (Director General of Health) — SA DoH + African health systems over time",
         "Initial-stage group turnover ~$45k / R750k (management-reported); ~$3.0m / R50m pipeline next 6 months as market penetration builds",
@@ -244,10 +245,10 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       constraints: "Working capital to convert pipeline, tender cycles, distribution partners, fortification capacity",
     },
     futureState:
-      "Default fortified staple partner for schools, institutions and affordable retail across priority African markets.",
+      "Default fortified staple partner for schools, institutions and affordable retail across priority African markets — recurring volume that sustains and grows with corridor density.",
     problemsAddressed: ["hunger", "malnutrition", "disease"],
     howWeAddress:
-      "Affordable fortified formats, school/institutional packs, long shelf life, SupplierAdvisor® ordering where applicable.",
+      "Affordable fortified formats, school/institutional packs, long shelf life, SupplierAdvisor® ordering where applicable. Food is a repetitive business: once supply is trusted, reorders should sustain and grow with traction.",
     scenarios: {
       conservative: {
         y5RevenueUSDm: 35,
@@ -783,7 +784,7 @@ export const MARKET_TRACTION = {
   credibility: {
     title: "Credibility → multi-department & continental government pathways",
     detail:
-      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards).",
+      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee).",
   },
   healthChannel: {
     title: "Director General of Health · Big Five Impact",
@@ -799,15 +800,22 @@ export const UNIT_ECONOMICS = [
   {
     slug: "foods",
     name: "Foods",
-    engine: "Price × volume × gross margin on fortified SKUs",
+    engine: "Price × recurring volume × gross margin on fortified SKUs (repeat purchase)",
     levers: [
       { k: "Price", v: "Institutional pack pricing vs retail (dual track)" },
-      { k: "Volume", v: "Schools / programmes + household SKUs on priority corridors" },
+      {
+        k: "Volume",
+        v: "Repeat demand: schools / programmes / households reorder as menus and shelves turn",
+      },
       { k: "Margin", v: "Fortification + shelf-life + logistics discipline" },
       { k: "Capital", v: "Working capital for inventory & offtake; plant/pack capacity" },
+      {
+        k: "Flywheel",
+        v: "Food is repetitive business — as traction lands, reorder cycles should sustain and grow with penetration",
+      },
     ],
-    path: "Initial turnover (~$45k / R750k) → convert ~$3.0m / R50m pipeline → NSNP plan scale (2.5m/day) → multi-country institutional + retail",
-    kill: "If pipeline conversion and NSNP delivery rhythm stall after capital for working inventory, pause aggressive multi-corridor volume expansion.",
+    path: "Initial turnover (~$45k / R750k) → convert ~$3.0m / R50m pipeline → recurring offtake (NSNP + DoH + retail) → multi-country institutional scale",
+    kill: "If pipeline conversion, reorder retention, and NSNP delivery rhythm stall after capital for working inventory, pause aggressive multi-corridor volume expansion.",
   },
   {
     slug: "connect",
@@ -893,6 +901,7 @@ export const TRACTION_VS_AMBITION = {
     "~$3.0m / R50m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
     "NSNP programme landed with DBE — planned to feed 2.5m children/day (programme plan scale)",
     "Director General of Health within Big Five Impact — channel to help drive Group products into SA DoH and African health pathways",
+    "Foods is a repeat / recurring purchase category — as traction lands, offtake should sustain and grow with penetration (model thesis, not a guarantee)",
     "Foods fortified product story + programme-reported meals / children where stated",
     "Kenya company setup as East Africa hub template",
     "12 priority distribution markets listed (9 Africa + DE · HU · GE)",

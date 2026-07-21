@@ -63,9 +63,9 @@ export const companies: Company[] = [
     fullName: "Big Five Foods",
     color: "#f59e0b",
     icon: "Wheat",
-    tagline: "Fortified Nutrition • Shelf-Stable • Institutional & Household",
+    tagline: "Fortified Nutrition • Repeat Purchase • Institutional & Household",
     description:
-      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions, with certifications and SupplierAdvisor® ordering pathways.",
+      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions, with certifications and SupplierAdvisor® ordering pathways. Food is a repetitive business: as menus and shelves adopt our products, reorders should sustain and grow with market traction.",
     heroText: "Nourishing a Continent. One Fortified Meal at a Time.",
     howItWorks: [
       {
@@ -80,26 +80,26 @@ export const companies: Company[] = [
       },
       {
         step: 3,
-        title: "Distribute & impact",
-        desc: "Direct, Access and Connect pathways — including NSNP-aligned ambition for school-day feeding at scale.",
+        title: "Distribute, reorder & grow",
+        desc: "Direct, Access and Connect pathways — including NSNP plan scale. Once trusted, institutional and household demand is recurring, so traction should sustain and compound.",
       },
     ],
     forStakeholders: [
       {
         title: "For Governments & NGOs",
-        desc: "Cost-effective fortified nutrition with programme-facing evidence and institutional pack formats.",
+        desc: "Cost-effective fortified nutrition with programme-facing evidence and institutional pack formats — recurring supply for daily menus.",
       },
       {
         title: "For Retail & Distributors",
-        desc: "African staples with long shelf life, certifications and a clear brand story.",
+        desc: "African staples with long shelf life, certifications and a clear brand story — repeat purchase as shelves turn.",
       },
       {
         title: "For Families",
-        desc: "Affordable, fortified meals designed for dignity at the table.",
+        desc: "Affordable, fortified meals designed for dignity at the table — staples that come back to the basket.",
       },
     ],
     impact:
-      "Programme-reported delivery to date (e.g. meals and children reached) plus internal cost/nutrition comparisons — and the NSNP programme landed with DBE, planned to feed 2.5 million children a day (plan scale). See /methodology.",
+      "Programme-reported delivery to date (e.g. meals and children reached) plus internal cost/nutrition comparisons — and the NSNP programme landed with DBE, planned to feed 2.5 million children a day (plan scale). Recurring demand model as traction deepens. See /methodology.",
   },
   {
     slug: "direct",

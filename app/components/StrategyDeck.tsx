@@ -103,7 +103,8 @@ const SDG_ALIGNMENT = [
 /** Short pillar briefs for the “integrated enterprise” slide */
 const PILLAR_BRIEFS: Record<string, string> = {
   agri: "Regenerative production and smallholder supply with verified provenance.",
-  foods: "Fortified, affordable nutrition for households, schools and institutions.",
+  foods:
+    "Fortified, affordable nutrition for households, schools and institutions — repeat purchase that should sustain and grow with traction.",
   direct: "Last-mile distribution and container hubs that keep value local.",
   access: "Pathways to tenders, CSI and development capital for African enterprise.",
   connect: "SupplierAdvisor® ethical commerce, verification and transparent trade.",

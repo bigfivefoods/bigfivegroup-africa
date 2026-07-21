@@ -551,7 +551,17 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>UNIT ECONOMICS · FOODS + CONNECT</DeckEyebrow>
-          <DeckTitle>Price × volume × margin — and seats × ARPU</DeckTitle>
+          <DeckTitle>Recurring food volume — and seats × ARPU</DeckTitle>
+          <p
+            className={`text-[#525252] max-w-3xl leading-relaxed ${
+              forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
+            }`}
+          >
+            <strong className="text-black">Foods is repetitive business.</strong> Schools,
+            institutions and households reorder as menus and shelves turn — so as traction lands,
+            volume should sustain and grow with penetration (thesis, not a guarantee). Connect
+            compounds via seats and network density.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {UNIT_ECONOMICS.map((u) => {
               const meta = opcoMeta(u.slug);
@@ -937,15 +947,15 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "With the raise",
-                d: "Working capital to convert the ~$3.0m (R50m) pipeline; stand up NSNP delivery; advance SA DoH product pathway via Impact (Director General of Health); Seychelles holdco + IP; 90/10 deploy; board governance.",
+                d: "Working capital to convert the ~$3.0m (R50m) pipeline into recurring Foods offtake that should sustain and grow; stand up NSNP; advance SA DoH pathway via Impact; Seychelles holdco + IP; 90/10 deploy; board governance.",
               },
               {
                 t: "Without it",
-                d: "Slower pipeline conversion, thinner inventory for institutional offtake, delayed DoH and multi-country health introductions, weaker multi-department and continental public pathways.",
+                d: "Slower pipeline conversion, thinner inventory for institutional reorders, delayed DoH and multi-country health introductions, weaker multi-department and continental public pathways.",
               },
               {
                 t: "Prove in 18 months",
-                d: "Pipeline → contracted offtake; NSNP rhythm; DoH channel progress; SA department adjacency; corridors + unit-economics dashboard; second market opco.",
+                d: "Pipeline → contracted recurring offtake; NSNP rhythm; DoH channel progress; reorder retention; corridors + unit-economics dashboard; second market opco.",
               },
             ].map((c) => (
               <div
