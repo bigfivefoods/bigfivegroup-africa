@@ -120,8 +120,8 @@ export default function FoodsNetworkPanel() {
               },
               {
                 icon: Package,
-                value: "~45%",
-                label: "Gross profit (mgmt)",
+                value: "2.5m",
+                label: "Kids/day NSNP (DBE) pathway",
               },
               {
                 icon: Package,

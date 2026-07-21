@@ -380,7 +380,8 @@ function TitleSlide() {
                   }`}
                 >
                   Fortified porridges, soya mince, one-pot meals and soups — certified manufacturing,
-                  24-month shelf life · ~45% GP · ~50% cheaper vs wholesale/retail · 74% more nutrition.
+                  24-month shelf life · ~50% cheaper vs wholesale/retail · 74% more nutrition ·
+                  2.5M kids/day NSNP (DBE) pathway.
                 </p>
               </div>
               <div
@@ -658,8 +659,8 @@ function ProofSlide() {
             forPrint ? "gap-1.5 mb-2" : "gap-2 sm:gap-3 mb-6"
           }`}
         >
-          <StatTile dark value="2.5m" label="Children/day plan · NSNP landed" />
-          <StatTile dark value="~45%" label="Gross profit (mgmt)" />
+          <StatTile dark value="2.5m" label="Children/day plan · NSNP (DBE)" />
+          <StatTile dark value="100k" label="Children reached (programme-reported)" />
           <StatTile dark value="~50%" label="Cheaper vs wholesale & retail" />
           <StatTile dark value="150k" label="Meals delivered to date" />
           <StatTile dark value="74%" label="More nutrition by design" />
@@ -953,7 +954,7 @@ function CtaSlide() {
               Ethical · on-chain · supplieradvisor.com
             </p>
             <p>
-              Big Five Foods · ~45% GP · ~50% cheaper vs wholesale/retail · 150k meals · 100k children
+              Big Five Foods · ~50% cheaper vs wholesale/retail · 150k meals · 100k children · 2.5M kids/day NSNP (DBE)
             </p>
           </div>
         </div>
@@ -1463,7 +1464,7 @@ export default function FoodsStrategyDeck() {
   const onShare = async () => {
     const payload = {
       title: "Big Five Foods — Product & Impact Deck",
-      text: "Fortified African nutrition: ~45% GP, ~50% cheaper vs wholesale/retail, 150k meals, 100k children, 74% more nutrition design.",
+      text: "Fortified African nutrition: ~50% cheaper vs wholesale/retail, 150k meals, 100k children, 2.5M kids/day NSNP (DBE) pathway, 74% more nutrition design.",
       url: shareUrl,
     };
     try {
