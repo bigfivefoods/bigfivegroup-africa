@@ -3,7 +3,8 @@ import { Mail, Phone, MessageCircle, ArrowUpRight } from "lucide-react";
 import { companies } from "../lib/companies";
 import NewsletterForm from "./NewsletterForm";
 
-const linkClass = "block hover:text-black/70 transition-colors";
+const linkClass =
+  "block text-[13px] sm:text-sm text-[#404040] hover:text-black transition-colors py-0.5";
 
 const exploreLinks = [
   { href: "/group", label: "The Group" },
@@ -16,16 +17,40 @@ const exploreLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-const resourceLinks = [
-  { href: "/updates", label: "Updates" },
-  { href: "/newsletter", label: "Newsletter" },
-  { href: "/partner-kit", label: "Partner kit" },
-  { href: "/partner", label: "Partner portal" },
-  { href: "/methodology", label: "Methodology" },
-  { href: "/brand", label: "Brand kit" },
-  { href: "/investor", label: "Investor portal" },
-  { href: "/connect#case-study-sa", label: "SupplierAdvisor® case" },
-  { href: "/connect", label: "Connect · SAM" },
+/** Grouped for a calmer, scannable Resources column */
+const resourceGroups: {
+  label: string;
+  links: { href: string; label: string; external?: boolean }[];
+}[] = [
+  {
+    label: "Stay informed",
+    links: [
+      { href: "/updates", label: "Updates" },
+      { href: "/newsletter", label: "Newsletter" },
+    ],
+  },
+  {
+    label: "Toolkits",
+    links: [
+      { href: "/partner-kit", label: "Partner kit" },
+      { href: "/methodology", label: "Methodology" },
+      { href: "/brand", label: "Brand kit" },
+    ],
+  },
+  {
+    label: "Private access",
+    links: [
+      { href: "/partner", label: "Partner portal" },
+      { href: "/investor", label: "Investor portal" },
+    ],
+  },
+  {
+    label: "Connect",
+    links: [
+      { href: "/connect", label: "Connect · SAM" },
+      { href: "/connect#case-study-sa", label: "SupplierAdvisor®" },
+    ],
+  },
 ];
 
 const legalLinks = [
@@ -68,12 +93,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Explore — primary site navigation */}
+          {/* Explore */}
           <div className="lg:col-span-2 min-w-0">
-            <div className="uppercase tracking-[2px] text-xs font-semibold mb-4 text-[#525252]">
+            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
               Explore
             </div>
-            <nav className="space-y-2.5 text-sm" aria-label="Explore">
+            <nav className="space-y-1.5 sm:space-y-2" aria-label="Explore">
               {exploreLinks.map((l) => (
                 <Link key={l.href} href={l.href} className={linkClass}>
                   {l.label}
@@ -83,12 +108,12 @@ export default function Footer() {
           </div>
 
           {/* Pillars */}
-          <div className="lg:col-span-3 min-w-0">
-            <div className="uppercase tracking-[2px] text-xs font-semibold mb-4 text-[#525252]">
+          <div className="lg:col-span-2 min-w-0">
+            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
               The 10 Pillars
             </div>
             <nav
-              className="grid grid-cols-2 gap-x-3 sm:gap-x-4 gap-y-2 text-sm min-w-0"
+              className="grid grid-cols-2 gap-x-3 gap-y-1.5 sm:gap-y-2 text-[13px] sm:text-sm min-w-0"
               aria-label="Pillars"
             >
               {companies.map((c) => (
@@ -103,32 +128,43 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Resources + Legal */}
-          <div className="lg:col-span-3 min-w-0 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-6">
-            <div>
-              <div className="uppercase tracking-[2px] text-xs font-semibold mb-4 text-[#525252]">
-                Resources
-              </div>
-              <nav className="space-y-2.5 text-sm" aria-label="Resources">
-                {resourceLinks.map((l) => (
-                  <Link key={l.href} href={l.href} className={linkClass}>
-                    {l.label}
-                  </Link>
-                ))}
-              </nav>
+          {/* Resources — refined groups */}
+          <div className="col-span-2 sm:col-span-1 lg:col-span-3 min-w-0">
+            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
+              Resources
             </div>
-            <div>
-              <div className="uppercase tracking-[2px] text-xs font-semibold mb-4 text-[#525252]">
-                Legal
-              </div>
-              <nav className="space-y-2.5 text-sm" aria-label="Legal">
-                {legalLinks.map((l) => (
-                  <Link key={l.href} href={l.href} className={linkClass}>
-                    {l.label}
-                  </Link>
-                ))}
-              </nav>
+            <nav className="space-y-5" aria-label="Resources">
+              {resourceGroups.map((group) => (
+                <div key={group.label}>
+                  <div className="text-[10px] font-semibold tracking-[1.5px] uppercase text-[#a3a3a3] mb-2">
+                    {group.label}
+                  </div>
+                  <ul className="space-y-1.5 sm:space-y-1.5 border-l border-black/8 pl-3">
+                    {group.links.map((l) => (
+                      <li key={l.href}>
+                        <Link href={l.href} className={linkClass}>
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
+          </div>
+
+          {/* Legal */}
+          <div className="lg:col-span-1 min-w-0">
+            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
+              Legal
             </div>
+            <nav className="space-y-1.5 sm:space-y-2" aria-label="Legal">
+              {legalLinks.map((l) => (
+                <Link key={l.href} href={l.href} className={linkClass}>
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
 
@@ -136,7 +172,7 @@ export default function Footer() {
         <div className="mt-12 sm:mt-16 pt-10 border-t border-black/10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-4 min-w-0">
-              <div className="uppercase tracking-[2px] text-xs font-semibold mb-2 text-[#525252]">
+              <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-2 text-[#737373]">
                 Newsletter
               </div>
               <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2">
