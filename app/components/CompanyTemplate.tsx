@@ -12,16 +12,17 @@ export default function CompanyTemplate({ company }: { company: Company }) {
   return (
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
       <section
-        className="relative min-h-[min(78dvh,560px)] sm:min-h-[min(82dvh,640px)] md:min-h-[min(88dvh,720px)] flex items-center justify-center overflow-hidden w-full min-w-0"
+        className="page-hero"
         style={{ background: `linear-gradient(180deg, #0a0a0a 0%, #111 100%)` }}
+        aria-label={`${company.name} introduction`}
       >
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
           style={{
             background: `radial-gradient(circle at 50% 30%, ${accent}20 0%, transparent 70%)`,
           }}
         />
-        <div className="relative z-10 w-full max-w-4xl 2xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-16 md:py-20 min-w-0">
+        <div className="relative z-10 w-full max-w-4xl 2xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 sm:py-14 md:py-16 lg:py-20 min-w-0">
           <div
             className="inline-flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-2xl sm:rounded-3xl mb-5 sm:mb-8 mx-auto"
             style={{ backgroundColor: `${accent}20`, color: accent }}

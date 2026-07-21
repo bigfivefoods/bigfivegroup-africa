@@ -141,17 +141,17 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
 export default function Home() {
   return (
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
-      {/* HERO */}
-      <section className="relative min-h-[min(88dvh,680px)] sm:min-h-[min(92dvh,780px)] md:min-h-[min(96dvh,860px)] lg:min-h-[min(100dvh,920px)] flex items-center justify-center overflow-hidden w-full min-w-0">
+      {/* HERO — full viewport under navbar, all screen sizes */}
+      <section className="page-hero" aria-label="Home introduction">
         <div
-          className="absolute inset-0 bg-cover bg-center sm:scale-105"
+          className="page-hero__media"
           style={{ backgroundImage: "url('/home-hero.jpg')" }}
           role="img"
           aria-label="African landscape representing Big Five Group"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 
-        <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-16 md:py-20 min-w-0">
+        <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 sm:py-14 md:py-16 lg:py-20 min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -237,7 +237,7 @@ export default function Home() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2.2, repeat: Infinity }}
-          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center text-white/60 text-[10px] tracking-[2px]"
+          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center text-white/60 text-[10px] tracking-[2px]"
           aria-hidden
         >
           SCROLL

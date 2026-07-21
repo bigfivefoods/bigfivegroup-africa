@@ -44,17 +44,18 @@ export default function PageHero({
       : "h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 object-contain drop-shadow-lg";
 
   return (
-    <section className="relative min-h-[min(82dvh,620px)] sm:min-h-[min(88dvh,720px)] md:min-h-[min(90dvh,780px)] lg:min-h-[min(92dvh,840px)] flex items-center justify-center overflow-hidden w-full min-w-0">
+    <section className="page-hero" aria-label="Page introduction">
+      {/* Full-bleed cover media — fills hero on all viewports */}
       <div
-        className="absolute inset-0 bg-cover bg-center sm:scale-105"
+        className="page-hero__media"
         style={{ backgroundImage: `url('${image}')` }}
         role="img"
         aria-hidden
       />
-      <div className={`absolute inset-0 ${overlayClassName}`} />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+      <div className={`absolute inset-0 z-[1] ${overlayClassName}`} />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/30 via-transparent to-black/60" />
 
-      <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-16 md:py-20 lg:py-24 min-w-0">
+      <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 sm:py-14 md:py-16 lg:py-20 min-w-0">
         {logo && (
           <div className="flex justify-center mb-3 sm:mb-5 md:mb-6">
             <Image
