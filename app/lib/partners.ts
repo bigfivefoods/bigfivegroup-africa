@@ -210,7 +210,8 @@ export const PARTNERS: PartnerProfile[] = [
     website: "https://www.facebook.com/p/Restore-Africa-Foundation-61573115377603/",
     websiteLabel: "Facebook · Restore Africa Foundation",
     notes: [
-      "Restore Africa Foundation is a registered Non-Profit Company (Ballito / KZN) — children first, community rebuild, school programmes such as Veggies4Kids.",
+      "Official Restore Africa Foundation seal/logo (restore africa foundation logo.jpeg) used for co-branded partner briefing.",
+      "Restore Africa Foundation is a registered Non-Profit Company (Ballito / KZN) — children first, community rebuild, school programmes such as Veggies4Kids. Est. 2024.",
       "SPAR × Big Five Foods partnership routes product donations and contribution rand toward feeding and foundation programmes (with A Heart To Help).",
       "Big Five Foods fortified staples support ECD, school and community kitchens where the foundation works.",
       "Add authorised Restore Africa Foundation emails when portal logins are ready.",

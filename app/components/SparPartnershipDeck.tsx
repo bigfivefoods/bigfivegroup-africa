@@ -559,15 +559,16 @@ function Slide({ index }: { index: number }) {
           <div className="flex flex-wrap items-start gap-4 mb-3">
             <div
               className={`relative bg-white rounded-xl border border-black/10 shrink-0 ${
-                forPrint ? "h-14 w-40" : "h-16 sm:h-20 w-48 sm:w-56"
+                forPrint ? "h-16 w-16" : "h-20 w-20 sm:h-24 sm:w-24"
               }`}
             >
               <Image
                 src={P.npos[0]!.logoSrc}
                 alt={P.npos[0]!.name}
                 fill
-                className="object-contain p-2"
-                sizes="224px"
+                className="object-contain p-1.5"
+                sizes="96px"
+                priority
               />
             </div>
             <div className="min-w-0 flex-1">

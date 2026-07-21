@@ -32,8 +32,9 @@ import SparPartnershipDeck from "../components/SparPartnershipDeck";
 function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
   const partnerLogo = partner.logoSrc;
   const showPartnerLogo = partnerLogo && partner.slug !== "big-five-group";
-  /** Crest-style logos (e.g. Sharks) need a taller tile */
-  const tallCrest = partner.slug === "the-sharks";
+  /** Crest-style logos need a taller tile */
+  const tallCrest =
+    partner.slug === "the-sharks" || partner.slug === "restore-africa-foundation";
 
   return (
     <div className="mb-6 sm:mb-8">
