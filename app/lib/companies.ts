@@ -63,9 +63,9 @@ export const companies: Company[] = [
     fullName: "Big Five Foods",
     color: "#f59e0b",
     icon: "Wheat",
-    tagline: "Fortified Nutrition • ~45% GP • Super-Competitive Institutional",
+    tagline: "Fortified Nutrition • Super-Competitive Institutional",
     description:
-      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions. ~45% gross profit (management-reported) while remaining ~50% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government and feeding schemes. Food is a repetitive business: reorders should sustain and grow with market traction.",
+      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions. About ~50% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government and feeding schemes, including NSNP-approved 5kg institutional packs. Food is a repetitive business: reorders should sustain and grow with market traction.",
     heroText: "Nourishing a Continent. One Fortified Meal at a Time.",
     howItWorks: [
       {
@@ -81,7 +81,7 @@ export const companies: Company[] = [
       {
         step: 3,
         title: "Win institutional offtake",
-        desc: "High GP with deep price advantage vs wholesale/retail positions Foods for government menus, NSNP and feeding schemes — recurring volume.",
+        desc: "Deep price advantage vs wholesale/retail positions Foods for government menus, NSNP and feeding schemes — recurring volume.",
       },
       {
         step: 4,
@@ -92,7 +92,7 @@ export const companies: Company[] = [
     forStakeholders: [
       {
         title: "For Governments & feeding schemes",
-        desc: "~50% cheaper than wholesale/retail pathways with ~45% GP economics — stretch public budgets without sacrificing Group unit economics.",
+        desc: "~50% cheaper than wholesale/retail pathways — stretch public budgets with fortified, shelf-stable menus and NSNP-ready packs.",
       },
       {
         title: "For Retail & Distributors",
@@ -104,7 +104,7 @@ export const companies: Company[] = [
       },
     ],
     impact:
-      "Programme-reported delivery to date plus ~45% GP and ~50% cost advantage vs wholesale/retail (management/internal). NSNP programme landed with DBE at 2.5m children/day plan scale. See /methodology.",
+      "Programme-reported delivery to date plus ~50% cost advantage vs wholesale/retail (management/internal). NSNP programme landed with DBE at 2.5m children/day plan scale. See /methodology.",
   },
   {
     slug: "direct",
