@@ -27,6 +27,7 @@ import {
 } from "../lib/investor-model";
 import LogoutButton from "./LogoutButton";
 import { CONTACT_EMAIL } from "../lib/contact";
+import InvestorStrategyDeck from "../components/InvestorStrategyDeck";
 
 const SCENARIOS: ScenarioKey[] = ["conservative", "moderate", "aggressive"];
 
@@ -151,6 +152,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
       <nav className="sticky top-[var(--navbar-height)] z-30 bg-white/95 backdrop-blur border-b border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex gap-2 overflow-x-auto text-xs sm:text-sm font-medium">
           {[
+            { href: "#investor-deck", label: "Presentation" },
             { href: "#ask", label: "Investment ask" },
             { href: "#problems", label: "Africa problems" },
             { href: "#rollup", label: "Group rollup (USD)" },
@@ -175,6 +177,11 @@ export default function InvestorPortalClient({ email }: { email: string }) {
           <p className="text-xs sm:text-sm text-amber-950/80 leading-relaxed">{MODEL_DISCLAIMER}</p>
         </div>
       </div>
+
+      {/* Investor presentation deck */}
+      <section className="bg-white border-b border-black/10 py-12 sm:py-16 md:py-20">
+        <InvestorStrategyDeck />
+      </section>
 
       {/* Investment ask */}
       <section
