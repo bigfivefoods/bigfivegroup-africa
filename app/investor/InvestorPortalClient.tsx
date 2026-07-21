@@ -619,7 +619,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
             href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
               "Investor data room — Big Five Group"
             )}&body=${encodeURIComponent(
-              `Hello Big Five team,\n\nI am signed into the investor portal as ${email}.\nPlease share diligence materials under NDA.\n\nOrganisation:\nFocus areas:\nScenario interest (conservative / moderate / aggressive):\n\nThank you.`
+              `Hello Big Five team,\n\nI am signed into the investor portal as ${email}.\nPlease share diligence materials under NDA regarding the 10% equity / board seat opportunity in Big Five Group holding company, and use of funds (10% operations / 90% assets & product development).\n\nOrganisation:\nFocus areas:\nScenario interest (conservative / moderate / aggressive):\n\nThank you.`
             )}`}
             className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold"
           >
