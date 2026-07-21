@@ -66,7 +66,9 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               <p className="text-sm text-amber-200/90 leading-relaxed text-pretty border border-amber-400/25 bg-amber-400/10 rounded-xl px-4 py-3">
                 <strong className="text-amber-100">Investment ask:</strong>{" "}
                 {INVESTMENT_ASK.equityOffered} equity in {INVESTMENT_ASK.entity}
-                {INVESTMENT_ASK.boardSeat ? " · board seat" : ""} · use of funds{" "}
+                {INVESTMENT_ASK.boardSeat ? " · board seat" : ""} · planned{" "}
+                <strong className="text-amber-100">Seychelles holding</strong> (IP at holdco) ·
+                local opcos in end markets (e.g. Kenya) · use of funds{" "}
                 {INVESTMENT_ASK.useOfFunds.map((u) => `${u.pct}% ${u.label.toLowerCase()}`).join(" / ")}
               </p>
             </div>
@@ -154,6 +156,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
           {[
             { href: "#investor-deck", label: "Presentation" },
             { href: "#ask", label: "Investment ask" },
+            { href: "#structure", label: "Structure" },
             { href: "#problems", label: "Africa problems" },
             { href: "#rollup", label: "Group rollup (USD)" },
             { href: "#opcos", label: "Opco detail" },
@@ -266,6 +269,85 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               <span className="inline-block w-2.5 h-2.5 rounded-sm bg-amber-500 mr-1.5 align-middle" />
               90% asset acquisition & product development
             </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Corporate structure */}
+      <section
+        id="structure"
+        className="scroll-mt-28 bg-[#fafafa] border-b border-black/10 py-12 sm:py-16"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] mb-2">
+            PLANNED CORPORATE ARCHITECTURE
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 text-balance">
+            Seychelles holding · IP at holdco · opcos in end markets
+          </h2>
+          <p className="text-sm sm:text-base text-[#525252] max-w-3xl leading-relaxed mb-8 text-pretty">
+            Orientation for investors — not tax, legal or structuring advice. Final implementation
+            will follow professional counsel and applicable regulation.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-6">
+            <div className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-amber-800 font-semibold mb-2">
+                HOLDING COMPANY · {INVESTMENT_ASK.corporateStructure.holding.toUpperCase()}
+              </div>
+              <h3 className="text-xl font-semibold text-black mb-2">
+                Big Five Group holdco in the Seychelles
+              </h3>
+              <p className="text-sm text-[#404040] leading-relaxed mb-3">
+                {INVESTMENT_ASK.corporateStructure.holdingNote}
+              </p>
+              <p className="text-sm text-[#525252] leading-relaxed">
+                {INVESTMENT_ASK.corporateStructure.ipNote}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-black/10 bg-[#0a0a0a] text-white p-6 sm:p-8 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-amber-400/90 font-semibold mb-2">
+                OPERATING COMPANIES · END MARKETS
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Local opcos where we grow and deliver
+              </h3>
+              <p className="text-sm text-white/75 leading-relaxed mb-3">
+                {INVESTMENT_ASK.corporateStructure.opcos}
+              </p>
+              <p className="text-sm text-white/55 leading-relaxed">
+                {INVESTMENT_ASK.corporateStructure.kenyaExample}
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6">
+            <div className="text-xs font-semibold text-black mb-3">Intended stack</div>
+            <ol className="space-y-2 text-sm text-[#404040]">
+              <li className="flex gap-2">
+                <span className="font-semibold text-amber-800 shrink-0">1.</span>
+                <span>
+                  <strong className="text-black">Seychelles holding company</strong> — equity raise
+                  (10%), board seat, Group IP and control of the continental system.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="font-semibold text-amber-800 shrink-0">2.</span>
+                <span>
+                  <strong className="text-black">Operating companies in end markets</strong> —
+                  local entities for sales, delivery, employment and stakeholder buy-in (Kenya as
+                  East Africa template; further markets as corridors mature).
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="font-semibold text-amber-800 shrink-0">3.</span>
+                <span>
+                  <strong className="text-black">Pillar businesses</strong> — Agri, Foods, Direct,
+                  Access, Connect, Leadership, Foundation, Impact, Global, Royal — executed through
+                  the holdco / opco architecture as appropriate.
+                </span>
+              </li>
+            </ol>
           </div>
         </div>
       </section>

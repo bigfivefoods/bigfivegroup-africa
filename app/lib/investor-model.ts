@@ -677,7 +677,19 @@ export const INVESTMENT_ASK = {
     "We are seeking an investment for 10% equity in Big Five Group — the holding company — to help accelerate continental growth across the operating companies.",
   boardSeat: true,
   boardNote:
-    "The investment is expected to include a board seat at Big Five Group holding company level, so the investor participates in strategic oversight of continental scale-up.",
+    "The investment is expected to include a board seat at holding-company level, so the investor participates in strategic oversight of continental scale-up.",
+  /** Planned corporate architecture (orientation only — not tax or legal advice). */
+  corporateStructure: {
+    holding: "Seychelles",
+    holdingNote:
+      "We plan to establish the Big Five Group holding company in the Seychelles and to house Group intellectual property (IP) at holding level for tax and group structuring purposes, subject to professional legal and tax advice and applicable law.",
+    ipNote:
+      "Core IP is intended to sit in the holding company so licences, brand, models and platforms can support multiple operating companies cleanly.",
+    opcos:
+      "We plan to set up operating companies in end markets — as we have done with a company setup in Kenya — to accelerate growth, local execution and stakeholder buy-in where we sell, hire and deliver.",
+    kenyaExample:
+      "Kenya is the model for East Africa: a registered local company presence that anchors corridor expansion while remaining part of the Group system.",
+  },
   useOfFunds: [
     {
       pct: 10,
@@ -693,7 +705,7 @@ export const INVESTMENT_ASK = {
     },
   ],
   purpose:
-    "Accelerate continental growth — deepen priority markets, fund capacity, and compound the Group’s integrated Feed · Educate · Empower model.",
+    "Accelerate continental growth — deepen priority markets via local operating companies, fund capacity, and compound the Group’s integrated Feed · Educate · Empower model under a Seychelles holding structure.",
 } as const;
 
 /** Consolidated impact narrative (group-level, scenario-aware wording) */
@@ -728,4 +740,4 @@ export const GROUP_IMPACT_PILLARS = {
 } as const;
 
 export const MODEL_DISCLAIMER =
-  "All revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. They are not audited financial statements, forecasts, or guarantees. Equity percentage, board participation and use-of-funds splits are investment-framing statements subject to definitive legal agreements. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
+  "All revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. They are not audited financial statements, forecasts, or guarantees. Equity percentage, board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";

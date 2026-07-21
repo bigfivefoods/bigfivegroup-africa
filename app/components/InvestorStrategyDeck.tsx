@@ -36,7 +36,7 @@ import {
 import { CONTACT_EMAIL } from "../lib/contact";
 
 const theme = DECK_THEMES.amber;
-const TOTAL = 14;
+const TOTAL = 15;
 
 function Slide({ index }: { index: number }) {
   const forPrint = useDeckPrintMode();
@@ -96,6 +96,7 @@ function Slide({ index }: { index: number }) {
           <ol className={forPrint ? "space-y-1.5 max-w-2xl" : "space-y-3 max-w-2xl"}>
             {[
               "Investment ask — 10% holding equity, board seat, use of funds",
+              "Corporate structure — Seychelles holdco, IP, end-market opcos",
               "Group thesis — ten pillars as one system",
               "Africa problems with credible sources",
               "How Big Five addresses the problems",
@@ -206,8 +207,60 @@ function Slide({ index }: { index: number }) {
     case 4:
       return (
         <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>STRUCTURE · SEYCHELLES · END MARKETS</DeckEyebrow>
+          <DeckTitle>Holdco in the Seychelles · IP at holdco · opcos in markets</DeckTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+            <div
+              className={`rounded-2xl border border-black/10 bg-[#fafafa] ${
+                forPrint ? "p-3" : "p-4 sm:p-5"
+              }`}
+            >
+              <div className="text-[10px] tracking-[2px] text-amber-800 font-semibold mb-1">
+                HOLDING · SEYCHELLES
+              </div>
+              <p className={`text-[#404040] leading-relaxed ${forPrint ? "text-[11px]" : "text-sm"}`}>
+                {INVESTMENT_ASK.corporateStructure.holdingNote}
+              </p>
+              <p
+                className={`text-[#525252] leading-relaxed mt-2 ${
+                  forPrint ? "text-[10px]" : "text-xs"
+                }`}
+              >
+                {INVESTMENT_ASK.corporateStructure.ipNote}
+              </p>
+            </div>
+            <div
+              className={`rounded-2xl border border-black/10 bg-[#0a0a0a] text-white ${
+                forPrint ? "p-3" : "p-4 sm:p-5"
+              }`}
+            >
+              <div className="text-[10px] tracking-[2px] text-amber-400/90 font-semibold mb-1">
+                OPCOS · END MARKETS
+              </div>
+              <p className={`text-white/80 leading-relaxed ${forPrint ? "text-[11px]" : "text-sm"}`}>
+                {INVESTMENT_ASK.corporateStructure.opcos}
+              </p>
+              <p
+                className={`text-white/55 leading-relaxed mt-2 ${
+                  forPrint ? "text-[10px]" : "text-xs"
+                }`}
+              >
+                {INVESTMENT_ASK.corporateStructure.kenyaExample}
+              </p>
+            </div>
+          </div>
+          <p className={`text-[#737373] leading-relaxed ${forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"}`}>
+            Planned architecture for continental growth and local buy-in — subject to legal and tax
+            counsel. Equity raise targets the holding company.
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 5:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GROUP THESIS</DeckEyebrow>
-          <DeckTitle>One holding company. Ten opcos. One mission.</DeckTitle>
+          <DeckTitle>One holding company. Ten pillars. One mission.</DeckTitle>
           <p
             className={`text-[#404040] max-w-3xl mb-5 leading-relaxed ${
               forPrint ? "text-xs" : "text-sm sm:text-base"
@@ -238,7 +291,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 5:
+    case 6:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -273,7 +326,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 6:
+    case 7:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HUNGER & MALNUTRITION</DeckEyebrow>
@@ -295,7 +348,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 7:
+    case 8:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HOW WE RESPOND</DeckEyebrow>
@@ -344,7 +397,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 8:
+    case 9:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -382,7 +435,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 9:
+    case 10:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GROUP ROLLUP · USD</DeckEyebrow>
@@ -430,7 +483,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 10:
+    case 11:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>OPCOS · CURRENT VS FUTURE</DeckEyebrow>
@@ -465,7 +518,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 12:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>OPCOS · CONTINUED</DeckEyebrow>
@@ -497,7 +550,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 13:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -541,7 +594,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <DeckTitleLayout>
@@ -563,8 +616,9 @@ function Slide({ index }: { index: number }) {
                   forPrint ? "text-xs" : "text-sm sm:text-base"
                 }`}
               >
-                {INVESTMENT_ASK.equityOffered} equity · board seat · 10% ops / 90% assets & product
-                development. Request the data room for diligence-grade packs.
+                {INVESTMENT_ASK.equityOffered} equity · board seat · Seychelles holdco (IP) · end-market
+                opcos · 10% ops / 90% assets & product development. Request the data room for
+                diligence-grade packs.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <a
