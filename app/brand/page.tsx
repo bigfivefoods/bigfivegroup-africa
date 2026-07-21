@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Download, Mail } from "lucide-react";
 import { CONTACT_EMAIL } from "../lib/contact";
+import { SITE_OG_IMAGE } from "../lib/site";
 
 export const metadata = {
   title: "Brand kit",
@@ -10,7 +11,7 @@ export const metadata = {
   openGraph: {
     title: "Brand kit | Big Five Group",
     url: "/brand",
-    images: [{ url: "/home-hero.jpg", width: 1200, height: 630 }],
+    images: [SITE_OG_IMAGE],
   },
   alternates: { canonical: "/brand" },
 };

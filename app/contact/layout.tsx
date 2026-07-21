@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_OG_IMAGE } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Contact · Book a briefing",
@@ -9,11 +10,9 @@ export const metadata: Metadata = {
     description:
       "Book a strategic briefing or enquire about nutrition, leadership, philanthropy, and ethical commerce.",
     url: "/contact",
-    images: [
-      { url: "/home-hero.jpg", width: 1200, height: 630, alt: "Big Five Group Africa" },
-    ],
+    images: [SITE_OG_IMAGE],
   },
-  twitter: { card: "summary_large_image", images: ["/home-hero.jpg"] },
+  twitter: { card: "summary_large_image", images: [SITE_OG_IMAGE.url] },
   alternates: { canonical: "/contact" },
 };
 

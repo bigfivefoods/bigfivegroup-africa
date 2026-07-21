@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
+import { SITE_OG_IMAGE } from "../lib/site";
 
 export const metadata = {
   title: "Updates",
@@ -9,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: "Updates | Big Five Group Africa",
     url: "/updates",
-    images: [{ url: "/home-hero.jpg", width: 1200, height: 630, alt: "Big Five Group" }],
+    images: [SITE_OG_IMAGE],
   },
   alternates: { canonical: "/updates" },
 };

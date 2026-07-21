@@ -4,8 +4,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Analytics from "./components/Analytics";
 import SkipToContent from "./components/SkipToContent";
+import { SITE_NAME, SITE_OG_IMAGE, SITE_URL } from "./lib/site";
 
-const siteUrl = "https://bigfivegroup.africa";
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -27,9 +28,9 @@ export const metadata: Metadata = {
     "KwaZulu-Natal",
   ],
   authors: [{ name: "Big Five Group (Pty) Ltd" }],
-  creator: "Big Five Group Africa",
-  publisher: "Big Five Group Africa",
-  applicationName: "Big Five Group Africa",
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  applicationName: SITE_NAME,
   alternates: {
     canonical: "/",
   },
@@ -37,25 +38,26 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_ZA",
     url: siteUrl,
-    siteName: "Big Five Group Africa",
+    siteName: SITE_NAME,
     title: "Big Five Group Africa | One Group. Ten Pillars. Infinite Impact.",
     description:
       "Regenerative. Sovereign. Ethical. Building Africa's future with integrity, transparency, and measurable impact.",
     images: [
       {
-        url: "/home-hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Big Five Group Africa",
+        url: SITE_OG_IMAGE.url,
+        width: SITE_OG_IMAGE.width,
+        height: SITE_OG_IMAGE.height,
+        alt: SITE_OG_IMAGE.alt,
+        type: SITE_OG_IMAGE.type,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Big Five Group Africa",
+    title: SITE_NAME,
     description:
       "Regenerative. Sovereign. Ethical. Ten pillars building Africa's future.",
-    images: ["/home-hero.jpg"],
+    images: [SITE_OG_IMAGE.url],
   },
   robots: {
     index: true,
@@ -88,7 +90,8 @@ const organizationJsonLd = {
   name: "Big Five Group Africa",
   legalName: "Big Five Group (Pty) Ltd",
   url: siteUrl,
-  logo: `${siteUrl}/super-cube-logo-transparent.png`,
+  logo: `${siteUrl}/bigfivegroup-logo.png`,
+  image: `${siteUrl}${SITE_OG_IMAGE.url}`,
   description:
     "Integrated African enterprise: regenerative agriculture, fortified nutrition, Super-Cube® leadership, SupplierAdvisor® commerce, and verified impact.",
   email: "craig@bigfivegroup.africa",
@@ -115,13 +118,15 @@ const organizationJsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Big Five Group Africa",
+  name: SITE_NAME,
   url: siteUrl,
   description:
     "One Group. Ten Pillars. Infinite African Impact — Feed · Educate · Empower.",
+  image: `${siteUrl}${SITE_OG_IMAGE.url}`,
   publisher: {
     "@type": "Organization",
-    name: "Big Five Group Africa",
+    name: SITE_NAME,
+    logo: `${siteUrl}/bigfivegroup-logo.png`,
   },
 };
 
