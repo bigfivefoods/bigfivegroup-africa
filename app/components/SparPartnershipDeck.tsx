@@ -51,11 +51,15 @@ const RANGE_ICONS = {
   soup: Soup,
 } as const;
 
+/**
+ * PRODUCT SPAR CAN TRUST — one pack per category.
+ * Different hero assets from Mandela Pack full-range (chocolate / rich beef / chakalaka / chicken).
+ */
 const PRODUCT_SHOTS = [
-  { src: "/foods/porridge-chocolate.jpg", name: "Porridge" },
-  { src: "/foods/soya-beef.jpg", name: "Soya mince" },
-  { src: "/foods/onepot-chakalaka.jpg", name: "One-pot" },
-  { src: "/foods/soup-chicken.jpg", name: "Soup" },
+  { src: "/foods/porridge-banana.jpg", name: "Fortified porridges", flavour: "Banana" },
+  { src: "/foods/soya-mutton.jpg", name: "Soya mince", flavour: "Mutton" },
+  { src: "/foods/onepot-chicken.jpg", name: "One-pot meals", flavour: "Chicken" },
+  { src: "/foods/soup-oxtail.jpg", name: "Fortified soups", flavour: "Oxtail" },
 ] as const;
 
 /**
@@ -1000,28 +1004,33 @@ function Slide({ index }: { index: number }) {
               ))}
             </div>
 
-            {/* Portrait pack frames — object-contain so full packaging shows (no bottom crop) */}
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0">
+            {/* One product image per category (different packs from Mandela Pack range slide) */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
               {PRODUCT_SHOTS.map((s) => (
-                <div key={s.src} className="min-w-0 min-h-0 flex flex-col">
-                  <div className="relative w-full flex-1 min-h-0 rounded-xl border border-black/8 bg-white overflow-hidden">
+                <div key={s.src} className="min-w-0 flex flex-col">
+                  <div className="relative w-full aspect-[3/4] max-h-[15rem] sm:max-h-[17rem] rounded-xl border border-black/8 bg-white overflow-hidden shrink-0">
                     <DeckPrintImage
                       src={s.src}
-                      alt={s.name}
+                      alt={`${s.name} — ${s.flavour}`}
                       paddingClass="p-2 sm:p-3"
                       fit="contain"
                     />
                   </div>
-                  <div className="text-center text-[10px] sm:text-xs font-medium text-[#404040] mt-1 shrink-0">
-                    {s.name}
+                  <div className="text-center mt-1.5 shrink-0">
+                    <div className="text-[10px] sm:text-xs font-semibold text-black leading-tight">
+                      {s.name}
+                    </div>
+                    <div className="text-[9px] sm:text-[10px] text-[#737373] leading-tight">
+                      {s.flavour}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
 
             <p className="text-[9px] sm:text-[10px] text-[#737373] leading-snug mt-2 shrink-0">
-              Full public range story: bigfivegroup.africa/foods · Supplier partner for SPAR, not a
-              margin reveal on manufacturer economics.
+              One pack per category (different SKUs from the Mandela Pack range slide) ·
+              bigfivegroup.africa/foods
             </p>
           </div>
         </DeckSlideShell>
