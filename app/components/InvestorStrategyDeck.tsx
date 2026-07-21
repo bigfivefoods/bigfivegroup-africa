@@ -147,7 +147,7 @@ function Slide({ index }: { index: number }) {
               "Ask (USD 10m · 10%) · detailed use of funds · structure",
               "Market traction · true today vs not yet",
               "Group thesis · Africa problems · how we respond",
-              "Foods competitive edge (~45% GP · ~85% cheaper) · unit economics",
+              "Foods competitive edge (~45% GP · ~50% cheaper) · unit economics",
               "USD scenarios · opco rollup",
               "12–18 mo roadmap · numeric proof dashboard · team & governance",
               "Risks · impact · why capital now · NDA next steps",
@@ -657,7 +657,7 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FOODS · COMPETITIVE EDGE</DeckEyebrow>
-          <DeckTitle>~45% GP · still ~85% cheaper vs market</DeckTitle>
+          <DeckTitle>~45% GP · still ~50% cheaper vs market</DeckTitle>
           <p
             className={`text-[#404040] leading-relaxed max-w-3xl ${
               forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
@@ -738,7 +738,7 @@ function Slide({ index }: { index: number }) {
           >
             <strong className="text-black">Foods is repetitive business</strong> with{" "}
             <strong className="text-black">~45% GP</strong> while remaining{" "}
-            <strong className="text-black">~85% cheaper</strong> than wholesale and retail
+            <strong className="text-black">~50% cheaper</strong> than wholesale and retail
             (management / internal) — super-competitive for government and feeding schemes. Connect
             compounds via seats and network density.
           </p>

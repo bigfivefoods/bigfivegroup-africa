@@ -96,7 +96,7 @@ const proofMetrics = [
     source: "Management-reported GP on fortified SKU economics",
   },
   {
-    value: "~85%",
+    value: "~50%",
     label: "Cheaper vs wholesale & retail",
     source: "Foods internal cost comparison — competitive for government & feeding schemes",
   },

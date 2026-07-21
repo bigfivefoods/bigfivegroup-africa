@@ -125,7 +125,7 @@ export default function FoodsNetworkPanel() {
               },
               {
                 icon: Package,
-                value: "~85%",
+                value: "~50%",
                 label: "Cheaper vs wholesale & retail",
               },
               {

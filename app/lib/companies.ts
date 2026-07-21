@@ -65,7 +65,7 @@ export const companies: Company[] = [
     icon: "Wheat",
     tagline: "Fortified Nutrition • ~45% GP • Super-Competitive Institutional",
     description:
-      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions. ~45% gross profit (management-reported) while remaining ~85% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government and feeding schemes. Food is a repetitive business: reorders should sustain and grow with market traction.",
+      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions. ~45% gross profit (management-reported) while remaining ~50% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government and feeding schemes. Food is a repetitive business: reorders should sustain and grow with market traction.",
     heroText: "Nourishing a Continent. One Fortified Meal at a Time.",
     howItWorks: [
       {
@@ -92,7 +92,7 @@ export const companies: Company[] = [
     forStakeholders: [
       {
         title: "For Governments & feeding schemes",
-        desc: "~85% cheaper than wholesale/retail pathways with ~45% GP economics — stretch public budgets without sacrificing Group unit economics.",
+        desc: "~50% cheaper than wholesale/retail pathways with ~45% GP economics — stretch public budgets without sacrificing Group unit economics.",
       },
       {
         title: "For Retail & Distributors",
@@ -104,7 +104,7 @@ export const companies: Company[] = [
       },
     ],
     impact:
-      "Programme-reported delivery to date plus ~45% GP and ~85% cost advantage vs wholesale/retail (management/internal). NSNP programme landed with DBE at 2.5m children/day plan scale. See /methodology.",
+      "Programme-reported delivery to date plus ~45% GP and ~50% cost advantage vs wholesale/retail (management/internal). NSNP programme landed with DBE at 2.5m children/day plan scale. See /methodology.",
   },
   {
     slug: "direct",

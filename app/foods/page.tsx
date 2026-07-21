@@ -158,13 +158,13 @@ export default function FoodsPage() {
           accent={ACCENT}
           stats={[
             { value: "~45%", label: "Gross profit (management-reported)" },
-            { value: "~85%", label: "Cheaper vs wholesale & retail" },
+            { value: "~50%", label: "Cheaper vs wholesale & retail" },
             { value: "2.5m", label: "Children / day NSNP plan (landed)" },
             { value: "74%", label: "More nutrition by design" },
           ]}
         />
         <p className="mt-5 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
-          Foods delivers ~45% GP while remaining ~85% cheaper than wholesale and retail pathways
+          Foods delivers ~45% GP while remaining ~50% cheaper than wholesale and retail pathways
           (management / internal analyses) — super-competitive for government and feeding schemes.
           NSNP programme landed with DBE at 2.5m children/day plan scale. Historic meals are
           programme-reported. Request the latest dated brief when you enquire.{" "}
