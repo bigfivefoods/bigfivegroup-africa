@@ -27,6 +27,7 @@ import {
   type PartnerDirectoryEntry,
   type PartnerProgrammeId,
 } from "../lib/partner-public";
+import SparPartnershipDeck from "../components/SparPartnershipDeck";
 
 function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
   const partnerLogo = partner.logoSrc;
@@ -322,6 +323,9 @@ export default function PartnerPortalClient({
           {[
             { href: "#for-you", label: "For you" },
             { href: "#programmes", label: "Programmes" },
+            ...(partner.slug === "spar"
+              ? [{ href: "#spar-partnership-deck", label: "SPAR pitch deck" }]
+              : []),
             { href: "#pillars", label: "Pillars" },
             { href: "#resources", label: "Resources" },
             ...(isAdmin ? [{ href: "#directory", label: "All partners" }] : []),
@@ -456,6 +460,30 @@ export default function PartnerPortalClient({
           </div>
         </div>
       </section>
+
+      {partner.slug === "spar" && (
+        <section
+          id="spar-partnership-deck"
+          className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8">
+            <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
+              SPAR × BIG FIVE FOODS · PARTNERSHIP PITCH
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2 text-balance">
+              Full partnership presentation
+            </h2>
+            <p className="text-sm sm:text-base text-[#525252] max-w-3xl leading-relaxed">
+              Nelson Mandela pack pricing (R45 ex. VAT · R67 RRP incl. VAT), dual sell/donate
+              pathways, 10% turnover model (SPAR 5% + Big Five Foods 5%) to Restore Africa
+              Foundation and A Heart To Help, governance and the commercial ask.
+            </p>
+          </div>
+          <div className="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
+            <SparPartnershipDeck />
+          </div>
+        </section>
+      )}
 
       <section
         id="resources"
