@@ -178,6 +178,123 @@ export const AFRICA_PROBLEMS: AfricaProblem[] = [
   },
 ];
 
+/**
+ * Group thesis — each pillar: problem addressed + opportunity, with external sources.
+ * Used on the investor deck “One holding company · Ten pillars” slide.
+ */
+export const GROUP_THESIS_PILLARS = [
+  {
+    slug: "agri",
+    problem:
+      "Hunger is rising in Africa while soils, smallholders and provenance remain under-invested — food systems stay fragile under climate and market shock.",
+    opportunity:
+      "Regenerative production and verified offtake into Foods/Direct create durable farm-to-institution supply and livelihood scale.",
+    source: {
+      label: "SOFI 2025 · FAO/WHO/IFAD/UNICEF/WFP",
+      href: "https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report",
+    },
+  },
+  {
+    slug: "foods",
+    problem:
+      "Child undernutrition and micronutrient gaps remain severe; sub-Saharan Africa carries a large share of global stunting and school-age hunger risk.",
+    opportunity:
+      "Affordable fortified staples are a recurring-purchase category (schools, institutions, households) — institutional pathways (e.g. NSNP) unlock volume that should sustain and grow.",
+    source: {
+      label: "UNICEF · Malnutrition data / JME",
+      href: "https://data.unicef.org/topic/nutrition/malnutrition/",
+    },
+  },
+  {
+    slug: "direct",
+    problem:
+      "Nutrition fails in the last mile: spoilage, opaque mark-ups and invisible stock; SA mobility concentrates at taxi ranks (taxis dominate public-transport trips).",
+    opportunity:
+      "SANTACO-linked multi-use containers at ranks/rural stops turn footfall into Foods offtake, surveys, marketing revenue and Super-Cube® education (15k plan scale).",
+    source: {
+      label: "Stats SA NHTS 2020 · public transport mode share",
+      href: "https://www.statssa.gov.za/publications/P0320/P03202020.pdf",
+    },
+  },
+  {
+    slug: "access",
+    problem:
+      "Capable African SMEs and implementers are locked out of tenders, CSI and development capital by compliance, networks and delivery proof gaps.",
+    opportunity:
+      "Professional pathways into public and development spend — with Group delivery attached so awards become meals, jobs and infrastructure.",
+    source: {
+      label: "IFC · SME finance / MSME gap framing",
+      href: "https://www.ifc.org/en/what-we-do/sector-expertise/financial-institutions/sme-finance",
+    },
+  },
+  {
+    slug: "connect",
+    problem:
+      "Trade and institutional supply chains leak value and trust without verification, lot pedigree, ratings and real-time status — spreadsheets do not scale proof.",
+    opportunity:
+      "SupplierAdvisor® as the operating system for ethical B2B/B2G/B2C trade: SaaS seats, network effects and audit-ready rails for Group and open market.",
+    source: {
+      label: "SupplierAdvisor® · live product",
+      href: "https://www.supplieradvisor.com/",
+    },
+  },
+  {
+    slug: "leadership",
+    problem:
+      "Complex multi-stakeholder programmes fail when leaders lack whole-person ethical capacity — tools without judgment multiply harm in the AI era.",
+    opportunity:
+      "Super-Cube® programmes (DBA research lineage; developability framing) form public and private leaders who can hold Feed · Educate · Empower systems.",
+    source: {
+      label: "Super-Cube® · leadership IP",
+      href: "https://www.super-cube.com",
+    },
+  },
+  {
+    slug: "foundation",
+    problem:
+      "Philanthropy and CSI often deploy without operating muscle or measurement — community need (nutrition, skills, resilience) outruns one-off grants.",
+    opportunity:
+      "Catalytic NPO capital de-risks corridors and proves models that public/DFI programmes can scale — delivered with Group rails, not vanity spend.",
+    source: {
+      label: "UN · SDG financing / implementation gap context",
+      href: "https://sdgs.un.org/goals",
+    },
+  },
+  {
+    slug: "impact",
+    problem:
+      "Multi-pillar African programmes stall on weak PMO discipline; health and nutrition systems need delivery partners, not slide decks alone.",
+    opportunity:
+      "Cross-pillar PMO fees plus institutional channels (incl. Director General of Health → SA DoH and African health pathways) turn funding into gated outcomes.",
+    source: {
+      label: "WHO · African Region / health systems",
+      href: "https://www.afro.who.int/",
+    },
+  },
+  {
+    slug: "global",
+    problem:
+      "African producers and brands struggle to reach foreign demand with standards, working capital and trusted corridor partners intact.",
+    opportunity:
+      "Priority distribution markets (Africa + DE · HU · GE) and AfCFTA-era trade create corridor economics for verified African excellence outward.",
+    source: {
+      label: "AfCFTA · African Continental Free Trade Area",
+      href: "https://au-afcfta.org/",
+    },
+  },
+  {
+    slug: "royal",
+    problem:
+      "Programmes that ignore traditional authority and community legitimacy lose social licence — service imposed from outside rarely compounds.",
+    opportunity:
+      "Close ties and planned partnership with royal family & tribal authorities de-risk Group delivery and multiply dignity outcomes in community-facing work.",
+    source: {
+      label: "Group methodology · community partnership framing",
+      href: "https://bigfivegroup.africa/methodology",
+    },
+  },
+] as const;
+
 export const OPCO_MODELS: OpcoInvestorModel[] = [
   {
     slug: "agri",

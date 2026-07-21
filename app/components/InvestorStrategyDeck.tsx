@@ -29,6 +29,7 @@ import DeckShell, {
 import {
   AFRICA_PROBLEMS,
   GROUP_IMPACT_PILLARS,
+  GROUP_THESIS_PILLARS,
   INVESTMENT_ASK,
   INVESTOR_RISKS,
   MARKET_TRACTION,
@@ -405,38 +406,75 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>GROUP THESIS</DeckEyebrow>
           <DeckTitle>One holding company. Ten pillars. One mission.</DeckTitle>
           <p
-            className={`text-[#404040] max-w-3xl mb-4 leading-relaxed ${
-              forPrint ? "text-xs" : "text-sm"
+            className={`text-[#404040] max-w-3xl leading-relaxed ${
+              forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
             }`}
           >
             Integrated rails so nutrition, trade, capital and delivery compound — under Seychelles
-            holdco IP and local end-market opcos.
+            holdco IP and local end-market opcos. Each pillar answers a concrete African problem and
+            opens a measurable commercial or delivery opportunity.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-            {OPCO_MODELS.map((o) => {
-              const meta = opcoMeta(o.slug);
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 overflow-y-auto ${
+              forPrint ? "max-h-none" : "max-h-[min(52vh,28rem)] sm:max-h-none"
+            }`}
+          >
+            {GROUP_THESIS_PILLARS.map((p) => {
+              const meta = opcoMeta(p.slug);
               return (
                 <div
-                  key={o.slug}
-                  className={`rounded-xl border border-black/10 bg-[#fafafa] text-center flex flex-col items-center ${
-                    forPrint ? "p-2" : "p-3"
+                  key={p.slug}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
+                    forPrint ? "p-1.5" : "p-2.5 sm:p-3"
                   }`}
                 >
-                  <div
-                    className={`rounded-lg flex items-center justify-center mb-1.5 ${
-                      forPrint ? "w-7 h-7" : "w-9 h-9"
+                  <div className="flex items-center gap-2 mb-1 min-w-0">
+                    <div
+                      className={`rounded-lg flex items-center justify-center shrink-0 ${
+                        forPrint ? "w-6 h-6" : "w-7 h-7"
+                      }`}
+                      style={{ backgroundColor: `${meta.color}18`, color: meta.color }}
+                    >
+                      <CompanyIcon name={meta.icon} size={forPrint ? 12 : 14} />
+                    </div>
+                    <div className="min-w-0">
+                      <div
+                        className={`font-semibold text-black truncate ${
+                          forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                        }`}
+                      >
+                        {meta.fullName}
+                      </div>
+                      <div className={`text-[#a3a3a3] truncate ${forPrint ? "text-[8px]" : "text-[9px]"}`}>
+                        {OPCO_MODELS.find((o) => o.slug === p.slug)?.avenue}
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    className={`text-[#404040] leading-snug ${
+                      forPrint ? "text-[8px] mb-0.5" : "text-[10px] sm:text-[11px] mb-1"
                     }`}
-                    style={{ backgroundColor: `${meta.color}18`, color: meta.color }}
                   >
-                    <CompanyIcon name={meta.icon} size={forPrint ? 14 : 18} />
-                  </div>
-                  <div className={`font-semibold text-black ${forPrint ? "text-[10px]" : "text-xs"}`}>
-                    {o.name}
-                  </div>
+                    <strong className="text-rose-800/90">Problem:</strong> {p.problem}
+                  </p>
+                  <p
+                    className={`text-[#404040] leading-snug ${
+                      forPrint ? "text-[8px] mb-0.5" : "text-[10px] sm:text-[11px] mb-1"
+                    }`}
+                  >
+                    <strong className="text-emerald-800">Opportunity:</strong> {p.opportunity}
+                  </p>
+                  <p className={`text-[#a3a3a3] leading-snug ${forPrint ? "text-[7px]" : "text-[9px]"}`}>
+                    Source: {p.source.label}
+                  </p>
                 </div>
               );
             })}
           </div>
+          <p className={`text-[#a3a3a3] mt-1.5 ${forPrint ? "text-[7px]" : "text-[9px]"}`}>
+            External sources cited per pillar · Group claims remain management-reported where noted ·
+            Full Africa problem slides follow.
+          </p>
         </DeckSlideShell>
       );
 
