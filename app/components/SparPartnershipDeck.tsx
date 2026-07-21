@@ -27,12 +27,12 @@ import {
   formatZar,
   formatZarPrecise,
 } from "../lib/sparPartnership";
-import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
 
 const theme = DECK_THEMES.amber;
 const TOTAL = 17;
 const P = SPAR_PARTNERSHIP;
 const EX = P.giving.example;
+const M = P.sparMargin;
 
 const PRODUCT_SHOTS = [
   { src: "/foods/porridge-chocolate.jpg", name: "Porridge" },
@@ -115,7 +115,7 @@ function Slide({ index }: { index: number }) {
               <DeckTitleLayout>
                 <div>
                   <DeckEyebrow light theme={theme}>
-                    SPAR × BIG FIVE FOODS · PARTNERSHIP PRESENTATION · CONFIDENTIAL
+                    SPAR PARTNERSHIP · A STORY OF GOOD · CONFIDENTIAL
                   </DeckEyebrow>
                   <CoBrandRow light />
                   <h2
@@ -123,10 +123,10 @@ function Slide({ index }: { index: number }) {
                       forPrint ? "text-2xl" : "text-3xl sm:text-4xl md:text-5xl"
                     }`}
                   >
-                    Feed the nation from the SPAR shelf.
+                    When SPAR does good,
                     <br />
                     <span style={{ color: theme.gradientFrom }}>
-                      Fund the foundations that heal it.
+                      the whole community feels it.
                     </span>
                   </h2>
                   <p
@@ -134,9 +134,9 @@ function Slide({ index }: { index: number }) {
                       forPrint ? "text-xs" : "text-sm sm:text-base"
                     } leading-relaxed`}
                   >
-                    Fortified Big Five Foods at SPAR · R45 trade (ex. VAT) · R67 RRP (incl. VAT ·
-                    Nelson Mandela pack) · 10% of turnover (SPAR 5% + Big Five Foods 5%) to Restore
-                    Africa Foundation and A Heart To Help.
+                    Put fortified Big Five Foods on SPAR shelves. Earn a healthy store margin. Ring-fence
+                    10% of partnership turnover (SPAR 5% + Big Five Foods 5%) for Restore Africa
+                    Foundation and A Heart To Help — sell with purpose or donate with dignity.
                   </p>
                 </div>
                 <div
@@ -144,7 +144,7 @@ function Slide({ index }: { index: number }) {
                     forPrint ? "text-[10px]" : "text-xs sm:text-sm"
                   }`}
                 >
-                  <p>Retail nutrition partnership · sell or donate</p>
+                  <p>SPAR leads the narrative · Big Five Foods supplies the product</p>
                   <p>bigfivegroup.africa · /partner/spar#spar-partnership-deck</p>
                   <p>{TOTAL} slides · Shareable · Printable · Not a binding offer</p>
                 </div>
@@ -158,16 +158,16 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>AGENDA</DeckEyebrow>
-          <DeckTitle>What this SPAR partnership briefing covers</DeckTitle>
+          <DeckTitle>A SPAR story of good — commercially sound</DeckTitle>
           <ol className={forPrint ? "space-y-1 max-w-2xl" : "space-y-2 max-w-2xl"}>
             {[
-              "Why food security needs retail + fortified product + NPOs",
-              "Why SPAR — footprint, shoppers, CSI that compounds",
-              "Nelson Mandela pack pricing · R45 trade · R67 RRP",
-              "Dual pathways: sell to customers · donate to foundations",
+              "Why SPAR should own the food-security narrative",
+              "How SPAR does good — feed, fund, stand with foundations",
+              "Mandela pack pricing · SPAR’s margin on every sale",
+              "Sell with purpose · donate with dignity · campaign hybrid",
               "The 10% model · SPAR 5% + Big Five Foods 5%",
-              "Worked economics · Restore Africa Foundation · A Heart To Help",
-              "Why Big Five Foods · governance · roadmap · the ask",
+              "Restore Africa Foundation · A Heart To Help",
+              "Product SPAR can trust · governance · roadmap · the ask",
             ].map((item, i) => (
               <li key={item} className="flex gap-2.5 items-start">
                 <span
@@ -195,11 +195,11 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
-            THE OPPORTUNITY
+            SPAR DOES GOOD
           </DeckEyebrow>
           <DeckTitle>
             <span className="text-white">
-              Africa needs fortified food at scale — not another poster campaign
+              Communities already trust SPAR. This partnership makes that trust feed people.
             </span>
           </DeckTitle>
           <p
@@ -207,29 +207,11 @@ function Slide({ index }: { index: number }) {
               forPrint ? "text-xs" : "text-sm sm:text-base"
             }`}
           >
-            Hunger shows up in the same aisles as the weekly shop. SPAR and Big Five Foods can put
-            nutrition on the shelf, fund feeding, and support NPOs that restore dignity in KZN and
-            beyond.
+            Hunger and hardship show up in the same towns as SPAR stores. This is not abstract CSI —
+            it is fortified food on the shelf, rand into foundations, and SPAR as the face of care.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-            {[
-              {
-                t: "Hunger is retail-shaped",
-                d: "Families buy where they trust the store. Purpose must live next to price and convenience.",
-              },
-              {
-                t: "Malnutrition is not only calories",
-                d: "Stunting and hidden hunger need fortified staples — not only larger empty portions.",
-              },
-              {
-                t: "NPOs need product + capital",
-                d: "Foundations delivering care need predictable food and rand-flow, not one-off charity dumps.",
-              },
-              {
-                t: "Purpose needs a commercial engine",
-                d: "CSI unattached to a sellable product dies at budget cut. This model is shelf-funded.",
-              },
-            ].map((c) => (
+            {P.sparStory.map((c) => (
               <div
                 key={c.t}
                 className={`rounded-xl border border-white/10 bg-white/[0.06] min-w-0 ${
@@ -255,29 +237,29 @@ function Slide({ index }: { index: number }) {
     case 3:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>WHY SPAR</DeckEyebrow>
-          <DeckTitle>SPAR is the natural retail partner for African food security</DeckTitle>
+          <DeckEyebrow theme={theme}>WHY SPAR LEADS</DeckEyebrow>
+          <DeckTitle>Only SPAR can put purpose at the till and in the community</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1 content-start">
             {[
               {
                 icon: Store,
-                t: "National footprint, local stores",
-                d: "Independent retailers sit inside communities — perfect last metre for fortified staples and Mandela campaigns.",
+                t: "SPAR is already in the community",
+                d: "Independent retailers sit where people live. Purpose does not need a new warehouse — it needs a SPAR shelf.",
               },
               {
                 icon: Users,
-                t: "Shoppers who care",
-                d: "Customers respond to value and purpose. A R67 Mandela pack is a purchase with a story.",
+                t: "Shoppers want to feel proud",
+                d: "A R67 Mandela pack is a weekly choice with a story: SPAR feeds families and supports foundations.",
               },
               {
                 icon: Heart,
-                t: "CSI that compounds",
-                d: "Link every pack to foundations SPAR communities can name — Restore Africa Foundation and A Heart To Help.",
+                t: "CSI customers can see",
+                d: "Not only a donation cheque — product donated to Restore Africa Foundation and A Heart To Help, plus sell-through that funds care.",
               },
               {
                 icon: Target,
-                t: "Competitive differentiation",
-                d: "Own a fortified African nutrition lane with transparent 10% giving — not generic house-brand CSI.",
+                t: "Reputation that compounds",
+                d: "Every pack strengthens SPAR as the retailer that does good — commercially healthy, publicly proud.",
               },
             ].map((p) => (
               <div
@@ -305,8 +287,8 @@ function Slide({ index }: { index: number }) {
     case 4:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>PRODUCT · NELSON MANDELA PACK</DeckEyebrow>
-          <DeckTitle>Clear trade and retail prices SPAR can execute</DeckTitle>
+          <DeckEyebrow theme={theme}>PRICING · SPAR MARGIN</DeckEyebrow>
+          <DeckTitle>Clear prices — and what SPAR makes on every pack</DeckTitle>
           <p
             className={`text-[#525252] mb-4 max-w-3xl leading-relaxed ${
               forPrint ? "text-[11px]" : "text-sm"
@@ -314,10 +296,10 @@ function Slide({ index }: { index: number }) {
           >
             {P.product.vatNote}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
             <div
               className={`rounded-2xl border border-black/10 bg-[#0a0a0a] text-white ${
-                forPrint ? "p-3" : "p-5 sm:p-6"
+                forPrint ? "p-3" : "p-5"
               }`}
             >
               <div
@@ -329,17 +311,17 @@ function Slide({ index }: { index: number }) {
               </div>
               <div
                 className={`font-semibold tracking-tighter tabular-nums ${
-                  forPrint ? "text-3xl" : "text-4xl sm:text-5xl"
+                  forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
                 }`}
               >
                 {P.product.tradePriceExVatLabel}
               </div>
-              <div className={`text-white/60 ${forPrint ? "text-[10px]" : "text-sm"}`}>
-                exclusive of VAT · Big Five Foods → SPAR
+              <div className={`text-white/60 ${forPrint ? "text-[10px]" : "text-xs"}`}>
+                exclusive of VAT
               </div>
             </div>
             <div
-              className={`rounded-2xl border-2 bg-white ${forPrint ? "p-3" : "p-5 sm:p-6"}`}
+              className={`rounded-2xl border-2 bg-white ${forPrint ? "p-3" : "p-5"}`}
               style={{ borderColor: theme.accent }}
             >
               <div
@@ -348,37 +330,50 @@ function Slide({ index }: { index: number }) {
                 }`}
                 style={{ color: theme.accentDark }}
               >
-                Recommended retail · Mandela pack
+                RRP · Mandela pack
               </div>
               <div
                 className={`font-semibold tracking-tighter tabular-nums text-black ${
-                  forPrint ? "text-3xl" : "text-4xl sm:text-5xl"
+                  forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
                 }`}
               >
                 {P.product.rrpInclVatLabel}
               </div>
-              <div className={`text-[#525252] ${forPrint ? "text-[10px]" : "text-sm"}`}>
-                inclusive of VAT · shelf price to SPAR customers
+              <div className={`text-[#525252] ${forPrint ? "text-[10px]" : "text-xs"}`}>
+                inclusive of VAT · shelf
+              </div>
+            </div>
+            <div
+              className={`rounded-2xl border-2 bg-amber-50 ${forPrint ? "p-3" : "p-5"}`}
+              style={{ borderColor: theme.accentDark }}
+            >
+              <div
+                className={`font-semibold tracking-wide uppercase ${
+                  forPrint ? "text-[9px]" : "text-[10px]"
+                }`}
+                style={{ color: theme.accentDark }}
+              >
+                SPAR front margin
+              </div>
+              <div
+                className={`font-semibold tracking-tighter tabular-nums ${
+                  forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
+                }`}
+                style={{ color: theme.accentDark }}
+              >
+                {M.marginRandLabel}
+              </div>
+              <div className={`text-[#525252] ${forPrint ? "text-[10px]" : "text-xs"}`}>
+                ~{Math.round(M.marginPctOfRrp)}% of RRP · indicative
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-2">
-            {PRODUCT_SHOTS.map((s) => (
-              <div key={s.src} className="min-w-0">
-                <ProductThumb
-                  src={s.src}
-                  alt={s.name}
-                  className={forPrint ? "aspect-square h-16" : "aspect-square h-20 sm:h-24"}
-                />
-                <div
-                  className={`text-center text-[#737373] mt-1 ${
-                    forPrint ? "text-[8px]" : "text-[10px]"
-                  }`}
-                >
-                  {s.name}
-                </div>
-              </div>
-            ))}
+          <div
+            className={`rounded-xl border border-amber-100 bg-amber-50/60 ${
+              forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
+            } text-[#404040] leading-relaxed`}
+          >
+            <strong className="text-black">For SPAR retailers:</strong> {M.detail}
           </div>
         </DeckSlideShell>
       );
@@ -386,8 +381,8 @@ function Slide({ index }: { index: number }) {
     case 5:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>HOW IT WORKS</DeckEyebrow>
-          <DeckTitle>Two routes to impact — one partnership</DeckTitle>
+          <DeckEyebrow theme={theme}>HOW SPAR DOES GOOD</DeckEyebrow>
+          <DeckTitle>Three ways SPAR turns a pack into community impact</DeckTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 mb-3">
             {[
               { icon: ShoppingCart, ...P.pathways[0]! },
@@ -419,8 +414,7 @@ function Slide({ index }: { index: number }) {
           </div>
           <p className={`text-[#737373] ${forPrint ? "text-[9px]" : "text-xs"} leading-relaxed`}>
             Donation POs ship to Restore Africa Foundation and / or A Heart To Help under agreed
-            logistics — not ad-hoc stock dumps. Sell-through funds the SPAR 5% contribution every
-            week the product moves.
+            logistics. SPAR stays the hero of every story — on the shelf and in the community.
           </p>
         </DeckSlideShell>
       );
@@ -429,10 +423,12 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
-            THE 10% MODEL
+            SHARED GIVING · 10%
           </DeckEyebrow>
           <DeckTitle>
-            <span className="text-white">SPAR 5% + Big Five Foods 5% = 10% to the foundations</span>
+            <span className="text-white">
+              SPAR commits 5%. Big Five Foods matches 5%. Foundations receive 10%.
+            </span>
           </DeckTitle>
           <p
             className={`text-white/70 max-w-3xl mb-5 leading-relaxed ${
@@ -452,13 +448,13 @@ function Slide({ index }: { index: number }) {
               dark
               theme={theme}
               value="5%"
-              label="Big Five Foods of trade turnover (at R45 ex. VAT)"
+              label="Big Five Foods matches — of trade to SPAR"
             />
             <DeckStatTile
               dark
               theme={theme}
               value="10%"
-              label="Combined ring-fence to NPO feeding initiatives"
+              label="Combined support named for the two foundations"
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -468,7 +464,7 @@ function Slide({ index }: { index: number }) {
               }`}
             >
               <div className={`font-semibold text-amber-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
-                SPAR contribution base
+                SPAR’s 5%
               </div>
               <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
                 {P.giving.bases.spar}
@@ -480,7 +476,7 @@ function Slide({ index }: { index: number }) {
               }`}
             >
               <div className={`font-semibold text-amber-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
-                Big Five Foods contribution base
+                Big Five Foods’ 5%
               </div>
               <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
                 {P.giving.bases.foods}
@@ -493,32 +489,32 @@ function Slide({ index }: { index: number }) {
     case 7:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>UNIT ECONOMICS · ILLUSTRATIVE</DeckEyebrow>
-          <DeckTitle>What one pack and 100,000 packs can unlock</DeckTitle>
+          <DeckEyebrow theme={theme}>SPAR ECONOMICS · ILLUSTRATIVE</DeckEyebrow>
+          <DeckTitle>Margin for SPAR stores · impact for foundations</DeckTitle>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4">
             <DeckStatTile
               theme={theme}
+              value={M.marginRandLabel}
+              label="SPAR front margin per pack @ R67 RRP"
+            />
+            <DeckStatTile
+              theme={theme}
+              value={M.marginPctLabel}
+              label="Indicative margin of RRP (VAT-aligned)"
+            />
+            <DeckStatTile
+              theme={theme}
               value={formatZarPrecise(P.giving.perUnitIllustrative.atRrp.spar)}
-              label="SPAR 5% per pack @ R67 RRP"
+              label="SPAR 5% contribution per pack sold"
             />
             <DeckStatTile
               theme={theme}
-              value={formatZarPrecise(P.giving.perUnitIllustrative.atTrade.foods)}
-              label="Foods 5% per pack @ R45 trade"
-            />
-            <DeckStatTile
-              theme={theme}
-              value={formatZar(EX.sparContribution)}
-              label="SPAR at 100k packs (5% of RRP)"
-            />
-            <DeckStatTile
-              theme={theme}
-              value={formatZar(EX.foodsContribution)}
-              label="Foods at 100k packs (5% of trade)"
+              value={formatZar(EX.sparContribution + EX.foodsContribution)}
+              label="Combined 10% ring-fence · 100k packs (illustrative)"
             />
           </div>
           <div
-            className={`rounded-2xl border border-black/10 bg-[#0a0a0a] text-white ${
+            className={`rounded-2xl border border-black/10 bg-[#0a0a0a] text-white mb-3 ${
               forPrint ? "p-3" : "p-5 sm:p-6"
             }`}
           >
@@ -527,7 +523,7 @@ function Slide({ index }: { index: number }) {
                 forPrint ? "text-[9px]" : "text-[10px]"
               }`}
             >
-              {EX.label}
+              {EX.label} · SPAR front-margin pool (before overheads & 5% giving)
             </div>
             <div
               className={`font-semibold tracking-tighter tabular-nums ${
@@ -535,12 +531,12 @@ function Slide({ index }: { index: number }) {
               }`}
               style={{ color: theme.gradientFrom }}
             >
-              {formatZar(EX.sparContribution + EX.foodsContribution)}
+              {formatZar(EX.sparMarginPool)}
             </div>
             <p className={`text-white/65 mt-1 ${forPrint ? "text-[10px]" : "text-sm"} leading-relaxed`}>
-              Combined illustrative ring-fence (SPAR 5% of {formatZar(EX.sparRetailTurnover)} RRP
-              sell-through + Foods 5% of {formatZar(EX.foodsTradeTurnover)} trade). Not a forecast —
-              a model for the term sheet.
+              Illustrative SPAR front margin on 100,000 packs at RRP (not net profit). Separately,
+              SPAR’s 5% contribution ≈ {formatZar(EX.sparContribution)} and Big Five Foods’ match ≈{" "}
+              {formatZar(EX.foodsContribution)} toward foundations. {M.honesty}
             </p>
           </div>
         </DeckSlideShell>
@@ -549,7 +545,7 @@ function Slide({ index }: { index: number }) {
     case 8:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>NPO PARTNER · 01</DeckEyebrow>
+          <DeckEyebrow theme={theme}>FOUNDATION · 01 · SPAR STANDS WITH</DeckEyebrow>
           <div className="flex flex-wrap items-start gap-4 mb-3">
             <div
               className={`relative bg-white rounded-xl border border-black/10 shrink-0 ${
@@ -600,9 +596,9 @@ function Slide({ index }: { index: number }) {
               forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
             } text-[#404040] leading-relaxed`}
           >
-            <strong className="text-black">Partnership fit:</strong> Donate fortified product into
-            child- and community-facing programmes; use SPAR sell-through contributions to fund
-            distribution, school days and rebuild work. Children first — food and skills together.
+            <strong className="text-black">SPAR’s role:</strong> Sell packs that fund care — and
+            donate product into child- and community-facing programmes. SPAR’s name on meals that
+            reach the next generation.
           </div>
         </DeckSlideShell>
       );
@@ -610,7 +606,7 @@ function Slide({ index }: { index: number }) {
     case 9:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>NPO PARTNER · 02</DeckEyebrow>
+          <DeckEyebrow theme={theme}>FOUNDATION · 02 · SPAR STANDS WITH</DeckEyebrow>
           <div className="flex flex-wrap items-start gap-4 mb-3">
             <div
               className={`relative bg-white rounded-xl border border-black/10 shrink-0 ${
@@ -661,9 +657,9 @@ function Slide({ index }: { index: number }) {
               forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
             } text-[#404040] leading-relaxed`}
           >
-            <strong className="text-black">Partnership fit:</strong> Residential and community care
-            settings need reliable, dignified nutrition. SPAR-donated product and contribution rand
-            support healing pathways for women and children while Freedom Farm scales.
+            <strong className="text-black">SPAR’s role:</strong> Dignity on the plate for women and
+            children in care pathways — product donations and contribution support that SPAR
+            communities can understand and champion.
           </div>
         </DeckSlideShell>
       );
@@ -671,8 +667,8 @@ function Slide({ index }: { index: number }) {
     case 10:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>SHARED OUTCOMES</DeckEyebrow>
-          <DeckTitle>What success looks like for SPAR, Foods and the NPOs</DeckTitle>
+          <DeckEyebrow theme={theme}>WHAT SPAR WINS</DeckEyebrow>
+          <DeckTitle>Good for the brand. Good for the store. Good for the community.</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
             {P.outcomes.map((o) => (
               <div
@@ -698,38 +694,20 @@ function Slide({ index }: { index: number }) {
     case 11:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>WHY BIG FIVE FOODS</DeckEyebrow>
-          <DeckTitle>A product partner SPAR can put on shelf with confidence</DeckTitle>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-3">
-            {[
-              {
-                value: FOODS_ECONOMICS.cheaperThanMarket.value,
-                label: FOODS_ECONOMICS.cheaperThanMarket.label,
-              },
-              {
-                value: FOODS_ECONOMICS.grossProfit.value,
-                label: FOODS_ECONOMICS.grossProfit.label,
-              },
-              {
-                value: FOODS_ECONOMICS.nutritionDesign.value,
-                label: FOODS_ECONOMICS.nutritionDesign.label,
-              },
-            ].map((s) => (
-              <DeckStatTile key={s.label} theme={theme} value={s.value} label={s.label} />
-            ))}
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-            {P.whyFoods.slice(3).map((w) => (
+          <DeckEyebrow theme={theme}>PRODUCT SPAR CAN TRUST</DeckEyebrow>
+          <DeckTitle>Fortified African food ready for SPAR shelves and foundations</DeckTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 mb-3">
+            {P.productCredibility.map((w) => (
               <div
                 key={w.t}
                 className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
-                  forPrint ? "p-2" : "p-3"
+                  forPrint ? "p-2.5" : "p-4"
                 }`}
               >
-                <div className={`font-semibold text-black mb-0.5 ${forPrint ? "text-xs" : "text-sm"}`}>
+                <div className={`font-semibold text-black mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
                   {w.t}
                 </div>
-                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[10px]" : "text-xs"}`}>
+                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"}`}>
                   {w.d}
                 </p>
               </div>
@@ -737,16 +715,25 @@ function Slide({ index }: { index: number }) {
           </div>
           <div className="grid grid-cols-4 gap-2 mb-2">
             {PRODUCT_SHOTS.map((s) => (
-              <ProductThumb
-                key={s.src}
-                src={s.src}
-                alt={s.name}
-                className={forPrint ? "aspect-square h-14" : "aspect-square h-16 sm:h-20"}
-              />
+              <div key={s.src} className="min-w-0">
+                <ProductThumb
+                  src={s.src}
+                  alt={s.name}
+                  className={forPrint ? "aspect-square h-14" : "aspect-square h-16 sm:h-20"}
+                />
+                <div
+                  className={`text-center text-[#737373] mt-1 ${
+                    forPrint ? "text-[8px]" : "text-[10px]"
+                  }`}
+                >
+                  {s.name}
+                </div>
+              </div>
             ))}
           </div>
           <p className={`text-[#737373] ${forPrint ? "text-[9px]" : "text-xs"} leading-relaxed`}>
-            {FOODS_ECONOMICS.honesty} Full range: bigfivegroup.africa/foods
+            Full public range story: bigfivegroup.africa/foods · Supplier partner for SPAR, not a
+            margin reveal on manufacturer economics.
           </p>
         </DeckSlideShell>
       );
@@ -755,28 +742,28 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GOVERNANCE</DeckEyebrow>
-          <DeckTitle>Trust is the product as much as the porridge</DeckTitle>
+          <DeckTitle>Protect SPAR’s reputation while the good scales</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
             {[
               {
                 icon: Scale,
                 t: "Term sheet first",
-                d: "SKUs, prices, 5%+5% bases, NPO split, audit rights, brand use (SPAR + Mandela pack + NPO marks).",
+                d: "SKUs, R45 / R67, SPAR margin discipline, 5%+5% giving, NPO split, brand use for SPAR-led storytelling.",
               },
               {
                 icon: Building2,
-                t: "Transparent reporting",
-                d: "Quarterly: units, RRP sell-through, trade turnover, rand to each foundation, donation POs fulfilled.",
+                t: "Transparent reporting SPAR can share",
+                d: "Quarterly: units sold, packs donated, rand to each foundation, foundation stories and photos.",
               },
               {
                 icon: HandHeart,
                 t: "NPO MOUs",
-                d: "Restore Africa Foundation and A Heart To Help sign simple receiving agreements for product and funds.",
+                d: "Restore Africa Foundation and A Heart To Help receive under simple agreements — product and funds for agreed care programmes.",
               },
               {
                 icon: Target,
-                t: "Customer-facing honesty",
-                d: "Shelf and campaign copy states the 10% model without over-claiming meal counts until yields are locked.",
+                t: "Honest customer claims",
+                d: "Shelf and campaign copy celebrates SPAR doing good without over-claiming meal counts until yields are locked.",
               },
             ].map((it) => (
               <div
@@ -805,9 +792,9 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>ROADMAP</DeckEyebrow>
-          <DeckTitle>From pitch to shelf to proof</DeckTitle>
+          <DeckTitle>From SPAR pilot to a national rhythm of good</DeckTitle>
           <div className="flex flex-col gap-2 max-w-2xl">
-            {P.roadmap.map((r, i) => (
+            {P.roadmap.map((r) => (
               <div key={r.n} className="flex gap-3 items-start">
                 <span
                   className="shrink-0 w-8 h-8 rounded-full text-white text-xs font-semibold flex items-center justify-center"
@@ -829,7 +816,6 @@ function Slide({ index }: { index: number }) {
                     {r.d}
                   </p>
                 </div>
-                {i < P.roadmap.length - 1 ? null : null}
               </div>
             ))}
           </div>
@@ -840,7 +826,7 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HONESTY LABELS</DeckEyebrow>
-          <DeckTitle>What we will put in writing</DeckTitle>
+          <DeckTitle>What we will put in writing with SPAR</DeckTitle>
           <ul className={forPrint ? "space-y-1.5" : "space-y-2"}>
             {P.honesty.map((h) => (
               <li
@@ -861,14 +847,14 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE ASK</DeckEyebrow>
-          <DeckTitle>What we need from SPAR to start</DeckTitle>
+          <DeckTitle>Help SPAR lead — five decisions to start</DeckTitle>
           <ol className={forPrint ? "space-y-1.5" : "space-y-2"}>
             {[
-              "Pilot listing of Nelson Mandela pack (and agreed SKUs) in selected SPAR clusters",
-              "Approve trade R45 ex. VAT and RRP R67 incl. VAT for the campaign pack",
-              "Adopt 5% SPAR + 5% Big Five Foods contribution model to the two foundations",
-              "Authorise donation PO pathway for CSI / franchisee bulk gifts to NPOs",
-              "Nominate SPAR commercial + CSI leads for a 30-day term-sheet sprint",
+              "Pilot listing of the Nelson Mandela pack (and agreed SKUs) in selected SPAR clusters",
+              "Approve trade R45 ex. VAT and RRP R67 incl. VAT — with SPAR front-margin discipline",
+              "Adopt SPAR 5% + Big Five Foods 5% giving to Restore Africa Foundation and A Heart To Help",
+              "Authorise donation PO pathway for CSI / franchisee gifts in SPAR’s name",
+              "Nominate SPAR commercial + CSI leads for a 30-day term-sheet and campaign sprint",
             ].map((a, i) => (
               <li key={a} className="flex gap-2.5 items-start">
                 <span
@@ -909,7 +895,7 @@ function Slide({ index }: { index: number }) {
               <DeckTitleLayout>
                 <div>
                   <DeckEyebrow light theme={theme}>
-                    NEXT STEP
+                    NEXT STEP · SPAR DOES GOOD
                   </DeckEyebrow>
                   <CoBrandRow light />
                   <h2
@@ -917,25 +903,25 @@ function Slide({ index }: { index: number }) {
                       forPrint ? "text-2xl" : "text-3xl sm:text-4xl md:text-5xl"
                     }`}
                   >
-                    Fortified food on the SPAR shelf —
+                    Let SPAR be known for
                     <br />
-                    <span style={{ color: theme.gradientFrom }}>purpose in every pack.</span>
+                    <span style={{ color: theme.gradientFrom }}>feeding hope — every week.</span>
                   </h2>
                   <p
                     className={`text-white/75 max-w-2xl mt-4 ${
                       forPrint ? "text-xs" : "text-sm sm:text-base"
                     } leading-relaxed`}
                   >
-                    R45 trade · R67 RRP · 10% to Restore Africa Foundation & A Heart To Help · sell
-                    or donate · accelerate food security with Big Five Foods.
+                    Healthy SPAR margin · Mandela pack at R67 · 10% to foundations · sell or donate ·
+                    Big Five Foods as product partner behind SPAR’s story of good.
                   </p>
                 </div>
                 <div className="space-y-3">
                   <a
                     href={`mailto:${P.contactEmail}?subject=${encodeURIComponent(
-                      "SPAR × Big Five Foods partnership — term sheet"
+                      "SPAR × Big Five Foods — SPAR does good partnership"
                     )}&body=${encodeURIComponent(
-                      "Hello Big Five team,\n\nI would like to progress the SPAR × Big Five Foods partnership (Mandela pack, R45/R67, 10% model, NPO support).\n\nName:\nRole / region:\nPreferred pilot stores:\n\nThank you."
+                      "Hello Big Five team,\n\nI would like to progress the SPAR partnership (Mandela pack, SPAR margin, 10% foundations model).\n\nName:\nRole / region:\nPreferred pilot stores:\n\nThank you."
                     )}`}
                     className={`deck-email-cta inline-flex items-center gap-2 rounded-full bg-white font-semibold ${
                       forPrint ? "px-4 py-2 text-xs" : "px-6 py-3.5 text-sm sm:text-base"
@@ -968,11 +954,11 @@ export default function SparPartnershipDeck() {
           SPAR PARTNERSHIP PRESENTATION · {TOTAL} SLIDES · CONFIDENTIAL
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-2 text-balance">
-          SPAR × Big Five Foods — partnership deck
+          SPAR does good — partnership deck
         </h2>
         <p className="text-sm sm:text-base text-[#525252] max-w-2xl mx-auto leading-relaxed">
-          Shareable, printable pitch: Nelson Mandela pack pricing (R45 / R67), dual sell-or-donate
-          pathways, 10% turnover model, NPO partners, governance and the commercial ask.
+          Shareable, printable pitch for SPAR: store margin, Mandela pack pricing, sell-or-donate
+          pathways, 10% to foundations, and SPAR as the face of community good.
         </p>
       </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -982,11 +968,11 @@ export default function SparPartnershipDeck() {
           total={TOTAL}
           theme={theme}
           eyebrow="SPAR PARTNERSHIP DECK"
-          title="SPAR × Big Five Foods — Partnership Presentation"
-          description="Retail partnership: Mandela pack pricing, 10% to NPOs, dual sell/donate pathways."
+          title="SPAR does good — Partnership Presentation"
+          description="SPAR-led narrative: store margin, Mandela pack, 10% to NPOs, sell or donate."
           sharePath="/partner/spar#spar-partnership-deck"
-          shareTitle="SPAR × Big Five Foods partnership"
-          shareText="SPAR × Big Five Foods: fortified food on shelf, 10% to Restore Africa Foundation & A Heart To Help."
+          shareTitle="SPAR does good — Big Five Foods partnership"
+          shareText="SPAR partnership: fortified food on shelf, healthy store margin, 10% to Restore Africa Foundation & A Heart To Help."
           renderSlide={(i) => <Slide index={i} />}
         />
       </div>
