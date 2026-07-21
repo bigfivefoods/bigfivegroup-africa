@@ -157,17 +157,17 @@ export default function FoodsPage() {
         <StatRow
           accent={ACCENT}
           stats={[
+            { value: "~45%", label: "Gross profit (management-reported)" },
+            { value: "~85%", label: "Cheaper vs wholesale & retail" },
             { value: "2.5m", label: "Children / day NSNP plan (landed)" },
-            { value: "150k", label: "Meals delivered to date" },
-            { value: "83%", label: "Cheaper than alternatives" },
-            { value: "74%", label: "More nutrition" },
+            { value: "74%", label: "More nutrition by design" },
           ]}
         />
         <p className="mt-5 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
-          Big Five Foods has landed the NSNP programme with DBE — planned to feed 2.5 million children
-          per day (plan scale as delivery ramps, not current daily headcount). Historic meals delivered
-          are programme-reported. Cost and nutrition comparisons are internal analyses — request the
-          latest brief when you enquire.{" "}
+          Foods delivers ~45% GP while remaining ~85% cheaper than wholesale and retail pathways
+          (management / internal analyses) — super-competitive for government and feeding schemes.
+          NSNP programme landed with DBE at 2.5m children/day plan scale. Historic meals are
+          programme-reported. Request the latest dated brief when you enquire.{" "}
           <a href="/contact?interest=foods" className="underline underline-offset-2 text-black font-medium">
             Partner with Foods
           </a>

@@ -380,7 +380,7 @@ function TitleSlide() {
                   }`}
                 >
                   Fortified porridges, soya mince, one-pot meals and soups — certified manufacturing,
-                  24-month shelf life, 83% cheaper · 74% more nutrition.
+                  24-month shelf life · ~45% GP · ~85% cheaper vs wholesale/retail · 74% more nutrition.
                 </p>
               </div>
               <div
@@ -653,10 +653,15 @@ function ProofSlide() {
       <div className="flex flex-col h-full min-h-0">
         <Eyebrow light>PROOF · IMPACT</Eyebrow>
         <SlideTitle>Numbers partners can put in a brief</SlideTitle>
-        <div className={`grid grid-cols-2 lg:grid-cols-4 ${forPrint ? "gap-2 mb-2" : "gap-3 sm:gap-4 mb-6"}`}>
-          <StatTile dark value="2.5m" label="Children/day plan · NSNP programme landed" />
+        <div
+          className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 ${
+            forPrint ? "gap-1.5 mb-2" : "gap-2 sm:gap-3 mb-6"
+          }`}
+        >
+          <StatTile dark value="2.5m" label="Children/day plan · NSNP landed" />
+          <StatTile dark value="~45%" label="Gross profit (mgmt)" />
+          <StatTile dark value="~85%" label="Cheaper vs wholesale & retail" />
           <StatTile dark value="150k" label="Meals delivered to date" />
-          <StatTile dark value="83%" label="Cheaper pathways vs alternatives" />
           <StatTile dark value="74%" label="More nutrition by design" />
         </div>
         <div
@@ -947,7 +952,9 @@ function CtaSlide() {
               <Heart className="w-3 h-3 text-amber-400" />
               Ethical · on-chain · supplieradvisor.com
             </p>
-            <p>Big Five Foods · KwaZulu-Natal · 150k meals · 100k children · 83% · 74%</p>
+            <p>
+              Big Five Foods · ~45% GP · ~85% cheaper vs wholesale/retail · 150k meals · 100k children
+            </p>
           </div>
         </div>
       </TitleSlideLayout>
@@ -1456,7 +1463,7 @@ export default function FoodsStrategyDeck() {
   const onShare = async () => {
     const payload = {
       title: "Big Five Foods — Product & Impact Deck",
-      text: "Fortified African nutrition: porridges, soya, one-pots and soups — 150k meals, 100k children, 83% cheaper, 74% more nutrition.",
+      text: "Fortified African nutrition: ~45% GP, ~85% cheaper vs wholesale/retail, 150k meals, 100k children, 74% more nutrition design.",
       url: shareUrl,
     };
     try {

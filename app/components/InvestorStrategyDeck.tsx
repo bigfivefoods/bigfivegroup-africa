@@ -608,10 +608,12 @@ function Slide({ index }: { index: number }) {
               forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
             }`}
           >
-            <strong className="text-black">Foods is repetitive business.</strong> Schools,
-            institutions and households reorder as menus and shelves turn — so as traction lands,
-            volume should sustain and grow with penetration (thesis, not a guarantee). Connect
-            compounds via seats and network density.
+            <strong className="text-black">Foods is repetitive business</strong> with{" "}
+            <strong className="text-black">~45% GP</strong> while remaining{" "}
+            <strong className="text-black">~85% cheaper</strong> than wholesale and retail
+            (management / internal) — super-competitive for government and feeding schemes. Schools
+            and institutions reorder as menus turn, so volume should sustain and grow with
+            penetration (thesis, not a guarantee). Connect compounds via seats and network density.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {UNIT_ECONOMICS.map((u) => {

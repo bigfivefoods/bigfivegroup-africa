@@ -91,9 +91,14 @@ const proofMetrics = [
     source: "Big Five Foods programme delivery (partner-reported)",
   },
   {
-    value: "83%",
-    label: "Cheaper pathways",
-    source: "Foods cost comparison vs alternative formulations (internal)",
+    value: "~45%",
+    label: "Foods gross profit",
+    source: "Management-reported GP on fortified SKU economics",
+  },
+  {
+    value: "~85%",
+    label: "Cheaper vs wholesale & retail",
+    source: "Foods internal cost comparison — competitive for government & feeding schemes",
   },
   {
     value: "70–76%",

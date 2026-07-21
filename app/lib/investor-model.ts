@@ -199,7 +199,7 @@ export const GROUP_THESIS_PILLARS = [
     problem:
       "Child undernutrition and micronutrient gaps remain severe; sub-Saharan Africa carries a large share of global stunting and school-age hunger risk.",
     opportunity:
-      "Affordable fortified staples are a recurring-purchase category (schools, institutions, households) — institutional pathways (e.g. NSNP) unlock volume that should sustain and grow.",
+      "Affordable fortified staples with ~45% GP and ~85% cost advantage vs wholesale/retail (management/internal) — recurring volume for government and feeding schemes (e.g. NSNP) that should sustain and grow.",
     source: {
       label: "UNICEF · Malnutrition data / JME",
       href: "https://data.unicef.org/topic/nutrition/malnutrition/",
@@ -353,6 +353,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       markets: "South Africa manufacturing / institutional focus; Kenya company setup supports East Africa ambition",
       traction: [
         "Fortified porridges, soya, one-pots, soups — certified manufacturing narrative",
+        "Unit economics: ~45% GP (management-reported) while ~85% cheaper than wholesale/retail (internal) — super-competitive for government & feeding schemes",
         "Repeat / recurring demand model: schools, institutions and households reorder as menus and shelves turn — traction should sustain and compound as penetration deepens",
         "NSNP programme landed (DBE) — planned to feed 2.5m children/day (plan scale, not current daily count)",
         "Department of Health pathway via Impact (Director General of Health) — SA DoH + African health systems over time",
@@ -911,7 +912,7 @@ export const MARKET_TRACTION = {
   credibility: {
     title: "Credibility → multi-department & continental government pathways",
     detail:
-      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee). Direct’s SANTACO partnership places multi-use containers at taxi ranks — high-footfall nodes on SA’s dominant public-transport mode (Stats SA NHTS) — so investors can leverage population mobility for food offtake, surveys, marketing and Super-Cube® education (15,000-container plan scale, phased).",
+      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee). Foods unit economics: ~45% GP (management-reported) while remaining ~85% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government programmes and feeding schemes. Direct’s SANTACO partnership places multi-use containers at taxi ranks — high-footfall nodes on SA’s dominant public-transport mode (Stats SA NHTS) — so investors can leverage population mobility for food offtake, surveys, marketing and Super-Cube® education (15,000-container plan scale, phased).",
   },
   healthChannel: {
     title: "Director General of Health · Big Five Impact",
@@ -927,18 +928,24 @@ export const UNIT_ECONOMICS = [
   {
     slug: "foods",
     name: "Foods",
-    engine: "Price × recurring volume × gross margin on fortified SKUs (repeat purchase)",
+    engine: "Price × recurring volume × ~45% GP on fortified SKUs (repeat purchase)",
     levers: [
-      { k: "Price", v: "Institutional pack pricing vs retail (dual track)" },
+      {
+        k: "GP",
+        v: "~45% gross profit (management-reported) — healthy margin on institutional and household SKUs",
+      },
+      {
+        k: "Price edge",
+        v: "~85% cheaper than comparable wholesale & retail pathways (internal analysis) — super-competitive for government and feeding schemes",
+      },
       {
         k: "Volume",
         v: "Repeat demand: schools / programmes / households reorder as menus and shelves turn",
       },
-      { k: "Margin", v: "Fortification + shelf-life + logistics discipline" },
       { k: "Capital", v: "Working capital for inventory & offtake; plant/pack capacity" },
       {
         k: "Flywheel",
-        v: "Food is repetitive business — as traction lands, reorder cycles should sustain and grow with penetration",
+        v: "Recurring food business — high GP + cost advantage compounds as penetration deepens",
       },
     ],
     path: "Initial turnover (~$45k / R750k) → convert ~$3.0m / R50m pipeline → recurring offtake (NSNP + DoH + retail) → multi-country institutional scale",
@@ -1029,6 +1036,7 @@ export const TRACTION_VS_AMBITION = {
     "NSNP programme landed with DBE — planned to feed 2.5m children/day (programme plan scale)",
     "Director General of Health within Big Five Impact — channel to help drive Group products into SA DoH and African health pathways",
     "Foods is a repeat / recurring purchase category — as traction lands, offtake should sustain and grow with penetration (model thesis, not a guarantee)",
+    "Foods ~45% GP (management-reported) with ~85% cheaper vs wholesale/retail (internal) — competitive for government & feeding schemes",
     "Foods fortified product story + programme-reported meals / children where stated",
     "SANTACO partnership (Direct): 15,000-container rollout plan at major taxi ranks & rural communities — Foods + Wi‑Fi surveys + marketing + Super-Cube® education",
     "Kenya company setup as East Africa hub template",

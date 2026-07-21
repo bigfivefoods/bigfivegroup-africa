@@ -63,9 +63,9 @@ export const companies: Company[] = [
     fullName: "Big Five Foods",
     color: "#f59e0b",
     icon: "Wheat",
-    tagline: "Fortified Nutrition • Repeat Purchase • Institutional & Household",
+    tagline: "Fortified Nutrition • ~45% GP • Super-Competitive Institutional",
     description:
-      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions, with certifications and SupplierAdvisor® ordering pathways. Food is a repetitive business: as menus and shelves adopt our products, reorders should sustain and grow with market traction.",
+      "Fortified African staples and ready meals — porridges, soya, one-pots and soups — for households, schools and institutions. ~45% gross profit (management-reported) while remaining ~85% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government and feeding schemes. Food is a repetitive business: reorders should sustain and grow with market traction.",
     heroText: "Nourishing a Continent. One Fortified Meal at a Time.",
     howItWorks: [
       {
@@ -80,14 +80,19 @@ export const companies: Company[] = [
       },
       {
         step: 3,
+        title: "Win institutional offtake",
+        desc: "High GP with deep price advantage vs wholesale/retail positions Foods for government menus, NSNP and feeding schemes — recurring volume.",
+      },
+      {
+        step: 4,
         title: "Distribute, reorder & grow",
-        desc: "Direct, Access and Connect pathways — including NSNP plan scale. Once trusted, institutional and household demand is recurring, so traction should sustain and compound.",
+        desc: "Direct, Access and Connect pathways — including NSNP plan scale. Once trusted, institutional and household demand is recurring.",
       },
     ],
     forStakeholders: [
       {
-        title: "For Governments & NGOs",
-        desc: "Cost-effective fortified nutrition with programme-facing evidence and institutional pack formats — recurring supply for daily menus.",
+        title: "For Governments & feeding schemes",
+        desc: "~85% cheaper than wholesale/retail pathways with ~45% GP economics — stretch public budgets without sacrificing Group unit economics.",
       },
       {
         title: "For Retail & Distributors",
@@ -99,7 +104,7 @@ export const companies: Company[] = [
       },
     ],
     impact:
-      "Programme-reported delivery to date (e.g. meals and children reached) plus internal cost/nutrition comparisons — and the NSNP programme landed with DBE, planned to feed 2.5 million children a day (plan scale). Recurring demand model as traction deepens. See /methodology.",
+      "Programme-reported delivery to date plus ~45% GP and ~85% cost advantage vs wholesale/retail (management/internal). NSNP programme landed with DBE at 2.5m children/day plan scale. See /methodology.",
   },
   {
     slug: "direct",

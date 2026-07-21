@@ -512,7 +512,8 @@ function Slide({ index }: SlideProps) {
                 t: "Feed",
                 color: "#6ee7b7",
                 d: "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for households, schools and institutions.",
-                proof: "150k meals · 100k children (programme-reported) · 83% / 74% internal analyses",
+                proof:
+                  "150k meals · 100k children · ~45% GP · ~85% cheaper vs wholesale/retail (mgmt/internal)",
               },
               {
                 icon: GraduationCap,
@@ -560,7 +561,7 @@ function Slide({ index }: SlideProps) {
             {[
               {
                 t: "Fortified, affordable food",
-                d: "Big Five Foods porridges, soya, one-pot meals and soups — 74% more nutrition design, 83% cheaper pathways, long shelf life for schools and institutions.",
+                d: "Big Five Foods porridges, soya, one-pot meals and soups — ~45% GP, ~85% cheaper than wholesale/retail, 74% more nutrition design; long shelf life for schools, government and feeding schemes.",
               },
               {
                 t: "Regenerative supply",
@@ -850,7 +851,8 @@ function Slide({ index }: SlideProps) {
             {[
               { v: "150k", l: "Meals delivered (programme-reported)" },
               { v: "100k", l: "Children reached (programme-reported)" },
-              { v: "83%", l: "Cheaper pathways (internal)" },
+              { v: "~45%", l: "Foods GP (management-reported)" },
+              { v: "~85%", l: "Cheaper vs wholesale & retail" },
               { v: "74%", l: "More nutrition (internal)" },
             ].map((s) => (
               <StatTile key={s.l} dark value={s.v} label={s.l} />

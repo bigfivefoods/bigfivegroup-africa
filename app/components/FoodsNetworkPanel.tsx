@@ -120,8 +120,13 @@ export default function FoodsNetworkPanel() {
               },
               {
                 icon: Package,
-                value: "83%",
-                label: "Cheaper than alternatives",
+                value: "~45%",
+                label: "Gross profit (mgmt)",
+              },
+              {
+                icon: Package,
+                value: "~85%",
+                label: "Cheaper vs wholesale & retail",
               },
               {
                 icon: Leaf,
