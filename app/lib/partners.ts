@@ -106,8 +106,9 @@ export const PARTNERS: PartnerProfile[] = [
     logoSrc: BIG_FIVE_LOGO,
     brandColor: "#052e1c",
     notes: [
-      "You can open any partner workspace from the directory below after sign-in.",
+      "Full portal admin: open any partner workspace from All partners below (or go to /partner/[slug] directly).",
       "Add new partners in app/lib/partners.ts — each gets /partner/[slug] with co-branded logo.",
+      "Portal super-admin list: PARTNER_PORTAL_ADMINS in partners.ts (currently craig@bigfivegroup.africa).",
     ],
     contactNote: "Internal — coordinate partner onboarding via Group leadership.",
   },
@@ -285,9 +286,17 @@ function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
 }
 
-/** All emails that may log into the partner portal (from partner profiles). */
+/**
+ * Full portal access — can open every /partner/[slug] and see the admin directory.
+ * Independent of individual partner email lists.
+ */
+export const PARTNER_PORTAL_ADMINS: string[] = [
+  "craig@bigfivegroup.africa",
+];
+
+/** All emails that may log into the partner portal (from partner profiles + admins). */
 export function getPartnerEmailsFromRegistry(): string[] {
-  const emails: string[] = [];
+  const emails: string[] = [...PARTNER_PORTAL_ADMINS.map(normalizeEmail)];
   for (const p of PARTNERS) {
     for (const e of p.emails) {
       const n = normalizeEmail(e);
@@ -306,24 +315,32 @@ export function getPartnerByEmail(email: string): PartnerProfile | undefined {
   const n = normalizeEmail(email);
   const match = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
   if (match) return match;
+  if (PARTNER_PORTAL_ADMINS.map(normalizeEmail).includes(n)) {
+    return getPartnerBySlug("big-five-group");
+  }
   return getPartnerBySlug("general");
 }
 
 export function isPartnerAdmin(email: string): boolean {
-  const p = getPartnerByEmail(email);
+  const n = normalizeEmail(email);
+  if (PARTNER_PORTAL_ADMINS.map(normalizeEmail).includes(n)) return true;
+  const p = PARTNERS.find((x) => x.emails.map(normalizeEmail).includes(n));
   return Boolean(p?.admin);
 }
 
 /** Can this email view this partner slug? */
 export function canAccessPartnerPage(email: string, slug: string): boolean {
   if (isPartnerAdmin(email)) return true;
-  const partner = getPartnerByEmail(email);
+  const n = normalizeEmail(email);
+  const partner = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
   if (!partner) return false;
   return partner.slug === slug;
 }
 
 export function partnerHomePath(email: string): string {
-  const p = getPartnerByEmail(email);
+  if (isPartnerAdmin(email)) return "/partner/big-five-group";
+  const n = normalizeEmail(email);
+  const p = PARTNERS.find((x) => x.emails.map(normalizeEmail).includes(n));
   return p ? `/partner/${p.slug}` : "/partner/general";
 }
 

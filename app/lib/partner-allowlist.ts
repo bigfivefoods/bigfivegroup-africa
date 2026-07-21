@@ -9,6 +9,8 @@ import { getPartnerEmailsFromRegistry } from "./partners";
 
 export const PARTNER_ALLOWLIST: string[] = [
   ...getPartnerEmailsFromRegistry(),
+  // Explicit full-portal admin (also in PARTNER_PORTAL_ADMINS)
+  "craig@bigfivegroup.africa",
   // Ad-hoc allowlist (optional):
   // "temp@partner.org",
 ];
