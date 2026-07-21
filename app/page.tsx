@@ -91,11 +91,6 @@ const proofMetrics = [
     source: "Big Five Foods programme delivery (partner-reported)",
   },
   {
-    value: "~45%",
-    label: "Foods gross profit",
-    source: "Management-reported GP on fortified SKU economics",
-  },
-  {
     value: "~50%",
     label: "Cheaper vs wholesale & retail",
     source: "Foods internal cost comparison — competitive for government & feeding schemes",
