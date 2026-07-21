@@ -528,7 +528,13 @@ export function DeckPrintImage({
     <img
       src={src}
       alt={alt}
-      className={`${fit === "cover" ? "deck-print-img-cover" : "deck-print-img-fill"} ${paddingClass} ${className}`}
+      className={[
+        // Always absolute-fill parent (screen + PDF) — print CSS alone left on-screen heroes broken
+        "absolute inset-0 h-full w-full",
+        fit === "cover" ? "object-cover object-center" : "object-contain object-center",
+        paddingClass,
+        className,
+      ].join(" ")}
       loading={forPrint ? "eager" : "lazy"}
       decoding={forPrint ? "sync" : "async"}
       {...(forPrint ? { fetchPriority: "high" as const } : {})}

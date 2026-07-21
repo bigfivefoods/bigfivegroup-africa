@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   ArrowRight,
   Beef,
@@ -78,6 +79,8 @@ function CoBrandRow({ light }: { light?: boolean }) {
   const forPrint = useDeckPrintMode();
   const sparH = forPrint ? "h-12" : "h-14 sm:h-16 md:h-[4.5rem]";
   const foodsH = forPrint ? "h-9" : "h-10 sm:h-12";
+  const sparSrc = "/partners/spar-logo.png";
+  const foodsSrc = light ? "/bigfivefoods-logo-white.png" : "/bigfivefoods-logo.png";
   return (
     <div className={`flex flex-wrap items-center gap-3 sm:gap-5 ${forPrint ? "mb-2" : "mb-4 sm:mb-6"}`}>
       <div
@@ -85,17 +88,28 @@ function CoBrandRow({ light }: { light?: boolean }) {
           light ? "border-white/40" : "border-[#006633]/25"
         }`}
       >
-        <DeckPrintImage src="/partners/spar-logo.png" alt="SPAR" paddingClass="p-1.5" fit="contain" />
+        {forPrint ? (
+          <DeckPrintImage src={sparSrc} alt="SPAR" paddingClass="p-1.5" fit="contain" />
+        ) : (
+          <Image src={sparSrc} alt="SPAR" fill className="object-contain p-1.5" sizes="224px" priority />
+        )}
       </div>
       <span className={`text-lg sm:text-xl font-light ${light ? "text-white/35" : "text-black/20"}`}>
         ×
       </span>
       <div className={`relative ${foodsH} w-24 sm:w-32 opacity-95`}>
-        <DeckPrintImage
-          src={light ? "/bigfivefoods-logo-white.png" : "/bigfivefoods-logo.png"}
-          alt="Big Five Foods"
-          fit="contain"
-        />
+        {forPrint ? (
+          <DeckPrintImage src={foodsSrc} alt="Big Five Foods" fit="contain" />
+        ) : (
+          <Image
+            src={foodsSrc}
+            alt="Big Five Foods"
+            fill
+            className="object-contain object-left"
+            sizes="128px"
+            priority
+          />
+        )}
       </div>
     </div>
   );
@@ -109,7 +123,19 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
-            <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
+            {/* Full-bleed hero — Next/Image on screen; print-safe img in PDF portal */}
+            {forPrint ? (
+              <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
+            ) : (
+              <Image
+                src="/foods-hero.jpg"
+                alt=""
+                fill
+                className="object-cover object-center"
+                sizes="(max-width:1280px) 100vw, 1200px"
+                priority
+              />
+            )}
             <div
               className="absolute inset-0"
               style={{
@@ -141,9 +167,9 @@ function Slide({ index }: { index: number }) {
                       forPrint ? "text-xs" : "text-sm sm:text-base"
                     } leading-relaxed`}
                   >
-                    Put fortified Big Five Foods on SPAR shelves. Earn a healthy store margin. Ring-fence
-                    10% of partnership turnover (SPAR 5% + Big Five Foods 5%) for Restore Africa
-                    Foundation and A Heart To Help — sell with purpose or donate with dignity.
+                    Put fortified Big Five Foods on SPAR shelves. Earn a healthy store margin.
+                    Ring-fence 10% of partnership turnover (SPAR 5% + Big Five Foods 5%) for Restore
+                    Africa Foundation and A Heart To Help — sell with purpose or donate with dignity.
                   </p>
                 </div>
                 <div
@@ -393,120 +419,102 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>MANDELA PACK · FULL RANGE</DeckEyebrow>
           <DeckTitle>Four categories. Sixteen flavours. One purpose pack story.</DeckTitle>
           <p
-            className={`text-[#525252] max-w-3xl mb-3 leading-relaxed ${
-              forPrint ? "text-[10px]" : "text-sm"
+            className={`text-[#525252] max-w-4xl mb-2 leading-relaxed ${
+              forPrint ? "text-[9px]" : "text-xs sm:text-sm"
             }`}
           >
-            {P.product.campaignLine} Trade{" "}
+            Full Big Five Foods packaging for SPAR listing — trade{" "}
             <strong className="text-black">{P.product.tradePriceExVatLabel} ex. VAT</strong> · RRP{" "}
             <strong className="text-black">{P.product.rrpInclVatLabel} incl. VAT</strong> on agreed
-            campaign SKUs — fortified African food SPAR can sell with pride or donate with dignity.
+            Mandela campaign SKUs. Fortified, shelf-stable, ready to sell or donate.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 flex-1 content-start min-h-0">
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 flex-1 min-h-0 content-start ${
+              forPrint ? "gap-1.5" : "gap-2 sm:gap-3"
+            }`}
+          >
             {RANGES.map((range) => {
               const Icon = RANGE_ICONS[range.id as keyof typeof RANGE_ICONS] ?? UtensilsCrossed;
               return (
                 <div
                   key={range.id}
-                  className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 overflow-hidden flex flex-col ${
-                    forPrint ? "p-2" : "p-3"
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 flex flex-col ${
+                    forPrint ? "p-1.5" : "p-2.5 sm:p-3"
                   }`}
                 >
-                  <div className="flex gap-2.5 min-w-0">
-                    <div
-                      className={`relative shrink-0 rounded-lg border border-black/8 bg-white overflow-hidden ${
-                        forPrint ? "h-12 w-12" : "h-14 w-14 sm:h-16 sm:w-16"
-                      }`}
-                    >
-                      <DeckPrintImage
-                        src={range.heroImage}
-                        alt={range.title}
-                        paddingClass="p-1"
-                        fit="contain"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1.5 mb-0.5">
-                        <Icon
-                          className={forPrint ? "w-3 h-3" : "w-3.5 h-3.5"}
-                          style={{ color: theme.accentDark }}
-                        />
-                        <div
-                          className={`font-semibold text-black leading-tight ${
-                            forPrint ? "text-[11px]" : "text-sm"
-                          }`}
-                        >
-                          {range.title}
-                        </div>
+                  <div className="flex items-center gap-1.5 mb-1 min-w-0">
+                    <Icon
+                      className={`shrink-0 ${forPrint ? "w-3 h-3" : "w-4 h-4"}`}
+                      style={{ color: theme.accentDark }}
+                    />
+                    <div className="min-w-0">
+                      <div
+                        className={`font-semibold text-black leading-tight truncate ${
+                          forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                        }`}
+                      >
+                        {range.title}
                       </div>
                       <div
-                        className={`font-medium leading-snug mb-0.5 ${
-                          forPrint ? "text-[9px]" : "text-[11px]"
-                        }`}
+                        className={`leading-snug truncate ${forPrint ? "text-[8px]" : "text-[10px]"}`}
                         style={{ color: theme.accentDark }}
                       >
                         {range.tagline}
                       </div>
-                      <div
-                        className={`text-[#737373] leading-snug ${
-                          forPrint ? "text-[8px]" : "text-[10px]"
-                        }`}
-                      >
-                        {range.stats}
-                      </div>
                     </div>
                   </div>
+                  {/* Full pack shots — all flavours in category */}
+                  <div className="grid grid-cols-2 gap-1 sm:gap-1.5 flex-1 min-h-0">
+                    {range.flavours.map((f) => (
+                      <div key={f.name} className="min-w-0 flex flex-col">
+                        <div
+                          className={`relative w-full rounded-lg border border-black/8 bg-white overflow-hidden ${
+                            forPrint ? "aspect-[4/5] min-h-[3.25rem]" : "aspect-[4/5] min-h-[5.5rem] sm:min-h-[6.5rem]"
+                          }`}
+                        >
+                          <DeckPrintImage
+                            src={f.image}
+                            alt={`${range.title} — ${f.name}`}
+                            paddingClass={forPrint ? "p-0.5" : "p-1 sm:p-1.5"}
+                            fit="contain"
+                          />
+                        </div>
+                        <div
+                          className={`text-center font-medium text-black mt-0.5 leading-tight ${
+                            forPrint ? "text-[7px]" : "text-[9px] sm:text-[10px]"
+                          }`}
+                        >
+                          {f.name}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                   <p
-                    className={`text-[#404040] leading-snug mt-1.5 ${
-                      forPrint ? "text-[8px]" : "text-[11px]"
-                    }`}
-                  >
-                    {range.blurb}
-                  </p>
-                  <p
-                    className={`text-[#525252] leading-snug mt-1 ${
-                      forPrint ? "text-[8px]" : "text-[10px]"
+                    className={`text-[#525252] leading-snug mt-1.5 line-clamp-3 ${
+                      forPrint ? "text-[7px]" : "text-[9px] sm:text-[10px]"
                     }`}
                   >
                     <strong className="text-black">Nutrition:</strong> {range.nutrition}
                   </p>
-                  <div
-                    className={`flex flex-wrap gap-1 mt-1.5 ${forPrint ? "gap-0.5" : ""}`}
-                  >
-                    {range.flavours.map((f) => (
-                      <span
-                        key={f.name}
-                        className={`inline-flex items-center gap-1 rounded-full border border-emerald-100 bg-white font-medium text-[#404040] ${
-                          forPrint ? "text-[7px] px-1 py-0.5" : "text-[9px] sm:text-[10px] px-1.5 py-0.5"
-                        }`}
-                      >
-                        <span className="relative h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 rounded-full overflow-hidden border border-black/5 inline-block">
-                          <DeckPrintImage src={f.image} alt="" fit="cover" />
-                        </span>
-                        {f.name}
-                      </span>
-                    ))}
-                  </div>
                   <p
-                    className={`mt-1.5 leading-snug ${
-                      forPrint ? "text-[8px]" : "text-[10px]"
+                    className={`leading-snug mt-0.5 line-clamp-2 ${
+                      forPrint ? "text-[7px]" : "text-[9px]"
                     }`}
                     style={{ color: theme.accentDark }}
                   >
-                    <strong>SPAR angle:</strong>{" "}
+                    <strong>SPAR:</strong>{" "}
                     <span className="text-[#404040]">{range.sparAngle}</span>
                   </p>
-                  <p className={`text-[#737373] mt-0.5 ${forPrint ? "text-[7px]" : "text-[9px]"}`}>
-                    Serve: {range.serve}
+                  <p className={`text-[#737373] mt-0.5 ${forPrint ? "text-[6px]" : "text-[8px]"}`}>
+                    {range.stats}
                   </p>
                 </div>
               );
             })}
           </div>
-          <p className={`mt-2 text-[#737373] ${forPrint ? "text-[8px]" : "text-[10px]"} leading-relaxed`}>
-            SKU list, pack sizes and which variants carry Mandela campaign packaging are confirmed on
-            the term sheet. Certifications (ISO, FSSC, Halaal, Kosher, Sedex, SupplierAdvisor®) support
-            retail listing confidence — see bigfivegroup.africa/foods.
+          <p className={`mt-1.5 text-[#737373] ${forPrint ? "text-[7px]" : "text-[10px]"} leading-relaxed`}>
+            All pack photography is Big Five Foods product packaging. SKU list, sizes and Mandela
+            campaign wraps confirmed on term sheet · bigfivegroup.africa/foods
           </p>
         </DeckSlideShell>
       );
@@ -1133,7 +1141,17 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
-            <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
+            {forPrint ? (
+              <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
+            ) : (
+              <Image
+                src="/foods-hero.jpg"
+                alt=""
+                fill
+                className="object-cover object-center"
+                sizes="(max-width:1280px) 100vw, 1200px"
+              />
+            )}
             <div
               className="absolute inset-0"
               style={{
