@@ -28,16 +28,18 @@ import DeckShell, {
 } from "./deck/DeckShell";
 import {
   SPAR_PARTNERSHIP,
+  buildSparImpactReport,
   formatZar,
   formatZarPrecise,
 } from "../lib/sparPartnership";
 
 const theme = DECK_THEMES.spar;
-const TOTAL = 18;
+const TOTAL = 19;
 const P = SPAR_PARTNERSHIP;
 const EX = P.giving.example;
 const M = P.sparMargin;
 const RANGES = P.mandelaPackRanges;
+const IMPACT = buildSparImpactReport();
 
 const RANGE_ICONS = {
   porridge: UtensilsCrossed,
@@ -189,6 +191,7 @@ function Slide({ index }: { index: number }) {
               "Mandela pack products — all four Big Five Foods categories",
               "Sell with purpose · donate with dignity · campaign hybrid",
               "The 10% model · SPAR 5% + Big Five Foods 5%",
+              "National impact report — stores, sales, SPAR profit, people fed",
               "Restore Africa Foundation · A Heart To Help",
               "Governance · roadmap · the ask",
             ].map((item, i) => (
@@ -693,6 +696,126 @@ function Slide({ index }: { index: number }) {
     case 9:
       return (
         <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>IMPACT REPORT · NATIONAL (ILLUSTRATIVE)</DeckEyebrow>
+          <DeckTitle>What scale could mean across SPAR South Africa</DeckTitle>
+          <p
+            className={`text-[#525252] max-w-3xl mb-2 leading-relaxed ${
+              forPrint ? "text-[9px]" : "text-xs sm:text-sm"
+            }`}
+          >
+            {IMPACT.disclaimer}
+          </p>
+          <div className="overflow-x-auto mb-2.5 min-w-0">
+            <table
+              className={`w-full text-left border-collapse ${
+                forPrint ? "text-[8px]" : "text-[10px] sm:text-xs"
+              }`}
+            >
+              <thead>
+                <tr className="border-b border-black/15" style={{ color: theme.accentDark }}>
+                  <th className="py-1.5 pr-2 font-semibold">Store format</th>
+                  <th className="py-1.5 pr-2 font-semibold text-right">Stores</th>
+                  <th className="py-1.5 pr-2 font-semibold text-right">Packs / store / mo</th>
+                  <th className="py-1.5 pr-2 font-semibold text-right">Packs / year</th>
+                  <th className="py-1.5 pr-2 font-semibold text-right">RRP sell-through</th>
+                  <th className="py-1.5 font-semibold text-right">SPAR front margin</th>
+                </tr>
+              </thead>
+              <tbody>
+                {IMPACT.tiers.map((t) => (
+                  <tr key={t.format} className="border-b border-black/8 text-[#404040]">
+                    <td className="py-1.5 pr-2 font-medium text-black min-w-0">
+                      <div>{t.format}</div>
+                      <div className={`text-[#737373] font-normal ${forPrint ? "text-[7px]" : "text-[9px]"}`}>
+                        {t.note}
+                      </div>
+                    </td>
+                    <td className="py-1.5 pr-2 text-right tabular-nums">
+                      {t.stores.toLocaleString("en-ZA")}
+                    </td>
+                    <td className="py-1.5 pr-2 text-right tabular-nums">{t.packsPerStorePerMonth}</td>
+                    <td className="py-1.5 pr-2 text-right tabular-nums">
+                      {Math.round(t.packsYear).toLocaleString("en-ZA")}
+                    </td>
+                    <td className="py-1.5 pr-2 text-right tabular-nums">{formatZar(t.retailTurnover)}</td>
+                    <td className="py-1.5 text-right tabular-nums font-semibold" style={{ color: theme.accentDark }}>
+                      {formatZar(t.sparFrontMargin)}
+                    </td>
+                  </tr>
+                ))}
+                <tr className="bg-emerald-50/80 font-semibold text-black">
+                  <td className="py-1.5 pr-2">National total (assumption)</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">
+                    {IMPACT.national.stores.toLocaleString("en-ZA")}
+                  </td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">
+                    ~{Math.round(IMPACT.national.packsPerStorePerMonthBlended)}
+                  </td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">
+                    {Math.round(IMPACT.national.packsYear).toLocaleString("en-ZA")}
+                  </td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">
+                    {formatZar(IMPACT.national.retailTurnover)}
+                  </td>
+                  <td className="py-1.5 text-right tabular-nums" style={{ color: theme.accentDark }}>
+                    {formatZar(IMPACT.national.sparFrontMargin)}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 mb-2">
+            <DeckStatTile
+              theme={theme}
+              value={formatZar(IMPACT.national.sparFrontMargin)}
+              label="SPAR front margin pool / year (before overheads & 5% give)"
+            />
+            <DeckStatTile
+              theme={theme}
+              value={formatZar(IMPACT.national.combined10)}
+              label="10% ring-fence to foundations (SPAR 5% + Foods 5%)"
+            />
+            <DeckStatTile
+              theme={theme}
+              value={`${Math.round(IMPACT.national.mealEquivalents / 1_000_000)}m+`}
+              label={`Meal equivalents / year (~${IMPACT.unitAssumptions.servingsPerPack} servings / pack)`}
+            />
+            <DeckStatTile
+              theme={theme}
+              value={Math.round(IMPACT.national.peopleFedOneMealDay).toLocaleString("en-ZA")}
+              label="People fed 1 meal / day for a year (illustrative)"
+            />
+          </div>
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 gap-1.5 ${
+              forPrint ? "text-[8px]" : "text-[10px] sm:text-xs"
+            }`}
+          >
+            <div className="rounded-xl border border-black/10 bg-[#fafafa] p-2 sm:p-2.5 text-[#404040] leading-snug">
+              <strong className="text-black">SPAR commercial takeaway:</strong> At these velocities,{" "}
+              {IMPACT.national.stores.toLocaleString("en-ZA")} stores generate ~{" "}
+              {formatZar(IMPACT.national.retailTurnover)} RRP sell-through and ~{" "}
+              {formatZar(IMPACT.national.sparFrontMargin)} front margin — with SPAR’s 5% contribution ≈{" "}
+              {formatZar(IMPACT.national.sparGive5)} still leaving a large commercial pool for
+              retailers (front margin is not net profit).
+            </div>
+            <div className="rounded-xl border border-emerald-100 bg-emerald-50/50 p-2 sm:p-2.5 text-[#404040] leading-snug">
+              <strong className="text-black">Community takeaway:</strong> ~{" "}
+              {Math.round(IMPACT.national.mealEquivalents).toLocaleString("en-ZA")} meal equivalents
+              sold into homes · + ~{Math.round(IMPACT.national.donatedMeals).toLocaleString("en-ZA")}{" "}
+              meals via assumed 2% donation volume · foundations receive ~{" "}
+              {formatZar(IMPACT.national.combined10)} (10% model). Pilot at 5% of network: ~
+              {IMPACT.pilot.stores} stores · {formatZar(IMPACT.pilot.sparFrontMargin)} front margin ·{" "}
+              {Math.round(IMPACT.pilot.peopleFedOneMealDay).toLocaleString("en-ZA")} people-fed
+              metric.
+            </div>
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 10:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FOUNDATION · 01 · SPAR STANDS WITH</DeckEyebrow>
           <div className="flex flex-wrap items-start gap-4 mb-3">
             <div
@@ -752,7 +875,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 10:
+    case 11:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FOUNDATION · 02 · SPAR STANDS WITH</DeckEyebrow>
@@ -813,7 +936,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 12:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHAT SPAR WINS</DeckEyebrow>
@@ -840,7 +963,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PRODUCT SPAR CAN TRUST</DeckEyebrow>
@@ -887,7 +1010,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GOVERNANCE</DeckEyebrow>
@@ -937,7 +1060,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>ROADMAP</DeckEyebrow>
@@ -971,7 +1094,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 16:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HONESTY LABELS</DeckEyebrow>
@@ -992,7 +1115,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 17:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE ASK</DeckEyebrow>
@@ -1027,7 +1150,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 17:
+    case 18:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">

@@ -336,8 +336,131 @@ export const SPAR_PARTNERSHIP = {
     "5% + 5% giving bases (SPAR retail sell-through vs Foods trade turnover) are the recommended model; legal wording sits in the commercial agreement.",
     "NPO allocations between Restore Africa Foundation and A Heart To Help can be fixed (e.g. 50/50) or programme-driven each period.",
     "Impact meal counts and programme stories are illustrative until pack yields and menus are locked with each foundation.",
+    "National SPAR store counts, packs/store/month and people-fed estimates in the impact report are modelling assumptions for discussion — not audited SPAR network data or forecasts.",
   ],
+
+  /**
+   * Illustrative national impact model across SPAR South Africa formats.
+   * Store counts and velocity are assumptions for partnership planning — replace with SPAR
+   * network data on term sheet. Not a sales forecast.
+   */
+  impactReport: {
+    title: "National SPAR impact model (illustrative)",
+    period: "Per full year at steady-state listing",
+    disclaimer:
+      "Assumptions for partnership discussion only. Store counts and sales rates are not official SPAR figures and must be replaced with SPAR network data. Front margin is not net store profit. Meal and people-fed estimates use conservative servings-per-pack assumptions.",
+    unitAssumptions: {
+      tradeExVat: TRADE_EX_VAT,
+      rrpInclVat: RRP_INCL_VAT,
+      sparFrontMarginPerPack: SPAR_MARGIN_RAND,
+      servingsPerPack: 5,
+      servingsNote:
+        "Conservative blended average across porridge, soya, one-pot and soup SKUs (~4–8 servings depending on format).",
+      peopleFedMethod:
+        "Meal equivalents ÷ 365 ≈ people fed one meal a day for a year (illustrative, not unique individuals).",
+      donationShareOfSales: 0.02,
+      donationNote: "2% of sell-through volume assumed as CSI / franchisee donation POs (illustrative).",
+    },
+    /** Format tiers — illustrative order-of-magnitude network shape for SA SPAR estate */
+    storeTiers: [
+      {
+        format: "KWIKSPAR / convenience",
+        stores: 750,
+        packsPerStorePerMonth: 35,
+        note: "High footfall, smaller basket — trial multipacks",
+      },
+      {
+        format: "SPAR",
+        stores: 950,
+        packsPerStorePerMonth: 70,
+        note: "Core neighbourhood store — main Mandela pack velocity",
+      },
+      {
+        format: "SUPERSPAR / large format",
+        stores: 450,
+        packsPerStorePerMonth: 140,
+        note: "Destination shops — range depth + promo endcaps",
+      },
+      {
+        format: "SPAR Tops / specialty (modelled share)",
+        stores: 150,
+        packsPerStorePerMonth: 20,
+        note: "Select listings where grocery adjacency allows",
+      },
+    ],
+  },
 } as const;
+
+/** Build computed national impact rows from store tiers + unit economics. */
+export function buildSparImpactReport() {
+  const ir = SPAR_PARTNERSHIP.impactReport;
+  const u = ir.unitAssumptions;
+  const months = 12;
+
+  const tiers = ir.storeTiers.map((t) => {
+    const packsYear = t.stores * t.packsPerStorePerMonth * months;
+    const retailTurnover = packsYear * u.rrpInclVat;
+    const tradeTurnover = packsYear * u.tradeExVat;
+    const sparFrontMargin = packsYear * u.sparFrontMarginPerPack;
+    const sparGive5 = retailTurnover * 0.05;
+    const foodsGive5 = tradeTurnover * 0.05;
+    const combined10 = sparGive5 + foodsGive5;
+    const mealEquivalents = packsYear * u.servingsPerPack;
+    const peopleFedOneMealDay = mealEquivalents / 365;
+    const donatedPacks = packsYear * u.donationShareOfSales;
+    const donatedMeals = donatedPacks * u.servingsPerPack;
+
+    return {
+      ...t,
+      packsYear,
+      retailTurnover,
+      tradeTurnover,
+      sparFrontMargin,
+      sparGive5,
+      foodsGive5,
+      combined10,
+      mealEquivalents,
+      peopleFedOneMealDay,
+      donatedPacks,
+      donatedMeals,
+    };
+  });
+
+  const sum = <K extends keyof (typeof tiers)[number]>(key: K) =>
+    tiers.reduce((a, r) => a + (r[key] as number), 0);
+
+  const national = {
+    stores: sum("stores"),
+    packsYear: sum("packsYear"),
+    retailTurnover: sum("retailTurnover"),
+    tradeTurnover: sum("tradeTurnover"),
+    sparFrontMargin: sum("sparFrontMargin"),
+    sparGive5: sum("sparGive5"),
+    foodsGive5: sum("foodsGive5"),
+    combined10: sum("combined10"),
+    mealEquivalents: sum("mealEquivalents"),
+    peopleFedOneMealDay: sum("peopleFedOneMealDay"),
+    donatedPacks: sum("donatedPacks"),
+    donatedMeals: sum("donatedMeals"),
+    packsPerStorePerMonthBlended: sum("packsYear") / sum("stores") / months,
+  };
+
+  /** Pilot slice — 5% of national stores at same velocity (for roadmap realism) */
+  const pilotFactor = 0.05;
+  const pilot = {
+    stores: Math.round(national.stores * pilotFactor),
+    packsYear: Math.round(national.packsYear * pilotFactor),
+    retailTurnover: national.retailTurnover * pilotFactor,
+    sparFrontMargin: national.sparFrontMargin * pilotFactor,
+    combined10: national.combined10 * pilotFactor,
+    mealEquivalents: Math.round(national.mealEquivalents * pilotFactor),
+    peopleFedOneMealDay: national.peopleFedOneMealDay * pilotFactor,
+  };
+
+  return { ...ir, tiers, national, pilot, months };
+}
+
+export type SparImpactReport = ReturnType<typeof buildSparImpactReport>;
 
 export function formatZar(n: number): string {
   return new Intl.NumberFormat("en-ZA", {
