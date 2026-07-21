@@ -58,24 +58,6 @@ const PRODUCT_SHOTS = [
   { src: "/foods/soup-chicken.jpg", name: "Soup" },
 ] as const;
 
-function ProductThumb({
-  src,
-  alt,
-  className = "",
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`relative overflow-hidden rounded-xl border border-black/8 bg-[#f8f7f5] min-h-0 min-w-0 ${className}`}
-    >
-      <DeckPrintImage src={src} alt={alt} paddingClass="p-1.5" fit="contain" />
-    </div>
-  );
-}
-
 /**
  * SPAR-forward co-brand.
  * SPAR logo is a wide wordmark; Big Five Foods mark is nearly square — never force
@@ -928,47 +910,52 @@ function Slide({ index }: { index: number }) {
     case 13:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>PRODUCT SPAR CAN TRUST</DeckEyebrow>
-          <DeckTitle>Fortified African food ready for SPAR shelves and foundations</DeckTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 mb-3">
-            {P.productCredibility.map((w) => (
-              <div
-                key={w.t}
-                className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
-                  forPrint ? "p-2.5" : "p-4"
-                }`}
-              >
-                <div className={`font-semibold text-black mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
-                  {w.t}
-                </div>
-                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"}`}>
-                  {w.d}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-4 gap-2 mb-2">
-            {PRODUCT_SHOTS.map((s) => (
-              <div key={s.src} className="min-w-0">
-                <ProductThumb
-                  src={s.src}
-                  alt={s.name}
-                  className={forPrint ? "aspect-square h-14" : "aspect-square h-16 sm:h-20"}
-                />
+          <div className="flex h-full min-h-0 flex-col overflow-hidden">
+            <div className="shrink-0">
+              <DeckEyebrow theme={theme}>PRODUCT SPAR CAN TRUST</DeckEyebrow>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2 sm:mb-3">
+                Fortified African food ready for SPAR shelves and foundations
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2 shrink-0 mb-2 sm:mb-3">
+              {P.productCredibility.map((w) => (
                 <div
-                  className={`text-center text-[#737373] mt-1 ${
-                    forPrint ? "text-[8px]" : "text-[10px]"
-                  }`}
+                  key={w.t}
+                  className="rounded-xl border border-black/10 bg-[#fafafa] min-w-0 p-2 sm:p-3"
                 >
-                  {s.name}
+                  <div className="text-[10px] sm:text-xs font-semibold text-black mb-0.5">{w.t}</div>
+                  <p className="text-[9px] sm:text-[10px] text-[#525252] leading-snug line-clamp-2">
+                    {w.d}
+                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Portrait pack frames — object-contain so full packaging shows (no bottom crop) */}
+            <div className="grid grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0">
+              {PRODUCT_SHOTS.map((s) => (
+                <div key={s.src} className="min-w-0 min-h-0 flex flex-col">
+                  <div className="relative w-full flex-1 min-h-0 rounded-xl border border-black/8 bg-white overflow-hidden">
+                    <DeckPrintImage
+                      src={s.src}
+                      alt={s.name}
+                      paddingClass="p-2 sm:p-3"
+                      fit="contain"
+                    />
+                  </div>
+                  <div className="text-center text-[10px] sm:text-xs font-medium text-[#404040] mt-1 shrink-0">
+                    {s.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-[9px] sm:text-[10px] text-[#737373] leading-snug mt-2 shrink-0">
+              Full public range story: bigfivegroup.africa/foods · Supplier partner for SPAR, not a
+              margin reveal on manufacturer economics.
+            </p>
           </div>
-          <p className={`text-[#737373] ${forPrint ? "text-[9px]" : "text-xs"} leading-relaxed`}>
-            Full public range story: bigfivegroup.africa/foods · Supplier partner for SPAR, not a
-            margin reveal on manufacturer economics.
-          </p>
         </DeckSlideShell>
       );
 
