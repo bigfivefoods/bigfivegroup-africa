@@ -68,11 +68,14 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               </p>
               <p className="text-sm text-amber-200/90 leading-relaxed text-pretty border border-amber-400/25 bg-amber-400/10 rounded-xl px-4 py-3">
                 <strong className="text-amber-100">Investment ask:</strong>{" "}
-                {INVESTMENT_ASK.equityOffered} equity in {INVESTMENT_ASK.entity}
+                {INVESTMENT_ASK.capitalRaiseLabel} for {INVESTMENT_ASK.equityOffered} equity in{" "}
+                {INVESTMENT_ASK.entity}
                 {INVESTMENT_ASK.boardSeat ? " · board seat" : ""} · planned{" "}
                 <strong className="text-amber-100">Seychelles holding</strong> (IP at holdco) ·
                 local opcos in end markets (e.g. Kenya) · use of funds{" "}
-                {INVESTMENT_ASK.useOfFunds.map((u) => `${u.pct}% ${u.label.toLowerCase()}`).join(" / ")}
+                {INVESTMENT_ASK.useOfFunds
+                  .map((u) => `${u.pct}% ${u.label.toLowerCase()} (${u.amountLabel})`)
+                  .join(" / ")}
               </p>
             </div>
             <LogoutButton />
@@ -143,12 +146,14 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">
-              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">EQUITY ASK</div>
+              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">
+                RAISE · EQUITY ASK
+              </div>
               <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-white tabular-nums">
-                {INVESTMENT_ASK.equityOffered}
+                {INVESTMENT_ASK.capitalRaiseShort}
               </div>
               <div className="text-xs text-white/50 mt-1">
-                Holding company · board seat · 10/90 use of funds
+                For {INVESTMENT_ASK.equityOffered} · board seat · 10/90 use of funds
               </div>
             </div>
           </div>
@@ -285,7 +290,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                 n: "02",
                 href: "#ask",
                 label: "Investment ask",
-                why: "What is on offer: 10% holding equity, board seat, and 10% ops / 90% assets & product use of funds.",
+                why: "What is on offer: USD 10m for 10% holding equity, board seat, and 10% ops / 90% assets & product use of funds.",
               },
               {
                 n: "03",
@@ -377,7 +382,18 @@ export default function InvestorPortalClient({ email }: { email: string }) {
             {INVESTMENT_ASK.equityNote} {INVESTMENT_ASK.boardNote} {INVESTMENT_ASK.purpose}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-8">
+            <div className="rounded-2xl border border-black/10 bg-[#0a0a0a] text-white p-6 sm:p-8 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-amber-400/90 mb-2">
+                CAPITAL RAISE (USD)
+              </div>
+              <div className="text-4xl sm:text-5xl font-semibold tracking-tighter text-amber-300 mb-2">
+                {INVESTMENT_ASK.capitalRaiseShort}
+              </div>
+              <p className="text-sm text-white/70 leading-relaxed">
+                United States dollars — investment size for the holding-company equity stake below.
+              </p>
+            </div>
             <div className="rounded-2xl border border-black/10 bg-[#0a0a0a] text-white p-6 sm:p-8 min-w-0">
               <div className="text-[10px] tracking-[2px] text-amber-400/90 mb-2">EQUITY</div>
               <div className="text-4xl sm:text-5xl font-semibold tracking-tighter text-amber-300 mb-2">
@@ -409,11 +425,14 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                 key={u.label}
                 className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 min-w-0"
               >
-                <div className="flex items-baseline gap-2 mb-2">
+                <div className="flex items-baseline gap-2 mb-2 flex-wrap">
                   <span className="text-3xl sm:text-4xl font-semibold tracking-tighter text-black tabular-nums">
                     {u.pct}%
                   </span>
                   <span className="text-sm font-semibold text-[#404040]">{u.label}</span>
+                  <span className="text-xs font-semibold text-amber-800 tabular-nums">
+                    · {u.amountLabel}
+                  </span>
                 </div>
                 <p className="text-sm text-[#525252] leading-relaxed">{u.detail}</p>
               </div>
@@ -424,24 +443,28 @@ export default function InvestorPortalClient({ email }: { email: string }) {
             <div
               className="bg-slate-500 h-full"
               style={{ width: "10%" }}
-              title="10% operational costs"
+              title="10% operational costs (~USD 1m)"
             />
             <div
               className="bg-amber-500 h-full"
               style={{ width: "90%" }}
-              title="90% asset acquisition & product development"
+              title="90% asset acquisition & product development (~USD 9m)"
             />
           </div>
           <div className="flex flex-wrap gap-4 mt-2 text-[11px] text-[#737373]">
             <span>
               <span className="inline-block w-2.5 h-2.5 rounded-sm bg-slate-500 mr-1.5 align-middle" />
-              10% operational costs
+              10% operational costs (~USD 1m)
             </span>
             <span>
               <span className="inline-block w-2.5 h-2.5 rounded-sm bg-amber-500 mr-1.5 align-middle" />
-              90% asset acquisition & product development
+              90% asset acquisition & product development (~USD 9m)
             </span>
           </div>
+          <p className="mt-3 text-xs text-[#737373] leading-relaxed max-w-2xl">
+            Split of a {INVESTMENT_ASK.capitalRaiseLabel} raise ({INVESTMENT_ASK.equityOffered} equity
+            + board seat). Subject to definitive term sheet.
+          </p>
         </div>
       </section>
 
@@ -499,8 +522,9 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               <li className="flex gap-2">
                 <span className="font-semibold text-amber-800 shrink-0">1.</span>
                 <span>
-                  <strong className="text-black">Seychelles holding company</strong> — equity raise
-                  (10%), board seat, Group IP and control of the continental system.
+                  <strong className="text-black">Seychelles holding company</strong> —{" "}
+                  {INVESTMENT_ASK.capitalRaiseLabel} for {INVESTMENT_ASK.equityOffered} equity, board
+                  seat, Group IP and control of the continental system.
                 </span>
               </li>
               <li className="flex gap-2">
@@ -888,7 +912,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
             href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
               "Investor data room — Big Five Group"
             )}&body=${encodeURIComponent(
-              `Hello Big Five team,\n\nI am signed into the investor portal as ${email}.\nPlease share diligence materials under NDA regarding the 10% equity / board seat opportunity in Big Five Group holding company, and use of funds (10% operations / 90% assets & product development).\n\nOrganisation:\nFocus areas:\nScenario interest (conservative / moderate / aggressive):\n\nThank you.`
+              `Hello Big Five team,\n\nI am signed into the investor portal as ${email}.\nPlease share diligence materials under NDA regarding the USD 10 million raise for 10% equity and board seat in Big Five Group holding company, and use of funds (10% operations / 90% assets & product development).\n\nOrganisation:\nFocus areas:\nScenario interest (conservative / moderate / aggressive):\n\nThank you.`
             )}`}
             className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold"
           >

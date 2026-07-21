@@ -94,7 +94,9 @@ function Slide({ index }: { index: number }) {
               >
                 Continental growth platform.
                 <br />
-                <span style={{ color: theme.gradientFrom }}>10% equity · board seat.</span>
+                <span style={{ color: theme.gradientFrom }}>
+                  USD 10m · 10% equity · board seat.
+                </span>
               </h2>
               <p
                 className={`text-white/75 max-w-2xl mt-4 ${
@@ -160,7 +162,9 @@ function Slide({ index }: { index: number }) {
             THE ASK
           </DeckEyebrow>
           <DeckTitle>
-            <span className="text-white">10% of the holding company · board seat</span>
+            <span className="text-white">
+              {INVESTMENT_ASK.capitalRaiseLabel} for {INVESTMENT_ASK.equityOffered} · board seat
+            </span>
           </DeckTitle>
           <p
             className={`text-white/70 max-w-3xl mb-5 leading-relaxed ${
@@ -169,7 +173,13 @@ function Slide({ index }: { index: number }) {
           >
             {INVESTMENT_ASK.equityNote} {INVESTMENT_ASK.boardNote}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+            <DeckStatTile
+              dark
+              theme={theme}
+              value={INVESTMENT_ASK.capitalRaiseShort}
+              label="Capital raise (United States dollars)"
+            />
             <DeckStatTile
               dark
               theme={theme}
@@ -202,7 +212,7 @@ function Slide({ index }: { index: number }) {
                   forPrint ? "p-3" : "p-5 sm:p-6"
                 }`}
               >
-                <div className="flex items-baseline gap-2 mb-2">
+                <div className="flex items-baseline gap-2 mb-2 flex-wrap">
                   <span
                     className={`font-semibold tracking-tighter tabular-nums ${
                       forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
@@ -212,6 +222,9 @@ function Slide({ index }: { index: number }) {
                     {u.pct}%
                   </span>
                   <span className="text-sm font-semibold text-black">{u.label}</span>
+                  <span className="text-xs font-semibold text-[#737373] tabular-nums">
+                    · {u.amountLabel}
+                  </span>
                 </div>
                 <p className={`text-[#525252] leading-relaxed ${forPrint ? "text-[11px]" : "text-sm"}`}>
                   {u.detail}
@@ -235,7 +248,7 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "Investor capital",
-                d: "10% equity + board · 10% ops / 90% assets & product",
+                d: "USD 10m · 10% equity + board · 10% ops / 90% assets & product",
                 dark: true,
               },
               {
@@ -1036,8 +1049,9 @@ function Slide({ index }: { index: number }) {
                   forPrint ? "text-xs" : "text-sm sm:text-base"
                 }`}
               >
-                {INVESTMENT_ASK.equityOffered} equity · board seat · Seychelles holdco (IP) ·
-                end-market opcos · 10% ops / 90% assets & product. Request the data room.
+                {INVESTMENT_ASK.capitalRaiseLabel} for {INVESTMENT_ASK.equityOffered} equity · board
+                seat · Seychelles holdco (IP) · end-market opcos · 10% ops / 90% assets & product.
+                Request the data room.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <a
@@ -1096,10 +1110,10 @@ export default function InvestorStrategyDeck() {
           theme={theme}
           eyebrow="INVESTOR DECK"
           title="Big Five Group — Investor Presentation"
-          description="10% holding equity, board seat, ~$45k / ~$3.0m traction, NSNP, USD scenarios, unit economics, milestones, risks."
+          description="USD 10m for 10% holding equity, board seat, traction, NSNP, USD scenarios, unit economics, milestones, risks."
           sharePath="/investor#investor-deck"
           shareTitle="Big Five Group — Investor Presentation"
-          shareText="Confidential investor briefing: market traction, equity ask, USD scenarios, NSNP and continental model."
+          shareText="Confidential investor briefing: USD 10m for 10% equity, market traction, USD scenarios, NSNP and continental model."
           renderSlide={(i) => <Slide index={i} />}
         />
       </div>

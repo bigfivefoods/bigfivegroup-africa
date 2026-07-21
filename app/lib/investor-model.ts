@@ -7,8 +7,8 @@
  * Horizon: “current traction” = near-term operating footprint; scenarios = 5-year
  * and 10-year illustrative annual run-rate revenue potential at stated penetration.
  *
- * Equity ask: 10% of Big Five Group holding company + board seat; use of funds
- * 10% operations / 90% asset acquisition & product development (see INVESTMENT_ASK).
+ * Equity ask: USD 10 million for 10% of Big Five Group holding company + board seat;
+ * use of funds 10% operations / 90% asset acquisition & product development (see INVESTMENT_ASK).
  */
 
 export type ScenarioKey = "conservative" | "moderate" | "aggressive";
@@ -796,9 +796,13 @@ export function formatUSDm(n: number): string {
  */
 export const INVESTMENT_ASK = {
   entity: "Big Five Group (holding company)",
+  /** Headline raise size in United States dollars */
+  capitalRaiseUSDm: 10,
+  capitalRaiseLabel: "USD 10m",
+  capitalRaiseShort: "$10m",
   equityOffered: "10%",
   equityNote:
-    "We are seeking an investment for 10% equity in Big Five Group — the holding company — to help accelerate continental growth across the operating companies.",
+    "We are seeking USD 10 million for 10% equity in Big Five Group — the holding company — to help accelerate continental growth across the operating companies.",
   boardSeat: true,
   boardNote:
     "The investment is expected to include a board seat at holding-company level, so the investor participates in strategic oversight of continental scale-up.",
@@ -817,15 +821,19 @@ export const INVESTMENT_ASK = {
   useOfFunds: [
     {
       pct: 10,
+      amountUSDm: 1,
+      amountLabel: "USD 1m",
       label: "Operational costs",
       detail:
-        "Working capital for people, systems, compliance and day-to-day operating capacity that keeps multi-country programmes running.",
+        "Working capital for people, systems, compliance and day-to-day operating capacity that keeps multi-country programmes running (~USD 1m of a USD 10m raise).",
     },
     {
       pct: 90,
+      amountUSDm: 9,
+      amountLabel: "USD 9m",
       label: "Asset acquisition & product development",
       detail:
-        "Capital deployed into productive assets (e.g. manufacturing, hubs, inventory, land-linked programmes) and product / platform development across Foods, Agri, Direct, Connect and related opcos.",
+        "Capital deployed into productive assets (e.g. manufacturing, hubs, inventory, land-linked programmes) and product / platform development across Foods, Agri, Direct, Connect and related opcos (~USD 9m of a USD 10m raise).",
     },
   ],
   purpose:
@@ -864,7 +872,7 @@ export const GROUP_IMPACT_PILLARS = {
 } as const;
 
 export const MODEL_DISCLAIMER =
-  "All forward-looking revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. Near-term market traction is management-reported in South African rand (ZAR) and shown in headline USD at an approximate mid-market conversion (~16.5 ZAR per USD, July 2026) — not audited financial statements. They are not forecasts or guarantees. Equity percentage, board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
+  "All forward-looking revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. Near-term market traction is management-reported in South African rand (ZAR) and shown in headline USD at an approximate mid-market conversion (~16.5 ZAR per USD, July 2026) — not audited financial statements. They are not forecasts or guarantees. The equity raise (USD 10 million for 10% of the holding company), board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
 
 /**
  * Near-term commercial traction (management-reported in ZAR; headlines in USD).
