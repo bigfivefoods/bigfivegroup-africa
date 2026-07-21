@@ -246,7 +246,7 @@ export default function Footer() {
             </a>
           </div>
           <div className="text-xs text-[#525252] shrink-0">
-            KwaZulu-Natal · South Africa · Continent-wide
+            KwaZulu-Natal · South Africa · Nairobi · Kenya · Continent-wide
           </div>
         </div>
       </div>
