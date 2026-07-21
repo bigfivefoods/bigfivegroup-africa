@@ -50,12 +50,15 @@ export default function PrivacyPolicy() {
           <p>
             When you subscribe via the footer or <strong>/newsletter</strong>, we collect your email
             address and, if provided, name and organisation, plus topic preferences and a record of
-            your consent (timestamp and source). Subscriptions are stored in our newsletter register
-            (and, where configured, a secure webhook for CRM / email tooling). If double opt-in email
-            is enabled, you must confirm via a time-limited link before we mark you active. We use
-            this information only to send occasional Group updates you opted into. You may
-            unsubscribe at any time via <strong>/newsletter/unsubscribe</strong> or by emailing{" "}
-            <strong>craig@bigfivegroup.africa</strong>. We do not sell newsletter data.
+            your consent (timestamp, source, and technical signals such as a hashed IP for abuse
+            prevention). Subscriptions are stored in our newsletter register (durable store and,
+            where configured, a secure webhook for CRM / email tooling). If double opt-in is enabled
+            (transactional email), you must confirm via a time-limited link before we mark you
+            active; we may send a welcome message with preference and unsubscribe links. We use this
+            information only to send occasional Group updates you opted into. You may manage topics
+            via the preference link in emails, unsubscribe at any time via{" "}
+            <strong>/newsletter/unsubscribe</strong>, one-click unsubscribe headers where present, or
+            by emailing <strong>craig@bigfivegroup.africa</strong>. We do not sell newsletter data.
           </p>
 
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">3. How We Use Your Information</h2>

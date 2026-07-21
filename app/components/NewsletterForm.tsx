@@ -4,7 +4,10 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Loader2, Mail } from "lucide-react";
 import { CONTACT_EMAIL } from "../lib/contact";
-import { NEWSLETTER_TOPIC_OPTIONS, type NewsletterTopicId } from "../lib/newsletter";
+import {
+  NEWSLETTER_TOPIC_OPTIONS,
+  type NewsletterTopicId,
+} from "../lib/newsletter/client";
 import { track } from "../lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -98,6 +101,7 @@ export default function NewsletterForm({
         className={`rounded-2xl border border-emerald-200 bg-emerald-50/70 ${
           compact ? "p-4" : "p-6 sm:p-8"
         } ${className}`}
+        role="status"
       >
         <div className="flex items-start gap-3">
           <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 shrink-0">
@@ -124,9 +128,9 @@ export default function NewsletterForm({
               </Link>
             )}
             <p className="text-[11px] text-[#737373] mt-3 leading-relaxed">
-              Unsubscribe anytime via{" "}
+              Manage topics or leave anytime via{" "}
               <Link href="/newsletter/unsubscribe" className="underline underline-offset-2">
-                this page
+                unsubscribe
               </Link>{" "}
               or{" "}
               <a
@@ -144,18 +148,21 @@ export default function NewsletterForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className={`space-y-3 ${className}`}>
-      {/* Honeypot */}
-      <input
-        type="text"
-        name="website"
-        value={form.website}
-        onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
-        className="hidden"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden
-      />
+    <form onSubmit={onSubmit} className={`relative space-y-3 ${className}`} noValidate>
+      {/* Honeypot — bots fill this; humans never see it */}
+      <div className="absolute -left-[9999px] opacity-0 h-0 w-0 overflow-hidden" aria-hidden>
+        <label>
+          Website
+          <input
+            type="text"
+            name="website"
+            value={form.website}
+            onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
 
       {!compact && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -168,6 +175,7 @@ export default function NewsletterForm({
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-[#a3a3a3] focus:outline-none focus:ring-2 focus:ring-emerald-600/25"
               placeholder="Your name"
+              autoComplete="name"
             />
           </label>
           <label className="block min-w-0">
@@ -181,6 +189,7 @@ export default function NewsletterForm({
               onChange={(e) => setForm((f) => ({ ...f, organisation: e.target.value }))}
               className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-[#a3a3a3] focus:outline-none focus:ring-2 focus:ring-emerald-600/25"
               placeholder="Organisation"
+              autoComplete="organization"
             />
           </label>
         </div>
@@ -236,6 +245,7 @@ export default function NewsletterForm({
               name="email"
               required
               autoComplete="email"
+              inputMode="email"
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
               placeholder="you@organisation.com"
@@ -291,7 +301,7 @@ export default function NewsletterForm({
       )}
 
       <p className={`text-[#737373] leading-relaxed ${compact ? "text-[10px]" : "text-xs"}`}>
-        Occasional updates only — no spam. Manage preferences or leave via{" "}
+        Occasional updates only — no spam. Leave via{" "}
         <Link href="/newsletter/unsubscribe" className="underline underline-offset-2 text-[#404040]">
           unsubscribe
         </Link>

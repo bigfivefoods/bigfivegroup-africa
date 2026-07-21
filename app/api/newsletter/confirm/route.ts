@@ -13,7 +13,8 @@ export async function POST(request: Request) {
 
   const result = await confirmNewsletterSubscription(
     String(body.email ?? ""),
-    String(body.token ?? "")
+    String(body.token ?? ""),
+    { requestUrl: request.url }
   );
 
   if (!result.ok) {
@@ -22,12 +23,14 @@ export async function POST(request: Request) {
   return NextResponse.json(result);
 }
 
-/** GET support for email confirmation links */
+/** GET support for email confirmation links (one-click from inbox) */
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const email = url.searchParams.get("email") ?? "";
   const token = url.searchParams.get("token") ?? "";
-  const result = await confirmNewsletterSubscription(email, token);
+  const result = await confirmNewsletterSubscription(email, token, {
+    requestUrl: request.url,
+  });
 
   if (!result.ok) {
     return NextResponse.redirect(

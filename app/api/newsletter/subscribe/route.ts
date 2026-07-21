@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { subscribeNewsletter, type NewsletterSubscribeInput } from "../../../lib/newsletter";
+import {
+  subscribeNewsletter,
+  type NewsletterSubscribeInput,
+} from "../../../lib/newsletter";
 
 export const runtime = "nodejs";
 
@@ -23,12 +26,12 @@ export async function POST(request: Request) {
 
   const result = await subscribeNewsletter(body, {
     ip: clientIp(request),
+    userAgent: request.headers.get("user-agent"),
     requestUrl: request.url,
   });
 
   if (!result.ok) {
-    const status =
-      result.code === "consent_required" || result.code === "invalid_email" ? 400 : 400;
+    const status = result.code === "rate_limited" ? 429 : 400;
     return NextResponse.json(result, { status });
   }
 

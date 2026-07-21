@@ -47,4 +47,34 @@ test.describe("Big Five Group smoke", () => {
     await expect(page.getByText(/\+45\.1%|45\.1%/i).first()).toBeVisible();
     await expect(page.getByText(/Principles/i).first()).toBeVisible();
   });
+
+  test("newsletter page and subscribe API with consent", async ({ page, request }) => {
+    await page.goto("/newsletter");
+    await expect(page.getByRole("heading", { name: /Stay close to the work/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Subscribe/i }).first()).toBeVisible();
+
+    const res = await request.post("/api/newsletter/subscribe", {
+      data: {
+        email: `e2e-${Date.now()}@example.com`,
+        name: "E2E Subscriber",
+        consent: true,
+        source: "e2e_smoke",
+        website: "",
+        topics: ["programmes", "milestones"],
+      },
+    });
+    expect(res.ok()).toBeTruthy();
+    const body = await res.json();
+    expect(body.ok).toBe(true);
+    expect(["active", "pending"]).toContain(body.status);
+
+    const noConsent = await request.post("/api/newsletter/subscribe", {
+      data: {
+        email: "noconsent@example.com",
+        consent: false,
+        website: "",
+      },
+    });
+    expect(noConsent.status()).toBe(400);
+  });
 });

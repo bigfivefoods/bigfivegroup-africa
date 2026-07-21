@@ -65,6 +65,20 @@ npm run env:vercel
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Optional | Plausible analytics domain |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | GA4 ID |
 | `NEXT_PUBLIC_SAM_VIDEO_URL` | Optional | YouTube/Vimeo embed for `/connect/sam` |
+| `NEWSLETTER_SECRET` | Recommended | Token signing for confirm / prefs / unsub |
+| `UPSTASH_REDIS_REST_URL` + `TOKEN` | Recommended (prod) | Durable subscriber store on Vercel |
+| `RESEND_API_KEY` | Optional | Double opt-in + branded HTML emails |
+| `NEWSLETTER_FROM_EMAIL` | Optional | Verified Resend from address |
+| `NEWSLETTER_WEBHOOK_URL` | Optional | CRM / Make / Zapier fan-out |
+| `NEWSLETTER_ADMIN_SECRET` | Optional | Admin export at `/api/newsletter/admin` |
+
+### Newsletter
+
+Public pages: `/newsletter`, `/newsletter/confirm`, `/newsletter/preferences`, `/newsletter/unsubscribe`.
+
+APIs: `POST /api/newsletter/subscribe`, confirm/unsubscribe GET+POST, preferences GET+POST, admin export.
+
+Without Resend, signup is single opt-in with recorded POPIA consent. With `RESEND_API_KEY`, double opt-in is enforced and welcome mail includes preference + unsubscribe links.
 
 Files:
 
