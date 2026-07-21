@@ -199,12 +199,12 @@ export const SPAR_PARTNERSHIP = {
     {
       id: "donate",
       title: "SPAR donates with dignity",
-      desc: "SPAR CSI or franchisees purchase product for Restore Africa Foundation and A Heart To Help — real meals into real programmes, with SPAR’s name on the act of care.",
+      desc: "SPAR CSI or franchisees purchase product for foundations and feeding schemes — real meals, with SPAR’s name on the act of care. SA Harvest moves donations to soup kitchens, feeding schemes, Restore Africa Foundation and A Heart To Help.",
     },
     {
       id: "hybrid",
       title: "SPAR campaigns that stick",
-      desc: "Shelf sales + Mandela Day / hunger-season drives + store collections. One pack, two impact routes, one story: SPAR does good.",
+      desc: "Shelf sales + Mandela Day / hunger-season drives + store collections. One pack, sell + donate + SA Harvest last-mile: SPAR does good.",
     },
   ],
 
@@ -237,6 +237,25 @@ export const SPAR_PARTNERSHIP = {
       logoSrc: "/partners/a-heart-to-help-logo.png",
       brandColor: "#0E4A4D",
     },
+    {
+      slug: "sa-harvest",
+      name: "SA Harvest",
+      short: "SAH",
+      role: "NPO · food rescue · last-mile delivery to feeding schemes",
+      summary:
+        "SA Harvest rescues nutritious food and fights hunger at scale (saharvest.org). In this SPAR × Big Five Foods partnership, SA Harvest’s role is delivery logistics: moving donated product to soup kitchens, community feeding schemes, Restore Africa Foundation programmes and A Heart To Help feeding pathways — so SPAR donations reach plates with dignity and reliability.",
+      focus: [
+        "Last-mile delivery",
+        "Soup kitchens",
+        "Feeding schemes",
+        "RAF & AHTH distribution",
+      ],
+      contact: "Coordination via Group partnership lead",
+      website: "https://saharvest.org/",
+      websiteLabel: "saharvest.org",
+      logoSrc: "/partners/sa-harvest-logo.png",
+      brandColor: "#1B4332",
+    },
   ],
 
   /** SPAR-centred narrative outcomes */
@@ -251,7 +270,7 @@ export const SPAR_PARTNERSHIP = {
     },
     {
       t: "Foundations go further",
-      d: "Restore Africa Foundation and A Heart To Help receive product and contribution rand — programmes that restore children, women and communities.",
+      d: "Restore Africa Foundation and A Heart To Help receive product and contribution rand — with SA Harvest delivering into soup kitchens and feeding schemes.",
     },
     {
       t: "Stores win commercially",
@@ -270,7 +289,7 @@ export const SPAR_PARTNERSHIP = {
     },
     {
       t: "SPAR stands with foundations",
-      d: "Restore Africa Foundation (children · rebuild) and A Heart To Help (safety · rehabilitation) — partners SPAR can name and visit.",
+      d: "Restore Africa Foundation (children · rebuild) and A Heart To Help (safety · rehabilitation) — with SA Harvest as last-mile delivery to kitchens and schemes.",
     },
     {
       t: "SPAR leads the narrative",

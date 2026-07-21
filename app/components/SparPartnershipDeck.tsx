@@ -37,7 +37,7 @@ import {
 } from "../lib/sparPartnership";
 
 const theme = DECK_THEMES.spar;
-const TOTAL = 19;
+const TOTAL = 20;
 const P = SPAR_PARTNERSHIP;
 const EX = P.giving.example;
 const M = P.sparMargin;
@@ -181,7 +181,7 @@ function Slide({ index }: { index: number }) {
               "Sell with purpose · donate with dignity · campaign hybrid",
               "The 10% model · SPAR 5% + Big Five Foods 5%",
               "National impact report — stores, sales, SPAR profit, people fed",
-              "Restore Africa Foundation · A Heart To Help",
+              "Restore Africa Foundation · A Heart To Help · SA Harvest delivery",
               "Governance · roadmap · the ask",
             ].map((item, i) => (
               <li key={item} className="flex gap-2.5 items-start">
@@ -814,8 +814,8 @@ function Slide({ index }: { index: number }) {
             } text-[#404040] leading-relaxed`}
           >
             <strong className="text-black">SPAR’s role:</strong> Sell packs that fund care — and
-            donate product into child- and community-facing programmes. SPAR’s name on meals that
-            reach the next generation.
+            donate product into child- and community-facing programmes. SA Harvest can deliver
+            SPAR-donated product into RAF feeding pathways so meals arrive with reliability.
           </div>
         </DeckSlideShell>
       );
@@ -875,12 +875,80 @@ function Slide({ index }: { index: number }) {
           >
             <strong className="text-black">SPAR’s role:</strong> Dignity on the plate for women and
             children in care pathways — product donations and contribution support that SPAR
-            communities can understand and champion.
+            communities can understand and champion. SA Harvest can deliver product into AHTH
+            feeding pathways.
           </div>
         </DeckSlideShell>
       );
 
     case 12:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>DELIVERY PARTNER · 03 · SA HARVEST</DeckEyebrow>
+          <div className="flex flex-wrap items-start gap-4 mb-3">
+            <div className="relative bg-white rounded-xl border border-black/10 shrink-0 h-16 sm:h-20 w-40 sm:w-52">
+              <DeckPrintImage
+                src={P.npos[2]!.logoSrc}
+                alt={P.npos[2]!.name}
+                paddingClass="p-2"
+                fit="contain"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <DeckTitle>{P.npos[2]!.name}</DeckTitle>
+              <p className="text-[#737373] font-medium text-sm -mt-3 mb-3">{P.npos[2]!.role}</p>
+            </div>
+          </div>
+          <p className="text-[#404040] max-w-3xl mb-4 text-sm leading-relaxed">{P.npos[2]!.summary}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {P.npos[2]!.focus.map((f) => (
+              <span
+                key={f}
+                className="rounded-full border border-emerald-200 bg-emerald-50 text-xs font-semibold px-2.5 py-1"
+                style={{ color: theme.accentDark }}
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3">
+            {[
+              {
+                t: "Soup kitchens & community kitchens",
+                d: "Reliable last-mile so SPAR-donated fortified food reaches local kitchens that feed daily.",
+              },
+              {
+                t: "Institutional & community feeding schemes",
+                d: "Routes into established schemes that need predictable product, not one-off drops.",
+              },
+              {
+                t: "Restore Africa Foundation",
+                d: "Delivers into RAF child- and school-linked feeding and community rebuild programmes.",
+              },
+              {
+                t: "A Heart To Help",
+                d: "Supports AHTH residential and community feeding pathways with dignified delivery.",
+              },
+            ].map((x) => (
+              <div
+                key={x.t}
+                className="rounded-xl border border-black/10 bg-[#fafafa] p-3 sm:p-4 min-w-0"
+              >
+                <div className="text-sm font-semibold text-black mb-1">{x.t}</div>
+                <p className="text-xs sm:text-sm text-[#525252] leading-snug">{x.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="rounded-xl border border-emerald-100 bg-emerald-50/50 p-3 sm:p-4 text-sm text-[#404040] leading-relaxed">
+            <strong className="text-black">How the chain works:</strong> SPAR sells or donates · Big
+            Five Foods supplies · <strong className="text-black">SA Harvest delivers</strong> to soup
+            kitchens, feeding schemes, Restore Africa Foundation and A Heart To Help — so impact is
+            operational, not only aspirational.
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHAT SPAR WINS</DeckEyebrow>
@@ -907,7 +975,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <div className="flex h-full min-h-0 flex-col overflow-hidden">
@@ -959,7 +1027,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GOVERNANCE</DeckEyebrow>
@@ -979,7 +1047,7 @@ function Slide({ index }: { index: number }) {
               {
                 icon: HandHeart,
                 t: "NPO MOUs",
-                d: "Restore Africa Foundation and A Heart To Help receive under simple agreements — product and funds for agreed care programmes.",
+                d: "Restore Africa Foundation, A Heart To Help and SA Harvest (delivery) receive under simple agreements — product, funds and last-mile routes for agreed care programmes.",
               },
               {
                 icon: Target,
@@ -1009,7 +1077,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 16:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>ROADMAP</DeckEyebrow>
@@ -1043,7 +1111,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 17:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HONESTY LABELS</DeckEyebrow>
@@ -1064,7 +1132,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 17:
+    case 18:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE ASK</DeckEyebrow>
@@ -1074,7 +1142,7 @@ function Slide({ index }: { index: number }) {
               "Pilot listing of the Nelson Mandela pack (and agreed SKUs) in selected SPAR clusters",
               "Approve trade R45 ex. VAT and RRP R67 incl. VAT — with SPAR front-margin discipline",
               "Adopt SPAR 5% + Big Five Foods 5% giving to Restore Africa Foundation and A Heart To Help",
-              "Authorise donation PO pathway for CSI / franchisee gifts in SPAR’s name",
+              "Authorise donation PO pathway with SA Harvest last-mile delivery to soup kitchens, feeding schemes, RAF and AHTH",
               "Nominate SPAR commercial + CSI leads for a 30-day term-sheet and campaign sprint",
             ].map((a, i) => (
               <li key={a} className="flex gap-2.5 items-start">
@@ -1099,7 +1167,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 18:
+    case 19:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">

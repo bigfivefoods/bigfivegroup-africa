@@ -173,7 +173,7 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#spar-partnership-deck",
         label: "SPAR does good — pitch deck",
-        desc: "19-slide pitch: SPAR margin, Mandela pack range, national impact report, 10% giving, NPOs.",
+        desc: "20-slide pitch: SPAR margin, Mandela pack, impact report, RAF · AHTH · SA Harvest delivery.",
       },
       {
         href: "/foods",
