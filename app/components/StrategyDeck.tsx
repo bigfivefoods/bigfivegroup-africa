@@ -119,7 +119,7 @@ const PILLAR_BRIEFS: Record<string, string> = {
 };
 
 const GROUP_OVERVIEW =
-  "Big Five Group is one integrated African enterprise headquartered in KwaZulu-Natal. Ten pillars share governance, mission and values so regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership compound as a system — not ten separate vendors.";
+  "Big Five Group is a proudly African enterprise — African for Africa — headquartered in KwaZulu-Natal. We are not an import-only story: ten pillars share governance, mission and values so regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership compound as one system built on the continent, for the continent.";
 
 /** When true, slides render with print-friendly sizing (same design as web). */
 const PrintModeContext = createContext(false);
@@ -267,8 +267,8 @@ function Slide({ index }: SlideProps) {
           </h2>
           <ol className="space-y-3 sm:space-y-3.5 max-w-2xl">
             {[
-              "Who Big Five Group is — ten pillars as one system",
-              "Vision, mission and values",
+              "Proudly African for Africa — who Big Five Group is (ten pillars, one system)",
+              "Vision, mission and values — a prosperous Africa we help build",
               "Hunger & food insecurity in Africa (SOFI / GRFC / WFP)",
               "Child malnutrition — stunting, wasting, micronutrients (UNICEF/WHO/WB)",
               "Disease & health vulnerability — broader burden across Africa (WHO)",
@@ -277,7 +277,7 @@ function Slide({ index }: SlideProps) {
               "How we resolve malnutrition and disease-linked household vulnerability",
               "UN SDGs & WFP Zero Hunger — how we align",
               "AI, robotics & SAM — intelligence for the mission",
-              "Why partners work with us — and how to engage",
+              "Why partners choose a proudly African delivery partner — and how to engage",
             ].map((item, i) => (
               <li key={item} className="flex gap-3 sm:gap-4 items-start">
                 <span className="shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-700 text-white text-xs font-semibold flex items-center justify-center">
@@ -295,10 +295,16 @@ function Slide({ index }: SlideProps) {
     case 2:
       return (
         <SlideShell>
-          <Eyebrow>WHO WE ARE</Eyebrow>
+          <Eyebrow>WHO WE ARE · PROUDLY AFRICAN</Eyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4 text-balance">
-            An integrated African enterprise
+            Proudly African. Built for Africa.
           </h2>
+          <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-4">
+            This is a <strong className="text-black">proudly African initiative</strong>. Big Five
+            Group is <strong className="text-black">proudly African for Africa</strong> — HQ on the
+            continent, solutions designed for African households, schools, governments and markets,
+            with African partners and delivery capacity attached.
+          </p>
 
           {/* Group overview */}
           <div className="rounded-2xl border border-violet-200/80 bg-gradient-to-br from-violet-50 to-indigo-50/60 p-4 sm:p-5 mb-4 sm:mb-5 flex gap-3 min-w-0">
@@ -307,7 +313,7 @@ function Slide({ index }: SlideProps) {
             </div>
             <div className="min-w-0">
               <div className="text-[10px] tracking-[2px] text-violet-800 font-semibold mb-1">
-                BIG FIVE GROUP
+                BIG FIVE GROUP · AFRICAN FOR AFRICA
               </div>
               <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">{GROUP_OVERVIEW}</p>
             </div>
@@ -501,17 +507,22 @@ function Slide({ index }: SlideProps) {
     case 8:
       return (
         <SlideShell dark>
-          <Eyebrow light>OUR RESPONSE</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-6 sm:mb-8">
+          <Eyebrow light>OUR RESPONSE · AFRICAN FOR AFRICA</Eyebrow>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4">
             Feed. Educate. Empower.
           </h2>
+          <p className="text-sm text-white/70 leading-relaxed max-w-3xl mb-6 sm:mb-8">
+            A proudly African mission: African production, African fortification, African last-mile
+            and African programme delivery — so the continent is not only briefed about, but built
+            by and for its people.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
             {[
               {
                 icon: UtensilsCrossed,
                 t: "Feed",
                 color: "#6ee7b7",
-                d: "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for households, schools and institutions.",
+                d: "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for African households, schools and institutions.",
                 proof:
                   "150k meals · 100k children · ~45% GP · ~50% cheaper vs wholesale/retail (mgmt/internal)",
               },
@@ -526,7 +537,7 @@ function Slide({ index }: SlideProps) {
                 icon: Shield,
                 t: "Empower",
                 color: "#7dd3fc",
-                d: "Direct, Access, Connect, Global: distribution, capital pathways, SupplierAdvisor® commerce and international corridors.",
+                d: "Direct, Access, Connect, Global: distribution, capital pathways, SupplierAdvisor® commerce and corridors that keep African value on African terms.",
                 proof: "Verified trade · containers · institutional access",
               },
             ].map((x) => (
@@ -545,7 +556,8 @@ function Slide({ index }: SlideProps) {
           </div>
           <p className="mt-6 text-sm text-white/50 leading-relaxed max-w-3xl">
             Foundation, Impact and Royal cut across all three — funding, programme delivery, and
-            close ties with planned partnership alongside the royal family and tribal authorities.
+            close ties with planned partnership alongside the royal family and tribal authorities —
+            African legitimacy for African programmes.
           </p>
         </SlideShell>
       );
@@ -859,6 +871,7 @@ function Slide({ index }: SlideProps) {
             ))}
           </div>
           <ul className="space-y-2 text-sm text-white/70 max-w-2xl">
+            <li>· Proudly African for Africa — HQ KwaZulu-Natal · continental mission</li>
             <li>· Ten pillars under one group governance</li>
             <li>· SDG-aligned programme design (1 · 2 · 4 · 8 · 10 · 17)</li>
             <li>· Zero Hunger delivery layer complementary to WFP / national agendas</li>
@@ -872,12 +885,21 @@ function Slide({ index }: SlideProps) {
     case 15:
       return (
         <SlideShell>
-          <Eyebrow>WHY WORK WITH US</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-6">
-            Reasons partners choose Big Five
+          <Eyebrow>WHY WORK WITH US · PROUDLY AFRICAN</Eyebrow>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4">
+            Why partners choose a proudly African Group
           </h2>
+          <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-6">
+            Big Five Group is <strong className="text-black">proudly African for Africa</strong> —
+            not a foreign franchise of Africa. Partners get continental commitment with local HQ,
+            local legitimacy and delivery they can audit.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {[
+              {
+                t: "Proudly African initiative",
+                d: "Conceived, headquartered and operated as an African enterprise for African outcomes — Feed · Educate · Empower.",
+              },
               {
                 t: "One system, not seven vendors",
                 d: "Food, logistics, capital, leadership and PMO in one accountable relationship.",
@@ -895,8 +917,8 @@ function Slide({ index }: SlideProps) {
                 d: "Published impact metrics, live container transparency, certifications markets can audit.",
               },
               {
-                t: "African HQ, global standards",
-                d: "KwaZulu-Natal base with ISO/FSSC-grade manufacturing and verified trade rails.",
+                t: "African HQ · African for Africa · global standards",
+                d: "KwaZulu-Natal base, African markets first, ISO/FSSC-grade manufacturing and verified trade rails.",
               },
               {
                 t: "Institutional fluency + royal partnership",
@@ -1007,18 +1029,21 @@ function Slide({ index }: SlideProps) {
         <SlideShell dark className="!p-0">
           <TitleSlideLayout>
             <div>
-              <Eyebrow light>CALL TO ACTION · ENGAGE NOW</Eyebrow>
+              <Eyebrow light>CALL TO ACTION · PROUDLY AFRICAN FOR AFRICA</Eyebrow>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-semibold tracking-tighter leading-[1.05] mb-4 sm:mb-5 text-balance">
-                Africa does not need another pitch deck.
+                Africa does not need another pitch deck from elsewhere.
                 <br />
-                <span className="text-violet-300">It needs a delivery system that works.</span>
+                <span className="text-violet-300">
+                  It needs a proudly African delivery system that works.
+                </span>
               </h2>
               <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl mb-3 sm:mb-4">
                 If you are a government, DFI, corporate CSI team, implementer or royal partner
                 serious about{" "}
                 <strong className="text-white">Zero Hunger, SDG outcomes and last-mile proof</strong>
-                — partner with Big Five Group. One relationship. Ten pillars. Feed · Educate ·
-                Empower.
+                — partner with Big Five Group:{" "}
+                <strong className="text-white">proudly African for Africa</strong>. One
+                relationship. Ten pillars. Feed · Educate · Empower.
               </p>
               <p className="text-sm sm:text-base text-violet-200/90 font-medium max-w-2xl mb-6 sm:mb-8">
                 Book a 30-minute strategy call this week. Leave with a clear next step — programme
@@ -1069,9 +1094,10 @@ function Slide({ index }: SlideProps) {
             </div>
             <div className="mt-8 sm:mt-10 text-xs text-white/40 space-y-1">
               <p className="text-white/55 font-medium">
-                Don&apos;t brief another silo. Brief a system. — bigfivegroup.africa
+                Proudly African for Africa. Don&apos;t brief another silo. Brief a system. —
+                bigfivegroup.africa
               </p>
-              <p>Big Five Group (Pty) Ltd · KwaZulu-Natal · South Africa</p>
+              <p>Big Five Group (Pty) Ltd · KwaZulu-Natal · South Africa · African HQ</p>
               <p>
                 Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; WHO African Region / GHO; UN
                 SDGs; WFP Zero Hunger agenda.
@@ -1110,7 +1136,7 @@ function GroupTitleSlide() {
     <SlideShell dark className="!p-0">
       <TitleSlideLayout>
         <div>
-          <Eyebrow light>BIG FIVE GROUP · STRATEGIC OVERVIEW</Eyebrow>
+          <Eyebrow light>BIG FIVE GROUP · PROUDLY AFRICAN FOR AFRICA</Eyebrow>
           <div
             className={`relative mb-4 sm:mb-6 ${
               forPrint ? "w-24 h-24" : "w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40"
@@ -1132,12 +1158,19 @@ function GroupTitleSlide() {
                 : "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
             }`}
           >
-            One Group.
+            Proudly African.
             <br />
-            Ten Pillars.
+            <span className="text-violet-300">African for Africa.</span>
             <br />
             Infinite African Impact.
           </h2>
+          <p
+            className={`text-violet-200/90 font-medium max-w-2xl ${
+              forPrint ? "mt-3 text-xs" : "mt-4 text-sm sm:text-base"
+            }`}
+          >
+            One Group · Ten Pillars · A proudly African initiative for the continent we serve.
+          </p>
         </div>
         <div
           className={`grid sm:grid-cols-2 gap-6 max-w-3xl ${
@@ -1150,14 +1183,15 @@ function GroupTitleSlide() {
             }`}
           >
             A shareable strategic briefing for governments, DFIs, corporates and partners —
-            African challenges with credible sources, and how Big Five delivers.
+            African challenges with credible sources, and how Big Five —{" "}
+            <strong className="text-white">proudly African for Africa</strong> — delivers.
           </p>
           <div
             className={`text-white/45 space-y-1 ${
               forPrint ? "text-[10px]" : "text-xs sm:text-sm"
             }`}
           >
-            <p>KwaZulu-Natal · South Africa</p>
+            <p>Proudly African HQ · KwaZulu-Natal · South Africa</p>
             <p>bigfivegroup.africa/impact#strategy-deck</p>
             <p>19 slides · Downloadable · Shareable</p>
           </div>
@@ -1179,8 +1213,8 @@ function VisionMissionValuesSlide() {
       bar: "from-emerald-500 to-teal-600",
       title: "A prosperous Africa — for everyone on it",
       d: forPrint
-        ? "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, communities own their economies."
-        : "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, and communities build economies they own.",
+        ? "Proudly African vision: well-being is not a privilege. Families eat with dignity, leaders decide with integrity, communities own their economies."
+        : "Proudly African vision: well-being is not a privilege. Families eat with dignity, leaders decide with integrity, and communities build economies they own — Africa for Africa.",
     },
     {
       t: "Mission",
@@ -1189,8 +1223,8 @@ function VisionMissionValuesSlide() {
       bar: "from-sky-500 to-blue-600",
       title: "Feed. Educate. Empower.",
       d: forPrint
-        ? "Deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises."
-        : "Deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises — at scale and with proof.",
+        ? "A proudly African mission: deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises."
+        : "A proudly African mission: deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises — at scale, with proof, African for Africa.",
     },
     {
       t: "Values",
@@ -1206,10 +1240,10 @@ function VisionMissionValuesSlide() {
 
   const values = [
     { icon: Users, title: "Humanity", desc: "People first — Ubuntu in practice." },
-    { icon: Lightbulb, title: "Innovation", desc: "Better systems for African progress." },
+    { icon: Lightbulb, title: "Innovation", desc: "Better systems for African progress — built here." },
     { icon: Shield, title: "Integrity", desc: "Honesty, transparency, ethical commerce." },
-    { icon: Sparkles, title: "Excellence", desc: "Professional standards, always." },
-    { icon: Heart, title: "Impact", desc: "Outcomes communities can feel." },
+    { icon: Sparkles, title: "Excellence", desc: "World-class standards from an African base." },
+    { icon: Heart, title: "Impact", desc: "Outcomes African communities can feel." },
   ];
 
   return (
@@ -1696,8 +1730,8 @@ export default function StrategyDeck() {
 
   const onShare = async () => {
     const payload = {
-      title: "Big Five Group — Strategic Overview",
-      text: "Strategic briefing: African challenges (hunger, malnutrition, broader disease burden), how Big Five responds, and why partners work with us.",
+      title: "Big Five Group — Proudly African for Africa",
+      text: "Proudly African strategic briefing: African challenges (hunger, malnutrition, broader disease burden), and how Big Five Group — African for Africa — feeds, educates and empowers.",
       url: shareUrl,
     };
     try {
@@ -1874,15 +1908,16 @@ export default function StrategyDeck() {
     <div id="strategy-deck" className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center min-w-0">
         <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-violet-700 mb-3 font-medium px-1">
-          STRATEGIC BRIEFING · ONLINE DECK · 19 SLIDES
+          PROUDLY AFRICAN FOR AFRICA · STRATEGIC BRIEFING · 19 SLIDES
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-black mb-3 sm:mb-4 text-balance px-1">
-          Big Five Group — strategic overview
+          Big Five Group — proudly African strategic overview
         </h2>
         <p className="text-sm sm:text-base md:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-5 sm:mb-6 px-1">
-          Hunger, child malnutrition and broader disease-linked vulnerability — with credible UN /
-          WHO sources — and how Big Five feeds, educates and empowers. Share the link or download a
-          print-ready PDF.
+          A proudly African initiative: hunger, child malnutrition and broader disease-linked
+          vulnerability — with credible UN / WHO sources — and how Big Five Group,{" "}
+          <strong className="text-black">African for Africa</strong>, feeds, educates and empowers.
+          Share the link or download a print-ready PDF.
         </p>
         <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto">
           <button

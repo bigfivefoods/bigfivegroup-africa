@@ -38,7 +38,7 @@ export default function ImpactPage() {
             that delivers Africa
           </>
         }
-        subtitle="Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. The Director General of Health is within Impact, helping drive Group products into South Africa’s Department of Health and health pathways across Africa."
+        subtitle="Proudly African for Africa. Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. The Director General of Health is within Impact, helping drive Group products into South Africa’s Department of Health and health pathways across Africa."
         ctas={[
           { href: "#strategy-deck", label: "Strategic overview deck", primary: true },
           { href: "#health-channel", label: "Health channel" },
