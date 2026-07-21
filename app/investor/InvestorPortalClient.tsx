@@ -4,17 +4,20 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
+  Briefcase,
   ExternalLink,
   Globe2,
   Leaf,
   LineChart,
   Lock,
+  PieChart,
   Recycle,
   Users,
 } from "lucide-react";
 import {
   AFRICA_PROBLEMS,
   GROUP_IMPACT_PILLARS,
+  INVESTMENT_ASK,
   MODEL_DISCLAIMER,
   OPCO_MODELS,
   SCENARIO_META,
@@ -46,17 +49,24 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                 PRIVATE · INVESTOR MODEL · CONFIDENTIAL
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-balance mb-3">
-                Group revenue potential & triple-bottom-line impact
+                Group revenue potential (USD) & triple-bottom-line impact
               </h1>
               <p className="text-white/65 text-sm sm:text-base leading-relaxed mb-2">
                 Signed in as{" "}
                 <span className="text-white font-medium break-all">{email}</span>
               </p>
-              <p className="text-white/55 text-sm leading-relaxed text-pretty">
+              <p className="text-white/55 text-sm leading-relaxed text-pretty mb-4">
                 Consolidated view of all operating companies (opcos): current traction on the
                 continent, future-state ambition, and conservative / moderate / aggressive market
-                penetration scenarios.{" "}
+                penetration scenarios. All projected revenues are in{" "}
+                <strong className="text-white/85">United States dollars (USD)</strong>.{" "}
                 <strong className="text-white/80">Illustrative model — not audited financials.</strong>
+              </p>
+              <p className="text-sm text-amber-200/90 leading-relaxed text-pretty border border-amber-400/25 bg-amber-400/10 rounded-xl px-4 py-3">
+                <strong className="text-amber-100">Investment ask:</strong>{" "}
+                {INVESTMENT_ASK.equityOffered} equity in {INVESTMENT_ASK.entity}
+                {INVESTMENT_ASK.boardSeat ? " · board seat" : ""} · use of funds{" "}
+                {INVESTMENT_ASK.useOfFunds.map((u) => `${u.pct}% ${u.label.toLowerCase()}`).join(" / ")}
               </p>
             </div>
             <LogoutButton />
@@ -94,36 +104,44 @@ export default function InvestorPortalClient({ email }: { email: string }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0 sm:col-span-1">
-              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">GROUP Y5 RUN-RATE</div>
+              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">
+                GROUP Y5 RUN-RATE (USD)
+              </div>
               <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-amber-300 tabular-nums">
                 {formatUSDm(y5)}
               </div>
               <div className="text-xs text-white/50 mt-1">
-                Illustrative annual revenue potential · year 5
+                Illustrative annual revenue potential · year 5 · United States dollars
               </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">
-              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">GROUP Y10 RUN-RATE</div>
+              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">
+                GROUP Y10 RUN-RATE (USD)
+              </div>
               <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-amber-300 tabular-nums">
                 {formatUSDm(y10)}
               </div>
               <div className="text-xs text-white/50 mt-1">
-                Illustrative annual revenue potential · year 10
+                Illustrative annual revenue potential · year 10 · United States dollars
               </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">
-              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">OPCOS MODELLED</div>
+              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">EQUITY ASK</div>
               <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-white tabular-nums">
-                {OPCO_MODELS.length}
+                {INVESTMENT_ASK.equityOffered}
               </div>
-              <div className="text-xs text-white/50 mt-1">All Group companies consolidated</div>
+              <div className="text-xs text-white/50 mt-1">
+                Of Big Five Group holding company · board seat included
+              </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">
-              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">IMPACT LENSES</div>
+              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">USE OF FUNDS</div>
               <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-white">
-                3
+                10 / 90
               </div>
-              <div className="text-xs text-white/50 mt-1">Social · Economic · Environmental</div>
+              <div className="text-xs text-white/50 mt-1">
+                10% operations · 90% assets & product development
+              </div>
             </div>
           </div>
         </div>
@@ -133,8 +151,9 @@ export default function InvestorPortalClient({ email }: { email: string }) {
       <nav className="sticky top-[var(--navbar-height)] z-30 bg-white/95 backdrop-blur border-b border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex gap-2 overflow-x-auto text-xs sm:text-sm font-medium">
           {[
+            { href: "#ask", label: "Investment ask" },
             { href: "#problems", label: "Africa problems" },
-            { href: "#rollup", label: "Group rollup" },
+            { href: "#rollup", label: "Group rollup (USD)" },
             { href: "#opcos", label: "Opco detail" },
             { href: "#impact", label: "S · E · E impact" },
             { href: "#disclaimer", label: "Disclaimer" },
@@ -156,6 +175,93 @@ export default function InvestorPortalClient({ email }: { email: string }) {
           <p className="text-xs sm:text-sm text-amber-950/80 leading-relaxed">{MODEL_DISCLAIMER}</p>
         </div>
       </div>
+
+      {/* Investment ask */}
+      <section
+        id="ask"
+        className="scroll-mt-28 bg-white border-b border-black/10 py-12 sm:py-16"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 mb-2">
+            <Briefcase className="w-5 h-5 text-amber-700" />
+            <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373]">
+              HOLDING COMPANY · EQUITY · GOVERNANCE · USE OF FUNDS
+            </div>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 text-balance">
+            The investment we are seeking
+          </h2>
+          <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-8 text-pretty">
+            {INVESTMENT_ASK.equityNote} {INVESTMENT_ASK.boardNote} {INVESTMENT_ASK.purpose}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-8">
+            <div className="rounded-2xl border border-black/10 bg-[#0a0a0a] text-white p-6 sm:p-8 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-amber-400/90 mb-2">EQUITY</div>
+              <div className="text-4xl sm:text-5xl font-semibold tracking-tighter text-amber-300 mb-2">
+                {INVESTMENT_ASK.equityOffered}
+              </div>
+              <p className="text-sm text-white/70 leading-relaxed">
+                Equity in <strong className="text-white">{INVESTMENT_ASK.entity}</strong> — not a
+                single opco — so the investor shares in the consolidated continental platform.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-black/10 bg-[#fafafa] p-6 sm:p-8 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-[#737373] mb-2">GOVERNANCE</div>
+              <div className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2">
+                Board seat
+              </div>
+              <p className="text-sm text-[#404040] leading-relaxed">{INVESTMENT_ASK.boardNote}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 mb-4">
+            <PieChart className="w-5 h-5 text-amber-700" />
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-black">
+              Use of investment capital
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            {INVESTMENT_ASK.useOfFunds.map((u) => (
+              <div
+                key={u.label}
+                className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 min-w-0"
+              >
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-3xl sm:text-4xl font-semibold tracking-tighter text-black tabular-nums">
+                    {u.pct}%
+                  </span>
+                  <span className="text-sm font-semibold text-[#404040]">{u.label}</span>
+                </div>
+                <p className="text-sm text-[#525252] leading-relaxed">{u.detail}</p>
+              </div>
+            ))}
+          </div>
+          {/* Visual bar */}
+          <div className="h-3 sm:h-4 rounded-full overflow-hidden flex border border-black/10">
+            <div
+              className="bg-slate-500 h-full"
+              style={{ width: "10%" }}
+              title="10% operational costs"
+            />
+            <div
+              className="bg-amber-500 h-full"
+              style={{ width: "90%" }}
+              title="90% asset acquisition & product development"
+            />
+          </div>
+          <div className="flex flex-wrap gap-4 mt-2 text-[11px] text-[#737373]">
+            <span>
+              <span className="inline-block w-2.5 h-2.5 rounded-sm bg-slate-500 mr-1.5 align-middle" />
+              10% operational costs
+            </span>
+            <span>
+              <span className="inline-block w-2.5 h-2.5 rounded-sm bg-amber-500 mr-1.5 align-middle" />
+              90% asset acquisition & product development
+            </span>
+          </div>
+        </div>
+      </section>
 
       {/* Africa problems */}
       <section id="problems" className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -239,12 +345,13 @@ export default function InvestorPortalClient({ email }: { email: string }) {
           <div className="flex items-center gap-2 mb-2">
             <LineChart className="w-5 h-5 text-amber-700" />
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
-              Consolidated group revenue (illustrative)
+              Consolidated group revenue (USD · illustrative)
             </h2>
           </div>
           <p className="text-sm text-[#525252] mb-6 max-w-2xl leading-relaxed">
-            Sum of opco scenario run-rates. Switch scenario above. Figures are model outputs for
-            discussion under NDA — not commitments.
+            Sum of opco scenario run-rates in <strong className="text-black">United States dollars
+            (USD)</strong>. Switch scenario above. Figures are model outputs for discussion under NDA
+            — not commitments.
           </p>
 
           <div className="overflow-x-auto -mx-1 px-1 rounded-2xl border border-black/10">
@@ -253,10 +360,10 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                 <tr className="bg-[#0a0a0a] text-white/80 text-[10px] sm:text-xs tracking-[1px]">
                   <th className="py-3 px-3 sm:px-4 font-semibold">Opco</th>
                   <th className="py-3 px-3 font-semibold">Avenue</th>
-                  <th className="py-3 px-3 font-semibold text-right">Y5 · Cons.</th>
-                  <th className="py-3 px-3 font-semibold text-right">Y5 · Mod.</th>
-                  <th className="py-3 px-3 font-semibold text-right">Y5 · Agg.</th>
-                  <th className="py-3 px-3 font-semibold text-right">Y10 · Mod.</th>
+                  <th className="py-3 px-3 font-semibold text-right">Y5 · Cons. (USD)</th>
+                  <th className="py-3 px-3 font-semibold text-right">Y5 · Mod. (USD)</th>
+                  <th className="py-3 px-3 font-semibold text-right">Y5 · Agg. (USD)</th>
+                  <th className="py-3 px-3 font-semibold text-right">Y10 · Mod. (USD)</th>
                 </tr>
               </thead>
               <tbody className="text-[#404040]">

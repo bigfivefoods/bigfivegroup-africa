@@ -3,9 +3,12 @@
  * Not audited financials, not a prospectus, not a guarantee of results.
  * Assumptions are directional for discussion with authorised investors under NDA.
  *
- * Currency: USD millions (USDm) for cross-border investor readability.
+ * Currency: United States dollars (USD), shown as USD millions / billions.
  * Horizon: “current traction” = near-term operating footprint; scenarios = 5-year
  * and 10-year illustrative annual run-rate revenue potential at stated penetration.
+ *
+ * Equity ask: 10% of Big Five Group holding company + board seat; use of funds
+ * 10% operations / 90% asset acquisition & product development (see INVESTMENT_ASK).
  */
 
 export type ScenarioKey = "conservative" | "moderate" | "aggressive";
@@ -657,10 +660,41 @@ export function sumScenario(
   return OPCO_MODELS.reduce((acc, o) => acc + o.scenarios[key][field], 0);
 }
 
+/** Format as USD millions / billions (explicit currency label for investors). */
 export function formatUSDm(n: number): string {
-  if (n >= 1000) return `$${(n / 1000).toFixed(1)}B`;
-  return `$${n}M`;
+  if (n >= 1000) return `USD ${(n / 1000).toFixed(1)}B`;
+  return `USD ${n}M`;
 }
+
+/**
+ * Equity raise framing — Big Five Group holding company.
+ * Subject to legal docs / term sheet; portal text is orientation only.
+ */
+export const INVESTMENT_ASK = {
+  entity: "Big Five Group (holding company)",
+  equityOffered: "10%",
+  equityNote:
+    "We are seeking an investment for 10% equity in Big Five Group — the holding company — to help accelerate continental growth across the operating companies.",
+  boardSeat: true,
+  boardNote:
+    "The investment is expected to include a board seat at Big Five Group holding company level, so the investor participates in strategic oversight of continental scale-up.",
+  useOfFunds: [
+    {
+      pct: 10,
+      label: "Operational costs",
+      detail:
+        "Working capital for people, systems, compliance and day-to-day operating capacity that keeps multi-country programmes running.",
+    },
+    {
+      pct: 90,
+      label: "Asset acquisition & product development",
+      detail:
+        "Capital deployed into productive assets (e.g. manufacturing, hubs, inventory, land-linked programmes) and product / platform development across Foods, Agri, Direct, Connect and related opcos.",
+    },
+  ],
+  purpose:
+    "Accelerate continental growth — deepen priority markets, fund capacity, and compound the Group’s integrated Feed · Educate · Empower model.",
+} as const;
 
 /** Consolidated impact narrative (group-level, scenario-aware wording) */
 export const GROUP_IMPACT_PILLARS = {
@@ -694,4 +728,4 @@ export const GROUP_IMPACT_PILLARS = {
 } as const;
 
 export const MODEL_DISCLAIMER =
-  "All revenue and impact figures on this investor portal are illustrative scenario models for authorised discussion only. They are not audited financial statements, forecasts, or guarantees. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
+  "All revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. They are not audited financial statements, forecasts, or guarantees. Equity percentage, board participation and use-of-funds splits are investment-framing statements subject to definitive legal agreements. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
