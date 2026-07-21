@@ -7,6 +7,6 @@
  *   "partner@familyoffice.com",
  */
 export const INVESTOR_ALLOWLIST: string[] = [
-  // Add investor emails below (one per line):
-  // "investor@example.com",
+  "craig@bigfivegroup.africa",
+  "clint@kencrete.co.za",
 ];
