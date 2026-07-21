@@ -3,10 +3,13 @@
  * 1. Upstash Redis REST (production on Vercel) when UPSTASH_* env set
  * 2. Local JSON file (dev / persistent disk)
  * 3. In-process memory (same instance only)
+ *
+ * Server-only — never import from Client Components (use newsletter/client).
  */
 
-import { promises as fs } from "fs";
-import path from "path";
+import "server-only";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 import type { NewsletterEvent, NewsletterStoreSnapshot, NewsletterSubscriber } from "./types";
 import { newId } from "./crypto";
 

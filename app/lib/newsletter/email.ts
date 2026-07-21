@@ -1,8 +1,10 @@
 /**
  * Branded transactional email for newsletter (Resend).
  * HTML + plain text; List-Unsubscribe ready for future campaigns.
+ * Server-only — never import from Client Components.
  */
 
+import "server-only";
 import { CONTACT_EMAIL } from "../contact";
 import { SITE_NAME, SITE_URL } from "../site";
 

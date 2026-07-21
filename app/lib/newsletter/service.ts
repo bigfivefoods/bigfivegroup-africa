@@ -1,7 +1,9 @@
 /**
  * Newsletter subscribe / confirm / unsubscribe / preferences service.
+ * Server-only — never import from Client Components (use newsletter/client).
  */
 
+import "server-only";
 import { CONTACT_EMAIL } from "../contact";
 import {
   hashIp,

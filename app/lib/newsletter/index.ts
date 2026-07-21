@@ -1,5 +1,8 @@
 /**
- * Big Five Group Africa — world-class newsletter system.
+ * Big Five Group Africa — world-class newsletter system (server entry).
+ *
+ * Client Components must import from `./client` (or `app/lib/newsletter/client`)
+ * so Node-only modules (fs, store, Resend) never enter the browser bundle.
  *
  * Features:
  * - POPIA consent + double opt-in (Resend) or single opt-in with recorded consent
@@ -10,6 +13,8 @@
  * - Webhook fan-out for CRM / ESP
  * - Admin export (NEWSLETTER_ADMIN_SECRET)
  */
+
+import "server-only";
 
 export {
   NEWSLETTER_TOPIC_OPTIONS,
