@@ -81,8 +81,8 @@ export default function NewsletterPage() {
                 Subscribe
               </h2>
               <p className="text-sm text-[#525252] mb-6 leading-relaxed">
-                Enter your email. We&apos;ll open a short opt-in draft to complete your subscription
-                from your own mail app.
+                Choose topics, enter your email and confirm consent. We store your subscription
+                securely and you can unsubscribe anytime.
               </p>
               <NewsletterForm variant="page" source="newsletter_page" />
             </div>

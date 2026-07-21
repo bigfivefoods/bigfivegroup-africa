@@ -1,54 +1,36 @@
 import { NextResponse } from "next/server";
-import {
-  buildNewsletterMailto,
-  isValidNewsletterEmail,
-  type NewsletterSubscribePayload,
-} from "../../../lib/newsletter";
+import { subscribeNewsletter, type NewsletterSubscribeInput } from "../../../lib/newsletter";
+
+export const runtime = "nodejs";
+
+function clientIp(request: Request): string | null {
+  const xf = request.headers.get("x-forwarded-for");
+  if (xf) return xf.split(",")[0]?.trim() || null;
+  return request.headers.get("x-real-ip");
+}
 
 /**
- * Validates newsletter opt-in and returns a mailto so the subscriber
- * confirms from their own email app (no third-party ESP required).
+ * Newsletter subscribe — validates consent, persists subscriber, optional
+ * double opt-in (Resend) or single opt-in with recorded consent.
  */
 export async function POST(request: Request) {
-  let body: NewsletterSubscribePayload;
+  let body: NewsletterSubscribeInput;
   try {
-    body = (await request.json()) as NewsletterSubscribePayload;
+    body = (await request.json()) as NewsletterSubscribeInput;
   } catch {
     return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  // Honeypot
-  if (body.website && String(body.website).trim() !== "") {
-    return NextResponse.json({ ok: true, mailto: null });
-  }
-
-  const email = String(body.email ?? "").trim().toLowerCase();
-  const name = String(body.name ?? "").trim() || undefined;
-  const organisation = String(body.organisation ?? "").trim() || undefined;
-  const source = String(body.source ?? "website").trim() || "website";
-
-  if (!isValidNewsletterEmail(email)) {
-    return NextResponse.json(
-      { ok: false, error: "Please enter a valid email address." },
-      { status: 400 }
-    );
-  }
-
-  if (name && name.length > 120) {
-    return NextResponse.json({ ok: false, error: "Name is too long." }, { status: 400 });
-  }
-
-  const payload: NewsletterSubscribePayload = {
-    email,
-    name,
-    organisation,
-    source,
-  };
-
-  return NextResponse.json({
-    ok: true,
-    mailto: buildNewsletterMailto(payload),
-    message:
-      "Open your email app to confirm your subscription — press send to complete opt-in.",
+  const result = await subscribeNewsletter(body, {
+    ip: clientIp(request),
+    requestUrl: request.url,
   });
+
+  if (!result.ok) {
+    const status =
+      result.code === "consent_required" || result.code === "invalid_email" ? 400 : 400;
+    return NextResponse.json(result, { status });
+  }
+
+  return NextResponse.json(result);
 }

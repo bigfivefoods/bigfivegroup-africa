@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { ArrowRight, Check, Loader2, Mail } from "lucide-react";
 import { CONTACT_EMAIL } from "../lib/contact";
+import { NEWSLETTER_TOPIC_OPTIONS, type NewsletterTopicId } from "../lib/newsletter";
 import { track } from "../lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -21,15 +23,27 @@ export default function NewsletterForm({
 }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [mailto, setMailto] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [confirmPath, setConfirmPath] = useState<string | null>(null);
+  const [mode, setMode] = useState<"double_opt_in" | "single_opt_in" | null>(null);
   const [form, setForm] = useState({
     email: "",
     name: "",
     organisation: "",
     website: "",
+    consent: false,
   });
+  const [topics, setTopics] = useState<NewsletterTopicId[]>(
+    NEWSLETTER_TOPIC_OPTIONS.map((t) => t.id)
+  );
 
   const compact = variant === "footer" || variant === "inline";
+
+  function toggleTopic(id: NewsletterTopicId) {
+    setTopics((prev) =>
+      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
+    );
+  }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -47,12 +61,17 @@ export default function NewsletterForm({
           organisation: form.organisation || undefined,
           website: form.website,
           source,
+          consent: form.consent,
+          topics: compact ? undefined : topics,
         }),
       });
       const data = (await res.json()) as {
         ok?: boolean;
         error?: string;
-        mailto?: string | null;
+        message?: string;
+        confirmPath?: string;
+        mode?: "double_opt_in" | "single_opt_in";
+        status?: string;
       };
 
       if (!res.ok || !data.ok) {
@@ -61,17 +80,14 @@ export default function NewsletterForm({
         return;
       }
 
-      setMailto(data.mailto ?? null);
       track("newsletter_subscribe_success", { source });
+      setSuccessMessage(data.message ?? "You are subscribed.");
+      setConfirmPath(data.confirmPath ?? null);
+      setMode(data.mode ?? "single_opt_in");
       setStatus("success");
-
-      if (data.mailto) {
-        window.setTimeout(() => {
-          window.location.href = data.mailto!;
-        }, 150);
-      }
+      setForm((f) => ({ ...f, email: "", name: "", organisation: "", consent: false }));
     } catch {
-      setError("Network error. Please email us directly.");
+      setError("Network error. Please try again or email us directly.");
       setStatus("error");
     }
   }
@@ -89,22 +105,38 @@ export default function NewsletterForm({
           </div>
           <div className="min-w-0">
             <h3 className="text-base sm:text-lg font-semibold tracking-tight text-black mb-1">
-              Confirm in your email app
+              {mode === "double_opt_in" && confirmPath
+                ? "Confirm your subscription"
+                : mode === "double_opt_in"
+                  ? "Check your email"
+                  : "You are subscribed"}
             </h3>
             <p className="text-xs sm:text-sm text-[#525252] leading-relaxed mb-3">
-              A draft to <strong className="text-black">{CONTACT_EMAIL}</strong> should open from
-              your address. Press <strong className="text-black">send</strong> to complete your
-              subscription. You can unsubscribe any time by emailing us.
+              {successMessage}
             </p>
-            {mailto && (
-              <a
-                href={mailto}
+            {confirmPath && (
+              <Link
+                href={confirmPath}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-black underline underline-offset-2"
               >
-                <Mail className="w-4 h-4" />
-                Open email draft again
-              </a>
+                Confirm subscription
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             )}
+            <p className="text-[11px] text-[#737373] mt-3 leading-relaxed">
+              Unsubscribe anytime via{" "}
+              <Link href="/newsletter/unsubscribe" className="underline underline-offset-2">
+                this page
+              </Link>{" "}
+              or{" "}
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="underline underline-offset-2"
+              >
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </p>
           </div>
         </div>
       </div>
@@ -152,6 +184,38 @@ export default function NewsletterForm({
             />
           </label>
         </div>
+      )}
+
+      {!compact && (
+        <fieldset className="min-w-0">
+          <legend className="text-xs font-medium text-[#737373] mb-2">Topics</legend>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {NEWSLETTER_TOPIC_OPTIONS.map((t) => {
+              const checked = topics.includes(t.id);
+              return (
+                <label
+                  key={t.id}
+                  className={`flex gap-2.5 rounded-xl border px-3 py-2.5 cursor-pointer transition-colors ${
+                    checked
+                      ? "border-emerald-300 bg-emerald-50/50"
+                      : "border-black/10 bg-white hover:border-black/20"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    className="mt-0.5 rounded border-black/20"
+                    checked={checked}
+                    onChange={() => toggleTopic(t.id)}
+                  />
+                  <span className="min-w-0">
+                    <span className="block text-xs font-semibold text-black">{t.label}</span>
+                    <span className="block text-[10px] text-[#737373] leading-snug">{t.desc}</span>
+                  </span>
+                </label>
+              );
+            })}
+          </div>
+        </fieldset>
       )}
 
       <div
@@ -202,6 +266,24 @@ export default function NewsletterForm({
         </button>
       </div>
 
+      <label className="flex gap-2.5 items-start cursor-pointer">
+        <input
+          type="checkbox"
+          required
+          checked={form.consent}
+          onChange={(e) => setForm((f) => ({ ...f, consent: e.target.checked }))}
+          className="mt-1 rounded border-black/20"
+        />
+        <span className={`text-[#525252] leading-snug ${compact ? "text-[10px]" : "text-xs"}`}>
+          I agree to receive occasional email updates from Big Five Group Africa about programmes,
+          partnerships and Group news. I can unsubscribe at any time. See our{" "}
+          <Link href="/privacy" className="underline underline-offset-2 text-black">
+            privacy notice
+          </Link>
+          .
+        </span>
+      </label>
+
       {error && (
         <p className="text-sm text-rose-700" role="alert">
           {error}
@@ -209,11 +291,11 @@ export default function NewsletterForm({
       )}
 
       <p className={`text-[#737373] leading-relaxed ${compact ? "text-[10px]" : "text-xs"}`}>
-        Occasional updates only — no spam. Unsubscribe anytime via{" "}
-        <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-2 text-[#404040]">
-          {CONTACT_EMAIL}
-        </a>
-        . By subscribing you confirm the draft email opt-in.
+        Occasional updates only — no spam. Manage preferences or leave via{" "}
+        <Link href="/newsletter/unsubscribe" className="underline underline-offset-2 text-[#404040]">
+          unsubscribe
+        </Link>
+        .
       </p>
     </form>
   );
