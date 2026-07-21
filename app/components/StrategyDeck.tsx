@@ -268,10 +268,10 @@ function Slide({ index }: SlideProps) {
               "Vision, mission and values",
               "Hunger & food insecurity in Africa (SOFI / GRFC / WFP)",
               "Child malnutrition — stunting, wasting, micronutrients (UNICEF/WHO/WB)",
-              "HIV & AIDS — regional burden and treatment gaps (UNAIDS/WHO)",
+              "Disease & health vulnerability — broader burden across Africa (WHO)",
               "Markets, last-mile and institutional trust gaps",
               "How Big Five responds: Feed · Educate · Empower",
-              "How we resolve malnutrition and health-linked vulnerability",
+              "How we resolve malnutrition and disease-linked household vulnerability",
               "UN SDGs & WFP Zero Hunger — how we align",
               "AI, robotics & SAM — intelligence for the mission",
               "Why partners work with us — and how to engage",
@@ -411,36 +411,47 @@ function Slide({ index }: SlideProps) {
     case 6:
       return (
         <SlideShell dark accent="rose">
-          <Eyebrow light>THE CHALLENGE · HIV & AIDS</Eyebrow>
+          <Eyebrow light>THE CHALLENGE · DISEASE & HEALTH VULNERABILITY</Eyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 sm:mb-6 text-balance">
-            HIV remains a structural health and household vulnerability crisis
+            Broader disease burden multiplies hunger and household fragility
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-5">
-            <StatTile dark value="40.8M" label="People living with HIV globally (end 2024)" />
-            <StatTile dark value=">½" label="Of all people living with HIV live in eastern & southern Africa (~21.1M)" />
-            <StatTile dark value="~65%" label="Of people living with HIV worldwide are in sub-Saharan Africa" />
-            <StatTile dark value="3,300" label="New HIV infections per week among adolescent girls & young women 15–24 in sub-Saharan Africa (2024)" />
+            <StatTile
+              dark
+              value="Dual"
+              label="Infectious disease + rising non-communicable disease (NCD) burden across Africa"
+            />
+            <StatTile
+              dark
+              value="Cycle"
+              label="Illness deepens poverty and hunger; undernutrition worsens disease outcomes"
+            />
+            <StatTile
+              dark
+              value="Care"
+              label="Caregivers and workers lose income and food access when households face chronic or acute illness"
+            />
+            <StatTile
+              dark
+              value="Systems"
+              label="Health systems and families need food security and livelihoods as part of resilience — not clinical care alone"
+            />
           </div>
           <p className="text-sm text-white/70 leading-relaxed mb-4 max-w-3xl">
-            Progress is real — AIDS-related deaths and new infections have fallen substantially since
-            2010 — but gaps remain: millions still need treatment; only about{" "}
-            <strong className="text-white">55% of children living with HIV</strong> were on ART in
-            2024; and food insecurity interacts with HIV outcomes (adherence, immunity, household
-            resilience).
+            Across the continent, communities face a{" "}
+            <strong className="text-white">broad disease burden</strong> — communicable illness,
+            endemic infections, maternal and child health challenges, and growing NCDs. Progress in
+            health systems is real, but food insecurity and weak livelihoods still undermine recovery,
+            immunity, school attendance and household resilience. Disease is not only a clinic problem;
+            it is a nutrition, market and delivery problem too.
           </p>
           <p className="text-xs text-white/40 leading-relaxed max-w-3xl">
             Sources:{" "}
-            <Ref href="https://www.hiv.gov/hiv-basics/overview/data-and-trends/global-statistics">
-              HIV.gov global statistics (UNAIDS-based)
-            </Ref>
+            <Ref href="https://www.afro.who.int/">WHO African Region</Ref>
             ;{" "}
-            <Ref href="https://www.unaids.org/sites/default/files/media_asset/UNAIDS_FactSheet_en.pdf">
-              UNAIDS Fact Sheet
-            </Ref>
+            <Ref href="https://www.who.int/data/gho">WHO Global Health Observatory</Ref>
             ;{" "}
-            <Ref href="https://www.who.int/teams/global-hiv-hepatitis-and-stis-programmes/hiv/strategic-information/hiv-data-and-statistics">
-              WHO HIV data
-            </Ref>
+            <Ref href="https://www.worldbank.org/en/topic/health">World Bank Health</Ref>
             .
           </p>
         </SlideShell>
@@ -581,27 +592,27 @@ function Slide({ index }: SlideProps) {
     case 10:
       return (
         <SlideShell accent="rose">
-          <Eyebrow>HOW WE SUPPORT HIV-AFFECTED HOUSEHOLDS</Eyebrow>
+          <Eyebrow>HOW WE SUPPORT DISEASE-AFFECTED HOUSEHOLDS</Eyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 sm:mb-6 text-balance">
             Nutrition, livelihoods and systems — complementary to clinical care
           </h2>
           <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-5">
-            Big Five is not an ART provider. We address the{" "}
-            <strong className="text-black">socio-economic determinants</strong> that interact with HIV
-            outcomes: food insecurity, household resilience, skills, and trusted supply systems —
-            especially critical in eastern and southern Africa where the epidemic remains concentrated.
+            Big Five is not a clinical health provider. We address the{" "}
+            <strong className="text-black">socio-economic determinants</strong> that interact with
+            broader disease burden: food insecurity, household resilience, skills, and trusted supply
+            systems — so families facing illness have a stronger foundation for recovery and dignity.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-5">
             {[
               {
                 icon: UtensilsCrossed,
                 t: "Nutrition security",
-                d: "Affordable fortified foods for vulnerable households and institutions — reducing hunger stress that undermines health and adherence capacity.",
+                d: "Affordable fortified foods for vulnerable households and institutions — reducing hunger stress that undermines health and recovery capacity.",
               },
               {
                 icon: Activity,
                 t: "Livelihoods & dignity",
-                d: "Agri, Direct and Access create income and market pathways so families are less forced into high-risk coping strategies.",
+                d: "Agri, Direct and Access create income and market pathways so families are less forced into high-risk coping strategies when illness hits.",
               },
               {
                 icon: GraduationCap,
@@ -624,8 +635,9 @@ function Slide({ index }: SlideProps) {
             ))}
           </div>
           <p className="text-xs text-[#737373] leading-relaxed">
-            Clinical HIV prevention and treatment remain the mandate of health systems and specialised
-            partners; we partner as the food, livelihood and delivery layer.
+            Clinical prevention, diagnosis and treatment remain the mandate of health systems and
+            specialised partners; we partner as the food, livelihood and delivery layer around broader
+            disease vulnerability.
           </p>
         </SlideShell>
       );
@@ -659,7 +671,7 @@ function Slide({ index }: SlideProps) {
                     p: "Foods · Foundation · Impact",
                   },
                   {
-                    c: "HIV household vulnerability",
+                    c: "Disease-linked household vulnerability",
                     r: "Nutrition security + livelihoods + ethical delivery systems",
                     p: "Foods · Direct · Access · Leadership",
                   },
@@ -1055,8 +1067,8 @@ function Slide({ index }: SlideProps) {
               </p>
               <p>Big Five Group (Pty) Ltd · KwaZulu-Natal · South Africa</p>
               <p>
-                Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; UNAIDS/WHO; UN SDGs; WFP
-                Zero Hunger agenda.
+                Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; WHO African Region / GHO; UN
+                SDGs; WFP Zero Hunger agenda.
               </p>
             </div>
           </TitleSlideLayout>
@@ -1663,7 +1675,7 @@ export default function StrategyDeck() {
   const onShare = async () => {
     const payload = {
       title: "Big Five Group — Strategic Overview",
-      text: "Strategic briefing: African challenges (hunger, malnutrition, HIV), how Big Five responds, and why partners work with us.",
+      text: "Strategic briefing: African challenges (hunger, malnutrition, broader disease burden), how Big Five responds, and why partners work with us.",
       url: shareUrl,
     };
     try {
@@ -1846,8 +1858,9 @@ export default function StrategyDeck() {
           Big Five Group — strategic overview
         </h2>
         <p className="text-sm sm:text-base md:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-5 sm:mb-6 px-1">
-          Hunger, child malnutrition and HIV burden — with credible UN sources — and how Big Five
-          feeds, educates and empowers. Share the link or download a print-ready PDF.
+          Hunger, child malnutrition and broader disease-linked vulnerability — with credible UN /
+          WHO sources — and how Big Five feeds, educates and empowers. Share the link or download a
+          print-ready PDF.
         </p>
         <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto">
           <button
