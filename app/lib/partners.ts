@@ -428,8 +428,13 @@ export function isPartnerAdmin(email: string): boolean {
 
 /**
  * Can this email view this partner slug?
- * Non-admins may only open their own organisation workspace.
- * Ad-hoc allowlist emails (env) may only open /partner/general.
+ *
+ * Hard isolation:
+ * - Non-admins may ONLY open the single /partner/[slug] tied to their email
+ *   (e.g. SPAR emails → /partner/spar only; dmAFRICA → /partner/dmafrica only).
+ * - They cannot open another organisation’s page even with a direct URL.
+ * - Ad-hoc PARTNER_EMAILS (env, not in registry) may only open /partner/general.
+ * - PARTNER_PORTAL_ADMINS (Craig) may open any slug for internal briefing.
  */
 export function canAccessPartnerPage(email: string, slug: string): boolean {
   if (isPartnerAdmin(email)) return true;

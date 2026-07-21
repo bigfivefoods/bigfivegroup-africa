@@ -355,9 +355,11 @@ export default function PartnerPortalClient({
             Your partnership workspace
           </h2>
           <p className="text-sm sm:text-base text-[#525252] max-w-3xl leading-relaxed mb-6">
-            Signed in to <strong className="text-black">/partner/{partner.slug}</strong> only.
-            Other organisations&apos; workspaces are not available on this login. Content below can be
-            tailored per partner as the relationship grows.
+            Signed in to <strong className="text-black">/partner/{partner.slug}</strong> only —
+            private to <strong className="text-black">{partner.organisation}</strong> authorised
+            emails
+            {isAdmin ? " (you have Group admin access to other workspaces)" : ""}. Other
+            organisations cannot open this page. Content below is tailored for this partnership.
           </p>
           {partner.notes && partner.notes.length > 0 && (
             <ul className="space-y-2 max-w-3xl mb-6">

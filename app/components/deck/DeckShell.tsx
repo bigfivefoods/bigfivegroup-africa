@@ -92,6 +92,22 @@ export const DECK_THEMES = {
     softBg: "bg-emerald-50",
     softText: "text-emerald-950",
   },
+  /** SPAR South Africa brand green (#006633 family) */
+  spar: {
+    name: "spar",
+    accent: "#006633",
+    accentDark: "#004d26",
+    gradientFrom: "#008C45",
+    gradientTo: "#006633",
+    frameFrom: "#e8f5ee",
+    frameTo: "#f3f4f6",
+    darkBg: "#002916",
+    eyebrowLight: "text-emerald-200",
+    eyebrow: "text-emerald-900",
+    softBorder: "border-emerald-200",
+    softBg: "bg-emerald-50",
+    softText: "text-emerald-950",
+  },
   orange: {
     name: "orange",
     accent: "#ea580c",

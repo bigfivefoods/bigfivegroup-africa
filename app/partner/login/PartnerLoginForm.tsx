@@ -57,7 +57,9 @@ function PartnerLoginFormInner() {
       </h1>
       <p className="text-sm sm:text-base text-white/65 leading-relaxed mb-8 text-pretty">
         Each organisation has its own private space. Enter the email Big Five registered for your
-        partnership — you will only see your organisation&apos;s briefing.
+        partnership — you will only open <strong className="text-white/90">your</strong>{" "}
+        organisation&apos;s workspace (for example SPAR logins only reach the SPAR page; other
+        partners cannot open it).
       </p>
 
       <form onSubmit={onSubmit} className="space-y-4">

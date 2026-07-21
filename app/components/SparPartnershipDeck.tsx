@@ -28,7 +28,7 @@ import {
   formatZarPrecise,
 } from "../lib/sparPartnership";
 
-const theme = DECK_THEMES.amber;
+const theme = DECK_THEMES.spar;
 const TOTAL = 17;
 const P = SPAR_PARTNERSHIP;
 const EX = P.giving.example;
@@ -59,33 +59,37 @@ function ProductThumb({
   );
 }
 
+/** SPAR-forward co-brand — SPAR mark leads; Foods is supporting product partner. */
 function CoBrandRow({ light }: { light?: boolean }) {
   const forPrint = useDeckPrintMode();
-  const h = forPrint ? "h-10" : "h-12 sm:h-14";
+  const sparH = forPrint ? "h-12" : "h-14 sm:h-16 md:h-[4.5rem]";
+  const foodsH = forPrint ? "h-9" : "h-10 sm:h-12";
   return (
-    <div className={`flex flex-wrap items-center gap-3 sm:gap-4 ${forPrint ? "mb-2" : "mb-4 sm:mb-5"}`}>
+    <div className={`flex flex-wrap items-center gap-3 sm:gap-5 ${forPrint ? "mb-2" : "mb-4 sm:mb-6"}`}>
       <div
-        className={`relative ${h} w-28 sm:w-36 bg-white rounded-lg px-2 py-1 border ${
-          light ? "border-white/30" : "border-black/10"
+        className={`relative ${sparH} w-36 sm:w-48 md:w-56 bg-white rounded-xl px-3 py-1.5 border-2 shadow-sm ${
+          light ? "border-white/40" : "border-[#006633]/25"
         }`}
       >
         <Image
           src="/partners/spar-logo.png"
           alt="SPAR"
           fill
-          className="object-contain p-1"
-          sizes="144px"
+          className="object-contain p-1.5"
+          sizes="224px"
           priority
         />
       </div>
-      <span className={`text-xl font-light ${light ? "text-white/40" : "text-black/25"}`}>×</span>
-      <div className={`relative ${h} w-28 sm:w-40`}>
+      <span className={`text-lg sm:text-xl font-light ${light ? "text-white/35" : "text-black/20"}`}>
+        ×
+      </span>
+      <div className={`relative ${foodsH} w-24 sm:w-32 opacity-95`}>
         <Image
           src={light ? "/bigfivefoods-logo-white.png" : "/bigfivefoods-logo.png"}
           alt="Big Five Foods"
           fill
           className="object-contain object-left"
-          sizes="160px"
+          sizes="128px"
           priority
         />
       </div>
@@ -109,13 +113,19 @@ function Slide({ index }: { index: number }) {
               sizes="(max-width:1280px) 100vw, 1200px"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/45" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(105deg, #002916f2 0%, #004d26e6 42%, #00291699 100%)",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001a0e]/95 via-transparent to-black/25" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
                   <DeckEyebrow light theme={theme}>
-                    SPAR PARTNERSHIP · A STORY OF GOOD · CONFIDENTIAL
+                    SPAR SOUTH AFRICA · PARTNERSHIP PRESENTATION · CONFIDENTIAL
                   </DeckEyebrow>
                   <CoBrandRow light />
                   <h2
@@ -125,7 +135,7 @@ function Slide({ index }: { index: number }) {
                   >
                     When SPAR does good,
                     <br />
-                    <span style={{ color: theme.gradientFrom }}>
+                    <span style={{ color: "#7ddea8" }}>
                       the whole community feels it.
                     </span>
                   </h2>
@@ -219,7 +229,7 @@ function Slide({ index }: { index: number }) {
                 }`}
               >
                 <div
-                  className={`font-semibold text-amber-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}
+                  className={`font-semibold text-emerald-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}
                 >
                   {c.t}
                 </div>
@@ -303,7 +313,7 @@ function Slide({ index }: { index: number }) {
               }`}
             >
               <div
-                className={`font-semibold tracking-wide uppercase text-amber-300/90 ${
+                className={`font-semibold tracking-wide uppercase text-emerald-300/90 ${
                   forPrint ? "text-[9px]" : "text-[10px]"
                 }`}
               >
@@ -344,7 +354,7 @@ function Slide({ index }: { index: number }) {
               </div>
             </div>
             <div
-              className={`rounded-2xl border-2 bg-amber-50 ${forPrint ? "p-3" : "p-5"}`}
+              className={`rounded-2xl border-2 bg-emerald-50 ${forPrint ? "p-3" : "p-5"}`}
               style={{ borderColor: theme.accentDark }}
             >
               <div
@@ -369,7 +379,7 @@ function Slide({ index }: { index: number }) {
             </div>
           </div>
           <div
-            className={`rounded-xl border border-amber-100 bg-amber-50/60 ${
+            className={`rounded-xl border border-emerald-100 bg-emerald-50/60 ${
               forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
             } text-[#404040] leading-relaxed`}
           >
@@ -463,7 +473,7 @@ function Slide({ index }: { index: number }) {
                 forPrint ? "p-2.5" : "p-4"
               }`}
             >
-              <div className={`font-semibold text-amber-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
+              <div className={`font-semibold text-emerald-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
                 SPAR’s 5%
               </div>
               <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
@@ -475,7 +485,7 @@ function Slide({ index }: { index: number }) {
                 forPrint ? "p-2.5" : "p-4"
               }`}
             >
-              <div className={`font-semibold text-amber-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
+              <div className={`font-semibold text-emerald-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
                 Big Five Foods’ 5%
               </div>
               <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
@@ -519,7 +529,7 @@ function Slide({ index }: { index: number }) {
             }`}
           >
             <div
-              className={`text-amber-300/90 uppercase tracking-wide font-semibold ${
+              className={`text-emerald-300/90 uppercase tracking-wide font-semibold ${
                 forPrint ? "text-[9px]" : "text-[10px]"
               }`}
             >
@@ -582,7 +592,7 @@ function Slide({ index }: { index: number }) {
             {P.npos[0]!.focus.map((f) => (
               <span
                 key={f}
-                className={`rounded-full border border-amber-200 bg-amber-50 font-semibold ${
+                className={`rounded-full border border-emerald-200 bg-emerald-50 font-semibold ${
                   forPrint ? "text-[9px] px-2 py-0.5" : "text-xs px-2.5 py-1"
                 }`}
                 style={{ color: theme.accentDark }}
@@ -643,7 +653,7 @@ function Slide({ index }: { index: number }) {
             {P.npos[1]!.focus.map((f) => (
               <span
                 key={f}
-                className={`rounded-full border border-amber-200 bg-amber-50 font-semibold ${
+                className={`rounded-full border border-emerald-200 bg-emerald-50 font-semibold ${
                   forPrint ? "text-[9px] px-2 py-0.5" : "text-xs px-2.5 py-1"
                 }`}
                 style={{ color: theme.accentDark }}
@@ -831,11 +841,11 @@ function Slide({ index }: { index: number }) {
             {P.honesty.map((h) => (
               <li
                 key={h}
-                className={`flex gap-2 rounded-xl border border-amber-100 bg-amber-50/50 text-[#404040] ${
+                className={`flex gap-2 rounded-xl border border-emerald-100 bg-emerald-50/50 text-[#404040] ${
                   forPrint ? "p-2 text-[10px]" : "p-3 text-sm"
                 }`}
               >
-                <span className="text-amber-800 shrink-0 font-semibold">·</span>
+                <span className="text-emerald-900 shrink-0 font-semibold">·</span>
                 <span className="leading-snug">{h}</span>
               </li>
             ))}
@@ -889,8 +899,14 @@ function Slide({ index }: { index: number }) {
               className="object-cover object-center"
               sizes="(max-width:1280px) 100vw, 1200px"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/80 to-black/55" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/40" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(105deg, #002916f5 0%, #004d26eb 45%, #002916a6 100%)",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001a0e] via-transparent to-black/30" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
@@ -950,15 +966,30 @@ export default function SparPartnershipDeck() {
   return (
     <div id="spar-partnership-deck" className="scroll-mt-28 w-full min-w-0">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
-        <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-amber-800 mb-3 font-medium">
-          SPAR PARTNERSHIP PRESENTATION · {TOTAL} SLIDES · CONFIDENTIAL
+        <div className="flex justify-center mb-4">
+          <div className="relative h-12 sm:h-14 w-40 sm:w-52 bg-white rounded-xl border-2 border-[#006633]/20 px-3 py-1 shadow-sm">
+            <Image
+              src="/partners/spar-logo.png"
+              alt="SPAR"
+              fill
+              className="object-contain p-1"
+              sizes="208px"
+              priority
+            />
+          </div>
+        </div>
+        <div
+          className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-3 font-semibold"
+          style={{ color: "#006633" }}
+        >
+          SPAR PARTNERSHIP PRESENTATION · {TOTAL} SLIDES · PRIVATE · SPAR ONLY
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-2 text-balance">
           SPAR does good — partnership deck
         </h2>
         <p className="text-sm sm:text-base text-[#525252] max-w-2xl mx-auto leading-relaxed">
-          Shareable, printable pitch for SPAR: store margin, Mandela pack pricing, sell-or-donate
-          pathways, 10% to foundations, and SPAR as the face of community good.
+          Private briefing for SPAR: store margin, Mandela pack pricing, sell-or-donate pathways,
+          10% to foundations — with SPAR as the face of community good.
         </p>
       </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -971,13 +1002,13 @@ export default function SparPartnershipDeck() {
           title="SPAR does good — Partnership Presentation"
           description="SPAR-led narrative: store margin, Mandela pack, 10% to NPOs, sell or donate."
           sharePath="/partner/spar#spar-partnership-deck"
-          shareTitle="SPAR does good — Big Five Foods partnership"
-          shareText="SPAR partnership: fortified food on shelf, healthy store margin, 10% to Restore Africa Foundation & A Heart To Help."
+          shareTitle="SPAR does good — partnership"
+          shareText="SPAR partnership briefing: fortified food on shelf, healthy store margin, 10% to foundations."
           renderSlide={(i) => <Slide index={i} />}
         />
       </div>
       <p className="mt-4 text-center text-xs text-[#737373] px-4 max-w-2xl mx-auto">
-        Keyboard: ← → · Share:{" "}
+        Keyboard: ← → · Private to SPAR partner logins ·{" "}
         <span className="font-medium text-black">/partner/spar#spar-partnership-deck</span>
         {" · "}
         PDF is exact <strong className="text-black">A4</strong> — choose{" "}
