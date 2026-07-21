@@ -1,7 +1,14 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { flushSync } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -320,7 +327,7 @@ function TitleSlideLayout({ children }: { children: React.ReactNode }) {
       className={`relative flex flex-col justify-between h-full min-h-0 box-border ${
         forPrint
           ? "p-4 md:p-5"
-          : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
+          : "min-h-[min(70dvh,36rem)] h-full p-5 sm:p-8 md:p-10 lg:p-12"
       }`}
     >
       {children}
@@ -349,17 +356,20 @@ function TitleSlide() {
             <div className="flex flex-col h-full min-h-0 justify-between">
               <div className="min-w-0 max-w-2xl">
                 <Eyebrow light>BIG FIVE FOODS · PRODUCT & IMPACT DECK</Eyebrow>
+                {/* Official white Foods mark on dark hero (no CSS invert) */}
                 <div
-                  className={`relative mb-4 sm:mb-6 ${
-                    forPrint ? "w-28 h-14" : "w-36 h-16 sm:w-44 sm:h-20 md:w-52 md:h-24"
+                  className={`relative mb-3 sm:mb-5 ${
+                    forPrint
+                      ? "w-24 h-24"
+                      : "w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36"
                   }`}
                 >
                   <Image
-                    src="/bigfivefoods-logo.png"
+                    src="/bigfivefoods-logo-white.png"
                     alt="Big Five Foods"
                     fill
-                    className="object-contain object-left brightness-0 invert"
-                    sizes="208px"
+                    className="object-contain object-left drop-shadow-md"
+                    sizes="144px"
                     priority
                   />
                 </div>
@@ -1224,9 +1234,13 @@ function ProductDeepDive({ rangeIndex }: { rangeIndex: number }) {
 const A4 = {
   landscape: { w: "297mm", h: "210mm" },
   portrait: { w: "210mm", h: "297mm" },
-  margin: "6mm",
+  padMm: 5,
 } as const;
 
+const PX_PER_MM = 96 / 25.4;
+const PRINT_PAGE_NAME = "foods-deck";
+
+/** WYSIWYG: A4 pages hold scaled clones of the live digital slides. */
 const PRINT_STYLES = `
   #${PRINT_ROOT_ID} {
     position: fixed;
@@ -1242,29 +1256,46 @@ const PRINT_STYLES = `
     box-sizing: border-box;
     overflow: hidden;
     margin: 0 0 12px;
-    background: #fff;
+    background: #fffbeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   #${PRINT_ROOT_ID}[data-orientation="landscape"] .deck-print-page {
-    width: 297mm; height: 210mm; padding: 6mm;
+    width: 297mm;
+    height: 210mm;
+    padding: ${A4.padMm}mm;
   }
   #${PRINT_ROOT_ID}[data-orientation="portrait"] .deck-print-page {
-    width: 210mm; height: 297mm; padding: 6mm;
+    width: 210mm;
+    height: 297mm;
+    padding: ${A4.padMm}mm;
   }
-  #${PRINT_ROOT_ID} .deck-print-page > * {
+  #${PRINT_ROOT_ID} .deck-print-scale-wrap {
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  #${PRINT_ROOT_ID} .deck-print-slide-clone {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: top left;
+    overflow: hidden;
+  }
+  #${PRINT_ROOT_ID} .deck-print-slide-clone > * {
     width: 100% !important;
     height: 100% !important;
-    border-radius: 10px !important;
+    max-width: none !important;
+    max-height: none !important;
+    box-sizing: border-box !important;
   }
-  #${PRINT_ROOT_ID},
-  #${PRINT_ROOT_ID} * {
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-    -webkit-filter: none !important;
-    backdrop-filter: none !important;
+  #${PRINT_ROOT_ID} img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
-  #${PRINT_ROOT_ID} .premium-button::before { content: none !important; display: none !important; }
-  #${PRINT_ROOT_ID} [class*="blur-"] { display: none !important; }
   #${PRINT_ROOT_ID} a.deck-email-cta,
   #${PRINT_ROOT_ID} a.deck-email-cta * {
     color: #000000 !important;
@@ -1274,8 +1305,8 @@ const PRINT_STYLES = `
     background-color: #ffffff !important;
   }
 
-  @page foods-deck-landscape { size: A4 landscape; margin: 0; }
-  @page foods-deck-portrait { size: A4 portrait; margin: 0; }
+  @page ${PRINT_PAGE_NAME}-landscape { size: A4 landscape; margin: 0; }
+  @page ${PRINT_PAGE_NAME}-portrait { size: A4 portrait; margin: 0; }
 
   @media print {
     @page { size: A4 landscape; margin: 0; }
@@ -1299,10 +1330,12 @@ const PRINT_STYLES = `
     }
     #${PRINT_ROOT_ID},
     #${PRINT_ROOT_ID} * {
-      box-shadow: none !important;
-      filter: none !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
+    }
+    #${PRINT_ROOT_ID} img {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
     #${PRINT_ROOT_ID} .deck-print-page {
       box-sizing: border-box !important;
@@ -1311,18 +1344,21 @@ const PRINT_STYLES = `
       page-break-after: always;
       break-after: page;
       page-break-inside: avoid;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
     #${PRINT_ROOT_ID}[data-orientation="landscape"] .deck-print-page {
-      page: foods-deck-landscape;
+      page: ${PRINT_PAGE_NAME}-landscape;
       width: ${A4.landscape.w} !important;
       height: ${A4.landscape.h} !important;
-      padding: ${A4.margin} !important;
+      padding: ${A4.padMm}mm !important;
     }
     #${PRINT_ROOT_ID}[data-orientation="portrait"] .deck-print-page {
-      page: foods-deck-portrait;
+      page: ${PRINT_PAGE_NAME}-portrait;
       width: ${A4.portrait.w} !important;
       height: ${A4.portrait.h} !important;
-      padding: ${A4.margin} !important;
+      padding: ${A4.padMm}mm !important;
     }
     #${PRINT_ROOT_ID} .deck-print-page:last-child {
       page-break-after: auto;
@@ -1349,32 +1385,14 @@ function printPageCss(orientation: PrintOrientation) {
   `;
 }
 
-function PrintDeckPortal({
-  active,
-  orientation,
-}: {
-  active: boolean;
-  orientation: PrintOrientation;
-}) {
-  if (!active || typeof document === "undefined") return null;
-
-  return createPortal(
-    <PrintModeContext.Provider value={{ active: true, orientation }}>
-      <div id={PRINT_ROOT_ID} aria-hidden="true" data-orientation={orientation}>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: PRINT_STYLES + printPageCss(orientation),
-          }}
-        />
-        {Array.from({ length: TOTAL }, (_, i) => (
-          <div key={i} className="deck-print-page">
-            <Slide index={i} />
-          </div>
-        ))}
-      </div>
-    </PrintModeContext.Provider>,
-    document.body
-  );
+function a4ContentBoxPx(orientation: PrintOrientation) {
+  const pageWmm = orientation === "landscape" ? 297 : 210;
+  const pageHmm = orientation === "landscape" ? 210 : 297;
+  const pad = A4.padMm * PX_PER_MM;
+  return {
+    w: pageWmm * PX_PER_MM - pad * 2,
+    h: pageHmm * PX_PER_MM - pad * 2,
+  };
 }
 
 export default function FoodsStrategyDeck() {
@@ -1384,6 +1402,8 @@ export default function FoodsStrategyDeck() {
   const [printMode, setPrintMode] = useState(false);
   const [preparingPdf, setPreparingPdf] = useState(false);
   const [printOrientation, setPrintOrientation] = useState<PrintOrientation>("landscape");
+  const slideViewportRef = useRef<HTMLDivElement>(null);
+  const resumeIndexRef = useRef(0);
 
   const go = useCallback((next: number) => {
     setIndex(Math.max(0, Math.min(TOTAL - 1, next)));
@@ -1391,7 +1411,7 @@ export default function FoodsStrategyDeck() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (printMode) return;
+      if (printMode || preparingPdf) return;
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         go(index + 1);
@@ -1404,8 +1424,12 @@ export default function FoodsStrategyDeck() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, index, fullscreen, printMode]);
+  }, [go, index, fullscreen, printMode, preparingPdf]);
 
+  /**
+   * WYSIWYG PDF — densify live slides, clone each into an A4 page, scale to fit.
+   * Matches the digital deck and keeps content inside one page.
+   */
   useEffect(() => {
     if (!printMode) return;
 
@@ -1414,34 +1438,168 @@ export default function FoodsStrategyDeck() {
     root.setAttribute("data-deck-print", printOrientation);
     root.setAttribute("data-deck-print-active", "true");
 
+    const waitForImages = async (node: ParentNode) => {
+      const imgs = Array.from(node.querySelectorAll("img"));
+      await Promise.all(
+        imgs.map(
+          (img) =>
+            new Promise<void>((resolve) => {
+              const el = img as HTMLImageElement;
+              const done = () => resolve();
+              if (el.complete && el.naturalWidth > 0) {
+                done();
+                return;
+              }
+              el.addEventListener("load", done, { once: true });
+              el.addEventListener("error", done, { once: true });
+              try {
+                el.loading = "eager";
+                if (typeof el.decode === "function") {
+                  el.decode().then(done).catch(done);
+                }
+              } catch {
+                /* ignore */
+              }
+              window.setTimeout(done, 5000);
+            })
+        )
+      );
+    };
+
     const finish = () => {
       if (cancelled) return;
+      cancelled = true;
       root.removeAttribute("data-deck-print");
       root.removeAttribute("data-deck-print-active");
+      const portal = document.getElementById(PRINT_ROOT_ID);
+      if (portal) portal.remove();
+      flushSync(() => setIndex(resumeIndexRef.current));
       setPrintMode(false);
       setPreparingPdf(false);
     };
 
-    const t = window.setTimeout(() => {
+    const run = async () => {
+      await new Promise((r) => window.setTimeout(r, 80));
       if (cancelled) return;
+
+      let portal = document.getElementById(PRINT_ROOT_ID);
+      if (!portal) {
+        portal = document.createElement("div");
+        portal.id = PRINT_ROOT_ID;
+        document.body.appendChild(portal);
+      }
+      portal.setAttribute("aria-hidden", "true");
+      portal.setAttribute("data-orientation", printOrientation);
+      portal.innerHTML = "";
+      const style = document.createElement("style");
+      style.textContent = PRINT_STYLES + printPageCss(printOrientation);
+      portal.appendChild(style);
+
+      const viewport = slideViewportRef.current;
+      if (!viewport) {
+        finish();
+        return;
+      }
+
+      const fallbackBox = a4ContentBoxPx(printOrientation);
+
+      for (let i = 0; i < TOTAL; i++) {
+        if (cancelled) return;
+        flushSync(() => setIndex(i));
+        await new Promise<void>((r) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => r()))
+        );
+        await waitForImages(viewport);
+        await new Promise((r) => window.setTimeout(r, 80));
+
+        const source =
+          (Array.from(viewport.children).find(
+            (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
+          ) as HTMLElement | undefined) ?? viewport;
+        const w = Math.max(1, viewport.clientWidth);
+        const inner = source.firstElementChild as HTMLElement | null;
+        const h = Math.max(
+          1,
+          source.scrollHeight,
+          source.offsetHeight,
+          inner?.scrollHeight ?? 0,
+          viewport.clientHeight
+        );
+
+        const page = document.createElement("div");
+        page.className = "deck-print-page";
+        const scaleWrap = document.createElement("div");
+        scaleWrap.className = "deck-print-scale-wrap";
+        const cloneHost = document.createElement("div");
+        cloneHost.className = "deck-print-slide-clone";
+        cloneHost.style.width = `${w}px`;
+        cloneHost.style.height = `${h}px`;
+
+        const clone = source.cloneNode(true) as HTMLElement;
+        clone.style.width = "100%";
+        clone.style.height = `${h}px`;
+        clone.style.minHeight = `${h}px`;
+        clone.style.maxWidth = "none";
+        clone.style.maxHeight = "none";
+        clone.style.overflow = "hidden";
+        clone.querySelectorAll("img").forEach((node) => {
+          const img = node as HTMLImageElement;
+          if (img.currentSrc) img.src = img.currentSrc;
+          else if (img.src) img.setAttribute("src", img.src);
+          img.loading = "eager";
+          img.style.opacity = "1";
+          img.style.visibility = "visible";
+        });
+        clone.querySelectorAll("button, a").forEach((el) => {
+          (el as HTMLElement).style.pointerEvents = "none";
+        });
+
+        cloneHost.appendChild(clone);
+        scaleWrap.appendChild(cloneHost);
+        page.appendChild(scaleWrap);
+        portal.appendChild(page);
+
+        await new Promise<void>((r) => requestAnimationFrame(() => r()));
+        const cs = window.getComputedStyle(page);
+        const padX =
+          (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+        const padY =
+          (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+        const pageW = page.clientWidth || page.getBoundingClientRect().width;
+        const pageH = page.clientHeight || page.getBoundingClientRect().height;
+        const availW = pageW > padX ? pageW - padX : fallbackBox.w;
+        const availH = pageH > padY ? pageH - padY : fallbackBox.h;
+        const scale = Math.min(availW / w, availH / h, 1);
+
+        scaleWrap.style.width = `${w * scale}px`;
+        scaleWrap.style.height = `${h * scale}px`;
+        cloneHost.style.transform = `scale(${scale})`;
+      }
+
+      await waitForImages(portal);
+      await new Promise((r) => window.setTimeout(r, 150));
+      if (cancelled) return;
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           if (cancelled) return;
           window.print();
         });
       });
-    }, 600);
+    };
 
+    void run();
     window.addEventListener("afterprint", finish);
-    const fallback = window.setTimeout(finish, 120_000);
+    const fallback = window.setTimeout(finish, 180_000);
 
     return () => {
       cancelled = true;
       root.removeAttribute("data-deck-print");
       root.removeAttribute("data-deck-print-active");
-      window.clearTimeout(t);
       window.clearTimeout(fallback);
       window.removeEventListener("afterprint", finish);
+      const portal = document.getElementById(PRINT_ROOT_ID);
+      if (portal) portal.remove();
     };
   }, [printMode, printOrientation]);
 
@@ -1487,12 +1645,14 @@ export default function FoodsStrategyDeck() {
   };
 
   const onDownload = (orientation: PrintOrientation = printOrientation) => {
+    resumeIndexRef.current = index;
     setPrintOrientation(orientation);
     setPreparingPdf(true);
     setPrintMode(true);
   };
 
   const deck = (
+    <PrintModeContext.Provider value={{ active: printMode, orientation: printOrientation }}>
     <div
       className={`flex flex-col min-w-0 w-full max-w-full ${
         fullscreen
@@ -1579,6 +1739,7 @@ export default function FoodsStrategyDeck() {
       </div>
 
       <div
+        ref={slideViewportRef}
         className={`relative flex-1 min-h-0 min-w-0 overflow-hidden ${
           fullscreen
             ? "min-h-0"
@@ -1629,6 +1790,7 @@ export default function FoodsStrategyDeck() {
         </button>
       </div>
     </div>
+    </PrintModeContext.Provider>
   );
 
   return (
@@ -1690,15 +1852,12 @@ export default function FoodsStrategyDeck() {
         Keyboard: ← → · Share:{" "}
         <span className="font-medium text-black">/foods#foods-deck</span>
         {" · "}
-        PDF is exact <strong className="text-black">A4</strong> with{" "}
-        <strong className="text-black">8mm</strong> margins — choose{" "}
-        <strong className="text-black">Save as PDF</strong>
+        PDF: choose <strong className="text-black">Save as PDF</strong>
         {preparingPdf
-          ? ` · paper: ${printOrientation === "landscape" ? "Landscape" : "Portrait"}`
+          ? ` · preparing ${printOrientation === "landscape" ? "Landscape" : "Portrait"} pages…`
           : ""}
-        .
+        . Each slide is scaled to fit one A4 page (matches the on-screen deck).
       </p>
-      <PrintDeckPortal active={printMode} orientation={printOrientation} />
     </div>
   );
 }
