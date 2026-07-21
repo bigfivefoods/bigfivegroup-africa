@@ -1164,11 +1164,12 @@ function Slide({
                   {cfg.ctaEmail && (
                     <a
                       href={`mailto:${cfg.ctaEmail}`}
-                      className={`deck-email-cta premium-button inline-flex items-center bg-white text-black rounded-full font-semibold ${
+                      className={`deck-email-cta premium-button inline-flex items-center justify-center rounded-full font-semibold ${
                         forPrint ? "px-3 py-1.5 text-[10px]" : "px-6 py-3 text-sm"
                       }`}
+                      style={{ color: "#000000", backgroundColor: "#ffffff" }}
                     >
-                      Email {cfg.ctaEmail}
+                      Email: {cfg.ctaEmail}
                     </a>
                   )}
                 </div>

@@ -1058,10 +1058,11 @@ function Slide({ index }: { index: number }) {
                   href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
                     "Investor presentation — Big Five Group"
                   )}`}
-                  className="deck-email-cta inline-flex items-center justify-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-semibold"
+                  className="deck-email-cta inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
+                  style={{ color: "#000000", backgroundColor: "#ffffff" }}
                 >
                   Email: {CONTACT_EMAIL}
-                  <ArrowRight className="w-4 h-4 text-black" />
+                  <ArrowRight className="w-4 h-4" style={{ color: "#000000" }} />
                 </a>
                 <Link
                   href="/investor"

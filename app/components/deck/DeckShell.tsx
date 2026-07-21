@@ -229,6 +229,15 @@ function buildPrintStyles(printRootId: string, pageName: string) {
   }
   #${printRootId} .premium-button::before { content: none !important; display: none !important; }
   #${printRootId} [class*="blur-"] { display: none !important; }
+  /* Email CTAs: black on white even when print prep sets a { color: inherit } */
+  #${printRootId} a.deck-email-cta,
+  #${printRootId} a.deck-email-cta * {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+  }
+  #${printRootId} a.deck-email-cta {
+    background-color: #ffffff !important;
+  }
 
   @page ${pageName}-landscape { size: A4 landscape; margin: 0; }
   @page ${pageName}-portrait { size: A4 portrait; margin: 0; }
@@ -285,11 +294,13 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       break-after: auto;
     }
     #${printRootId} a { text-decoration: none !important; color: inherit !important; }
-    /* White email CTAs must stay black — color:inherit would pull white from dark slides */
     #${printRootId} a.deck-email-cta,
     #${printRootId} a.deck-email-cta * {
       color: #000000 !important;
       -webkit-text-fill-color: #000000 !important;
+    }
+    #${printRootId} a.deck-email-cta {
+      background-color: #ffffff !important;
     }
   }
 `;

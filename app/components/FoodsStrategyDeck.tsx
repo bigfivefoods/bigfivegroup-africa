@@ -923,18 +923,22 @@ function CtaSlide() {
               >
                 Log in & order
               </a>
+              <a
+                href="mailto:craig@bigfivegroup.africa?subject=Big%20Five%20Foods%20—%20order"
+                className={`deck-email-cta premium-button inline-flex items-center justify-center rounded-full font-semibold ${
+                  forPrint ? "px-3 py-1.5 text-[10px]" : "px-7 py-3.5 text-sm"
+                }`}
+                style={{ color: "#000000", backgroundColor: "#ffffff" }}
+              >
+                Email: craig@bigfivegroup.africa
+              </a>
               {!forPrint && (
-                <>
-                  <Link href="/connect" className="premium-button inline-flex items-center justify-center border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10">
-                    Partner enquiry
-                  </Link>
-                  <a
-                    href="mailto:craig@bigfivegroup.africa?subject=Big%20Five%20Foods%20—%20order"
-                    className="deck-email-cta premium-button inline-flex items-center justify-center bg-white text-black px-7 py-3.5 rounded-full text-sm font-semibold border border-white/20"
-                  >
-                    Email: craig@bigfivegroup.africa
-                  </a>
-                </>
+                <Link
+                  href="/connect"
+                  className="premium-button inline-flex items-center justify-center border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
+                >
+                  Partner enquiry
+                </Link>
               )}
             </div>
           </div>
@@ -1253,6 +1257,14 @@ const PRINT_STYLES = `
   }
   #${PRINT_ROOT_ID} .premium-button::before { content: none !important; display: none !important; }
   #${PRINT_ROOT_ID} [class*="blur-"] { display: none !important; }
+  #${PRINT_ROOT_ID} a.deck-email-cta,
+  #${PRINT_ROOT_ID} a.deck-email-cta * {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+  }
+  #${PRINT_ROOT_ID} a.deck-email-cta {
+    background-color: #ffffff !important;
+  }
 
   @page foods-deck-landscape { size: A4 landscape; margin: 0; }
   @page foods-deck-portrait { size: A4 portrait; margin: 0; }
@@ -1313,6 +1325,9 @@ const PRINT_STYLES = `
     #${PRINT_ROOT_ID} a.deck-email-cta * {
       color: #000000 !important;
       -webkit-text-fill-color: #000000 !important;
+    }
+    #${PRINT_ROOT_ID} a.deck-email-cta {
+      background-color: #ffffff !important;
     }
   }
 `;
