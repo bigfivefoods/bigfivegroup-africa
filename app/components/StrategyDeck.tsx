@@ -128,21 +128,38 @@ const PILLAR_BRIEFS: Record<string, string> = {
 const GROUP_OVERVIEW =
   "Big Five Group is a proudly African enterprise — African for Africa — headquartered in KwaZulu-Natal. We are not an import-only story: ten pillars share governance, mission and values so regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership compound as one system built on the continent, for the continent.";
 
+/** Shorter copy for A4 landscape PDF so the pillar grid stays fully visible. */
+const GROUP_OVERVIEW_PRINT =
+  "Proudly African enterprise — African for Africa — HQ in KwaZulu-Natal. Ten pillars share governance, mission and values: production, fortified nutrition, last-mile, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership — one system built on the continent, for the continent.";
+
+const PILLAR_BRIEFS_PRINT: Record<string, string> = {
+  agri: "Regenerative production & smallholder supply.",
+  foods: "Fortified, affordable nutrition for homes, schools & institutions.",
+  direct: "Last-mile & SANTACO containers — food, surveys, Super-Cube®.",
+  access: "Tenders, CSI and development capital pathways.",
+  connect: "SupplierAdvisor® ethical commerce & verification.",
+  leadership: "Super-Cube® ethical leadership for public & private life.",
+  foundation: "Registered philanthropy with programme proof.",
+  impact: "Cross-pillar PMO — gates, KPIs, health-system pathways.",
+  global: "Corridors linking African capacity to world markets.",
+  royal: "Royal & tribal partnership for African legitimacy.",
+};
+
 /**
  * Print/PDF context.
- * - `active`: true while preparing/exporting PDF (lock overflow, fill viewport height).
- * - `compact`: dense typography for legacy A4 squeeze (kept off for WYSIWYG so PDF matches digital).
+ * - `active`: true while preparing/exporting PDF.
+ * - `compact`: dense typography so tall slides fit A4 landscape without clipping.
  */
 const PrintModeContext = createContext<{ active: boolean; compact: boolean }>({
   active: false,
   compact: false,
 });
-/** Dense print typography — only when compact is on (not used for WYSIWYG PDF). */
+/** Dense A4-fit typography (on during PDF export). */
 function usePrintMode() {
   const ctx = useContext(PrintModeContext);
   return ctx.active && ctx.compact;
 }
-/** True while cloning slides for PDF — match digital layout but lock overflow/height. */
+/** True while preparing/exporting PDF. */
 function usePdfExport() {
   return useContext(PrintModeContext).active;
 }
@@ -200,12 +217,14 @@ function SlideShell({
         <div className="pointer-events-none absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-violet-600/20 blur-3xl" />
       )}
       <div
-        className={`relative min-h-full flex flex-col h-full ${
+        className={`relative min-h-full flex flex-col h-full box-border ${
           zeroPad
             ? "p-0"
             : forPrint
-              ? "p-8 md:p-10"
-              : "p-5 sm:p-8 md:p-10 lg:p-12"
+              ? "p-4 sm:p-5 md:p-6"
+              : pdf
+                ? "p-4 sm:p-6 md:p-8"
+                : "p-5 sm:p-8 md:p-10 lg:p-12"
         }`}
       >
         {children}
@@ -315,56 +334,7 @@ function Slide({ index }: SlideProps) {
       );
 
     case 2:
-      return (
-        <SlideShell>
-          <Eyebrow>WHO WE ARE · PROUDLY AFRICAN</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4 text-balance">
-            Proudly African. Built for Africa.
-          </h2>
-          <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-4">
-            This is a <strong className="text-black">proudly African initiative</strong>. Big Five
-            Group is <strong className="text-black">proudly African for Africa</strong> — HQ on the
-            continent, solutions designed for African households, schools, governments and markets,
-            with African partners and delivery capacity attached.
-          </p>
-
-          {/* Group overview */}
-          <div className="rounded-2xl border border-violet-200/80 bg-gradient-to-br from-violet-50 to-indigo-50/60 p-4 sm:p-5 mb-4 sm:mb-5 flex gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-xl bg-violet-700 text-white flex items-center justify-center shrink-0">
-              <Layers className="w-5 h-5" />
-            </div>
-            <div className="min-w-0">
-              <div className="text-[10px] tracking-[2px] text-violet-800 font-semibold mb-1">
-                BIG FIVE GROUP · AFRICAN FOR AFRICA
-              </div>
-              <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">{GROUP_OVERVIEW}</p>
-            </div>
-          </div>
-
-          {/* Ten pillars with short briefs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-2.5">
-            {companies.map((c) => (
-              <div
-                key={c.slug}
-                className="rounded-xl border border-black/10 bg-gradient-to-b from-white to-[#fafafa] p-3 flex gap-2.5 min-w-0"
-              >
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                  style={{ backgroundColor: `${c.color}18`, color: c.color }}
-                >
-                  <CompanyIcon name={c.icon} size={16} />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs font-semibold text-black truncate">{c.name}</div>
-                  <p className="text-[11px] sm:text-xs text-[#525252] leading-snug mt-0.5">
-                    {PILLAR_BRIEFS[c.slug] ?? c.tagline}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </SlideShell>
-      );
+      return <WhoWeAreSlide />;
 
     case 3:
       return <VisionMissionValuesSlide />;
@@ -527,62 +497,7 @@ function Slide({ index }: SlideProps) {
       );
 
     case 8:
-      return (
-        <SlideShell dark>
-          <Eyebrow light>OUR RESPONSE · AFRICAN FOR AFRICA</Eyebrow>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 sm:mb-4">
-            Feed. Educate. Empower.
-          </h2>
-          <p className="text-sm text-white/70 leading-relaxed max-w-3xl mb-6 sm:mb-8">
-            A proudly African mission: African production, African fortification, African last-mile
-            and African programme delivery — so the continent is not only briefed about, but built
-            by and for its people.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-            {[
-              {
-                icon: UtensilsCrossed,
-                t: "Feed",
-                color: "#6ee7b7",
-                d: "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for African households, schools and institutions.",
-                proof:
-                  "150k meals · 100k children · ~45% GP · ~50% cheaper vs wholesale/retail (mgmt/internal)",
-              },
-              {
-                icon: GraduationCap,
-                t: "Educate",
-                color: "#fcd34d",
-                d: "Leadership: Super-Cube® so decisions in business and public life are ethical, whole-person and Africa-centred.",
-                proof: "Capability for nations & enterprises",
-              },
-              {
-                icon: Shield,
-                t: "Empower",
-                color: "#7dd3fc",
-                d: "Direct, Access, Connect, Global: distribution, capital pathways, SupplierAdvisor® commerce and corridors that keep African value on African terms.",
-                proof: "Verified trade · containers · institutional access",
-              },
-            ].map((x) => (
-              <div
-                key={x.t}
-                className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 sm:p-6 min-w-0"
-              >
-                <x.icon className="w-7 h-7 mb-3" style={{ color: x.color }} />
-                <div className="text-2xl font-semibold tracking-tight mb-3" style={{ color: x.color }}>
-                  {x.t}
-                </div>
-                <p className="text-sm text-white/70 leading-relaxed mb-4">{x.d}</p>
-                <p className="text-xs font-medium text-white/45">{x.proof}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-sm text-white/50 leading-relaxed max-w-3xl">
-            Foundation, Impact and Royal cut across all three — funding, programme delivery, and
-            close ties with planned partnership alongside the royal family and tribal authorities —
-            African legitimacy for African programmes.
-          </p>
-        </SlideShell>
-      );
+      return <FeedEducateEmpowerSlide />;
 
     case 9:
       return (
@@ -1227,6 +1142,234 @@ function GroupTitleSlide() {
   );
 }
 
+/** Who we are — densifies for A4 landscape so 10 pillars never clip. */
+function WhoWeAreSlide() {
+  const forPrint = usePrintMode();
+  const pdf = usePdfExport();
+  const dense = forPrint || pdf;
+  const briefs = dense ? PILLAR_BRIEFS_PRINT : PILLAR_BRIEFS;
+  const overview = dense ? GROUP_OVERVIEW_PRINT : GROUP_OVERVIEW;
+
+  return (
+    <SlideShell>
+      <div className="flex flex-col h-full min-h-0">
+        <div className="shrink-0">
+          <Eyebrow>WHO WE ARE · PROUDLY AFRICAN</Eyebrow>
+          <h2
+            className={`font-semibold tracking-tighter text-balance ${
+              dense
+                ? "text-xl sm:text-2xl mb-1.5"
+                : "text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4"
+            }`}
+          >
+            Proudly African. Built for Africa.
+          </h2>
+          <p
+            className={`text-[#525252] leading-snug max-w-3xl ${
+              dense ? "text-[11px] sm:text-xs mb-2" : "text-sm sm:text-base leading-relaxed mb-4"
+            }`}
+          >
+            This is a <strong className="text-black">proudly African initiative</strong>. Big Five
+            Group is <strong className="text-black">proudly African for Africa</strong> — HQ on the
+            continent, solutions designed for African households, schools, governments and markets,
+            with African partners and delivery capacity attached.
+          </p>
+        </div>
+
+        <div
+          className={`rounded-xl sm:rounded-2xl border border-violet-200/80 bg-gradient-to-br from-violet-50 to-indigo-50/60 flex gap-2.5 min-w-0 shrink-0 ${
+            dense ? "p-2.5 mb-2" : "p-4 sm:p-5 mb-4 sm:mb-5 gap-3"
+          }`}
+        >
+          <div
+            className={`rounded-lg bg-violet-700 text-white flex items-center justify-center shrink-0 ${
+              dense ? "w-8 h-8" : "w-10 h-10 rounded-xl"
+            }`}
+          >
+            <Layers className={dense ? "w-4 h-4" : "w-5 h-5"} />
+          </div>
+          <div className="min-w-0">
+            <div
+              className={`tracking-[2px] text-violet-800 font-semibold mb-0.5 ${
+                dense ? "text-[9px]" : "text-[10px] mb-1"
+              }`}
+            >
+              BIG FIVE GROUP · AFRICAN FOR AFRICA
+            </div>
+            <p
+              className={`text-[#404040] ${
+                dense ? "text-[10px] sm:text-[11px] leading-snug" : "text-xs sm:text-sm leading-relaxed"
+              }`}
+            >
+              {overview}
+            </p>
+          </div>
+        </div>
+
+        <div
+          className={`grid min-h-0 flex-1 content-start ${
+            dense
+              ? "grid-cols-5 gap-1.5"
+              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-2.5"
+          }`}
+        >
+          {companies.map((c) => (
+            <div
+              key={c.slug}
+              className={`rounded-lg sm:rounded-xl border border-black/10 bg-gradient-to-b from-white to-[#fafafa] flex min-w-0 ${
+                dense ? "flex-col gap-1 p-2" : "gap-2.5 p-3"
+              }`}
+            >
+              <div
+                className={`rounded-md flex items-center justify-center shrink-0 ${
+                  dense ? "w-6 h-6" : "w-8 h-8 rounded-lg"
+                }`}
+                style={{ backgroundColor: `${c.color}18`, color: c.color }}
+              >
+                <CompanyIcon name={c.icon} size={dense ? 12 : 16} />
+              </div>
+              <div className="min-w-0">
+                <div
+                  className={`font-semibold text-black truncate ${
+                    dense ? "text-[10px]" : "text-xs"
+                  }`}
+                >
+                  {c.name}
+                </div>
+                <p
+                  className={`text-[#525252] leading-snug mt-0.5 ${
+                    dense ? "text-[9px] line-clamp-3" : "text-[11px] sm:text-xs"
+                  }`}
+                >
+                  {briefs[c.slug] ?? c.tagline}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </SlideShell>
+  );
+}
+
+/** Feed · Educate · Empower — densifies for A4 landscape. */
+function FeedEducateEmpowerSlide() {
+  const forPrint = usePrintMode();
+  const pdf = usePdfExport();
+  const dense = forPrint || pdf;
+
+  const pillars = [
+    {
+      icon: UtensilsCrossed,
+      t: "Feed",
+      color: "#6ee7b7",
+      d: dense
+        ? "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable for African households, schools and institutions."
+        : "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for African households, schools and institutions.",
+      proof: dense
+        ? "150k meals · 100k children · ~45% GP · ~50% cheaper (mgmt/internal)"
+        : "150k meals · 100k children · ~45% GP · ~50% cheaper vs wholesale/retail (mgmt/internal)",
+    },
+    {
+      icon: GraduationCap,
+      t: "Educate",
+      color: "#fcd34d",
+      d: dense
+        ? "Leadership: Super-Cube® — ethical, whole-person, Africa-centred decisions in business and public life."
+        : "Leadership: Super-Cube® so decisions in business and public life are ethical, whole-person and Africa-centred.",
+      proof: "Capability for nations & enterprises",
+    },
+    {
+      icon: Shield,
+      t: "Empower",
+      color: "#7dd3fc",
+      d: dense
+        ? "Direct, Access, Connect, Global: distribution, capital, SupplierAdvisor® and corridors — African value on African terms."
+        : "Direct, Access, Connect, Global: distribution, capital pathways, SupplierAdvisor® commerce and corridors that keep African value on African terms.",
+      proof: "Verified trade · containers · institutional access",
+    },
+  ];
+
+  return (
+    <SlideShell dark>
+      <div className="flex flex-col h-full min-h-0">
+        <div className="shrink-0">
+          <Eyebrow light>OUR RESPONSE · AFRICAN FOR AFRICA</Eyebrow>
+          <h2
+            className={`font-semibold tracking-tighter ${
+              dense ? "text-xl sm:text-2xl mb-1.5" : "text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4"
+            }`}
+          >
+            Feed. Educate. Empower.
+          </h2>
+          <p
+            className={`text-white/70 max-w-3xl ${
+              dense
+                ? "text-[11px] sm:text-xs leading-snug mb-2.5"
+                : "text-sm leading-relaxed mb-6 sm:mb-8"
+            }`}
+          >
+            A proudly African mission: African production, fortification, last-mile and programme
+            delivery — so the continent is not only briefed about, but built by and for its people.
+          </p>
+        </div>
+
+        <div
+          className={`grid min-h-0 flex-1 content-start ${
+            dense ? "grid-cols-3 gap-2" : "grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5"
+          }`}
+        >
+          {pillars.map((x) => (
+            <div
+              key={x.t}
+              className={`rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.05] min-w-0 flex flex-col ${
+                dense ? "p-2.5 sm:p-3" : "p-5 sm:p-6"
+              }`}
+            >
+              <x.icon
+                className={dense ? "w-5 h-5 mb-1.5" : "w-7 h-7 mb-3"}
+                style={{ color: x.color }}
+              />
+              <div
+                className={`font-semibold tracking-tight ${dense ? "text-base mb-1" : "text-2xl mb-3"}`}
+                style={{ color: x.color }}
+              >
+                {x.t}
+              </div>
+              <p
+                className={`text-white/70 flex-1 ${
+                  dense ? "text-[10px] sm:text-[11px] leading-snug mb-2" : "text-sm leading-relaxed mb-4"
+                }`}
+              >
+                {x.d}
+              </p>
+              <p
+                className={`font-medium text-white/45 ${
+                  dense ? "text-[9px] sm:text-[10px] leading-snug" : "text-xs"
+                }`}
+              >
+                {x.proof}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <p
+          className={`text-white/50 shrink-0 ${
+            dense
+              ? "mt-2 text-[10px] sm:text-[11px] leading-snug max-w-4xl"
+              : "mt-6 text-sm leading-relaxed max-w-3xl"
+          }`}
+        >
+          Foundation, Impact and Royal cut across all three — funding, programme delivery, and close
+          ties with planned partnership alongside the royal family and tribal authorities — African
+          legitimacy for African programmes.
+        </p>
+      </div>
+    </SlideShell>
+  );
+}
+
 /** Compact layout so Vision · Mission · Values + five values fit on A4 landscape PDF */
 function VisionMissionValuesSlide() {
   const forPrint = usePrintMode();
@@ -1683,7 +1826,15 @@ export default function StrategyDeck() {
             (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
           ) as HTMLElement | undefined) ?? viewport;
         const w = Math.max(1, viewport.clientWidth);
-        const h = Math.max(1, viewport.clientHeight);
+        // Full content height (scrollHeight includes clipped overflow) so tall slides aren't cut off
+        const inner = source.firstElementChild as HTMLElement | null;
+        const h = Math.max(
+          1,
+          source.scrollHeight,
+          source.offsetHeight,
+          inner?.scrollHeight ?? 0,
+          viewport.clientHeight
+        );
 
         const page = document.createElement("div");
         page.className = "deck-print-page";
@@ -1698,9 +1849,11 @@ export default function StrategyDeck() {
 
         const clone = source.cloneNode(true) as HTMLElement;
         clone.style.width = "100%";
-        clone.style.height = "100%";
+        clone.style.height = `${h}px`;
+        clone.style.minHeight = `${h}px`;
         clone.style.maxWidth = "none";
         clone.style.maxHeight = "none";
+        clone.style.overflow = "hidden";
         clone.querySelectorAll("img").forEach((node) => {
           const img = node as HTMLImageElement;
           if (img.currentSrc) img.src = img.currentSrc;
@@ -1729,7 +1882,8 @@ export default function StrategyDeck() {
         const pageH = page.clientHeight || page.getBoundingClientRect().height;
         const availW = pageW > padX ? pageW - padX : fallbackBox.w;
         const availH = pageH > padY ? pageH - padY : fallbackBox.h;
-        const scale = Math.min(availW / w, availH / h);
+        // Fit entire slide (including densified content) into one A4 page
+        const scale = Math.min(availW / w, availH / h, 1);
 
         // Layout box = visual size after scale (top-left origin) so page flex-centers perfectly
         scaleWrap.style.width = `${w * scale}px`;
@@ -1813,7 +1967,7 @@ export default function StrategyDeck() {
   };
 
   const deck = (
-    <PrintModeContext.Provider value={{ active: printMode, compact: false }}>
+    <PrintModeContext.Provider value={{ active: printMode, compact: printMode }}>
     <div
       className={`flex flex-col min-w-0 w-full max-w-full ${
         fullscreen
