@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" fill="none">
+  <rect width="320" height="96" rx="12" fill="#0B3D2E"/>
+  <circle cx="40" cy="48" r="22" fill="#F4A261"/>
+  <path d="M30 52c4-10 10-14 18-14 2 8-2 16-8 20-4-2-8-4-10-6z" fill="#2A9D8F"/>
+  <path d="M34 44c6-2 12 0 16 6" stroke="#E9F5F0" stroke-width="2" stroke-linecap="round"/>
+  <text x="78" y="42" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">SA HARVEST</text>
+  <text x="78" y="64" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="500" fill="#A7D7C5" letter-spacing="1.5">FEEDING THE NATION</text>
+</svg>

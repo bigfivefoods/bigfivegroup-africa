@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -20,11 +21,70 @@ import { NSNP, NSNP_CASE } from "../lib/nsnp";
 import { SANTACO, SANTACO_PARTNERSHIP } from "../lib/santaco";
 import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
 import {
+  BIG_FIVE_LOGO,
   PARTNERS,
   mergePartnerResources,
   type PartnerProfile,
   type PartnerProgrammeId,
 } from "../lib/partners";
+
+function CoBrandHeader({ partner }: { partner: PartnerProfile }) {
+  const partnerLogo = partner.logoSrc;
+  const showPartnerLogo = partnerLogo && partner.slug !== "big-five-group";
+
+  return (
+    <div className="mb-6 sm:mb-8">
+      <div className="flex flex-wrap items-center gap-3 sm:gap-5">
+        {showPartnerLogo ? (
+          <>
+            <div className="relative h-12 sm:h-14 w-[min(100%,11rem)] sm:w-52 bg-white/95 rounded-xl px-3 py-2 border border-white/20">
+              <Image
+                src={partnerLogo}
+                alt={partner.organisation}
+                fill
+                className="object-contain object-left p-1"
+                sizes="208px"
+                priority
+              />
+            </div>
+            <div
+              className="text-white/40 text-lg sm:text-xl font-light select-none"
+              aria-hidden
+            >
+              ×
+            </div>
+            <div className="relative h-12 sm:h-14 w-14 sm:w-16 shrink-0">
+              <Image
+                src={BIG_FIVE_LOGO}
+                alt="Big Five Group"
+                fill
+                className="object-contain object-left drop-shadow-md"
+                sizes="64px"
+                priority
+              />
+            </div>
+          </>
+        ) : (
+          <div className="relative h-14 w-14 sm:h-16 sm:w-16">
+            <Image
+              src={BIG_FIVE_LOGO}
+              alt="Big Five Group"
+              fill
+              className="object-contain object-left drop-shadow-md"
+              sizes="64px"
+              priority
+            />
+          </div>
+        )}
+      </div>
+      {showPartnerLogo && (
+        <p className="mt-3 text-[10px] sm:text-xs tracking-[2px] text-white/45 font-medium uppercase">
+          Co-branded partnership · {partner.name} × Big Five Group
+        </p>
+      )}
+    </div>
+  );
+}
 
 function ProgrammeBlocks({ ids }: { ids?: PartnerProgrammeId[] }) {
   const show = new Set(ids ?? ["nsnp", "santaco"]);
@@ -164,17 +224,20 @@ export default function PartnerPortalClient({
 }) {
   const resources = mergePartnerResources(partner);
 
+  const heroBg = partner.brandColor ?? "#052e1c";
+
   return (
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
-      <section className="bg-[#052e1c] text-white">
+      <section className="text-white" style={{ backgroundColor: heroBg }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-8">
             <div className="min-w-0 max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-emerald-300/90 mb-4">
+              <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-white/70 mb-4">
                 <Lock className="w-3.5 h-3.5" />
                 PRIVATE · PARTNER · /partner/{partner.slug}
               </div>
-              <div className="text-xs font-semibold text-emerald-200/80 mb-2">
+              <CoBrandHeader partner={partner} />
+              <div className="text-xs font-semibold text-white/70 mb-2">
                 {partner.organisation} · {partner.role}
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-balance mb-3">
@@ -185,12 +248,23 @@ export default function PartnerPortalClient({
                 <span className="text-white font-medium break-all">{email}</span>
               </p>
               <p className="text-white/55 text-sm leading-relaxed text-pretty">{partner.summary}</p>
+              {partner.website && (
+                <a
+                  href={partner.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-3 text-xs sm:text-sm font-semibold text-white/80 hover:text-white underline underline-offset-2"
+                >
+                  {partner.websiteLabel ?? partner.website}
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
               {partner.focus.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-5">
                   {partner.focus.map((f) => (
                     <span
                       key={f}
-                      className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-100"
+                      className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full border border-white/25 bg-white/10 text-white"
                     >
                       {f}
                     </span>
@@ -425,6 +499,17 @@ export default function PartnerPortalClient({
                   href={`/partner/${p.slug}`}
                   className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 hover:border-emerald-400/50 transition-colors"
                 >
+                  {p.logoSrc && (
+                    <div className="relative h-10 w-full max-w-[10rem] mb-3">
+                      <Image
+                        src={p.logoSrc}
+                        alt=""
+                        fill
+                        className="object-contain object-left"
+                        sizes="160px"
+                      />
+                    </div>
+                  )}
                   <div className="text-xs font-semibold text-emerald-800 mb-1">{p.role}</div>
                   <div className="text-sm font-semibold text-black mb-1">{p.organisation}</div>
                   <p className="text-xs text-[#525252] line-clamp-2 mb-2">{p.summary}</p>

@@ -4,7 +4,8 @@
  * To add a partner:
  * 1. Copy an entry below (unique `slug`)
  * 2. List login emails on that partner (lowercase)
- * 3. Customise headline, summary, focus, notes, resources
+ * 3. Drop logo at public/partners/{slug}-logo.png (or set logoSrc)
+ * 4. Customise headline, summary, focus, notes, resources
  *
  * Optional: PARTNER_EMAILS env still works for ad-hoc emails; they land on
  * the generic "partners" briefing if not mapped here.
@@ -41,6 +42,13 @@ export type PartnerProfile = {
   /** Extra resource links (merged with defaults) */
   resources?: PartnerResource[];
   contactNote?: string;
+  /** Partner logo path under /public */
+  logoSrc?: string;
+  /** Brand accent for co-brand chrome */
+  brandColor?: string;
+  /** Official website */
+  website?: string;
+  websiteLabel?: string;
 };
 
 /** Default resources shown to every partner (can be overridden/extended per partner). */
@@ -77,6 +85,8 @@ export const DEFAULT_PARTNER_RESOURCES: PartnerResource[] = [
   },
 ];
 
+export const BIG_FIVE_LOGO = "/bigfivegroup-logo.png";
+
 /**
  * All partners. Add new organisations here as you grow.
  */
@@ -93,11 +103,120 @@ export const PARTNERS: PartnerProfile[] = [
       "Group overview for authorised internal use — same briefing structure partners see, with access to every partner workspace.",
     focus: ["All pillars", "NSNP", "SANTACO", "Connect", "Impact"],
     programmes: ["nsnp", "santaco", "connect", "leadership", "impact"],
+    logoSrc: BIG_FIVE_LOGO,
+    brandColor: "#052e1c",
     notes: [
       "You can open any partner workspace from the directory below after sign-in.",
-      "Add new partners in app/lib/partners.ts — each gets /partner/[slug].",
+      "Add new partners in app/lib/partners.ts — each gets /partner/[slug] with co-branded logo.",
     ],
     contactNote: "Internal — coordinate partner onboarding via Group leadership.",
+  },
+  {
+    slug: "sa-harvest",
+    name: "SA Harvest",
+    organisation: "SA Harvest",
+    emails: [],
+    role: "Food relief · impact partner",
+    headline: "SA Harvest × Big Five Group",
+    summary:
+      "Co-branded partnership workspace for SA Harvest and Big Five Group — fortified nutrition, last-mile dignity, and honest impact delivery for communities that need food that arrives.",
+    focus: ["Foods", "Direct", "Foundation", "Impact"],
+    programmes: ["nsnp", "santaco", "impact"],
+    logoSrc: "/partners/sa-harvest-logo.png",
+    brandColor: "#0B3D2E",
+    website: "https://saharvest.org/",
+    websiteLabel: "saharvest.org",
+    notes: [
+      "Shared ambition: reduce food insecurity with reliable product, logistics and transparent reporting.",
+      "Big Five Foods + Direct can support institutional and community feeding pathways; Impact PMO for multi-pillar programmes.",
+      "Add authorised SA Harvest emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "/foundation",
+        label: "Foundation",
+        desc: "NPO pathways and catalytic programmes alongside Group delivery.",
+      },
+      {
+        href: "/impact",
+        label: "Impact PMO",
+        desc: "Gates, KPIs and field assurance for joint programmes.",
+      },
+    ],
+    contactNote: "Primary Group contact: craig@bigfivegroup.africa · SA Harvest coordination via partnership lead",
+  },
+  {
+    slug: "spar",
+    name: "SPAR",
+    organisation: "SPAR South Africa",
+    emails: [],
+    role: "Retail · distribution partner",
+    headline: "SPAR × Big Five Group",
+    summary:
+      "Co-branded partnership workspace for SPAR and Big Five Group — African fortified staples, route-to-market, and verified supply for retail and community-facing channels.",
+    focus: ["Foods", "Direct", "Connect", "Global"],
+    programmes: ["nsnp", "santaco", "connect"],
+    logoSrc: "/partners/spar-logo.png",
+    brandColor: "#006633",
+    website: "https://www.spar.co.za/",
+    websiteLabel: "spar.co.za",
+    notes: [
+      "Retail and distribution pathways for Big Five Foods ranges with shelf-stable formats and clear brand story.",
+      "Connect / SupplierAdvisor® for verified trade and ordering discipline where applicable.",
+      "Add authorised SPAR emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "/foods",
+        label: "Big Five Foods",
+        desc: "Product ranges, fortification story and institutional/retail packs.",
+      },
+      {
+        href: "/global",
+        label: "Global corridors",
+        desc: "Route-to-market and distribution partnership framing.",
+      },
+    ],
+    contactNote: "Primary Group contact: craig@bigfivegroup.africa · SPAR commercial discussions under NDA as required",
+  },
+  {
+    slug: "the-sharks",
+    name: "The Sharks",
+    organisation: "The Sharks (Durban)",
+    emails: [],
+    role: "Sport · community partner",
+    headline: "The Sharks × Big Five Group",
+    summary:
+      "Co-branded partnership workspace for The Sharks and Big Five Group — community nutrition, player and fan engagement pathways, and KwaZulu-Natal rooted impact.",
+    focus: ["Foods", "Foundation", "Leadership", "Royal"],
+    programmes: ["nsnp", "leadership", "impact"],
+    logoSrc: "/partners/sharks-logo.png",
+    brandColor: "#0A0A0A",
+    website: "https://sharksrugby.co.za/",
+    websiteLabel: "sharksrugby.co.za",
+    notes: [
+      "KZN-rooted partnership potential: community feeding, youth pathways, and brand-aligned nutrition.",
+      "Leadership / Super-Cube® and Foundation programmes can sit alongside Foods supply for community events and academies.",
+      "Add authorised Sharks organisation emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "/leadership",
+        label: "Leadership · Super-Cube®",
+        desc: "Whole-person leadership for high-performance and community contexts.",
+      },
+      {
+        href: "/foundation",
+        label: "Foundation",
+        desc: "Community programmes with transparent design and proof.",
+      },
+      {
+        href: "/royal",
+        label: "Royal",
+        desc: "Community legitimacy and dignity-first partnership framing.",
+      },
+    ],
+    contactNote: "Primary Group contact: craig@bigfivegroup.africa · Sharks partnership coordination via Group leadership",
   },
   {
     slug: "kencrete",
@@ -110,6 +229,7 @@ export const PARTNERS: PartnerProfile[] = [
       "Private briefing for Kencrete — how we partner across Group rails, programme pathways, and next-step resources tailored to this relationship.",
     focus: ["Foods", "Direct", "Access", "Impact"],
     programmes: ["nsnp", "santaco", "connect"],
+    brandColor: "#0f172a",
     notes: [
       "Use this page as the living brief for joint opportunities and delivery pathways.",
       "Commercial terms and SOWs remain offline / NDA as agreed — this portal is orientation and shared materials.",
@@ -134,6 +254,7 @@ export const PARTNERS: PartnerProfile[] = [
       "Private briefing for DM Africa — Group mission, flagship programmes, and partnership resources for your organisation.",
     focus: ["Foods", "Impact", "Leadership", "Connect"],
     programmes: ["nsnp", "connect", "leadership", "impact"],
+    brandColor: "#1e3a5f",
     notes: [
       "Customise focus areas and notes as the partnership deepens.",
       "Request programme-specific packs via the contact section when you need more than public decks.",
@@ -142,7 +263,6 @@ export const PARTNERS: PartnerProfile[] = [
   },
   /**
    * Fallback workspace for emails on PARTNER_EMAILS env not mapped above.
-   * Do not list real partner emails here unless intentional.
    */
   {
     slug: "general",
@@ -186,7 +306,6 @@ export function getPartnerByEmail(email: string): PartnerProfile | undefined {
   const n = normalizeEmail(email);
   const match = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
   if (match) return match;
-  // Env-only emails fall through to general briefing
   return getPartnerBySlug("general");
 }
 
