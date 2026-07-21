@@ -238,7 +238,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
         "Fortified porridges, soya, one-pots, soups — certified manufacturing narrative",
         "NSNP programme landed (DBE) — planned to feed 2.5m children/day (plan scale, not current daily count)",
         "Department of Health pathway via Impact (Director General of Health) — SA DoH + African health systems over time",
-        "Initial-stage group turnover ~R750k (management-reported); ~R50m pipeline next 6 months as market penetration builds",
+        "Initial-stage group turnover ~$45k / R750k (management-reported); ~$3.0m / R50m pipeline next 6 months as market penetration builds",
         "Programme-reported delivery totals (meals / children) + internal cost/nutrition analyses",
       ],
       constraints: "Working capital to convert pipeline, tender cycles, distribution partners, fortification capacity",
@@ -744,27 +744,35 @@ export const GROUP_IMPACT_PILLARS = {
 } as const;
 
 export const MODEL_DISCLAIMER =
-  "All forward-looking revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. Near-term market traction figures in South African rand (ZAR) are management-reported (initial-stage turnover and commercial pipeline) — not audited financial statements. They are not forecasts or guarantees. Equity percentage, board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
+  "All forward-looking revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. Near-term market traction is management-reported in South African rand (ZAR) and shown in headline USD at an approximate mid-market conversion (~16.5 ZAR per USD, July 2026) — not audited financial statements. They are not forecasts or guarantees. Equity percentage, board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
 
 /**
- * Near-term commercial traction (management-reported, ZAR).
+ * Near-term commercial traction (management-reported in ZAR; headlines in USD).
+ * FX: ~16.5 ZAR per USD (approx mid-market, July 2026) for investor-facing USD headlines.
  * Pipeline is opportunity-stage — not booked revenue. NSNP 2.5m is programme plan scale.
  */
 export const MARKET_TRACTION = {
-  currency: "ZAR",
+  /** Approximate mid-market ZAR per 1 USD used for headline conversion (July 2026). */
+  fxZarPerUsd: 16.5,
+  fxNote: "USD headlines ≈ mid-market ~16.5 ZAR/USD (July 2026); underlying management figures in ZAR",
   initialTurnover: {
-    value: "R750k",
-    numeric: 750_000,
+    /** Headline for investor decks / portal */
+    value: "~$45k",
+    valueZar: "R750k",
+    numericZar: 750_000,
+    numericUsdApprox: 45_000,
     label: "Initial-stage turnover",
     detail:
-      "Management-reported turnover realised in the initial market stages as traction and penetration build.",
+      "Management-reported turnover of R750k (~USD 45k at ~16.5 ZAR/USD) realised in the initial market stages as traction and penetration build.",
   },
   pipeline6m: {
-    value: "R50m",
-    numeric: 50_000_000,
+    value: "~$3.0m",
+    valueZar: "R50m",
+    numericZar: 50_000_000,
+    numericUsdApprox: 3_000_000,
     label: "Pipeline · next 6 months",
     detail:
-      "Commercial pipeline over the next six months as market traction and penetration deepen. Pipeline is opportunity-stage — not contracted or booked revenue until converted.",
+      "Commercial pipeline of R50m (~USD 3.0m at ~16.5 ZAR/USD) over the next six months as market traction and penetration deepen. Pipeline is opportunity-stage — not contracted or booked revenue until converted.",
   },
   nsnp: {
     value: "2.5m",
@@ -783,7 +791,7 @@ export const MARKET_TRACTION = {
       "The Director General of Health is within Big Five Impact and will help drive Group products into South Africa’s Department of Health and counterpart health departments across Africa as programmes mature.",
   },
   asOfNote:
-    "Management-reported · ZAR · for authorised investor discussion. Convert pipeline only under NDA diligence packs.",
+    "Management-reported in ZAR; USD headlines at ~16.5 ZAR/USD (July 2026 approx). Pipeline conversion only under NDA diligence packs.",
 } as const;
 
 /** Unit economics sketches — Foods & Connect first (illustrative for diligence discussion). */
@@ -798,7 +806,7 @@ export const UNIT_ECONOMICS = [
       { k: "Margin", v: "Fortification + shelf-life + logistics discipline" },
       { k: "Capital", v: "Working capital for inventory & offtake; plant/pack capacity" },
     ],
-    path: "Initial turnover (~R750k) → convert ~R50m pipeline → NSNP plan scale (2.5m/day) → multi-country institutional + retail",
+    path: "Initial turnover (~$45k / R750k) → convert ~$3.0m / R50m pipeline → NSNP plan scale (2.5m/day) → multi-country institutional + retail",
     kill: "If pipeline conversion and NSNP delivery rhythm stall after capital for working inventory, pause aggressive multi-corridor volume expansion.",
   },
   {
@@ -822,7 +830,7 @@ export const MILESTONES_12_18 = [
     q: "0–6 mo",
     title: "Foundation",
     items: [
-      "Convert R50m commercial pipeline into contracted offtake (working capital + delivery)",
+      "Convert ~$3.0m (R50m) commercial pipeline into contracted offtake (working capital + delivery)",
       "Stand up NSNP delivery rhythm toward 2.5m children/day plan scale",
       "Advance SA Department of Health product pathway via Impact (Director General of Health)",
       "Advance Seychelles holdco + IP architecture with counsel",
@@ -881,8 +889,8 @@ export const INVESTOR_RISKS = [
 /** Brutal honesty: what is true today vs ambition. */
 export const TRACTION_VS_AMBITION = {
   trueToday: [
-    "Initial-stage turnover ~R750k (management-reported) as market traction starts",
-    "~R50m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
+    "Initial-stage turnover ~$45k / R750k (management-reported) as market traction starts",
+    "~$3.0m / R50m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
     "NSNP programme landed with DBE — planned to feed 2.5m children/day (programme plan scale)",
     "Director General of Health within Big Five Impact — channel to help drive Group products into SA DoH and African health pathways",
     "Foods fortified product story + programme-reported meals / children where stated",
@@ -893,7 +901,7 @@ export const TRACTION_VS_AMBITION = {
     "Close ties to royal family; partnership planned (not claimed as completed deal)",
   ],
   notYetTrue: [
-    "R50m pipeline fully converted to contracted / recognised revenue",
+    "~$3.0m (R50m) pipeline fully converted to contracted / recognised revenue",
     "2.5m children fed per day as current operational headcount",
     "Department of Health supply awards closed at multi-country scale",
     "Other SA government departments and pan-African public awards already closed at scale",

@@ -111,24 +111,24 @@ export default function InvestorPortalClient({ email }: { email: string }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
             <div className="rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-5 min-w-0">
               <div className="text-[10px] tracking-[2px] text-emerald-200/70 mb-1">
-                INITIAL TURNOVER (ZAR)
+                INITIAL TURNOVER (USD)
               </div>
               <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-emerald-200 tabular-nums">
                 {MARKET_TRACTION.initialTurnover.value}
               </div>
               <div className="text-xs text-white/50 mt-1">
-                Management-reported · early market stages
+                {MARKET_TRACTION.initialTurnover.valueZar} management-reported · early stages
               </div>
             </div>
             <div className="rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-5 min-w-0">
               <div className="text-[10px] tracking-[2px] text-emerald-200/70 mb-1">
-                PIPELINE · 6 MONTHS (ZAR)
+                PIPELINE · 6 MONTHS (USD)
               </div>
               <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-emerald-200 tabular-nums">
                 {MARKET_TRACTION.pipeline6m.value}
               </div>
               <div className="text-xs text-white/50 mt-1">
-                Opportunity-stage as penetration builds · not booked revenue
+                {MARKET_TRACTION.pipeline6m.valueZar} · opportunity-stage · not booked revenue
               </div>
             </div>
             <div className="rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-5 min-w-0">

@@ -100,7 +100,7 @@ function Slide({ index }: { index: number }) {
                   forPrint ? "text-xs" : "text-sm sm:text-base"
                 } leading-relaxed`}
               >
-                Market traction (R750k · R50m pipeline · NSNP landed) · USD scenarios · unit economics ·
+                Market traction (~$45k · ~$3.0m pipeline · NSNP landed) · USD scenarios · unit economics ·
                 milestones · risks · Seychelles holdco + end-market opcos.
               </p>
             </div>
@@ -123,7 +123,7 @@ function Slide({ index }: { index: number }) {
           <ol className={forPrint ? "space-y-1 max-w-2xl" : "space-y-2 max-w-2xl"}>
             {[
               "Ask · use of funds · Seychelles holdco + end-market opcos",
-              "Market traction (R750k · R50m pipeline · NSNP) · true today vs not yet",
+              "Market traction (~$45k · ~$3.0m pipeline · NSNP) · true today vs not yet",
               "Group thesis · Africa problems · how we respond",
               "Unit economics (Foods + Connect)",
               "USD revenue scenarios · opco rollup",
@@ -300,12 +300,12 @@ function Slide({ index }: { index: number }) {
               {
                 v: MARKET_TRACTION.initialTurnover.value,
                 l: MARKET_TRACTION.initialTurnover.label,
-                d: "Management-reported · initial stages",
+                d: `${MARKET_TRACTION.initialTurnover.valueZar} · management-reported · initial stages`,
               },
               {
                 v: MARKET_TRACTION.pipeline6m.value,
                 l: MARKET_TRACTION.pipeline6m.label,
-                d: "Opportunity-stage · not booked revenue",
+                d: `${MARKET_TRACTION.pipeline6m.valueZar} · opportunity-stage · not booked`,
               },
               {
                 v: MARKET_TRACTION.nsnp.value,
@@ -937,7 +937,7 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "With the raise",
-                d: "Working capital to convert the ~R50m pipeline; stand up NSNP delivery; advance SA DoH product pathway via Impact (Director General of Health); Seychelles holdco + IP; 90/10 deploy; board governance.",
+                d: "Working capital to convert the ~$3.0m (R50m) pipeline; stand up NSNP delivery; advance SA DoH product pathway via Impact (Director General of Health); Seychelles holdco + IP; 90/10 deploy; board governance.",
               },
               {
                 t: "Without it",
@@ -1036,7 +1036,7 @@ export default function InvestorStrategyDeck() {
           Big Five Group — investor deck
         </h2>
         <p className="text-sm sm:text-base text-[#525252] max-w-2xl mx-auto leading-relaxed">
-          Shareable, printable presentation: market traction (R750k · R50m pipeline · NSNP), ask,
+          Shareable, printable presentation: market traction (~$45k · ~$3.0m pipeline · NSNP), ask,
           structure, unit economics, USD scenarios, milestones, risks, and impact.
         </p>
       </div>
@@ -1048,7 +1048,7 @@ export default function InvestorStrategyDeck() {
           theme={theme}
           eyebrow="INVESTOR DECK"
           title="Big Five Group — Investor Presentation"
-          description="10% holding equity, board seat, R750k / R50m traction, NSNP, USD scenarios, unit economics, milestones, risks."
+          description="10% holding equity, board seat, ~$45k / ~$3.0m traction, NSNP, USD scenarios, unit economics, milestones, risks."
           sharePath="/investor#investor-deck"
           shareTitle="Big Five Group — Investor Presentation"
           shareText="Confidential investor briefing: market traction, equity ask, USD scenarios, NSNP and continental model."
