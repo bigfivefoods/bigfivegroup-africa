@@ -249,21 +249,38 @@ export const PARTNERS: PartnerProfile[] = [
   },
   {
     slug: "dmafrica",
-    name: "DM Africa",
-    organisation: "DM Africa",
+    name: "dmAFRICA",
+    organisation: "dmAFRICA",
     emails: ["daniel@dmafrica.com"],
-    role: "Strategic partner",
-    headline: "DM Africa × Big Five Group",
+    role: "African safaris · extraordinary journeys",
+    headline: "dmAFRICA × Big Five Group",
     summary:
-      "Private briefing for DM Africa — Group mission, flagship programmes, and partnership resources for your organisation.",
-    focus: ["Foods", "Impact", "Leadership", "Connect"],
+      "Partnership workspace for dmAFRICA and Big Five Group — for over 28 years dmAFRICA has presented African excellence to discerning travellers, crafting seamless journeys from bush to beach and beyond (dmafrica.com).",
+    focus: ["Foods", "Impact", "Leadership", "Connect", "Global"],
     programmes: ["nsnp", "connect", "leadership", "impact"],
-    brandColor: "#1e3a5f",
+    logoSrc: "/partners/dmafrica-logo.png",
+    brandColor: "#0C0C0C",
+    website: "https://dmafrica.com/",
+    websiteLabel: "dmafrica.com",
     notes: [
-      "Customise focus areas and notes as the partnership deepens.",
-      "Request programme-specific packs via the contact section when you need more than public decks.",
+      "dmAFRICA branding and mark sourced from dmafrica.com for co-branded partner briefing.",
+      "Shared focus: African excellence — hospitality, access, and experiences that match Group standards of integrity and delivery.",
+      "Foods, Connect and Impact can support guest, community and supply pathways where the partnership requires them.",
+      "Primary portal contact: daniel@dmafrica.com · Group: craig@bigfivegroup.africa",
     ],
-    contactNote: "Primary Group contact: craig@bigfivegroup.africa",
+    resources: [
+      {
+        href: "/global",
+        label: "Global corridors",
+        desc: "International route-to-market and African excellence abroad.",
+      },
+      {
+        href: "/leadership",
+        label: "Leadership · Super-Cube®",
+        desc: "Whole-person leadership for high-performance teams and partners.",
+      },
+    ],
+    contactNote: "Primary Group contact: craig@bigfivegroup.africa · dmAFRICA: sales@dmafrica.com",
   },
   /**
    * Fallback workspace for emails on PARTNER_EMAILS env not mapped above.
