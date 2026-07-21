@@ -510,7 +510,7 @@ function Slide({ index }: SlideProps) {
             {[
               {
                 t: "Fortified, affordable food",
-                d: "Big Five Foods porridges, soya, one-pot meals and soups — ~45% GP, ~50% cheaper than wholesale/retail, 74% more nutrition design; long shelf life for schools, government and feeding schemes.",
+                d: "Big Five Foods porridges, soya, one-pot meals and soups — ~50% cheaper than wholesale/retail, 74% more nutrition design; long shelf life for schools, government and feeding schemes — including the pathway to feed 2.5 million children per day through the National School Nutrition Programme (NSNP / DBE).",
               },
               {
                 t: "Regenerative supply",
@@ -800,7 +800,7 @@ function Slide({ index }: SlideProps) {
             {[
               { v: "150k", l: "Meals delivered (programme-reported)" },
               { v: "100k", l: "Children reached (programme-reported)" },
-              { v: "~45%", l: "Foods GP (management-reported)" },
+              { v: "2.5M", l: "Kids per day — NSNP / DBE feeding ambition" },
               { v: "~50%", l: "Cheaper vs wholesale & retail" },
               { v: "74%", l: "More nutrition (internal)" },
             ].map((s) => (
@@ -810,6 +810,10 @@ function Slide({ index }: SlideProps) {
           <ul className="space-y-2 text-sm text-white/70 max-w-2xl">
             <li>· Proudly African for Africa — HQ KwaZulu-Natal · continental mission</li>
             <li>· Ten pillars under one group governance</li>
+            <li>
+              · Pathway to feed <strong className="text-white/90">2.5 million children per day</strong>{" "}
+              through the National School Nutrition Programme (NSNP / DBE)
+            </li>
             <li>· SDG-aligned programme design (1 · 2 · 4 · 8 · 10 · 17)</li>
             <li>· Zero Hunger delivery layer complementary to WFP / national agendas</li>
             <li>· Big Five Foods verified on SupplierAdvisor® with live container embed</li>
@@ -1264,11 +1268,11 @@ function FeedEducateEmpowerSlide() {
       t: "Feed",
       color: "#6ee7b7",
       d: dense
-        ? "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable for African households, schools and institutions."
-        : "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for African households, schools and institutions.",
+        ? "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable for African households, schools and institutions. Pathway to feed 2.5M kids/day via NSNP (DBE)."
+        : "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for African households, schools and institutions. We will feed 2.5 million children per day through the National School Nutrition Programme (NSNP / DBE).",
       proof: dense
-        ? "150k meals · 100k children · ~45% GP · ~50% cheaper (mgmt/internal)"
-        : "150k meals · 100k children · ~45% GP · ~50% cheaper vs wholesale/retail (mgmt/internal)",
+        ? "150k meals · 100k children · ~50% cheaper · 2.5M kids/day NSNP (DBE)"
+        : "150k meals · 100k children · ~50% cheaper vs wholesale/retail · 2.5M kids/day through NSNP (DBE)",
     },
     {
       icon: GraduationCap,
