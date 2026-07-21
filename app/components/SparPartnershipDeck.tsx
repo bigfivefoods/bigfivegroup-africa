@@ -32,6 +32,7 @@ import {
   SPAR_PARTNERSHIP,
   buildSparImpactReport,
   formatZar,
+  formatZarCompact,
   formatZarPrecise,
 } from "../lib/sparPartnership";
 
@@ -709,11 +710,14 @@ function Slide({ index }: { index: number }) {
                   <td className="py-1.5 pr-2 text-right tabular-nums">
                     {Math.round(IMPACT.national.packsYear).toLocaleString("en-ZA")}
                   </td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums">
-                    {formatZar(IMPACT.national.retailTurnover)}
+                  <td className="py-1.5 pr-2 text-right tabular-nums whitespace-nowrap">
+                    {formatZarCompact(IMPACT.national.retailTurnover)}
                   </td>
-                  <td className="py-1.5 text-right tabular-nums" style={{ color: theme.accentDark }}>
-                    {formatZar(IMPACT.national.sparFrontMargin)}
+                  <td
+                    className="py-1.5 text-right tabular-nums whitespace-nowrap"
+                    style={{ color: theme.accentDark }}
+                  >
+                    {formatZarCompact(IMPACT.national.sparFrontMargin)}
                   </td>
                 </tr>
               </tbody>
@@ -722,12 +726,12 @@ function Slide({ index }: { index: number }) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 mb-2">
             <DeckStatTile
               theme={theme}
-              value={formatZar(IMPACT.national.sparFrontMargin)}
+              value={formatZarCompact(IMPACT.national.sparFrontMargin)}
               label="SPAR front margin pool / year (before overheads & 5% give)"
             />
             <DeckStatTile
               theme={theme}
-              value={formatZar(IMPACT.national.combined10)}
+              value={formatZarCompact(IMPACT.national.combined10)}
               label="10% ring-fence to foundations (SPAR 5% + Foods 5%)"
             />
             <DeckStatTile
@@ -749,9 +753,12 @@ function Slide({ index }: { index: number }) {
             <div className="rounded-xl border border-black/10 bg-[#fafafa] p-2 sm:p-2.5 text-[#404040] leading-snug">
               <strong className="text-black">SPAR commercial takeaway:</strong> At these velocities,{" "}
               {IMPACT.national.stores.toLocaleString("en-ZA")} stores generate ~{" "}
-              {formatZar(IMPACT.national.retailTurnover)} RRP sell-through and ~{" "}
-              {formatZar(IMPACT.national.sparFrontMargin)} front margin — with SPAR’s 5% contribution ≈{" "}
-              {formatZar(IMPACT.national.sparGive5)} still leaving a large commercial pool for
+              {formatZarCompact(IMPACT.national.retailTurnover)} RRP sell-through and ~{" "}
+              <span className="whitespace-nowrap font-semibold text-black">
+                {formatZarCompact(IMPACT.national.sparFrontMargin)}
+              </span>{" "}
+              front margin — with SPAR’s 5% contribution ≈{" "}
+              {formatZarCompact(IMPACT.national.sparGive5)} still leaving a large commercial pool for
               retailers (front margin is not net profit).
             </div>
             <div className="rounded-xl border border-emerald-100 bg-emerald-50/50 p-2 sm:p-2.5 text-[#404040] leading-snug">
@@ -759,8 +766,11 @@ function Slide({ index }: { index: number }) {
               {Math.round(IMPACT.national.mealEquivalents).toLocaleString("en-ZA")} meal equivalents
               sold into homes · + ~{Math.round(IMPACT.national.donatedMeals).toLocaleString("en-ZA")}{" "}
               meals via assumed 2% donation volume · foundations receive ~{" "}
-              {formatZar(IMPACT.national.combined10)} (10% model). Pilot at 5% of network: ~
-              {IMPACT.pilot.stores} stores · {formatZar(IMPACT.pilot.sparFrontMargin)} front margin ·{" "}
+              <span className="whitespace-nowrap font-semibold text-black">
+                {formatZarCompact(IMPACT.national.combined10)}
+              </span>{" "}
+              (10% model). Pilot at 5% of network: ~{IMPACT.pilot.stores} stores ·{" "}
+              {formatZarCompact(IMPACT.pilot.sparFrontMargin)} front margin ·{" "}
               {Math.round(IMPACT.pilot.peopleFedOneMealDay).toLocaleString("en-ZA")} people-fed
               metric.
             </div>

@@ -478,3 +478,27 @@ export function formatZarPrecise(n: number): string {
     maximumFractionDigits: 2,
   }).format(n);
 }
+
+/**
+ * Compact headline currency for tight tiles (e.g. R29m, R10.6m).
+ * Keeps full rand values available via formatZar for detail rows.
+ */
+export function formatZarCompact(n: number): string {
+  const abs = Math.abs(n);
+  const sign = n < 0 ? "-" : "";
+  if (abs >= 1_000_000_000) {
+    const v = abs / 1_000_000_000;
+    return `${sign}R${v >= 10 ? v.toFixed(0) : v.toFixed(1).replace(/\.0$/, "")}bn`;
+  }
+  if (abs >= 1_000_000) {
+    const v = abs / 1_000_000;
+    // One decimal when under R100m so R10.6m stays clear; whole millions when larger
+    if (v >= 100) return `${sign}R${Math.round(v)}m`;
+    return `${sign}R${v.toFixed(1).replace(/\.0$/, "")}m`;
+  }
+  if (abs >= 1_000) {
+    const v = abs / 1_000;
+    return `${sign}R${v >= 10 ? Math.round(v) : v.toFixed(1).replace(/\.0$/, "")}k`;
+  }
+  return formatZar(n);
+}
