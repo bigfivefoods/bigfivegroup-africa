@@ -254,6 +254,28 @@ function buildPrintStyles(printRootId: string, pageName: string) {
   #${printRootId} a.deck-email-cta {
     background-color: #ffffff !important;
   }
+  /* Product / logo images must paint in PDF (eager native imgs + Next Image) */
+  #${printRootId} img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-width: 100%;
+  }
+  #${printRootId} .deck-print-img-fill {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+  #${printRootId} .deck-print-img-cover {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
 
   @page ${pageName}-landscape { size: A4 landscape; margin: 0; }
   @page ${pageName}-portrait { size: A4 portrait; margin: 0; }
@@ -284,6 +306,12 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       filter: none !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
+    }
+    #${printRootId} img {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
     #${printRootId} .deck-print-page {
       box-sizing: border-box !important;
@@ -476,6 +504,38 @@ export function DeckTitleLayout({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Print-safe image for decks — native <img> so PDF export always includes product
+ * photos (Next/Image lazy + optimizer often blank off-screen print portals).
+ */
+export function DeckPrintImage({
+  src,
+  alt,
+  className = "",
+  fit = "contain",
+  paddingClass = "",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  fit?: "contain" | "cover";
+  /** e.g. p-1.5 applied on the img */
+  paddingClass?: string;
+}) {
+  const forPrint = useDeckPrintMode();
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- print PDF must use native img for reliable paint
+    <img
+      src={src}
+      alt={alt}
+      className={`${fit === "cover" ? "deck-print-img-cover" : "deck-print-img-fill"} ${paddingClass} ${className}`}
+      loading={forPrint ? "eager" : "lazy"}
+      decoding={forPrint ? "sync" : "async"}
+      {...(forPrint ? { fetchPriority: "high" as const } : {})}
+    />
+  );
+}
+
 type DeckShellProps = {
   id: string;
   printRootId: string;
@@ -547,19 +607,63 @@ export default function DeckShell({
   useEffect(() => {
     if (!printMode) return;
     let cancelled = false;
-    const root = document.documentElement;
-    root.setAttribute("data-deck-print", printOrientation);
-    root.setAttribute("data-deck-print-active", "true");
+    const rootEl = document.documentElement;
+    rootEl.setAttribute("data-deck-print", printOrientation);
+    rootEl.setAttribute("data-deck-print-active", "true");
 
     const finish = () => {
       if (cancelled) return;
-      root.removeAttribute("data-deck-print");
-      root.removeAttribute("data-deck-print-active");
+      rootEl.removeAttribute("data-deck-print");
+      rootEl.removeAttribute("data-deck-print-active");
       setPrintMode(false);
       setPreparingPdf(false);
     };
 
-    const t = window.setTimeout(() => {
+    /** Wait until product/logo images in the print portal have decoded so PDF includes them. */
+    const waitForPrintImages = async () => {
+      const portal = document.getElementById(printRootId);
+      if (!portal) return;
+      const imgs = Array.from(portal.querySelectorAll("img"));
+      await Promise.all(
+        imgs.map(
+          (img) =>
+            new Promise<void>((resolve) => {
+              const done = () => resolve();
+              if (img.complete && img.naturalWidth > 0) {
+                done();
+                return;
+              }
+              img.addEventListener("load", done, { once: true });
+              img.addEventListener("error", done, { once: true });
+              // Force eager decode for off-screen portal images
+              try {
+                img.loading = "eager";
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                if (typeof (img as any).decode === "function") {
+                  (img as HTMLImageElement)
+                    .decode()
+                    .then(done)
+                    .catch(done);
+                }
+              } catch {
+                /* ignore */
+              }
+              // Fallback if load never fires
+              window.setTimeout(done, 4000);
+            })
+        )
+      );
+      // Brief settle so layout paints absolute/fill images
+      await new Promise((r) => window.setTimeout(r, 200));
+    };
+
+    let fallback = 0;
+    const run = async () => {
+      try {
+        await waitForPrintImages();
+      } catch {
+        /* print anyway */
+      }
       if (cancelled) return;
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -567,20 +671,25 @@ export default function DeckShell({
           window.print();
         });
       });
-    }, 550);
+    };
+
+    // Allow portal DOM to mount first
+    const t = window.setTimeout(() => {
+      void run();
+    }, 300);
 
     window.addEventListener("afterprint", finish);
-    const fallback = window.setTimeout(finish, 120_000);
+    fallback = window.setTimeout(finish, 120_000);
 
     return () => {
       cancelled = true;
-      root.removeAttribute("data-deck-print");
-      root.removeAttribute("data-deck-print-active");
+      rootEl.removeAttribute("data-deck-print");
+      rootEl.removeAttribute("data-deck-print-active");
       window.clearTimeout(t);
       window.clearTimeout(fallback);
       window.removeEventListener("afterprint", finish);
     };
-  }, [printMode, printOrientation]);
+  }, [printMode, printOrientation, printRootId]);
 
   const shareUrl = (() => {
     const base =

@@ -20,6 +20,7 @@ import {
 import DeckShell, {
   DECK_THEMES,
   DeckEyebrow,
+  DeckPrintImage,
   DeckSlideShell,
   DeckStatTile,
   DeckTitle,
@@ -68,7 +69,7 @@ function ProductThumb({
     <div
       className={`relative overflow-hidden rounded-xl border border-black/8 bg-[#f8f7f5] min-h-0 min-w-0 ${className}`}
     >
-      <Image src={src} alt={alt} fill className="object-contain object-center p-1.5" sizes="160px" />
+      <DeckPrintImage src={src} alt={alt} paddingClass="p-1.5" fit="contain" />
     </div>
   );
 }
@@ -85,26 +86,16 @@ function CoBrandRow({ light }: { light?: boolean }) {
           light ? "border-white/40" : "border-[#006633]/25"
         }`}
       >
-        <Image
-          src="/partners/spar-logo.png"
-          alt="SPAR"
-          fill
-          className="object-contain p-1.5"
-          sizes="224px"
-          priority
-        />
+        <DeckPrintImage src="/partners/spar-logo.png" alt="SPAR" paddingClass="p-1.5" fit="contain" />
       </div>
       <span className={`text-lg sm:text-xl font-light ${light ? "text-white/35" : "text-black/20"}`}>
         ×
       </span>
       <div className={`relative ${foodsH} w-24 sm:w-32 opacity-95`}>
-        <Image
+        <DeckPrintImage
           src={light ? "/bigfivefoods-logo-white.png" : "/bigfivefoods-logo.png"}
           alt="Big Five Foods"
-          fill
-          className="object-contain object-left"
-          sizes="128px"
-          priority
+          fit="contain"
         />
       </div>
     </div>
@@ -435,12 +426,11 @@ function Slide({ index }: { index: number }) {
                         forPrint ? "h-12 w-12" : "h-14 w-14 sm:h-16 sm:w-16"
                       }`}
                     >
-                      <Image
+                      <DeckPrintImage
                         src={range.heroImage}
                         alt={range.title}
-                        fill
-                        className="object-contain p-1"
-                        sizes="64px"
+                        paddingClass="p-1"
+                        fit="contain"
                       />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -498,8 +488,8 @@ function Slide({ index }: { index: number }) {
                           forPrint ? "text-[7px] px-1 py-0.5" : "text-[9px] sm:text-[10px] px-1.5 py-0.5"
                         }`}
                       >
-                        <span className="relative h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 rounded-full overflow-hidden border border-black/5">
-                          <Image src={f.image} alt="" fill className="object-cover" sizes="16px" />
+                        <span className="relative h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 rounded-full overflow-hidden border border-black/5 inline-block">
+                          <DeckPrintImage src={f.image} alt="" fit="cover" />
                         </span>
                         {f.name}
                       </span>
@@ -823,13 +813,11 @@ function Slide({ index }: { index: number }) {
                 forPrint ? "h-16 w-16" : "h-20 w-20 sm:h-24 sm:w-24"
               }`}
             >
-              <Image
+              <DeckPrintImage
                 src={P.npos[0]!.logoSrc}
                 alt={P.npos[0]!.name}
-                fill
-                className="object-contain p-1.5"
-                sizes="96px"
-                priority
+                paddingClass="p-1.5"
+                fit="contain"
               />
             </div>
             <div className="min-w-0 flex-1">
@@ -885,12 +873,11 @@ function Slide({ index }: { index: number }) {
                 forPrint ? "h-14 w-40" : "h-16 sm:h-20 w-48 sm:w-56"
               }`}
             >
-              <Image
+              <DeckPrintImage
                 src={P.npos[1]!.logoSrc}
                 alt={P.npos[1]!.name}
-                fill
-                className="object-contain p-2"
-                sizes="224px"
+                paddingClass="p-2"
+                fit="contain"
               />
             </div>
             <div className="min-w-0 flex-1">
@@ -1230,14 +1217,7 @@ export default function SparPartnershipDeck() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
         <div className="flex justify-center mb-4">
           <div className="relative h-12 sm:h-14 w-40 sm:w-52 bg-white rounded-xl border-2 border-[#006633]/20 px-3 py-1 shadow-sm">
-            <Image
-              src="/partners/spar-logo.png"
-              alt="SPAR"
-              fill
-              className="object-contain p-1"
-              sizes="208px"
-              priority
-            />
+            <DeckPrintImage src="/partners/spar-logo.png" alt="SPAR" paddingClass="p-1" fit="contain" />
           </div>
         </div>
         <div
