@@ -36,12 +36,13 @@ export default function MethodologyPage() {
       <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-10">
         <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
           <h2 className="text-xl font-semibold tracking-tight text-black mb-3">
-            2.5 million children / day (NSNP pathway)
+            2.5 million children / day (NSNP programme landed)
           </h2>
           <p className="text-sm text-[#404040] leading-relaxed mb-3">
-            {NSNP_CASE.approval} This is framed as a <strong>high-level delivery ambition</strong> on
-            an approved school-nutrition pathway — not a claim of current daily headcount unless
-            restated in a dated partner brief.
+            {NSNP_CASE.approval} The programme is <strong>landed</strong> with DBE; the 2.5m figure is
+            a <strong>high-level delivery plan</strong> as scale ramps — not a claim of current daily
+            headcount unless restated in a dated partner brief. Landing NSNP is also framed as
+            institutional credibility for other government departments and continental public pathways.
           </p>
           <p className="text-sm text-[#525252] leading-relaxed mb-3">{NSNP.summary}</p>
           <a
@@ -125,7 +126,7 @@ export default function MethodologyPage() {
           <ul className="text-sm text-[#404040] leading-relaxed space-y-2 list-disc pl-5">
             <li>
               <strong>Ambition / plan</strong> — what we are building toward (e.g. 2.5m children/day
-              NSNP pathway; 2.8M ha regenerative opportunity; 54-nation African vision; 12 priority
+              NSNP plan scale after programme landed; 2.8M ha regenerative opportunity; 54-nation African vision; 12 priority
               distribution markets).
             </li>
             <li>

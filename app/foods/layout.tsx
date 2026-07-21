@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Foods · Fortified nutrition & NSNP pathway",
+  title: "Foods · Fortified nutrition & NSNP programme",
   description:
-    "Big Five Foods — fortified porridges, soya mince, one-pot meals and soups. Approved on South Africa’s National School Nutrition Programme (NSNP) pathway with a 2.5 million children/day delivery ambition. Shareable product deck.",
+    "Big Five Foods — fortified porridges, soya mince, one-pot meals and soups. NSNP programme landed with South Africa’s Department of Basic Education — planned to feed 2.5 million children per day. Shareable product deck.",
   openGraph: {
     title: "Big Five Foods | Fortified African Nutrition · NSNP",
     description:
-      "High-nutrition African staples for schools and institutions. 2.5m children/day ambition on the DBE National School Nutrition Programme pathway.",
+      "High-nutrition African staples for schools and institutions. NSNP programme landed with DBE — 2.5m children/day plan scale.",
     url: "/foods",
     images: [
       {
@@ -42,7 +42,7 @@ const faqJsonLd = {
       name: "Is Big Five Foods linked to South Africa’s National School Nutrition Programme?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Big Five Foods has been approved under the National School Nutrition Programme (NSNP), overseen by the Department of Basic Education, to supply fortified porridges and soya minces for daily school nutrition pathways. Official programme information: https://www.education.gov.za/Programmes/NationalSchoolNutritionProgramme.aspx",
+        text: "Big Five Foods has landed the National School Nutrition Programme (NSNP) pathway with the Department of Basic Education — planned to feed 2.5 million children per day with fortified porridges and soya minces (plan scale as delivery ramps). Official programme information: https://www.education.gov.za/Programmes/NationalSchoolNutritionProgramme.aspx",
       },
     },
     {

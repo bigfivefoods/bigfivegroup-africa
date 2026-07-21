@@ -31,6 +31,7 @@ import {
   GROUP_IMPACT_PILLARS,
   INVESTMENT_ASK,
   INVESTOR_RISKS,
+  MARKET_TRACTION,
   MILESTONES_12_18,
   MODEL_DISCLAIMER,
   OPCO_MODELS,
@@ -99,8 +100,8 @@ function Slide({ index }: { index: number }) {
                   forPrint ? "text-xs" : "text-sm sm:text-base"
                 } leading-relaxed`}
               >
-                USD revenue scenarios · unit economics · 12–18 month milestones · risks · traction vs
-                ambition · Seychelles holdco + end-market opcos.
+                Market traction (R750k · R50m pipeline · NSNP landed) · USD scenarios · unit economics ·
+                milestones · risks · Seychelles holdco + end-market opcos.
               </p>
             </div>
             <div
@@ -122,7 +123,7 @@ function Slide({ index }: { index: number }) {
           <ol className={forPrint ? "space-y-1 max-w-2xl" : "space-y-2 max-w-2xl"}>
             {[
               "Ask · use of funds · Seychelles holdco + end-market opcos",
-              "Traction vs ambition (what is true today)",
+              "Market traction (R750k · R50m pipeline · NSNP) · true today vs not yet",
               "Group thesis · Africa problems · how we respond",
               "Unit economics (Foods + Connect)",
               "USD revenue scenarios · opco rollup",
@@ -292,21 +293,73 @@ function Slide({ index }: { index: number }) {
     case 5:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>TRACTION VS AMBITION</DeckEyebrow>
-          <DeckTitle>What is true today — and what is not yet</DeckTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <DeckEyebrow theme={theme}>MARKET TRACTION · VS AMBITION</DeckEyebrow>
+          <DeckTitle>Early revenue · pipeline · NSNP landed</DeckTitle>
+          <div className={`grid grid-cols-1 sm:grid-cols-3 gap-2 ${forPrint ? "mb-2" : "mb-3"}`}>
+            {[
+              {
+                v: MARKET_TRACTION.initialTurnover.value,
+                l: MARKET_TRACTION.initialTurnover.label,
+                d: "Management-reported · initial stages",
+              },
+              {
+                v: MARKET_TRACTION.pipeline6m.value,
+                l: MARKET_TRACTION.pipeline6m.label,
+                d: "Opportunity-stage · not booked revenue",
+              },
+              {
+                v: MARKET_TRACTION.nsnp.value,
+                l: MARKET_TRACTION.nsnp.label,
+                d: "Programme landed · plan scale",
+              },
+            ].map((s) => (
+              <div
+                key={s.l}
+                className={`rounded-2xl border border-amber-200/80 bg-gradient-to-br from-amber-50 to-orange-50 ${
+                  forPrint ? "p-2.5" : "p-3.5"
+                }`}
+              >
+                <div
+                  className={`font-semibold tracking-tighter text-amber-950 tabular-nums ${
+                    forPrint ? "text-xl" : "text-2xl sm:text-3xl"
+                  }`}
+                >
+                  {s.v}
+                </div>
+                <div className={`font-semibold text-black mt-0.5 ${forPrint ? "text-[10px]" : "text-xs"}`}>
+                  {s.l}
+                </div>
+                <div className={`text-[#737373] mt-0.5 ${forPrint ? "text-[9px]" : "text-[10px]"}`}>
+                  {s.d}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p
+            className={`text-[#404040] leading-snug border border-black/10 rounded-xl bg-[#fafafa] ${
+              forPrint ? "text-[9px] p-2 mb-2" : "text-[11px] sm:text-xs p-3 mb-3"
+            }`}
+          >
+            <strong className="text-black">{MARKET_TRACTION.credibility.title}.</strong>{" "}
+            {MARKET_TRACTION.credibility.detail}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
             <div
               className={`rounded-2xl border border-emerald-200 bg-emerald-50/40 ${
-                forPrint ? "p-3" : "p-4"
+                forPrint ? "p-2.5" : "p-3.5"
               }`}
             >
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1.5">
                 <Check className="w-4 h-4 text-emerald-700" />
                 <span className="text-xs font-semibold tracking-wide text-emerald-900">
                   TRUE TODAY
                 </span>
               </div>
-              <ul className={`space-y-1.5 text-[#404040] ${forPrint ? "text-[10px]" : "text-[11px] sm:text-xs"}`}>
+              <ul
+                className={`space-y-1 text-[#404040] ${
+                  forPrint ? "text-[9px]" : "text-[10px] sm:text-[11px]"
+                }`}
+              >
                 {TRACTION_VS_AMBITION.trueToday.map((t) => (
                   <li key={t} className="leading-snug flex gap-1.5">
                     <span className="text-emerald-600 shrink-0">•</span>
@@ -317,16 +370,20 @@ function Slide({ index }: { index: number }) {
             </div>
             <div
               className={`rounded-2xl border border-rose-200 bg-rose-50/40 ${
-                forPrint ? "p-3" : "p-4"
+                forPrint ? "p-2.5" : "p-3.5"
               }`}
             >
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1.5">
                 <X className="w-4 h-4 text-rose-700" />
                 <span className="text-xs font-semibold tracking-wide text-rose-900">
                   NOT YET TRUE
                 </span>
               </div>
-              <ul className={`space-y-1.5 text-[#404040] ${forPrint ? "text-[10px]" : "text-[11px] sm:text-xs"}`}>
+              <ul
+                className={`space-y-1 text-[#404040] ${
+                  forPrint ? "text-[9px]" : "text-[10px] sm:text-[11px]"
+                }`}
+              >
                 {TRACTION_VS_AMBITION.notYetTrue.map((t) => (
                   <li key={t} className="leading-snug flex gap-1.5">
                     <span className="text-rose-500 shrink-0">•</span>
@@ -336,6 +393,9 @@ function Slide({ index }: { index: number }) {
               </ul>
             </div>
           </div>
+          <p className={`text-[#a3a3a3] mt-2 ${forPrint ? "text-[8px]" : "text-[9px]"}`}>
+            {MARKET_TRACTION.asOfNote}
+          </p>
         </DeckSlideShell>
       );
 
@@ -872,20 +932,20 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY THIS CAPITAL · NOW</DeckEyebrow>
-          <DeckTitle>Unlock structure, corridors and unit economics</DeckTitle>
+          <DeckTitle>Convert pipeline · deliver NSNP · unlock corridors</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               {
                 t: "With the raise",
-                d: "Seychelles holdco + IP path, end-market opcos, assets/product (90%), ops capacity (10%), board governance.",
+                d: "Working capital to convert the ~R50m pipeline; stand up NSNP delivery toward plan scale; Seychelles holdco + IP; 90% assets/product · 10% ops; board governance.",
               },
               {
                 t: "Without it",
-                d: "Slower corridor density, thinner inventory/capacity, delayed local buy-in entities, weaker Connect GTM.",
+                d: "Slower pipeline conversion, thinner inventory/capacity for institutional offtake, delayed opcos, weaker multi-department and continental public pathways.",
               },
               {
                 t: "Prove in 18 months",
-                d: "Milestones above: corridors, unit-economics dashboard, second market opco, PMO programmes with gates.",
+                d: "Pipeline → contracted offtake; NSNP rhythm; SA department adjacency; corridors + unit-economics dashboard; second market opco.",
               },
             ].map((c) => (
               <div
@@ -976,8 +1036,8 @@ export default function InvestorStrategyDeck() {
           Big Five Group — investor deck
         </h2>
         <p className="text-sm sm:text-base text-[#525252] max-w-2xl mx-auto leading-relaxed">
-          Shareable, printable presentation: ask, structure, unit economics, USD scenarios,
-          milestones, risks, traction vs ambition, and impact. Same controls as other Group decks.
+          Shareable, printable presentation: market traction (R750k · R50m pipeline · NSNP), ask,
+          structure, unit economics, USD scenarios, milestones, risks, and impact.
         </p>
       </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -988,10 +1048,10 @@ export default function InvestorStrategyDeck() {
           theme={theme}
           eyebrow="INVESTOR DECK"
           title="Big Five Group — Investor Presentation"
-          description="10% holding equity, board seat, USD scenarios, unit economics, milestones, risks, opco models."
+          description="10% holding equity, board seat, R750k / R50m traction, NSNP, USD scenarios, unit economics, milestones, risks."
           sharePath="/investor#investor-deck"
           shareTitle="Big Five Group — Investor Presentation"
-          shareText="Confidential investor briefing: equity ask, USD revenue scenarios, and continental impact model."
+          shareText="Confidential investor briefing: market traction, equity ask, USD scenarios, NSNP and continental model."
           renderSlide={(i) => <Slide index={i} />}
         />
       </div>

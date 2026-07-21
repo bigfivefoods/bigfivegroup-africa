@@ -18,6 +18,7 @@ import {
   AFRICA_PROBLEMS,
   GROUP_IMPACT_PILLARS,
   INVESTMENT_ASK,
+  MARKET_TRACTION,
   MODEL_DISCLAIMER,
   OPCO_MODELS,
   SCENARIO_META,
@@ -107,8 +108,57 @@ export default function InvestorPortalClient({ email }: { email: string }) {
             {SCENARIO_META[scenario].blurb}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0 sm:col-span-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
+            <div className="rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-5 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-emerald-200/70 mb-1">
+                INITIAL TURNOVER (ZAR)
+              </div>
+              <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-emerald-200 tabular-nums">
+                {MARKET_TRACTION.initialTurnover.value}
+              </div>
+              <div className="text-xs text-white/50 mt-1">
+                Management-reported · early market stages
+              </div>
+            </div>
+            <div className="rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-5 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-emerald-200/70 mb-1">
+                PIPELINE · 6 MONTHS (ZAR)
+              </div>
+              <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-emerald-200 tabular-nums">
+                {MARKET_TRACTION.pipeline6m.value}
+              </div>
+              <div className="text-xs text-white/50 mt-1">
+                Opportunity-stage as penetration builds · not booked revenue
+              </div>
+            </div>
+            <div className="rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-5 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-emerald-200/70 mb-1">
+                NSNP PROGRAMME
+              </div>
+              <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-emerald-200 tabular-nums">
+                {MARKET_TRACTION.nsnp.value}
+              </div>
+              <div className="text-xs text-white/50 mt-1">
+                Children/day plan · landed with DBE
+              </div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">
+              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">EQUITY ASK</div>
+              <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-white tabular-nums">
+                {INVESTMENT_ASK.equityOffered}
+              </div>
+              <div className="text-xs text-white/50 mt-1">
+                Holding company · board seat · 10/90 use of funds
+              </div>
+            </div>
+          </div>
+          <p className="text-xs text-white/45 mb-6 max-w-3xl leading-relaxed">
+            {MARKET_TRACTION.credibility.detail}{" "}
+            <span className="text-white/35">{MARKET_TRACTION.asOfNote}</span>
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">
               <div className="text-[10px] tracking-[2px] text-white/40 mb-1">
                 GROUP Y5 RUN-RATE (USD)
               </div>
@@ -128,15 +178,6 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               </div>
               <div className="text-xs text-white/50 mt-1">
                 Illustrative annual revenue potential · year 10 · United States dollars
-              </div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">
-              <div className="text-[10px] tracking-[2px] text-white/40 mb-1">EQUITY ASK</div>
-              <div className="text-3xl sm:text-4xl font-semibold tracking-tighter text-white tabular-nums">
-                {INVESTMENT_ASK.equityOffered}
-              </div>
-              <div className="text-xs text-white/50 mt-1">
-                Of Big Five Group holding company · board seat included
               </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 min-w-0">

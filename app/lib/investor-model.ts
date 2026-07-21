@@ -236,10 +236,11 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       markets: "South Africa manufacturing / institutional focus; Kenya company setup supports East Africa ambition",
       traction: [
         "Fortified porridges, soya, one-pots, soups — certified manufacturing narrative",
-        "NSNP-aligned pathway ambition: 2.5m children/day (DBE) — plan, not current daily count",
+        "NSNP programme landed (DBE) — planned to feed 2.5m children/day (plan scale, not current daily count)",
+        "Initial-stage group turnover ~R750k (management-reported); ~R50m pipeline next 6 months as market penetration builds",
         "Programme-reported delivery totals (meals / children) + internal cost/nutrition analyses",
       ],
-      constraints: "Working capital, tender cycles, distribution partners, fortification capacity",
+      constraints: "Working capital to convert pipeline, tender cycles, distribution partners, fortification capacity",
     },
     futureState:
       "Default fortified staple partner for schools, institutions and affordable retail across priority African markets.",
@@ -330,7 +331,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       markets: "South Africa public/institutional orientation; Group delivery attached",
       traction: [
         "Positioning as clean capital pathways for verified enterprises",
-        "NSNP / DBE institutional narrative linked to Foods ambition",
+        "NSNP programme landed with Foods — credibility platform into other SA departments and African public sector as proof compounds",
         "PMO hand-off so awards become delivery, not paper",
       ],
       constraints: "Public cycle times, compliance capacity, reputation risk",
@@ -740,7 +741,42 @@ export const GROUP_IMPACT_PILLARS = {
 } as const;
 
 export const MODEL_DISCLAIMER =
-  "All revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. They are not audited financial statements, forecasts, or guarantees. Equity percentage, board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
+  "All forward-looking revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. Near-term market traction figures in South African rand (ZAR) are management-reported (initial-stage turnover and commercial pipeline) — not audited financial statements. They are not forecasts or guarantees. Equity percentage, board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
+
+/**
+ * Near-term commercial traction (management-reported, ZAR).
+ * Pipeline is opportunity-stage — not booked revenue. NSNP 2.5m is programme plan scale.
+ */
+export const MARKET_TRACTION = {
+  currency: "ZAR",
+  initialTurnover: {
+    value: "R750k",
+    numeric: 750_000,
+    label: "Initial-stage turnover",
+    detail:
+      "Management-reported turnover realised in the initial market stages as traction and penetration build.",
+  },
+  pipeline6m: {
+    value: "R50m",
+    numeric: 50_000_000,
+    label: "Pipeline · next 6 months",
+    detail:
+      "Commercial pipeline over the next six months as market traction and penetration deepen. Pipeline is opportunity-stage — not contracted or booked revenue until converted.",
+  },
+  nsnp: {
+    value: "2.5m",
+    label: "Children / day · NSNP plan",
+    detail:
+      "Big Five Foods has landed the National School Nutrition Programme (NSNP) pathway with the Department of Basic Education — planned to feed 2.5 million children per day. Scale is a delivery plan, not a claim of current daily headcount.",
+  },
+  credibility: {
+    title: "Credibility → multi-department & continental government pathways",
+    detail:
+      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached.",
+  },
+  asOfNote:
+    "Management-reported · ZAR · for authorised investor discussion. Convert pipeline only under NDA diligence packs.",
+} as const;
 
 /** Unit economics sketches — Foods & Connect first (illustrative for diligence discussion). */
 export const UNIT_ECONOMICS = [
@@ -754,8 +790,8 @@ export const UNIT_ECONOMICS = [
       { k: "Margin", v: "Fortification + shelf-life + logistics discipline" },
       { k: "Capital", v: "Working capital for inventory & offtake; plant/pack capacity" },
     ],
-    path: "Pilot / tender → multi-school corridor → multi-country institutional + retail",
-    kill: "If institutional offtake and cost/nutrition advantage cannot hold in 2 priority corridors, pause aggressive volume expansion.",
+    path: "Initial turnover (~R750k) → convert ~R50m pipeline → NSNP plan scale (2.5m/day) → multi-country institutional + retail",
+    kill: "If pipeline conversion and NSNP delivery rhythm stall after capital for working inventory, pause aggressive multi-corridor volume expansion.",
   },
   {
     slug: "connect",
@@ -778,9 +814,9 @@ export const MILESTONES_12_18 = [
     q: "0–6 mo",
     title: "Foundation",
     items: [
+      "Convert R50m commercial pipeline into contracted offtake (working capital + delivery)",
+      "Stand up NSNP delivery rhythm toward 2.5m children/day plan scale",
       "Advance Seychelles holdco + IP architecture with counsel",
-      "Deepen SA institutional Foods pathway (NSNP ambition framing)",
-      "Kenya opco operating rhythm as East Africa template",
       "Investor governance: board seat process + reporting cadence",
     ],
   },
@@ -788,10 +824,10 @@ export const MILESTONES_12_18 = [
     q: "6–12 mo",
     title: "Corridors",
     items: [
+      "Use NSNP credibility to open adjacent SA government department pathways",
       "2–3 priority African corridors with measurable offtake / logistics",
       "Connect: verified supplier activation on Group + pilot enterprises",
       "Direct: hub/container staging on proven Foods lanes only",
-      "Access: packaged mandates tied to Group delivery (not paper wins)",
     ],
   },
   {
@@ -799,7 +835,7 @@ export const MILESTONES_12_18 = [
     title: "Compound",
     items: [
       "Second end-market opco setup (beyond Kenya template)",
-      "Europe corridor traction (DE · HU · GE) for distribution partnerships",
+      "Cross-border public-sector briefs on the back of SA institutional proof",
       "Impact PMO on multi-pillar programmes with gates & KPIs",
       "Unit-economics dashboard: Foods volume/margin + Connect seats/ARPU",
     ],
@@ -837,9 +873,10 @@ export const INVESTOR_RISKS = [
 /** Brutal honesty: what is true today vs ambition. */
 export const TRACTION_VS_AMBITION = {
   trueToday: [
-    "Group narrative and public site with honest labelling (ambition vs programme-reported)",
-    "Foods fortified product story; NSNP pathway framed as plan (2.5m children/day ambition)",
-    "Programme-reported meals / children figures where stated (not statutory audits)",
+    "Initial-stage turnover ~R750k (management-reported) as market traction starts",
+    "~R50m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
+    "NSNP programme landed with DBE — planned to feed 2.5m children/day (programme plan scale)",
+    "Foods fortified product story + programme-reported meals / children where stated",
     "Kenya company setup as East Africa hub template",
     "12 priority distribution markets listed (9 Africa + DE · HU · GE)",
     "SupplierAdvisor® live product (Connect); SAM positioning",
@@ -847,10 +884,12 @@ export const TRACTION_VS_AMBITION = {
     "Close ties to royal family; partnership planned (not claimed as completed deal)",
   ],
   notYetTrue: [
-    "Full Seychelles holdco + IP stack live as final legal structure",
+    "R50m pipeline fully converted to contracted / recognised revenue",
     "2.5m children fed per day as current operational headcount",
+    "Other SA government departments and pan-African public awards already closed at scale",
+    "Full Seychelles holdco + IP stack live as final legal structure",
     "2.8M ha regenerative land under management as completed fact",
-    "Aggressive Y5/Y10 revenue run-rates as booked financials",
+    "Aggressive Y5/Y10 USD revenue run-rates as booked financials",
     "Opcos live in every priority market with full P&L scale",
     "Audited group consolidated statements on this portal",
   ],

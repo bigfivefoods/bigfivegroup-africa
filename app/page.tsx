@@ -42,7 +42,7 @@ const statsData = [
     number: 2.5,
     label: "Children / day NSNP plan",
     suffix: "M",
-    note: "School-nutrition ambition via DBE NSNP pathway (Foods)",
+    note: "NSNP programme landed with DBE — plan scale (Foods)",
   },
 ];
 
@@ -82,8 +82,8 @@ const audiences = [
 const proofMetrics = [
   {
     value: "2.5m",
-    label: "Children / day ambition",
-    source: "NSNP-approved fortified porridges & soya pathway (DBE)",
+    label: "Children / day NSNP plan",
+    source: "NSNP programme landed with DBE — fortified porridges & soya (plan scale)",
   },
   {
     value: "150k+",

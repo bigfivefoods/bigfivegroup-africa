@@ -66,7 +66,7 @@ export default function ImpactPage() {
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
             {[
-              { v: "2.5m", l: "Children/day ambition (NSNP pathway)" },
+              { v: "2.5m", l: "Children/day NSNP plan (programme landed)" },
               { v: "150k+", l: "Meals delivered to date" },
               { v: "10", l: "Pillars under one PMO" },
               { v: "SDG", l: "1 · 2 · 4 · 8 · 10 · 17 design" },

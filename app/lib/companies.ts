@@ -99,7 +99,7 @@ export const companies: Company[] = [
       },
     ],
     impact:
-      "Programme-reported delivery to date (e.g. meals and children reached) plus internal cost/nutrition comparisons — and a planning ambition of 2.5 million children a day on the NSNP pathway for the DBE. See /methodology.",
+      "Programme-reported delivery to date (e.g. meals and children reached) plus internal cost/nutrition comparisons — and the NSNP programme landed with DBE, planned to feed 2.5 million children a day (plan scale). See /methodology.",
   },
   {
     slug: "direct",

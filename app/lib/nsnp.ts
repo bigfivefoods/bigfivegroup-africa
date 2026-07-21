@@ -29,19 +29,19 @@ export const NSNP = {
 
 /**
  * Big Five Foods × NSNP case study (high-level, partner-facing).
- * Scale figure is a group delivery ambition / approved pathway claim as stated by the business.
+ * Programme landed with DBE; 2.5m children/day is planned delivery scale (not current daily headcount).
  */
 export const NSNP_CASE = {
   id: "nsnp-fortified-school-nutrition",
   eyebrow: "CASE STUDY · SCHOOL NUTRITION",
   title: "2.5 million children a day — fortified porridges & soya on the NSNP pathway",
-  headline: "Serving learners at national scale",
+  headline: "NSNP programme landed — national school nutrition at plan scale",
   ambition: "2.5 million",
-  ambitionUnit: "children a day",
+  ambitionUnit: "children a day (plan)",
   productFocus:
     "Fortified porridges and soya minces — designed for institutional and school-day feeding at scale.",
   approval:
-    "Big Five Foods is approved to supply fortified porridges and soya minces on pathways aligned with South Africa’s National School Nutrition Programme (NSNP), overseen by the Department of Basic Education — supporting daily school nutrition menus at institutional scale.",
+    "Big Five Foods has landed the National School Nutrition Programme (NSNP) pathway with South Africa’s Department of Basic Education — planned to feed 2.5 million children per day with fortified porridges and soya minces. That scale is a high-level delivery plan as the programme ramps, not a claim of current daily operational headcount.",
   whatWeDeliver: [
     "Fortified porridge ranges suitable for high-volume school kitchens and feeding schemes",
     "Soya mince products for protein-forward, cost-efficient daily menus",
@@ -49,8 +49,8 @@ export const NSNP_CASE = {
     "Ordering and verification pathways via SupplierAdvisor® where programme procurement allows",
   ],
   whyItMatters:
-    "When children eat well, they can learn. NSNP is one of the country’s flagship interventions for learner wellbeing. Big Five Foods aligns product design — fortification, affordability, and institutional pack formats — with that mission, so approved supply can reach learners every school day.",
-  pillars: ["Foods", "Direct", "Impact", "Connect"],
+    "When children eat well, they can learn. NSNP is one of the country’s flagship interventions for learner wellbeing. Landing this programme builds institutional credibility that should open pathways into other government departments locally and, as proof compounds, into public-sector programmes across Africa — with Group delivery capacity attached.",
+  pillars: ["Foods", "Direct", "Impact", "Connect", "Access"],
   ctaPrimary: { href: "/contact?interest=foods", label: "Discuss school nutrition supply" },
   ctaSecondary: { href: "/foods#foods-deck", label: "Foods product deck" },
 } as const;
