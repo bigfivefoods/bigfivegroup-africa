@@ -255,18 +255,20 @@ export const PARTNERS: PartnerProfile[] = [
     role: "African safaris · extraordinary journeys",
     headline: "dmAFRICA × Big Five Group",
     summary:
-      "Partnership workspace for dmAFRICA and Big Five Group — for over 28 years dmAFRICA has presented African excellence to discerning travellers, crafting seamless journeys from bush to beach and beyond (dmafrica.com).",
+      "Partnership workspace for dmAFRICA and Big Five Group — for over 28 years dmAFRICA has presented African excellence to discerning travellers, crafting seamless journeys in style from bush to beach and beyond (dmafrica.com).",
     focus: ["Foods", "Impact", "Leadership", "Connect", "Global"],
     programmes: ["nsnp", "connect", "leadership", "impact"],
     logoSrc: "/partners/dmafrica-logo.png",
+    /** Near-black hero from dmafrica.com brand surfaces */
     brandColor: "#0C0C0C",
     website: "https://dmafrica.com/",
     websiteLabel: "dmafrica.com",
     notes: [
-      "dmAFRICA branding and mark sourced from dmafrica.com for co-branded partner briefing.",
+      "Official dmAFRICA wordmark and 28-year gold mark sourced from dmafrica.com for co-branded partner briefing (dark wordmark for light tiles).",
+      "Brand language: “Everything extraordinary” — experience the unseen, embrace the unforgettable; 28+ years of African excellence.",
       "Shared focus: African excellence — hospitality, access, and experiences that match Group standards of integrity and delivery.",
       "Foods, Connect and Impact can support guest, community and supply pathways where the partnership requires them.",
-      "Primary portal contact: daniel@dmafrica.com · Group: craig@bigfivegroup.africa",
+      "Primary portal contact: daniel@dmafrica.com · enquiries: sales@dmafrica.com · Group: craig@bigfivegroup.africa",
     ],
     resources: [
       {
