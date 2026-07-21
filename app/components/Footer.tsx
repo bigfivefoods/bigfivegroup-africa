@@ -3,7 +3,7 @@ import { Mail, Phone, MessageCircle, ArrowUpRight } from "lucide-react";
 import NewsletterForm from "./NewsletterForm";
 
 const sectionTitleClass =
-  "text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-[#737373] mb-5";
+  "text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-[#737373] mb-4 sm:mb-5";
 
 const groupLabelClass =
   "text-[10px] font-semibold tracking-[0.12em] uppercase text-[#a3a3a3] mb-2";
@@ -107,11 +107,11 @@ function GroupedNav({
   ariaLabel: string;
 }) {
   return (
-    <nav className="space-y-5" aria-label={ariaLabel}>
+    <nav className="space-y-4 sm:space-y-5" aria-label={ariaLabel}>
       {groups.map((group) => (
         <div key={group.label}>
           <div className={groupLabelClass}>{group.label}</div>
-          <ul className="space-y-2 border-l border-black/[0.08] pl-3">
+          <ul className="space-y-1.5 sm:space-y-2 border-l border-black/[0.08] pl-3">
             {group.links.map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className={linkClass}>
@@ -162,91 +162,111 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Four equal nav columns */}
-        <div className="pt-12 sm:pt-14">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 sm:gap-x-10 lg:gap-x-12 gap-y-10 sm:gap-y-12">
-            <FooterNav title="Explore">
-              <nav className="flex flex-col gap-2.5" aria-label="Explore">
-                {exploreLinks.map((l) => (
-                  <Link key={l.href} href={l.href} className={linkClass}>
-                    {l.label}
-                  </Link>
-                ))}
-              </nav>
-            </FooterNav>
+        {/* 2/3 site map · 1/3 contact + newsletter */}
+        <div className="pt-12 sm:pt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-start">
+          {/* Left ~2/3 — Explore · Pillars · Resources · Legal */}
+          <div className="lg:col-span-8 min-w-0">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 sm:gap-x-8 lg:gap-x-10 gap-y-10 sm:gap-y-12">
+              <FooterNav title="Explore">
+                <nav className="flex flex-col gap-2 sm:gap-2.5" aria-label="Explore">
+                  {exploreLinks.map((l) => (
+                    <Link key={l.href} href={l.href} className={linkClass}>
+                      {l.label}
+                    </Link>
+                  ))}
+                </nav>
+              </FooterNav>
 
-            <FooterNav title="The 10 Pillars">
-              <GroupedNav groups={pillarGroups} ariaLabel="Pillars by mission" />
-            </FooterNav>
+              <FooterNav title="The 10 Pillars">
+                <GroupedNav groups={pillarGroups} ariaLabel="Pillars by mission" />
+              </FooterNav>
 
-            <FooterNav title="Resources">
-              <GroupedNav groups={resourceGroups} ariaLabel="Resources" />
-            </FooterNav>
+              <FooterNav title="Resources">
+                <GroupedNav groups={resourceGroups} ariaLabel="Resources" />
+              </FooterNav>
 
-            <FooterNav title="Legal">
-              <nav className="flex flex-col gap-2.5" aria-label="Legal">
-                {legalLinks.map((l) => (
-                  <Link key={l.href} href={l.href} className={linkClass}>
-                    {l.label}
-                  </Link>
-                ))}
-              </nav>
-            </FooterNav>
+              <FooterNav title="Legal">
+                <nav className="flex flex-col gap-2 sm:gap-2.5" aria-label="Legal">
+                  {legalLinks.map((l) => (
+                    <Link key={l.href} href={l.href} className={linkClass}>
+                      {l.label}
+                    </Link>
+                  ))}
+                </nav>
+              </FooterNav>
+            </div>
           </div>
-        </div>
 
-        {/* Newsletter */}
-        <div className="mt-12 sm:mt-16 pt-10 border-t border-black/10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            <div className="lg:col-span-4 min-w-0">
-              <div className={sectionTitleClass}>Newsletter</div>
-              <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2 -mt-1">
-                Get Group updates
-              </h2>
-              <p className="text-sm text-[#525252] leading-relaxed">
-                Occasional news on programmes, partnerships and continental milestones.{" "}
+          {/* Right ~1/3 — Contact + newsletter */}
+          <div className="lg:col-span-4 min-w-0 lg:border-l lg:border-black/10 lg:pl-10 xl:pl-12">
+            <div className="space-y-8 sm:space-y-10">
+              <div>
+                <div className={sectionTitleClass}>Contact us</div>
+                <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2 -mt-1">
+                  Talk to the Group
+                </h2>
+                <p className="text-sm text-[#525252] leading-relaxed mb-4">
+                  Briefings, partnerships and programme enquiries — KwaZulu-Natal HQ, continent-wide.
+                </p>
+                <ul className="space-y-3 text-sm">
+                  <li>
+                    <a
+                      href="mailto:craig@bigfivegroup.africa"
+                      className="flex items-start gap-2.5 text-[#404040] hover:text-black transition-colors min-w-0"
+                    >
+                      <Mail className="w-4 h-4 shrink-0 mt-0.5" />
+                      <span className="break-all">craig@bigfivegroup.africa</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="tel:+27825814215"
+                      className="flex items-center gap-2.5 text-[#404040] hover:text-black transition-colors"
+                    >
+                      <Phone className="w-4 h-4 shrink-0" />
+                      +27 (0) 82 581 4215
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://wa.me/27825814215"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 text-[#404040] hover:text-black transition-colors"
+                    >
+                      <MessageCircle className="w-4 h-4 shrink-0" />
+                      WhatsApp
+                    </a>
+                  </li>
+                </ul>
+                <p className="mt-4 text-xs text-[#737373] leading-relaxed">
+                  KwaZulu-Natal · South Africa · Nairobi · Kenya · Continent-wide
+                </p>
                 <Link
-                  href="/newsletter"
-                  className="font-semibold text-black underline underline-offset-2"
+                  href="/contact"
+                  className="mt-5 inline-flex items-center justify-center gap-2 text-sm font-semibold bg-black text-white px-5 py-2.5 rounded-full hover:bg-[#111] transition-colors w-full sm:w-auto"
                 >
-                  Learn more
+                  Contact form
                 </Link>
-              </p>
-            </div>
-            <div className="lg:col-span-8 min-w-0">
-              <NewsletterForm variant="footer" source="footer" />
-            </div>
-          </div>
-        </div>
+              </div>
 
-        <div className="mt-10 sm:mt-12 pt-8 border-t border-black/10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 text-sm">
-          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-x-6 xl:gap-x-8 gap-y-3 min-w-0">
-            <a
-              href="mailto:craig@bigfivegroup.africa"
-              className="flex items-center gap-2 hover:text-black/70 transition-colors min-w-0 break-all sm:break-normal"
-            >
-              <Mail className="w-4 h-4 shrink-0" />
-              <span className="truncate">craig@bigfivegroup.africa</span>
-            </a>
-            <a
-              href="tel:+27825814215"
-              className="flex items-center gap-2 hover:text-black/70 transition-colors"
-            >
-              <Phone className="w-4 h-4 shrink-0" />
-              +27 (0) 82 581 4215
-            </a>
-            <a
-              href="https://wa.me/27825814215"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-black/70 transition-colors"
-            >
-              <MessageCircle className="w-4 h-4 shrink-0" />
-              WhatsApp
-            </a>
-          </div>
-          <div className="text-xs text-[#525252] shrink-0">
-            KwaZulu-Natal · South Africa · Nairobi · Kenya · Continent-wide
+              <div className="pt-8 border-t border-black/10">
+                <div className={sectionTitleClass}>Newsletter</div>
+                <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2 -mt-1">
+                  Get Group updates
+                </h2>
+                <p className="text-sm text-[#525252] leading-relaxed mb-4">
+                  Occasional news on programmes, partnerships and continental milestones.{" "}
+                  <Link
+                    href="/newsletter"
+                    className="font-semibold text-black underline underline-offset-2"
+                  >
+                    Learn more
+                  </Link>
+                </p>
+                <NewsletterForm variant="footer" source="footer" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
