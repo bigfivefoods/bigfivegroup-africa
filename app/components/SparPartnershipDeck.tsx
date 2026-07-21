@@ -761,12 +761,26 @@ function Slide({ index }: { index: number }) {
             </div>
           </div>
           <p
-            className={`text-[#404040] max-w-3xl mb-4 ${
+            className={`text-[#404040] max-w-3xl mb-3 ${
               forPrint ? "text-[11px]" : "text-sm"
             } leading-relaxed`}
           >
             {P.npos[0]!.summary}
           </p>
+          {"verse" in P.npos[0]! && P.npos[0].verse && (
+            <blockquote
+              className={`max-w-3xl mb-3 rounded-xl border border-emerald-100 bg-emerald-50/40 ${
+                forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
+              } text-[#404040] leading-relaxed`}
+            >
+              <p className="italic">
+                “{P.npos[0].verse.text}”
+              </p>
+              <footer className="mt-2 not-italic font-semibold text-black">
+                — {P.npos[0].verse.ref}
+              </footer>
+            </blockquote>
+          )}
           <div className="flex flex-wrap gap-2 mb-3">
             {P.npos[0]!.focus.map((f) => (
               <span

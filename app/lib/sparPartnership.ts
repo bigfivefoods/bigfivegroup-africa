@@ -222,6 +222,10 @@ export const SPAR_PARTNERSHIP = {
       websiteLabel: "Restore Africa Foundation (Facebook)",
       logoSrc: "/partners/restore-africa-foundation-logo.png",
       brandColor: "#0F5A37",
+      verse: {
+        text: "Religion that God our Father accepts as pure and faultless is this: to look after orphans and widows in their distress and to keep oneself from being polluted by the world.",
+        ref: "James 1:27",
+      },
     },
     {
       slug: "a-heart-to-help",
