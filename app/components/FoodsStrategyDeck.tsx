@@ -39,18 +39,43 @@ import { SA_LOGIN, SA_ONBOARDING, SA_URL, sa } from "../lib/saCopy";
 import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import { GROUP_VMV } from "./deck/GroupVmvContent";
 
-const TOTAL = 15;
+const TOTAL = 16;
 const PRINT_ROOT_ID = "foods-deck-print-root";
 
 const PRODUCT_RANGES = [
   {
+    title: "NSNP Institutional",
+    icon: School,
+    blurb:
+      "NSNP-approved 5kg institutional packs for school kitchens — Enriched Porridge, Beef Soya Mince and One-Pot Chicken Biryani Mix on the DBE pathway (2.5M kids/day plan scale).",
+    stats: "NSNP approved · 5kg packs · school feeding ready",
+    images: [
+      { src: NSNP_PRODUCTS[1].src, name: "Enriched Porridge 5kg" },
+      { src: NSNP_PRODUCTS[0].src, name: "Beef Soya Mince 5kg" },
+      { src: NSNP_PRODUCTS[2].src, name: "Chicken Biryani 5kg" },
+    ],
+    nutrition:
+      "Fortified institutional formats designed for high-volume school menus — micronutrients and protein in pack sizes kitchens can portion at scale.",
+    foodSecurity:
+      "5kg shelf-stable packs support logistics into schools and institutional stores — reliable stock for daily NSNP feeding without cold chain.",
+    malnutrition:
+      "Addresses school-age hunger and micronutrient gaps: porridge for energy and fortification, soya for protein, one-pot biryani for a complete meal plate.",
+    sdgs: [
+      { n: "2", t: "Zero Hunger", d: "NSNP-aligned products for daily school meals." },
+      { n: "4", t: "Quality Education", d: "Fed learners can concentrate and stay in class." },
+      { n: "3", t: "Good Health", d: "Fortified staples for growing children." },
+    ],
+    wfp:
+      "Complements national school-feeding and WFP-aligned Zero Hunger practice — institutional packs, not a claim of UN agency status.",
+    channels: "NSNP · DBE · school kitchens · institutional feeding schemes · government menus",
+  },
+  {
     title: "Fortified Porridges",
     icon: UtensilsCrossed,
     blurb:
-      "Instant, vitamin-enriched porridges for children and families — including NSNP-approved Enriched Porridge 5kg for institutional school feeding, plus Banana, Strawberry, Chocolate and Original.",
-    stats: "NSNP 5kg pack · 74% more nutrition · school & household ready",
+      "Instant, vitamin-enriched porridges for children and families — Banana, Strawberry, Chocolate and Original on local maize where formulation allows.",
+    stats: "74% more nutrition · 185% more fortification · school & household ready",
     images: [
-      { src: NSNP_PRODUCTS[1].src, name: "NSNP Enriched 5kg" },
       { src: "/foods/porridge-chocolate.jpg", name: "Chocolate" },
       { src: "/foods/porridge-banana.jpg", name: "Banana" },
       { src: "/foods/porridge-original.jpg", name: "Original" },
@@ -75,10 +100,9 @@ const PRODUCT_RANGES = [
     title: "Soya Mince",
     icon: Beef,
     blurb:
-      "Plant-based protein mince — including NSNP-approved Beef Soya Mince 5kg for school kitchens, plus Chilli Beef, Rich Beef, Beef & Onion and Mutton.",
-    stats: "NSNP 5kg pack · from R1.30 / meal · long shelf life",
+      "Plant-based protein mince — Chilli Beef, Rich Beef, Beef & Onion, Mutton — affordable protein for stews, pap and institutional menus.",
+    stats: "From R1.30 / meal · 24.4% more protein · long shelf life",
     images: [
-      { src: NSNP_PRODUCTS[0].src, name: "NSNP Beef Soya 5kg" },
       { src: "/foods/soya-chilli-beef.jpg", name: "Chilli Beef" },
       { src: "/foods/soya-beef-onion.jpg", name: "Beef & Onion" },
       { src: "/foods/soya-beef.jpg", name: "Rich Beef" },
@@ -103,10 +127,9 @@ const PRODUCT_RANGES = [
     title: "One-Pot Meals",
     icon: ChefHat,
     blurb:
-      "Complete ready-to-cook meals — including NSNP-approved Chicken Biryani Mix 5kg, plus Chakalaka, Beef, Chicken and Chilli Beef.",
-    stats: "NSNP 5kg pack · from R2.50 / meal · 24-month shelf life",
+      "Complete ready-to-cook meals — Chakalaka, Beef, Chicken, Chilli Beef — balanced fortification, authentic African flavours, ~20 minutes.",
+    stats: "From R2.50 / meal · ~20 min cook · 24-month shelf life",
     images: [
-      { src: NSNP_PRODUCTS[2].src, name: "NSNP Chicken Biryani 5kg" },
       { src: "/foods/onepot-chakalaka.jpg", name: "Chakalaka" },
       { src: "/foods/onepot-beef.jpg", name: "Beef" },
       { src: "/foods/onepot-chicken.jpg", name: "Chicken" },
@@ -406,7 +429,7 @@ function TitleSlide() {
                 <span>KwaZulu-Natal · SA</span>
                 <span>bigfivegroup.africa/foods</span>
                 <span>Order: supplieradvisor.com</span>
-                <span>15 slides</span>
+                <span>16 slides</span>
               </div>
             </div>
           </TitleSlideLayout>
@@ -422,7 +445,7 @@ function AgendaSlide() {
     "Group vision, mission and values",
     "Why fortified nutrition is non-negotiable in Africa",
     "Big Five Foods impact — meals, children, cost, nutrition",
-    "Four product ranges with real packaging",
+    "Five product ranges — including NSNP institutional 5kg packs",
     "Each range: food security, malnutrition, SDGs & WFP",
     "Certifications & order on SupplierAdvisor®",
     "Farm to fork — manufacture and deliver",
@@ -637,7 +660,13 @@ function SolutionSlide() {
           Porridges, soya mince, one-pot meals and soups for households, schools and institutions —
           order on <strong className="text-black">SupplierAdvisor®</strong>, our ethical on-chain OS.
         </p>
-        <div className={`grid grid-cols-2 lg:grid-cols-4 min-h-0 flex-1 content-start ${forPrint ? "gap-1.5" : "gap-2.5 sm:gap-3"}`}>
+        <div
+          className={`grid min-h-0 flex-1 content-start ${
+            forPrint
+              ? "grid-cols-5 gap-1.5"
+              : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3"
+          }`}
+        >
           {PRODUCT_RANGES.map((r) => (
             <div
               key={r.title}
@@ -706,7 +735,7 @@ function RangeSlide() {
     <SlideShell>
       <div className="flex flex-col h-full min-h-0">
         <Eyebrow>PRODUCT RANGE</Eyebrow>
-        <SlideTitle>Four ranges. One nutrition system.</SlideTitle>
+        <SlideTitle>Five ranges. One nutrition system.</SlideTitle>
         <p
           className={`text-[#525252] max-w-3xl ${
             forPrint ? "text-[10px] mb-1.5 leading-snug" : "text-sm mb-3 leading-relaxed"
@@ -1002,12 +1031,14 @@ function Slide({ index }: SlideProps) {
     case 10:
       return <ProductDeepDive rangeIndex={3} />;
     case 11:
-      return <CertsSlide />;
+      return <ProductDeepDive rangeIndex={4} />;
     case 12:
-      return <FarmToForkSlide />;
+      return <CertsSlide />;
     case 13:
-      return <WhoWeServeSlide />;
+      return <FarmToForkSlide />;
     case 14:
+      return <WhoWeServeSlide />;
+    case 15:
       return <CtaSlide />;
     default:
       return null;
@@ -1037,7 +1068,7 @@ function ProductDeepDive({ rangeIndex }: { rangeIndex: number }) {
       <div className="flex flex-col h-full min-h-0">
         <div className={`shrink-0 ${forPrint ? "mb-1.5" : "mb-2.5"}`}>
           <Eyebrow>
-            PRODUCT · IMPACT · {rangeIndex + 1}/4 · SDG · WFP-ALIGNED
+            PRODUCT · IMPACT · {rangeIndex + 1}/{PRODUCT_RANGES.length} · SDG · WFP-ALIGNED
           </Eyebrow>
           <div className="flex flex-wrap items-center gap-2 mb-0.5">
             <Icon className={`text-amber-700 shrink-0 ${forPrint ? "w-4 h-4" : "w-6 h-6"}`} />
@@ -1807,7 +1838,7 @@ export default function FoodsStrategyDeck() {
     <div id="foods-deck" className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center min-w-0">
         <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-amber-800 mb-3 font-medium px-1">
-          PRODUCT & IMPACT DECK · 15 SLIDES · SHAREABLE
+          PRODUCT & IMPACT DECK · 16 SLIDES · SHAREABLE
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-black mb-3 sm:mb-4 text-balance px-1">
           Big Five Foods — the deck

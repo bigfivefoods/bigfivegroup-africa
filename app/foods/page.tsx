@@ -20,52 +20,56 @@ const ACCENT = "#d97706";
 
 const productCategories = [
   {
+    title: "NSNP Institutional",
+    icon: School,
+    description:
+      "NSNP-approved 5kg institutional packs for school kitchens and the Department of Basic Education pathway — planned to feed 2.5 million children per day.",
+    images: NSNP_PRODUCTS.map((p) => ({ src: p.src, alt: p.name })),
+    stats: "NSNP approved · 5kg packs · school feeding ready",
+    benefits:
+      "Beef Soya Mince 5kg, Enriched Porridge 5kg, and One-Pot Chicken Biryani Mix 5kg — fortified, shelf-stable formats designed for high-volume school menus under the National School Nutrition Programme.",
+  },
+  {
     title: "Fortified Porridges",
     icon: UtensilsCrossed,
-    description:
-      "High-protein, vitamin-enriched instant porridges for children and families — including NSNP-approved Enriched Porridge 5kg for institutional school feeding.",
+    description: "High-protein, vitamin-enriched instant porridges for children and families",
     images: [
-      { src: NSNP_PRODUCTS[1].src, alt: NSNP_PRODUCTS[1].name },
       { src: "/foods/porridge-chocolate.jpg", alt: "Chocolate porridge" },
       { src: "/foods/porridge-banana.jpg", alt: "Banana porridge" },
       { src: "/foods/porridge-original.jpg", alt: "Original porridge" },
       { src: "/foods/porridge-strawberry.jpg", alt: "Strawberry porridge" },
     ],
-    stats: "NSNP 5kg · 74% more nutrition · 185% more fortification",
+    stats: "74% more nutrition · 185% more fortification",
     benefits:
-      "NSNP-approved Enriched Porridge 5kg for school kitchens, plus Banana, Strawberry, Chocolate and Original. Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron. Locally grown South African maize.",
+      "Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron. Locally grown South African maize. Banana, Strawberry, Chocolate, Original.",
   },
   {
     title: "Soya Mince",
     icon: Beef,
-    description:
-      "Plant-based protein mince — including NSNP-approved Beef Soya Mince 5kg for school menus, plus household and catering flavours.",
+    description: "Plant-based protein mince — affordable and versatile",
     images: [
-      { src: NSNP_PRODUCTS[0].src, alt: NSNP_PRODUCTS[0].name },
       { src: "/foods/soya-chilli-beef.jpg", alt: "Chilli Beef soya" },
       { src: "/foods/soya-beef-onion.jpg", alt: "Beef & Onion soya" },
       { src: "/foods/soya-beef.jpg", alt: "Rich Beef soya" },
       { src: "/foods/soya-mutton.jpg", alt: "Mutton soya" },
     ],
-    stats: "NSNP 5kg · from R1.30 per meal · 24.4% more protein",
+    stats: "From R1.30 per meal · 24.4% more protein",
     benefits:
-      "NSNP-approved Beef Soya Mince 5kg for institutional feeding, plus Chilli Beef, Rich Beef, Beef & Onion and Mutton. High protein, low cost for households, catering and business.",
+      "High protein, low cost. Ideal for households, catering and business. Chilli Beef, Rich Beef, Beef & Onion, Mutton.",
   },
   {
     title: "One-Pot Meals",
     icon: ChefHat,
-    description:
-      "Ready-to-cook complete meals — including NSNP-approved One-Pot Chicken Biryani Mix 5kg, plus classic African flavours.",
+    description: "Ready-to-cook complete meals with balanced nutrition",
     images: [
-      { src: NSNP_PRODUCTS[2].src, alt: NSNP_PRODUCTS[2].name },
       { src: "/foods/onepot-chakalaka.jpg", alt: "Chakalaka one-pot" },
       { src: "/foods/onepot-beef.jpg", alt: "Beef one-pot" },
       { src: "/foods/onepot-chicken.jpg", alt: "Chicken one-pot" },
       { src: "/foods/onepot-chilli-beef.jpg", alt: "Chilli Beef one-pot" },
     ],
-    stats: "NSNP 5kg · from R2.50 per meal · 24-month shelf life",
+    stats: "From R2.50 per meal · 24-month shelf life",
     benefits:
-      "NSNP-approved Chicken Biryani Mix 5kg for school and institutional kitchens, plus Chakalaka, Beef, Chicken and Chilli Beef. Protein, vitamins A & D, iron and calcium. Cooked in ~20 minutes.",
+      "Protein, vitamins A & D, iron and calcium. Authentic African flavours. Cooked in ~20 minutes. Locally sourced.",
   },
   {
     title: "Soups",
@@ -244,13 +248,18 @@ export default function FoodsPage() {
           <SectionHeading
             eyebrow="PRODUCT RANGES"
             title="Nutrition people actually eat"
-            subtitle="Designed for households, schools, catering, and institutional feeding — affordable, fortified, proudly African. NSNP-approved 5kg packs lead porridge, soya and one-pot ranges."
+            subtitle="Five ranges: NSNP institutional 5kg packs, porridges, soya, one-pots and soups — for households, schools and catering."
           />
           <div className="space-y-6 sm:space-y-10">
             {productCategories.map((cat) => (
               <article
                 key={cat.title}
-                className="rounded-2xl sm:rounded-[1.75rem] border border-black/10 bg-[#fafafa] overflow-hidden min-w-0"
+                id={cat.title.startsWith("NSNP") ? "nsnp-range" : undefined}
+                className={`rounded-2xl sm:rounded-[1.75rem] border overflow-hidden min-w-0 ${
+                  cat.title.startsWith("NSNP")
+                    ? "border-emerald-200 bg-emerald-50/30"
+                    : "border-black/10 bg-[#fafafa]"
+                }`}
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                   <div className="p-5 sm:p-8 md:p-10 flex flex-col justify-center min-w-0">
@@ -264,7 +273,11 @@ export default function FoodsPage() {
                   </div>
                   <div
                     className={`grid gap-2 sm:gap-3 p-3 sm:p-4 md:p-6 bg-white min-w-0 ${
-                      cat.images.length >= 5 ? "grid-cols-3 sm:grid-cols-3" : "grid-cols-2"
+                      cat.images.length === 3
+                        ? "grid-cols-3"
+                        : cat.images.length >= 5
+                          ? "grid-cols-3"
+                          : "grid-cols-2"
                     }`}
                   >
                     {cat.images.map((img) => (
