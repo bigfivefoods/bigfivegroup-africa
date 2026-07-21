@@ -321,8 +321,8 @@ export default function PartnerPortalClient({
 
       <nav className="sticky top-[var(--navbar-height)] z-30 bg-white/95 backdrop-blur border-b border-black/10">
         <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5">
-          <div className="flex w-full flex-wrap items-center justify-between gap-x-1 gap-y-1.5 text-[11px] sm:text-sm font-medium">
-            {[
+          {(() => {
+            const navLinks = [
               { href: "#for-you", label: "For you" },
               { href: "#programmes", label: "Programmes" },
               ...(partner.slug === "spar"
@@ -332,16 +332,27 @@ export default function PartnerPortalClient({
               { href: "#resources", label: "Resources" },
               ...(isAdmin ? [{ href: "#directory", label: "All partners" }] : []),
               { href: "#contact", label: "Contact" },
-            ].map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="min-w-0 flex-1 basis-0 text-center rounded-full px-1.5 sm:px-3 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black whitespace-nowrap"
+            ];
+            return (
+              <div
+                className="grid w-full items-center gap-1 text-[10px] sm:text-xs md:text-sm font-medium"
+                style={{
+                  gridTemplateColumns: `repeat(${navLinks.length}, minmax(0, 1fr))`,
+                }}
               >
-                {l.label}
-              </a>
-            ))}
-          </div>
+                {navLinks.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    className="min-w-0 w-full text-center rounded-full px-0.5 sm:px-2 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black truncate"
+                    title={l.label}
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       </nav>
 
