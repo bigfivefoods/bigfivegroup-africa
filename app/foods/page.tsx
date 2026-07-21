@@ -9,8 +9,9 @@ import {
   StatRow,
   FinalCta,
 } from "../components/PageSections";
-import { UtensilsCrossed, ChefHat, Beef, Soup } from "lucide-react";
+import { UtensilsCrossed, ChefHat, Beef, Soup, School } from "lucide-react";
 import { SA_ONBOARDING } from "../lib/saCopy";
+import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import LocalNewsVideo from "../components/LocalNewsVideo";
 import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
@@ -21,54 +22,60 @@ const productCategories = [
   {
     title: "Fortified Porridges",
     icon: UtensilsCrossed,
-    description: "High-protein, vitamin-enriched instant porridges for children and families",
+    description:
+      "High-protein, vitamin-enriched instant porridges for children and families — including NSNP-approved Enriched Porridge 5kg for institutional school feeding.",
     images: [
-      "/foods/porridge-chocolate.jpg",
-      "/foods/porridge-banana.jpg",
-      "/foods/porridge-original.jpg",
-      "/foods/porridge-strawberry.jpg",
+      { src: NSNP_PRODUCTS[1].src, alt: NSNP_PRODUCTS[1].name },
+      { src: "/foods/porridge-chocolate.jpg", alt: "Chocolate porridge" },
+      { src: "/foods/porridge-banana.jpg", alt: "Banana porridge" },
+      { src: "/foods/porridge-original.jpg", alt: "Original porridge" },
+      { src: "/foods/porridge-strawberry.jpg", alt: "Strawberry porridge" },
     ],
-    stats: "74% more nutrition · 185% more fortification",
+    stats: "NSNP 5kg · 74% more nutrition · 185% more fortification",
     benefits:
-      "Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron. Locally grown South African maize. Banana, Strawberry, Chocolate, Original.",
+      "NSNP-approved Enriched Porridge 5kg for school kitchens, plus Banana, Strawberry, Chocolate and Original. Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron. Locally grown South African maize.",
   },
   {
     title: "Soya Mince",
     icon: Beef,
-    description: "Plant-based protein mince — affordable and versatile",
+    description:
+      "Plant-based protein mince — including NSNP-approved Beef Soya Mince 5kg for school menus, plus household and catering flavours.",
     images: [
-      "/foods/soya-chilli-beef.jpg",
-      "/foods/soya-beef-onion.jpg",
-      "/foods/soya-beef.jpg",
-      "/foods/soya-mutton.jpg",
+      { src: NSNP_PRODUCTS[0].src, alt: NSNP_PRODUCTS[0].name },
+      { src: "/foods/soya-chilli-beef.jpg", alt: "Chilli Beef soya" },
+      { src: "/foods/soya-beef-onion.jpg", alt: "Beef & Onion soya" },
+      { src: "/foods/soya-beef.jpg", alt: "Rich Beef soya" },
+      { src: "/foods/soya-mutton.jpg", alt: "Mutton soya" },
     ],
-    stats: "From R1.30 per meal · 24.4% more protein",
+    stats: "NSNP 5kg · from R1.30 per meal · 24.4% more protein",
     benefits:
-      "High protein, low cost. Ideal for households, catering and business. Chilli Beef, Rich Beef, Beef & Onion, Mutton.",
+      "NSNP-approved Beef Soya Mince 5kg for institutional feeding, plus Chilli Beef, Rich Beef, Beef & Onion and Mutton. High protein, low cost for households, catering and business.",
   },
   {
     title: "One-Pot Meals",
     icon: ChefHat,
-    description: "Ready-to-cook complete meals with balanced nutrition",
+    description:
+      "Ready-to-cook complete meals — including NSNP-approved One-Pot Chicken Biryani Mix 5kg, plus classic African flavours.",
     images: [
-      "/foods/onepot-chakalaka.jpg",
-      "/foods/onepot-beef.jpg",
-      "/foods/onepot-chicken.jpg",
-      "/foods/onepot-chilli-beef.jpg",
+      { src: NSNP_PRODUCTS[2].src, alt: NSNP_PRODUCTS[2].name },
+      { src: "/foods/onepot-chakalaka.jpg", alt: "Chakalaka one-pot" },
+      { src: "/foods/onepot-beef.jpg", alt: "Beef one-pot" },
+      { src: "/foods/onepot-chicken.jpg", alt: "Chicken one-pot" },
+      { src: "/foods/onepot-chilli-beef.jpg", alt: "Chilli Beef one-pot" },
     ],
-    stats: "From R2.50 per meal · 24-month shelf life",
+    stats: "NSNP 5kg · from R2.50 per meal · 24-month shelf life",
     benefits:
-      "Protein, vitamins A & D, iron and calcium. Authentic African flavours. Cooked in ~20 minutes. Locally sourced.",
+      "NSNP-approved Chicken Biryani Mix 5kg for school and institutional kitchens, plus Chakalaka, Beef, Chicken and Chilli Beef. Protein, vitamins A & D, iron and calcium. Cooked in ~20 minutes.",
   },
   {
     title: "Soups",
     icon: Soup,
     description: "Fortified instant soup thickeners — classic SA flavours",
     images: [
-      "/foods/soup-brown-onion.jpg",
-      "/foods/soup-oxtail.jpg",
-      "/foods/soup-minestrone.jpg",
-      "/foods/soup-chicken.jpg",
+      { src: "/foods/soup-brown-onion.jpg", alt: "Brown Onion soup" },
+      { src: "/foods/soup-oxtail.jpg", alt: "Oxtail soup" },
+      { src: "/foods/soup-minestrone.jpg", alt: "Minestrone soup" },
+      { src: "/foods/soup-chicken.jpg", alt: "Chicken soup" },
     ],
     stats: "From R1.10 per meal · nutrient dense",
     benefits:
@@ -179,6 +186,53 @@ export default function FoodsPage() {
         <CaseStudyNsnp />
       </div>
 
+      {/* NSNP-approved institutional SKUs */}
+      <section
+        id="nsnp-products"
+        className="bg-gradient-to-b from-amber-50/80 to-[#fafafa] border-b border-black/10 py-14 sm:py-20"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="NSNP · DBE INSTITUTIONAL RANGE"
+            title="Three NSNP-approved products for school feeding"
+            subtitle="Beef soya mince, enriched porridge and chicken biryani mix — 5kg institutional packs designed for the National School Nutrition Programme pathway (2.5 million children per day plan scale)."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            {NSNP_PRODUCTS.map((p) => (
+              <article
+                key={p.id}
+                className="rounded-2xl sm:rounded-3xl border border-amber-200/80 bg-white overflow-hidden shadow-sm flex flex-col min-w-0"
+              >
+                <div className="relative aspect-square bg-[#f8f7f5] border-b border-black/5">
+                  <Image
+                    src={p.src}
+                    alt={p.name}
+                    fill
+                    className="object-contain p-4 sm:p-6"
+                    sizes="(max-width:640px) 90vw, 30vw"
+                  />
+                  <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-emerald-700 text-white text-[10px] sm:text-xs font-semibold px-2.5 py-1 shadow-sm">
+                    <School className="w-3 h-3" />
+                    {p.badge}
+                  </span>
+                </div>
+                <div className="p-4 sm:p-5 flex flex-col flex-1 min-w-0">
+                  <div className="text-[10px] tracking-[1.5px] text-amber-900 font-semibold mb-1">
+                    {p.pack.toUpperCase()}
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold tracking-tight text-black mb-2 text-balance">
+                    {p.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#525252] leading-relaxed flex-1">
+                    {p.blurb}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <LocalNewsVideo accent={ACCENT} />
 
       <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
@@ -190,7 +244,7 @@ export default function FoodsPage() {
           <SectionHeading
             eyebrow="PRODUCT RANGES"
             title="Nutrition people actually eat"
-            subtitle="Designed for households, schools, catering, and institutional feeding — affordable, fortified, proudly African."
+            subtitle="Designed for households, schools, catering, and institutional feeding — affordable, fortified, proudly African. NSNP-approved 5kg packs lead porridge, soya and one-pot ranges."
           />
           <div className="space-y-6 sm:space-y-10">
             {productCategories.map((cat) => (
@@ -208,18 +262,22 @@ export default function FoodsPage() {
                     <div className="text-sm font-semibold text-[#92400e] mb-4">{cat.stats}</div>
                     <p className="text-[#404040] text-sm sm:text-base leading-relaxed">{cat.benefits}</p>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3 p-3 sm:p-4 md:p-6 bg-white min-w-0">
-                    {cat.images.map((src) => (
+                  <div
+                    className={`grid gap-2 sm:gap-3 p-3 sm:p-4 md:p-6 bg-white min-w-0 ${
+                      cat.images.length >= 5 ? "grid-cols-3 sm:grid-cols-3" : "grid-cols-2"
+                    }`}
+                  >
+                    {cat.images.map((img) => (
                       <div
-                        key={src}
+                        key={img.src}
                         className="relative aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden border border-black/5 bg-[#f8f7f5]"
                       >
                         <Image
-                          src={src}
-                          alt={cat.title}
+                          src={img.src}
+                          alt={img.alt}
                           fill
                           className="object-contain p-1.5 sm:p-2 md:p-3"
-                          sizes="(max-width:768px) 45vw, 22vw"
+                          sizes="(max-width:768px) 30vw, 18vw"
                         />
                       </div>
                     ))}

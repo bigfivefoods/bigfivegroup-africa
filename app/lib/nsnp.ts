@@ -39,13 +39,14 @@ export const NSNP_CASE = {
   ambition: "2.5 million",
   ambitionUnit: "children a day (plan)",
   productFocus:
-    "Fortified porridges and soya minces — designed for institutional and school-day feeding at scale.",
+    "NSNP-approved institutional SKUs — Enriched Porridge 5kg, Beef Soya Mince 5kg and One-Pot Chicken Biryani Mix 5kg — plus household and catering ranges designed for school-day feeding at scale.",
   approval:
-    "Big Five Foods has landed the National School Nutrition Programme (NSNP) pathway with South Africa’s Department of Basic Education — planned to feed 2.5 million children per day with fortified porridges and soya minces. That scale is a high-level delivery plan as the programme ramps, not a claim of current daily operational headcount.",
+    "Big Five Foods has landed the National School Nutrition Programme (NSNP) pathway with South Africa’s Department of Basic Education — planned to feed 2.5 million children per day with fortified porridges, soya minces and one-pot meals. That scale is a high-level delivery plan as the programme ramps, not a claim of current daily operational headcount.",
   whatWeDeliver: [
-    "Fortified porridge ranges suitable for high-volume school kitchens and feeding schemes",
-    "Soya mince products for protein-forward, cost-efficient daily menus",
-    "Shelf-stable formats that support logistics into schools and institutional stores",
+    "NSNP-approved Enriched Porridge 5kg for high-volume school kitchens and feeding schemes",
+    "NSNP-approved Beef Soya Mince 5kg for protein-forward, cost-efficient daily menus",
+    "NSNP-approved One-Pot Chicken Biryani Mix 5kg for complete institutional meal formats",
+    "Shelf-stable 5kg packs that support logistics into schools and institutional stores",
     "Ordering and verification pathways via SupplierAdvisor® where programme procurement allows",
   ],
   whyItMatters:

@@ -36,6 +36,7 @@ import {
   Users,
 } from "lucide-react";
 import { SA_LOGIN, SA_ONBOARDING, SA_URL, sa } from "../lib/saCopy";
+import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import { GROUP_VMV } from "./deck/GroupVmvContent";
 
 const TOTAL = 15;
@@ -46,9 +47,10 @@ const PRODUCT_RANGES = [
     title: "Fortified Porridges",
     icon: UtensilsCrossed,
     blurb:
-      "Instant, vitamin-enriched porridges for children and families — Banana, Strawberry, Chocolate and Original on local maize where formulation allows.",
-    stats: "74% more nutrition · 185% more fortification · school & household ready",
+      "Instant, vitamin-enriched porridges for children and families — including NSNP-approved Enriched Porridge 5kg for institutional school feeding, plus Banana, Strawberry, Chocolate and Original.",
+    stats: "NSNP 5kg pack · 74% more nutrition · school & household ready",
     images: [
+      { src: NSNP_PRODUCTS[1].src, name: "NSNP Enriched 5kg" },
       { src: "/foods/porridge-chocolate.jpg", name: "Chocolate" },
       { src: "/foods/porridge-banana.jpg", name: "Banana" },
       { src: "/foods/porridge-original.jpg", name: "Original" },
@@ -73,9 +75,10 @@ const PRODUCT_RANGES = [
     title: "Soya Mince",
     icon: Beef,
     blurb:
-      "Plant-based protein mince — Chilli Beef, Rich Beef, Beef & Onion, Mutton — affordable protein for stews, pap and institutional menus.",
-    stats: "From R1.30 / meal · 24.4% more protein · long shelf life",
+      "Plant-based protein mince — including NSNP-approved Beef Soya Mince 5kg for school kitchens, plus Chilli Beef, Rich Beef, Beef & Onion and Mutton.",
+    stats: "NSNP 5kg pack · from R1.30 / meal · long shelf life",
     images: [
+      { src: NSNP_PRODUCTS[0].src, name: "NSNP Beef Soya 5kg" },
       { src: "/foods/soya-chilli-beef.jpg", name: "Chilli Beef" },
       { src: "/foods/soya-beef-onion.jpg", name: "Beef & Onion" },
       { src: "/foods/soya-beef.jpg", name: "Rich Beef" },
@@ -100,9 +103,10 @@ const PRODUCT_RANGES = [
     title: "One-Pot Meals",
     icon: ChefHat,
     blurb:
-      "Complete ready-to-cook meals — Chakalaka, Beef, Chicken, Chilli Beef — balanced fortification, authentic African flavours, ~20 minutes.",
-    stats: "From R2.50 / meal · ~20 min cook · 24-month shelf life",
+      "Complete ready-to-cook meals — including NSNP-approved Chicken Biryani Mix 5kg, plus Chakalaka, Beef, Chicken and Chilli Beef.",
+    stats: "NSNP 5kg pack · from R2.50 / meal · 24-month shelf life",
     images: [
+      { src: NSNP_PRODUCTS[2].src, name: "NSNP Chicken Biryani 5kg" },
       { src: "/foods/onepot-chakalaka.jpg", name: "Chakalaka" },
       { src: "/foods/onepot-beef.jpg", name: "Beef" },
       { src: "/foods/onepot-chicken.jpg", name: "Chicken" },
@@ -1075,7 +1079,13 @@ function ProductDeepDive({ rangeIndex }: { rangeIndex: number }) {
           <div className="min-w-0 min-h-0 flex flex-col">
             <div
               className={`grid min-h-0 ${
-                forPrint ? "grid-cols-4 gap-1" : "grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2"
+                forPrint
+                  ? r.images.length >= 5
+                    ? "grid-cols-5 gap-1"
+                    : "grid-cols-4 gap-1"
+                  : r.images.length >= 5
+                    ? "grid-cols-3 sm:grid-cols-5 gap-1.5 sm:gap-2"
+                    : "grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2"
               }`}
             >
               {r.images.map((img) => (
