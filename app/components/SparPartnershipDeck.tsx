@@ -413,9 +413,9 @@ function Slide({ index }: { index: number }) {
     case 5:
       return (
         <DeckSlideShell theme={theme}>
-          {/* Single-page locked layout: header + 4 columns + footer, no overflow */}
+          {/* One hero pack image per category — fits cleanly on one page */}
           <div className="flex h-full min-h-0 flex-col overflow-hidden">
-            <div className="shrink-0 mb-2">
+            <div className="shrink-0 mb-2 sm:mb-3">
               <DeckEyebrow theme={theme}>MANDELA PACK · FULL RANGE</DeckEyebrow>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-balance text-black mb-1">
                 Four categories. Sixteen flavours. One purpose pack story.
@@ -428,22 +428,23 @@ function Slide({ index }: { index: number }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2 flex-1 min-h-0 auto-rows-fr">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0">
               {RANGES.map((range) => {
                 const Icon = RANGE_ICONS[range.id as keyof typeof RANGE_ICONS] ?? UtensilsCrossed;
+                const flavourNames = range.flavours.map((f) => f.name).join(" · ");
                 return (
                   <div
                     key={range.id}
-                    className="rounded-xl border border-black/10 bg-[#fafafa] min-w-0 min-h-0 flex flex-col overflow-hidden p-1.5 sm:p-2"
+                    className="rounded-xl border border-black/10 bg-[#fafafa] min-w-0 min-h-0 flex flex-col overflow-hidden p-2 sm:p-3"
                   >
-                    <div className="flex items-center gap-1 mb-1 shrink-0 min-w-0">
-                      <Icon className="w-3.5 h-3.5 shrink-0" style={{ color: theme.accentDark }} />
+                    <div className="flex items-center gap-1.5 mb-2 shrink-0 min-w-0">
+                      <Icon className="w-4 h-4 shrink-0" style={{ color: theme.accentDark }} />
                       <div className="min-w-0">
-                        <div className="text-[10px] sm:text-xs font-semibold text-black leading-tight truncate">
+                        <div className="text-xs sm:text-sm font-semibold text-black leading-tight truncate">
                           {range.title}
                         </div>
                         <div
-                          className="text-[8px] sm:text-[9px] leading-tight truncate"
+                          className="text-[9px] sm:text-[10px] leading-tight truncate"
                           style={{ color: theme.accentDark }}
                         >
                           {range.tagline}
@@ -451,29 +452,23 @@ function Slide({ index }: { index: number }) {
                       </div>
                     </div>
 
-                    {/* 2×2 full pack shots — flex so they fill remaining column height */}
-                    <div className="grid grid-cols-2 grid-rows-2 gap-1 flex-1 min-h-0">
-                      {range.flavours.map((f) => (
-                        <div key={f.name} className="min-w-0 min-h-0 flex flex-col">
-                          <div className="relative flex-1 min-h-0 w-full rounded-md border border-black/8 bg-white overflow-hidden">
-                            <DeckPrintImage
-                              src={f.image}
-                              alt={`${range.title} — ${f.name}`}
-                              paddingClass="p-0.5 sm:p-1"
-                              fit="contain"
-                            />
-                          </div>
-                          <div className="text-center text-[8px] sm:text-[9px] font-medium text-black leading-none pt-0.5 shrink-0 truncate">
-                            {f.name}
-                          </div>
-                        </div>
-                      ))}
+                    {/* Single product image per category */}
+                    <div className="relative flex-1 min-h-0 w-full rounded-lg border border-black/8 bg-white overflow-hidden">
+                      <DeckPrintImage
+                        src={range.heroImage}
+                        alt={range.title}
+                        paddingClass="p-2 sm:p-3"
+                        fit="contain"
+                      />
                     </div>
 
+                    <p className="text-[9px] sm:text-[10px] font-medium text-black leading-snug mt-2 shrink-0 line-clamp-2">
+                      {flavourNames}
+                    </p>
                     <p className="text-[8px] sm:text-[9px] text-[#525252] leading-snug mt-1 line-clamp-2 shrink-0">
                       <strong className="text-black">Nutrition:</strong> {range.nutrition}
                     </p>
-                    <p className="text-[7px] sm:text-[8px] text-[#737373] leading-tight mt-0.5 line-clamp-1 shrink-0">
+                    <p className="text-[8px] text-[#737373] leading-tight mt-0.5 line-clamp-1 shrink-0">
                       {range.stats}
                     </p>
                   </div>
@@ -481,9 +476,9 @@ function Slide({ index }: { index: number }) {
               })}
             </div>
 
-            <p className="shrink-0 mt-1.5 text-[8px] sm:text-[9px] text-[#737373] leading-snug">
-              Pack photography = Big Five Foods packaging. SKUs, sizes & Mandela wraps on term sheet ·
-              bigfivegroup.africa/foods
+            <p className="shrink-0 mt-2 text-[9px] sm:text-[10px] text-[#737373] leading-snug">
+              One hero pack per category (range has 16 flavours total). SKUs, sizes & Mandela wraps on
+              term sheet · bigfivegroup.africa/foods
             </p>
           </div>
         </DeckSlideShell>
