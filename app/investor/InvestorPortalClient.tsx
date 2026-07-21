@@ -451,7 +451,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               title="90% asset acquisition & product development (~USD 9m)"
             />
           </div>
-          <div className="flex flex-wrap gap-4 mt-2 text-[11px] text-[#737373]">
+          <div className="flex flex-wrap gap-4 mt-2 text-[11px] text-[#737373] mb-6">
             <span>
               <span className="inline-block w-2.5 h-2.5 rounded-sm bg-slate-500 mr-1.5 align-middle" />
               10% operational costs (~USD 1m)
@@ -461,9 +461,31 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               90% asset acquisition & product development (~USD 9m)
             </span>
           </div>
-          <p className="mt-3 text-xs text-[#737373] leading-relaxed max-w-2xl">
+
+          <h3 className="text-base sm:text-lg font-semibold tracking-tight text-black mb-3">
+            Line-item deployment (orientation)
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+            {INVESTMENT_ASK.useOfFundsLines.map((line) => (
+              <div
+                key={line.label}
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 min-w-0"
+              >
+                <div className="flex items-baseline gap-2 flex-wrap mb-1">
+                  <span className="text-sm font-semibold text-amber-800 tabular-nums">
+                    {line.amountLabel}
+                  </span>
+                  <span className="text-[11px] text-[#737373] tabular-nums">{line.pct}%</span>
+                </div>
+                <div className="text-sm font-semibold text-black mb-0.5">{line.label}</div>
+                <p className="text-xs text-[#525252] leading-relaxed">{line.detail}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-[#737373] leading-relaxed max-w-2xl">
             Split of a {INVESTMENT_ASK.capitalRaiseLabel} raise ({INVESTMENT_ASK.equityOffered} equity
-            + board seat). Subject to definitive term sheet.
+            + board seat). {INVESTMENT_ASK.impliedPreMoney} Board may rebalance line items. Subject to
+            definitive term sheet.
           </p>
         </div>
       </section>

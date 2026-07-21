@@ -804,9 +804,18 @@ export const INVESTMENT_ASK = {
   equityOffered: "10%",
   equityNote:
     "We are seeking USD 10 million for 10% equity in Big Five Group — the holding company — to help accelerate continental growth across the operating companies.",
+  /** Simple ownership framing — subject to term sheet (not a formal valuation). */
+  impliedPreMoney:
+    "Implies ~USD 100m pre-money equity value at the stated terms (USD 10m for 10%) — orientation only; final economics are set by definitive agreements.",
   boardSeat: true,
   boardNote:
     "The investment is expected to include a board seat at holding-company level, so the investor participates in strategic oversight of continental scale-up.",
+  governance: {
+    reporting:
+      "Monthly management pack (cash, offtake, pipeline conversion) and quarterly board materials under agreed cadence.",
+    boardRights:
+      "Holding-company board seat; material capital and corridor decisions via board process (term-sheet detail under NDA).",
+  },
   /** Planned corporate architecture (orientation only — not tax or legal advice). */
   corporateStructure: {
     holding: "Seychelles",
@@ -837,8 +846,150 @@ export const INVESTMENT_ASK = {
         "Capital deployed into productive assets (e.g. manufacturing, hubs, inventory, land-linked programmes) and product / platform development across Foods, Agri, Direct, Connect and related opcos (~USD 9m of a USD 10m raise).",
     },
   ],
+  /**
+   * Line-item deployment of the USD 10m raise (orientation — may rebalance by board).
+   * Sums to 100% / USD 10m.
+   */
+  useOfFundsLines: [
+    {
+      amountLabel: "USD 2.5m",
+      pct: 25,
+      label: "Foods inventory & institutional offtake WC",
+      detail: "Convert pipeline and fund recurring school / programme / DoH-path supply.",
+    },
+    {
+      amountLabel: "USD 2.0m",
+      pct: 20,
+      label: "SANTACO container pilot density",
+      detail: "First live taxi-rank / rural nodes: Foods + Wi‑Fi + marketing + Super-Cube® modules.",
+    },
+    {
+      amountLabel: "USD 1.5m",
+      pct: 15,
+      label: "Manufacturing / pack & QA capacity",
+      detail: "Plant, packaging and fortification capacity for institutional scale.",
+    },
+    {
+      amountLabel: "USD 1.5m",
+      pct: 15,
+      label: "Connect GTM & product",
+      detail: "SupplierAdvisor® onboarding, enterprise sales and product depth on Group rails.",
+    },
+    {
+      amountLabel: "USD 1.0m",
+      pct: 10,
+      label: "Kenya / end-market opco & corridors",
+      detail: "East Africa operating rhythm and priority corridor setup beyond SA.",
+    },
+    {
+      amountLabel: "USD 0.5m",
+      pct: 5,
+      label: "Holdco · IP · legal / tax setup",
+      detail: "Seychelles holdco architecture, IP stack and counsel-led structuring.",
+    },
+    {
+      amountLabel: "USD 1.0m",
+      pct: 10,
+      label: "Operations & programme capacity",
+      detail: "People, systems, compliance, PMO and multi-country day-to-day capacity.",
+    },
+  ],
   purpose:
     "Accelerate continental growth — deepen priority markets via local operating companies, fund capacity, and compound the Group’s integrated Feed · Educate · Empower model under a Seychelles holding structure.",
+} as const;
+
+/** Team & governance framing for investor diligence (roles, not a full org chart). */
+export const TEAM_GOVERNANCE = {
+  eyebrow: "TEAM · GOVERNANCE",
+  title: "Who runs the system — and how capital is overseen",
+  roles: [
+    {
+      role: "Group leadership",
+      who: "Founder / CEO leadership of Big Five Group",
+      focus: "Holdco strategy, capital allocation, continental integration of the ten pillars.",
+    },
+    {
+      role: "Foods",
+      who: "Big Five Foods operating leadership",
+      focus: "Fortified manufacturing, NSNP / institutional offtake, ~45% GP unit economics, reorder rhythm.",
+    },
+    {
+      role: "Direct",
+      who: "Big Five Direct + SANTACO partnership operators",
+      focus: "Taxi-rank / rural containers, last-mile density, multi-use node economics.",
+    },
+    {
+      role: "Impact · Health channel",
+      who: "Director General of Health within Big Five Impact",
+      focus: "PMO delivery discipline; pathways into SA DoH and African health systems for Group products.",
+    },
+    {
+      role: "Connect",
+      who: "SupplierAdvisor® product & GTM",
+      focus: "Verified trade OS, seats / ARPU, Group + open-market network effects.",
+    },
+    {
+      role: "Investor governance",
+      who: "Holding-company board seat (this raise)",
+      focus: "Strategic oversight, reporting cadence, material corridor and capital decisions.",
+    },
+  ],
+  cadence: [
+    "Monthly: cash, offtake, pipeline conversion, live container / corridor KPIs",
+    "Quarterly: board pack, scenario vs actual, risk register, use-of-funds vs plan",
+    "Ad hoc: material tenders, opco setup, structure steps with counsel",
+  ],
+  note: "Named individuals and full org chart shared under NDA in the data room — public deck states roles and channels honestly without over-claiming titles.",
+} as const;
+
+/**
+ * 12–18 month proof dashboard — measurable gates (orientation, not a guarantee).
+ * Pair with MILESTONES_12_18 narrative roadmap.
+ */
+export const PROOF_DASHBOARD_18MO = {
+  title: "What we must prove in 18 months",
+  subtitle:
+    "Numeric gates for this capital — success metrics and kill criteria. Ranges are management orientation for authorised discussion.",
+  gates: [
+    {
+      metric: "Pipeline conversion",
+      target: "≥40–60% of ~$3.0m / R50m",
+      how: "Contracted offtake + recognised revenue on institutional / commercial lanes",
+      kill: "Conversion stalls below threshold after WC deploy",
+    },
+    {
+      metric: "NSNP delivery rhythm",
+      target: "Live school-day supply cadence",
+      how: "Toward 2.5m children/day plan scale (ramp, not instant headcount)",
+      kill: "No sustained institutional delivery rhythm in priority corridors",
+    },
+    {
+      metric: "Foods unit economics",
+      target: "Hold ~45% GP band",
+      how: "Management dashboard on SKU margin while keeping institutional price edge",
+      kill: "GP collapses without recoverable cost or pricing path",
+    },
+    {
+      metric: "SANTACO live nodes",
+      target: "Pilot pilot ranks live",
+      how: "Foods + Wi‑Fi surveys + marketing + Super-Cube® modules on active sites",
+      kill: "Pilot sites fail activation / reorder economics after pilot budget",
+    },
+    {
+      metric: "DoH pathway",
+      target: "Documented product introductions",
+      how: "Impact channel (DG of Health) into SA Department of Health progress",
+      kill: "No credible pathway traction after dedicated BD capacity",
+    },
+    {
+      metric: "Second market opco",
+      target: "Kenya template + path to #2",
+      how: "East Africa operating rhythm; setup path for next end-market entity",
+      kill: "Cannot staff or fund local opco discipline without corridor offtake",
+    },
+  ],
+  successSummary:
+    "Capital works if pipeline becomes recurring offtake, NSNP and rank nodes run, Foods GP holds, and governance reports monthly — then corridors and second opco compound.",
 } as const;
 
 /** Consolidated impact narrative (group-level, scenario-aware wording) */

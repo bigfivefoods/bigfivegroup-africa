@@ -36,19 +36,22 @@ import {
   MILESTONES_12_18,
   MODEL_DISCLAIMER,
   OPCO_MODELS,
+  PROOF_DASHBOARD_18MO,
   SCENARIO_META,
+  TEAM_GOVERNANCE,
   TRACTION_VS_AMBITION,
   UNIT_ECONOMICS,
   formatUSDm,
   sumScenario,
   type ScenarioKey,
 } from "../lib/investor-model";
+import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
 import { CONTACT_EMAIL } from "../lib/contact";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
 const theme = DECK_THEMES.amber;
-const TOTAL = 20;
+const TOTAL = 23;
 
 function opcoMeta(slug: string) {
   const company = companies.find((c) => c.slug === slug);
@@ -125,13 +128,13 @@ function Slide({ index }: { index: number }) {
           <DeckTitle>What this investor briefing covers</DeckTitle>
           <ol className={forPrint ? "space-y-1 max-w-2xl" : "space-y-2 max-w-2xl"}>
             {[
-              "Ask · use of funds · Seychelles holdco + end-market opcos",
-              "Market traction (~$45k · ~$3.0m pipeline · NSNP) · true today vs not yet",
+              "Ask (USD 10m · 10%) · detailed use of funds · structure",
+              "Market traction · true today vs not yet",
               "Group thesis · Africa problems · how we respond",
-              "Unit economics (Foods + Connect)",
-              "USD revenue scenarios · opco rollup",
-              "12–18 month milestones · risks & mitigants",
-              "Social · economic · environmental impact · NDA next steps",
+              "Foods competitive edge (~45% GP · ~85% cheaper) · unit economics",
+              "USD scenarios · opco rollup",
+              "12–18 mo roadmap · numeric proof dashboard · team & governance",
+              "Risks · impact · why capital now · NDA next steps",
             ].map((item, i) => (
               <li key={item} className="flex gap-2.5 items-start">
                 <span
@@ -193,8 +196,11 @@ function Slide({ index }: { index: number }) {
               label="Seat at holding-company level for strategic oversight"
             />
           </div>
-          <p className={`text-white/55 ${forPrint ? "text-[10px]" : "text-xs"} leading-relaxed`}>
-            {INVESTMENT_ASK.purpose} Subject to definitive legal agreements / term sheet.
+          <p className={`text-white/55 ${forPrint ? "text-[10px]" : "text-xs"} leading-relaxed mb-2`}>
+            {INVESTMENT_ASK.purpose}
+          </p>
+          <p className={`text-amber-200/90 ${forPrint ? "text-[10px]" : "text-xs"} leading-relaxed`}>
+            {INVESTMENT_ASK.impliedPreMoney} Subject to definitive legal agreements / term sheet.
           </p>
         </DeckSlideShell>
       );
@@ -202,39 +208,72 @@ function Slide({ index }: { index: number }) {
     case 3:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>USE OF FUNDS</DeckEyebrow>
-          <DeckTitle>10% operations · 90% assets & product development</DeckTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-5">
+          <DeckEyebrow theme={theme}>USE OF FUNDS · USD 10m</DeckEyebrow>
+          <DeckTitle>Where the first dollars go</DeckTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
             {INVESTMENT_ASK.useOfFunds.map((u) => (
               <div
                 key={u.label}
-                className={`rounded-2xl border border-black/10 bg-[#fafafa] ${
-                  forPrint ? "p-3" : "p-5 sm:p-6"
+                className={`rounded-xl border border-black/10 bg-[#fafafa] flex items-baseline gap-2 flex-wrap ${
+                  forPrint ? "p-2" : "p-3"
                 }`}
               >
-                <div className="flex items-baseline gap-2 mb-2 flex-wrap">
-                  <span
-                    className={`font-semibold tracking-tighter tabular-nums ${
-                      forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
-                    }`}
-                    style={{ color: theme.accentDark }}
-                  >
-                    {u.pct}%
-                  </span>
-                  <span className="text-sm font-semibold text-black">{u.label}</span>
-                  <span className="text-xs font-semibold text-[#737373] tabular-nums">
-                    · {u.amountLabel}
-                  </span>
-                </div>
-                <p className={`text-[#525252] leading-relaxed ${forPrint ? "text-[11px]" : "text-sm"}`}>
-                  {u.detail}
-                </p>
+                <span
+                  className={`font-semibold tracking-tighter tabular-nums ${
+                    forPrint ? "text-xl" : "text-2xl"
+                  }`}
+                  style={{ color: theme.accentDark }}
+                >
+                  {u.pct}%
+                </span>
+                <span className="text-xs sm:text-sm font-semibold text-black">{u.label}</span>
+                <span className="text-[10px] font-semibold text-[#737373] tabular-nums">
+                  {u.amountLabel}
+                </span>
               </div>
             ))}
           </div>
-          <div className="h-3 rounded-full overflow-hidden flex border border-black/10">
+          <div className="h-2 rounded-full overflow-hidden flex border border-black/10 mb-3">
             <div className="bg-slate-500 h-full" style={{ width: "10%" }} />
             <div className="h-full" style={{ width: "90%", backgroundColor: theme.gradientFrom }} />
+          </div>
+          <div className="text-[10px] tracking-[2px] text-[#737373] font-semibold mb-2">
+            LINE ITEMS · ORIENTATION (BOARD MAY REBALANCE)
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+            {INVESTMENT_ASK.useOfFundsLines.map((line) => (
+              <div
+                key={line.label}
+                className={`rounded-xl border border-black/10 bg-white flex gap-2 min-w-0 ${
+                  forPrint ? "p-1.5" : "p-2.5"
+                }`}
+              >
+                <div
+                  className={`shrink-0 font-semibold tabular-nums ${
+                    forPrint ? "text-[10px]" : "text-xs"
+                  }`}
+                  style={{ color: theme.accentDark }}
+                >
+                  {line.amountLabel}
+                </div>
+                <div className="min-w-0">
+                  <div
+                    className={`font-semibold text-black leading-snug ${
+                      forPrint ? "text-[9px]" : "text-[11px]"
+                    }`}
+                  >
+                    {line.label}
+                  </div>
+                  <p
+                    className={`text-[#525252] leading-snug ${
+                      forPrint ? "text-[8px]" : "text-[10px]"
+                    }`}
+                  >
+                    {line.detail}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </DeckSlideShell>
       );
@@ -601,6 +640,79 @@ function Slide({ index }: { index: number }) {
     case 10:
       return (
         <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>FOODS · COMPETITIVE EDGE</DeckEyebrow>
+          <DeckTitle>~45% GP · still ~85% cheaper vs market</DeckTitle>
+          <p
+            className={`text-[#404040] leading-relaxed max-w-3xl ${
+              forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
+            }`}
+          >
+            {FOODS_ECONOMICS.whyGovernment}
+          </p>
+          <div className={`grid grid-cols-3 gap-2 ${forPrint ? "mb-2" : "mb-3"}`}>
+            <DeckStatTile
+              theme={theme}
+              value={FOODS_ECONOMICS.grossProfit.value}
+              label={FOODS_ECONOMICS.grossProfit.label}
+            />
+            <DeckStatTile
+              theme={theme}
+              value={FOODS_ECONOMICS.cheaperThanMarket.value}
+              label={FOODS_ECONOMICS.cheaperThanMarket.label}
+            />
+            <DeckStatTile
+              theme={theme}
+              value={FOODS_ECONOMICS.nutritionDesign.value}
+              label={FOODS_ECONOMICS.nutritionDesign.label}
+            />
+          </div>
+          <div className="text-[10px] tracking-[2px] text-[#737373] font-semibold mb-2">
+            RELATIVE COST INDEX · WHOLESALE / RETAIL = 100 (INTERNAL)
+          </div>
+          <div className="space-y-2 mb-2">
+            {FOODS_ECONOMICS.competitiveIndex.map((row) => (
+              <div key={row.channel} className="min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-0.5">
+                  <span
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[9px]" : "text-[11px] sm:text-xs"
+                    }`}
+                  >
+                    {row.channel}
+                  </span>
+                  <span
+                    className={`tabular-nums font-semibold ${
+                      row.tone === "foods" ? "text-amber-800" : "text-[#737373]"
+                    } ${forPrint ? "text-[9px]" : "text-[11px]"}`}
+                  >
+                    {row.index}
+                  </span>
+                </div>
+                <div className="h-2.5 rounded-full bg-black/5 overflow-hidden border border-black/5">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${row.index}%`,
+                      backgroundColor:
+                        row.tone === "foods" ? theme.gradientFrom : "#a3a3a3",
+                    }}
+                  />
+                </div>
+                <p className={`text-[#737373] mt-0.5 ${forPrint ? "text-[8px]" : "text-[9px]"}`}>
+                  {row.note}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className={`text-[#a3a3a3] ${forPrint ? "text-[8px]" : "text-[9px]"}`}>
+            {FOODS_ECONOMICS.honesty}
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 11:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>UNIT ECONOMICS · FOODS + CONNECT</DeckEyebrow>
           <DeckTitle>Recurring food volume — and seats × ARPU</DeckTitle>
           <p
@@ -611,9 +723,8 @@ function Slide({ index }: { index: number }) {
             <strong className="text-black">Foods is repetitive business</strong> with{" "}
             <strong className="text-black">~45% GP</strong> while remaining{" "}
             <strong className="text-black">~85% cheaper</strong> than wholesale and retail
-            (management / internal) — super-competitive for government and feeding schemes. Schools
-            and institutions reorder as menus turn, so volume should sustain and grow with
-            penetration (thesis, not a guarantee). Connect compounds via seats and network density.
+            (management / internal) — super-competitive for government and feeding schemes. Connect
+            compounds via seats and network density.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {UNIT_ECONOMICS.map((u) => {
@@ -637,7 +748,11 @@ function Slide({ index }: { index: number }) {
                       <div className="text-[10px] text-[#737373]">{u.engine}</div>
                     </div>
                   </div>
-                  <ul className={`space-y-1 mb-2 ${forPrint ? "text-[9px]" : "text-[11px]"} text-[#404040]`}>
+                  <ul
+                    className={`space-y-1 mb-2 ${
+                      forPrint ? "text-[9px]" : "text-[11px]"
+                    } text-[#404040]`}
+                  >
                     {u.levers.map((l) => (
                       <li key={l.k}>
                         <strong>{l.k}:</strong> {l.v}
@@ -661,7 +776,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 12:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -704,7 +819,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GROUP ROLLUP · USD</DeckEyebrow>
@@ -769,7 +884,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>OPCOS · CURRENT VS FUTURE</DeckEyebrow>
@@ -817,7 +932,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>OPCOS · CONTINUED</DeckEyebrow>
@@ -863,7 +978,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 16:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>12–18 MONTH ROADMAP</DeckEyebrow>
@@ -903,7 +1018,136 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 17:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>PROOF DASHBOARD · 18 MONTHS</DeckEyebrow>
+          <DeckTitle>{PROOF_DASHBOARD_18MO.title}</DeckTitle>
+          <p
+            className={`text-[#525252] leading-relaxed ${
+              forPrint ? "text-[9px] mb-2" : "text-[11px] sm:text-xs mb-3"
+            }`}
+          >
+            {PROOF_DASHBOARD_18MO.subtitle}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+            {PROOF_DASHBOARD_18MO.gates.map((g) => (
+              <div
+                key={g.metric}
+                className={`rounded-xl border border-black/10 bg-[#fafafa] ${
+                  forPrint ? "p-2" : "p-2.5 sm:p-3"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <div
+                    className={`font-semibold text-black ${
+                      forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                    }`}
+                  >
+                    {g.metric}
+                  </div>
+                  <div
+                    className={`shrink-0 font-semibold tabular-nums ${
+                      forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                    }`}
+                    style={{ color: theme.accentDark }}
+                  >
+                    {g.target}
+                  </div>
+                </div>
+                <p
+                  className={`text-[#404040] leading-snug ${
+                    forPrint ? "text-[8px]" : "text-[10px]"
+                  }`}
+                >
+                  <strong>How:</strong> {g.how}
+                </p>
+                <p
+                  className={`text-rose-800/90 leading-snug mt-0.5 ${
+                    forPrint ? "text-[8px]" : "text-[10px]"
+                  }`}
+                >
+                  <strong>Kill:</strong> {g.kill}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p
+            className={`text-[#525252] mt-2 leading-snug ${
+              forPrint ? "text-[8px]" : "text-[10px] sm:text-[11px]"
+            }`}
+          >
+            {PROOF_DASHBOARD_18MO.successSummary}
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 18:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>{TEAM_GOVERNANCE.eyebrow}</DeckEyebrow>
+          <DeckTitle>{TEAM_GOVERNANCE.title}</DeckTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 mb-2">
+            {TEAM_GOVERNANCE.roles.map((r) => (
+              <div
+                key={r.role}
+                className={`rounded-xl border border-black/10 bg-[#fafafa] ${
+                  forPrint ? "p-2" : "p-2.5 sm:p-3"
+                }`}
+              >
+                <div
+                  className={`font-semibold text-black ${
+                    forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                  }`}
+                >
+                  {r.role}
+                </div>
+                <div
+                  className={`font-medium leading-snug ${
+                    forPrint ? "text-[9px]" : "text-[11px]"
+                  }`}
+                  style={{ color: theme.accentDark }}
+                >
+                  {r.who}
+                </div>
+                <p
+                  className={`text-[#525252] leading-snug mt-0.5 ${
+                    forPrint ? "text-[8px]" : "text-[10px]"
+                  }`}
+                >
+                  {r.focus}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div
+            className={`rounded-xl border border-amber-200 bg-amber-50/50 ${
+              forPrint ? "p-2" : "p-3"
+            }`}
+          >
+            <div className="text-[10px] tracking-[2px] font-semibold text-amber-900 mb-1">
+              REPORTING CADENCE
+            </div>
+            <ul
+              className={`space-y-0.5 text-[#404040] ${
+                forPrint ? "text-[8px]" : "text-[10px] sm:text-[11px]"
+              }`}
+            >
+              {TEAM_GOVERNANCE.cadence.map((c) => (
+                <li key={c} className="leading-snug flex gap-1.5">
+                  <Check className="w-3 h-3 shrink-0 mt-0.5 text-emerald-700" />
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+            <p className={`text-[#737373] mt-1.5 ${forPrint ? "text-[8px]" : "text-[9px]"}`}>
+              {INVESTMENT_ASK.governance.boardRights} {TEAM_GOVERNANCE.note}
+            </p>
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 19:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>RISKS & MITIGANTS</DeckEyebrow>
@@ -943,7 +1187,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 17:
+    case 20:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -991,7 +1235,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 18:
+    case 21:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY THIS CAPITAL · NOW</DeckEyebrow>
@@ -1029,7 +1273,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 19:
+    case 22:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <DeckTitleLayout>
@@ -1113,10 +1357,10 @@ export default function InvestorStrategyDeck() {
           theme={theme}
           eyebrow="INVESTOR DECK"
           title="Big Five Group — Investor Presentation"
-          description="USD 10m for 10% holding equity, board seat, traction, NSNP, USD scenarios, unit economics, milestones, risks."
+          description="USD 10m for 10% equity, detailed use of funds, Foods competitive edge, proof dashboard, team & governance."
           sharePath="/investor#investor-deck"
           shareTitle="Big Five Group — Investor Presentation"
-          shareText="Confidential investor briefing: USD 10m for 10% equity, market traction, USD scenarios, NSNP and continental model."
+          shareText="Confidential investor briefing: USD 10m for 10% equity, use of funds, Foods unit economics, 18-month proof gates."
           renderSlide={(i) => <Slide index={i} />}
         />
       </div>
