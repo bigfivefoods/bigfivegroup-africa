@@ -34,9 +34,22 @@ import {
   type ScenarioKey,
 } from "../lib/investor-model";
 import { CONTACT_EMAIL } from "../lib/contact";
+import { companies } from "../lib/companies";
+import { CompanyIcon } from "../lib/icons";
 
 const theme = DECK_THEMES.amber;
 const TOTAL = 15;
+
+function opcoMeta(slug: string) {
+  const company = companies.find((c) => c.slug === slug);
+  const model = OPCO_MODELS.find((o) => o.slug === slug);
+  return {
+    icon: company?.icon ?? "Leaf",
+    color: company?.color ?? model?.color ?? "#111",
+    name: model?.name ?? company?.name ?? slug,
+    fullName: model?.fullName ?? company?.fullName ?? slug,
+  };
+}
 
 function Slide({ index }: { index: number }) {
   const forPrint = useDeckPrintMode();
@@ -271,22 +284,29 @@ function Slide({ index }: { index: number }) {
             PMO delivery — so impact and revenue compound instead of competing.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-            {OPCO_MODELS.map((o) => (
-              <div
-                key={o.slug}
-                className={`rounded-xl border border-black/10 bg-[#fafafa] text-center ${
-                  forPrint ? "p-2" : "p-3"
-                }`}
-              >
+            {OPCO_MODELS.map((o) => {
+              const meta = opcoMeta(o.slug);
+              return (
                 <div
-                  className="w-2 h-2 rounded-full mx-auto mb-1.5"
-                  style={{ backgroundColor: o.color }}
-                />
-                <div className={`font-semibold text-black ${forPrint ? "text-[10px]" : "text-xs"}`}>
-                  {o.name}
+                  key={o.slug}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] text-center flex flex-col items-center ${
+                    forPrint ? "p-2" : "p-3"
+                  }`}
+                >
+                  <div
+                    className={`rounded-lg flex items-center justify-center mb-1.5 ${
+                      forPrint ? "w-7 h-7" : "w-9 h-9 sm:w-10 sm:h-10"
+                    }`}
+                    style={{ backgroundColor: `${meta.color}18`, color: meta.color }}
+                  >
+                    <CompanyIcon name={meta.icon} size={forPrint ? 14 : 18} />
+                  </div>
+                  <div className={`font-semibold text-black ${forPrint ? "text-[10px]" : "text-xs"}`}>
+                    {o.name}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </DeckSlideShell>
       );
@@ -451,20 +471,33 @@ function Slide({ index }: { index: number }) {
                 </tr>
               </thead>
               <tbody className="text-[#404040]">
-                {OPCO_MODELS.map((o) => (
-                  <tr key={o.slug} className="border-t border-black/5">
-                    <td className="py-1.5 pr-2 font-medium text-black">{o.name}</td>
-                    <td className="py-1.5 pr-2 text-right tabular-nums">
-                      {formatUSDm(o.scenarios.conservative.y5RevenueUSDm)}
-                    </td>
-                    <td className="py-1.5 pr-2 text-right tabular-nums font-medium text-black">
-                      {formatUSDm(o.scenarios.moderate.y5RevenueUSDm)}
-                    </td>
-                    <td className="py-1.5 text-right tabular-nums">
-                      {formatUSDm(o.scenarios.aggressive.y5RevenueUSDm)}
-                    </td>
-                  </tr>
-                ))}
+                {OPCO_MODELS.map((o) => {
+                  const meta = opcoMeta(o.slug);
+                  return (
+                    <tr key={o.slug} className="border-t border-black/5">
+                      <td className="py-1.5 pr-2 font-medium text-black">
+                        <span className="inline-flex items-center gap-1.5">
+                          <span
+                            className="inline-flex w-5 h-5 rounded items-center justify-center shrink-0"
+                            style={{ backgroundColor: `${meta.color}18`, color: meta.color }}
+                          >
+                            <CompanyIcon name={meta.icon} size={12} />
+                          </span>
+                          {o.name}
+                        </span>
+                      </td>
+                      <td className="py-1.5 pr-2 text-right tabular-nums">
+                        {formatUSDm(o.scenarios.conservative.y5RevenueUSDm)}
+                      </td>
+                      <td className="py-1.5 pr-2 text-right tabular-nums font-medium text-black">
+                        {formatUSDm(o.scenarios.moderate.y5RevenueUSDm)}
+                      </td>
+                      <td className="py-1.5 text-right tabular-nums">
+                        {formatUSDm(o.scenarios.aggressive.y5RevenueUSDm)}
+                      </td>
+                    </tr>
+                  );
+                })}
                 <tr className="border-t-2 border-black/15 font-semibold text-black">
                   <td className="py-2 pr-2">Group total</td>
                   <td className="py-2 pr-2 text-right tabular-nums">
@@ -489,28 +522,44 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>OPCOS · CURRENT VS FUTURE</DeckEyebrow>
           <DeckTitle>Traction today · continental ambition tomorrow</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-full overflow-y-auto">
-            {OPCO_MODELS.slice(0, 6).map((o) => (
-              <div
-                key={o.slug}
-                className={`rounded-xl border border-black/10 bg-[#fafafa] ${
-                  forPrint ? "p-2" : "p-3"
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: o.color }} />
-                  <span className={`font-semibold text-black ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"}`}>
-                    {o.name}
-                  </span>
+            {OPCO_MODELS.slice(0, 6).map((o) => {
+              const meta = opcoMeta(o.slug);
+              return (
+                <div
+                  key={o.slug}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] ${
+                    forPrint ? "p-2" : "p-3"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1 min-w-0">
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${meta.color}18`, color: meta.color }}
+                    >
+                      <CompanyIcon name={meta.icon} size={14} />
+                    </div>
+                    <span
+                      className={`font-semibold text-black truncate ${
+                        forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+                      }`}
+                    >
+                      {o.name}
+                    </span>
+                  </div>
+                  <p className={`text-[#525252] leading-snug ${forPrint ? "text-[9px]" : "text-[11px]"}`}>
+                    <strong className="text-[#404040]">Now:</strong> {o.currentState.markets}
+                  </p>
+                  <p
+                    className={`text-[#525252] leading-snug mt-1 ${
+                      forPrint ? "text-[9px]" : "text-[11px]"
+                    }`}
+                  >
+                    <strong className="text-[#404040]">Future:</strong> {o.futureState.slice(0, 120)}
+                    {o.futureState.length > 120 ? "…" : ""}
+                  </p>
                 </div>
-                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[9px]" : "text-[11px]"}`}>
-                  <strong className="text-[#404040]">Now:</strong> {o.currentState.markets}
-                </p>
-                <p className={`text-[#525252] leading-snug mt-1 ${forPrint ? "text-[9px]" : "text-[11px]"}`}>
-                  <strong className="text-[#404040]">Future:</strong> {o.futureState.slice(0, 120)}
-                  {o.futureState.length > 120 ? "…" : ""}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <p className={`text-[#737373] mt-3 ${forPrint ? "text-[9px]" : "text-[10px]"}`}>
             Full detail for all {OPCO_MODELS.length} opcos on the investor portal page below this deck.
@@ -524,28 +573,44 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>OPCOS · CONTINUED</DeckEyebrow>
           <DeckTitle>Remaining companies in the model</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {OPCO_MODELS.slice(6).map((o) => (
-              <div
-                key={o.slug}
-                className={`rounded-xl border border-black/10 bg-[#fafafa] ${
-                  forPrint ? "p-2" : "p-3 sm:p-4"
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: o.color }} />
-                  <span className={`font-semibold text-black ${forPrint ? "text-[10px]" : "text-sm"}`}>
-                    {o.fullName}
-                  </span>
+            {OPCO_MODELS.slice(6).map((o) => {
+              const meta = opcoMeta(o.slug);
+              return (
+                <div
+                  key={o.slug}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] ${
+                    forPrint ? "p-2" : "p-3 sm:p-4"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1 min-w-0">
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${meta.color}18`, color: meta.color }}
+                    >
+                      <CompanyIcon name={meta.icon} size={16} />
+                    </div>
+                    <span
+                      className={`font-semibold text-black truncate ${
+                        forPrint ? "text-[10px]" : "text-sm"
+                      }`}
+                    >
+                      {o.fullName}
+                    </span>
+                  </div>
+                  <p className={`text-[#525252] leading-snug ${forPrint ? "text-[9px]" : "text-xs"}`}>
+                    {o.avenue}
+                  </p>
+                  <p
+                    className={`text-[#404040] mt-1 tabular-nums ${
+                      forPrint ? "text-[9px]" : "text-xs"
+                    }`}
+                  >
+                    Mod Y5 {formatUSDm(o.scenarios.moderate.y5RevenueUSDm)} · Y10{" "}
+                    {formatUSDm(o.scenarios.moderate.y10RevenueUSDm)}
+                  </p>
                 </div>
-                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[9px]" : "text-xs"}`}>
-                  {o.avenue}
-                </p>
-                <p className={`text-[#404040] mt-1 tabular-nums ${forPrint ? "text-[9px]" : "text-xs"}`}>
-                  Mod Y5 {formatUSDm(o.scenarios.moderate.y5RevenueUSDm)} · Y10{" "}
-                  {formatUSDm(o.scenarios.moderate.y10RevenueUSDm)}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </DeckSlideShell>
       );

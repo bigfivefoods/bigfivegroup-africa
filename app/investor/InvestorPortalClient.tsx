@@ -28,6 +28,8 @@ import {
 import LogoutButton from "./LogoutButton";
 import { CONTACT_EMAIL } from "../lib/contact";
 import InvestorStrategyDeck from "../components/InvestorStrategyDeck";
+import { companies } from "../lib/companies";
+import { CompanyIcon } from "../lib/icons";
 
 const SCENARIOS: ScenarioKey[] = ["conservative", "moderate", "aggressive"];
 
@@ -539,10 +541,18 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                   onClick={() => setOpenSlug(open ? null : o.slug)}
                   className="w-full flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-left p-4 sm:p-5 hover:bg-[#fafafa] transition-colors"
                 >
-                  <span
-                    className="w-2.5 h-2.5 rounded-full shrink-0"
-                    style={{ backgroundColor: o.color }}
-                  />
+                  {(() => {
+                    const company = companies.find((c) => c.slug === o.slug);
+                    const color = company?.color ?? o.color;
+                    return (
+                      <span
+                        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${color}18`, color }}
+                      >
+                        <CompanyIcon name={company?.icon ?? "Leaf"} size={18} />
+                      </span>
+                    );
+                  })()}
                   <span className="font-semibold text-black text-base sm:text-lg min-w-0">
                     {o.fullName}
                   </span>
