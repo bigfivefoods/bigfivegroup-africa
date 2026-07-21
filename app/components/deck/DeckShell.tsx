@@ -47,13 +47,33 @@ export type DeckTheme = {
   softText: string;
 };
 
-type PrintCtx = { active: boolean; orientation: PrintOrientation };
+type PrintCtx = {
+  /** True while slides are rendered in the PDF/print portal */
+  active: boolean;
+  orientation: PrintOrientation;
+  /**
+   * When true, slides use dense/compact typography (legacy A4 squeeze).
+   * When false (default for PDF), layout matches the digital on-screen deck.
+   */
+  compact: boolean;
+};
 const PrintModeContext = createContext<PrintCtx>({
   active: false,
   orientation: "landscape",
+  compact: false,
 });
 
+/**
+ * Layout flag for dense print typography.
+ * Returns false during normal PDF export so slides match the digital page.
+ */
 export function useDeckPrintMode() {
+  const ctx = useContext(PrintModeContext);
+  return ctx.active && ctx.compact;
+}
+
+/** True in the print portal — use for eager/print-safe images without changing layout. */
+export function useDeckPdfExport() {
   return useContext(PrintModeContext).active;
 }
 
@@ -235,16 +255,9 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     height: 100% !important;
     border-radius: 10px !important;
   }
-  #${printRootId},
-  #${printRootId} * {
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-    -webkit-filter: none !important;
-    backdrop-filter: none !important;
-  }
   #${printRootId} .premium-button::before { content: none !important; display: none !important; }
-  #${printRootId} [class*="blur-"] { display: none !important; }
+  /* Soft decorative blurs can hide content in print engines — hide only pure blur orbs */
+  #${printRootId} .blur-3xl { display: none !important; }
   /* Email CTAs: black on white even when print prep sets a { color: inherit } */
   #${printRootId} a.deck-email-cta,
   #${printRootId} a.deck-email-cta * {
@@ -302,8 +315,6 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     }
     #${printRootId},
     #${printRootId} * {
-      box-shadow: none !important;
-      filter: none !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
@@ -372,19 +383,20 @@ export function DeckSlideShell({
   theme: DeckTheme;
 }) {
   const forPrint = useDeckPrintMode();
+  const pdf = useDeckPdfExport();
   const zeroPad = /\b!?p-0\b/.test(className);
+  // PDF matches digital: same padding/chrome as screen; only compact mode squeezes
+  const lockOverflow = forPrint || pdf;
 
   return (
     <div
       className={`relative h-full w-full overflow-x-hidden border box-border ${
-        forPrint
+        lockOverflow
           ? "overflow-hidden rounded-xl"
           : "overflow-y-auto rounded-2xl sm:rounded-3xl"
       } ${
         dark
-          ? forPrint
-            ? "text-white border-white/10"
-            : "text-white border-white/10"
+          ? "text-white border-white/10"
           : forPrint
             ? "bg-white border-[#e5e5e5] text-black"
             : "bg-white border-black/10 text-black"
@@ -397,7 +409,7 @@ export function DeckSlideShell({
           background: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`,
         }}
       />
-      {!forPrint && !dark && (
+      {!forPrint && !dark && !pdf && (
         <div
           className="pointer-events-none absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-40"
           style={{ backgroundColor: theme.accent }}
@@ -405,7 +417,11 @@ export function DeckSlideShell({
       )}
       <div
         className={`relative flex flex-col h-full min-h-0 box-border ${
-          zeroPad ? "p-0" : forPrint ? "p-4 md:p-5" : "p-5 sm:p-8 md:p-10 lg:p-12"
+          zeroPad
+            ? "p-0"
+            : forPrint
+              ? "p-4 md:p-5"
+              : "p-5 sm:p-8 md:p-10 lg:p-12"
         }`}
       >
         {children}
@@ -493,10 +509,16 @@ export function DeckStatTile({
 
 export function DeckTitleLayout({ children }: { children: ReactNode }) {
   const forPrint = useDeckPrintMode();
+  const pdf = useDeckPdfExport();
   return (
     <div
       className={`relative flex flex-col justify-between h-full min-h-0 box-border ${
-        forPrint ? "p-4 md:p-5" : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
+        forPrint
+          ? "p-4 md:p-5"
+          : pdf
+            ? // Match digital padding, but fill the A4 page height (no 70dvh min that overflows print)
+              "h-full p-5 sm:p-8 md:p-10 lg:p-12"
+            : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
       }`}
     >
       {children}
@@ -522,22 +544,22 @@ export function DeckPrintImage({
   /** e.g. p-1.5 applied on the img */
   paddingClass?: string;
 }) {
-  const forPrint = useDeckPrintMode();
+  const pdf = useDeckPdfExport();
   return (
     // eslint-disable-next-line @next/next/no-img-element -- print PDF must use native img for reliable paint
     <img
       src={src}
       alt={alt}
       className={[
-        // Always absolute-fill parent (screen + PDF) — print CSS alone left on-screen heroes broken
+        // Always absolute-fill parent (screen + PDF)
         "absolute inset-0 h-full w-full",
         fit === "cover" ? "object-cover object-center" : "object-contain object-center",
         paddingClass,
         className,
       ].join(" ")}
-      loading={forPrint ? "eager" : "lazy"}
-      decoding={forPrint ? "sync" : "async"}
-      {...(forPrint ? { fetchPriority: "high" as const } : {})}
+      loading={pdf ? "eager" : "lazy"}
+      decoding={pdf ? "sync" : "async"}
+      {...(pdf ? { fetchPriority: "high" as const } : {})}
     />
   );
 }
@@ -751,7 +773,14 @@ export default function DeckShell({
   const printPortal =
     printMode && typeof document !== "undefined"
       ? createPortal(
-          <PrintModeContext.Provider value={{ active: true, orientation: printOrientation }}>
+          <PrintModeContext.Provider
+            value={{
+              active: true,
+              orientation: printOrientation,
+              // Match digital layout in PDF (not compact squeeze)
+              compact: false,
+            }}
+          >
             <div id={printRootId} aria-hidden="true" data-orientation={printOrientation}>
               <style
                 dangerouslySetInnerHTML={{

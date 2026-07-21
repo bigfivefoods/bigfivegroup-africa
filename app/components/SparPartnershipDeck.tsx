@@ -25,6 +25,7 @@ import DeckShell, {
   DeckStatTile,
   DeckTitle,
   DeckTitleLayout,
+  useDeckPdfExport,
   useDeckPrintMode,
 } from "./deck/DeckShell";
 import {
@@ -76,19 +77,19 @@ function ProductThumb({
 
 /** SPAR-forward co-brand — SPAR mark leads; Foods is supporting product partner. */
 function CoBrandRow({ light }: { light?: boolean }) {
-  const forPrint = useDeckPrintMode();
-  const sparH = forPrint ? "h-12" : "h-14 sm:h-16 md:h-[4.5rem]";
-  const foodsH = forPrint ? "h-9" : "h-10 sm:h-12";
+  const pdf = useDeckPdfExport();
+  const sparH = "h-14 sm:h-16 md:h-[4.5rem]";
+  const foodsH = "h-10 sm:h-12";
   const sparSrc = "/partners/spar-logo.png";
   const foodsSrc = light ? "/bigfivefoods-logo-white.png" : "/bigfivefoods-logo.png";
   return (
-    <div className={`flex flex-wrap items-center gap-3 sm:gap-5 ${forPrint ? "mb-2" : "mb-4 sm:mb-6"}`}>
+    <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-4 sm:mb-6">
       <div
         className={`relative ${sparH} w-36 sm:w-48 md:w-56 bg-white rounded-xl px-3 py-1.5 border-2 shadow-sm ${
           light ? "border-white/40" : "border-[#006633]/25"
         }`}
       >
-        {forPrint ? (
+        {pdf ? (
           <DeckPrintImage src={sparSrc} alt="SPAR" paddingClass="p-1.5" fit="contain" />
         ) : (
           <Image src={sparSrc} alt="SPAR" fill className="object-contain p-1.5" sizes="224px" priority />
@@ -98,7 +99,7 @@ function CoBrandRow({ light }: { light?: boolean }) {
         ×
       </span>
       <div className={`relative ${foodsH} w-24 sm:w-32 opacity-95`}>
-        {forPrint ? (
+        {pdf ? (
           <DeckPrintImage src={foodsSrc} alt="Big Five Foods" fit="contain" />
         ) : (
           <Image
@@ -116,7 +117,9 @@ function CoBrandRow({ light }: { light?: boolean }) {
 }
 
 function Slide({ index }: { index: number }) {
+  // Layout matches digital (forPrint is false during PDF export)
   const forPrint = useDeckPrintMode();
+  const pdf = useDeckPdfExport();
 
   switch (index) {
     case 0:
@@ -124,7 +127,7 @@ function Slide({ index }: { index: number }) {
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
             {/* Full-bleed hero — Next/Image on screen; print-safe img in PDF portal */}
-            {forPrint ? (
+            {pdf ? (
               <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
             ) : (
               <Image
@@ -1141,7 +1144,7 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
-            {forPrint ? (
+            {pdf ? (
               <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
             ) : (
               <Image
