@@ -31,34 +31,42 @@ import {
 function CoBrandHeader({ partner }: { partner: PartnerProfile }) {
   const partnerLogo = partner.logoSrc;
   const showPartnerLogo = partnerLogo && partner.slug !== "big-five-group";
+  /** Crest-style logos (e.g. Sharks) need a taller tile */
+  const tallCrest = partner.slug === "the-sharks";
 
   return (
     <div className="mb-6 sm:mb-8">
       <div className="flex flex-wrap items-center gap-3 sm:gap-5">
         {showPartnerLogo ? (
           <>
-            <div className="relative h-12 sm:h-14 w-[min(100%,11rem)] sm:w-52 bg-white/95 rounded-xl px-3 py-2 border border-white/20">
+            <div
+              className={`relative bg-white rounded-xl border border-white/25 shadow-sm ${
+                tallCrest
+                  ? "h-20 sm:h-24 w-20 sm:w-24 p-2"
+                  : "h-14 sm:h-16 w-[min(100%,12rem)] sm:w-56 px-3 py-2"
+              }`}
+            >
               <Image
                 src={partnerLogo}
                 alt={partner.organisation}
                 fill
-                className="object-contain object-left p-1"
-                sizes="208px"
+                className="object-contain p-1.5"
+                sizes={tallCrest ? "96px" : "224px"}
                 priority
               />
             </div>
             <div
-              className="text-white/40 text-lg sm:text-xl font-light select-none"
+              className="text-white/40 text-xl sm:text-2xl font-light select-none px-0.5"
               aria-hidden
             >
               ×
             </div>
-            <div className="relative h-12 sm:h-14 w-14 sm:w-16 shrink-0">
+            <div className="relative h-14 sm:h-16 w-14 sm:w-16 shrink-0 drop-shadow-md">
               <Image
                 src={BIG_FIVE_LOGO}
                 alt="Big Five Group"
                 fill
-                className="object-contain object-left drop-shadow-md"
+                className="object-contain object-left"
                 sizes="64px"
                 priority
               />
