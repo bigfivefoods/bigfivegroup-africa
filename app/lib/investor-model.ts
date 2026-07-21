@@ -741,3 +741,117 @@ export const GROUP_IMPACT_PILLARS = {
 
 export const MODEL_DISCLAIMER =
   "All revenue and impact figures on this investor portal are illustrative scenario models in United States dollars (USD) for authorised discussion only. They are not audited financial statements, forecasts, or guarantees. Equity percentage, board participation, use-of-funds splits, and planned Seychelles holding / IP / end-market opco architecture are investment-framing statements subject to definitive legal and tax advice and agreements — not tax or legal advice from this website. Actual results depend on capital, execution, regulation, partnerships and market conditions. Request NDA data-room materials for diligence-grade numbers with dates, scopes and sensitivities.";
+
+/** Unit economics sketches — Foods & Connect first (illustrative for diligence discussion). */
+export const UNIT_ECONOMICS = [
+  {
+    slug: "foods",
+    name: "Foods",
+    engine: "Price × volume × gross margin on fortified SKUs",
+    levers: [
+      { k: "Price", v: "Institutional pack pricing vs retail (dual track)" },
+      { k: "Volume", v: "Schools / programmes + household SKUs on priority corridors" },
+      { k: "Margin", v: "Fortification + shelf-life + logistics discipline" },
+      { k: "Capital", v: "Working capital for inventory & offtake; plant/pack capacity" },
+    ],
+    path: "Pilot / tender → multi-school corridor → multi-country institutional + retail",
+    kill: "If institutional offtake and cost/nutrition advantage cannot hold in 2 priority corridors, pause aggressive volume expansion.",
+  },
+  {
+    slug: "connect",
+    name: "Connect",
+    engine: "Seats × ARPU + (optional) take-rate on verified GMV",
+    levers: [
+      { k: "Seats", v: "Verified companies on SupplierAdvisor® (Group + open market)" },
+      { k: "ARPU", v: "Module depth (trade, inventory, SHEQ, Live, SAM)" },
+      { k: "Network", v: "B2B / B2G density → matching and trust effects" },
+      { k: "Capital", v: "Product, onboarding, and enterprise sales capacity" },
+    ],
+    path: "Group + founding partners → mid-market corridors → regional OS default",
+    kill: "If activation and retention of verified suppliers stay below threshold after paid cohorts, cut GTM burn and refocus on Group rails.",
+  },
+] as const;
+
+/** 12–18 month milestone roadmap (orientation — not a commitment schedule). */
+export const MILESTONES_12_18 = [
+  {
+    q: "0–6 mo",
+    title: "Foundation",
+    items: [
+      "Advance Seychelles holdco + IP architecture with counsel",
+      "Deepen SA institutional Foods pathway (NSNP ambition framing)",
+      "Kenya opco operating rhythm as East Africa template",
+      "Investor governance: board seat process + reporting cadence",
+    ],
+  },
+  {
+    q: "6–12 mo",
+    title: "Corridors",
+    items: [
+      "2–3 priority African corridors with measurable offtake / logistics",
+      "Connect: verified supplier activation on Group + pilot enterprises",
+      "Direct: hub/container staging on proven Foods lanes only",
+      "Access: packaged mandates tied to Group delivery (not paper wins)",
+    ],
+  },
+  {
+    q: "12–18 mo",
+    title: "Compound",
+    items: [
+      "Second end-market opco setup (beyond Kenya template)",
+      "Europe corridor traction (DE · HU · GE) for distribution partnerships",
+      "Impact PMO on multi-pillar programmes with gates & KPIs",
+      "Unit-economics dashboard: Foods volume/margin + Connect seats/ARPU",
+    ],
+  },
+] as const;
+
+/** Risk register — top risks and mitigants. */
+export const INVESTOR_RISKS = [
+  {
+    risk: "Public / tender cycle delays",
+    mitigate: "Dual track: institutional + retail/household; Access only attaches real delivery capacity.",
+  },
+  {
+    risk: "FX & multi-country cash complexity",
+    mitigate: "Local opcos for end-market P&L; holdco treasury discipline; USD reporting for investors.",
+  },
+  {
+    risk: "Execution / talent density",
+    mitigate: "PMO (Impact) gates; Leadership pipeline; don’t open corridors without operators.",
+  },
+  {
+    risk: "Tax / legal structure (Seychelles holdco + IP)",
+    mitigate: "Counsel-led setup; no reliance on website framing as advice; staged implementation.",
+  },
+  {
+    risk: "Food safety & brand trust",
+    mitigate: "Certifications, fortification QA, SupplierAdvisor® verification and hold/lot controls.",
+  },
+  {
+    risk: "Focus dilution across 10 pillars",
+    mitigate: "Capital 90% to assets/product on priority rails (Foods, Connect, corridors); kill criteria per opco.",
+  },
+] as const;
+
+/** Brutal honesty: what is true today vs ambition. */
+export const TRACTION_VS_AMBITION = {
+  trueToday: [
+    "Group narrative and public site with honest labelling (ambition vs programme-reported)",
+    "Foods fortified product story; NSNP pathway framed as plan (2.5m children/day ambition)",
+    "Programme-reported meals / children figures where stated (not statutory audits)",
+    "Kenya company setup as East Africa hub template",
+    "12 priority distribution markets listed (9 Africa + DE · HU · GE)",
+    "SupplierAdvisor® live product (Connect); SAM positioning",
+    "Super-Cube® IP / research lineage (Leadership)",
+    "Close ties to royal family; partnership planned (not claimed as completed deal)",
+  ],
+  notYetTrue: [
+    "Full Seychelles holdco + IP stack live as final legal structure",
+    "2.5m children fed per day as current operational headcount",
+    "2.8M ha regenerative land under management as completed fact",
+    "Aggressive Y5/Y10 revenue run-rates as booked financials",
+    "Opcos live in every priority market with full P&L scale",
+    "Audited group consolidated statements on this portal",
+  ],
+} as const;
