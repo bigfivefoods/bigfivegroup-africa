@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Mail, Phone, MessageCircle, ArrowUpRight } from "lucide-react";
-import { companies } from "../lib/companies";
 import NewsletterForm from "./NewsletterForm";
 
 const sectionTitleClass =
   "text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-[#737373] mb-5";
+
+const groupLabelClass =
+  "text-[10px] font-semibold tracking-[0.12em] uppercase text-[#a3a3a3] mb-2";
 
 const linkClass =
   "block text-sm text-[#404040] hover:text-black transition-colors leading-snug";
@@ -13,23 +15,68 @@ const exploreLinks = [
   { href: "/group", label: "The Group" },
   { href: "/africa", label: "Africa" },
   { href: "/global", label: "Global" },
-  { href: "/leadership", label: "Leadership" },
-  { href: "/foundation", label: "Foundation" },
-  { href: "/royal", label: "Royal" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
-const resourceLinks = [
-  { href: "/updates", label: "Updates" },
-  { href: "/newsletter", label: "Newsletter" },
-  { href: "/partner-kit", label: "Partner kit" },
-  { href: "/methodology", label: "Methodology" },
-  { href: "/brand", label: "Brand kit" },
-  { href: "/partner", label: "Partner portal" },
-  { href: "/investor", label: "Investor portal" },
-  { href: "/connect", label: "Connect · SAM" },
-  { href: "/connect#case-study-sa", label: "SupplierAdvisor®" },
+/** Pillars grouped by mission */
+const pillarGroups: { label: string; links: { href: string; label: string }[] }[] = [
+  {
+    label: "Feed",
+    links: [
+      { href: "/foods", label: "Foods" },
+      { href: "/agri", label: "Agri" },
+    ],
+  },
+  {
+    label: "Educate",
+    links: [{ href: "/leadership", label: "Leadership" }],
+  },
+  {
+    label: "Empower",
+    links: [
+      { href: "/connect", label: "Connect" },
+      { href: "/foundation", label: "Foundation" },
+      { href: "/direct", label: "Direct" },
+      { href: "/access", label: "Access" },
+      { href: "/impact", label: "Impact" },
+      { href: "/royal", label: "Royal" },
+      { href: "/global", label: "Global" },
+    ],
+  },
+];
+
+/** Resources grouped for scanability */
+const resourceGroups: { label: string; links: { href: string; label: string }[] }[] = [
+  {
+    label: "Stay informed",
+    links: [
+      { href: "/updates", label: "Updates" },
+      { href: "/newsletter", label: "Newsletter" },
+    ],
+  },
+  {
+    label: "Toolkits",
+    links: [
+      { href: "/partner-kit", label: "Partner kit" },
+      { href: "/methodology", label: "Methodology" },
+      { href: "/brand", label: "Brand kit" },
+    ],
+  },
+  {
+    label: "Private access",
+    links: [
+      { href: "/partner", label: "Partner portal" },
+      { href: "/investor", label: "Investor portal" },
+    ],
+  },
+  {
+    label: "Connect",
+    links: [
+      { href: "/connect", label: "Connect · SAM" },
+      { href: "/connect#case-study-sa", label: "SupplierAdvisor®" },
+    ],
+  },
 ];
 
 const legalLinks = [
@@ -49,6 +96,33 @@ function FooterNav({
       <div className={sectionTitleClass}>{title}</div>
       {children}
     </div>
+  );
+}
+
+function GroupedNav({
+  groups,
+  ariaLabel,
+}: {
+  groups: { label: string; links: { href: string; label: string }[] }[];
+  ariaLabel: string;
+}) {
+  return (
+    <nav className="space-y-5" aria-label={ariaLabel}>
+      {groups.map((group) => (
+        <div key={group.label}>
+          <div className={groupLabelClass}>{group.label}</div>
+          <ul className="space-y-2 border-l border-black/[0.08] pl-3">
+            {group.links.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className={linkClass}>
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
   );
 }
 
@@ -88,7 +162,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Four equal nav columns — Explore · Pillars · Resources · Legal */}
+        {/* Four equal nav columns */}
         <div className="pt-12 sm:pt-14">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 sm:gap-x-10 lg:gap-x-12 gap-y-10 sm:gap-y-12">
             <FooterNav title="Explore">
@@ -102,27 +176,11 @@ export default function Footer() {
             </FooterNav>
 
             <FooterNav title="The 10 Pillars">
-              <nav className="flex flex-col gap-2.5" aria-label="Pillars">
-                {companies.map((c) => (
-                  <Link
-                    key={c.slug}
-                    href={`/${c.slug}`}
-                    className={`${linkClass} truncate`}
-                  >
-                    {c.name}
-                  </Link>
-                ))}
-              </nav>
+              <GroupedNav groups={pillarGroups} ariaLabel="Pillars by mission" />
             </FooterNav>
 
             <FooterNav title="Resources">
-              <nav className="flex flex-col gap-2.5" aria-label="Resources">
-                {resourceLinks.map((l) => (
-                  <Link key={l.href} href={l.href} className={linkClass}>
-                    {l.label}
-                  </Link>
-                ))}
-              </nav>
+              <GroupedNav groups={resourceGroups} ariaLabel="Resources" />
             </FooterNav>
 
             <FooterNav title="Legal">
