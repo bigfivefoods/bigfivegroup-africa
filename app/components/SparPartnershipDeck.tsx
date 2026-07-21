@@ -40,13 +40,6 @@ const M = P.sparMargin;
 const RANGES = P.mandelaPackRanges;
 const IMPACT = buildSparImpactReport();
 
-const RANGE_ICONS = {
-  porridge: UtensilsCrossed,
-  soya: Beef,
-  onepot: ChefHat,
-  soup: Soup,
-} as const;
-
 /**
  * PRODUCT SPAR CAN TRUST — one pack per category.
  * Different hero assets from Mandela Pack full-range (chocolate / rich beef / chakalaka / chicken).
