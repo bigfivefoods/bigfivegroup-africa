@@ -396,7 +396,7 @@ function Slide({ index }: { index: number }) {
     case 5:
       return (
         <DeckSlideShell theme={theme}>
-          {/* One hero pack image per category — fits cleanly on one page */}
+          {/* One product pack image per category */}
           <div className="flex h-full min-h-0 flex-col overflow-hidden">
             <div className="shrink-0 mb-2 sm:mb-3">
               <DeckEyebrow theme={theme}>MANDELA PACK · FULL RANGE</DeckEyebrow>
@@ -411,14 +411,14 @@ function Slide({ index }: { index: number }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
               {RANGES.map((range) => {
                 const Icon = RANGE_ICONS[range.id as keyof typeof RANGE_ICONS] ?? UtensilsCrossed;
                 const flavourNames = range.flavours.map((f) => f.name).join(" · ");
                 return (
                   <div
                     key={range.id}
-                    className="rounded-xl border border-black/10 bg-[#fafafa] min-w-0 min-h-0 flex flex-col overflow-hidden p-2 sm:p-3"
+                    className="rounded-xl border border-black/10 bg-[#fafafa] min-w-0 flex flex-col overflow-hidden p-2 sm:p-3"
                   >
                     <div className="flex items-center gap-1.5 mb-2 shrink-0 min-w-0">
                       <Icon className="w-4 h-4 shrink-0" style={{ color: theme.accentDark }} />
@@ -435,11 +435,11 @@ function Slide({ index }: { index: number }) {
                       </div>
                     </div>
 
-                    {/* Single product image per category */}
-                    <div className="relative flex-1 min-h-0 w-full rounded-lg border border-black/8 bg-white overflow-hidden">
+                    {/* One product image per category — fixed aspect so pack always paints fully */}
+                    <div className="relative w-full aspect-[3/4] max-h-[14rem] sm:max-h-[16rem] mx-auto rounded-lg border border-black/8 bg-white overflow-hidden shrink-0">
                       <DeckPrintImage
                         src={range.heroImage}
-                        alt={range.title}
+                        alt={`${range.title} product packaging`}
                         paddingClass="p-2 sm:p-3"
                         fit="contain"
                       />
@@ -460,8 +460,8 @@ function Slide({ index }: { index: number }) {
             </div>
 
             <p className="shrink-0 mt-2 text-[9px] sm:text-[10px] text-[#737373] leading-snug">
-              One hero pack per category (range has 16 flavours total). SKUs, sizes & Mandela wraps on
-              term sheet · bigfivegroup.africa/foods
+              One product image per category (16 flavours across the range). SKUs, sizes & Mandela
+              wraps on term sheet · bigfivegroup.africa/foods
             </p>
           </div>
         </DeckSlideShell>
