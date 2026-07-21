@@ -291,6 +291,15 @@ function buildPrintStyles(printRootId: string, pageName: string) {
   #${printRootId} a.deck-email-cta {
     background-color: #ffffff !important;
   }
+  /* Keep quote attributions (e.g. Nelson Mandela) visible in PDF */
+  #${printRootId} blockquote,
+  #${printRootId} blockquote p,
+  #${printRootId} blockquote cite {
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 
   @page ${pageName}-landscape { size: A4 landscape; margin: 0; }
   @page ${pageName}-portrait { size: A4 portrait; margin: 0; }
@@ -323,6 +332,13 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     #${printRootId} img {
       opacity: 1 !important;
       visibility: visible !important;
+    }
+    #${printRootId} blockquote,
+    #${printRootId} blockquote p,
+    #${printRootId} blockquote cite {
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: block !important;
     }
     #${printRootId} .deck-print-page {
       box-sizing: border-box !important;

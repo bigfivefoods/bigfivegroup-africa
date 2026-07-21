@@ -100,6 +100,36 @@ function CoBrandRow({ light }: { light?: boolean }) {
   );
 }
 
+/**
+ * Mandela quote — print-safe (solid colours, no &lt;footer&gt; / opacity that PDF drops).
+ */
+function MandelaQuote({ light = true, compact = false }: { light?: boolean; compact?: boolean }) {
+  return (
+    <blockquote
+      className={`max-w-2xl border-l-2 pl-3 sm:pl-4 ${compact ? "mt-3" : "mt-4 sm:mt-5"}`}
+      style={{ borderColor: "#7ddea8" }}
+    >
+      <p
+        className={`italic leading-snug text-balance ${
+          compact ? "text-sm" : "text-sm sm:text-base md:text-lg"
+        }`}
+        style={{ color: light ? "#f0fdf4" : "#171717" }}
+      >
+        “It always seems impossible until it&apos;s done.”
+      </p>
+      {/* Use <cite> not <footer> — some print engines omit nested footer elements */}
+      <cite
+        className={`block not-italic font-semibold tracking-wide uppercase ${
+          compact ? "mt-1 text-[10px]" : "mt-1.5 text-[10px] sm:text-xs"
+        }`}
+        style={{ color: light ? "#7ddea8" : "#006633", fontStyle: "normal" }}
+      >
+        — Nelson Mandela
+      </cite>
+    </blockquote>
+  );
+}
+
 function Slide({ index }: { index: number }) {
   // Layout matches digital (forPrint is false during PDF export)
   const forPrint = useDeckPrintMode();
@@ -148,14 +178,7 @@ function Slide({ index }: { index: number }) {
                     Ring-fence 10% of partnership turnover (SPAR 5% + Big Five Foods 5%) for Restore
                     Africa Foundation and A Heart To Help — sell with purpose or donate with dignity.
                   </p>
-                  <blockquote className="mt-4 sm:mt-5 max-w-2xl border-l-2 border-[#7ddea8]/80 pl-3 sm:pl-4">
-                    <p className="text-white/90 italic text-sm sm:text-base md:text-lg leading-snug text-balance">
-                      “It always seems impossible until it&apos;s done.”
-                    </p>
-                    <footer className="mt-1.5 text-[10px] sm:text-xs font-semibold tracking-wide text-[#7ddea8]/95 not-italic uppercase">
-                      — Nelson Mandela
-                    </footer>
-                  </blockquote>
+                  <MandelaQuote light />
                 </div>
                 <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
                   <p>SPAR leads the narrative · Big Five Foods supplies the product</p>
@@ -1213,26 +1236,7 @@ function Slide({ index }: { index: number }) {
                     Healthy SPAR margin · Mandela pack at R67 · 10% to foundations · sell or donate ·
                     Big Five Foods as product partner behind SPAR’s story of good.
                   </p>
-                  <blockquote
-                    className={`max-w-2xl border-l-2 border-[#7ddea8]/80 pl-3 sm:pl-4 ${
-                      forPrint ? "mt-3" : "mt-4 sm:mt-5"
-                    }`}
-                  >
-                    <p
-                      className={`text-white/90 italic leading-snug text-balance ${
-                        forPrint ? "text-sm" : "text-base sm:text-lg"
-                      }`}
-                    >
-                      “It always seems impossible until it&apos;s done.”
-                    </p>
-                    <footer
-                      className={`not-italic font-semibold tracking-wide text-[#7ddea8]/95 uppercase ${
-                        forPrint ? "mt-1 text-[9px]" : "mt-1.5 text-[10px] sm:text-xs"
-                      }`}
-                    >
-                      — Nelson Mandela
-                    </footer>
-                  </blockquote>
+                  <MandelaQuote light compact={forPrint || pdf} />
                 </div>
                 <div className="space-y-3">
                   <a
