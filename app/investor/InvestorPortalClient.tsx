@@ -193,33 +193,162 @@ export default function InvestorPortalClient({ email }: { email: string }) {
         </div>
       </section>
 
-      {/* Anchor nav */}
-      <nav className="sticky top-[var(--navbar-height)] z-30 bg-white/95 backdrop-blur border-b border-black/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex gap-2 overflow-x-auto text-xs sm:text-sm font-medium">
-          {[
-            { href: "#investor-deck", label: "Presentation" },
-            { href: "#ask", label: "Investment ask" },
-            { href: "#structure", label: "Structure" },
-            { href: "#problems", label: "Africa problems" },
-            { href: "#rollup", label: "Group rollup (USD)" },
-            { href: "#opcos", label: "Opco detail" },
-            { href: "#impact", label: "S · E · E impact" },
-            { href: "#disclaimer", label: "Disclaimer" },
-          ].map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="shrink-0 rounded-full px-3 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black"
-            >
-              {l.label}
-            </a>
-          ))}
+      {/* Anchor nav — diligence order; each section earns its place below */}
+      <nav
+        className="sticky top-[var(--navbar-height)] z-30 bg-white/95 backdrop-blur border-b border-black/10"
+        aria-label="Investor portal sections"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+          <div className="flex flex-wrap justify-start sm:justify-between gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium">
+            {[
+              {
+                href: "#investor-deck",
+                label: "Presentation",
+                why: "Shareable slide deck for the full investment narrative in one pass.",
+              },
+              {
+                href: "#ask",
+                label: "Investment ask",
+                why: "Equity offered, board seat and use of funds — the terms of the raise.",
+              },
+              {
+                href: "#structure",
+                label: "Structure",
+                why: "Seychelles holdco, IP and end-market opcos — how capital and control sit.",
+              },
+              {
+                href: "#problems",
+                label: "Africa problems",
+                why: "Sourced market need (hunger, nutrition, markets) that justifies the thesis.",
+              },
+              {
+                href: "#rollup",
+                label: "Group rollup (USD)",
+                why: "Illustrative group revenue scenarios in USD for scenario comparison.",
+              },
+              {
+                href: "#opcos",
+                label: "Opco detail",
+                why: "Per-pillar traction, constraints and scenario metrics for diligence depth.",
+              },
+              {
+                href: "#impact",
+                label: "S · E · E impact",
+                why: "Social, economic and environmental outcomes beyond pure revenue.",
+              },
+              {
+                href: "#disclaimer",
+                label: "Disclaimer",
+                why: "Illustrative model boundaries — not audited financials or a prospectus.",
+              },
+            ].map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                title={l.why}
+                className="shrink-0 rounded-full px-2.5 sm:px-3 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black border border-transparent hover:border-black/10 transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
         </div>
       </nav>
+
+      {/* Why these sections exist (diligence map) */}
+      <section
+        id="section-map"
+        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa]"
+        aria-labelledby="section-map-heading"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <h2
+            id="section-map-heading"
+            className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-[#737373] font-semibold mb-2"
+          >
+            WHY THIS PORTAL IS STRUCTURED THIS WAY
+          </h2>
+          <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-5">
+            Jump links above follow a standard private-market diligence path: narrative first, then
+            terms, legal structure, market need, numbers, opco depth, impact, and legal framing. Each
+            block answers a question investors actually ask.
+          </p>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              {
+                n: "01",
+                href: "#investor-deck",
+                label: "Presentation",
+                why: "Board-ready deck (ask, traction, unit economics, milestones, risks) you can share or print without hunting the page.",
+              },
+              {
+                n: "02",
+                href: "#ask",
+                label: "Investment ask",
+                why: "What is on offer: 10% holding equity, board seat, and 10% ops / 90% assets & product use of funds.",
+              },
+              {
+                n: "03",
+                href: "#structure",
+                label: "Structure",
+                why: "Where the company and IP sit (planned Seychelles holdco) and how end-market opcos (e.g. Kenya) hold local P&L.",
+              },
+              {
+                n: "04",
+                href: "#problems",
+                label: "Africa problems",
+                why: "Why the market is real: hunger, malnutrition, markets and leadership gaps with external sources — not only Group claims.",
+              },
+              {
+                n: "05",
+                href: "#rollup",
+                label: "Group rollup (USD)",
+                why: "One table of illustrative group revenue potential in USD under conservative / moderate / aggressive scenarios.",
+              },
+              {
+                n: "06",
+                href: "#opcos",
+                label: "Opco detail",
+                why: "Pillar-by-pillar current traction, constraints and scenario lines so diligence can stress-test each rail.",
+              },
+              {
+                n: "07",
+                href: "#impact",
+                label: "S · E · E impact",
+                why: "Triple bottom line — social, economic, environmental — because impact and commercial rails are the same system.",
+              },
+              {
+                n: "08",
+                href: "#disclaimer",
+                label: "Disclaimer",
+                why: "Hard boundary: figures are illustrative / management-reported where noted — not audited statements, forecasts or a prospectus.",
+              },
+            ].map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="block h-full rounded-2xl border border-black/10 bg-white p-4 hover:border-amber-300/80 hover:shadow-sm transition-all"
+                >
+                  <div className="flex items-baseline gap-2 mb-1.5">
+                    <span className="text-[10px] font-semibold tracking-wide text-amber-800">
+                      {item.n}
+                    </span>
+                    <span className="text-sm font-semibold text-black">{item.label}</span>
+                  </div>
+                  <p className="text-xs text-[#525252] leading-relaxed">{item.why}</p>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       {/* Disclaimer strip */}
       <div id="disclaimer" className="bg-amber-50 border-b border-amber-200/80">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <p className="text-[10px] tracking-[2px] text-amber-900/70 font-semibold mb-1.5">
+            DISCLAIMER · READ BEFORE THE NUMBERS
+          </p>
           <p className="text-xs sm:text-sm text-amber-950/80 leading-relaxed">{MODEL_DISCLAIMER}</p>
         </div>
       </div>
