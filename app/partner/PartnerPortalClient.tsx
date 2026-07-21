@@ -19,63 +19,184 @@ import { CompanyIcon } from "../lib/icons";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
 import { SANTACO, SANTACO_PARTNERSHIP } from "../lib/santaco";
 import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
+import {
+  PARTNERS,
+  mergePartnerResources,
+  type PartnerProfile,
+  type PartnerProgrammeId,
+} from "../lib/partners";
 
-const resources = [
-  {
-    href: "/partner-kit",
-    label: "Partner kit",
-    desc: "One-page pack: mission, NSNP case, Super-Cube®, how to engage.",
-  },
-  {
-    href: "/methodology",
-    label: "Methodology",
-    desc: "How we label ambition vs programme-reported vs internal analysis.",
-  },
-  {
-    href: "/foods#foods-deck",
-    label: "Foods product deck",
-    desc: "Fortified nutrition, NSNP pathway, institutional economics.",
-  },
-  {
-    href: "/direct#santaco",
-    label: "Direct × SANTACO",
-    desc: "Container rollout plan at taxi ranks and rural communities.",
-  },
-  {
-    href: "/connect",
-    label: "Connect · SupplierAdvisor®",
-    desc: "Verified trade OS, trial and commercial pathways.",
-  },
-  {
-    href: "/impact#strategy-deck",
-    label: "Impact strategy deck",
-    desc: "Group overview and African problem/response framing.",
-  },
-] as const;
+function ProgrammeBlocks({ ids }: { ids?: PartnerProgrammeId[] }) {
+  const show = new Set(ids ?? ["nsnp", "santaco"]);
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
+      {show.has("nsnp") && (
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+          <div className="text-[10px] tracking-[2px] font-semibold text-amber-800 mb-2">
+            FOODS · {NSNP.shortName}
+          </div>
+          <h3 className="text-xl font-semibold tracking-tight text-black mb-2">
+            {NSNP_CASE.headline}
+          </h3>
+          <p className="text-sm text-[#404040] leading-relaxed mb-4">{NSNP_CASE.approval}</p>
+          <ul className="space-y-1.5 text-sm text-[#525252] mb-4">
+            <li>· {FOODS_ECONOMICS.grossProfit.value} GP (management-reported)</li>
+            <li>
+              · {FOODS_ECONOMICS.cheaperThanMarket.value} cheaper vs wholesale & retail (internal)
+            </li>
+            <li>· Recurring institutional demand as menus reorder</li>
+          </ul>
+          <a
+            href={NSNP.officialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-2"
+          >
+            DBE · {NSNP.shortName}
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </article>
+      )}
+      {show.has("santaco") && (
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+          <div className="text-[10px] tracking-[2px] font-semibold text-orange-800 mb-2">
+            DIRECT · {SANTACO.shortName}
+          </div>
+          <h3 className="text-xl font-semibold tracking-tight text-black mb-2">
+            {SANTACO_PARTNERSHIP.title}
+          </h3>
+          <p className="text-sm text-[#404040] leading-relaxed mb-4">
+            {SANTACO_PARTNERSHIP.containers.detail}
+          </p>
+          <ul className="space-y-1.5 text-sm text-[#525252] mb-4">
+            {SANTACO_PARTNERSHIP.inContainer.map((x) => (
+              <li key={x.t}>
+                · <strong className="text-[#404040]">{x.t}:</strong> {x.d}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={SANTACO.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-2"
+          >
+            {SANTACO.shortName}
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </article>
+      )}
+      {show.has("connect") && (
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+          <div className="text-[10px] tracking-[2px] font-semibold text-cyan-800 mb-2">
+            CONNECT · SUPPLIERADVISOR®
+          </div>
+          <h3 className="text-xl font-semibold tracking-tight text-black mb-2">
+            Verified trade operating system
+          </h3>
+          <p className="text-sm text-[#404040] leading-relaxed mb-4">
+            Ethical B2B / B2G commerce rails — verification, lots, SHEQ and SAM — so partnerships
+            run with proof, not spreadsheets alone.
+          </p>
+          <Link
+            href="/connect"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-2"
+          >
+            Open Connect
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </article>
+      )}
+      {show.has("leadership") && (
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+          <div className="text-[10px] tracking-[2px] font-semibold text-yellow-800 mb-2">
+            LEADERSHIP · SUPER-CUBE®
+          </div>
+          <h3 className="text-xl font-semibold tracking-tight text-black mb-2">
+            Whole-person leadership formation
+          </h3>
+          <p className="text-sm text-[#404040] leading-relaxed mb-4">
+            Super-Cube® programmes for public and private cohorts — capacity that holds complex
+            multi-stakeholder delivery.
+          </p>
+          <Link
+            href="/leadership"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-2"
+          >
+            Open Leadership
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </article>
+      )}
+      {show.has("impact") && (
+        <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
+          <div className="text-[10px] tracking-[2px] font-semibold text-violet-800 mb-2">
+            IMPACT · PMO
+          </div>
+          <h3 className="text-xl font-semibold tracking-tight text-black mb-2">
+            Cross-pillar delivery office
+          </h3>
+          <p className="text-sm text-[#404040] leading-relaxed mb-4">
+            Programme design, gates and field assurance — including institutional health pathways
+            via Big Five Impact.
+          </p>
+          <Link
+            href="/impact"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-2"
+          >
+            Open Impact
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </article>
+      )}
+    </div>
+  );
+}
 
-export default function PartnerPortalClient({ email }: { email: string }) {
+export default function PartnerPortalClient({
+  email,
+  partner,
+  isAdmin,
+}: {
+  email: string;
+  partner: PartnerProfile;
+  isAdmin?: boolean;
+}) {
+  const resources = mergePartnerResources(partner);
+
   return (
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
-      {/* Hero */}
       <section className="bg-[#052e1c] text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-8">
             <div className="min-w-0 max-w-2xl">
               <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-emerald-300/90 mb-4">
                 <Lock className="w-3.5 h-3.5" />
-                PRIVATE · PARTNER PORTAL
+                PRIVATE · PARTNER · /partner/{partner.slug}
+              </div>
+              <div className="text-xs font-semibold text-emerald-200/80 mb-2">
+                {partner.organisation} · {partner.role}
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-balance mb-3">
-                Partner briefing room
+                {partner.headline}
               </h1>
               <p className="text-white/65 text-sm sm:text-base leading-relaxed mb-2">
                 Signed in as{" "}
                 <span className="text-white font-medium break-all">{email}</span>
               </p>
-              <p className="text-white/55 text-sm leading-relaxed text-pretty">
-                Authorised partners only. Programme context, how we work together, and links to
-                shareable decks — not the confidential investor model.
-              </p>
+              <p className="text-white/55 text-sm leading-relaxed text-pretty">{partner.summary}</p>
+              {partner.focus.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-5">
+                  {partner.focus.map((f) => (
+                    <span
+                      key={f}
+                      className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-100"
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
             <LogoutButton />
           </div>
@@ -85,17 +206,17 @@ export default function PartnerPortalClient({ email }: { email: string }) {
               {
                 icon: Package,
                 t: "Foods · NSNP",
-                d: "Programme landed · 2.5m children/day plan scale · ~45% GP · ~50% cheaper vs wholesale/retail",
+                d: "Programme landed · plan scale · institutional economics",
               },
               {
                 icon: Truck,
                 t: "Direct · SANTACO",
-                d: "15,000-container partnership plan at major taxi ranks and rural communities",
+                d: "Rank & rural container partnership plan",
               },
               {
                 icon: Handshake,
-                t: "One Group",
-                d: "Ten pillars under Feed · Educate · Empower — delivery with PMO discipline",
+                t: partner.name,
+                d: "Your organisation workspace on Big Five Group",
               },
             ].map((c) => (
               <div
@@ -111,14 +232,14 @@ export default function PartnerPortalClient({ email }: { email: string }) {
         </div>
       </section>
 
-      {/* Anchor nav */}
       <nav className="sticky top-[var(--navbar-height)] z-30 bg-white/95 backdrop-blur border-b border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex gap-2 overflow-x-auto text-xs sm:text-sm font-medium">
           {[
-            { href: "#how-we-partner", label: "How we partner" },
-            { href: "#programmes", label: "Flagship programmes" },
+            { href: "#for-you", label: "For you" },
+            { href: "#programmes", label: "Programmes" },
             { href: "#pillars", label: "Pillars" },
             { href: "#resources", label: "Resources" },
+            ...(isAdmin ? [{ href: "#directory", label: "All partners" }] : []),
             { href: "#contact", label: "Contact" },
           ].map((l) => (
             <a
@@ -132,24 +253,36 @@ export default function PartnerPortalClient({ email }: { email: string }) {
         </div>
       </nav>
 
-      {/* How we partner */}
+      {/* Partner-specific notes */}
       <section
-        id="how-we-partner"
+        id="for-you"
         className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
-            HOW WE WORK TOGETHER
+            FOR {partner.organisation.toUpperCase()}
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-3 text-balance">
-            Clear scope. Attached delivery. Honest labels.
+            Your partnership workspace
           </h2>
-          <p className="text-sm sm:text-base text-[#525252] max-w-3xl leading-relaxed mb-8">
-            Partners engage Big Five as one system — not ten disconnected vendors. We co-design
-            outcomes, attach the right pillars, and report with methodology you can put in a board
-            pack.
+          <p className="text-sm sm:text-base text-[#525252] max-w-3xl leading-relaxed mb-6">
+            This page is private to your organisation&apos;s authorised emails. Content below can be
+            tailored per partner as the relationship grows.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {partner.notes && partner.notes.length > 0 && (
+            <ul className="space-y-2 max-w-3xl mb-6">
+              {partner.notes.map((n) => (
+                <li
+                  key={n}
+                  className="flex gap-2 text-sm text-[#404040] leading-relaxed rounded-xl border border-emerald-100 bg-emerald-50/40 px-4 py-3"
+                >
+                  <span className="text-emerald-700 shrink-0">•</span>
+                  <span>{n}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {[
               {
                 n: "01",
@@ -187,83 +320,21 @@ export default function PartnerPortalClient({ email }: { email: string }) {
         </div>
       </section>
 
-      {/* Flagship programmes */}
       <section
         id="programmes"
         className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
-            FLAGSHIP PROGRAMMES
+            PROGRAMMES RELEVANT TO YOU
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8 text-balance">
-            What partners most often brief against
+            Flagship pathways
           </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
-            <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
-              <div className="text-[10px] tracking-[2px] font-semibold text-amber-800 mb-2">
-                FOODS · {NSNP.shortName}
-              </div>
-              <h3 className="text-xl font-semibold tracking-tight text-black mb-2">
-                {NSNP_CASE.headline}
-              </h3>
-              <p className="text-sm text-[#404040] leading-relaxed mb-4">
-                {NSNP_CASE.approval}
-              </p>
-              <ul className="space-y-1.5 text-sm text-[#525252] mb-4">
-                <li>
-                  · {FOODS_ECONOMICS.grossProfit.value} GP (management-reported)
-                </li>
-                <li>
-                  · {FOODS_ECONOMICS.cheaperThanMarket.value} cheaper vs wholesale & retail
-                  (internal)
-                </li>
-                <li>· Recurring institutional demand as menus reorder</li>
-              </ul>
-              <a
-                href={NSNP.officialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-2"
-              >
-                DBE · {NSNP.shortName}
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </article>
-
-            <article className="rounded-2xl border border-black/10 bg-white p-6 sm:p-8 min-w-0">
-              <div className="text-[10px] tracking-[2px] font-semibold text-orange-800 mb-2">
-                DIRECT · {SANTACO.shortName}
-              </div>
-              <h3 className="text-xl font-semibold tracking-tight text-black mb-2">
-                {SANTACO_PARTNERSHIP.title}
-              </h3>
-              <p className="text-sm text-[#404040] leading-relaxed mb-4">
-                {SANTACO_PARTNERSHIP.containers.detail}
-              </p>
-              <ul className="space-y-1.5 text-sm text-[#525252] mb-4">
-                {SANTACO_PARTNERSHIP.inContainer.map((x) => (
-                  <li key={x.t}>
-                    · <strong className="text-[#404040]">{x.t}:</strong> {x.d}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={SANTACO.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-black underline underline-offset-2"
-              >
-                {SANTACO.shortName}
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </article>
-          </div>
+          <ProgrammeBlocks ids={partner.programmes} />
         </div>
       </section>
 
-      {/* Pillars */}
       <section
         id="pillars"
         className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
@@ -273,7 +344,7 @@ export default function PartnerPortalClient({ email }: { email: string }) {
             TEN PILLARS
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
-            Public pillar pages for partner briefing
+            Public pillar pages
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
             {companies.map((c) => (
@@ -300,7 +371,6 @@ export default function PartnerPortalClient({ email }: { email: string }) {
         </div>
       </section>
 
-      {/* Resources */}
       <section
         id="resources"
         className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
@@ -313,7 +383,7 @@ export default function PartnerPortalClient({ email }: { email: string }) {
             </div>
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
-            Decks and pages you can share
+            Decks and pages for this partnership
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {resources.map((r) => (
@@ -336,23 +406,57 @@ export default function PartnerPortalClient({ email }: { email: string }) {
         </div>
       </section>
 
-      {/* Contact */}
+      {isAdmin && (
+        <section
+          id="directory"
+          className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
+              ADMIN · ALL PARTNER WORKSPACES
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
+              Partner directory
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {PARTNERS.filter((p) => p.slug !== "general").map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/partner/${p.slug}`}
+                  className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 hover:border-emerald-400/50 transition-colors"
+                >
+                  <div className="text-xs font-semibold text-emerald-800 mb-1">{p.role}</div>
+                  <div className="text-sm font-semibold text-black mb-1">{p.organisation}</div>
+                  <p className="text-xs text-[#525252] line-clamp-2 mb-2">{p.summary}</p>
+                  <span className="text-[11px] font-semibold text-black">
+                    /partner/{p.slug} →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section id="contact" className="scroll-mt-28 bg-white py-12 sm:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <Users className="w-8 h-8 text-emerald-800 mx-auto mb-4" />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-3">
             Need a deeper brief?
           </h2>
-          <p className="text-sm sm:text-base text-[#525252] mb-6 leading-relaxed">
-            Programme SOWs, commercial terms and multi-site plans are shared by the partnership
-            team — not all materials live on this portal.
+          <p className="text-sm sm:text-base text-[#525252] mb-2 leading-relaxed">
+            {partner.contactNote ??
+              "Programme SOWs and commercial terms are shared by the partnership team."}
+          </p>
+          <p className="text-xs text-[#737373] mb-6">
+            Workspace: <strong className="text-[#404040]">/partner/{partner.slug}</strong>
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                "Partner portal follow-up"
+                `Partner follow-up — ${partner.organisation}`
               )}&body=${encodeURIComponent(
-                `Hello Big Five team,\n\nI am signed into the partner portal as ${email}.\nPlease follow up regarding partnership scope.\n\nOrganisation:\nInterest area:\n\nThank you.`
+                `Hello Big Five team,\n\nI am signed into the partner portal as ${email} (${partner.organisation} · /partner/${partner.slug}).\nPlease follow up regarding partnership scope.\n\nInterest area:\n\nThank you.`
               )}`}
               className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 rounded-full text-sm font-semibold"
             >

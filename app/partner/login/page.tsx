@@ -30,7 +30,12 @@ function PartnerLoginForm() {
         setLoading(false);
         return;
       }
-      router.replace(from.startsWith("/partner") ? from : "/partner");
+      // Server will send /partner → /partner/[slug]; keep deep links if already under /partner/
+      const dest =
+        from.startsWith("/partner/") && from !== "/partner/login"
+          ? from
+          : "/partner";
+      router.replace(dest);
       router.refresh();
     } catch {
       setError("Something went wrong. Please try again.");

@@ -1,11 +1,14 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { PARTNER_COOKIE, verifyPartnerToken } from "../lib/partner-auth";
-import PartnerPortalClient from "./PartnerPortalClient";
+import { partnerHomePath } from "../lib/partners";
 
 export const dynamic = "force-dynamic";
 
-export default async function PartnerPortalPage() {
+/**
+ * /partner → send each signed-in email to their organisation page.
+ */
+export default async function PartnerPortalIndexPage() {
   const jar = await cookies();
   const token = jar.get(PARTNER_COOKIE)?.value;
   const session = await verifyPartnerToken(token);
@@ -13,5 +16,5 @@ export default async function PartnerPortalPage() {
     redirect("/partner/login?from=/partner");
   }
 
-  return <PartnerPortalClient email={session.email} />;
+  redirect(partnerHomePath(session.email));
 }
