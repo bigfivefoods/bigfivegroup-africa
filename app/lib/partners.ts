@@ -100,6 +100,53 @@ export const PARTNERS: PartnerProfile[] = [
     contactNote: "Primary Group contact: craig@bigfivegroup.africa · SA Harvest coordination via partnership lead",
   },
   {
+    slug: "a-heart-to-help",
+    name: "A Heart To Help",
+    organisation: "A Heart To Help",
+    emails: [],
+    role: "NPO · GBV safety · rehabilitation",
+    headline: "A Heart To Help × Big Five Group",
+    summary:
+      "Partnership workspace for A Heart To Help and Big Five Group — an NPO supporting women experiencing abuse with safety, counselling, skills development and pathways to independence, building toward the first Freedom Farm centre on the KZN North Coast (ahearttohelp.co.za).",
+    focus: ["Foundation", "Foods", "Impact", "Leadership", "Empower"],
+    programmes: ["nsnp", "leadership", "impact"],
+    logoSrc: "/partners/a-heart-to-help-logo.png",
+    brandColor: "#0E4A4D",
+    website: "https://ahearttohelp.co.za/",
+    websiteLabel: "ahearttohelp.co.za",
+    notes: [
+      "A Heart To Help branding and mark sourced from ahearttohelp.co.za for co-branded partner briefing.",
+      "Mission: empower frequently abused women — and their children — through safety, counselling, skills development and pathways to financial independence.",
+      "Immediate goal: first centre (Freedom Farm) on the Dolphin Coast / KZN North Coast as proof of concept for a national network of rehabilitation centres.",
+      "Big Five Foundation, Foods, Impact and Leadership can support residential nutrition, skills pathways, programme design and field assurance where the partnership requires them.",
+      "Add authorised A Heart To Help emails to this profile when portal logins are ready (public contact: info@ahearttohelp.co.za).",
+    ],
+    resources: [
+      {
+        href: "/foundation",
+        label: "Foundation",
+        desc: "NPO pathways, catalytic programmes and transparent social design.",
+      },
+      {
+        href: "/impact",
+        label: "Impact PMO",
+        desc: "Gates, KPIs and field assurance for multi-stakeholder programmes.",
+      },
+      {
+        href: "/foods",
+        label: "Big Five Foods",
+        desc: "Institutional and community nutrition packs where feeding is part of care.",
+      },
+      {
+        href: "/leadership",
+        label: "Leadership · Super-Cube®",
+        desc: "Whole-person capacity for teams delivering trauma-informed programmes.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · A Heart To Help: info@ahearttohelp.co.za",
+  },
+  {
     slug: "spar",
     name: "SPAR",
     organisation: "SPAR South Africa",
