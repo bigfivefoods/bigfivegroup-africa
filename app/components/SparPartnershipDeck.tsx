@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   ArrowRight,
   Beef,
@@ -110,14 +109,7 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
-            <Image
-              src="/foods-hero.jpg"
-              alt=""
-              fill
-              className="object-cover object-center"
-              sizes="(max-width:1280px) 100vw, 1200px"
-              priority
-            />
+            <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
             <div
               className="absolute inset-0"
               style={{
@@ -1141,13 +1133,7 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
-            <Image
-              src="/foods-hero.jpg"
-              alt=""
-              fill
-              className="object-cover object-center"
-              sizes="(max-width:1280px) 100vw, 1200px"
-            />
+            <DeckPrintImage src="/foods-hero.jpg" alt="" fit="cover" />
             <div
               className="absolute inset-0"
               style={{
