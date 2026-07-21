@@ -1052,9 +1052,9 @@ function Slide({ index }: SlideProps) {
                 </Link>
                 <a
                   href="mailto:craig@bigfivegroup.africa?subject=Strategic%20partnership%20—%20Big%20Five%20Group&body=Hello%20Big%20Five%20team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20partnership%20%2F%20programme%20aligned%20to%20Feed%20·%20Educate%20·%20Empower.%0A%0AOrganisation%3A%0AOutcome%20we%20need%3A%0ATimeline%3A%0A%0AThank%20you."
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-violet-600 text-white px-8 py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-violet-500 border border-violet-400/40"
+                  className="deck-email-cta premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-sm sm:text-base font-semibold border border-white/20 shadow-none"
                 >
-                  Email Craig — craig@bigfivegroup.africa
+                  Email: craig@bigfivegroup.africa
                 </a>
                 <Link
                   href="/group"
@@ -1516,6 +1516,11 @@ const PRINT_STYLES = `
     #strategy-deck-print-root a {
       text-decoration: none !important;
       color: inherit !important;
+    }
+    #strategy-deck-print-root a.deck-email-cta,
+    #strategy-deck-print-root a.deck-email-cta * {
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
     }
 
     #strategy-deck-print-root .shadow-sm,

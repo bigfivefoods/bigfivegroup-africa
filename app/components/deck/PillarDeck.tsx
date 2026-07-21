@@ -1152,24 +1152,24 @@ function Slide({
                       </Link>
                     ))}
                   {!forPrint && (
-                    <>
-                      <a
-                        href={SA_ONBOARDING}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="premium-button inline-flex items-center border border-white/30 text-white px-6 py-3 rounded-full text-sm font-semibold"
-                      >
-                        SupplierAdvisor® trial
-                      </a>
-                      {cfg.ctaEmail && (
-                        <a
-                          href={`mailto:${cfg.ctaEmail}`}
-                          className="premium-button inline-flex items-center border border-white/30 text-white px-6 py-3 rounded-full text-sm font-semibold"
-                        >
-                          {cfg.ctaEmail}
-                        </a>
-                      )}
-                    </>
+                    <a
+                      href={SA_ONBOARDING}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="premium-button inline-flex items-center border border-white/30 text-white px-6 py-3 rounded-full text-sm font-semibold"
+                    >
+                      SupplierAdvisor® trial
+                    </a>
+                  )}
+                  {cfg.ctaEmail && (
+                    <a
+                      href={`mailto:${cfg.ctaEmail}`}
+                      className={`deck-email-cta premium-button inline-flex items-center bg-white text-black rounded-full font-semibold ${
+                        forPrint ? "px-3 py-1.5 text-[10px]" : "px-6 py-3 text-sm"
+                      }`}
+                    >
+                      Email {cfg.ctaEmail}
+                    </a>
                   )}
                 </div>
               </div>

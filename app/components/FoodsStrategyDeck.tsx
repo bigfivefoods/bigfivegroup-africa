@@ -928,8 +928,11 @@ function CtaSlide() {
                   <Link href="/connect" className="premium-button inline-flex items-center justify-center border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10">
                     Partner enquiry
                   </Link>
-                  <a href="mailto:craig@bigfivegroup.africa?subject=Big%20Five%20Foods%20—%20order" className="premium-button inline-flex items-center justify-center border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10">
-                    Email Craig
+                  <a
+                    href="mailto:craig@bigfivegroup.africa?subject=Big%20Five%20Foods%20—%20order"
+                    className="deck-email-cta premium-button inline-flex items-center justify-center bg-white text-black px-7 py-3.5 rounded-full text-sm font-semibold border border-white/20"
+                  >
+                    Email: craig@bigfivegroup.africa
                   </a>
                 </>
               )}
@@ -1306,6 +1309,11 @@ const PRINT_STYLES = `
       break-after: auto;
     }
     #${PRINT_ROOT_ID} a { text-decoration: none !important; color: inherit !important; }
+    #${PRINT_ROOT_ID} a.deck-email-cta,
+    #${PRINT_ROOT_ID} a.deck-email-cta * {
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+    }
   }
 `;
 

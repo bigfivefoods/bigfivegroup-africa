@@ -285,6 +285,12 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       break-after: auto;
     }
     #${printRootId} a { text-decoration: none !important; color: inherit !important; }
+    /* White email CTAs must stay black — color:inherit would pull white from dark slides */
+    #${printRootId} a.deck-email-cta,
+    #${printRootId} a.deck-email-cta * {
+      color: #000000 !important;
+      -webkit-text-fill-color: #000000 !important;
+    }
   }
 `;
 }
