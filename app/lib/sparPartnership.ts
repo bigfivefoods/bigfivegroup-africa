@@ -38,7 +38,96 @@ export const SPAR_PARTNERSHIP = {
     vatRate: VAT_RATE,
     vatNote:
       "Trade is quoted ex. VAT (R45). RRP R67 is inclusive of VAT for the Nelson Mandela campaign pack. SPAR margin below aligns cost to an incl.-VAT basis at 15% VAT for a fair shelf comparison.",
+    campaignLine:
+      "Nelson Mandela pack — purpose-led shelf range: four fortified African categories, one clear RRP, SPAR margin, and 10% ring-fenced for foundations.",
   },
+
+  /**
+   * Mandela pack range — all four Big Five Foods categories for SPAR shelf / donation.
+   * Pricing model (R45 / R67) applies to agreed campaign SKUs; pack sizes locked on term sheet.
+   */
+  mandelaPackRanges: [
+    {
+      id: "porridge",
+      title: "Fortified Porridges",
+      tagline: "Breakfast that builds — not empty cereal calories",
+      heroImage: "/foods/porridge-chocolate.jpg",
+      flavours: [
+        { name: "Chocolate", image: "/foods/porridge-chocolate.jpg" },
+        { name: "Banana", image: "/foods/porridge-banana.jpg" },
+        { name: "Original", image: "/foods/porridge-original.jpg" },
+        { name: "Strawberry", image: "/foods/porridge-strawberry.jpg" },
+      ],
+      stats: "74% more nutrition design · 185% more fortification · school & household ready",
+      blurb:
+        "Instant, vitamin-enriched porridges on local maize where formulation allows — familiar flavours families and ECD centres already accept. Designed for growing children, care settings and busy households that need reliable fortification without a cold chain.",
+      nutrition:
+        "Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron — micronutrient density aimed at hidden hunger, not only fill.",
+      sparAngle:
+        "High-velocity breakfast aisle story: Mandela purpose + kids nutrition. Easy prep demo for store tasting. Strong donation SKU for ECD and school-linked programmes.",
+      serve: "Hot breakfast · after-school · care centres · household staple",
+    },
+    {
+      id: "soya",
+      title: "Soya Mince",
+      tagline: "Affordable protein that stretches every pot",
+      heroImage: "/foods/soya-beef.jpg",
+      flavours: [
+        { name: "Chilli Beef", image: "/foods/soya-chilli-beef.jpg" },
+        { name: "Beef & Onion", image: "/foods/soya-beef-onion.jpg" },
+        { name: "Rich Beef", image: "/foods/soya-beef.jpg" },
+        { name: "Mutton", image: "/foods/soya-mutton.jpg" },
+      ],
+      stats: "From ±R1.30 / meal · 24.4% more protein · long shelf life",
+      blurb:
+        "Plant-based protein mince in culturally familiar formats for stews, pap and institutional menus. Gives SPAR shoppers a protein upgrade when meat prices spike — and gives foundations a stable protein line without cold-chain meat logistics.",
+      nutrition:
+        "High plant protein at low cost — lifts protein quality in starch-heavy diets and supports protein-energy security for families under pressure.",
+      sparAngle:
+        "Value protein for the main meal occasion. Clear Mandela-pack shelf talker: “protein with purpose.” Ideal CSI bulk for community kitchens and feeding days.",
+      serve: "Stews · mince meals · catering · NGO & household protein stretch",
+    },
+    {
+      id: "onepot",
+      title: "One-Pot Meals",
+      tagline: "A complete plate in one pack",
+      heroImage: "/foods/onepot-chakalaka.jpg",
+      flavours: [
+        { name: "Chakalaka", image: "/foods/onepot-chakalaka.jpg" },
+        { name: "Beef", image: "/foods/onepot-beef.jpg" },
+        { name: "Chicken", image: "/foods/onepot-chicken.jpg" },
+        { name: "Chilli Beef", image: "/foods/onepot-chilli-beef.jpg" },
+      ],
+      stats: "From ±R2.50 / meal · ~20 min cook · ~24-month shelf life",
+      blurb:
+        "Ready-to-cook complete meals with balanced fortification and authentic African flavours. One SKU becomes a plate — less dependency on multi-ingredient shopping when prices rise or cupboards are thin.",
+      nutrition:
+        "Protein plus vitamins A & D, iron and calcium in a whole-meal format — fights calorie gaps and micronutrient deficiency together.",
+      sparAngle:
+        "Premium-feel convenience with purpose: busy families, students, workers. Hero pack for Mandela Day endcaps and donation hampers that feel dignified, not bare.",
+      serve: "Weeknight dinners · workplaces · CSI hampers · institutional menus",
+    },
+    {
+      id: "soup",
+      title: "Fortified Soups",
+      tagline: "Warmth, flavour and micronutrients at the lowest cost point",
+      heroImage: "/foods/soup-chicken.jpg",
+      flavours: [
+        { name: "Brown Onion", image: "/foods/soup-brown-onion.jpg" },
+        { name: "Oxtail", image: "/foods/soup-oxtail.jpg" },
+        { name: "Minestrone", image: "/foods/soup-minestrone.jpg" },
+        { name: "Chicken", image: "/foods/soup-chicken.jpg" },
+      ],
+      stats: "From ±R1.10 / meal · vitamins A & C · iron · calcium",
+      blurb:
+        "Fortified instant soup thickeners in classic South African flavours — elders, children and clinics already trust the format. Extends food budgets and fills the plate between main meals when fuel and time are scarce.",
+      nutrition:
+        "Vitamins A & C, iron and calcium in an everyday format — micronutrient top-up without medical claims beyond fortification design.",
+      sparAngle:
+        "Entry price point for first trial purchase. High acceptance gift/donation line. Easy multipack for SPAR loyalty and Mandela campaign baskets.",
+      serve: "Households · clinics · ECD · emergency & community kitchens",
+    },
+  ] as const,
 
   /**
    * SPAR store / retailer economics — what SPAR makes (not Big Five GP).

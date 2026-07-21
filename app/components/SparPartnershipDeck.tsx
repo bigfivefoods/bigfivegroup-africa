@@ -3,15 +3,19 @@
 import Image from "next/image";
 import {
   ArrowRight,
+  Beef,
   Building2,
+  ChefHat,
   Gift,
   HandHeart,
   Heart,
   Scale,
   ShoppingCart,
+  Soup,
   Store,
   Target,
   Users,
+  UtensilsCrossed,
 } from "lucide-react";
 import DeckShell, {
   DECK_THEMES,
@@ -29,10 +33,18 @@ import {
 } from "../lib/sparPartnership";
 
 const theme = DECK_THEMES.spar;
-const TOTAL = 17;
+const TOTAL = 18;
 const P = SPAR_PARTNERSHIP;
 const EX = P.giving.example;
 const M = P.sparMargin;
+const RANGES = P.mandelaPackRanges;
+
+const RANGE_ICONS = {
+  porridge: UtensilsCrossed,
+  soya: Beef,
+  onepot: ChefHat,
+  soup: Soup,
+} as const;
 
 const PRODUCT_SHOTS = [
   { src: "/foods/porridge-chocolate.jpg", name: "Porridge" },
@@ -174,10 +186,11 @@ function Slide({ index }: { index: number }) {
               "Why SPAR should own the food-security narrative",
               "How SPAR does good — feed, fund, stand with foundations",
               "Mandela pack pricing · SPAR’s margin on every sale",
+              "Mandela pack products — all four Big Five Foods categories",
               "Sell with purpose · donate with dignity · campaign hybrid",
               "The 10% model · SPAR 5% + Big Five Foods 5%",
               "Restore Africa Foundation · A Heart To Help",
-              "Product SPAR can trust · governance · roadmap · the ask",
+              "Governance · roadmap · the ask",
             ].map((item, i) => (
               <li key={item} className="flex gap-2.5 items-start">
                 <span
@@ -391,6 +404,131 @@ function Slide({ index }: { index: number }) {
     case 5:
       return (
         <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>MANDELA PACK · FULL RANGE</DeckEyebrow>
+          <DeckTitle>Four categories. Sixteen flavours. One purpose pack story.</DeckTitle>
+          <p
+            className={`text-[#525252] max-w-3xl mb-3 leading-relaxed ${
+              forPrint ? "text-[10px]" : "text-sm"
+            }`}
+          >
+            {P.product.campaignLine} Trade{" "}
+            <strong className="text-black">{P.product.tradePriceExVatLabel} ex. VAT</strong> · RRP{" "}
+            <strong className="text-black">{P.product.rrpInclVatLabel} incl. VAT</strong> on agreed
+            campaign SKUs — fortified African food SPAR can sell with pride or donate with dignity.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 flex-1 content-start min-h-0">
+            {RANGES.map((range) => {
+              const Icon = RANGE_ICONS[range.id as keyof typeof RANGE_ICONS] ?? UtensilsCrossed;
+              return (
+                <div
+                  key={range.id}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 overflow-hidden flex flex-col ${
+                    forPrint ? "p-2" : "p-3"
+                  }`}
+                >
+                  <div className="flex gap-2.5 min-w-0">
+                    <div
+                      className={`relative shrink-0 rounded-lg border border-black/8 bg-white overflow-hidden ${
+                        forPrint ? "h-12 w-12" : "h-14 w-14 sm:h-16 sm:w-16"
+                      }`}
+                    >
+                      <Image
+                        src={range.heroImage}
+                        alt={range.title}
+                        fill
+                        className="object-contain p-1"
+                        sizes="64px"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                        <Icon
+                          className={forPrint ? "w-3 h-3" : "w-3.5 h-3.5"}
+                          style={{ color: theme.accentDark }}
+                        />
+                        <div
+                          className={`font-semibold text-black leading-tight ${
+                            forPrint ? "text-[11px]" : "text-sm"
+                          }`}
+                        >
+                          {range.title}
+                        </div>
+                      </div>
+                      <div
+                        className={`font-medium leading-snug mb-0.5 ${
+                          forPrint ? "text-[9px]" : "text-[11px]"
+                        }`}
+                        style={{ color: theme.accentDark }}
+                      >
+                        {range.tagline}
+                      </div>
+                      <div
+                        className={`text-[#737373] leading-snug ${
+                          forPrint ? "text-[8px]" : "text-[10px]"
+                        }`}
+                      >
+                        {range.stats}
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    className={`text-[#404040] leading-snug mt-1.5 ${
+                      forPrint ? "text-[8px]" : "text-[11px]"
+                    }`}
+                  >
+                    {range.blurb}
+                  </p>
+                  <p
+                    className={`text-[#525252] leading-snug mt-1 ${
+                      forPrint ? "text-[8px]" : "text-[10px]"
+                    }`}
+                  >
+                    <strong className="text-black">Nutrition:</strong> {range.nutrition}
+                  </p>
+                  <div
+                    className={`flex flex-wrap gap-1 mt-1.5 ${forPrint ? "gap-0.5" : ""}`}
+                  >
+                    {range.flavours.map((f) => (
+                      <span
+                        key={f.name}
+                        className={`inline-flex items-center gap-1 rounded-full border border-emerald-100 bg-white font-medium text-[#404040] ${
+                          forPrint ? "text-[7px] px-1 py-0.5" : "text-[9px] sm:text-[10px] px-1.5 py-0.5"
+                        }`}
+                      >
+                        <span className="relative h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 rounded-full overflow-hidden border border-black/5">
+                          <Image src={f.image} alt="" fill className="object-cover" sizes="16px" />
+                        </span>
+                        {f.name}
+                      </span>
+                    ))}
+                  </div>
+                  <p
+                    className={`mt-1.5 leading-snug ${
+                      forPrint ? "text-[8px]" : "text-[10px]"
+                    }`}
+                    style={{ color: theme.accentDark }}
+                  >
+                    <strong>SPAR angle:</strong>{" "}
+                    <span className="text-[#404040]">{range.sparAngle}</span>
+                  </p>
+                  <p className={`text-[#737373] mt-0.5 ${forPrint ? "text-[7px]" : "text-[9px]"}`}>
+                    Serve: {range.serve}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <p className={`mt-2 text-[#737373] ${forPrint ? "text-[8px]" : "text-[10px]"} leading-relaxed`}>
+            SKU list, pack sizes and which variants carry Mandela campaign packaging are confirmed on
+            the term sheet. Certifications (ISO, FSSC, Halaal, Kosher, Sedex, SupplierAdvisor®) support
+            retail listing confidence — see bigfivegroup.africa/foods.
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 6:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HOW SPAR DOES GOOD</DeckEyebrow>
           <DeckTitle>Three ways SPAR turns a pack into community impact</DeckTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 mb-3">
@@ -429,7 +567,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 6:
+    case 7:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -496,7 +634,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 7:
+    case 8:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>SPAR ECONOMICS · ILLUSTRATIVE</DeckEyebrow>
@@ -552,7 +690,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 8:
+    case 9:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FOUNDATION · 01 · SPAR STANDS WITH</DeckEyebrow>
@@ -614,7 +752,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 9:
+    case 10:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FOUNDATION · 02 · SPAR STANDS WITH</DeckEyebrow>
@@ -675,7 +813,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 10:
+    case 11:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHAT SPAR WINS</DeckEyebrow>
@@ -702,7 +840,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 12:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PRODUCT SPAR CAN TRUST</DeckEyebrow>
@@ -749,7 +887,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GOVERNANCE</DeckEyebrow>
@@ -799,7 +937,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>ROADMAP</DeckEyebrow>
@@ -833,7 +971,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HONESTY LABELS</DeckEyebrow>
@@ -854,7 +992,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 16:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE ASK</DeckEyebrow>
@@ -889,7 +1027,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 17:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
