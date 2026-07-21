@@ -1,7 +1,14 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { flushSync } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -121,10 +128,23 @@ const PILLAR_BRIEFS: Record<string, string> = {
 const GROUP_OVERVIEW =
   "Big Five Group is a proudly African enterprise — African for Africa — headquartered in KwaZulu-Natal. We are not an import-only story: ten pillars share governance, mission and values so regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership compound as one system built on the continent, for the continent.";
 
-/** When true, slides render with print-friendly sizing (same design as web). */
-const PrintModeContext = createContext(false);
+/**
+ * Print/PDF context.
+ * - `active`: true while preparing/exporting PDF (lock overflow, fill viewport height).
+ * - `compact`: dense typography for legacy A4 squeeze (kept off for WYSIWYG so PDF matches digital).
+ */
+const PrintModeContext = createContext<{ active: boolean; compact: boolean }>({
+  active: false,
+  compact: false,
+});
+/** Dense print typography — only when compact is on (not used for WYSIWYG PDF). */
 function usePrintMode() {
-  return useContext(PrintModeContext);
+  const ctx = useContext(PrintModeContext);
+  return ctx.active && ctx.compact;
+}
+/** True while cloning slides for PDF — match digital layout but lock overflow/height. */
+function usePdfExport() {
+  return useContext(PrintModeContext).active;
 }
 
 type SlideProps = { index: number };
@@ -141,6 +161,8 @@ function SlideShell({
   accent?: "violet" | "emerald" | "rose" | "amber";
 }) {
   const forPrint = usePrintMode();
+  const pdf = usePdfExport();
+  const lockOverflow = forPrint || pdf;
   const zeroPad = /\b!?p-0\b/.test(className);
   const accentBar =
     accent === "emerald"
@@ -153,9 +175,9 @@ function SlideShell({
 
   return (
     <div
-      className={`relative h-full w-full overflow-x-hidden border ${
-        forPrint
-          ? "overflow-hidden rounded-2xl"
+      className={`relative h-full w-full overflow-x-hidden border box-border ${
+        lockOverflow
+          ? "overflow-hidden rounded-xl"
           : "overflow-y-auto rounded-2xl sm:rounded-3xl"
       } ${
         dark
@@ -1112,15 +1134,19 @@ function Slide({ index }: SlideProps) {
   }
 }
 
-/** Full-bleed layout for title / CTA slides — matches web; sized for print when needed. */
+/** Full-bleed layout for title / CTA slides — fills viewport; PDF export uses h-full (no 70dvh min). */
 function TitleSlideLayout({ children }: { children: React.ReactNode }) {
   const forPrint = usePrintMode();
+  const pdf = usePdfExport();
   return (
     <div
-      className={`relative flex flex-col justify-between ${
+      className={`relative flex flex-col justify-between box-border ${
         forPrint
           ? "h-full min-h-0 p-8 md:p-10"
-          : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
+          : pdf
+            ? // Match digital padding but fill the clone frame (no min-h that overflows A4)
+              "h-full min-h-0 p-5 sm:p-8 md:p-10 lg:p-12"
+            : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
       }`}
     >
       {children}
@@ -1362,18 +1388,24 @@ type PrintOrientation = "landscape" | "portrait";
 
 /**
  * Exact A4 page geometry (ISO 216).
- * Margin is applied as @page margin so the slide fills the printable area
- * end-to-end (no double padding, no clipped edges).
+ * Page padding is inset so the scaled digital slide fits end-to-end without clipping.
  */
 const A4 = {
   landscape: { w: "297mm", h: "210mm" },
   portrait: { w: "210mm", h: "297mm" },
-  margin: "8mm",
+  /** Inset around the scaled slide on each A4 page */
+  padMm: 5,
 } as const;
 
+/** CSS px per mm at 96dpi — used when layout geometry is unavailable off-screen. */
+const PX_PER_MM = 96 / 25.4;
+
+/** Imperative-only print root (not React-managed — setIndex re-renders must not wipe clones). */
+const PRINT_ROOT_ID = "strategy-deck-print-root";
+const PRINT_PAGE_NAME = "strategy-deck";
+
 const PRINT_STYLES = `
-  /* Park print tree off-screen (prep layout at A4 aspect without ghosting) */
-  #strategy-deck-print-root {
+  #${PRINT_ROOT_ID} {
     position: fixed;
     left: 0;
     top: 0;
@@ -1381,266 +1413,150 @@ const PRINT_STYLES = `
     z-index: -1;
     pointer-events: none;
   }
-  #strategy-deck-print-root[data-orientation="landscape"] {
-    width: 297mm;
-  }
-  #strategy-deck-print-root[data-orientation="portrait"] {
-    width: 210mm;
-  }
-  #strategy-deck-print-root .deck-print-page {
+  #${PRINT_ROOT_ID}[data-orientation="landscape"] { width: 297mm; }
+  #${PRINT_ROOT_ID}[data-orientation="portrait"] { width: 210mm; }
+  #${PRINT_ROOT_ID} .deck-print-page {
     box-sizing: border-box;
     overflow: hidden;
     margin: 0 0 12px;
-    background: #fff;
+    background: #f5f3ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  #strategy-deck-print-root[data-orientation="landscape"] .deck-print-page {
+  #${PRINT_ROOT_ID}[data-orientation="landscape"] .deck-print-page {
     width: 297mm;
     height: 210mm;
-    padding: 8mm;
+    padding: ${A4.padMm}mm;
   }
-  #strategy-deck-print-root[data-orientation="portrait"] .deck-print-page {
+  #${PRINT_ROOT_ID}[data-orientation="portrait"] .deck-print-page {
     width: 210mm;
     height: 297mm;
-    padding: 8mm;
+    padding: ${A4.padMm}mm;
   }
-  #strategy-deck-print-root .deck-print-page > * {
+  #${PRINT_ROOT_ID} .deck-print-scale-wrap {
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  #${PRINT_ROOT_ID} .deck-print-slide-clone {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: top left;
+    overflow: hidden;
+  }
+  #${PRINT_ROOT_ID} .deck-print-slide-clone > * {
     width: 100% !important;
     height: 100% !important;
     max-width: none !important;
     max-height: none !important;
-    border-radius: 10px !important;
+    box-sizing: border-box !important;
   }
-
-  /* Strip effects that print engines turn into muddy halos */
-  #strategy-deck-print-root,
-  #strategy-deck-print-root * {
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-    -webkit-filter: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+  #${PRINT_ROOT_ID} img {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
-  #strategy-deck-print-root .premium-button::before {
-    content: none !important;
-    display: none !important;
-  }
-  #strategy-deck-print-root [class*="blur-"] {
-    display: none !important;
-  }
-  #strategy-deck-print-root a.deck-email-cta,
-  #strategy-deck-print-root a.deck-email-cta * {
+  #${PRINT_ROOT_ID} a.deck-email-cta,
+  #${PRINT_ROOT_ID} a.deck-email-cta * {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
   }
-  #strategy-deck-print-root a.deck-email-cta {
+  #${PRINT_ROOT_ID} a.deck-email-cta {
     background-color: #ffffff !important;
   }
 
-  /* Named pages — Chrome/Edge honour these for exact A4 geometry */
-  @page deck-landscape {
-    size: A4 landscape;
-    margin: 0;
-  }
-  @page deck-portrait {
-    size: A4 portrait;
-    margin: 0;
-  }
+  @page ${PRINT_PAGE_NAME}-landscape { size: A4 landscape; margin: 0; }
+  @page ${PRINT_PAGE_NAME}-portrait { size: A4 portrait; margin: 0; }
 
   @media print {
-    @page {
-      size: A4 landscape;
-      margin: 0;
-    }
-
+    @page { size: A4 landscape; margin: 0; }
     html, body {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
-      color-adjust: exact !important;
       background: #fff !important;
       margin: 0 !important;
       padding: 0 !important;
-      width: auto !important;
-      height: auto !important;
       overflow: visible !important;
     }
-
-    body > *:not(#strategy-deck-print-root) {
-      display: none !important;
-    }
-
-    #strategy-deck-print-root {
+    body > *:not(#${PRINT_ROOT_ID}) { display: none !important; }
+    #${PRINT_ROOT_ID} {
       display: block !important;
       position: static !important;
-      left: auto !important;
-      top: auto !important;
-      width: auto !important;
       transform: none !important;
-      z-index: auto !important;
-      pointer-events: auto !important;
+      width: auto !important;
       background: #fff !important;
       margin: 0 !important;
       padding: 0 !important;
     }
-
-    #strategy-deck-print-root,
-    #strategy-deck-print-root * {
-      box-shadow: none !important;
-      text-shadow: none !important;
-      filter: none !important;
-      -webkit-filter: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
+    #${PRINT_ROOT_ID},
+    #${PRINT_ROOT_ID} * {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
-
-    #strategy-deck-print-root .premium-button,
-    #strategy-deck-print-root .premium-button:hover {
-      transform: none !important;
-      box-shadow: none !important;
+    #${PRINT_ROOT_ID} img {
+      opacity: 1 !important;
+      visibility: visible !important;
     }
-    #strategy-deck-print-root .premium-button::before {
-      content: none !important;
-      display: none !important;
-    }
-
-    /* One slide = one full A4 page; 8mm inset = consistent end-to-end margins */
-    #strategy-deck-print-root .deck-print-page {
+    #${PRINT_ROOT_ID} .deck-print-page {
       box-sizing: border-box !important;
       margin: 0 !important;
       overflow: hidden !important;
-      background: #fff !important;
-      border: none !important;
-      box-shadow: none !important;
       page-break-after: always;
       break-after: page;
       page-break-inside: avoid;
-      break-inside: avoid;
-      page-break-before: auto;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
-
-    #strategy-deck-print-root[data-orientation="landscape"] .deck-print-page {
-      page: deck-landscape;
+    #${PRINT_ROOT_ID}[data-orientation="landscape"] .deck-print-page {
+      page: ${PRINT_PAGE_NAME}-landscape;
       width: ${A4.landscape.w} !important;
       height: ${A4.landscape.h} !important;
-      min-width: ${A4.landscape.w} !important;
-      min-height: ${A4.landscape.h} !important;
-      max-width: ${A4.landscape.w} !important;
-      max-height: ${A4.landscape.h} !important;
-      padding: ${A4.margin} !important;
+      padding: ${A4.padMm}mm !important;
     }
-
-    #strategy-deck-print-root[data-orientation="portrait"] .deck-print-page {
-      page: deck-portrait;
+    #${PRINT_ROOT_ID}[data-orientation="portrait"] .deck-print-page {
+      page: ${PRINT_PAGE_NAME}-portrait;
       width: ${A4.portrait.w} !important;
       height: ${A4.portrait.h} !important;
-      min-width: ${A4.portrait.w} !important;
-      min-height: ${A4.portrait.h} !important;
-      max-width: ${A4.portrait.w} !important;
-      max-height: ${A4.portrait.h} !important;
-      padding: ${A4.margin} !important;
+      padding: ${A4.padMm}mm !important;
     }
-
-    /* Fallback when browser ignores named pages: still force A4 via @page + data attr */
-    #strategy-deck-print-root[data-orientation="portrait"] {
-      /* hint for engines that read first page only */
-    }
-
-    #strategy-deck-print-root .deck-print-page:last-child {
+    #${PRINT_ROOT_ID} .deck-print-page:last-child {
       page-break-after: auto;
       break-after: auto;
     }
-
-    #strategy-deck-print-root .deck-print-page > * {
-      width: 100% !important;
-      height: 100% !important;
-      border-radius: 8px !important;
-    }
-
-    #strategy-deck-print-root a {
-      text-decoration: none !important;
-      color: inherit !important;
-    }
-    #strategy-deck-print-root a.deck-email-cta,
-    #strategy-deck-print-root a.deck-email-cta * {
+    #${PRINT_ROOT_ID} a { text-decoration: none !important; color: inherit !important; }
+    #${PRINT_ROOT_ID} a.deck-email-cta,
+    #${PRINT_ROOT_ID} a.deck-email-cta * {
       color: #000000 !important;
       -webkit-text-fill-color: #000000 !important;
     }
-    #strategy-deck-print-root a.deck-email-cta {
+    #${PRINT_ROOT_ID} a.deck-email-cta {
       background-color: #ffffff !important;
-    }
-
-    #strategy-deck-print-root .shadow-sm,
-    #strategy-deck-print-root [class*="shadow"] {
-      box-shadow: none !important;
-    }
-  }
-
-  /* When portrait is selected, set default @page to portrait (broader engine support) */
-  @media print {
-    body:has(#strategy-deck-print-root[data-orientation="portrait"]) {
-      /* empty marker for :has support */
     }
   }
 `;
 
-/**
- * Orientation-specific @page rules.
- * Also keyed off html[data-deck-print] so engines that only honour the first
- * @page still get the correct A4 size for this print session.
- */
 function printPageCss(orientation: PrintOrientation) {
   const size = orientation === "portrait" ? "A4 portrait" : "A4 landscape";
-  const dims =
-    orientation === "portrait"
-      ? { w: A4.portrait.w, h: A4.portrait.h }
-      : { w: A4.landscape.w, h: A4.landscape.h };
-
   return `
     @media print {
-      @page {
-        size: ${size};
-        margin: 0;
-      }
-      html[data-deck-print="${orientation}"] {
-        width: ${dims.w} !important;
-      }
+      @page { size: ${size}; margin: 0; }
     }
   `;
 }
 
-function PrintDeckPortal({
-  active,
-  orientation,
-}: {
-  active: boolean;
-  orientation: PrintOrientation;
-}) {
-  // Client-only portal — avoid SSR / document access
-  if (!active || typeof document === "undefined") return null;
-
-  return createPortal(
-    <PrintModeContext.Provider value={true}>
-      <div
-        id="strategy-deck-print-root"
-        aria-hidden="true"
-        data-orientation={orientation}
-      >
-        <style
-          dangerouslySetInnerHTML={{
-            __html: PRINT_STYLES + printPageCss(orientation),
-          }}
-        />
-        {Array.from({ length: TOTAL }, (_, i) => (
-          <div key={i} className="deck-print-page">
-            <Slide index={i} />
-          </div>
-        ))}
-      </div>
-    </PrintModeContext.Provider>,
-    document.body
-  );
+/** Available content box on an A4 page (minus pad), in CSS pixels. */
+function a4ContentBoxPx(orientation: PrintOrientation) {
+  const pageWmm = orientation === "landscape" ? 297 : 210;
+  const pageHmm = orientation === "landscape" ? 210 : 297;
+  const pad = A4.padMm * PX_PER_MM;
+  return {
+    w: pageWmm * PX_PER_MM - pad * 2,
+    h: pageHmm * PX_PER_MM - pad * 2,
+  };
 }
 
 export default function StrategyDeck() {
@@ -1650,6 +1566,8 @@ export default function StrategyDeck() {
   const [printMode, setPrintMode] = useState(false);
   const [preparingPdf, setPreparingPdf] = useState(false);
   const [printOrientation, setPrintOrientation] = useState<PrintOrientation>("landscape");
+  const slideViewportRef = useRef<HTMLDivElement>(null);
+  const resumeIndexRef = useRef(0);
 
   const go = useCallback((next: number) => {
     setIndex(Math.max(0, Math.min(TOTAL - 1, next)));
@@ -1657,7 +1575,7 @@ export default function StrategyDeck() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (printMode) return;
+      if (printMode || preparingPdf) return;
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         go(index + 1);
@@ -1670,9 +1588,12 @@ export default function StrategyDeck() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, index, fullscreen, printMode]);
+  }, [go, index, fullscreen, printMode, preparingPdf]);
 
-  // Print the real React slides (identical design to the web deck)
+  /**
+   * WYSIWYG PDF — clone each live digital slide into an A4 page and scale to fit.
+   * Print root is imperative-only so React re-renders (setIndex) never wipe pages.
+   */
   useEffect(() => {
     if (!printMode) return;
 
@@ -1681,34 +1602,165 @@ export default function StrategyDeck() {
     root.setAttribute("data-deck-print", printOrientation);
     root.setAttribute("data-deck-print-active", "true");
 
+    const waitForImages = async (node: ParentNode) => {
+      const imgs = Array.from(node.querySelectorAll("img"));
+      await Promise.all(
+        imgs.map(
+          (img) =>
+            new Promise<void>((resolve) => {
+              const el = img as HTMLImageElement;
+              const done = () => resolve();
+              if (el.complete && el.naturalWidth > 0) {
+                done();
+                return;
+              }
+              el.addEventListener("load", done, { once: true });
+              el.addEventListener("error", done, { once: true });
+              try {
+                el.loading = "eager";
+                if (typeof el.decode === "function") {
+                  el.decode().then(done).catch(done);
+                }
+              } catch {
+                /* ignore */
+              }
+              window.setTimeout(done, 5000);
+            })
+        )
+      );
+    };
+
     const finish = () => {
       if (cancelled) return;
+      cancelled = true;
       root.removeAttribute("data-deck-print");
       root.removeAttribute("data-deck-print-active");
+      const portal = document.getElementById(PRINT_ROOT_ID);
+      if (portal) portal.remove();
+      flushSync(() => setIndex(resumeIndexRef.current));
       setPrintMode(false);
       setPreparingPdf(false);
     };
 
-    const t = window.setTimeout(() => {
+    const run = async () => {
+      // Let pdf context apply (overflow lock + h-full title layouts) before measuring
+      await new Promise((r) => window.setTimeout(r, 80));
       if (cancelled) return;
+
+      // Imperative root only — never React-managed (setIndex would wipe clones)
+      let portal = document.getElementById(PRINT_ROOT_ID);
+      if (!portal) {
+        portal = document.createElement("div");
+        portal.id = PRINT_ROOT_ID;
+        document.body.appendChild(portal);
+      }
+      portal.setAttribute("aria-hidden", "true");
+      portal.setAttribute("data-orientation", printOrientation);
+      portal.innerHTML = "";
+      const style = document.createElement("style");
+      style.textContent = PRINT_STYLES + printPageCss(printOrientation);
+      portal.appendChild(style);
+
+      const viewport = slideViewportRef.current;
+      if (!viewport) {
+        finish();
+        return;
+      }
+
+      const fallbackBox = a4ContentBoxPx(printOrientation);
+
+      for (let i = 0; i < TOTAL; i++) {
+        if (cancelled) return;
+        flushSync(() => setIndex(i));
+        await new Promise<void>((r) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => r()))
+        );
+        await waitForImages(viewport);
+        await new Promise((r) => window.setTimeout(r, 80));
+
+        const source =
+          (Array.from(viewport.children).find(
+            (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
+          ) as HTMLElement | undefined) ?? viewport;
+        const w = Math.max(1, viewport.clientWidth);
+        const h = Math.max(1, viewport.clientHeight);
+
+        const page = document.createElement("div");
+        page.className = "deck-print-page";
+
+        const scaleWrap = document.createElement("div");
+        scaleWrap.className = "deck-print-scale-wrap";
+
+        const cloneHost = document.createElement("div");
+        cloneHost.className = "deck-print-slide-clone";
+        cloneHost.style.width = `${w}px`;
+        cloneHost.style.height = `${h}px`;
+
+        const clone = source.cloneNode(true) as HTMLElement;
+        clone.style.width = "100%";
+        clone.style.height = "100%";
+        clone.style.maxWidth = "none";
+        clone.style.maxHeight = "none";
+        clone.querySelectorAll("img").forEach((node) => {
+          const img = node as HTMLImageElement;
+          if (img.currentSrc) img.src = img.currentSrc;
+          else if (img.src) img.setAttribute("src", img.src);
+          img.loading = "eager";
+          img.style.opacity = "1";
+          img.style.visibility = "visible";
+        });
+        clone.querySelectorAll("button, a").forEach((el) => {
+          (el as HTMLElement).style.pointerEvents = "none";
+        });
+
+        cloneHost.appendChild(clone);
+        scaleWrap.appendChild(cloneHost);
+        page.appendChild(scaleWrap);
+        portal.appendChild(page);
+
+        // Measure page content box; fall back to ISO A4 math if off-screen layout is 0
+        await new Promise<void>((r) => requestAnimationFrame(() => r()));
+        const cs = window.getComputedStyle(page);
+        const padX =
+          (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+        const padY =
+          (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+        const pageW = page.clientWidth || page.getBoundingClientRect().width;
+        const pageH = page.clientHeight || page.getBoundingClientRect().height;
+        const availW = pageW > padX ? pageW - padX : fallbackBox.w;
+        const availH = pageH > padY ? pageH - padY : fallbackBox.h;
+        const scale = Math.min(availW / w, availH / h);
+
+        // Layout box = visual size after scale (top-left origin) so page flex-centers perfectly
+        scaleWrap.style.width = `${w * scale}px`;
+        scaleWrap.style.height = `${h * scale}px`;
+        cloneHost.style.transform = `scale(${scale})`;
+      }
+
+      await waitForImages(portal);
+      await new Promise((r) => window.setTimeout(r, 150));
+      if (cancelled) return;
+
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           if (cancelled) return;
           window.print();
         });
       });
-    }, 500);
+    };
 
+    void run();
     window.addEventListener("afterprint", finish);
-    const fallback = window.setTimeout(finish, 120_000);
+    const fallback = window.setTimeout(finish, 180_000);
 
     return () => {
       cancelled = true;
       root.removeAttribute("data-deck-print");
       root.removeAttribute("data-deck-print-active");
-      window.clearTimeout(t);
       window.clearTimeout(fallback);
       window.removeEventListener("afterprint", finish);
+      const portal = document.getElementById(PRINT_ROOT_ID);
+      if (portal) portal.remove();
     };
   }, [printMode, printOrientation]);
 
@@ -1754,12 +1806,14 @@ export default function StrategyDeck() {
   };
 
   const onDownload = (orientation: PrintOrientation = printOrientation) => {
+    resumeIndexRef.current = index;
     setPrintOrientation(orientation);
     setPreparingPdf(true);
     setPrintMode(true);
   };
 
   const deck = (
+    <PrintModeContext.Provider value={{ active: printMode, compact: false }}>
     <div
       className={`flex flex-col min-w-0 w-full max-w-full ${
         fullscreen
@@ -1802,7 +1856,7 @@ export default function StrategyDeck() {
               type="button"
               onClick={() => onDownload("landscape")}
               disabled={preparingPdf}
-              title="A4 landscape PDF — full page, 8mm margins"
+              title="A4 landscape PDF — digital slides scaled to fit the page"
               className="inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold text-violet-900 hover:bg-white disabled:opacity-60 min-h-8"
             >
               <Download className="w-3.5 h-3.5 shrink-0" />
@@ -1817,7 +1871,7 @@ export default function StrategyDeck() {
               type="button"
               onClick={() => onDownload("portrait")}
               disabled={preparingPdf}
-              title="A4 portrait PDF — full page, 8mm margins"
+              title="A4 portrait PDF — digital slides scaled to fit the page"
               className="inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold text-violet-900 hover:bg-white disabled:opacity-60 min-h-8"
             >
               <span className="hidden md:inline">
@@ -1852,6 +1906,7 @@ export default function StrategyDeck() {
       </div>
 
       <div
+        ref={slideViewportRef}
         className={`relative flex-1 min-h-0 min-w-0 overflow-hidden ${
           fullscreen
             ? "min-h-0"
@@ -1902,6 +1957,7 @@ export default function StrategyDeck() {
         </button>
       </div>
     </div>
+    </PrintModeContext.Provider>
   );
 
   return (
@@ -1968,11 +2024,10 @@ export default function StrategyDeck() {
         {" · "}
         PDF: choose <strong className="text-black">Save as PDF</strong>
         {preparingPdf
-          ? ` · ${printOrientation === "landscape" ? "Landscape" : "Portrait"}`
+          ? ` · preparing ${printOrientation === "landscape" ? "Landscape" : "Portrait"} pages…`
           : ""}
-        .
+        . Each slide is scaled to fit one A4 page.
       </p>
-      <PrintDeckPortal active={printMode} orientation={printOrientation} />
     </div>
   );
 }
