@@ -3,8 +3,11 @@ import { Mail, Phone, MessageCircle, ArrowUpRight } from "lucide-react";
 import { companies } from "../lib/companies";
 import NewsletterForm from "./NewsletterForm";
 
+const sectionTitleClass =
+  "text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-[#737373] mb-5";
+
 const linkClass =
-  "block text-[13px] sm:text-sm text-[#404040] hover:text-black transition-colors py-0.5";
+  "block text-sm text-[#404040] hover:text-black transition-colors leading-snug";
 
 const exploreLinks = [
   { href: "/group", label: "The Group" },
@@ -17,40 +20,16 @@ const exploreLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-/** Grouped for a calmer, scannable Resources column */
-const resourceGroups: {
-  label: string;
-  links: { href: string; label: string; external?: boolean }[];
-}[] = [
-  {
-    label: "Stay informed",
-    links: [
-      { href: "/updates", label: "Updates" },
-      { href: "/newsletter", label: "Newsletter" },
-    ],
-  },
-  {
-    label: "Toolkits",
-    links: [
-      { href: "/partner-kit", label: "Partner kit" },
-      { href: "/methodology", label: "Methodology" },
-      { href: "/brand", label: "Brand kit" },
-    ],
-  },
-  {
-    label: "Private access",
-    links: [
-      { href: "/partner", label: "Partner portal" },
-      { href: "/investor", label: "Investor portal" },
-    ],
-  },
-  {
-    label: "Connect",
-    links: [
-      { href: "/connect", label: "Connect · SAM" },
-      { href: "/connect#case-study-sa", label: "SupplierAdvisor®" },
-    ],
-  },
+const resourceLinks = [
+  { href: "/updates", label: "Updates" },
+  { href: "/newsletter", label: "Newsletter" },
+  { href: "/partner-kit", label: "Partner kit" },
+  { href: "/methodology", label: "Methodology" },
+  { href: "/brand", label: "Brand kit" },
+  { href: "/partner", label: "Partner portal" },
+  { href: "/investor", label: "Investor portal" },
+  { href: "/connect", label: "Connect · SAM" },
+  { href: "/connect#case-study-sa", label: "SupplierAdvisor®" },
 ];
 
 const legalLinks = [
@@ -58,124 +37,112 @@ const legalLinks = [
   { href: "/terms", label: "Terms" },
 ];
 
+function FooterNav({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="min-w-0">
+      <div className={sectionTitleClass}>{title}</div>
+      {children}
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-black/10 text-black">
       <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:pb-12">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-12 gap-y-10 sm:gap-y-12 gap-x-6 lg:gap-x-8">
-          {/* Brand */}
-          <div className="col-span-2 sm:col-span-3 lg:col-span-4 min-w-0">
-            <div className="font-semibold text-xl sm:text-2xl md:text-3xl tracking-tighter mb-3 sm:mb-4">
+        {/* Brand band */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-12 pb-12 sm:pb-14 border-b border-black/10">
+          <div className="min-w-0 max-w-xl">
+            <div className="font-semibold text-xl sm:text-2xl md:text-3xl tracking-tighter mb-3">
               BIG FIVE GROUP
             </div>
-            <p className="text-base sm:text-lg font-light tracking-tight mb-2 max-w-md">
+            <p className="text-base sm:text-lg font-light tracking-tight mb-2">
               One Group. Ten Pillars. Infinite African Impact.
             </p>
-            <p className="text-[#525252] text-sm mb-5 max-w-sm">
+            <p className="text-[#525252] text-sm">
               Regenerative. Sovereign. On-Chain. On-Purpose.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 text-sm font-semibold bg-black text-white px-5 py-2.5 rounded-full hover:bg-[#111] transition-colors w-fit"
-              >
-                Book a briefing
-              </Link>
-              <a
-                href="https://www.supplieradvisor.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold tracking-wide hover:opacity-70 transition-opacity"
-              >
-                SupplierAdvisor®
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
           </div>
-
-          {/* Explore */}
-          <div className="lg:col-span-2 min-w-0">
-            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
-              Explore
-            </div>
-            <nav className="space-y-1.5 sm:space-y-2" aria-label="Explore">
-              {exploreLinks.map((l) => (
-                <Link key={l.href} href={l.href} className={linkClass}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Pillars */}
-          <div className="lg:col-span-2 min-w-0">
-            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
-              The 10 Pillars
-            </div>
-            <nav
-              className="grid grid-cols-2 gap-x-3 gap-y-1.5 sm:gap-y-2 text-[13px] sm:text-sm min-w-0"
-              aria-label="Pillars"
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center shrink-0">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 text-sm font-semibold bg-black text-white px-5 py-2.5 rounded-full hover:bg-[#111] transition-colors w-fit"
             >
-              {companies.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/${c.slug}`}
-                  className={`${linkClass} truncate`}
-                >
-                  {c.name}
-                </Link>
-              ))}
-            </nav>
+              Book a briefing
+            </Link>
+            <a
+              href="https://www.supplieradvisor.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold tracking-wide hover:opacity-70 transition-opacity"
+            >
+              SupplierAdvisor®
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
           </div>
+        </div>
 
-          {/* Resources — refined groups */}
-          <div className="col-span-2 sm:col-span-1 lg:col-span-3 min-w-0">
-            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
-              Resources
-            </div>
-            <nav className="space-y-5" aria-label="Resources">
-              {resourceGroups.map((group) => (
-                <div key={group.label}>
-                  <div className="text-[10px] font-semibold tracking-[1.5px] uppercase text-[#a3a3a3] mb-2">
-                    {group.label}
-                  </div>
-                  <ul className="space-y-1.5 sm:space-y-1.5 border-l border-black/8 pl-3">
-                    {group.links.map((l) => (
-                      <li key={l.href}>
-                        <Link href={l.href} className={linkClass}>
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </nav>
-          </div>
+        {/* Four equal nav columns — Explore · Pillars · Resources · Legal */}
+        <div className="pt-12 sm:pt-14">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 sm:gap-x-10 lg:gap-x-12 gap-y-10 sm:gap-y-12">
+            <FooterNav title="Explore">
+              <nav className="flex flex-col gap-2.5" aria-label="Explore">
+                {exploreLinks.map((l) => (
+                  <Link key={l.href} href={l.href} className={linkClass}>
+                    {l.label}
+                  </Link>
+                ))}
+              </nav>
+            </FooterNav>
 
-          {/* Legal */}
-          <div className="lg:col-span-1 min-w-0">
-            <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-4 text-[#737373]">
-              Legal
-            </div>
-            <nav className="space-y-1.5 sm:space-y-2" aria-label="Legal">
-              {legalLinks.map((l) => (
-                <Link key={l.href} href={l.href} className={linkClass}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
+            <FooterNav title="The 10 Pillars">
+              <nav className="flex flex-col gap-2.5" aria-label="Pillars">
+                {companies.map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/${c.slug}`}
+                    className={`${linkClass} truncate`}
+                  >
+                    {c.name}
+                  </Link>
+                ))}
+              </nav>
+            </FooterNav>
+
+            <FooterNav title="Resources">
+              <nav className="flex flex-col gap-2.5" aria-label="Resources">
+                {resourceLinks.map((l) => (
+                  <Link key={l.href} href={l.href} className={linkClass}>
+                    {l.label}
+                  </Link>
+                ))}
+              </nav>
+            </FooterNav>
+
+            <FooterNav title="Legal">
+              <nav className="flex flex-col gap-2.5" aria-label="Legal">
+                {legalLinks.map((l) => (
+                  <Link key={l.href} href={l.href} className={linkClass}>
+                    {l.label}
+                  </Link>
+                ))}
+              </nav>
+            </FooterNav>
           </div>
         </div>
 
         {/* Newsletter */}
         <div className="mt-12 sm:mt-16 pt-10 border-t border-black/10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-4 min-w-0">
-              <div className="uppercase tracking-[2px] text-[10px] sm:text-xs font-semibold mb-2 text-[#737373]">
-                Newsletter
-              </div>
-              <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2">
+              <div className={sectionTitleClass}>Newsletter</div>
+              <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2 -mt-1">
                 Get Group updates
               </h2>
               <p className="text-sm text-[#525252] leading-relaxed">
