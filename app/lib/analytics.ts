@@ -6,6 +6,8 @@
 export type AnalyticsEvent =
   | "contact_submit"
   | "contact_submit_success"
+  | "newsletter_subscribe"
+  | "newsletter_subscribe_success"
   | "deck_share"
   | "deck_pdf"
   | "book_download"

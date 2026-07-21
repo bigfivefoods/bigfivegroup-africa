@@ -46,6 +46,16 @@ export default function PrivacyPolicy() {
             briefing. We do not sell this information.
           </p>
 
+          <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">2A. Newsletter subscriptions</h2>
+          <p>
+            When you subscribe via the footer or <strong>/newsletter</strong>, your device opens your
+            own email application with an opt-in draft to{" "}
+            <strong>craig@bigfivegroup.africa</strong>. You complete subscription by pressing send —
+            we only receive your email (and optional name / organisation) when you send that message.
+            We use it to add you to our newsletter list and send occasional Group updates. You may
+            unsubscribe at any time by emailing the same address. We do not sell newsletter data.
+          </p>
+
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">3. How We Use Your Information</h2>
           <p>We use your information to:</p>
           <ul className="list-disc pl-6 space-y-2 mt-4">
@@ -53,7 +63,7 @@ export default function PrivacyPolicy() {
             <li>Provide and improve our services</li>
             <li>Process donations and issue Section 18A certificates</li>
             <li>Verify businesses on Big Five Connect</li>
-            <li>Send important updates and impact reports (where you have opted in or have a legitimate relationship)</li>
+            <li>Send newsletters and impact reports where you have opted in (including via the website newsletter form)</li>
             <li>Comply with legal and regulatory requirements</li>
           </ul>
 

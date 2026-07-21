@@ -20,6 +20,7 @@ const routes = [
   "/royal",
   "/contact",
   "/updates",
+  "/newsletter",
   "/methodology",
   "/partner-kit",
   "/brand",

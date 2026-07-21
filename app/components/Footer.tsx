@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, Phone, MessageCircle, ArrowUpRight } from "lucide-react";
 import { companies } from "../lib/companies";
+import NewsletterForm from "./NewsletterForm";
 
 const linkClass = "block hover:text-black/70 transition-colors";
 
@@ -17,6 +18,7 @@ const exploreLinks = [
 
 const resourceLinks = [
   { href: "/updates", label: "Updates" },
+  { href: "/newsletter", label: "Newsletter" },
   { href: "/partner-kit", label: "Partner kit" },
   { href: "/partner", label: "Partner portal" },
   { href: "/methodology", label: "Methodology" },
@@ -130,7 +132,33 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 sm:mt-16 pt-8 border-t border-black/10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 text-sm">
+        {/* Newsletter */}
+        <div className="mt-12 sm:mt-16 pt-10 border-t border-black/10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            <div className="lg:col-span-4 min-w-0">
+              <div className="uppercase tracking-[2px] text-xs font-semibold mb-2 text-[#525252]">
+                Newsletter
+              </div>
+              <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2">
+                Get Group updates
+              </h2>
+              <p className="text-sm text-[#525252] leading-relaxed">
+                Occasional news on programmes, partnerships and continental milestones.{" "}
+                <Link
+                  href="/newsletter"
+                  className="font-semibold text-black underline underline-offset-2"
+                >
+                  Learn more
+                </Link>
+              </p>
+            </div>
+            <div className="lg:col-span-8 min-w-0">
+              <NewsletterForm variant="footer" source="footer" />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 sm:mt-12 pt-8 border-t border-black/10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 text-sm">
           <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-x-6 xl:gap-x-8 gap-y-3 min-w-0">
             <a
               href="mailto:craig@bigfivegroup.africa"
