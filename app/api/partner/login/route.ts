@@ -6,6 +6,10 @@ import {
   PARTNER_SESSION_MAX_AGE_SEC,
   isPartnerEmailAllowed,
 } from "../../../lib/partner-auth";
+import {
+  isPartnerAdmin,
+  resolvePostLoginPath,
+} from "../../../lib/partners";
 
 export async function POST(request: Request) {
   if (!hasPartnerAuthConfigured()) {
@@ -13,13 +17,13 @@ export async function POST(request: Request) {
       {
         ok: false,
         error:
-          "Partner access is not configured yet. Add emails in app/lib/partner-allowlist.ts or set PARTNER_EMAILS on the server.",
+          "Partner access is not configured yet. Add emails in app/lib/partners.ts or set PARTNER_EMAILS on the server.",
       },
       { status: 503 }
     );
   }
 
-  let body: { email?: string };
+  let body: { email?: string; from?: string };
   try {
     body = await request.json();
   } catch {
@@ -50,7 +54,15 @@ export async function POST(request: Request) {
     );
   }
 
-  const res = NextResponse.json({ ok: true, email });
+  const home = resolvePostLoginPath(email, body.from);
+  const admin = isPartnerAdmin(email);
+
+  const res = NextResponse.json({
+    ok: true,
+    email,
+    home,
+    isAdmin: admin,
+  });
   res.cookies.set(PARTNER_COOKIE, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

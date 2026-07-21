@@ -4,8 +4,10 @@ import { PARTNER_COOKIE, verifyPartnerToken } from "../../lib/partner-auth";
 import {
   canAccessPartnerPage,
   getPartnerBySlug,
+  getPartnerDirectoryEntries,
   isPartnerAdmin,
   partnerHomePath,
+  toClientPartner,
 } from "../../lib/partners";
 import PartnerPortalClient from "../PartnerPortalClient";
 
@@ -22,19 +24,22 @@ export default async function PartnerSlugPage({ params }: Props) {
   const token = jar.get(PARTNER_COOKIE)?.value;
   const session = await verifyPartnerToken(token);
   if (!session) {
-    redirect(`/partner/login?from=/partner/${slug}`);
+    redirect(`/partner/login?from=/partner/${encodeURIComponent(slug)}`);
   }
 
+  // Hard isolation: each partner email only sees its own /partner/[slug]
   if (!canAccessPartnerPage(session.email, slug)) {
-    // Logged in but wrong organisation — send them home, not a leaky 404
     redirect(partnerHomePath(session.email));
   }
+
+  const admin = isPartnerAdmin(session.email);
 
   return (
     <PartnerPortalClient
       email={session.email}
-      partner={partner}
-      isAdmin={isPartnerAdmin(session.email)}
+      partner={toClientPartner(partner)}
+      isAdmin={admin}
+      directory={admin ? getPartnerDirectoryEntries() : undefined}
     />
   );
 }

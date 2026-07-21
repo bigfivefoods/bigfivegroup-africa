@@ -8,9 +8,14 @@ import {
   PARTNER_COOKIE,
   verifyPartnerToken,
 } from "./app/lib/partner-auth";
+import {
+  canAccessPartnerPage,
+  partnerHomePath,
+} from "./app/lib/partners";
 
 /**
- * Next.js 16 Proxy — gate /investor/* and /partner/* behind signed session cookies.
+ * Next.js Proxy — gate /investor/* and /partner/* behind signed session cookies.
+ * Partner routes are also organisation-scoped: non-admins may only open their own slug.
  * Login + logout APIs stay public.
  */
 export async function proxy(request: NextRequest) {
@@ -21,6 +26,7 @@ export async function proxy(request: NextRequest) {
     if (pathname === "/partner/login" || pathname.startsWith("/api/partner/")) {
       return NextResponse.next();
     }
+
     const token = request.cookies.get(PARTNER_COOKIE)?.value;
     const session = await verifyPartnerToken(token);
     if (!session) {
@@ -28,6 +34,17 @@ export async function proxy(request: NextRequest) {
       login.searchParams.set("from", pathname);
       return NextResponse.redirect(login);
     }
+
+    // Organisation isolation at the edge: /partner/[slug] must match this email
+    const slugMatch = pathname.match(/^\/partner\/([a-z0-9-]+)(?:\/|$)/i);
+    if (slugMatch?.[1]) {
+      const slug = slugMatch[1].toLowerCase();
+      if (!canAccessPartnerPage(session.email, slug)) {
+        const home = partnerHomePath(session.email);
+        return NextResponse.redirect(new URL(home, request.url));
+      }
+    }
+
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-partner-email", session.email);
     return NextResponse.next({

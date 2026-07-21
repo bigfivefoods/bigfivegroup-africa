@@ -1,5 +1,5 @@
 /**
- * Partner portal registry — one profile per partner organisation.
+ * Partner portal registry — one profile per partner organisation (server-side).
  *
  * To add a partner:
  * 1. Copy an entry below (unique `slug`)
@@ -9,83 +9,35 @@
  *
  * Optional: PARTNER_EMAILS env still works for ad-hoc emails; they land on
  * the generic "partners" briefing if not mapped here.
+ *
+ * Client components must import from partner-public.ts only — never this file —
+ * so login emails are not shipped to the browser.
  */
 
-export type PartnerResource = {
-  href: string;
-  label: string;
-  desc: string;
-};
+import {
+  BIG_FIVE_LOGO,
+  type ClientPartnerProfile,
+  type PartnerDirectoryEntry,
+  type PartnerProgrammeId,
+  type PartnerResource,
+} from "./partner-public";
 
-export type PartnerProgrammeId = "nsnp" | "santaco" | "connect" | "leadership" | "impact";
+export {
+  BIG_FIVE_LOGO,
+  DEFAULT_PARTNER_RESOURCES,
+  mergePartnerResources,
+  type ClientPartnerProfile,
+  type PartnerDirectoryEntry,
+  type PartnerProgrammeId,
+  type PartnerResource,
+} from "./partner-public";
 
-export type PartnerProfile = {
-  /** URL segment: /partner/[slug] */
-  slug: string;
-  /** Short display name */
-  name: string;
-  organisation: string;
-  /** Emails that may open this partner page (lowercase) */
+export type PartnerProfile = ClientPartnerProfile & {
+  /** Emails that may open this partner page (lowercase) — server only */
   emails: string[];
   /** If true, can open any /partner/[slug] after login */
   admin?: boolean;
-  /** Partner type label */
-  role: string;
-  headline: string;
-  summary: string;
-  /** Pillar or theme focus chips */
-  focus: string[];
-  /** Custom bullets for this partner only */
-  notes?: string[];
-  /** Which shared programme blocks to show */
-  programmes?: PartnerProgrammeId[];
-  /** Extra resource links (merged with defaults) */
-  resources?: PartnerResource[];
-  contactNote?: string;
-  /** Partner logo path under /public */
-  logoSrc?: string;
-  /** Brand accent for co-brand chrome */
-  brandColor?: string;
-  /** Official website */
-  website?: string;
-  websiteLabel?: string;
 };
-
-/** Default resources shown to every partner (can be overridden/extended per partner). */
-export const DEFAULT_PARTNER_RESOURCES: PartnerResource[] = [
-  {
-    href: "/partner-kit",
-    label: "Partner kit",
-    desc: "One-page pack: mission, NSNP case, Super-Cube®, how to engage.",
-  },
-  {
-    href: "/methodology",
-    label: "Methodology",
-    desc: "How we label ambition vs programme-reported vs internal analysis.",
-  },
-  {
-    href: "/foods#foods-deck",
-    label: "Foods product deck",
-    desc: "Fortified nutrition, NSNP pathway, institutional economics.",
-  },
-  {
-    href: "/direct#santaco",
-    label: "Direct × SANTACO",
-    desc: "Container rollout plan at taxi ranks and rural communities.",
-  },
-  {
-    href: "/connect",
-    label: "Connect · SupplierAdvisor®",
-    desc: "Verified trade OS, trial and commercial pathways.",
-  },
-  {
-    href: "/impact#strategy-deck",
-    label: "Impact strategy deck",
-    desc: "Group overview and African problem/response framing.",
-  },
-];
-
-export const BIG_FIVE_LOGO = "/bigfivegroup-logo.png";
 
 /**
  * All partners. Add new organisations here as you grow.
@@ -316,6 +268,19 @@ export const PARTNER_PORTAL_ADMINS: string[] = [
   "craig@bigfivegroup.africa",
 ];
 
+/** Slugs never shown in the admin partner directory. */
+export const PARTNER_DIRECTORY_HIDDEN_SLUGS = new Set([
+  "general",
+  "big-five-group",
+  "kencrete",
+]);
+
+/** Strip sensitive fields before sending a partner profile to the client. */
+export function toClientPartner(partner: PartnerProfile): ClientPartnerProfile {
+  const { emails: _emails, admin: _admin, ...safe } = partner;
+  return safe;
+}
+
 /** All emails that may log into the partner portal (from partner profiles + admins). */
 export function getPartnerEmailsFromRegistry(): string[] {
   const emails: string[] = [...PARTNER_PORTAL_ADMINS.map(normalizeEmail)];
@@ -332,7 +297,12 @@ export function getPartnerBySlug(slug: string): PartnerProfile | undefined {
   return PARTNERS.find((p) => p.slug === slug);
 }
 
-/** Resolve partner profile for a signed-in email. */
+/**
+ * Resolve partner profile for a signed-in email.
+ * - Mapped org email → that organisation only
+ * - Portal admin → Big Five Group hub
+ * - Ad-hoc PARTNER_EMAILS env (not in registry) → general workspace
+ */
 export function getPartnerByEmail(email: string): PartnerProfile | undefined {
   const n = normalizeEmail(email);
   const match = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
@@ -350,15 +320,21 @@ export function isPartnerAdmin(email: string): boolean {
   return Boolean(p?.admin);
 }
 
-/** Can this email view this partner slug? */
+/**
+ * Can this email view this partner slug?
+ * Non-admins may only open their own organisation workspace.
+ * Ad-hoc allowlist emails (env) may only open /partner/general.
+ */
 export function canAccessPartnerPage(email: string, slug: string): boolean {
   if (isPartnerAdmin(email)) return true;
   const n = normalizeEmail(email);
   const partner = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
-  if (!partner) return false;
-  return partner.slug === slug;
+  if (partner) return partner.slug === slug;
+  // Env / ad-hoc allowlist: isolated general workspace only
+  return slug === "general";
 }
 
+/** Canonical home path for a signed-in partner (always their own space). */
 export function partnerHomePath(email: string): string {
   if (isPartnerAdmin(email)) return "/partner/big-five-group";
   const n = normalizeEmail(email);
@@ -366,8 +342,35 @@ export function partnerHomePath(email: string): string {
   return p ? `/partner/${p.slug}` : "/partner/general";
 }
 
-export function mergePartnerResources(partner: PartnerProfile): PartnerResource[] {
-  const custom = partner.resources ?? [];
-  const seen = new Set(custom.map((r) => r.href));
-  return [...custom, ...DEFAULT_PARTNER_RESOURCES.filter((r) => !seen.has(r.href))];
+/**
+ * After login: non-admins always go to their home.
+ * Admins may deep-link to any /partner/[slug] (except login).
+ */
+export function resolvePostLoginPath(email: string, requestedFrom?: string | null): string {
+  const home = partnerHomePath(email);
+  if (!isPartnerAdmin(email)) return home;
+  const from = (requestedFrom ?? "").trim();
+  if (!from.startsWith("/partner")) return home;
+  if (from === "/partner" || from === "/partner/" || from.startsWith("/partner/login")) {
+    return home;
+  }
+  // /partner/[slug] or nested under it
+  const m = from.match(/^\/partner\/([a-z0-9-]+)/i);
+  if (!m?.[1]) return home;
+  if (!getPartnerBySlug(m[1])) return home;
+  return `/partner/${m[1]}`;
 }
+
+/** Admin-only directory cards (no emails). */
+export function getPartnerDirectoryEntries(): PartnerDirectoryEntry[] {
+  return PARTNERS.filter((p) => !PARTNER_DIRECTORY_HIDDEN_SLUGS.has(p.slug)).map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    organisation: p.organisation,
+    role: p.role,
+    summary: p.summary,
+    logoSrc: p.logoSrc,
+  }));
+}
+
+

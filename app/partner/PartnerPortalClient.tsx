@@ -22,13 +22,13 @@ import { SANTACO, SANTACO_PARTNERSHIP } from "../lib/santaco";
 import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
 import {
   BIG_FIVE_LOGO,
-  PARTNERS,
   mergePartnerResources,
-  type PartnerProfile,
+  type ClientPartnerProfile,
+  type PartnerDirectoryEntry,
   type PartnerProgrammeId,
-} from "../lib/partners";
+} from "../lib/partner-public";
 
-function CoBrandHeader({ partner }: { partner: PartnerProfile }) {
+function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
   const partnerLogo = partner.logoSrc;
   const showPartnerLogo = partnerLogo && partner.slug !== "big-five-group";
   /** Crest-style logos (e.g. Sharks) need a taller tile */
@@ -225,10 +225,13 @@ export default function PartnerPortalClient({
   email,
   partner,
   isAdmin,
+  directory,
 }: {
   email: string;
-  partner: PartnerProfile;
+  partner: ClientPartnerProfile;
   isAdmin?: boolean;
+  /** Admin-only list of other workspaces (no emails). */
+  directory?: PartnerDirectoryEntry[];
 }) {
   const resources = mergePartnerResources(partner);
 
@@ -242,7 +245,7 @@ export default function PartnerPortalClient({
             <div className="min-w-0 max-w-2xl">
               <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-white/70 mb-4">
                 <Lock className="w-3.5 h-3.5" />
-                PRIVATE · PARTNER · /partner/{partner.slug}
+                PRIVATE · YOUR ORGANISATION · /partner/{partner.slug}
               </div>
               <CoBrandHeader partner={partner} />
               <div className="text-xs font-semibold text-white/70 mb-2">
@@ -348,7 +351,8 @@ export default function PartnerPortalClient({
             Your partnership workspace
           </h2>
           <p className="text-sm sm:text-base text-[#525252] max-w-3xl leading-relaxed mb-6">
-            This page is private to your organisation&apos;s authorised emails. Content below can be
+            Signed in to <strong className="text-black">/partner/{partner.slug}</strong> only.
+            Other organisations&apos; workspaces are not available on this login. Content below can be
             tailored per partner as the relationship grows.
           </p>
           {partner.notes && partner.notes.length > 0 && (
@@ -488,7 +492,7 @@ export default function PartnerPortalClient({
         </div>
       </section>
 
-      {isAdmin && (
+      {isAdmin && directory && directory.length > 0 && (
         <section
           id="directory"
           className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
@@ -497,16 +501,15 @@ export default function PartnerPortalClient({
             <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
               ADMIN · ALL PARTNER WORKSPACES
             </div>
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2 text-balance">
               Partner directory
             </h2>
+            <p className="text-sm text-[#525252] mb-6 max-w-2xl leading-relaxed">
+              Group admins only. Each partner email can open only their own workspace; this list
+              is not shown to partner logins.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {PARTNERS.filter(
-                (p) =>
-                  p.slug !== "general" &&
-                  p.slug !== "big-five-group" &&
-                  p.slug !== "kencrete"
-              ).map((p) => (
+              {directory.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/partner/${p.slug}`}
