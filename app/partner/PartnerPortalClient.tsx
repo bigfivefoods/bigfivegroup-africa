@@ -501,7 +501,12 @@ export default function PartnerPortalClient({
               Partner directory
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {PARTNERS.filter((p) => p.slug !== "general").map((p) => (
+              {PARTNERS.filter(
+                (p) =>
+                  p.slug !== "general" &&
+                  p.slug !== "big-five-group" &&
+                  p.slug !== "kencrete"
+              ).map((p) => (
                 <Link
                   key={p.slug}
                   href={`/partner/${p.slug}`}
