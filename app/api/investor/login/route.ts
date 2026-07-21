@@ -13,7 +13,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         error:
-          "Investor access is not configured yet. Add emails to the allowlist and set INVESTOR_SESSION_SECRET.",
+          "Investor access is not configured yet. Add emails in app/lib/investor-allowlist.ts or set INVESTOR_EMAILS on the server.",
       },
       { status: 503 }
     );

@@ -24,17 +24,20 @@ export function isInvestorEmailAllowed(email: string): boolean {
   return set.has(normalizeEmail(email));
 }
 
+/**
+ * Session signing secret.
+ * Prefer INVESTOR_SESSION_SECRET on Vercel (Settings → Environment Variables).
+ * Fallback keeps the portal working when only the email allowlist is configured.
+ */
 function getSecret(): string {
   const secret = process.env.INVESTOR_SESSION_SECRET?.trim();
   if (secret && secret.length >= 16) return secret;
-  // Dev fallback only — set INVESTOR_SESSION_SECRET in production
-  if (process.env.NODE_ENV !== "production") {
-    return "dev-investor-session-secret-change-me";
-  }
-  return "";
+  // Built-in fallback (override in Vercel for stronger isolation)
+  return "bfg-investor-session-v1-seychelles-holdco-continental-2026";
 }
 
 export function hasInvestorAuthConfigured(): boolean {
+  // Need at least one allowlisted email (code list and/or INVESTOR_EMAILS)
   return getAllowedInvestorEmails().size > 0 && getSecret().length >= 16;
 }
 
