@@ -13,7 +13,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:newsletter": "node scripts/test-newsletter.mjs",
-    "env:vercel": "node scripts/sync-vercel-env.mjs"
+    "env:vercel": "node scripts/sync-vercel-env.mjs",
+    "setup:newsletter": "node scripts/setup-newsletter-env.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
