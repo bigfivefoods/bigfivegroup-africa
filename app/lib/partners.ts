@@ -298,6 +298,7 @@ export const PARTNERS: PartnerProfile[] = [
     website: "https://santaco.org/about-us/",
     websiteLabel: "santaco.org · About us",
     notes: [
+      "Official SANTACO logo used for co-branded partner briefing (public/partners/santaco-logo.png).",
       "Official SANTACO site: https://santaco.org/ — About us: https://santaco.org/about-us/",
       "SANTACO is the national representative body of South Africa’s minibus-taxi industry — formed in 2001 as the unified voice of the sector.",
       "Big Five Direct partnership: plan to roll out 15,000 containers at major taxi ranks and rural communities — Foods, Wi‑Fi surveys, marketing and Super-Cube® / Leadership education where people already move.",
