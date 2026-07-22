@@ -90,6 +90,7 @@ Super-Cube® is the Group’s Educate engine — whole-person formation for exec
         "Empirically grounded leadership formation for executives, public servants and youth — free book and peer-reviewed papers available.",
       tag: "Leadership",
       publishedAt: "2026-03-01T10:00:00.000Z",
+      coverImage: "/leadership-hero.jpg",
       body: `## From research to continental practice
 
 **Super-Cube®** grew from doctoral research into the Educate pillar of Big Five Group — ethical, whole-person leadership for business and public life.
@@ -107,6 +108,7 @@ Materials include a free book pathway and peer-reviewed papers partners can refe
         "Verified trade infrastructure and SAM (SupplierAdvisor Messenger) for the humans who run the chain.",
       tag: "Connect",
       publishedAt: "2026-01-15T10:00:00.000Z",
+      coverImage: "/connect-hero.jpg",
       body: `## Humans + verified rails
 
 **SAM** (SupplierAdvisor Messenger) sits with SupplierAdvisor® so the people who run the chain have an AI-assisted path into ethical, verified commerce.
