@@ -85,15 +85,24 @@ function ctaButton(href: string, label: string): string {
 }
 
 export async function sendResendEmail(opts: {
-  to: string;
+  to: string | string[];
   subject: string;
   text: string;
   html: string;
+  /** Visitor address — Resend Reply-To so you can reply from your inbox */
+  replyTo?: string | string[];
   headers?: Record<string, string>;
   tags?: { name: string; value: string }[];
 }): Promise<SendEmailResult> {
   const key = process.env.RESEND_API_KEY?.trim();
   if (!key) return { ok: false, reason: "no_resend_key" };
+
+  const to = Array.isArray(opts.to) ? opts.to : [opts.to];
+  const replyTo = opts.replyTo
+    ? Array.isArray(opts.replyTo)
+      ? opts.replyTo
+      : [opts.replyTo]
+    : undefined;
 
   try {
     const res = await fetch("https://api.resend.com/emails", {
@@ -104,7 +113,8 @@ export async function sendResendEmail(opts: {
       },
       body: JSON.stringify({
         from: fromAddress(),
-        to: [opts.to],
+        to,
+        reply_to: replyTo,
         subject: opts.subject,
         text: opts.text,
         html: opts.html,

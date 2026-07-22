@@ -43,6 +43,8 @@ export default function ContactForm({
   const [error, setError] = useState<string | null>(null);
   const [mailto, setMailto] = useState<string | null>(null);
   const [whatsApp, setWhatsApp] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [sendMode, setSendMode] = useState<"resend" | "mailto" | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -99,7 +101,9 @@ export default function ContactForm({
       const data = (await res.json()) as {
         ok: boolean;
         error?: string;
+        mode?: "resend" | "mailto";
         mailto?: string | null;
+        message?: string;
       };
 
       if (!res.ok || !data.ok) {
@@ -110,11 +114,16 @@ export default function ContactForm({
 
       setMailto(data.mailto ?? null);
       setWhatsApp(buildWhatsAppLink(payload));
+      setSendMode(data.mode ?? (data.mailto ? "mailto" : "resend"));
+      setSuccessMessage(
+        data.message ??
+          "Thank you — your enquiry has been sent. We typically reply within 1–2 business days."
+      );
       track("contact_submit_success", { interest: payload.interest });
       setStatus("success");
 
-      // Open the visitor’s own email app, addressed to Big Five (footer address)
-      if (data.mailto) {
+      // Only open the visitor’s mail app if site delivery fell back to mailto
+      if (data.mode === "mailto" && data.mailto) {
         window.setTimeout(() => {
           window.location.href = data.mailto!;
         }, 150);
@@ -126,21 +135,30 @@ export default function ContactForm({
   };
 
   if (status === "success") {
+    const viaSite = sendMode === "resend";
     return (
       <div className="rounded-2xl sm:rounded-3xl border border-emerald-200 bg-emerald-50/60 p-6 sm:p-8 text-center">
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 mb-4">
           <Check className="w-6 h-6" />
         </div>
         <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-black mb-2">
-          Open your email to send
+          {viaSite ? "Enquiry sent" : "Open your email to send"}
         </h3>
         <p className="text-sm sm:text-base text-[#525252] leading-relaxed mb-6 max-w-md mx-auto">
-          Your mail app should open a draft <strong className="text-black">from your address</strong>{" "}
-          to <strong className="text-black">{CONTACT_EMAIL}</strong>. Press send in your app to
-          complete the enquiry. If nothing opened, use the buttons below.
+          {viaSite ? (
+            <>
+              {successMessage} We&apos;ll reply to{" "}
+              <strong className="text-black">{form.email || "your email"}</strong>.
+            </>
+          ) : (
+            <>
+              {successMessage} Draft address:{" "}
+              <strong className="text-black">{CONTACT_EMAIL}</strong>.
+            </>
+          )}
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center max-w-md mx-auto">
-          {mailto && (
+          {!viaSite && mailto && (
             <a
               href={mailto}
               className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
@@ -157,7 +175,7 @@ export default function ContactForm({
               className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
             >
               <MessageCircle className="w-4 h-4" />
-              Send on WhatsApp
+              WhatsApp instead
             </a>
           )}
         </div>
@@ -173,6 +191,8 @@ export default function ContactForm({
             onClick={() => {
               setStatus("idle");
               setForm((f) => ({ ...f, message: "" }));
+              setSendMode(null);
+              setSuccessMessage(null);
             }}
             className="text-sm text-[#525252] underline underline-offset-2 hover:text-black"
           >

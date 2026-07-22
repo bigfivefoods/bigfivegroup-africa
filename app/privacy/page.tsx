@@ -37,13 +37,12 @@ export default function PrivacyPolicy() {
 
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">2. Website enquiries</h2>
           <p>
-            When you use the contact form at <strong>/contact</strong>, your device opens your own
-            email application with a draft addressed to{" "}
-            <strong>craig@bigfivegroup.africa</strong> (the same address shown in the site footer).
-            You send the message from your own email account — we do not use a third-party bulk email
-            service to send enquiries on your behalf. Details you include in that draft are only
-            received when you press send. We use them solely to respond and, where relevant, prepare a
-            briefing. We do not sell this information.
+            When you use the contact form at <strong>/contact</strong>, your enquiry is sent from our
+            website systems to <strong>craig@bigfivegroup.africa</strong> (or our configured inbox)
+            using our email provider (Resend). We set Reply-To to the email address you provide so we
+            can respond to you. If site delivery is unavailable, you may be offered a draft in your
+            own mail app as a fallback. We use enquiry details solely to respond and, where relevant,
+            prepare a briefing. We do not sell this information.
           </p>
 
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">2A. Newsletter subscriptions</h2>
