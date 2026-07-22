@@ -116,6 +116,57 @@ export const PARTNERS: PartnerProfile[] = [
       "Primary Group contact: craig@bigfivegroup.africa · DBE / NSNP coordination via Big Five Foods partnership lead",
   },
   {
+    slug: "department-of-health",
+    name: "Department of Health",
+    organisation: "Department of Health · Republic of South Africa",
+    emails: [],
+    role: "National health department · institutional pathways",
+    headline: "DoH × Big Five Group",
+    summary:
+      "Partnership workspace aligned with South Africa’s Department of Health (health.gov.za) — institutional pathways for Group products into the health system as relationships and programmes mature. Big Five works with the Director General of Health as a strategic institutional relationship (not Impact staff); Impact PMO coordinates delivery.",
+    focus: ["Impact", "Foods", "Access", "Connect", "Leadership"],
+    programmes: ["impact", "nsnp", "connect", "leadership"],
+    brandColor: "#006633",
+    website: "https://www.health.gov.za/",
+    websiteLabel: "health.gov.za",
+    notes: [
+      "Official Department of Health website: https://www.health.gov.za/",
+      "Strategic institutional relationship with the Director General of Health — a working channel into SA DoH and, over time, counterpart health pathways in Africa; not claimed as closed multi-country awards.",
+      "Impact PMO designs gates, KPIs and field delivery; the DG of Health relationship is not a staff appointment within Big Five Impact.",
+      "This portal is a briefing workspace for authorised partners — not a government site and not an endorsement mark beyond the institutional relationship described on Group surfaces.",
+      "Add authorised DoH / provincial health emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "https://www.health.gov.za/",
+        label: "Department of Health",
+        desc: "Official DoH website — health.gov.za",
+      },
+      {
+        href: "/impact",
+        label: "Big Five Impact",
+        desc: "Cross-pillar PMO — gates, KPIs and health-system pathway framing.",
+      },
+      {
+        href: "/impact#strategy-deck",
+        label: "Impact strategy deck",
+        desc: "Group overview and African problem/response framing.",
+      },
+      {
+        href: "/foods",
+        label: "Big Five Foods",
+        desc: "Fortified nutrition formats for institutional and community pathways.",
+      },
+      {
+        href: "/methodology",
+        label: "Methodology",
+        desc: "How we label pathway ambition vs programme-reported delivery.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · DoH pathway coordination via Big Five Impact partnership lead",
+  },
+  {
     slug: "sa-harvest",
     name: "SA Harvest",
     organisation: "SA Harvest",
