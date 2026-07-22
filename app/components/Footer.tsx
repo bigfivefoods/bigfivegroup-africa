@@ -68,6 +68,7 @@ const resourceGroups: { label: string; links: { href: string; label: string }[] 
     links: [
       { href: "/partner", label: "Partner portal" },
       { href: "/investor", label: "Investor portal" },
+      { href: "/updates/admin", label: "Updates admin" },
       { href: "/newsletter/admin", label: "Newsletter admin" },
     ],
   },
