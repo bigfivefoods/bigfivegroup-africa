@@ -42,9 +42,8 @@ npm run dev
 
 `.env.local` is gitignored.
 
-**Contact:** form delivers via Resend to `craig@bigfivegroup.africa`. Booking
-uses **Cal.com + CalDAV** (same SSL calendar as Mac/iOS — `NEXT_PUBLIC_BOOKING_URL`
-or `NEXT_PUBLIC_CAL_LINK`). See `.env.example` for CalDAV setup.
+**Contact:** form delivers via Resend to `craig@bigfivegroup.africa` (Reply-To =
+visitor). WhatsApp / phone for a faster loop. Briefings are confirmed manually.
 
 ### Vercel (production / preview)
 

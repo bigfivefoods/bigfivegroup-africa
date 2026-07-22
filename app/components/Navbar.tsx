@@ -213,7 +213,7 @@ export default function Navbar() {
             Launch Connect
           </a>
           <Link
-            href="/contact#book"
+            href="/contact"
             className="premium-button inline-flex items-center gap-2 bg-black text-white px-4 2xl:px-6 py-2.5 rounded-full text-[13px] 2xl:text-sm font-semibold tracking-wide hover:bg-[#111] whitespace-nowrap"
           >
             Book a briefing
@@ -300,7 +300,7 @@ export default function Navbar() {
 
               <div className="pt-4 border-t border-black/10 space-y-3">
                 <Link
-                  href="/contact#book"
+                  href="/contact"
                   onClick={closeMenus}
                   className="premium-button w-full inline-flex items-center justify-center gap-3 bg-black text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl text-base font-semibold"
                 >

@@ -355,15 +355,7 @@ export default function ContactForm({
       </button>
       <p className="text-xs text-[#737373] leading-relaxed max-w-lg">
         Your enquiry is delivered to <strong className="text-black">{CONTACT_EMAIL}</strong>{" "}
-        (same as the footer). To pick a free slot on the calendar, use{" "}
-        <a href="/contact#book" className="underline underline-offset-2 text-black">
-          Book a briefing
-        </a>{" "}
-        (or{" "}
-        <a href="/contact/book" className="underline underline-offset-2 text-black">
-          /contact/book
-        </a>
-        ). See our{" "}
+        (same as the footer). We reply from that address to confirm a briefing. See our{" "}
         <a href="/privacy" className="underline underline-offset-2 text-black">
           Privacy Policy
         </a>

@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
         destination: "/royal",
         permanent: true,
       },
+      {
+        source: "/contact/book",
+        destination: "/contact",
+        permanent: true,
+      },
     ];
   },
   async headers() {
