@@ -22,3 +22,6 @@ data/*.tmp
 .env.local
 .env.vercel.secrets
 .env*.local
+
+# Local Vercel env paste helper (secrets)
+VERCEL-NEWSLETTER-ENV.txt
