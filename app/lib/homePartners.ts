@@ -43,7 +43,7 @@ export const HOME_PARTNERS: HomePartner[] = [
   {
     name: "Restore Africa Foundation",
     logo: "/partners/restore-africa-foundation-logo.png",
-    href: "https://www.restoreafricafoundation.org/",
+    href: "https://www.facebook.com/p/Restore-Africa-Foundation-61573115377603/",
   },
   {
     name: "A Heart To Help",
