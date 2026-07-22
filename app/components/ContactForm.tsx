@@ -323,7 +323,7 @@ export default function ContactForm({
           value={form.message}
           onChange={onChange}
           className={`${field} resize-y min-h-[8rem]`}
-          placeholder="Outcome you need, timeline, geography, and any context that helps us prepare…"
+          placeholder="Outcome you need, timeline, geography, a few times that work for you (with timezone), and any context that helps us prepare…"
         />
       </div>
 
@@ -344,7 +344,7 @@ export default function ContactForm({
         {status === "submitting" ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            Preparing…
+            Sending…
           </>
         ) : (
           <>
@@ -354,9 +354,9 @@ export default function ContactForm({
         )}
       </button>
       <p className="text-xs text-[#737373] leading-relaxed max-w-lg">
-        Submitting opens <strong className="text-black">your</strong> email app with a draft to{" "}
-        {CONTACT_EMAIL} (same as the footer). Include a few times that work for you and we&apos;ll
-        confirm a meeting. You send from your own address — we never send on your behalf. See our{" "}
+        Your enquiry is delivered to <strong className="text-black">{CONTACT_EMAIL}</strong>{" "}
+        (same as the footer). We reply from that address to confirm a briefing — no self-serve
+        calendar booking. See our{" "}
         <a href="/privacy" className="underline underline-offset-2 text-black">
           Privacy Policy
         </a>

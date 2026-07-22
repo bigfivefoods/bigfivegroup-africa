@@ -23,14 +23,15 @@ export default function ContactThanksPage() {
           Almost there
         </h1>
         <p className="text-base sm:text-lg text-[#525252] leading-relaxed mb-8">
-          If your mail app opened a draft to{" "}
-          <strong className="text-black">{CONTACT_EMAIL}</strong>, press send. Include a few times
-          that work for you and we&apos;ll confirm a meeting.
+          If you used the form, your note is already with the team at{" "}
+          <strong className="text-black">{CONTACT_EMAIL}</strong>. We&apos;ll reply to confirm a
+          briefing — typically within 1–2 business days. Prefer a faster loop? Use WhatsApp or
+          phone below.
         </p>
 
         <div className="flex flex-col gap-3 max-w-sm mx-auto mb-10">
           <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Big%20Five%20briefing%20—%20schedule%20a%20meeting`}
+            href={`mailto:${CONTACT_EMAIL}?subject=Big%20Five%20briefing%20—%20preferred%20times`}
             className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3.5 rounded-full text-sm font-semibold"
           >
             <Mail className="w-4 h-4" />

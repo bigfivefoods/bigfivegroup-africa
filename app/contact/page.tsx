@@ -71,15 +71,32 @@ export default function ContactPage() {
           <aside className="lg:col-span-5 space-y-6 sm:space-y-8 min-w-0">
             <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
               <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
-                Schedule a meeting
+                How we confirm a briefing
               </h3>
               <p className="text-sm text-[#525252] leading-relaxed mb-4">
-                Send a short note with your organisation, what you need, and a few times that work for
-                you. We&apos;ll reply and confirm a briefing — typically within 1–2 business days.
+                We don&apos;t use self-serve calendar links. Briefings are high-touch — you tell us
+                the outcome and a few times that suit you; we reply and lock a slot, typically within
+                1–2 business days.
               </p>
-              <ul className="text-sm text-[#404040] space-y-2 mb-1">
-                <li>· Email draft opens to the address below (same as the footer)</li>
-                <li>· WhatsApp or phone for a quicker back-and-forth</li>
+              <ul className="text-sm text-[#404040] space-y-2.5 mb-1">
+                <li className="flex gap-2">
+                  <span className="text-emerald-700 font-semibold shrink-0">1.</span>
+                  <span>
+                    Use the form — it sends straight to the Group inbox (same address as the footer).
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-700 font-semibold shrink-0">2.</span>
+                  <span>
+                    Mention preferred days or times in your message (timezone helps).
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-emerald-700 font-semibold shrink-0">3.</span>
+                  <span>
+                    Prefer a faster loop? WhatsApp or phone from the channels below.
+                  </span>
+                </li>
               </ul>
             </div>
 

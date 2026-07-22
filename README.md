@@ -42,9 +42,9 @@ npm run dev
 
 `.env.local` is gitignored.
 
-**Contact:** visitors email `craig@bigfivegroup.africa` from their own mail app
-(same as the footer), or use WhatsApp / phone to schedule a meeting. No Calendly
-or third-party mail service.
+**Contact:** the site form delivers enquiries via Resend to
+`craig@bigfivegroup.africa` (Reply-To = visitor). WhatsApp / phone for a faster
+loop. No Calendly — briefings are confirmed manually.
 
 ### Vercel (production / preview)
 
