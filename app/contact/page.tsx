@@ -75,8 +75,8 @@ export default function ContactPage() {
                   Schedule a meeting
                 </h2>
                 <p className="text-sm sm:text-base text-[#525252] mb-6 sm:mb-8 leading-relaxed">
-                  Choose a free slot — it syncs to Apple Calendar so the team stays available and
-                  double-bookings stay off the table.
+                  Choose a free slot — free/busy is read from the team CalDAV calendar (same one
+                  on Mac &amp; iOS), so double-bookings stay off the table.
                 </p>
                 <BookingCalendar booking={booking} />
               </div>
@@ -105,8 +105,8 @@ export default function ContactPage() {
               {booking.enabled ? (
                 <>
                   <p className="text-sm text-[#525252] leading-relaxed mb-4">
-                    Self-serve times sync to Apple Calendar. Use the form only when you need a
-                    custom conversation or can&apos;t find a free slot.
+                    Self-serve times respect your CalDAV calendar. Use the form only when you need
+                    a custom conversation or can&apos;t find a free slot.
                   </p>
                   <ul className="text-sm text-[#404040] space-y-2.5 mb-4">
                     <li className="flex gap-2">
@@ -133,7 +133,7 @@ export default function ContactPage() {
               ) : (
                 <>
                   <p className="text-sm text-[#525252] leading-relaxed mb-4">
-                    Use the form or a direct channel. Once the Apple Calendar booking link is live,
+                    Use the form or a direct channel. Once the CalDAV-backed booking link is live,
                     you&apos;ll also be able to pick a free slot on this page.
                   </p>
                   <ul className="text-sm text-[#404040] space-y-2.5">

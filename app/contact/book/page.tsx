@@ -6,7 +6,7 @@ import { getBookingConfig } from "../../lib/contact";
 export const metadata = {
   title: "Book a briefing",
   description:
-    "Schedule a strategic briefing with Big Five Group Africa — times sync to our Apple Calendar.",
+    "Schedule a strategic briefing with Big Five Group Africa — times sync via CalDAV to our team calendar.",
   alternates: { canonical: "/contact/book" },
 };
 
@@ -25,7 +25,7 @@ export default function BookBriefingPage() {
             Contact
           </Link>
           <div className="text-[10px] sm:text-xs tracking-[3px] text-emerald-400 mb-3">
-            BOOK A BRIEFING · APPLE CALENDAR
+            BOOK A BRIEFING · CALDAV
           </div>
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-tighter text-balance mb-3">
             Choose a time
@@ -46,8 +46,8 @@ export default function BookBriefingPage() {
             <p className="text-sm text-[#525252] leading-relaxed mb-4">
               Set <code className="text-xs bg-black/5 px-1 rounded">NEXT_PUBLIC_BOOKING_URL</code>{" "}
               or <code className="text-xs bg-black/5 px-1 rounded">NEXT_PUBLIC_CAL_LINK</code> in
-              Vercel after connecting Apple Calendar in Cal.com. Until then, use the contact form
-              or WhatsApp.
+              Vercel after connecting your CalDAV calendar in Cal.com. Until then, use the contact
+              form or WhatsApp.
             </p>
             <Link
               href="/contact"

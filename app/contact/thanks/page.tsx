@@ -28,7 +28,7 @@ export default function ContactThanksPage() {
         <p className="text-base sm:text-lg text-[#525252] leading-relaxed mb-8">
           If you used the form, your note is already with the team at{" "}
           <strong className="text-black">{CONTACT_EMAIL}</strong>. We&apos;ll reply soon. To lock
-          a time yourself, use the calendar (Apple Calendar / iCloud).
+          a time yourself, use the calendar (synced via CalDAV).
         </p>
 
         <div className="flex flex-col gap-3 max-w-sm mx-auto mb-10">

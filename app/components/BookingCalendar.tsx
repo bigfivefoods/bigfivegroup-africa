@@ -5,7 +5,7 @@ import { Calendar, ExternalLink, Loader2 } from "lucide-react";
 import type { BookingConfig } from "../lib/contact";
 
 /**
- * Cal.com booking embed (syncs busy times from Apple Calendar / iCloud).
+ * Cal.com booking embed (syncs busy times via CalDAV — Mac / iOS calendar).
  * Falls back to an external link for non-Cal providers.
  */
 export default function BookingCalendar({
@@ -39,8 +39,8 @@ export default function BookingCalendar({
               Book a briefing
             </h3>
             <p className="text-sm text-[#525252] leading-relaxed mt-0.5">
-              Pick a free slot — booked times sync to Apple Calendar (iCloud). You&apos;ll get a
-              confirmation email with the meeting details.
+              Pick a free slot — free/busy syncs over CalDAV to the team calendar (Mac &amp; iOS).
+              You&apos;ll get a confirmation email with the meeting details.
             </p>
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function BookingCalendar({
           <ExternalLink className="w-3 h-3" />
         </a>
         <span className="text-[10px] text-[#a3a3a3] tracking-wide uppercase">
-          Apple Calendar · iCloud
+          CalDAV · Mac &amp; iOS
         </span>
       </div>
     </div>

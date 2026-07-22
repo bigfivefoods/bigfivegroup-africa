@@ -6,7 +6,7 @@ export const CONTACT_WHATSAPP = "https://wa.me/27825814215";
 export const CONTACT_LOCATION = "KwaZulu-Natal · South Africa · Continent-wide";
 
 /**
- * Public booking link (Cal.com recommended — syncs with Apple Calendar).
+ * Public booking link (Cal.com recommended — connects to your CalDAV calendar).
  * Set NEXT_PUBLIC_BOOKING_URL=https://cal.com/your-username/briefing
  * or NEXT_PUBLIC_CAL_LINK=your-username/briefing
  */
