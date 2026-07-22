@@ -16,6 +16,7 @@ playwright-report/
 
 # Local newsletter subscriber store
 data/newsletter-subscribers.json
+data/newsletter-campaigns.json
 data/*.tmp
 
 # Env secrets
@@ -25,3 +26,4 @@ data/*.tmp
 
 # Local Vercel env paste helper (secrets)
 VERCEL-NEWSLETTER-ENV.txt
+COPY-TO-VERCEL-ENV.txt

@@ -12,6 +12,7 @@
  * - Rate limiting, honeypot, disposable-domain block
  * - Webhook fan-out for CRM / ESP
  * - Admin export (NEWSLETTER_ADMIN_SECRET)
+ * - On-site composer + Grok drafts + Resend broadcast
  */
 
 import "server-only";
@@ -48,5 +49,15 @@ export {
 export { getSubscriberByEmail, listSubscribers, storeBackendLabel } from "./store";
 export { resendConfigured } from "./email";
 export { hashToken, newToken, tokensMatch } from "./crypto";
+export {
+  listCampaigns,
+  getCampaign,
+  createCampaign,
+  updateCampaign,
+  type NewsletterCampaign,
+  type CampaignStatus,
+} from "./campaigns";
+export { sendCampaign, previewCampaignHtml } from "./send-campaign";
+export { draftNewsletterWithGrok, xaiConfigured } from "./xai";
 
 /** Prefer `newsletter/client` in Client Components to avoid pulling Node-only store. */

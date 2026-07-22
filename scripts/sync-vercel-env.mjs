@@ -89,6 +89,8 @@ const KEYS = [
   "NEWSLETTER_WEBHOOK_SECRET",
   "NEWSLETTER_ADMIN_SECRET",
   "NEXT_PUBLIC_SITE_URL",
+  "XAI_API_KEY",
+  "XAI_MODEL",
 ];
 
 const defaults = {};
