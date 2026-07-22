@@ -18,6 +18,7 @@ import { CompanyIcon } from "./lib/icons";
 import IntelligenceNarrative from "./components/IntelligenceNarrative";
 import CaseStudyNsnp from "./components/CaseStudyNsnp";
 import CaseStudySupplierAdvisor from "./components/CaseStudySupplierAdvisor";
+import PartnerLogoMarquee from "./components/PartnerLogoMarquee";
 
 const statsData = [
   {
@@ -486,6 +487,9 @@ export default function Home() {
           request a briefing.
         </p>
       </section>
+
+      {/* PARTNER LOGO BANNER */}
+      <PartnerLogoMarquee />
 
       {/* LEADERSHIP + FOUNDATION STRIP */}
       <section className="bg-[#0a0a0a] text-white py-16 sm:py-20 md:py-24">

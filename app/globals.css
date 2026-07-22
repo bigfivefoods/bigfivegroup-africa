@@ -462,3 +462,67 @@ b {
 .story-body h2 {
   scroll-margin-top: 5rem;
 }
+
+/* Home partner logo marquee — continuous left-to-right scroll */
+.partner-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.partner-marquee__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 0.5rem;
+  animation: partner-marquee-ltr 55s linear infinite;
+}
+
+.partner-marquee:hover .partner-marquee__track {
+  animation-play-state: paused;
+}
+
+.partner-marquee__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-inline: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fafafa;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.partner-marquee__item:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes partner-marquee-ltr {
+  /* Track is tripled: shift by one-third so the loop is seamless L→R */
+  from {
+    transform: translateX(-33.333%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    gap: 0.75rem;
+  }
+
+  .partner-marquee__item {
+    margin-inline: 0;
+  }
+}
