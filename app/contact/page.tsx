@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Mail, Phone, MessageCircle, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import ContactForm from "../components/ContactForm";
 import {
   CONTACT_EMAIL,
@@ -8,29 +7,6 @@ import {
   CONTACT_WHATSAPP,
   CONTACT_LOCATION,
 } from "../lib/contact";
-
-const pathways = [
-  {
-    t: "Foods · nutrition",
-    d: "Institutional feeding, school programmes, retail and fortified staples.",
-    href: "/foods",
-  },
-  {
-    t: "Leadership · Super-Cube®",
-    d: "Cohorts and organisational development for public and private leaders.",
-    href: "/leadership",
-  },
-  {
-    t: "Foundation & Impact",
-    d: "Verified philanthropy and programme delivery across the group.",
-    href: "/foundation",
-  },
-  {
-    t: "Connect · SupplierAdvisor®",
-    d: "Ethical commerce, SAM, and live network infrastructure.",
-    href: "/connect",
-  },
-];
 
 export default function ContactPage() {
   return (
@@ -145,30 +121,6 @@ export default function ContactPage() {
                     {CONTACT_LOCATION}
                   </span>
                 </li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-[#fafafa] p-5 sm:p-7">
-              <h3 className="text-lg font-semibold tracking-tight text-black mb-3">
-                Popular pathways
-              </h3>
-              <ul className="space-y-3">
-                {pathways.map((p) => (
-                  <li key={p.href}>
-                    <Link
-                      href={p.href}
-                      className="group flex items-start justify-between gap-3 rounded-xl border border-black/5 bg-white px-4 py-3 hover:border-black/15 transition-colors"
-                    >
-                      <span>
-                        <span className="block text-sm font-semibold text-black group-hover:underline">
-                          {p.t}
-                        </span>
-                        <span className="text-xs text-[#525252] leading-snug">{p.d}</span>
-                      </span>
-                      <ArrowRight className="w-4 h-4 shrink-0 text-[#a3a3a3] group-hover:text-black mt-0.5" />
-                    </Link>
-                  </li>
-                ))}
               </ul>
             </div>
           </aside>
