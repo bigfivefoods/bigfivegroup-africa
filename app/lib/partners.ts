@@ -65,6 +65,57 @@ export const PARTNERS: PartnerProfile[] = [
     contactNote: "Internal — coordinate partner onboarding via Group leadership.",
   },
   {
+    slug: "department-of-basic-education",
+    name: "Department of Basic Education",
+    organisation: "Department of Basic Education · Republic of South Africa",
+    emails: [],
+    role: "National education department · NSNP pathway",
+    headline: "DBE × Big Five Foods",
+    summary:
+      "Partnership workspace aligned with South Africa’s Department of Basic Education (education.gov.za) — institutional nutrition pathways under the National School Nutrition Programme (NSNP), with Big Five Foods as a programme supply partner for fortified institutional formats.",
+    focus: ["Foods", "NSNP", "Direct", "Impact", "Access"],
+    programmes: ["nsnp", "impact", "connect"],
+    brandColor: "#003366",
+    website: "https://www.education.gov.za/",
+    websiteLabel: "education.gov.za",
+    notes: [
+      "Official Department of Basic Education website: https://www.education.gov.za/",
+      "NSNP programme page (DBE): https://www.education.gov.za/Programmes/NationalSchoolNutritionProgramme.aspx",
+      "Big Five Foods has landed the NSNP pathway for fortified institutional SKUs (5kg packs) — planned programme scale language; not a claim of current daily operational headcount.",
+      "This portal is a briefing workspace for authorised partners — not a government site and not an endorsement mark beyond the public programme relationship described on Group surfaces.",
+      "Add authorised DBE / provincial education emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "https://www.education.gov.za/",
+        label: "Department of Basic Education",
+        desc: "Official DBE website — education.gov.za",
+      },
+      {
+        href: "https://www.education.gov.za/Programmes/NationalSchoolNutritionProgramme.aspx",
+        label: "NSNP programme (DBE)",
+        desc: "National School Nutrition Programme — official DBE programme page.",
+      },
+      {
+        href: "/foods#case-study",
+        label: "Foods · NSNP case study",
+        desc: "Big Five Foods school nutrition pathway and institutional product context.",
+      },
+      {
+        href: "/foods#foods-deck",
+        label: "Foods product deck",
+        desc: "Fortified nutrition, NSNP-approved formats, institutional economics.",
+      },
+      {
+        href: "/methodology",
+        label: "Methodology",
+        desc: "How we label plan scale vs programme-reported delivery.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · DBE / NSNP coordination via Big Five Foods partnership lead",
+  },
+  {
     slug: "sa-harvest",
     name: "SA Harvest",
     organisation: "SA Harvest",
