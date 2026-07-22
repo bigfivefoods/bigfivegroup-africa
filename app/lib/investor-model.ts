@@ -641,7 +641,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
     currentState: {
       markets: "Group programmes; government / CSI multi-pillar briefs; SA DoH pathway building",
       traction: [
-        "Director General of Health within Big Five Impact — helps drive Group products into SA Department of Health and African health pathways",
+        "Working with the Director General of Health — helps drive Group products into SA Department of Health and African health pathways (relationship, not Impact staff)",
         "PMO narrative: gates, KPIs, field assurance",
         "Strategic overview deck for partner briefing",
         "Connective tissue across all operating pillars (incl. Foods institutional supply)",
@@ -920,7 +920,7 @@ export const TEAM_GOVERNANCE = {
     },
     {
       role: "Impact · Health channel",
-      who: "Director General of Health within Big Five Impact",
+      who: "Director General of Health (working relationship; not Impact staff)",
       focus: "PMO delivery discipline; pathways into SA DoH and African health systems for Group products.",
     },
     {
@@ -1063,12 +1063,12 @@ export const MARKET_TRACTION = {
   credibility: {
     title: "Credibility → multi-department & continental government pathways",
     detail:
-      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact includes the Director General of Health, who will help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (relationship and channel — not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee). Foods unit economics: ~45% GP (management-reported) while remaining ~50% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government programmes and feeding schemes. Direct’s SANTACO partnership places multi-use containers at taxi ranks — high-footfall nodes on SA’s dominant public-transport mode (Stats SA NHTS) — so investors can leverage population mobility for food offtake, surveys, marketing and Super-Cube® education (15,000-container plan scale, phased).",
+      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five works with the Director General of Health — coordinated through Impact’s PMO — to help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (working relationship and channel — not that the DG is part of Big Five Impact, and not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee). Foods unit economics: ~45% GP (management-reported) while remaining ~50% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government programmes and feeding schemes. Direct’s SANTACO partnership places multi-use containers at taxi ranks — high-footfall nodes on SA’s dominant public-transport mode (Stats SA NHTS) — so investors can leverage population mobility for food offtake, surveys, marketing and Super-Cube® education (15,000-container plan scale, phased).",
   },
   healthChannel: {
-    title: "Director General of Health · Big Five Impact",
+    title: "Working with the Director General of Health",
     detail:
-      "The Director General of Health is within Big Five Impact and will help drive Group products into South Africa’s Department of Health and counterpart health departments across Africa as programmes mature.",
+      "Big Five works with the Director General of Health — not as staff of Big Five Impact, but as a strategic institutional relationship — to help drive Group products into South Africa’s Department of Health and counterpart health departments across Africa as programmes mature. Impact coordinates delivery and programme discipline around that channel.",
   },
   asOfNote:
     "Management-reported in ZAR; USD headlines at ~16.5 ZAR/USD (July 2026 approx). Pipeline conversion only under NDA diligence packs.",
@@ -1185,7 +1185,7 @@ export const TRACTION_VS_AMBITION = {
     "Initial-stage turnover ~$45k / R750k (management-reported) as market traction starts",
     "~$3.0m / R50m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
     "NSNP programme landed with DBE — planned to feed 2.5m children/day (programme plan scale)",
-    "Director General of Health within Big Five Impact — channel to help drive Group products into SA DoH and African health pathways",
+    "Working with the Director General of Health — channel to help drive Group products into SA DoH and African health pathways",
     "Foods is a repeat / recurring purchase category — as traction lands, offtake should sustain and grow with penetration (model thesis, not a guarantee)",
     "Foods ~45% GP (management-reported) with ~50% cheaper vs wholesale/retail (internal) — competitive for government & feeding schemes",
     "Foods fortified product story + programme-reported meals / children where stated",
