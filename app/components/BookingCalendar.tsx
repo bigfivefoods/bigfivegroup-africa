@@ -17,9 +17,10 @@ export default function BookingCalendar({
 }) {
   const [loaded, setLoaded] = useState(false);
   const isCal = booking.provider === "cal.com" && Boolean(booking.calLink);
+  const origin = booking.origin || "https://cal.eu";
 
   const embedSrc = isCal
-    ? `https://cal.com/${booking.calLink}?embed=true&theme=light&layout=month_view`
+    ? `${origin}/${booking.calLink}?embed=true&theme=light&layout=month_view`
     : null;
 
   const shell =

@@ -6,49 +6,142 @@ export const CONTACT_WHATSAPP = "https://wa.me/27825814215";
 export const CONTACT_LOCATION = "KwaZulu-Natal · South Africa · Continent-wide";
 
 /**
- * Public booking link (Cal.com recommended — connects to your CalDAV calendar).
- * Set NEXT_PUBLIC_BOOKING_URL=https://cal.com/your-username/briefing
- * or NEXT_PUBLIC_CAL_LINK=your-username/briefing
+ * Public booking (Cal.com EU: cal.eu — connects to cPanel CalDAV).
+ *
+ * Env (either):
+ *   NEXT_PUBLIC_BOOKING_URL=https://cal.eu/bigfivegroup/strategic-briefing
+ *   NEXT_PUBLIC_CAL_LINK=bigfivegroup/strategic-briefing
+ *   NEXT_PUBLIC_CAL_ORIGIN=https://cal.eu   (optional; default cal.eu)
+ *
+ * If unset, falls back to the Group Cal.eu profile so the page is never empty.
  */
+const DEFAULT_CAL_ORIGIN = "https://cal.eu";
+const DEFAULT_CAL_LINK = "bigfivegroup";
+
 export type BookingConfig =
-  | { enabled: true; url: string; calLink?: string; provider: "cal.com" | "other" }
+  | {
+      enabled: true;
+      url: string;
+      calLink: string;
+      origin: string;
+      provider: "cal.com" | "other";
+    }
   | { enabled: false };
+
+function normalizeOrigin(hostOrUrl: string): string {
+  const raw = hostOrUrl.trim().replace(/\/$/, "");
+  if (raw.startsWith("http://") || raw.startsWith("https://")) {
+    try {
+      const u = new URL(raw);
+      return `${u.protocol}//${u.hostname}`;
+    } catch {
+      return DEFAULT_CAL_ORIGIN;
+    }
+  }
+  return `https://${raw.replace(/^www\./, "")}`;
+}
+
+function isCalHost(host: string): boolean {
+  const h = host.replace(/^www\./, "").toLowerCase();
+  return (
+    h === "cal.com" ||
+    h === "app.cal.com" ||
+    h === "cal.eu" ||
+    h === "app.cal.eu"
+  );
+}
+
+function publicOriginFromHost(host: string): string {
+  const h = host.replace(/^www\./, "").toLowerCase();
+  if (h === "cal.eu" || h === "app.cal.eu") return "https://cal.eu";
+  return "https://cal.com";
+}
+
+function stripCalPath(pathOrUrl: string, originHint?: string): { calLink: string; origin: string } {
+  let origin = originHint || process.env.NEXT_PUBLIC_CAL_ORIGIN?.trim() || DEFAULT_CAL_ORIGIN;
+  origin = normalizeOrigin(origin);
+
+  let s = pathOrUrl.trim().replace(/^\/+/, "");
+  // Full URL pasted into CAL_LINK
+  if (/^https?:\/\//i.test(s)) {
+    try {
+      const u = new URL(s);
+      if (isCalHost(u.hostname)) {
+        origin = publicOriginFromHost(u.hostname);
+        s = u.pathname.replace(/^\/+/, "").replace(/\/$/, "");
+      }
+    } catch {
+      /* keep as path */
+    }
+  }
+  s = s
+    .replace(/^(?:https?:\/\/)?(?:www\.)?(?:app\.)?cal\.(?:com|eu)\//i, "")
+    .replace(/^\/+/, "")
+    .replace(/\/$/, "");
+  return { calLink: s, origin: normalizeOrigin(origin) };
+}
 
 export function getBookingConfig(): BookingConfig {
   const rawUrl = process.env.NEXT_PUBLIC_BOOKING_URL?.trim() || "";
-  const rawCal = process.env.NEXT_PUBLIC_CAL_LINK?.trim().replace(/^\/+/, "") || "";
+  const rawCal = process.env.NEXT_PUBLIC_CAL_LINK?.trim() || "";
+  const envOrigin = process.env.NEXT_PUBLIC_CAL_ORIGIN?.trim();
 
   if (rawCal) {
-    const calLink = rawCal.replace(/^https?:\/\/(www\.)?cal\.com\//i, "");
+    const { calLink, origin } = stripCalPath(rawCal, envOrigin);
+    if (!calLink) return { enabled: false };
     return {
       enabled: true,
-      url: `https://cal.com/${calLink}`,
+      url: `${origin}/${calLink}`,
       calLink,
+      origin,
       provider: "cal.com",
     };
   }
 
-  if (!rawUrl) return { enabled: false };
-
-  try {
-    const u = new URL(rawUrl);
-    const host = u.hostname.replace(/^www\./, "");
-    if (host === "cal.com" || host === "app.cal.com") {
-      const calLink = u.pathname.replace(/^\/+/, "").replace(/\/$/, "");
-      if (calLink) {
-        return {
-          enabled: true,
-          url: `https://cal.com/${calLink}`,
-          calLink,
-          provider: "cal.com",
-        };
+  if (rawUrl) {
+    try {
+      const u = new URL(rawUrl);
+      if (isCalHost(u.hostname)) {
+        const origin = publicOriginFromHost(u.hostname);
+        const calLink = u.pathname.replace(/^\/+/, "").replace(/\/$/, "");
+        if (calLink) {
+          return {
+            enabled: true,
+            url: `${origin}/${calLink}`,
+            calLink,
+            origin,
+            provider: "cal.com",
+          };
+        }
       }
+      // Non-Cal booking page
+      return {
+        enabled: true,
+        url: rawUrl,
+        calLink: "",
+        origin: "",
+        provider: "other",
+      };
+    } catch {
+      return {
+        enabled: true,
+        url: rawUrl,
+        calLink: "",
+        origin: "",
+        provider: "other",
+      };
     }
-  } catch {
-    /* treat as opaque URL */
   }
 
-  return { enabled: true, url: rawUrl, provider: "other" };
+  // Default: Group profile on Cal.com EU
+  const origin = envOrigin ? normalizeOrigin(envOrigin) : DEFAULT_CAL_ORIGIN;
+  return {
+    enabled: true,
+    url: `${origin}/${DEFAULT_CAL_LINK}`,
+    calLink: DEFAULT_CAL_LINK,
+    origin,
+    provider: "cal.com",
+  };
 }
 
 export function bookingEnabled(): boolean {
