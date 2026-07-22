@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { Mail, Phone, MessageCircle, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, ArrowRight, Calendar } from "lucide-react";
 import ContactForm from "../components/ContactForm";
+import BookingCalendar from "../components/BookingCalendar";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
   CONTACT_PHONE_E164,
   CONTACT_WHATSAPP,
   CONTACT_LOCATION,
+  getBookingConfig,
 } from "../lib/contact";
 
 const pathways = [
@@ -33,6 +35,8 @@ const pathways = [
 ];
 
 export default function ContactPage() {
+  const booking = getBookingConfig();
+
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
       <section className="relative bg-[#0a0a0a] text-white overflow-hidden">
@@ -46,58 +50,108 @@ export default function ContactPage() {
             <br />
             <span className="text-white/70">We&apos;ll map the pillars.</span>
           </h1>
-          <p className="text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed mb-6">
             Governments, enterprises, DFIs, retailers, schools and partners — one enquiry for Foods,
             Leadership, Foundation, Connect, or a full-group strategic conversation.
           </p>
+          {booking.enabled && (
+            <a
+              href="#book"
+              className="premium-button inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold"
+            >
+              <Calendar className="w-4 h-4" />
+              Book a time on the calendar
+            </a>
+          )}
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-7 min-w-0">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2">
-              Send an enquiry
-            </h2>
-            <p className="text-sm sm:text-base text-[#525252] mb-6 sm:mb-8 leading-relaxed">
-              Share a little context so we can prepare the right briefing — product, programme, or
-              partnership.
-            </p>
-            <div className="relative rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-8 shadow-sm">
-              <ContactForm />
+          <div className="lg:col-span-7 min-w-0 space-y-10">
+            {booking.enabled && (
+              <div id="book" className="scroll-mt-24">
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2">
+                  Schedule a meeting
+                </h2>
+                <p className="text-sm sm:text-base text-[#525252] mb-6 sm:mb-8 leading-relaxed">
+                  Choose a free slot — it syncs to Apple Calendar so the team stays available and
+                  double-bookings stay off the table.
+                </p>
+                <BookingCalendar booking={booking} />
+              </div>
+            )}
+
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2">
+                {booking.enabled ? "Or send an enquiry" : "Send an enquiry"}
+              </h2>
+              <p className="text-sm sm:text-base text-[#525252] mb-6 sm:mb-8 leading-relaxed">
+                {booking.enabled
+                  ? "Prefer to write first, or need something that isn’t a standard slot? Share context and we’ll reply."
+                  : "Share a little context so we can prepare the right briefing — product, programme, or partnership."}
+              </p>
+              <div className="relative rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-8 shadow-sm">
+                <ContactForm />
+              </div>
             </div>
           </div>
 
-          <aside className="lg:col-span-5 space-y-6 sm:space-y-8 min-w-0">
+          <aside className="lg:col-span-5 space-y-6 sm:space-y-8 min-w-0 lg:sticky lg:top-24">
             <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">
               <h3 className="text-lg font-semibold tracking-tight text-black mb-2">
-                How we confirm a briefing
+                How briefings work
               </h3>
-              <p className="text-sm text-[#525252] leading-relaxed mb-4">
-                We don&apos;t use self-serve calendar links. Briefings are high-touch — you tell us
-                the outcome and a few times that suit you; we reply and lock a slot, typically within
-                1–2 business days.
-              </p>
-              <ul className="text-sm text-[#404040] space-y-2.5 mb-1">
-                <li className="flex gap-2">
-                  <span className="text-emerald-700 font-semibold shrink-0">1.</span>
-                  <span>
-                    Use the form — it sends straight to the Group inbox (same address as the footer).
-                  </span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-emerald-700 font-semibold shrink-0">2.</span>
-                  <span>
-                    Mention preferred days or times in your message (timezone helps).
-                  </span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-emerald-700 font-semibold shrink-0">3.</span>
-                  <span>
-                    Prefer a faster loop? WhatsApp or phone from the channels below.
-                  </span>
-                </li>
-              </ul>
+              {booking.enabled ? (
+                <>
+                  <p className="text-sm text-[#525252] leading-relaxed mb-4">
+                    Self-serve times sync to Apple Calendar. Use the form only when you need a
+                    custom conversation or can&apos;t find a free slot.
+                  </p>
+                  <ul className="text-sm text-[#404040] space-y-2.5 mb-4">
+                    <li className="flex gap-2">
+                      <span className="text-emerald-700 font-semibold shrink-0">1.</span>
+                      <span>Pick a free time on the calendar (blocks the diary automatically).</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-emerald-700 font-semibold shrink-0">2.</span>
+                      <span>You get a confirmation email with meeting details.</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-emerald-700 font-semibold shrink-0">3.</span>
+                      <span>Or WhatsApp / phone for a quicker back-and-forth.</span>
+                    </li>
+                  </ul>
+                  <Link
+                    href="/contact/book"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-800 hover:underline"
+                  >
+                    Full-page calendar
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm text-[#525252] leading-relaxed mb-4">
+                    Use the form or a direct channel. Once the Apple Calendar booking link is live,
+                    you&apos;ll also be able to pick a free slot on this page.
+                  </p>
+                  <ul className="text-sm text-[#404040] space-y-2.5">
+                    <li className="flex gap-2">
+                      <span className="text-emerald-700 font-semibold shrink-0">1.</span>
+                      <span>Form sends to the Group inbox (same address as the footer).</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-emerald-700 font-semibold shrink-0">2.</span>
+                      <span>Include preferred times if you have them (with timezone).</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-emerald-700 font-semibold shrink-0">3.</span>
+                      <span>WhatsApp or phone for a faster loop.</span>
+                    </li>
+                  </ul>
+                </>
+              )}
             </div>
 
             <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-5 sm:p-7">

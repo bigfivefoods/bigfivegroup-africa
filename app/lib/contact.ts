@@ -5,6 +5,56 @@ export const CONTACT_PHONE_E164 = "+27825814215";
 export const CONTACT_WHATSAPP = "https://wa.me/27825814215";
 export const CONTACT_LOCATION = "KwaZulu-Natal · South Africa · Continent-wide";
 
+/**
+ * Public booking link (Cal.com recommended — syncs with Apple Calendar).
+ * Set NEXT_PUBLIC_BOOKING_URL=https://cal.com/your-username/briefing
+ * or NEXT_PUBLIC_CAL_LINK=your-username/briefing
+ */
+export type BookingConfig =
+  | { enabled: true; url: string; calLink?: string; provider: "cal.com" | "other" }
+  | { enabled: false };
+
+export function getBookingConfig(): BookingConfig {
+  const rawUrl = process.env.NEXT_PUBLIC_BOOKING_URL?.trim() || "";
+  const rawCal = process.env.NEXT_PUBLIC_CAL_LINK?.trim().replace(/^\/+/, "") || "";
+
+  if (rawCal) {
+    const calLink = rawCal.replace(/^https?:\/\/(www\.)?cal\.com\//i, "");
+    return {
+      enabled: true,
+      url: `https://cal.com/${calLink}`,
+      calLink,
+      provider: "cal.com",
+    };
+  }
+
+  if (!rawUrl) return { enabled: false };
+
+  try {
+    const u = new URL(rawUrl);
+    const host = u.hostname.replace(/^www\./, "");
+    if (host === "cal.com" || host === "app.cal.com") {
+      const calLink = u.pathname.replace(/^\/+/, "").replace(/\/$/, "");
+      if (calLink) {
+        return {
+          enabled: true,
+          url: `https://cal.com/${calLink}`,
+          calLink,
+          provider: "cal.com",
+        };
+      }
+    }
+  } catch {
+    /* treat as opaque URL */
+  }
+
+  return { enabled: true, url: rawUrl, provider: "other" };
+}
+
+export function bookingEnabled(): boolean {
+  return getBookingConfig().enabled;
+}
+
 export const ENQUIRY_INTERESTS = [
   { value: "partnership", label: "Strategic partnership" },
   { value: "foods", label: "Big Five Foods · nutrition programmes" },

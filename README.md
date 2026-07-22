@@ -42,9 +42,9 @@ npm run dev
 
 `.env.local` is gitignored.
 
-**Contact:** the site form delivers enquiries via Resend to
-`craig@bigfivegroup.africa` (Reply-To = visitor). WhatsApp / phone for a faster
-loop. No Calendly — briefings are confirmed manually.
+**Contact:** form delivers via Resend to `craig@bigfivegroup.africa`. Booking
+uses **Cal.com + Apple Calendar** (`NEXT_PUBLIC_BOOKING_URL` or
+`NEXT_PUBLIC_CAL_LINK`). See `.env.example` for Apple Calendar setup.
 
 ### Vercel (production / preview)
 
