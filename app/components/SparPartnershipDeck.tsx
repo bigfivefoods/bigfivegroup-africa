@@ -410,9 +410,31 @@ function Slide({ index }: { index: number }) {
           <div
             className={`rounded-xl border border-emerald-100 bg-emerald-50/60 ${
               forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
-            } text-[#404040] leading-relaxed`}
+            } text-[#404040] leading-relaxed mb-2.5`}
           >
             <strong className="text-black">For SPAR retailers:</strong> {M.detail}
+          </div>
+          <div
+            className={`rounded-xl border-2 bg-white ${
+              forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
+            } text-[#404040] leading-relaxed`}
+            style={{ borderColor: theme.accent }}
+          >
+            <div
+              className={`font-semibold tracking-wide uppercase mb-1 ${
+                forPrint ? "text-[9px]" : "text-[10px]"
+              }`}
+              style={{ color: theme.accentDark }}
+            >
+              One-pot yield · shelf talk
+            </div>
+            <p className="text-black font-semibold leading-snug mb-1">
+              {P.product.onePotYield.headline}
+            </p>
+            <p className="leading-snug">
+              {P.product.onePotYield.detail}{" "}
+              <strong className="text-black">{P.product.onePotYield.costLine}</strong>
+            </p>
           </div>
         </DeckSlideShell>
       );
@@ -462,10 +484,16 @@ function Slide({ index }: { index: number }) {
               })}
             </div>
 
-            <p className="text-[9px] sm:text-[10px] text-[#737373] leading-snug mt-2 shrink-0">
-              One pack per category (16 flavours across the range) · SKUs & Mandela wraps on term
-              sheet · bigfivegroup.africa/foods
-            </p>
+            <div
+              className={`mt-2 shrink-0 rounded-xl border border-emerald-200 bg-emerald-50/70 ${
+                forPrint ? "p-2 text-[8px]" : "p-2.5 sm:p-3 text-[10px] sm:text-xs"
+              } text-[#404040] leading-snug`}
+            >
+              <strong className="text-black">One-pot (1kg Mandela pack):</strong>{" "}
+              {P.product.onePotYield.headline}.{" "}
+              <strong className="text-black">{P.product.onePotYield.costLine}</strong> — a complete
+              fortified plate story for SPAR shoppers and donation hampers.
+            </div>
           </div>
         </DeckSlideShell>
       );

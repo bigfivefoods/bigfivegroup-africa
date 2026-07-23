@@ -16,6 +16,16 @@ const SPAR_MARGIN_RAND = RRP_INCL_VAT - TRADE_INCL_VAT;
 /** Indicative front margin % of RRP (incl. VAT) */
 const SPAR_MARGIN_PCT = (SPAR_MARGIN_RAND / RRP_INCL_VAT) * 100;
 
+/**
+ * Flagship 1kg one-pot prepared yield (Mandela pack economics for shoppers).
+ * 1kg dry → 4kg prepared food → 20 × 200g servings · R67 RRP ÷ 20 = R3.35 / meal.
+ */
+const ONE_POT_DRY_KG = 1;
+const ONE_POT_PREPARED_KG = 4;
+const ONE_POT_SERVING_G = 200;
+const ONE_POT_SERVINGS = (ONE_POT_PREPARED_KG * 1000) / ONE_POT_SERVING_G; // 20
+const ONE_POT_COST_PER_SERVING = RRP_INCL_VAT / ONE_POT_SERVINGS; // 3.35
+
 export const SPAR_PARTNERSHIP = {
   title: "SPAR × Big Five Foods",
   subtitle: "SPAR leads. Communities eat better. Foundations go further.",
@@ -40,6 +50,24 @@ export const SPAR_PARTNERSHIP = {
       "Trade is quoted ex. VAT (R45). RRP R67 is inclusive of VAT for the Nelson Mandela campaign pack. SPAR margin below aligns cost to an incl.-VAT basis at 15% VAT for a fair shelf comparison.",
     campaignLine:
       "Nelson Mandela pack — purpose-led shelf range: four fortified African categories, one clear RRP, SPAR margin, and 10% ring-fenced for foundations.",
+    /**
+     * 1kg one-pot yield — specific claim for SPAR shelf talk and impact maths.
+     * Dry pack prepares to 4× weight; 200g plate servings → 20 meals at RRP R67.
+     */
+    onePotYield: {
+      dryPackKg: ONE_POT_DRY_KG,
+      preparedKg: ONE_POT_PREPARED_KG,
+      servingGrams: ONE_POT_SERVING_G,
+      servingsPerPack: ONE_POT_SERVINGS,
+      rrpInclVat: RRP_INCL_VAT,
+      rrpInclVatLabel: "R67",
+      costPerServingInclVat: ONE_POT_COST_PER_SERVING,
+      costPerServingLabel: `R${ONE_POT_COST_PER_SERVING.toFixed(2)}`,
+      headline: "1kg one-pot → 4kg prepared food = 20 × 200g servings",
+      costLine: `R67 ÷ 20 meals = R${ONE_POT_COST_PER_SERVING.toFixed(2)} per 200g serving`,
+      detail:
+        "The flagship 1kg Big Five Foods one-pot pack makes 4kg of food when prepared — that is 20 × 200g servings. At the Mandela pack RRP of R67 incl. VAT, each 200g meal costs R3.35 (R67 ÷ 20). Clear shelf talk for SPAR: complete fortified plate, not just dry weight.",
+    },
   },
 
   /**
@@ -98,14 +126,14 @@ export const SPAR_PARTNERSHIP = {
         { name: "Chicken", image: "/foods/onepot-chicken.jpg" },
         { name: "Chilli Beef", image: "/foods/onepot-chilli-beef.jpg" },
       ],
-      stats: "From ±R2.50 / meal · ~20 min cook · ~24-month shelf life",
+      stats: "1kg → 4kg prepared · 20 × 200g servings · R3.35 / meal at RRP R67",
       blurb:
-        "Ready-to-cook complete meals with balanced fortification and authentic African flavours. One SKU becomes a plate — less dependency on multi-ingredient shopping when prices rise or cupboards are thin.",
+        "Ready-to-cook complete meals with balanced fortification and authentic African flavours. A 1kg dry one-pot pack makes 4kg of food when prepared — 20 × 200g servings. At Mandela pack RRP R67 that is R3.35 per meal (R67 ÷ 20).",
       nutrition:
         "Protein plus vitamins A & D, iron and calcium in a whole-meal format — fights calorie gaps and micronutrient deficiency together.",
       sparAngle:
-        "Premium-feel convenience with purpose: busy families, students, workers. Hero pack for Mandela Day endcaps and donation hampers that feel dignified, not bare.",
-      serve: "Weeknight dinners · workplaces · CSI hampers · institutional menus",
+        "Premium-feel convenience with purpose: busy families, students, workers. Hero pack for Mandela Day endcaps and donation hampers — 20 meals from one pack at R3.35 each on RRP. Feels dignified, not bare.",
+      serve: "Weeknight dinners · workplaces · CSI hampers · institutional menus · 20 plates per 1kg pack",
     },
     {
       id: "soup",
@@ -358,6 +386,7 @@ export const SPAR_PARTNERSHIP = {
     "SPAR margin figures are illustrative front margin (RRP less cost aligned at 15% VAT). They are not net store profit and exclude overheads, promotions, shrink and the 5% SPAR contribution.",
     "5% + 5% giving bases (SPAR retail sell-through vs Foods trade turnover) are the recommended model; legal wording sits in the commercial agreement.",
     "NPO allocations between Restore Africa Foundation and A Heart To Help can be fixed (e.g. 50/50) or programme-driven each period.",
+    "One-pot yield for shelf talk: 1kg dry pack prepares to 4kg food = 20 × 200g servings; at RRP R67 that is R3.35 per meal (R67 ÷ 20). Other categories use different yields — national impact modelling may use a conservative blended servings-per-pack until SKU mix is locked.",
     "Impact meal counts and programme stories are illustrative until pack yields and menus are locked with each foundation.",
     "National store total is anchored to SPAR South Africa’s public claim of more than 850 stores nationwide (spar.co.za); format split is a planning allocation of that estate, not a SPAR-published breakdown. Packs/store/month and people-fed estimates remain modelling assumptions — not forecasts.",
   ],
@@ -390,7 +419,7 @@ export const SPAR_PARTNERSHIP = {
       sparFrontMarginPerPack: SPAR_MARGIN_RAND,
       servingsPerPack: 5,
       servingsNote:
-        "Conservative blended average across porridge, soya, one-pot and soup SKUs (~4–8 servings depending on format).",
+        "Conservative blended average across categories for national modelling. Flagship 1kg one-pot is higher: 4kg prepared food = 20 × 200g servings (R67 ÷ 20 = R3.35 / meal at Mandela RRP).",
       peopleFedMethod:
         "Meal equivalents ÷ 365 ≈ people fed one meal a day for a year (illustrative, not unique individuals).",
       donationShareOfSales: 0.02,
