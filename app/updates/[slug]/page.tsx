@@ -46,11 +46,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!story || story.status !== "published") {
     return { title: "Update not found" };
   }
-  const theme = resolveStoryTheme(story.tag, `${story.title} ${story.slug}`);
-  const cover = storyCoverImage(story.coverImage, theme);
-  const ogImage = cover.startsWith("http")
-    ? { url: cover }
-    : { url: cover.startsWith("/") ? cover : `/${cover}` };
   return {
     title: story.title,
     description: story.excerpt || story.title,
@@ -58,9 +53,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${story.title} | Big Five Group Africa`,
       description: story.excerpt || story.title,
       url: `/updates/${story.slug}`,
-      images: [ogImage.url ? ogImage : SITE_OG_IMAGE],
+      // Always Group logo share card — not story/pillar covers
+      images: [SITE_OG_IMAGE],
       type: "article",
       publishedTime: story.publishedAt,
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [SITE_OG_IMAGE.url],
     },
     alternates: { canonical: `/updates/${story.slug}` },
   };

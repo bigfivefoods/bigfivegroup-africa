@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_OG_IMAGE } from "../../lib/site";
 
 export const metadata: Metadata = {
   title: "SAM · SupplierAdvisor Messenger",
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     title: "SAM | SupplierAdvisor Messenger · Big Five Connect",
     description:
       "Always-on ops co-pilot for verified trade. Open SupplierAdvisor® to meet SAM.",
+    images: [SITE_OG_IMAGE],
   },
 };
 

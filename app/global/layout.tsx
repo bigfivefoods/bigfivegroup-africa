@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_OG_IMAGE } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Global Footprint",
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     title: "Global | Distribution & Route to Market",
     description:
       "Twelve priority nations across Africa and Europe — including Germany, Hungary, and Georgia — where we are building distribution and route-to-market strategy.",
+    images: [SITE_OG_IMAGE],
   },
 };
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_OG_IMAGE } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     title: "About Us | Big Five Group Africa",
     description:
       "We exist so Africa can prosper. Feed. Educate. Empower. Led by Dr. Craig R. Muller.",
+    images: [SITE_OG_IMAGE],
   },
 };
 

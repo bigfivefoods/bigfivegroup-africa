@@ -2,9 +2,9 @@
 export const SITE_URL = "https://bigfivegroup.africa";
 
 /**
- * Default Open Graph / social preview image.
- * Composite of public/home-hero.jpg with public/bigfivegroup-logo.png (1200×630).
- * Absolute URL via metadataBase in root layout.
+ * Default Open Graph / Twitter / social preview image — always the Group mark
+ * over the home hero (public/og-share.jpg, 1200×630).
+ * Use this for every page; never page-specific heroes for link previews.
  */
 export const SITE_OG_IMAGE = {
   url: "/og-share.jpg",
@@ -15,3 +15,17 @@ export const SITE_OG_IMAGE = {
 } as const;
 
 export const SITE_NAME = "Big Five Group Africa";
+
+/** Spread into page metadata so every share uses the Group logo card. */
+export function siteSocialImages(): {
+  openGraph: { images: [typeof SITE_OG_IMAGE] };
+  twitter: { card: "summary_large_image"; images: [string] };
+} {
+  return {
+    openGraph: { images: [SITE_OG_IMAGE] },
+    twitter: {
+      card: "summary_large_image",
+      images: [SITE_OG_IMAGE.url],
+    },
+  };
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_OG_IMAGE } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Agri",
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     title: "Big Five Agri | Regenerative Farming",
     description:
       "Restoring African farmland, empowering farmers, and feeding the continent with verified regenerative produce.",
+    images: [SITE_OG_IMAGE],
   },
 };
 

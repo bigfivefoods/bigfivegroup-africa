@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_OG_IMAGE } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Impact · Proudly African Strategic Overview",
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Proudly African for Africa: cross-pillar PMO working with the Director General of Health to help drive Group products into SA DoH and African health systems. Shareable strategic overview.",
     url: "https://bigfivegroup.africa/impact#strategy-deck",
+    images: [SITE_OG_IMAGE],
   },
 };
 

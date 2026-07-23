@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages();
 
 export const metadata: Metadata = {
   title: "Foods · Fortified nutrition & NSNP programme",
@@ -9,18 +12,11 @@ export const metadata: Metadata = {
     description:
       "High-nutrition African staples for schools and institutions. NSNP programme landed with DBE — 2.5m children/day plan scale.",
     url: "/foods",
-    images: [
-      {
-        url: "/foods-hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Big Five Foods",
-      },
-    ],
+    images: social.openGraph.images,
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/foods-hero.jpg"],
+    images: social.twitter.images,
   },
   alternates: { canonical: "/foods" },
 };

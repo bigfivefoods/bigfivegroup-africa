@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages();
 
 export const metadata: Metadata = {
   title: "Leadership · Super-Cube® programmes",
@@ -9,18 +12,11 @@ export const metadata: Metadata = {
     description:
       "Whole-person, Africa-centric leadership formation. Super-Cube® six constructs · you at the centre · 70–76% developable.",
     url: "/leadership",
-    images: [
-      {
-        url: "/leadership-hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Big Five Leadership",
-      },
-    ],
+    images: social.openGraph.images,
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/leadership-hero.jpg"],
+    images: social.twitter.images,
   },
   alternates: { canonical: "/leadership" },
 };
