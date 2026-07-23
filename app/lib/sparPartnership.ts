@@ -359,19 +359,31 @@ export const SPAR_PARTNERSHIP = {
     "5% + 5% giving bases (SPAR retail sell-through vs Foods trade turnover) are the recommended model; legal wording sits in the commercial agreement.",
     "NPO allocations between Restore Africa Foundation and A Heart To Help can be fixed (e.g. 50/50) or programme-driven each period.",
     "Impact meal counts and programme stories are illustrative until pack yields and menus are locked with each foundation.",
-    "National SPAR store counts, packs/store/month and people-fed estimates in the impact report are modelling assumptions for discussion — not audited SPAR network data or forecasts.",
+    "National store total is anchored to SPAR South Africa’s public claim of more than 850 stores nationwide (spar.co.za); format split is a planning allocation of that estate, not a SPAR-published breakdown. Packs/store/month and people-fed estimates remain modelling assumptions — not forecasts.",
   ],
 
   /**
    * Illustrative national impact model across SPAR South Africa formats.
-   * Store counts and velocity are assumptions for partnership planning — replace with SPAR
-   * network data on term sheet. Not a sales forecast.
+   * Store total anchored to spar.co.za (“more than 850 stores nationwide”).
+   * Format split and velocity are planning assumptions — confirm on term sheet.
    */
   impactReport: {
     title: "National SPAR impact model (illustrative)",
     period: "Per full year at steady-state listing",
+    /**
+     * Public network claim (SPAR South Africa consumer site).
+     * @see https://www.spar.co.za/About-SPAR
+     * @see https://www.spar.co.za/ (meta: “more than 850 stores nationwide”)
+     */
+    networkSource: {
+      claim: "More than 850 stores nationwide",
+      formatsNamed: "SUPERSPAR · SPAR · KWIKSPAR",
+      url: "https://www.spar.co.za/About-SPAR",
+      /** Working total for models — “850+” estate (not an audited count) */
+      storeCountAnchor: 870,
+    },
     disclaimer:
-      "Assumptions for partnership discussion only. Store counts and sales rates are not official SPAR figures and must be replaced with SPAR network data. Front margin is not net store profit. Meal and people-fed estimates use conservative servings-per-pack assumptions.",
+      "Store total is modelled from SPAR South Africa’s public claim of more than 850 stores nationwide (spar.co.za — SUPERSPAR, SPAR and KWIKSPAR). Format counts are a planning allocation of that estate, not a SPAR-published split. Packs/store/month, sales rates and people-fed metrics are partnership discussion assumptions only — replace with SPAR network and sell-through data on the term sheet. Front margin is not net store profit.",
     unitAssumptions: {
       tradeExVat: TRADE_EX_VAT,
       rrpInclVat: RRP_INCL_VAT,
@@ -384,31 +396,30 @@ export const SPAR_PARTNERSHIP = {
       donationShareOfSales: 0.02,
       donationNote: "2% of sell-through volume assumed as CSI / franchisee donation POs (illustrative).",
     },
-    /** Format tiers — illustrative order-of-magnitude network shape for SA SPAR estate */
+    /**
+     * Format tiers — allocate the 850+ SPAR SA grocery estate (public claim)
+     * across SUPERSPAR · SPAR · KWIKSPAR only. SPAR Tops / Express often sit with
+     * or adjacent to grocery formats — not added as extra national stores.
+     * Split is illustrative for planning (sum = 870).
+     */
     storeTiers: [
       {
-        format: "KWIKSPAR / convenience",
-        stores: 750,
+        format: "KWIKSPAR",
+        stores: 280,
         packsPerStorePerMonth: 35,
-        note: "High footfall, smaller basket — trial multipacks",
+        note: "Convenience format — high footfall, smaller basket · spar.co.za",
       },
       {
         format: "SPAR",
-        stores: 950,
+        stores: 370,
         packsPerStorePerMonth: 70,
-        note: "Core neighbourhood store — main Mandela pack velocity",
+        note: "Core neighbourhood supermarket — main Mandela pack velocity · spar.co.za",
       },
       {
-        format: "SUPERSPAR / large format",
-        stores: 450,
+        format: "SUPERSPAR",
+        stores: 220,
         packsPerStorePerMonth: 140,
-        note: "Destination shops — range depth + promo endcaps",
-      },
-      {
-        format: "SPAR Tops / specialty (modelled share)",
-        stores: 150,
-        packsPerStorePerMonth: 20,
-        note: "Select listings where grocery adjacency allows",
+        note: "Larger destination format — range depth + promo endcaps · spar.co.za",
       },
     ],
   },

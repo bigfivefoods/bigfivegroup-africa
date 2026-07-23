@@ -640,8 +640,30 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>IMPACT REPORT · NATIONAL (ILLUSTRATIVE)</DeckEyebrow>
           <DeckTitle>What scale could mean across SPAR South Africa</DeckTitle>
           <p
-            className={`text-[#525252] max-w-3xl mb-2 leading-relaxed ${
+            className={`text-[#525252] max-w-3xl mb-1.5 leading-relaxed ${
               forPrint ? "text-[9px]" : "text-xs sm:text-sm"
+            }`}
+          >
+            Network anchor:{" "}
+            <strong className="text-black font-semibold">
+              {IMPACT.networkSource.claim}
+            </strong>{" "}
+            ({IMPACT.networkSource.formatsNamed}) —{" "}
+            <a
+              href={IMPACT.networkSource.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline underline-offset-2"
+              style={{ color: theme.accentDark }}
+            >
+              spar.co.za
+            </a>
+            . Model estate: {IMPACT.networkSource.storeCountAnchor.toLocaleString("en-ZA")} stores
+            (850+).
+          </p>
+          <p
+            className={`text-[#525252] max-w-3xl mb-2 leading-relaxed ${
+              forPrint ? "text-[8px]" : "text-[10px] sm:text-xs"
             }`}
           >
             {IMPACT.disclaimer}
@@ -685,7 +707,7 @@ function Slide({ index }: { index: number }) {
                   </tr>
                 ))}
                 <tr className="bg-emerald-50/80 font-semibold text-black">
-                  <td className="py-1.5 pr-2">National total (assumption)</td>
+                  <td className="py-1.5 pr-2">National total (850+ SPAR SA · modelled)</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">
                     {IMPACT.national.stores.toLocaleString("en-ZA")}
                   </td>
