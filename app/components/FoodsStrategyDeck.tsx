@@ -445,7 +445,7 @@ function AgendaSlide() {
     "Group vision, mission and values",
     "Why fortified nutrition is non-negotiable in Africa",
     "Big Five Foods impact — meals, children, cost, nutrition",
-    "Five product ranges — including NSNP institutional 5kg packs",
+    "Five product ranges — porridges, soya, one-pots, soups, then NSNP institutional 5kg packs",
     "Each range: food security, malnutrition, SDGs & WFP",
     "Certifications & order on SupplierAdvisor®",
     "Farm to fork — manufacture and deliver",
