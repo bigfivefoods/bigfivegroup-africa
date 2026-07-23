@@ -435,19 +435,19 @@ export const SPAR_PARTNERSHIP = {
       {
         format: "KWIKSPAR",
         stores: 280,
-        packsPerStorePerMonth: 35,
+        packsPerStorePerMonth: 70,
         note: "Convenience format — high footfall, smaller basket · spar.co.za",
       },
       {
         format: "SPAR",
         stores: 370,
-        packsPerStorePerMonth: 70,
+        packsPerStorePerMonth: 140,
         note: "Core neighbourhood supermarket — main Mandela pack velocity · spar.co.za",
       },
       {
         format: "SUPERSPAR",
         stores: 220,
-        packsPerStorePerMonth: 140,
+        packsPerStorePerMonth: 280,
         note: "Larger destination format — range depth + promo endcaps · spar.co.za",
       },
     ],
