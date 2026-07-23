@@ -44,32 +44,6 @@ const PRINT_ROOT_ID = "foods-deck-print-root";
 
 const PRODUCT_RANGES = [
   {
-    title: "NSNP Institutional",
-    icon: School,
-    blurb:
-      "NSNP-approved 5kg institutional packs for school kitchens — Enriched Porridge, Beef Soya Mince and One-Pot Chicken Biryani Mix on the DBE pathway (2.5M kids/day plan scale).",
-    stats: "NSNP approved · 5kg packs · school feeding ready",
-    images: [
-      { src: NSNP_PRODUCTS[1].src, name: "Enriched Porridge 5kg" },
-      { src: NSNP_PRODUCTS[0].src, name: "Beef Soya Mince 5kg" },
-      { src: NSNP_PRODUCTS[2].src, name: "Chicken Biryani 5kg" },
-    ],
-    nutrition:
-      "Fortified institutional formats designed for high-volume school menus — micronutrients and protein in pack sizes kitchens can portion at scale.",
-    foodSecurity:
-      "5kg shelf-stable packs support logistics into schools and institutional stores — reliable stock for daily NSNP feeding without cold chain.",
-    malnutrition:
-      "Addresses school-age hunger and micronutrient gaps: porridge for energy and fortification, soya for protein, one-pot biryani for a complete meal plate.",
-    sdgs: [
-      { n: "2", t: "Zero Hunger", d: "NSNP-aligned products for daily school meals." },
-      { n: "4", t: "Quality Education", d: "Fed learners can concentrate and stay in class." },
-      { n: "3", t: "Good Health", d: "Fortified staples for growing children." },
-    ],
-    wfp:
-      "Complements national school-feeding and WFP-aligned Zero Hunger practice — institutional packs, not a claim of UN agency status.",
-    channels: "NSNP · DBE · school kitchens · institutional feeding schemes · government menus",
-  },
-  {
     title: "Fortified Porridges",
     icon: UtensilsCrossed,
     blurb:
@@ -176,6 +150,32 @@ const PRODUCT_RANGES = [
     wfp:
       "Useful as a complementary item in broader food baskets and community kitchens — light logistics, high acceptance, fortification without stigma.",
     channels: "Households · clinics · ECD · retail · emergency / community kitchens",
+  },
+  {
+    title: "NSNP Institutional",
+    icon: School,
+    blurb:
+      "NSNP-approved 5kg institutional packs for school kitchens — Enriched Porridge, Beef Soya Mince and One-Pot Chicken Biryani Mix on the DBE pathway (2.5M kids/day plan scale).",
+    stats: "NSNP approved · 5kg packs · school feeding ready",
+    images: [
+      { src: NSNP_PRODUCTS[1].src, name: "Enriched Porridge 5kg" },
+      { src: NSNP_PRODUCTS[0].src, name: "Beef Soya Mince 5kg" },
+      { src: NSNP_PRODUCTS[2].src, name: "Chicken Biryani 5kg" },
+    ],
+    nutrition:
+      "Fortified institutional formats designed for high-volume school menus — micronutrients and protein in pack sizes kitchens can portion at scale.",
+    foodSecurity:
+      "5kg shelf-stable packs support logistics into schools and institutional stores — reliable stock for daily NSNP feeding without cold chain.",
+    malnutrition:
+      "Addresses school-age hunger and micronutrient gaps: porridge for energy and fortification, soya for protein, one-pot biryani for a complete meal plate.",
+    sdgs: [
+      { n: "2", t: "Zero Hunger", d: "NSNP-aligned products for daily school meals." },
+      { n: "4", t: "Quality Education", d: "Fed learners can concentrate and stay in class." },
+      { n: "3", t: "Good Health", d: "Fortified staples for growing children." },
+    ],
+    wfp:
+      "Complements national school-feeding and WFP-aligned Zero Hunger practice — institutional packs, not a claim of UN agency status.",
+    channels: "NSNP · DBE · school kitchens · institutional feeding schemes · government menus",
   },
 ] as const;
 

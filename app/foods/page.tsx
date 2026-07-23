@@ -20,16 +20,6 @@ const ACCENT = "#d97706";
 
 const productCategories = [
   {
-    title: "NSNP Institutional",
-    icon: School,
-    description:
-      "NSNP-approved 5kg institutional packs for school kitchens and the Department of Basic Education pathway — planned to feed 2.5 million children per day.",
-    images: NSNP_PRODUCTS.map((p) => ({ src: p.src, alt: p.name })),
-    stats: "NSNP approved · 5kg packs · school feeding ready",
-    benefits:
-      "Beef Soya Mince 5kg, Enriched Porridge 5kg, and One-Pot Chicken Biryani Mix 5kg — fortified, shelf-stable formats designed for high-volume school menus under the National School Nutrition Programme.",
-  },
-  {
     title: "Fortified Porridges",
     icon: UtensilsCrossed,
     description: "High-protein, vitamin-enriched instant porridges for children and families",
@@ -84,6 +74,16 @@ const productCategories = [
     stats: "From R1.10 per meal · nutrient dense",
     benefits:
       "Vitamins A & C, iron and calcium. Brown Onion, Minestrone, Oxtail, Chicken and more. Supports local maize farmers.",
+  },
+  {
+    title: "NSNP Institutional",
+    icon: School,
+    description:
+      "NSNP-approved 5kg institutional packs for school kitchens and the Department of Basic Education pathway — planned to feed 2.5 million children per day.",
+    images: NSNP_PRODUCTS.map((p) => ({ src: p.src, alt: p.name })),
+    stats: "NSNP approved · 5kg packs · school feeding ready",
+    benefits:
+      "Beef Soya Mince 5kg, Enriched Porridge 5kg, and One-Pot Chicken Biryani Mix 5kg — fortified, shelf-stable formats designed for high-volume school menus under the National School Nutrition Programme.",
   },
 ];
 
@@ -248,7 +248,7 @@ export default function FoodsPage() {
           <SectionHeading
             eyebrow="PRODUCT RANGES"
             title="Nutrition people actually eat"
-            subtitle="Five ranges: NSNP institutional 5kg packs, porridges, soya, one-pots and soups — for households, schools and catering."
+            subtitle="Five ranges: porridges, soya, one-pots, soups and NSNP institutional 5kg packs — for households, schools and catering."
           />
           <div className="space-y-6 sm:space-y-10">
             {productCategories.map((cat) => (
