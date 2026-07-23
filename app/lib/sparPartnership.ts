@@ -386,8 +386,8 @@ export const SPAR_PARTNERSHIP = {
     "SPAR margin figures are illustrative front margin (RRP less cost aligned at 15% VAT). They are not net store profit and exclude overheads, promotions, shrink and the 5% SPAR contribution.",
     "5% + 5% giving bases (SPAR retail sell-through vs Foods trade turnover) are the recommended model; legal wording sits in the commercial agreement.",
     "NPO allocations between Restore Africa Foundation and A Heart To Help can be fixed (e.g. 50/50) or programme-driven each period.",
-    "One-pot yield for shelf talk: 1kg dry pack prepares to 4kg food = 20 × 200g servings; at RRP R67 that is R3.35 per meal (R67 ÷ 20). Other categories use different yields — national impact modelling may use a conservative blended servings-per-pack until SKU mix is locked.",
-    "Impact meal counts and programme stories are illustrative until pack yields and menus are locked with each foundation.",
+    "One-pot yield for shelf talk and national meal modelling: 1kg dry pack prepares to 4kg food = 20 × 200g servings; at RRP R67 that is R3.35 per meal (R67 ÷ 20). Meal equivalents / year = packs × 20.",
+    "Impact meal counts and programme stories remain illustrative planning figures until SKU mix, menus and foundation reporting are locked.",
     "National store total is anchored to SPAR South Africa’s public claim of more than 850 stores nationwide (spar.co.za); format split is a planning allocation of that estate, not a SPAR-published breakdown. Packs/store/month and people-fed estimates remain modelling assumptions — not forecasts.",
   ],
 
@@ -417,11 +417,12 @@ export const SPAR_PARTNERSHIP = {
       tradeExVat: TRADE_EX_VAT,
       rrpInclVat: RRP_INCL_VAT,
       sparFrontMarginPerPack: SPAR_MARGIN_RAND,
-      servingsPerPack: 5,
+      /** Aligned to 1kg one-pot yield: 4kg prepared = 20 × 200g servings */
+      servingsPerPack: ONE_POT_SERVINGS,
       servingsNote:
-        "Conservative blended average across categories for national modelling. Flagship 1kg one-pot is higher: 4kg prepared food = 20 × 200g servings (R67 ÷ 20 = R3.35 / meal at Mandela RRP).",
+        "20 servings per pack — flagship 1kg one-pot yield (4kg prepared food = 20 × 200g servings). At Mandela RRP R67: R67 ÷ 20 = R3.35 / meal. National meal equivalents use this pack yield for modelling.",
       peopleFedMethod:
-        "Meal equivalents ÷ 365 ≈ people fed one meal a day for a year (illustrative, not unique individuals).",
+        "Meal equivalents (packs × 20 servings) ÷ 365 ≈ people fed one meal a day for a year (illustrative, not unique individuals).",
       donationShareOfSales: 0.02,
       donationNote: "2% of sell-through volume assumed as CSI / franchisee donation POs (illustrative).",
     },
