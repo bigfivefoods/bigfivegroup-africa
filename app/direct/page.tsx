@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { SA_ONBOARDING } from "../lib/saCopy";
 import DirectStrategyDeck from "../components/DirectStrategyDeck";
+import { pageBrand } from "../lib/pageBrand";
 import {
   SANTACO,
   SANTACO_PARTNERSHIP,
@@ -58,7 +59,7 @@ export default function DirectPage() {
             external: true,
           },
         ]}
-        overlayClassName="bg-[#431407]/55"
+        overlayClassName={pageBrand.direct.overlay}
       />
 
       <SupplierTrust entityName="Big Five Direct · Foods distribution" compact />

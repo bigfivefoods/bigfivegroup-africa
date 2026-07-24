@@ -6,6 +6,7 @@ import PageHero from "../components/PageHero";
 import SupplierTrust from "../components/SupplierTrust";
 import { FinalCta } from "../components/PageSections";
 import { MapPin, Building2 } from "lucide-react";
+import { pageBrand } from "../lib/pageBrand";
 
 const countryDescriptions: Record<string, string> = {
     // === SOUTHERN AFRICA (14 countries) ===
@@ -198,7 +199,7 @@ export default function AfricaPage() {
           { href: "#active", label: "Active markets", primary: true },
           { href: "#regions", label: "Explore all 54" },
         ]}
-        overlayClassName="bg-black/40"
+        overlayClassName={pageBrand.africa.overlay}
       />
 
       <SupplierTrust entityName="Big Five companies operating across Africa" compact />

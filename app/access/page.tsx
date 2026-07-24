@@ -22,6 +22,7 @@ import {
 
 import AccessStrategyDeck from "../components/AccessStrategyDeck";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
+import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#3b82f6";
 
@@ -44,7 +45,7 @@ export default function AccessPage() {
           { href: "#how", label: "How Access works" },
           { href: "/connect", label: "Talk to us" },
         ]}
-        overlayClassName="bg-[#1e3a8a]/55"
+        overlayClassName={pageBrand.access.overlay}
       />
 
       <SupplierTrust entityName="Access programme suppliers and SMEs" compact />

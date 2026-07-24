@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
+import { pageBrand } from "../lib/pageBrand";
 
 export default function RoyalPage() {
   return (
@@ -36,7 +37,7 @@ export default function RoyalPage() {
           { href: "#partnership", label: "Our relationship", primary: true },
           { href: "#serve", label: "How we serve communities" },
         ]}
-        overlayClassName="bg-black/60"
+        overlayClassName={pageBrand.royal.overlay}
       />
 
       {/* Opening statement */}

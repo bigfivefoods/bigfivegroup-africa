@@ -22,6 +22,7 @@ import IntelligenceNarrative from "../components/IntelligenceNarrative";
 import StrategyDeck from "../components/StrategyDeck";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
+import { pageBrand } from "../lib/pageBrand";
 
 /** How each pillar serves vision · mission · values */
 const pillarSupport: Record<
@@ -134,7 +135,7 @@ export default function GroupPage() {
           { href: "#pillars", label: "Ten pillars" },
           { href: "#vision", label: "Vision · mission · values" },
         ]}
-        overlayClassName="bg-black/55"
+        overlayClassName={pageBrand.group.overlay}
       />
 
       {/* Ecosystem intro — short; deck carries full narrative */}

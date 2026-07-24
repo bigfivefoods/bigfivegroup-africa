@@ -14,6 +14,7 @@ import {
   Target,
 } from "lucide-react";
 import SupplierTrust from "../components/SupplierTrust";
+import { pageBrand } from "../lib/pageBrand";
 
 /** Nations where Big Five is actively working today */
 const ACTIVE_COUNTRIES = [
@@ -351,8 +352,10 @@ export default function GlobalPage() {
           role="img"
           aria-label="Global distribution and route to market"
         />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/55 via-black/45 to-black/75" />
-        <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_0%,rgba(14,165,233,0.18),transparent_55%)]" />
+        <div className={`absolute inset-0 z-[1] ${pageBrand.global.overlay}`} />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+        <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_0%,rgba(14,165,233,0.22),transparent_55%)]" />
+        <div className="page-hero__dots" aria-hidden />
 
         <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 sm:py-14 md:py-16 lg:py-20 min-w-0">
           <motion.div

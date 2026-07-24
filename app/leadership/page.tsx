@@ -16,6 +16,7 @@ import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
 import LeadershipStrategyDeck from "../components/LeadershipStrategyDeck";
 import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
+import { pageBrand } from "../lib/pageBrand";
 
 const SUPER_CUBE_URL = "https://www.super-cube.com";
 
@@ -88,7 +89,7 @@ export default function LeadershipPage() {
           },
           { href: "#book", label: "Free leadership book" },
         ]}
-        overlayClassName="bg-black/55"
+        overlayClassName={pageBrand.leadership.overlay}
       />
 
       <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">

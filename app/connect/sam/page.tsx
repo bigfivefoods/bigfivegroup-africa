@@ -10,6 +10,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { sa, SA_ONBOARDING, SA_LOGIN, SA_URL } from "../../lib/saCopy";
+import { pageBrand } from "../../lib/pageBrand";
 
 const ACCENT = "#06b6d4";
 
@@ -43,7 +44,7 @@ export default function SamPage() {
           },
           { href: "/connect", label: "Back to Connect" },
         ]}
-        overlayClassName="bg-black/55"
+        overlayClassName={pageBrand.connect.overlay}
       />
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">

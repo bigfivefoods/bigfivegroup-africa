@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
+import { pageBrand } from "../lib/pageBrand";
 
 const SUPER_CUBE_URL = "https://www.super-cube.com";
 const SUPPLIER_URL = "https://www.supplieradvisor.com/onboarding?type=business";
@@ -40,7 +41,7 @@ export default function AboutPage() {
           { href: "#vision", label: "Vision, mission & values", primary: true },
           { href: "#founder", label: "Meet the founder" },
         ]}
-        overlayClassName="bg-black/55"
+        overlayClassName={pageBrand.about.overlay}
       />
 
       {/* Who we are */}

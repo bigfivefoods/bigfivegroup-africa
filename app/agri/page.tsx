@@ -20,6 +20,7 @@ import {
   LineChart,
 } from "lucide-react";
 import AgriStrategyDeck from "../components/AgriStrategyDeck";
+import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#10b981";
 
@@ -42,7 +43,7 @@ export default function AgriPage() {
           { href: "#zulukingdom", label: "Kingdom partnership" },
           { href: "/connect", label: "Partner with us" },
         ]}
-        overlayClassName="bg-emerald-950/45"
+        overlayClassName={pageBrand.agri.overlay}
       />
 
       <SupplierTrust entityName="Big Five Agri" compact />

@@ -33,6 +33,7 @@ import {
 import { sa, SA_URL, SA_ONBOARDING, SA_EMAIL, SA_LOGIN } from "../lib/saCopy";
 import SamSection from "../components/SamSection";
 import ConnectStrategyDeck from "../components/ConnectStrategyDeck";
+import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#06b6d4";
 
@@ -98,7 +99,7 @@ export default function ConnectPage() {
           { href: "#connect-deck", label: "Strategic deck" },
           { href: "#sam", label: `Meet ${sa.sam.name}` },
         ]}
-        overlayClassName="bg-black/50"
+        overlayClassName={pageBrand.connect.overlay}
       />
 
       <SupplierTrust entityName="Big Five Connect" compact />

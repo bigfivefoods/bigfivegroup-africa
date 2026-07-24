@@ -25,6 +25,7 @@ import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import LocalNewsVideo from "../components/LocalNewsVideo";
 import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
+import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#d97706";
 const ACCENT_DARK = "#b45309";
@@ -159,7 +160,7 @@ export default function FoodsPage() {
             external: true,
           },
         ]}
-        overlayClassName="bg-black/50"
+        overlayClassName={pageBrand.foods.overlay}
       />
 
       {/* ─── 1. PRODUCT RANGES (first after hero) ─── */}

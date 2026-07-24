@@ -13,6 +13,7 @@ import {
 import { Heart, TrendingUp, Leaf, Users, ShieldCheck, ExternalLink } from "lucide-react";
 import { SA_URL } from "../lib/saCopy";
 import FoundationStrategyDeck from "../components/FoundationStrategyDeck";
+import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#0d9488";
 
@@ -78,7 +79,7 @@ export default function FoundationPage() {
             external: true,
           },
         ]}
-        overlayClassName="bg-black/40"
+        overlayClassName={pageBrand.foundation.overlay}
       />
 
       <SupplierTrust entityName="Big Five Foundation" compact />

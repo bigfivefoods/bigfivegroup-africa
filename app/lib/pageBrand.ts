@@ -19,6 +19,10 @@ export type PageBrand = {
   eyebrow: string;
 };
 
+/**
+ * Hero tint overlays — each pillar’s brand colour at ~45–55% so photos
+ * keep depth while reading as that unit (plus black-dot screen on PageHero).
+ */
 export const pageBrand = {
   agri: {
     slug: "agri",
@@ -27,7 +31,7 @@ export const pageBrand = {
     accentDark: "#047857",
     accentSoft: "#ecfdf5",
     accentLight: "#6ee7b7",
-    overlay: "bg-black/45",
+    overlay: "bg-emerald-950/50",
     eyebrow: "PILLAR 01 · REGENERATIVE FARMING",
   },
   foods: {
@@ -37,7 +41,7 @@ export const pageBrand = {
     accentDark: "#b45309",
     accentSoft: "#fffbeb",
     accentLight: "#fcd34d",
-    overlay: "bg-black/50",
+    overlay: "bg-amber-950/50",
     eyebrow: "PILLAR 02 · FORTIFIED NUTRITION",
   },
   direct: {
@@ -67,7 +71,7 @@ export const pageBrand = {
     accentDark: "#0e7490",
     accentSoft: "#ecfeff",
     accentLight: "#67e8f9",
-    overlay: "bg-black/50",
+    overlay: "bg-cyan-950/50",
     eyebrow: "PILLAR · CONNECT · SUPPLIERADVISOR®",
   },
   impact: {
@@ -87,7 +91,7 @@ export const pageBrand = {
     accentDark: "#a16207",
     accentSoft: "#fefce8",
     accentLight: "#fde047",
-    overlay: "bg-black/55",
+    overlay: "bg-yellow-950/50",
     eyebrow: "BIG FIVE LEADERSHIP · EDUCATION ARM",
   },
   foundation: {
@@ -97,7 +101,7 @@ export const pageBrand = {
     accentDark: "#0f766e",
     accentSoft: "#f0fdfa",
     accentLight: "#5eead4",
-    overlay: "bg-black/45",
+    overlay: "bg-teal-950/50",
     eyebrow: "REGISTERED NPO · SOUTH AFRICA",
   },
   global: {
@@ -107,7 +111,7 @@ export const pageBrand = {
     accentDark: "#0369a1",
     accentSoft: "#f0f9ff",
     accentLight: "#7dd3fc",
-    overlay: "bg-black/50",
+    overlay: "bg-sky-950/50",
     eyebrow: "BIG FIVE GLOBAL",
   },
   africa: {
@@ -117,7 +121,7 @@ export const pageBrand = {
     accentDark: "#065f46",
     accentSoft: "#ecfdf5",
     accentLight: "#6ee7b7",
-    overlay: "bg-black/40",
+    overlay: "bg-emerald-950/45",
     eyebrow: "CONTINENT · 54 NATIONS",
   },
   royal: {
@@ -127,7 +131,7 @@ export const pageBrand = {
     accentDark: "#92400e",
     accentSoft: "#fffbeb",
     accentLight: "#fbbf24",
-    overlay: "bg-black/60",
+    overlay: "bg-amber-950/55",
     eyebrow: "ROYAL PARTNERSHIP · COMMUNITY FIRST",
   },
   about: {
@@ -137,9 +141,26 @@ export const pageBrand = {
     accentDark: "#030712",
     accentSoft: "#f3f4f6",
     accentLight: "#d1d5db",
-    overlay: "bg-black/55",
+    overlay: "bg-zinc-950/55",
     eyebrow: "ABOUT BIG FIVE GROUP",
+  },
+  /** Group overview — deep forest (shared Group green) */
+  group: {
+    slug: "group",
+    hero: "/home-hero.jpg",
+    accent: "#059669",
+    accentDark: "#065f46",
+    accentSoft: "#ecfdf5",
+    accentLight: "#6ee7b7",
+    overlay: "bg-emerald-950/50",
+    eyebrow: "THE GROUP · TEN PILLARS",
   },
 } as const satisfies Record<string, PageBrand>;
 
 export type PageBrandKey = keyof typeof pageBrand;
+
+/** Hero colour-tint class for a brand slug (falls back to neutral black). */
+export function heroOverlay(slug: PageBrandKey | string): string {
+  const b = pageBrand[slug as PageBrandKey];
+  return b?.overlay ?? "bg-black/50";
+}

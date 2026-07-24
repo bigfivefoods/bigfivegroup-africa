@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
 import { MARKET_TRACTION } from "../lib/investor-model";
+import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#7c3aed";
 
@@ -45,7 +46,7 @@ export default function ImpactPage() {
           { href: "#case-study", label: "NSNP case study" },
           { href: "#how", label: "How we deliver" },
         ]}
-        overlayClassName="bg-[#2e1065]/55"
+        overlayClassName={pageBrand.impact.overlay}
       />
 
       <SupplierTrust entityName="Big Five Group entities (where applicable)" compact />
