@@ -154,6 +154,34 @@ main {
   object-fit: cover;
 }
 
+/**
+ * Tiny black-dot film screen over hero photos (sits above image + tint, under content).
+ * Dual-scale radial dots for a premium print/halftone feel without crushing contrast.
+ */
+.page-hero__dots {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(0, 0, 0, 0.42) 0.55px, transparent 0.65px),
+    radial-gradient(circle, rgba(0, 0, 0, 0.28) 0.45px, transparent 0.55px);
+  background-size:
+    3px 3px,
+    5px 5px;
+  background-position:
+    0 0,
+    1.5px 2px;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero__dots {
+    opacity: 0.4;
+  }
+}
+
 @supports (height: 100dvh) {
   .page-hero {
     min-height: calc(100dvh - var(--navbar-height, 4.5rem));

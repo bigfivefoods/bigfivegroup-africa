@@ -165,6 +165,7 @@ export default function Home() {
           aria-label="African landscape representing Big Five Group"
         />
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+        <div className="page-hero__dots" aria-hidden />
 
         <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 sm:py-14 md:py-16 lg:py-20 min-w-0">
           <motion.div

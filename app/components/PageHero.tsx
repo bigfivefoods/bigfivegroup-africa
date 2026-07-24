@@ -54,6 +54,8 @@ export default function PageHero({
       />
       <div className={`absolute inset-0 z-[1] ${overlayClassName}`} />
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+      {/* Tiny black-dot screen — premium texture over tint + photo */}
+      <div className="page-hero__dots" aria-hidden />
 
       <div className="relative z-10 w-full max-w-5xl 2xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-10 sm:py-14 md:py-16 lg:py-20 min-w-0">
         {logo && (
