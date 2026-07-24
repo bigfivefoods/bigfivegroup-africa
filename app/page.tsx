@@ -17,59 +17,18 @@ import {
   Sprout,
 } from "lucide-react";
 import { companies, type Company } from "./lib/companies";
+import { PILLAR_MISSIONS } from "./lib/pillarMissions";
 import { CompanyIcon } from "./lib/icons";
 import IntelligenceNarrative from "./components/IntelligenceNarrative";
 import CaseStudyNsnp from "./components/CaseStudyNsnp";
 import CaseStudySupplierAdvisor from "./components/CaseStudySupplierAdvisor";
 import PartnerLogoMarquee from "./components/PartnerLogoMarquee";
 
-/** Home pillars — grouped under Feed · Educate · Empower */
-const PILLAR_MISSIONS: {
-  id: "feed" | "educate" | "empower";
-  label: string;
-  mission: string;
-  blurb: string;
-  accent: string;
-  accentSoft: string;
-  accentDark: string;
-  icon: typeof Leaf;
-  slugs: string[];
-}[] = [
-  {
-    id: "feed",
-    label: "01 · Feed",
-    mission: "Feed",
-    blurb: "Regenerate land and put fortified nutrition on plates — farm gate to school kitchen.",
-    accent: "#d97706",
-    accentSoft: "#fffbeb",
-    accentDark: "#b45309",
-    icon: Leaf,
-    slugs: ["agri", "foods"],
-  },
-  {
-    id: "educate",
-    label: "02 · Educate",
-    mission: "Educate",
-    blurb: "Whole-person leadership for executives, public servants and the next generation.",
-    accent: "#eab308",
-    accentSoft: "#fefce8",
-    accentDark: "#a16207",
-    icon: BookOpen,
-    slugs: ["leadership"],
-  },
-  {
-    id: "empower",
-    label: "03 · Empower",
-    mission: "Empower",
-    blurb:
-      "Last-mile rails, capital access, verified trade, impact delivery, royal partnership and global corridors.",
-    accent: "#059669",
-    accentSoft: "#ecfdf5",
-    accentDark: "#065f46",
-    icon: Sparkles,
-    slugs: ["connect", "direct", "access", "impact", "royal", "global", "foundation"],
-  },
-];
+const MISSION_ICONS = {
+  feed: Leaf,
+  educate: BookOpen,
+  empower: Sparkles,
+} as const;
 
 function companyBySlug(slug: string): Company | undefined {
   return companies.find((c) => c.slug === slug);
@@ -414,21 +373,24 @@ export default function Home() {
             partnership — every pillar compounds the others under one group.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {PILLAR_MISSIONS.map((m) => (
-              <a
-                key={m.id}
-                href={`#mission-${m.id}`}
-                className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] sm:text-xs font-semibold tracking-[1.5px] uppercase transition-colors hover:bg-white"
-                style={{
-                  borderColor: `${m.accent}55`,
-                  color: m.accentDark,
-                  backgroundColor: m.accentSoft,
-                }}
-              >
-                <m.icon className="w-3 h-3" style={{ color: m.accent }} />
-                {m.mission}
-              </a>
-            ))}
+            {PILLAR_MISSIONS.map((m) => {
+              const ChipIcon = MISSION_ICONS[m.id];
+              return (
+                <a
+                  key={m.id}
+                  href={`#mission-${m.id}`}
+                  className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] sm:text-xs font-semibold tracking-[1.5px] uppercase transition-colors hover:bg-white"
+                  style={{
+                    borderColor: `${m.accent}55`,
+                    color: m.accentDark,
+                    backgroundColor: m.accentSoft,
+                  }}
+                >
+                  <ChipIcon className="w-3 h-3" style={{ color: m.accent }} />
+                  {m.mission}
+                </a>
+              );
+            })}
           </div>
         </div>
 
@@ -437,7 +399,7 @@ export default function Home() {
             const pillars = mission.slugs
               .map((slug) => companyBySlug(slug))
               .filter((c): c is Company => Boolean(c));
-            const MissionIcon = mission.icon;
+            const MissionIcon = MISSION_ICONS[mission.id];
 
             return (
               <motion.div
