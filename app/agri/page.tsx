@@ -42,7 +42,7 @@ export default function AgriPage() {
           { href: "#zulukingdom", label: "Kingdom partnership" },
           { href: "/connect", label: "Partner with us" },
         ]}
-        overlayClassName="bg-black/45"
+        overlayClassName="bg-emerald-950/45"
       />
 
       <SupplierTrust entityName="Big Five Agri" compact />
