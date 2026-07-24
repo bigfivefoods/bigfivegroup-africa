@@ -6,19 +6,74 @@ import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
+  BookOpen,
   Building2,
   GraduationCap,
   Landmark,
+  Leaf,
   School,
   ShoppingBag,
+  Sparkles,
   Sprout,
 } from "lucide-react";
-import { companies } from "./lib/companies";
+import { companies, type Company } from "./lib/companies";
 import { CompanyIcon } from "./lib/icons";
 import IntelligenceNarrative from "./components/IntelligenceNarrative";
 import CaseStudyNsnp from "./components/CaseStudyNsnp";
 import CaseStudySupplierAdvisor from "./components/CaseStudySupplierAdvisor";
 import PartnerLogoMarquee from "./components/PartnerLogoMarquee";
+
+/** Home pillars — grouped under Feed · Educate · Empower */
+const PILLAR_MISSIONS: {
+  id: "feed" | "educate" | "empower";
+  label: string;
+  mission: string;
+  blurb: string;
+  accent: string;
+  accentSoft: string;
+  accentDark: string;
+  icon: typeof Leaf;
+  slugs: string[];
+}[] = [
+  {
+    id: "feed",
+    label: "01 · Feed",
+    mission: "Feed",
+    blurb: "Regenerate land and put fortified nutrition on plates — farm gate to school kitchen.",
+    accent: "#d97706",
+    accentSoft: "#fffbeb",
+    accentDark: "#b45309",
+    icon: Leaf,
+    slugs: ["agri", "foods"],
+  },
+  {
+    id: "educate",
+    label: "02 · Educate",
+    mission: "Educate",
+    blurb: "Whole-person leadership for executives, public servants and the next generation.",
+    accent: "#eab308",
+    accentSoft: "#fefce8",
+    accentDark: "#a16207",
+    icon: BookOpen,
+    slugs: ["leadership"],
+  },
+  {
+    id: "empower",
+    label: "03 · Empower",
+    mission: "Empower",
+    blurb:
+      "Last-mile rails, capital access, verified trade, impact delivery, royal partnership and global corridors.",
+    accent: "#059669",
+    accentSoft: "#ecfdf5",
+    accentDark: "#065f46",
+    icon: Sparkles,
+    slugs: ["connect", "direct", "access", "impact", "royal", "global", "foundation"],
+  },
+];
+
+function companyBySlug(slug: string): Company | undefined {
+  return companies.find((c) => c.slug === slug);
+}
 
 const statsData = [
   {
@@ -340,7 +395,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* THE 10 PILLARS */}
+      {/* THE 10 PILLARS · Feed · Educate · Empower */}
       <section
         id="pillars"
         className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-14 sm:pb-16 md:pb-20"
@@ -358,47 +413,163 @@ export default function Home() {
             From regenerative farms and fortified nutrition to leadership, capital access and royal
             partnership — every pillar compounds the others under one group.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {PILLAR_MISSIONS.map((m) => (
+              <a
+                key={m.id}
+                href={`#mission-${m.id}`}
+                className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] sm:text-xs font-semibold tracking-[1.5px] uppercase transition-colors hover:bg-white"
+                style={{
+                  borderColor: `${m.accent}55`,
+                  color: m.accentDark,
+                  backgroundColor: m.accentSoft,
+                }}
+              >
+                <m.icon className="w-3 h-3" style={{ color: m.accent }} />
+                {m.mission}
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {companies.map((company, index) => (
-            <motion.div
-              key={company.slug}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: Math.min(index * 0.04, 0.28), duration: 0.4 }}
-              className="min-w-0"
-            >
-              <Link
-                href={`/${company.slug}`}
-                className="group flex flex-col h-full rounded-2xl sm:rounded-3xl border border-black/10 p-6 sm:p-7 md:p-8 hover:border-black/20 transition-all card-hover bg-white min-w-0"
+        <div className="space-y-10 sm:space-y-12 md:space-y-14">
+          {PILLAR_MISSIONS.map((mission, mi) => {
+            const pillars = mission.slugs
+              .map((slug) => companyBySlug(slug))
+              .filter((c): c is Company => Boolean(c));
+            const MissionIcon = mission.icon;
+
+            return (
+              <motion.div
+                key={mission.id}
+                id={`mission-${mission.id}`}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: mi * 0.06, duration: 0.45 }}
+                className="scroll-mt-28 rounded-2xl sm:rounded-3xl border border-black/10 overflow-hidden bg-white shadow-sm"
+                style={{ boxShadow: `0 0 0 1px ${mission.accent}14` }}
               >
+                {/* Mission band */}
                 <div
-                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl mb-5 sm:mb-6 flex items-center justify-center"
-                  style={{ backgroundColor: `${company.color}15`, color: company.color }}
+                  className="relative px-5 sm:px-7 md:px-8 py-5 sm:py-6 border-b border-black/5"
+                  style={{
+                    background: `linear-gradient(135deg, ${mission.accentSoft} 0%, #ffffff 70%)`,
+                  }}
                 >
-                  <CompanyIcon name={company.icon} size={28} />
+                  <div
+                    className="absolute left-0 top-0 bottom-0 w-1.5 sm:w-2"
+                    style={{ background: mission.accent }}
+                    aria-hidden
+                  />
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pl-2">
+                    <div className="flex items-start gap-3 min-w-0">
+                      <div
+                        className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-sm"
+                        style={{
+                          backgroundColor: mission.accent,
+                          color: "#fff",
+                        }}
+                      >
+                        <MissionIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </div>
+                      <div className="min-w-0">
+                        <div
+                          className="text-[10px] sm:text-xs font-semibold tracking-[2px] uppercase mb-1"
+                          style={{ color: mission.accentDark }}
+                        >
+                          {mission.label}
+                        </div>
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black">
+                          {mission.mission}
+                        </h3>
+                        <p className="mt-1 text-sm text-[#525252] leading-relaxed max-w-xl">
+                          {mission.blurb}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="text-[10px] sm:text-xs font-semibold tracking-[1.5px] uppercase px-3 py-1.5 rounded-full border shrink-0 self-start sm:self-center"
+                      style={{
+                        borderColor: `${mission.accent}40`,
+                        color: mission.accentDark,
+                        backgroundColor: "#fff",
+                      }}
+                    >
+                      {pillars.length} pillar{pillars.length === 1 ? "" : "s"}
+                    </div>
+                  </div>
                 </div>
+
+                {/* Pillar cards */}
                 <div
-                  className="font-semibold text-2xl sm:text-3xl tracking-tighter mb-2"
-                  style={{ color: company.color }}
+                  className={`p-4 sm:p-5 md:p-6 grid gap-3 sm:gap-4 ${
+                    pillars.length === 1
+                      ? "grid-cols-1 max-w-xl"
+                      : pillars.length === 2
+                        ? "grid-cols-1 sm:grid-cols-2"
+                        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  }`}
                 >
-                  {company.name}
+                  {pillars.map((company, index) => (
+                    <motion.div
+                      key={company.slug}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-20px" }}
+                      transition={{ delay: Math.min(index * 0.04, 0.24), duration: 0.35 }}
+                      className="min-w-0"
+                    >
+                      <Link
+                        href={`/${company.slug}`}
+                        className="group flex flex-col h-full rounded-2xl border border-black/8 bg-[#fafafa] p-5 sm:p-6 hover:bg-white hover:border-black/15 hover:shadow-md transition-all min-w-0"
+                        style={{
+                          borderTopWidth: 3,
+                          borderTopColor: company.color,
+                        }}
+                      >
+                        <div className="flex items-center gap-3 mb-4">
+                          <div
+                            className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                            style={{
+                              backgroundColor: `${company.color}18`,
+                              color: company.color,
+                            }}
+                          >
+                            <CompanyIcon name={company.icon} size={22} />
+                          </div>
+                          <div className="min-w-0">
+                            <div
+                              className="font-semibold text-lg sm:text-xl tracking-tighter leading-tight"
+                              style={{ color: company.color }}
+                            >
+                              {company.name}
+                            </div>
+                            <div className="text-[10px] uppercase tracking-[1px] text-[#a3a3a3] font-medium">
+                              {mission.mission}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-xs sm:text-sm text-[#404040] mb-2 leading-snug font-medium">
+                          {company.tagline}
+                        </div>
+                        <div className="text-xs sm:text-sm text-[#525252] line-clamp-3 mb-4 flex-1 leading-relaxed">
+                          {company.description}
+                        </div>
+                        <div
+                          className="mt-auto inline-flex items-center text-[10px] sm:text-xs uppercase tracking-[1.5px] font-semibold transition-colors"
+                          style={{ color: company.color }}
+                        >
+                          Enter the pillar
+                          <ArrowRight className="ml-1.5 w-3 h-3 group-hover:translate-x-0.5 transition" />
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
                 </div>
-                <div className="text-sm sm:text-base md:text-lg text-[#404040] mb-3 sm:mb-4 leading-snug">
-                  {company.tagline}
-                </div>
-                <div className="text-sm text-[#525252] line-clamp-3 mb-5 sm:mb-6 flex-1">
-                  {company.description}
-                </div>
-                <div className="mt-auto flex items-center text-xs uppercase tracking-[1.5px] text-[#737373] group-hover:text-black transition-colors">
-                  Enter the pillar
-                  <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-0.5 transition" />
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
