@@ -2,15 +2,15 @@
 export const SITE_URL = "https://bigfivegroup.africa";
 
 /**
- * Default Open Graph / Twitter / social preview image — always the Group mark
- * over the home hero (public/og-share.jpg, 1200×630).
- * Use this for every page; never page-specific heroes for link previews.
+ * Default Open Graph / Twitter / social preview image (1200×630).
+ * Composite: home hero + public/bigfivegroup-logo.png centered on a light plate.
+ * Always use this for link shares — never page-specific heroes alone.
  */
 export const SITE_OG_IMAGE = {
   url: "/og-share.jpg",
   width: 1200,
   height: 630,
-  alt: "Big Five Group Africa — logo over home hero",
+  alt: "Big Five Group Africa — bigfivegroup-logo.png over home hero",
   type: "image/jpeg",
 } as const;
 
