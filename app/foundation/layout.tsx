@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("foundation");
 
 export const metadata: Metadata = {
   title: "Foundation",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "Big Five Foundation | Registered on SupplierAdvisor®",
     description:
       "Transparent philanthropy with measurable outcomes — Big Five Foundation is registered on SupplierAdvisor® and aligned to the UN Sustainable Development Goals.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

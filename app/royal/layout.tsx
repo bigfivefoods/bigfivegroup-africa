@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("royal");
 
 export const metadata: Metadata = {
   title: "Royal · Close Ties & Planned Partnership with the Royal Family",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "Royal | Big Five Group — Close Ties & Planned Partnership",
     description:
       "Close ties to the royal family. Planning to partner. Supporting them and the work they do — for our communities.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

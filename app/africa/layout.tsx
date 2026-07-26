@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("africa");
 
 export const metadata: Metadata = {
   title: "Africa",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "Africa | Big Five Group Footprint",
     description:
       "From KwaZulu-Natal to the continent — explore Big Five Group's African presence and partnerships.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

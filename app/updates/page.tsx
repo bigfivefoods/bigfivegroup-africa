@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, Leaf, Sparkles } from "lucide-react";
 import { NSNP } from "../lib/nsnp";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
 import { listStories } from "../lib/stories/store";
 import { formatStoryDate } from "../lib/stories/format";
 import {
@@ -12,6 +12,8 @@ import {
 import StoryCover from "../components/StoryCover";
 import type { Story } from "../lib/stories/types";
 
+const social = siteSocialImages("updates");
+
 export const dynamic = "force-dynamic";
 
 export const metadata = {
@@ -21,8 +23,13 @@ export const metadata = {
   openGraph: {
     title: "Updates | Big Five Group Africa",
     url: "/updates",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
   },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
+  },
+
   alternates: { canonical: "/updates" },
 };
 

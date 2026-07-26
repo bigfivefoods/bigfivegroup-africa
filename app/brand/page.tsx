@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Download, Mail } from "lucide-react";
 import { CONTACT_EMAIL } from "../lib/contact";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("brand");
 
 export const metadata = {
   title: "Brand kit",
@@ -11,8 +13,13 @@ export const metadata = {
   openGraph: {
     title: "Brand kit | Big Five Group",
     url: "/brand",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
   },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
+  },
+
   alternates: { canonical: "/brand" },
 };
 

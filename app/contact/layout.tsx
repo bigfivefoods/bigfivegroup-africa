@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("contact");
 
 export const metadata: Metadata = {
   title: "Contact · Book a briefing",
@@ -10,9 +12,9 @@ export const metadata: Metadata = {
     description:
       "Book a strategic briefing or enquire about nutrition, leadership, philanthropy, and ethical commerce.",
     url: "/contact",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
   },
-  twitter: { card: "summary_large_image", images: [SITE_OG_IMAGE.url] },
+  twitter: { card: "summary_large_image", images: social.twitter.images },
   alternates: { canonical: "/contact" },
 };
 

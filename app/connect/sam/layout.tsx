@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../../lib/site";
+import { siteSocialImages } from "../../lib/site";
+
+const social = siteSocialImages("connect");
 
 export const metadata: Metadata = {
   title: "SAM · SupplierAdvisor Messenger",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "SAM | SupplierAdvisor Messenger · Big Five Connect",
     description:
       "Always-on ops co-pilot for verified trade. Open SupplierAdvisor® to meet SAM.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

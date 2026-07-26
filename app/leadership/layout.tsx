@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteSocialImages } from "../lib/site";
 
-const social = siteSocialImages();
+const social = siteSocialImages("leadership");
 
 export const metadata: Metadata = {
   title: "Leadership · Super-Cube® programmes",

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("access");
 
 export const metadata: Metadata = {
   title: "Access",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "Big Five Access | Government & Institutional Capital",
     description:
       "Unlock tenders, DFI capital, and public-private partnerships with verified, on-chain delivery.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

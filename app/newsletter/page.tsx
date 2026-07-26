@@ -11,7 +11,9 @@ import {
 } from "lucide-react";
 import NewsletterForm from "../components/NewsletterForm";
 import { NEWSLETTER_TOPIC_OPTIONS } from "../lib/newsletter/client";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("newsletter");
 
 export const metadata: Metadata = {
   title: "Newsletter",
@@ -22,8 +24,13 @@ export const metadata: Metadata = {
     description:
       "Occasional updates on nutrition programmes, partnerships, leadership and Group milestones.",
     url: "/newsletter",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
   },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
+  },
+
   alternates: { canonical: "/newsletter" },
 };
 

@@ -5,7 +5,9 @@ import { NSNP_CASE, NSNP } from "../lib/nsnp";
 import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
 import { SA_CASE } from "../lib/supplierAdvisorCase";
 import PrintButton from "../components/PrintButton";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("partner-kit");
 
 export const metadata = {
   title: "Partner kit",
@@ -14,8 +16,13 @@ export const metadata = {
   openGraph: {
     title: "Partner kit | Big Five Group Africa",
     url: "/partner-kit",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
   },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
+  },
+
   alternates: { canonical: "/partner-kit" },
 };
 

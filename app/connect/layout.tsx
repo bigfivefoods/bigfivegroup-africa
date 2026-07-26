@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("connect");
 
 export const metadata: Metadata = {
   title: "Connect · SupplierAdvisor® · SAM",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "Big Five Connect | SupplierAdvisor® · SAM · AI Trust",
     description:
       "One chain. Zero blind spots. SAM (Grok-powered messenger), Live pulse, inventory, SHEQ, and ratings in one supply-chain OS.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

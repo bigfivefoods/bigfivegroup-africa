@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("direct");
 
 export const metadata: Metadata = {
   title: "Direct · SANTACO containers",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "Big Five Direct | SANTACO · Farm Gate to Market Gate",
     description:
       "SANTACO partnership: 15,000 containers at taxi ranks — Foods, Wi‑Fi surveys, marketing and Super-Cube® education. Transparent last-mile.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

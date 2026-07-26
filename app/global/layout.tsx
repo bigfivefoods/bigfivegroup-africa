@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("global");
 
 export const metadata: Metadata = {
   title: "Global Footprint",
@@ -9,7 +11,11 @@ export const metadata: Metadata = {
     title: "Global | Distribution & Route to Market",
     description:
       "Twelve priority nations across Africa and Europe — including Germany, Hungary, and Georgia — where we are building distribution and route-to-market strategy.",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
   },
 };
 

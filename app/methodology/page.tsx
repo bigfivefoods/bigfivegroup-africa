@@ -2,7 +2,9 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
 import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
-import { SITE_OG_IMAGE } from "../lib/site";
+import { siteSocialImages } from "../lib/site";
+
+const social = siteSocialImages("methodology");
 
 export const metadata = {
   title: "Methodology & sources",
@@ -11,8 +13,13 @@ export const metadata = {
   openGraph: {
     title: "Methodology & sources | Big Five Group",
     url: "/methodology",
-    images: [SITE_OG_IMAGE],
+    images: social.openGraph.images,
   },
+  twitter: {
+    card: "summary_large_image",
+    images: social.twitter.images,
+  },
+
   alternates: { canonical: "/methodology" },
 };
 
