@@ -16,8 +16,6 @@ import {
 import { companies, type Company } from "./lib/companies";
 import { PILLAR_MISSIONS } from "./lib/pillarMissions";
 import { CompanyIcon } from "./lib/icons";
-import CaseStudyNsnp from "./components/CaseStudyNsnp";
-import CaseStudySupplierAdvisor from "./components/CaseStudySupplierAdvisor";
 import PartnerLogoMarquee from "./components/PartnerLogoMarquee";
 
 const MISSION_ICONS = {
@@ -433,36 +431,6 @@ export default function Home() {
                   ))}
                 </div>
 
-                {/* Case studies under the mission that owns them */}
-                {mission.id === "feed" && (
-                  <div className="border-t border-black/5 bg-amber-50/30">
-                    <div className="px-4 sm:px-6 pt-4 sm:pt-5">
-                      <div className="text-[10px] font-semibold tracking-[2px] uppercase text-amber-900/80 mb-1">
-                        Feed · Signature case
-                      </div>
-                      <p className="text-xs text-[#525252] mb-0 max-w-2xl">
-                        Big Five Foods × National School Nutrition Programme pathway — plan scale for
-                        school feeding under DBE.
-                      </p>
-                    </div>
-                    <CaseStudyNsnp variant="compact" />
-                  </div>
-                )}
-
-                {mission.id === "empower" && (
-                  <div className="border-t border-black/5 bg-cyan-50/30">
-                    <div className="px-4 sm:px-6 pt-4 sm:pt-5">
-                      <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cyan-900/80 mb-1">
-                        Empower · Signature case
-                      </div>
-                      <p className="text-xs text-[#525252] mb-0 max-w-2xl">
-                        Connect · SupplierAdvisor® — verified trade infrastructure for B2B, B2G and
-                        provenance.
-                      </p>
-                    </div>
-                    <CaseStudySupplierAdvisor variant="compact" />
-                  </div>
-                )}
               </motion.div>
             );
           })}
