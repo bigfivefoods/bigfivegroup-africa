@@ -1,100 +1,84 @@
 /**
- * SupplierAdvisor® case study — grounded in www.supplieradvisor.com positioning.
- * Tagline: “The world's most trusted supplier advice” + supply-chain OS.
+ * SupplierAdvisor® / Big Five Connect case study —
+ * DBE-aligned school nutrition network in KwaZulu-Natal.
+ * Platform: www.supplieradvisor.com
+ *
+ * Scale figures are approximate programme scope (not audited headcount).
  */
 
+import { NSNP } from "./nsnp";
+
 export const SA_CASE = {
-  id: "supplieradvisor-os",
+  id: "sa-dbe-kzn-school-nutrition",
   logoSrc: "/supplieradvisor-logo-transparent.png",
   logoAlt: "SupplierAdvisor®",
   siteUrl: "https://www.supplieradvisor.com/",
-  eyebrow: "CASE STUDY · SUPPLIERADVISOR®",
-  title: "The world’s most trusted supplier advice — and OS",
-  headline: "One verified fabric for B2B, B2G and B2C",
-  ambition: "B2B · B2G · B2C",
-  ambitionUnit: "on one trusted network",
+  eyebrow: "CASE STUDY · BIG FIVE CONNECT · SUPPLIERADVISOR®",
+  title:
+    "DBE, ~1,800 service providers and ~6,000 KZN schools on one compliance network",
+  headline: "School nutrition compliance — set once, enforced on the network",
+  ambition: "~6,000",
+  ambitionUnit: "KZN schools · one verified network",
+  secondaryStat: { value: "~1,800", label: "service providers" },
   tagline: "The world’s most trusted supplier advice",
+  /** Opening narrative */
   body:
-    "SupplierAdvisor® is the supply-chain operating system Big Five Connect runs for the Group and for the open market — uniting private trade, public procurement and consumer trust on one verified network. Blockchain-ready ERP brings transparency and efficiency so goods, money and proof move together.",
+    "Big Five Connect runs SupplierAdvisor® so the Department of Basic Education can align school nutrition delivery across KwaZulu-Natal: roughly 1,800 service providers and approximately 6,000 schools on one verified operating fabric — where approved products, menus and compliance incentives live in the same place as trade.",
   context:
-    "Most platforms pick one market. SupplierAdvisor® is built so manufacturers, distributors, governments, schools and consumers share the same verification, traceability and operating discipline — from PO to ship, lot to ledger, incident to CAPA.",
-  pillars: [
+    "Without a shared system, approved menus stay in circulars and inboxes while kitchens and contractors improvise. On SupplierAdvisor® the department sets what may be supplied and served; service providers and schools see the same rules — and are incentivised to comply — so learners get the nutrition the programme requires.",
+  /** Who is on the network */
+  actors: [
     {
-      t: "B2B",
-      d: "Manufacturers, distributors and brands run full ops — network, buy/sell, inventory, make, ship, finance, SHEQ and quality — with counterparties you can score and prove.",
+      t: "Department of Basic Education",
+      d: "Sets approved products and menus on the platform — one source of truth for what may be bought and served under the programme.",
     },
     {
-      t: "B2G",
-      d: "Public entities and suppliers get transparent discovery, documented trade, performance scores and audit-ready SHEQ / NCR-CAPA trails — not email chains.",
+      t: "~1,800 service providers",
+      d: "Caterers and suppliers operate against that approved list, with visibility, verification and incentives aligned to DBE requirements.",
     },
     {
-      t: "B2C",
-      d: "People see where food and goods came from. Brands earn trust with product passports, ethical sourcing and outlet impact that are operational — not marketing claims.",
-    },
-  ],
-  capabilities: [
-    {
-      t: "Blockchain ERP & pedigree",
-      d: "Optional on-chain product passports and PO escrow when authenticity or capital must prove — without forcing crypto on every workflow.",
-    },
-    {
-      t: "When a lot fails, the ship stops",
-      d: "QA holds and HACCP gates block inventory and outbound. Recall drills and pedigree graphs are live controls, not theatre.",
-    },
-    {
-      t: "Trust as a control",
-      d: "Verification, peer stars, OTIFEF delivery scores and RIAD risk live where you buy and sell — bad counterparties surface before the next PO.",
-    },
-    {
-      t: "Full stack, zero silos",
-      d: "Network, SRM, CRM, inventory, manufacturing, distribution, finance, SHEQ, projects, ESG and intelligence in one membership-scoped workspace.",
-    },
-    {
-      t: "Africa-ready, world-class",
-      d: "ZAR billing, local verification patterns and the discipline global buyers expect — so African trade scales with proof.",
-    },
-    {
-      t: "Intelligence + SAM",
-      d: "Live pulse across the enterprise, Super-Cube® leadership for humans, and SAM (Grok) in-app messenger so teams ramp without a manual.",
+      t: "~6,000 KZN schools",
+      d: "Schools on the network receive and serve from the same approved products and menus — compliance becomes the path of least resistance.",
     },
   ],
-  revolutionTitle: "How this rewrites how business should operate",
-  revolutionBody:
-    "SupplierAdvisor® is not another dashboard. It is a thesis that commerce without proof is optional failure — and that African and global operators deserve the same command discipline as the best global chains, without the silo tax.",
-  continentalImpacts: [
+  /** How the model works */
+  howItWorks: [
     {
-      t: "Transparency replaces paperwork theatre",
-      d: "Lots, holds, certificates and performance scores live on the same OS as inventory and finance — so audits, DFIs and buyers see one truth.",
+      t: "Approved products & menus",
+      d: "DBE publishes what is approved on SupplierAdvisor® — products and menus the network must follow, not a parallel spreadsheet.",
     },
     {
-      t: "Efficiency without blind spots",
-      d: "One tower from procure to fulfill surfaces exceptions first. Multi-entity groups keep clean books while still trading on a verified graph.",
+      t: "Shared visibility",
+      d: "Service providers and schools work from the same catalogue and rules as the department, reducing ambiguity and unapproved substitution.",
     },
     {
-      t: "B2B, B2G and B2C share one fabric",
-      d: "Private trade, public procurement and consumer provenance stop living in incompatible systems — trust compounds across markets.",
+      t: "Incentives to comply",
+      d: "Providers and schools are incentivised to stay inside DBE requirements — good behaviour is rewarded on the network, not only policed after the fact.",
     },
     {
-      t: "Food security meets last-mile commerce",
-      d: "Container outlets, contractors and impact metrics (jobs, meals) sit next to stock and distribution — Feed and Empower on the same command centre.",
-    },
-    {
-      t: "Africa scales with proof the world respects",
-      d: "Verified companies, OTIFEF, SHEQ and optional on-chain pedigree meet the bar global buyers and governments demand — from KZN to corridors worldwide.",
-    },
-    {
-      t: "Networks that pay for good behaviour",
-      d: "Referral economics reward inviting real partners who stay — growth aligned with verified trade, not spam signups.",
+      t: "Nutrition that reaches the child",
+      d: "When the approved list and the kitchen align, learners are more likely to receive the fortified, programme-grade meals they need to learn.",
     },
   ],
+  outcomes: [
+    "One network linking the department, service providers and KZN schools for school nutrition delivery",
+    "DBE-controlled approved products and menus as live operating rules — not paper only",
+    "Compliance incentives for service providers and schools to follow DBE requirements",
+    "Stronger assurance that children receive the nutrition the programme designs for them",
+    "A B2G proof point for SupplierAdvisor® that Big Five Connect can extend to other departments and provinces",
+  ],
+  whyItMatters:
+    "School feeding only works when the plate matches the policy. Connecting DBE authority with the people who buy, cook and serve — at roughly 1,800 providers and 6,000 schools in KZN — turns SupplierAdvisor® into a compliance and nutrition engine, not just a marketplace.",
+  programmeNote: `${NSNP.shortName} context: South Africa’s ${NSNP.name} is led by the ${NSNP.department}. This case study is the Big Five Connect / SupplierAdvisor® operating model that helps enforce approved products and menus across the KZN delivery network.`,
+  pillars: ["Connect", "Foods", "Direct", "Impact", "Access"],
   stats: [
-    { value: "14+", label: "Integrated systems · zero silos" },
-    { value: "B2B·G·C", label: "One trusted fabric" },
-    { value: "30d", label: "Free trial · full platform" },
-    { value: "OTIFEF", label: "Delivery trust you can score" },
+    { value: "~1,800", label: "Service providers (approx.)" },
+    { value: "~6,000", label: "KZN schools (approx.)" },
+    { value: "DBE", label: "Sets products & menus" },
+    { value: "Incentives", label: "Compliance by design" },
   ],
   note:
-    "Positioning and product claims aligned with www.supplieradvisor.com. Pricing and founding-partner offers are as published on the platform and may change — always confirm on the live site.",
+    "Service provider (~1,800) and school (~6,000 KZN) figures are approximate programme-scale estimates for this case study — not a real-time census. Product, menu and incentive rules are as configured with the department on SupplierAdvisor® and may evolve. Confirm live scope with Big Five Connect.",
   ctaPrimary: {
     href: "https://www.supplieradvisor.com/onboarding?type=business",
     label: "Start free trial on SupplierAdvisor®",
@@ -102,4 +86,5 @@ export const SA_CASE = {
   },
   ctaSecondary: { href: "/connect", label: "Big Five Connect · SAM" },
   ctaTertiary: { href: "/contact?interest=connect", label: "Book a Connect briefing" },
+  ctaFoods: { href: "/foods#case-study", label: "Foods · NSNP product case" },
 } as const;

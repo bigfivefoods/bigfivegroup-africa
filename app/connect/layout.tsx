@@ -6,11 +6,11 @@ const social = siteSocialImages("connect");
 export const metadata: Metadata = {
   title: "Connect · SupplierAdvisor® · SAM",
   description:
-    "ERP that ships. Trust that blocks risk. SAM that teaches the chain. Big Five Connect is powered by SupplierAdvisor® — AI trust, SAM messenger, OTIFEF, SHEQ, and on-chain pedigree.",
+    "Big Five Connect runs SupplierAdvisor® — including a case study aligning DBE with ~1,800 service providers and ~6,000 KZN schools for approved products, menus and compliance incentives. ERP, SAM, OTIFEF, SHEQ.",
   openGraph: {
-    title: "Big Five Connect | SupplierAdvisor® · SAM · AI Trust",
+    title: "Big Five Connect | SupplierAdvisor® · DBE × KZN case",
     description:
-      "One chain. Zero blind spots. SAM (Grok-powered messenger), Live pulse, inventory, SHEQ, and ratings in one supply-chain OS.",
+      "How SupplierAdvisor® aligns the Department of Basic Education with ~1,800 service providers and ~6,000 KZN schools for school nutrition compliance.",
     images: social.openGraph.images,
   },
   twitter: {

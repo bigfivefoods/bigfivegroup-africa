@@ -96,7 +96,7 @@ export default function ConnectPage() {
             primary: true,
             external: true,
           },
-          { href: "#case-study-sa", label: "SupplierAdvisor case" },
+          { href: "#case-study-sa", label: "DBE × KZN case study" },
           { href: "#connect-deck", label: "Strategic deck" },
           { href: "#sam", label: `Meet ${sa.sam.name}` },
         ]}

@@ -42,24 +42,27 @@ When children eat well, they can learn. NSNP is one of the country’s flagship 
     }),
     base({
       id: "seed_supplieradvisor_2026",
-      slug: "supplieradvisor-trusted-supplier-advice",
-      title: "The world’s most trusted supplier advice — blockchain ERP for B2B, B2G & B2C",
+      slug: "supplieradvisor-dbe-kzn-school-nutrition",
+      title: "SupplierAdvisor® aligns DBE with ~1,800 providers and ~6,000 KZN schools",
       excerpt:
-        "SupplierAdvisor® unites private trade, public procurement and consumer provenance on one verified OS.",
-      tag: "Connect · SupplierAdvisor®",
-      publishedAt: "2026-06-15T10:00:00.000Z",
+        "Big Five Connect uses SupplierAdvisor® so the Department of Basic Education can set approved products and menus — with service providers and schools incentivised to comply for learner nutrition.",
+      tag: "Connect · SupplierAdvisor® · DBE",
+      publishedAt: "2026-07-20T10:00:00.000Z",
       coverImage: "/connect-hero.jpg",
-      body: `## Verified commerce for African and global trade
+      body: `## School nutrition compliance on one network
 
-**SupplierAdvisor®** unites private trade, public procurement and consumer provenance on one verified OS — transparency, efficiency and live trust controls that can reshape how African and global businesses operate.
+**Big Five Connect** runs **SupplierAdvisor®** so South Africa’s Department of Basic Education can align school nutrition delivery in KwaZulu-Natal: roughly **1,800 service providers** and approximately **6,000 schools** on one verified operating fabric.
 
-## What partners get
+## How it works
 
-- Verified supplier profiles and ethical trade rails
-- Live order and network visibility where programmes require it
-- A foundation for B2B, B2G and B2C provenance
+1. **DBE sets approved products and menus** on the platform — one source of truth.
+2. **Service providers and schools** work from the same rules, not parallel spreadsheets.
+3. **Incentives** reward compliance with DBE requirements — good behaviour is the path of least resistance.
+4. **Learners** are more likely to receive the nutrition the programme designs for them.
 
-[Read the SupplierAdvisor case](/connect#case-study-sa) · [Meet SAM](/connect/sam)
+Scale figures are **approximate programme scope**, not a real-time census.
+
+[Read the full case study](/connect#case-study-sa) · [Foods · NSNP products](/foods#case-study) · [Meet SAM](/connect/sam)
 `,
     }),
     base({

@@ -12,7 +12,7 @@ const social = siteSocialImages("partner-kit");
 export const metadata = {
   title: "Partner kit",
   description:
-    "One-page partner pack: Big Five Group mission, NSNP school nutrition case, Super-Cube® FMCG lifts, and how to engage.",
+    "One-page partner pack: Big Five Group mission, NSNP school nutrition, SupplierAdvisor® DBE × KZN case, Super-Cube® FMCG lifts, and how to engage.",
   openGraph: {
     title: "Partner kit | Big Five Group Africa",
     url: "/partner-kit",
@@ -22,7 +22,6 @@ export const metadata = {
     card: "summary_large_image",
     images: social.twitter.images,
   },
-
   alternates: { canonical: "/partner-kit" },
 };
 
@@ -124,21 +123,22 @@ export default function PartnerKitPage() {
             unoptimized
           />
           <h2 className="text-lg font-semibold text-black mb-2">
-            Case · SupplierAdvisor® · trusted supplier OS
+            Case · SupplierAdvisor® · DBE × KZN school nutrition
           </h2>
-          <p className="text-base font-semibold text-cyan-900 mb-2 tracking-tight">
-            &ldquo;{SA_CASE.tagline}&rdquo;
+          <p className="text-2xl font-semibold tracking-tighter text-cyan-900 mb-1">
+            {SA_CASE.secondaryStat.value} providers · {SA_CASE.ambition} schools
           </p>
+          <p className="text-sm text-cyan-800/80 mb-3">{SA_CASE.ambitionUnit}</p>
           <p className="text-sm text-[#404040] leading-relaxed mb-3">{SA_CASE.body}</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
-            {SA_CASE.pillars.map((p) => (
-              <div key={p.t} className="rounded-lg border border-cyan-100 bg-white px-3 py-2">
-                <div className="text-xs font-bold text-cyan-900">{p.t}</div>
-                <p className="text-[11px] text-[#525252] leading-snug line-clamp-3">{p.d}</p>
+            {SA_CASE.actors.map((a) => (
+              <div key={a.t} className="rounded-lg border border-cyan-100 bg-white px-3 py-2">
+                <div className="text-xs font-bold text-cyan-900">{a.t}</div>
+                <p className="text-[11px] text-[#525252] leading-snug line-clamp-3">{a.d}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-[#737373] mb-2">{SA_CASE.revolutionBody}</p>
+          <p className="text-xs text-[#737373] mb-2">{SA_CASE.whyItMatters}</p>
           <a
             href={SA_CASE.siteUrl}
             className="text-xs font-medium text-cyan-900 underline break-all"
