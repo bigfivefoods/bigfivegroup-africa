@@ -180,7 +180,7 @@ export default function FoodsPage() {
                 Product ranges
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-black text-balance leading-[1.05]">
-                Nutrition people actually eat
+                Nutrition that actually tastes great
               </h2>
               <p className="mt-4 text-base sm:text-lg text-[#525252] leading-relaxed">
                 Five ranges: porridges, soya, one-pots, soups and NSNP institutional 5kg packs —
