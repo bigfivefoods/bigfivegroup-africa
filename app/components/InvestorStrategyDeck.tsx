@@ -573,7 +573,8 @@ function Slide({ index }: { index: number }) {
             ))}
           </div>
           <p className={`text-white/40 mt-3 ${forPrint ? "text-[9px]" : "text-[10px]"}`}>
-            Sources: SOFI 2025, UNICEF/WHO/WB JME, WHO GHO — full links on investor portal.
+            Sources: SOFI 2026 (FAO/IFAD/UNICEF/WFP/WHO), UNICEF/WHO/WB JME, WHO GHO — full links
+            on investor portal.
           </p>
         </DeckSlideShell>
       );

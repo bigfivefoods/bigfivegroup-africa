@@ -78,16 +78,33 @@ export const AFRICA_PROBLEMS: AfricaProblem[] = [
     id: "hunger",
     title: "Hunger & food insecurity",
     stats: [
-      { value: "307M", label: "People in Africa faced hunger in 2024 (>20% of population)" },
-      { value: "~60%", label: "Of people projected undernourished by 2030 could be in Africa" },
-      { value: "2.3B", label: "People with moderate or severe food insecurity globally (2024)" },
+      {
+        value: "309M",
+        label: "People in Africa faced hunger in 2025 (~20% of population · SOFI 2026)",
+      },
+      {
+        value: "645M",
+        label: "People globally faced hunger in 2025 (~7.8% · SOFI 2026)",
+      },
+      {
+        value: "2.7B",
+        label: "People worldwide who cannot afford a healthy diet (SOFI 2026)",
+      },
+      {
+        value: "~60%",
+        label: "Of people projected undernourished by 2030 could be in Africa",
+      },
     ],
     narrative:
-      "Hunger is rising in Africa even as some global indicators improve. Climate shocks, conflict, weak logistics and under-investment in regenerative production keep food systems fragile.",
+      "Global hunger eased slightly in 2025 (SOFI 2026), but Africa remains the epicentre of undernourishment — about one in five people on the continent, ~309 million people. Climate shocks, conflict, weak logistics and under-investment in regenerative production keep food systems fragile even as some global indicators improve.",
     sources: [
       {
-        label: "WHO / FAO / IFAD / UNICEF / WFP — SOFI 2025",
-        href: "https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report",
+        label: "FAO — SOFI 2026 news (FAO/IFAD/UNICEF/WFP/WHO)",
+        href: "https://www.fao.org/newsroom/detail/sofi-2026--hunger-not-inevitable--fao-says-as-global-hunger-report-shows-progress/en",
+      },
+      {
+        label: "SOFI flagship page · FAO",
+        href: "https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en",
       },
       {
         label: "Global Report on Food Crises",
@@ -100,16 +117,29 @@ export const AFRICA_PROBLEMS: AfricaProblem[] = [
     id: "malnutrition",
     title: "Child malnutrition",
     stats: [
-      { value: "62M", label: "Stunted children under 5 in sub-Saharan Africa" },
-      { value: "13M", label: "Children with acute malnutrition in Eastern & Southern Africa (UNICEF call)" },
-      { value: "45%", label: "Of under-five deaths linked to undernutrition as underlying cause (global framing)" },
+      {
+        value: "150M",
+        label: "Children under 5 stunted globally in 2024 (~23.2% · JME / SOFI)",
+      },
+      {
+        value: "~1/3",
+        label: "Children in high-stunting regions of SSA still face very high stunting prevalence",
+      },
+      {
+        value: "13M",
+        label: "Children with acute malnutrition in Eastern & Southern Africa (UNICEF call)",
+      },
+      {
+        value: "45%",
+        label: "Of under-five deaths linked to undernutrition as underlying cause (global framing)",
+      },
     ],
     narrative:
-      "Sub-Saharan Africa remains a focus of stunting and micronutrient deficiency. Affordable fortified diets, school feeding and last-mile logistics are structural answers — not one-off campaigns.",
+      "Child stunting has improved modestly worldwide but remains off-track for 2030. Sub-Saharan Africa still carries a heavy burden of stunting and micronutrient deficiency. Affordable fortified diets, school feeding and last-mile logistics are structural answers — not one-off campaigns.",
     sources: [
       {
-        label: "UNICEF malnutrition data",
-        href: "https://data.unicef.org/topic/nutrition/malnutrition/",
+        label: "UNICEF · SOFI / malnutrition resources",
+        href: "https://data.unicef.org/resources/sofi-2025/",
       },
       {
         label: "UNICEF/WHO/World Bank Joint Child Malnutrition Estimates",
@@ -186,23 +216,23 @@ export const GROUP_THESIS_PILLARS = [
   {
     slug: "agri",
     problem:
-      "Hunger is rising in Africa while soils, smallholders and provenance remain under-invested — food systems stay fragile under climate and market shock.",
+      "Africa remains the epicentre of undernourishment (~309M people / ~20% in 2025 · SOFI 2026) while soils, smallholders and provenance remain under-invested — food systems stay fragile under climate and market shock.",
     opportunity:
       "Regenerative production and verified offtake into Foods/Direct create durable farm-to-institution supply and livelihood scale.",
     source: {
-      label: "SOFI 2025 · FAO/WHO/IFAD/UNICEF/WFP",
-      href: "https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report",
+      label: "SOFI 2026 · FAO/IFAD/UNICEF/WFP/WHO",
+      href: "https://www.fao.org/newsroom/detail/sofi-2026--hunger-not-inevitable--fao-says-as-global-hunger-report-shows-progress/en",
     },
   },
   {
     slug: "foods",
     problem:
-      "Child undernutrition and micronutrient gaps remain severe; sub-Saharan Africa carries a large share of global stunting and school-age hunger risk.",
+      "Child undernutrition and micronutrient gaps remain severe (~150M children under 5 stunted globally in 2024 · JME/SOFI); Africa carries a large share of school-age hunger risk and healthy diets remain unaffordable for ~2.7B people worldwide (SOFI 2026).",
     opportunity:
       "Affordable fortified staples with ~45% GP and ~50% cost advantage vs wholesale/retail (management/internal) — recurring volume for government and feeding schemes (e.g. NSNP) that should sustain and grow.",
     source: {
-      label: "UNICEF · Malnutrition data / JME",
-      href: "https://data.unicef.org/topic/nutrition/malnutrition/",
+      label: "SOFI 2026 + UNICEF/WHO/WB JME",
+      href: "https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en",
     },
   },
   {

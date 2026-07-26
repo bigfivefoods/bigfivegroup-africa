@@ -628,9 +628,9 @@ function ChallengeSlide() {
         <Eyebrow light>THE CHALLENGE</Eyebrow>
         <SlideTitle>Hunger and empty calories still define too many plates</SlideTitle>
         <div className={`grid grid-cols-2 min-h-0 ${forPrint ? "gap-2 mb-2" : "gap-3 sm:gap-4 mb-5"}`}>
-          <StatTile dark value="307M" label="People in Africa faced hunger in 2024 (SOFI 2025)" />
-          <StatTile dark value="13M" label="Children with acute malnutrition in ESA" />
-          <StatTile dark value="~1/3" label="Children in high-stunting regions of SSA" />
+          <StatTile dark value="309M" label="People in Africa faced hunger in 2025 (~20% · SOFI 2026)" />
+          <StatTile dark value="645M" label="People globally faced hunger in 2025 (SOFI 2026)" />
+          <StatTile dark value="2.7B" label="Cannot afford a healthy diet worldwide (SOFI 2026)" />
           <StatTile dark value="SDG 2" label="Zero Hunger — defining food-security goal" />
         </div>
         <p className={`text-white/70 max-w-3xl ${forPrint ? "text-[11px] leading-snug" : "text-sm leading-relaxed"}`}>

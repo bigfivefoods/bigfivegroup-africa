@@ -63,7 +63,7 @@ export const agriDeckConfig: PillarDeckConfig = {
   ],
   challengeTitle: "Africa cannot import its way out of empty soil",
   challengeStats: [
-    { value: "307M", label: "People in Africa faced hunger in 2024 (SOFI)" },
+    { value: "309M", label: "People in Africa faced hunger in 2025 (SOFI 2026)" },
     { value: "Soil", label: "Degradation undermines yields and resilience" },
     { value: "Smallholders", label: "Feed the continent — often without market power" },
     { value: "Trust", label: "Buyers need provenance, not promises" },

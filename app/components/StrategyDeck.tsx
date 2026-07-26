@@ -342,26 +342,28 @@ function Slide({ index }: SlideProps) {
     case 4:
       return (
         <SlideShell dark accent="rose">
-          <Eyebrow light>THE CHALLENGE · HUNGER</Eyebrow>
+          <Eyebrow light>THE CHALLENGE · HUNGER · SOFI 2026</Eyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 sm:mb-6 text-balance">
-            Hunger is rising in Africa — even as the global picture improves
+            Global hunger eased slightly — Africa remains the epicentre
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6">
-            <StatTile dark value="307M" label="People in Africa faced hunger in 2024 (>20% of the population)" />
+            <StatTile dark value="309M" label="People in Africa faced hunger in 2025 (~20% of the population · SOFI 2026)" />
             <StatTile dark value="~60%" label="Of people projected undernourished by 2030 could be in Africa" />
-            <StatTile dark value="673M" label="People globally experienced hunger in 2024 (down slightly overall)" />
-            <StatTile dark value="2.3B" label="People with moderate or severe food insecurity in 2024" />
+            <StatTile dark value="645M" label="People globally faced hunger in 2025 (~7.8% · SOFI 2026)" />
+            <StatTile dark value="2.7B" label="People worldwide who cannot afford a healthy diet (SOFI 2026)" />
           </div>
           <p className="text-xs text-white/40 leading-relaxed max-w-3xl">
             Sources:{" "}
-            <Ref href="https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report">
-              WHO / FAO / IFAD / UNICEF / WFP — SOFI 2025
+            <Ref href="https://www.fao.org/newsroom/detail/sofi-2026--hunger-not-inevitable--fao-says-as-global-hunger-report-shows-progress/en">
+              FAO / IFAD / UNICEF / WFP / WHO — SOFI 2026
             </Ref>
             ;{" "}
-            <Ref href="https://data.unicef.org/resources/sofi-2025/">UNICEF SOFI 2025 brief</Ref>
+            <Ref href="https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en">
+              SOFI flagship · FAO
+            </Ref>
             ;{" "}
             <Ref href="https://www.wfp.org/publications/global-report-food-crises-grfc">
-              Global Report on Food Crises 2026
+              Global Report on Food Crises
             </Ref>
             .
           </p>
@@ -376,19 +378,19 @@ function Slide({ index }: SlideProps) {
             Stunting, wasting and micronutrient gaps still define childhood for millions
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-5">
-            <StatTile value="62M" label="Stunted children under 5 in sub-Saharan Africa (largest regional total with South Asia)" />
-            <StatTile value="~1/3" label="Children affected by very high stunting prevalence in West/Central & East/Southern Africa (2024)" />
-            <StatTile value="13M" label="Children with acute malnutrition in Eastern & Southern Africa (UNICEF 2025 call)" />
+            <StatTile value="150M" label="Children under 5 stunted globally in 2024 (~23.2% · UNICEF/WHO/WB JME · SOFI)" />
+            <StatTile value="~1/3" label="Children in high-stunting regions of West/Central & East/Southern Africa still face very high stunting prevalence" />
+            <StatTile value="13M" label="Children with acute malnutrition in Eastern & Southern Africa (UNICEF call)" />
             <StatTile value="~4M" label="Estimated severe acute malnutrition (SAM) cases in ESA (most lethal form)" />
             <StatTile value="45%" label="Of under-five deaths linked to undernutrition as underlying cause (global UNICEF framing)" />
-            <StatTile value="150M" label="Children under 5 stunted globally in 2024 (UNICEF/WHO/WB JME)" />
+            <StatTile value="2.7B" label="People who cannot afford a healthy diet worldwide (SOFI 2026)" />
           </div>
           <p className="text-sm text-[#404040] leading-relaxed mb-4 max-w-3xl">
-            Sub-Saharan Africa remains the only region where the{" "}
-            <strong className="text-black">number of stunted children continues to rise</strong>, even
-            as prevalence falls slowly in places. Over half of children in Eastern and Southern Africa
-            are deficient in essential vitamins and minerals — undermining immunity, learning and
-            lifelong earnings.
+            Global stunting has improved modestly but remains{" "}
+            <strong className="text-black">off-track for 2030</strong>. Sub-Saharan Africa still
+            carries a heavy burden of stunting and micronutrient deficiency — undermining immunity,
+            learning and lifelong earnings. Affordable fortified diets and school feeding are
+            structural answers, not boutique nutrition.
           </p>
           <p className="text-xs text-[#737373] leading-relaxed max-w-3xl">
             Sources:{" "}
@@ -781,8 +783,8 @@ function Slide({ index }: SlideProps) {
               Global Report on Food Crises (WFP co-published)
             </Ref>
             {" · "}
-            <Ref href="https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report">
-              SOFI 2025 (FAO/IFAD/UNICEF/WFP/WHO)
+            <Ref href="https://www.fao.org/newsroom/detail/sofi-2026--hunger-not-inevitable--fao-says-as-global-hunger-report-shows-progress/en">
+              SOFI 2026 (FAO/IFAD/UNICEF/WFP/WHO)
             </Ref>
             . We complement — we do not claim WFP sponsorship or agency status.
           </p>
@@ -1040,8 +1042,8 @@ function Slide({ index }: SlideProps) {
               </p>
               <p>Big Five Group (Pty) Ltd · KwaZulu-Natal · South Africa · African HQ</p>
               <p>
-                Sources: SOFI 2025; GRFC 2026; UNICEF/WHO/WB JME; WHO African Region / GHO; UN
-                SDGs; WFP Zero Hunger agenda.
+                Sources: SOFI 2026 (FAO/IFAD/UNICEF/WFP/WHO); GRFC; UNICEF/WHO/WB JME; WHO African
+                Region / GHO; UN SDGs; WFP Zero Hunger agenda.
               </p>
             </div>
           </TitleSlideLayout>
