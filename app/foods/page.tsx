@@ -141,13 +141,7 @@ export default function FoodsPage() {
           className: "brightness-0 invert",
         }}
         eyebrow="PILLAR 02 · FORTIFIED NUTRITION · FEED"
-        title={
-          <>
-            Big Five Foods
-            <br />
-            Nourish a continent
-          </>
-        }
+        title="Nourish the Continent"
         subtitle="Fortified porridges, soya, one-pots and soups — certified manufacturing, measurable impact, ordered on SupplierAdvisor®."
         ctas={[
           { href: "#products", label: "Explore product ranges", primary: true },
