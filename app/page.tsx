@@ -8,18 +8,14 @@ import {
   ArrowRight,
   BookOpen,
   Building2,
-  GraduationCap,
   Landmark,
   Leaf,
   School,
-  ShoppingBag,
   Sparkles,
-  Sprout,
 } from "lucide-react";
 import { companies, type Company } from "./lib/companies";
 import { PILLAR_MISSIONS } from "./lib/pillarMissions";
 import { CompanyIcon } from "./lib/icons";
-import IntelligenceNarrative from "./components/IntelligenceNarrative";
 import CaseStudyNsnp from "./components/CaseStudyNsnp";
 import CaseStudySupplierAdvisor from "./components/CaseStudySupplierAdvisor";
 import PartnerLogoMarquee from "./components/PartnerLogoMarquee";
@@ -34,63 +30,25 @@ function companyBySlug(slug: string): Company | undefined {
   return companies.find((c) => c.slug === slug);
 }
 
-const statsData = [
-  {
-    number: 54,
-    label: "Nations in our African vision",
-    suffix: "",
-    note: "Continental ambition — not full operations in every country",
-  },
-  {
-    number: 12,
-    label: "Priority distribution markets",
-    suffix: "",
-    note: "Africa + Europe corridors (incl. DE · HU · GE) where we are building RTM",
-  },
-  {
-    number: 2.8,
-    label: "Ha regenerative opportunity",
-    suffix: "M",
-    note: "Agri plan & ambition — land we aim to unlock over time",
-  },
-  {
-    number: 2.5,
-    label: "Children / day NSNP plan",
-    suffix: "M",
-    note: "NSNP programme landed with DBE — plan scale (Foods)",
-  },
-];
-
-const audiences = [
+/** Primary audience doors — three clear paths, not six equal cards */
+const doors = [
   {
     icon: Landmark,
-    t: "Governments & public sector",
-    d: "Nutrition programmes, leadership capacity, and delivery partners who can hold complexity.",
+    t: "Governments & institutions",
+    d: "School nutrition, programme delivery and capacity that holds complexity.",
+    href: "/foods",
   },
   {
     icon: Building2,
-    t: "Enterprises & boards",
-    d: "Ethical commerce, Super-Cube® development, and verified supply systems.",
+    t: "Enterprise & boards",
+    d: "Verified trade, Super-Cube® leadership and multi-pillar programmes.",
+    href: "/connect",
   },
   {
     icon: School,
-    t: "Schools & institutions",
-    d: "Fortified meals at scale — affordable, shelf-stable, ordered on SupplierAdvisor®.",
-  },
-  {
-    icon: ShoppingBag,
-    t: "Retail & distribution",
-    d: "African staples with certifications, provenance, and route-to-market support.",
-  },
-  {
-    icon: GraduationCap,
-    t: "Leadership cohorts",
-    d: "Whole-person formation for executives, public servants, and emerging leaders.",
-  },
-  {
-    icon: Sprout,
-    t: "DFIs, NGOs & funders",
-    d: "Measurable Feed · Educate · Empower outcomes with Impact PMO discipline.",
+    t: "Retail, schools & partners",
+    d: "Fortified staples, last-mile hubs and foundations that prove impact.",
+    href: "/contact",
   },
 ];
 
@@ -98,22 +56,22 @@ const proofMetrics = [
   {
     value: "2.5m",
     label: "Children / day NSNP plan",
-    source: "NSNP programme landed with DBE — fortified porridges & soya (plan scale)",
+    source: "Foods · DBE pathway · plan scale",
   },
   {
     value: "150k+",
-    label: "Meals delivered to date",
-    source: "Big Five Foods programme delivery (partner-reported)",
+    label: "Meals delivered",
+    source: "Programme-reported · Foods",
   },
   {
     value: "~50%",
     label: "Cheaper vs wholesale & retail",
-    source: "Foods internal cost comparison — competitive for government & feeding schemes",
+    source: "Foods internal cost comparison",
   },
   {
     value: "70–76%",
     label: "Leadership developable",
-    source: "Super-Cube® DBA research · deliberate practice thesis",
+    source: "Super-Cube® DBA research",
   },
 ];
 
@@ -156,7 +114,7 @@ function AnimatedNumber({ end, suffix = "" }: { end: number; suffix?: string }) 
 export default function Home() {
   return (
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
-      {/* HERO — full viewport under navbar, all screen sizes */}
+      {/* HERO */}
       <section className="page-hero" aria-label="Home introduction">
         <div
           className="page-hero__media"
@@ -164,7 +122,6 @@ export default function Home() {
           role="img"
           aria-label="African landscape representing Big Five Group"
         />
-        {/* Group-wide emerald tint + depth + black-dot screen */}
         <div className="absolute inset-0 z-[1] bg-emerald-950/35" />
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/55 via-black/40 to-black/70" />
         <div className="page-hero__dots" aria-hidden />
@@ -192,7 +149,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.04 }}
             className="inline-flex max-w-full items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full border border-white/30 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-5 sm:mb-6 text-white/95"
           >
-            <span className="truncate">EST. 2018 · KWAZULU-NATAL · AFRICA</span>
+            <span className="truncate">FEED · EDUCATE · EMPOWER · EST. 2018</span>
           </motion.div>
 
           <motion.h1
@@ -206,27 +163,16 @@ export default function Home() {
             <br />
             Ten Pillars.
             <br />
-            Infinite African Impact.
+            African Impact.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="w-full max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-lg md:text-2xl lg:text-3xl text-white/95 font-light tracking-tight mb-3 sm:mb-5 text-pretty px-1"
+            className="w-full max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-lg md:text-xl lg:text-2xl text-white/90 font-light tracking-tight mb-7 sm:mb-10 text-pretty px-1"
           >
-            Regenerative. Sovereign. Ethical.
-            <br className="hidden sm:block" />
-            The future of Africa is being built right now.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-white/75 leading-relaxed mb-7 sm:mb-10 text-pretty px-1"
-          >
-            Feed · Educate · Empower — with ethical commerce, Super-Cube® leadership, and
-            intelligence that multiplies dignity.
+            Regenerative. Sovereign. Ethical. Tell us the outcome — we map the pillars.
           </motion.p>
 
           <motion.div
@@ -239,143 +185,118 @@ export default function Home() {
               href="#pillars"
               className="premium-button group w-full sm:w-auto min-w-0 inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-8 md:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold"
             >
-              <span className="sm:hidden text-center leading-snug">EXPLORE PILLARS</span>
-              <span className="hidden sm:inline text-center leading-snug">EXPLORE THE 10 PILLARS</span>
+              Explore the pillars
               <ArrowRight className="group-hover:translate-x-1 transition w-5 h-5 shrink-0" />
             </Link>
             <Link
-              href="/group"
+              href="/contact"
               className="premium-button w-full sm:w-auto min-w-0 inline-flex items-center justify-center gap-3 border border-white/40 hover:bg-white/10 px-5 sm:px-8 md:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white"
             >
-              THE GROUP
+              Book a briefing
             </Link>
           </motion.div>
         </div>
-
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity }}
-          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center text-white/60 text-[10px] tracking-[2px]"
-          aria-hidden
-        >
-          SCROLL
-          <div className="w-px h-8 sm:h-10 bg-white/25 mt-2" />
-        </motion.div>
       </section>
 
-      {/* TRUST BAR */}
-      <div className="border-b border-black/10 py-4 sm:py-5 bg-white">
-        <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-10 gap-y-2 sm:gap-y-3 text-[10px] sm:text-xs uppercase tracking-[1.5px] sm:tracking-[2px] text-[#525252]">
-          <div>International Presence</div>
-          <div className="hidden sm:block w-1 h-1 rounded-full bg-black/15" />
-          <div>SupplierAdvisor® · SAM</div>
-          <div className="hidden md:block w-1 h-1 rounded-full bg-black/15" />
-          <div className="hidden md:block">Super-Cube® Leadership</div>
-          <div className="hidden lg:block w-1 h-1 rounded-full bg-black/15" />
-          <div className="hidden lg:block">AI · On-Chain Verified</div>
-          <div className="hidden xl:block w-1 h-1 rounded-full bg-black/15" />
-          <div className="hidden xl:block">UN SDG Aligned</div>
+      {/* Trust strip */}
+      <div className="border-b border-black/10 py-3.5 sm:py-4 bg-white">
+        <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-8 gap-y-2 text-[10px] sm:text-xs uppercase tracking-[1.5px] sm:tracking-[2px] text-[#525252]">
+          <span>KwaZulu-Natal · Continent</span>
+          <span className="hidden sm:inline w-1 h-1 rounded-full bg-black/15" />
+          <span>SupplierAdvisor® · SAM</span>
+          <span className="hidden md:inline w-1 h-1 rounded-full bg-black/15" />
+          <span className="hidden md:inline">Super-Cube®</span>
+          <span className="hidden lg:inline w-1 h-1 rounded-full bg-black/15" />
+          <span className="hidden lg:inline">UN SDG aligned</span>
         </div>
       </div>
 
-      {/* WHO WE SERVE + PROOF */}
-      <section
-        id="who"
-        className="border-b border-black/10 bg-white py-14 sm:py-16 md:py-20"
-      >
+      {/* Direct paths + proof */}
+      <section className="bg-white border-b border-black/10 py-12 sm:py-14 md:py-16">
         <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-8 sm:mb-10">
-            <div className="uppercase tracking-[3px] text-xs text-emerald-700 mb-3 font-medium">
-              Who this is for
+          <div className="max-w-2xl mb-8">
+            <div className="uppercase tracking-[3px] text-xs text-emerald-700 mb-2 font-medium">
+              Start here
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance">
               Outcomes first. Pillars second.
             </h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-[#525252] leading-relaxed">
-              Big Five is an integrated African group — Feed · Educate · Empower. Tell us the
-              outcome you need; we map the right mix of pillars.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-10 sm:mb-12">
-            {audiences.map((a) => (
-              <div
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-10">
+            {doors.map((a) => (
+              <Link
                 key={a.t}
-                className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 sm:p-6 min-w-0 flex gap-3 sm:gap-4"
+                href={a.href}
+                className="group rounded-2xl border border-black/10 bg-[#fafafa] p-5 sm:p-6 min-w-0 hover:border-emerald-300/50 hover:bg-white hover:shadow-sm transition-all"
               >
-                <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center mb-3">
                   <a.icon className="w-5 h-5" />
                 </div>
-                <div className="min-w-0">
-                  <div className="font-semibold text-black text-sm sm:text-base mb-1">{a.t}</div>
-                  <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">{a.d}</p>
+                <div className="font-semibold text-black text-sm sm:text-base mb-1 group-hover:underline">
+                  {a.t}
                 </div>
-              </div>
+                <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">{a.d}</p>
+              </Link>
             ))}
           </div>
 
-          <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-[#0a0a0a] text-white p-5 sm:p-8 md:p-10">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 sm:mb-8">
+          <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-[#0a0a0a] text-white p-5 sm:p-7 md:p-8">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-5">
               <div>
-                <div className="text-[10px] sm:text-xs tracking-[2px] text-emerald-400/90 mb-2 font-medium">
+                <div className="text-[10px] tracking-[2px] text-emerald-400/90 mb-1.5 font-medium">
                   SIGNATURE PROOF
                 </div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-balance">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tighter">
                   Numbers partners put in briefs
                 </h3>
               </div>
               <Link
                 href="/contact"
-                className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto shrink-0"
+                className="text-xs font-semibold text-emerald-300 hover:text-white inline-flex items-center gap-1 shrink-0"
               >
                 Book a briefing
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
               {proofMetrics.map((m) => (
                 <div
                   key={m.label}
                   className="rounded-xl border border-white/10 bg-white/[0.05] p-3 sm:p-4 min-w-0"
                 >
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-white">
+                  <div className="text-2xl sm:text-3xl font-semibold tracking-tighter text-white">
                     {m.value}
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-white/90 mt-1">{m.label}</div>
-                  <div className="text-[10px] sm:text-[11px] text-white/45 mt-1.5 leading-snug">
-                    {m.source}
-                  </div>
+                  <div className="text-xs font-medium text-white/90 mt-1">{m.label}</div>
+                  <div className="text-[10px] text-white/45 mt-1 leading-snug">{m.source}</div>
                 </div>
               ))}
             </div>
-            <p className="mt-5 sm:mt-6 text-[11px] sm:text-xs text-white/40 leading-relaxed max-w-3xl">
-              Programme metrics are partner- and group-reported unless noted. Super-Cube®
-              developability draws on doctoral research (UKZN, 2020). Ask us for the latest brief when
-              you enquire.
+            <p className="mt-4 text-[10px] sm:text-[11px] text-white/40 leading-relaxed max-w-3xl">
+              Partner- and group-reported unless noted. Ask for the latest dated brief when you
+              enquire.
             </p>
           </div>
         </div>
       </section>
 
-      {/* THE 10 PILLARS · Feed · Educate · Empower */}
+      {/* Ten pillars · case studies live inside missions */}
       <section
         id="pillars"
-        className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-14 sm:pb-16 md:pb-20"
+        className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20"
       >
-        <div className="mb-10 sm:mb-12 max-w-3xl">
-          <div className="uppercase tracking-[3px] text-xs text-[#525252] mb-3">
-            The Ecosystem
-          </div>
+        <div className="mb-8 sm:mb-10 max-w-2xl">
+          <div className="uppercase tracking-[3px] text-xs text-[#525252] mb-2">The ecosystem</div>
           <h2 className="section-heading text-black">
-            The Ten Pillars of
+            Ten pillars.
             <br />
-            African Sovereignty
+            Three missions.
           </h2>
-          <p className="mt-4 sm:mt-5 text-base sm:text-lg text-[#525252] max-w-2xl">
-            From regenerative farms and fortified nutrition to leadership, capital access and royal
-            partnership — every pillar compounds the others under one group.
+          <p className="mt-3 text-sm sm:text-base text-[#525252] max-w-xl leading-relaxed">
+            Feed · Educate · Empower — every pillar compounds the others under one Group.
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             {PILLAR_MISSIONS.map((m) => {
               const ChipIcon = MISSION_ICONS[m.id];
               return (
@@ -397,7 +318,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="space-y-10 sm:space-y-12 md:space-y-14">
+        <div className="space-y-8 sm:space-y-10">
           {PILLAR_MISSIONS.map((mission, mi) => {
             const pillars = mission.slugs
               .map((slug) => companyBySlug(slug))
@@ -408,53 +329,49 @@ export default function Home() {
               <motion.div
                 key={mission.id}
                 id={`mission-${mission.id}`}
-                initial={{ opacity: 0, y: 28 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: mi * 0.06, duration: 0.45 }}
+                transition={{ delay: mi * 0.05, duration: 0.4 }}
                 className="scroll-mt-28 rounded-2xl sm:rounded-3xl border border-black/10 overflow-hidden bg-white shadow-sm"
-                style={{ boxShadow: `0 0 0 1px ${mission.accent}14` }}
+                style={{ boxShadow: `0 0 0 1px ${mission.accent}12` }}
               >
-                {/* Mission band */}
                 <div
-                  className="relative px-5 sm:px-7 md:px-8 py-5 sm:py-6 border-b border-black/5"
+                  className="relative px-5 sm:px-6 md:px-8 py-4 sm:py-5 border-b border-black/5"
                   style={{
                     background: `linear-gradient(135deg, ${mission.accentSoft} 0%, #ffffff 70%)`,
                   }}
                 >
                   <div
-                    className="absolute left-0 top-0 bottom-0 w-1.5 sm:w-2"
+                    className="absolute left-0 top-0 bottom-0 w-1.5"
                     style={{ background: mission.accent }}
                     aria-hidden
                   />
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pl-2">
-                    <div className="flex items-start gap-3 min-w-0">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div
-                        className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-sm"
-                        style={{
-                          backgroundColor: mission.accent,
-                          color: "#fff",
-                        }}
+                        className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shrink-0 text-white"
+                        style={{ backgroundColor: mission.accent }}
                       >
-                        <MissionIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <MissionIcon className="w-5 h-5" />
                       </div>
                       <div className="min-w-0">
                         <div
-                          className="text-[10px] sm:text-xs font-semibold tracking-[2px] uppercase mb-1"
+                          className="text-[10px] font-semibold tracking-[2px] uppercase"
                           style={{ color: mission.accentDark }}
                         >
                           {mission.label}
                         </div>
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black">
+                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tighter text-black">
                           {mission.mission}
                         </h3>
-                        <p className="mt-1 text-sm text-[#525252] leading-relaxed max-w-xl">
+                        <p className="text-xs sm:text-sm text-[#525252] leading-snug mt-0.5 max-w-lg">
                           {mission.blurb}
                         </p>
                       </div>
                     </div>
                     <div
-                      className="text-[10px] sm:text-xs font-semibold tracking-[1.5px] uppercase px-3 py-1.5 rounded-full border shrink-0 self-start sm:self-center"
+                      className="text-[10px] font-semibold tracking-[1.5px] uppercase px-2.5 py-1 rounded-full border shrink-0 self-start sm:self-center"
                       style={{
                         borderColor: `${mission.accent}40`,
                         color: mission.accentDark,
@@ -466,232 +383,178 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Pillar cards */}
                 <div
-                  className={`p-4 sm:p-5 md:p-6 grid gap-3 sm:gap-4 ${
+                  className={`p-4 sm:p-5 grid gap-3 ${
                     pillars.length === 1
-                      ? "grid-cols-1 max-w-xl"
+                      ? "grid-cols-1 max-w-md"
                       : pillars.length === 2
                         ? "grid-cols-1 sm:grid-cols-2"
                         : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                   }`}
                 >
-                  {pillars.map((company, index) => (
-                    <motion.div
+                  {pillars.map((company) => (
+                    <Link
                       key={company.slug}
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-20px" }}
-                      transition={{ delay: Math.min(index * 0.04, 0.24), duration: 0.35 }}
-                      className="min-w-0"
+                      href={`/${company.slug}`}
+                      className="group flex flex-col h-full rounded-2xl border border-black/8 bg-[#fafafa] p-4 sm:p-5 hover:bg-white hover:border-black/15 hover:shadow-md transition-all min-w-0"
+                      style={{ borderTopWidth: 3, borderTopColor: company.color }}
                     >
-                      <Link
-                        href={`/${company.slug}`}
-                        className="group flex flex-col h-full rounded-2xl border border-black/8 bg-[#fafafa] p-5 sm:p-6 hover:bg-white hover:border-black/15 hover:shadow-md transition-all min-w-0"
-                        style={{
-                          borderTopWidth: 3,
-                          borderTopColor: company.color,
-                        }}
-                      >
-                        <div className="flex items-center gap-3 mb-4">
-                          <div
-                            className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                            style={{
-                              backgroundColor: `${company.color}18`,
-                              color: company.color,
-                            }}
-                          >
-                            <CompanyIcon name={company.icon} size={22} />
-                          </div>
-                          <div className="min-w-0">
-                            <div
-                              className="font-semibold text-lg sm:text-xl tracking-tighter leading-tight"
-                              style={{ color: company.color }}
-                            >
-                              {company.name}
-                            </div>
-                            <div className="text-[10px] uppercase tracking-[1px] text-[#a3a3a3] font-medium">
-                              {mission.mission}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-xs sm:text-sm text-[#404040] mb-2 leading-snug font-medium">
-                          {company.tagline}
-                        </div>
-                        <div className="text-xs sm:text-sm text-[#525252] line-clamp-3 mb-4 flex-1 leading-relaxed">
-                          {company.description}
+                      <div className="flex items-center gap-2.5 mb-3">
+                        <div
+                          className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                          style={{
+                            backgroundColor: `${company.color}18`,
+                            color: company.color,
+                          }}
+                        >
+                          <CompanyIcon name={company.icon} size={18} />
                         </div>
                         <div
-                          className="mt-auto inline-flex items-center text-[10px] sm:text-xs uppercase tracking-[1.5px] font-semibold transition-colors"
+                          className="font-semibold text-base sm:text-lg tracking-tighter leading-tight"
                           style={{ color: company.color }}
                         >
-                          Enter the pillar
-                          <ArrowRight className="ml-1.5 w-3 h-3 group-hover:translate-x-0.5 transition" />
+                          {company.name}
                         </div>
-                      </Link>
-                    </motion.div>
+                      </div>
+                      <div className="text-xs text-[#404040] mb-1.5 leading-snug font-medium line-clamp-2">
+                        {company.tagline}
+                      </div>
+                      <div className="text-xs text-[#525252] line-clamp-2 mb-3 flex-1 leading-relaxed">
+                        {company.description}
+                      </div>
+                      <div
+                        className="mt-auto inline-flex items-center text-[10px] uppercase tracking-[1.5px] font-semibold"
+                        style={{ color: company.color }}
+                      >
+                        Enter
+                        <ArrowRight className="ml-1 w-3 h-3 group-hover:translate-x-0.5 transition" />
+                      </div>
+                    </Link>
                   ))}
                 </div>
+
+                {/* Case studies under the mission that owns them */}
+                {mission.id === "feed" && (
+                  <div className="border-t border-black/5 bg-amber-50/30">
+                    <div className="px-4 sm:px-6 pt-4 sm:pt-5">
+                      <div className="text-[10px] font-semibold tracking-[2px] uppercase text-amber-900/80 mb-1">
+                        Feed · Signature case
+                      </div>
+                      <p className="text-xs text-[#525252] mb-0 max-w-2xl">
+                        Big Five Foods × National School Nutrition Programme pathway — plan scale for
+                        school feeding under DBE.
+                      </p>
+                    </div>
+                    <CaseStudyNsnp variant="compact" />
+                  </div>
+                )}
+
+                {mission.id === "empower" && (
+                  <div className="border-t border-black/5 bg-cyan-50/30">
+                    <div className="px-4 sm:px-6 pt-4 sm:pt-5">
+                      <div className="text-[10px] font-semibold tracking-[2px] uppercase text-cyan-900/80 mb-1">
+                        Empower · Signature case
+                      </div>
+                      <p className="text-xs text-[#525252] mb-0 max-w-2xl">
+                        Connect · SupplierAdvisor® — verified trade infrastructure for B2B, B2G and
+                        provenance.
+                      </p>
+                    </div>
+                    <CaseStudySupplierAdvisor variant="compact" />
+                  </div>
+                )}
               </motion.div>
             );
           })}
         </div>
       </section>
 
-      {/* AFRICA SECTION */}
-      <section className="bg-white py-16 sm:py-20 md:py-24 border-y border-black/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="uppercase tracking-[3px] text-xs mb-4 text-emerald-600">
-            Continent-Wide
-          </div>
-          <h2 className="section-heading mb-5 sm:mb-6 text-black">
-            Africa is not a country.
-            <br />
-            It is our canvas.
-          </h2>
-          <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-[#525252] mb-8 sm:mb-10">
-            From the savannas of KwaZulu-Natal to the markets of Lagos and the highlands of Ethiopia —
-            Big Five operates with deep local roots and continental ambition.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-            <Link
-              href="/africa"
-              className="inline-flex items-center justify-center gap-3 text-xs sm:text-sm uppercase tracking-[2px] border-b border-black/30 pb-1 hover:border-black group text-black"
-            >
-              Discover our African footprint
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition shrink-0" />
-            </Link>
-            <Link
-              href="/global"
-              className="inline-flex items-center justify-center gap-3 text-xs sm:text-sm uppercase tracking-[2px] border-b border-black/20 pb-1 hover:border-black group text-[#525252] hover:text-black"
-            >
-              Explore global presence
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition shrink-0" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <div className="bg-[#fafafa] border-y border-black/10">
-        <CaseStudyNsnp />
-      </div>
-
-      <div className="bg-white border-b border-black/10">
-        <CaseStudySupplierAdvisor />
-      </div>
-
-      <IntelligenceNarrative variant="compact" />
-
-      {/* IMPACT STATS */}
-      <section className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
-        <div className="text-center mb-10 sm:mb-14">
-          <div className="text-xs tracking-[3px] text-[#525252]">
-            Measurable. Verifiable. On-Chain. AI-ready.
-          </div>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mt-3 sm:mt-4 text-black">
-            Real Impact.
-            <br />
-            Real Numbers.
-          </h3>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-          {statsData.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              className="bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 text-center hover:border-black/20 transition-all min-w-0"
-            >
-              <div className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tighter text-black mb-2 sm:mb-3 break-words">
-                <AnimatedNumber end={stat.number} suffix={stat.suffix} />
+      {/* Continent + scale — one tight band */}
+      <section className="bg-white border-y border-black/10 py-12 sm:py-14">
+        <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div>
+              <div className="uppercase tracking-[3px] text-xs text-emerald-700 mb-2 font-medium">
+                Continent · corridors
               </div>
-              <div className="text-[#171717] text-xs sm:text-base md:text-lg font-medium leading-snug">
-                {stat.label}
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black text-balance mb-3">
+                Africa is not a country.
+                <br />
+                It is our canvas.
+              </h2>
+              <p className="text-sm sm:text-base text-[#525252] leading-relaxed mb-5 max-w-md">
+                Deep roots in KwaZulu-Natal. Continental ambition. Priority corridors across Africa
+                and Europe.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/africa"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[1.5px] text-black border-b border-black/25 pb-0.5 hover:border-black"
+                >
+                  Africa footprint
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link
+                  href="/global"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[1.5px] text-[#525252] border-b border-black/15 pb-0.5 hover:text-black hover:border-black"
+                >
+                  Global corridors
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
-              {stat.note && (
-                <div className="text-[10px] sm:text-xs text-[#737373] mt-2 leading-snug">
-                  {stat.note}
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { n: 54, s: "", l: "Nations in our African vision", note: "Ambition, not full ops everywhere" },
+                { n: 12, s: "", l: "Priority RTM markets", note: "Africa + Europe corridors" },
+                { n: 2.8, s: "M", l: "Ha regenerative opportunity", note: "Agri plan scale" },
+                { n: 2.5, s: "M", l: "Children / day NSNP plan", note: "Foods · DBE pathway" },
+              ].map((stat, i) => (
+                <div
+                  key={stat.l}
+                  className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 sm:p-5 min-w-0"
+                >
+                  <div className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
+                    <AnimatedNumber end={stat.n} suffix={stat.s} />
+                  </div>
+                  <div className="text-xs sm:text-sm font-medium text-black mt-1 leading-snug">
+                    {stat.l}
+                  </div>
+                  <div className="text-[10px] text-[#737373] mt-1">{stat.note}</div>
                 </div>
-              )}
-            </motion.div>
-          ))}
+              ))}
+            </div>
+          </div>
         </div>
-        <p className="mt-6 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
-          Figures are group-reported indicators of scale and ambition. For partner-grade detail,
-          request a briefing.
-        </p>
       </section>
 
-      {/* PARTNER LOGO BANNER */}
       <PartnerLogoMarquee />
 
-      {/* LEADERSHIP + FOUNDATION STRIP */}
-      <section className="bg-[#0a0a0a] text-white py-16 sm:py-20 md:py-24">
-        <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-16">
-          <div className="min-w-0">
-            <div className="text-xs tracking-[3px] text-amber-400 mb-4">Leadership</div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 text-balance">
-              Super-Cube® doctoral leadership for nations and enterprises.
-            </h3>
-            <p className="text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-              Ethical decision-making, AI-augmented development, and sovereign capability — rooted in African excellence.
-            </p>
-            <Link
-              href="/leadership"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[2px] text-white border-b border-white/30 pb-1 hover:border-white"
-            >
-              Explore Leadership
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          <div className="min-w-0">
-            <div className="text-xs tracking-[3px] text-teal-400 mb-4">Foundation</div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-4 text-balance">
-              On-chain philanthropy with measurable African impact.
-            </h3>
-            <p className="text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-              Transparent funding, community co-ownership, and SDG-aligned programmes that turn intention into verified outcomes.
-            </p>
-            <Link
-              href="/foundation"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[2px] text-white border-b border-white/30 pb-1 hover:border-white"
-            >
-              Explore Foundation
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
-      <section className="bg-black py-16 sm:py-20 md:py-24 text-center px-4 sm:px-6">
+      {/* Final CTA */}
+      <section className="bg-black py-14 sm:py-16 md:py-20 text-center px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
-          <div className="text-xs tracking-[3px] text-emerald-500 mb-4">The Time Is Now</div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-5 sm:mb-6 text-white text-balance">
-            Ready to build the future of Africa with us?
+          <div className="text-xs tracking-[3px] text-emerald-500 mb-3">Next step</div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-4 text-white text-balance">
+            Ready to brief the Group?
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 sm:mb-10">
-            Whether you are a government, investor, farmer, or conscious consumer — there is a place for you in the Big Five ecosystem.
+          <p className="text-sm sm:text-base md:text-lg text-white/65 mb-8 max-w-lg mx-auto">
+            Governments, enterprises, schools and partners — one enquiry for the right mix of
+            pillars.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-lg sm:max-w-none mx-auto">
             <Link
               href="/contact"
-              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black text-sm sm:text-base md:text-lg px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold shadow-xl"
+              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black text-sm sm:text-base px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold"
             >
               Book a briefing
               <ArrowRight className="w-5 h-5 shrink-0" />
             </Link>
             <Link
-              href="/connect"
-              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm sm:text-base md:text-lg px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold hover:bg-white/10"
+              href="/group"
+              className="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm sm:text-base px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-semibold hover:bg-white/10"
             >
-              Launch Connect
+              The Group
             </Link>
-          </div>
-          <div className="mt-5 sm:mt-6 text-xs text-white/40">
-            Strategic enquiry · or open SupplierAdvisor® for verified trade
           </div>
         </div>
       </section>
