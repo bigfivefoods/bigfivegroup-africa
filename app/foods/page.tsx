@@ -25,6 +25,7 @@ import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import LocalNewsVideo from "../components/LocalNewsVideo";
 import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#d97706";
@@ -354,6 +355,8 @@ export default function FoodsPage() {
 
       <SupplierTrust entityName="Big Five Foods" compact />
 
+      <PillarAlignmentBand slug="foods" accent={ACCENT} accentSoft={ACCENT_SOFT} />
+
       {/* Proof */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="text-center mb-8 max-w-2xl mx-auto">
@@ -444,10 +447,6 @@ export default function FoodsPage() {
 
       <LocalNewsVideo accent={ACCENT} />
 
-      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
-        <FoodsStrategyDeck />
-      </section>
-
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10">
           <SectionHeading
@@ -531,6 +530,13 @@ export default function FoodsPage() {
             ]}
           />
         </div>
+      </section>
+
+      <section
+        id="foods-deck"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <FoodsStrategyDeck />
       </section>
 
       <FinalCta

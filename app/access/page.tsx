@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import AccessStrategyDeck from "../components/AccessStrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
 import { pageBrand } from "../lib/pageBrand";
 
@@ -50,9 +51,7 @@ export default function AccessPage() {
 
       <SupplierTrust entityName="Access programme suppliers and SMEs" compact />
 
-      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
-        <AccessStrategyDeck />
-      </section>
+      <PillarAlignmentBand slug="access" accent={ACCENT} accentSoft="#eff6ff" />
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
@@ -183,6 +182,13 @@ export default function AccessPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section
+        id="access-deck"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <AccessStrategyDeck />
       </section>
 
       <FinalCta

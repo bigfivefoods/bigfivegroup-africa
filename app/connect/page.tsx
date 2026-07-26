@@ -33,6 +33,7 @@ import {
 import { sa, SA_URL, SA_ONBOARDING, SA_EMAIL, SA_LOGIN } from "../lib/saCopy";
 import SamSection from "../components/SamSection";
 import ConnectStrategyDeck from "../components/ConnectStrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#06b6d4";
@@ -104,6 +105,8 @@ export default function ConnectPage() {
 
       <SupplierTrust entityName="Big Five Connect" compact />
 
+      <PillarAlignmentBand slug="connect" accent={ACCENT} accentSoft="#ecfeff" />
+
       <section className="bg-white border-b border-black/10 py-10 sm:py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <StatRow
@@ -123,10 +126,6 @@ export default function ConnectPage() {
       </div>
 
       <SamSection dark />
-
-      <section className="bg-white border-b border-black/10 py-14 sm:py-20 md:py-24">
-        <ConnectStrategyDeck />
-      </section>
 
       {/* 60-second story */}
       <section id="how" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
@@ -311,6 +310,13 @@ export default function ConnectPage() {
             </a>
           </div>
         </div>
+      </section>
+
+      <section
+        id="connect-deck"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <ConnectStrategyDeck />
       </section>
 
       <FinalCta

@@ -15,6 +15,7 @@ import {
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
 import LeadershipStrategyDeck from "../components/LeadershipStrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
 import { pageBrand } from "../lib/pageBrand";
 
@@ -92,9 +93,7 @@ export default function LeadershipPage() {
         overlayClassName={pageBrand.leadership.overlay}
       />
 
-      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
-        <LeadershipStrategyDeck />
-      </section>
+      <PillarAlignmentBand slug="leadership" accent="#eab308" accentSoft="#fefce8" />
 
       {/* Positioning strip */}
       <section className="bg-white border-b border-black/10">
@@ -490,6 +489,13 @@ export default function LeadershipPage() {
             <ExternalLink className="w-5 h-5" />
           </a>
         </div>
+      </section>
+
+      <section
+        id="leadership-deck"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <LeadershipStrategyDeck />
       </section>
 
       <FinalCta

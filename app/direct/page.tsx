@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { SA_ONBOARDING } from "../lib/saCopy";
 import DirectStrategyDeck from "../components/DirectStrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 import {
   SANTACO,
@@ -63,6 +64,8 @@ export default function DirectPage() {
       />
 
       <SupplierTrust entityName="Big Five Direct · Foods distribution" compact />
+
+      <PillarAlignmentBand slug="direct" accent={ACCENT} accentSoft="#fff7ed" />
 
       <section
         id="santaco"
@@ -178,10 +181,6 @@ export default function DirectPage() {
             ))}
           </ul>
         </div>
-      </section>
-
-      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
-        <DirectStrategyDeck />
       </section>
 
       {/* Foods × SA network — impact + live map */}
@@ -321,6 +320,13 @@ export default function DirectPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section
+        id="direct-deck"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <DirectStrategyDeck />
       </section>
 
       <FinalCta

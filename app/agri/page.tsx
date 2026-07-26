@@ -20,6 +20,7 @@ import {
   LineChart,
 } from "lucide-react";
 import AgriStrategyDeck from "../components/AgriStrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#10b981";
@@ -48,9 +49,7 @@ export default function AgriPage() {
 
       <SupplierTrust entityName="Big Five Agri" compact />
 
-      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
-        <AgriStrategyDeck />
-      </section>
+      <PillarAlignmentBand slug="agri" accent={ACCENT} accentSoft="#ecfdf5" />
 
       <section id="zulukingdom" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
@@ -221,6 +220,13 @@ export default function AgriPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section
+        id="agri-deck"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <AgriStrategyDeck />
       </section>
 
       <FinalCta

@@ -20,6 +20,7 @@ import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
 import IntelligenceNarrative from "../components/IntelligenceNarrative";
 import StrategyDeck from "../components/StrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 import { pageBrand } from "../lib/pageBrand";
@@ -175,9 +176,7 @@ export default function GroupPage() {
         </div>
       </section>
 
-      <section className="bg-[#fafafa] border-y border-black/10 py-14 sm:py-20 md:py-24">
-        <StrategyDeck />
-      </section>
+      <PillarAlignmentBand slug="group" accent="#059669" accentSoft="#ecfdf5" />
 
       <IntelligenceNarrative variant="compact" />
 
@@ -519,6 +518,13 @@ export default function GroupPage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section
+        id="strategy-deck"
+        className="bg-[#fafafa] border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <StrategyDeck />
       </section>
 
       <FinalCta

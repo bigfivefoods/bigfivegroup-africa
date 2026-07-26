@@ -14,6 +14,7 @@ import {
   Target,
 } from "lucide-react";
 import SupplierTrust from "../components/SupplierTrust";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 
 /** Nations where Big Five is actively working today */
@@ -694,6 +695,8 @@ export default function GlobalPage() {
       </section>
 
       <SupplierTrust entityName="Big Five Group companies across priority markets" />
+
+      <PillarAlignmentBand slug="global" accent="#0ea5e9" accentSoft="#f0f9ff" />
 
       {/* HOW WE EXPAND */}
       <section className="max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 min-w-0">

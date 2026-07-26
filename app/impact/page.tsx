@@ -3,6 +3,7 @@
 import PageHero from "../components/PageHero";
 import SupplierTrust from "../components/SupplierTrust";
 import StrategyDeck from "../components/StrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import {
   SectionHeading,
   FeatureGrid,
@@ -89,10 +90,7 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* Online pitch / strategic briefing */}
-      <section className="bg-[#fafafa] py-14 sm:py-20 md:py-24 border-b border-black/10">
-        <StrategyDeck />
-      </section>
+      <PillarAlignmentBand slug="impact" accent="#7c3aed" accentSoft="#f5f3ff" />
 
       <div className="bg-white border-b border-black/10">
         <CaseStudyNsnp />
@@ -266,6 +264,13 @@ export default function ImpactPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section
+        id="strategy-deck"
+        className="bg-[#fafafa] border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <StrategyDeck />
       </section>
 
       <FinalCta

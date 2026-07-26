@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 
 export default function RoyalPage() {
@@ -39,6 +40,8 @@ export default function RoyalPage() {
         ]}
         overlayClassName={pageBrand.royal.overlay}
       />
+
+      <PillarAlignmentBand slug="royal" accent="#d97706" accentSoft="#fffbeb" />
 
       {/* Opening statement */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">

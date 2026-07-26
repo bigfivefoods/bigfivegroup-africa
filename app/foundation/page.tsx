@@ -13,6 +13,7 @@ import {
 import { Heart, TrendingUp, Leaf, Users, ShieldCheck, ExternalLink } from "lucide-react";
 import { SA_URL } from "../lib/saCopy";
 import FoundationStrategyDeck from "../components/FoundationStrategyDeck";
+import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#0d9488";
@@ -84,9 +85,7 @@ export default function FoundationPage() {
 
       <SupplierTrust entityName="Big Five Foundation" compact />
 
-      <section className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
-        <FoundationStrategyDeck />
-      </section>
+      <PillarAlignmentBand slug="foundation" accent={ACCENT} accentSoft="#f0fdfa" />
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">
         <SectionHeading
@@ -321,6 +320,13 @@ export default function FoundationPage() {
             </a>
           </div>
         </div>
+      </section>
+
+      <section
+        id="foundation-deck"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+      >
+        <FoundationStrategyDeck />
       </section>
 
       <FinalCta
