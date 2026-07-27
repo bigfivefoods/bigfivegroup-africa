@@ -8,6 +8,7 @@ import { getStoryBySlug, listStories } from "../../lib/stories/store";
 import { markdownToWebHtml } from "../../lib/stories/markdown-web";
 import { formatStoryDate } from "../../lib/stories/format";
 import {
+  missionLogo,
   resolveStoryTheme,
   storyCoverImage,
 } from "../../lib/stories/theme";
@@ -81,6 +82,8 @@ function RelatedCard({ story }: { story: Story }) {
         className="aspect-[16/10] sm:aspect-auto sm:w-36 sm:shrink-0"
         sizes="(max-width: 640px) 100vw, 144px"
         imageClassName="object-cover transition-transform duration-400 group-hover:scale-[1.04]"
+        mission={theme.mission}
+        logoSize="sm"
       />
       <div className="p-4 sm:p-5 min-w-0 flex-1" style={{ background: theme.brand.accentSoft }}>
         <div
@@ -108,6 +111,7 @@ export default async function StoryPage({ params }: Props) {
   const theme = resolveStoryTheme(story.tag, `${story.title} ${story.slug}`);
   const { brand, mission, unitLabel, unitHref } = theme;
   const cover = storyCoverImage(story.coverImage, theme);
+  const logo = missionLogo(mission);
   const html = markdownToWebHtml(story.body);
   const embed = youtubeEmbed(story.videoUrl);
   const others = (await listStories({ status: "published" }))
@@ -134,6 +138,22 @@ export default async function StoryPage({ params }: Props) {
             style={{ background: brand.accent }}
             aria-hidden
           />
+
+          <div
+            className={`absolute top-4 right-4 sm:top-6 sm:right-6 z-[2] rounded-xl sm:rounded-2xl p-2 sm:p-2.5 shadow-lg ring-1 ${
+              logo.plate === "light"
+                ? "bg-white/95 ring-black/10"
+                : "bg-black/55 ring-white/15 backdrop-blur-sm"
+            }`}
+            aria-hidden
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logo.src}
+              alt=""
+              className="h-10 sm:h-12 w-auto max-w-[4.5rem] sm:max-w-[5.5rem] object-contain"
+            />
+          </div>
 
           <div className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 sm:pb-14">
             <Link

@@ -162,3 +162,37 @@ export function missionAccent(mission: MissionPillar): string {
       return "#059669";
   }
 }
+
+/**
+ * Small brand mark for story covers / heroes by mission pillar:
+ * Feed → Big Five Foods · Educate → Super-Cube® · Empower / Group → Big Five Group
+ */
+export function missionLogo(mission: MissionPillar): {
+  src: string;
+  alt: string;
+  /** Plate behind logo so the mark reads on any photo */
+  plate: "light" | "dark";
+} {
+  switch (mission) {
+    case "Feed":
+      return {
+        src: "/bigfivefoods-logo.png",
+        alt: "Big Five Foods",
+        plate: "light",
+      };
+    case "Educate":
+      return {
+        src: "/super-cube-logo-transparent.png",
+        alt: "Super-Cube®",
+        plate: "light",
+      };
+    case "Empower":
+    case "Group":
+    default:
+      return {
+        src: "/bigfivegroup-logo.png",
+        alt: "Big Five Group",
+        plate: "dark",
+      };
+  }
+}
