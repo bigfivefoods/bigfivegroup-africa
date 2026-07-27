@@ -6,10 +6,8 @@ import { listStories } from "../lib/stories/store";
 import { formatStoryDate } from "../lib/stories/format";
 import {
   missionAccent,
-  missionLogo,
   resolveStoryTheme,
   storyCoverImage,
-  type MissionPillar,
 } from "../lib/stories/theme";
 import StoryCover from "../components/StoryCover";
 import type { Story } from "../lib/stories/types";
@@ -91,8 +89,6 @@ function StoryCard({
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
             imageClassName="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            mission={mission}
-            logoSize="md"
           />
           <div
             className="flex flex-col justify-center p-6 sm:p-8 lg:p-10 min-w-0"
@@ -158,8 +154,6 @@ function StoryCard({
           className="aspect-[16/10]"
           sizes="(max-width: 768px) 100vw, 33vw"
           imageClassName="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-          mission={mission}
-          logoSize="sm"
         />
         <div
           className="flex flex-col flex-1 p-5 sm:p-6 min-w-0"
@@ -240,45 +234,10 @@ export default async function UpdatesPage() {
             Partner-ready milestones from Feed · Educate · Empower — Foods, Leadership, Connect,
             Direct and the full Big Five network.
           </p>
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <div className="flex flex-wrap gap-2">
-              <MissionChip label="Feed" icon={Leaf} color={missionAccent("Feed")} />
-              <MissionChip label="Educate" icon={BookOpen} color={missionAccent("Educate")} />
-              <MissionChip label="Empower" icon={Sparkles} color={missionAccent("Empower")} />
-            </div>
-            <div
-              className="hidden sm:block w-px h-10 bg-white/20 shrink-0"
-              aria-hidden
-            />
-            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5" aria-label="Mission brands">
-              {(
-                [
-                  { mission: "Feed" as MissionPillar, caption: "Feed" },
-                  { mission: "Educate" as MissionPillar, caption: "Educate" },
-                  { mission: "Empower" as MissionPillar, caption: "Empower" },
-                ] as const
-              ).map(({ mission: m, caption }) => {
-                const logo = missionLogo(m);
-                return (
-                  <div
-                    key={m}
-                    className={`rounded-xl sm:rounded-2xl p-1.5 sm:p-2 shadow-md ring-1 ${
-                      logo.plate === "light"
-                        ? "bg-white/95 ring-black/10"
-                        : "bg-black/50 ring-white/15 backdrop-blur-sm"
-                    }`}
-                    title={`${caption} · ${logo.alt}`}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={logo.src}
-                      alt={logo.alt}
-                      className="h-8 sm:h-9 w-auto max-w-[3.25rem] sm:max-w-[3.75rem] object-contain"
-                    />
-                  </div>
-                );
-              })}
-            </div>
+          <div className="flex flex-wrap gap-2">
+            <MissionChip label="Feed" icon={Leaf} color={missionAccent("Feed")} />
+            <MissionChip label="Educate" icon={BookOpen} color={missionAccent("Educate")} />
+            <MissionChip label="Empower" icon={Sparkles} color={missionAccent("Empower")} />
           </div>
         </div>
       </section>
