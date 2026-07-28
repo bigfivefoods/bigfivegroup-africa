@@ -21,7 +21,7 @@ export const companies: Company[] = [
     icon: "Leaf",
     tagline: "Regenerative Farming • Provenance • Farmer Partnership",
     description:
-      "Regenerative agriculture with farmers, communities and governments — restoring land, verifying practice, and supplying Foods, Direct and institutional programmes with provenance markets can trust.",
+      "Regenerative agriculture with rural farmers — restoring land, training producers, verifying practice, and supplying Foods, Direct and institutional programmes with provenance markets can trust.",
     heroText: "Regenerating Africa's Soil. Feeding the World Ethically.",
     howItWorks: [
       {

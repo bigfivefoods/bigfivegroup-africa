@@ -46,7 +46,7 @@ export const agriDeckConfig: PillarDeckConfig = {
   heroTitle: "Regenerate Africa’s soil.",
   heroHighlight: "Feed the continent ethically.",
   heroBody:
-    "Big Five Agri partners with farmers, communities and governments to restore land, verify regenerative practice and supply Foods, Direct and institutional programmes with provenance that markets can trust.",
+    "Big Five Agri partners with rural farmers and cooperatives to restore land, verify regenerative practice and supply Foods, Direct and institutional programmes with provenance that markets can trust.",
   meta: [
     "KwaZulu-Natal · Africa",
     "bigfivegroup.africa/agri",
@@ -140,8 +140,8 @@ export const agriDeckConfig: PillarDeckConfig = {
   stakeholders: [
     {
       icon: Users,
-      t: "Farmers & cooperatives",
-      d: "Markets, training and verification that raise dignity and income potential.",
+      t: "Rural farmers & cooperatives",
+      d: "Training, markets and verification that raise rural income and dignity.",
     },
     {
       icon: Building2,
@@ -151,12 +151,12 @@ export const agriDeckConfig: PillarDeckConfig = {
     {
       icon: Landmark,
       t: "Governments & funds",
-      d: "Data for food security, subsidies and climate-linked investment.",
+      d: "Data for food security, rural livelihoods and climate-linked investment.",
     },
     {
       icon: Handshake,
-      t: "Community partners",
-      d: "Land and community partnerships with respect for local legitimacy.",
+      t: "Rural producer groups",
+      d: "Cooperatives and farmer associations that own the partnership on the ground.",
     },
   ],
   sdgTitle: "How Agri serves the Goals",
@@ -202,7 +202,7 @@ export const agriDeckConfig: PillarDeckConfig = {
   ctaTitle: "Put regeneration on your",
   ctaHighlight: "food-security ambition.",
   ctaBody:
-    "Governments, buyers, funds and traditional partners — start a conversation on regenerative supply that feeds Foods and last-mile programmes.",
+    "Rural farmers, cooperatives, buyers and funds — start a conversation on regenerative supply that feeds Foods and last-mile programmes.",
   ctaSteps: [
     { n: "01", t: "Define the landscape", d: "Regions, crops, partners" },
     { n: "02", t: "Verify the practice", d: "Soil · standards · data" },

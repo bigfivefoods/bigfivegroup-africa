@@ -6,11 +6,11 @@ const social = siteSocialImages("agri");
 export const metadata: Metadata = {
   title: "Agri",
   description:
-    "Big Five Agri — regenerative farming, on-chain traceability, and partnerships with the Zulu Kingdom across Africa.",
+    "Big Five Agri — regenerative farming with rural farmers across Africa: soil restoration, training, fair markets and verified provenance.",
   openGraph: {
-    title: "Big Five Agri | Regenerative Farming",
+    title: "Big Five Agri | Rural Farmers · Regenerative Farming",
     description:
-      "Restoring African farmland, empowering farmers, and feeding the continent with verified regenerative produce.",
+      "Working with rural farmers to restore African farmland, raise livelihoods and feed the continent with verified regenerative produce.",
     images: social.openGraph.images,
   },
   twitter: {

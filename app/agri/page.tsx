@@ -38,10 +38,10 @@ export default function AgriPage() {
             Soil. Sovereignty. Scale.
           </>
         }
-        subtitle="Partnering with the Zulu Kingdom, communities, and governments across Africa to regenerate farmland, empower farmers, and feed the continent with verified provenance."
+        subtitle="Working with rural farmers across Africa to regenerate farmland, raise livelihoods, and feed the continent with verified, regenerative produce."
         ctas={[
           { href: "#agri-deck", label: "Agri deck", primary: true },
-          { href: "#zulukingdom", label: "Kingdom partnership" },
+          { href: "#rural-farmers", label: "Rural farmers" },
           { href: "/connect", label: "Partner with us" },
         ]}
         overlayClassName={pageBrand.agri.overlay}
@@ -51,24 +51,24 @@ export default function AgriPage() {
 
       <PillarAlignmentBand slug="agri" accent={ACCENT} accentSoft="#ecfdf5" />
 
-      <section id="zulukingdom" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section id="rural-farmers" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
-          eyebrow="DEEP PARTNERSHIP"
-          title="Working hand-in-hand with the Zulu Kingdom"
-          subtitle="We stand alongside traditional leadership and government structures to restore African agriculture from the ground up — with dignity, ownership, and modern capability."
+          eyebrow="RURAL FARMERS FIRST"
+          title="Working hand-in-hand with rural farmers"
+          subtitle="Big Five Agri stands with rural producers — smallholders, cooperatives and family farms — to restore land, raise income and open fair markets from the ground up."
         />
         <div className="grid md:grid-cols-2 gap-5">
           <div className="bg-white border border-black/10 rounded-3xl p-9">
             <Handshake className="w-11 h-11 text-[#047857] mb-5" />
             <h3 className="text-2xl font-semibold tracking-tight text-black mb-4">
-              Our commitment
+              How we work with rural farmers
             </h3>
             <ul className="space-y-3 text-[#404040]">
-              <li>• Restore degraded farmland with regenerative practices</li>
-              <li>• Train farmers in climate-smart techniques at scale</li>
-              <li>• Build value chains that benefit local communities first</li>
-              <li>• Protect indigenous knowledge while introducing innovation</li>
-              <li>• Honour heritage while advancing food sovereignty</li>
+              <li>• Partner with rural smallholders and cooperatives as primary producers</li>
+              <li>• Train farmers in climate-smart, regenerative techniques</li>
+              <li>• Build value chains that leave more income on the farm</li>
+              <li>• Combine practical know-how with tools rural producers can use</li>
+              <li>• Design programmes with farmers — not imposed on them</li>
             </ul>
           </div>
           <div className="bg-white border border-black/10 rounded-3xl p-9">
@@ -77,11 +77,11 @@ export default function AgriPage() {
               Regenerative with purpose
             </h3>
             <ul className="space-y-3 text-[#404040]">
-              <li>• Convert degraded soil into carbon-rich farmland</li>
-              <li>• Blend indigenous crops with climate-resilient varieties</li>
-              <li>• Establish cooperatives with community ownership</li>
-              <li>• Open direct market access for fairer prices</li>
-              <li>• Develop the next generation of agricultural leaders</li>
+              <li>• Convert degraded soil into productive, carbon-rich farmland</li>
+              <li>• Support climate-resilient crops suited to local conditions</li>
+              <li>• Strengthen rural cooperatives and shared infrastructure</li>
+              <li>• Open direct market access so farmers keep fairer prices</li>
+              <li>• Grow the next generation of rural agricultural leaders</li>
             </ul>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function AgriPage() {
             <strong className="text-black">~47% income increase potential</strong> for participating
             producers, and a vision that reaches{" "}
             <strong className="text-black">54 African nations</strong>. That is our plan and
-            ambition — delivered step by step with partners, communities, and verified
+            ambition — delivered step by step with rural farmers, cooperatives, and verified
             markets.
           </p>
         </div>
@@ -164,13 +164,13 @@ export default function AgriPage() {
             items={[
               {
                 icon: Tractor,
-                title: "Farmer-first models",
-                desc: "Training, cooperative structures, and market access that leave value with producers.",
+                title: "Rural farmer-first models",
+                desc: "Training, cooperatives and market access designed so rural producers keep more of the value they grow.",
               },
               {
                 icon: Droplets,
                 title: "Climate-smart practices",
-                desc: "Drought resilience, soil restoration, and carbon-aware farming systems.",
+                desc: "Drought resilience, soil restoration and carbon-aware systems that work on rural land.",
               },
               {
                 icon: LineChart,
@@ -179,13 +179,13 @@ export default function AgriPage() {
               },
               {
                 icon: Users,
-                title: "Government alignment",
-                desc: "Programmes structured for food security policy, B-BBEE, and national targets.",
+                title: "Rural livelihoods",
+                desc: "Programmes that lift household income, skills and food security in farming communities.",
               },
               {
                 icon: Coins,
                 title: "Fair economics",
-                desc: "Direct matching and transparent fees so farmers keep more of what they grow.",
+                desc: "Direct matching and transparent routes so rural farmers keep more of what they grow.",
               },
               {
                 icon: UserCheck,
@@ -201,17 +201,18 @@ export default function AgriPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Users className="w-14 h-14 mx-auto text-[#6ee7b7] mb-6" />
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-6">
-            Our promise to African farmers
+            Our promise to rural African farmers
           </h2>
           <p className="text-xl text-white/85 leading-relaxed mb-10">
-            Every farmer we work with becomes part of a movement that restores dignity, creates
-            wealth, and builds food sovereignty. We don&apos;t just teach farming — we build futures.
+            Every rural farmer we work with becomes part of a movement that restores land, raises
+            income and builds food sovereignty. We don&apos;t just teach farming — we build futures
+            with producers at the centre.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
             {[
               { t: "Land restoration", d: "Fertile soil for the next generation, not desert." },
-              { t: "Fair income", d: "Direct markets so producers keep more value." },
-              { t: "Ownership", d: "Cooperatives and structures communities control." },
+              { t: "Fair income", d: "Direct markets so rural producers keep more value." },
+              { t: "Ownership", d: "Cooperatives and structures rural farmers control." },
             ].map((x) => (
               <div key={x.t} className="bg-white/10 rounded-3xl p-6">
                 <div className="font-semibold text-lg mb-2">{x.t}</div>
@@ -232,7 +233,7 @@ export default function AgriPage() {
       <FinalCta
         eyebrow="REGENERATE WITH US"
         title="Let's restore Africa's farmland together"
-        subtitle="Governments, buyers, funds and traditional partners — regenerative supply that feeds the Group."
+        subtitle="Rural farmers, cooperatives, buyers and funds — regenerative supply that feeds households and the Group."
         primary={{ href: "/connect", label: "Become an Agri partner" }}
         secondary={{ href: "/group", label: "See the Group" }}
       />

@@ -46,7 +46,7 @@ export const PILLAR_ALIGNMENT: Record<string, PillarAlignment> = {
       "Regenerative production is the first half of Feed — soil, smallholders and provenance so fortification and logistics have something real to move.",
     sofiChallenge: `SOFI ${SOFI.edition.slice(-4)}: ~${SOFI.africa.hungryLabel} people in Africa faced hunger in ${SOFI.dataYearHunger} (~${SOFI.africa.prevalencePct}%). Food security starts in the ground — degraded soils and weak offtake keep systems fragile.`,
     sofiResponse:
-      "Restore land, train farmers, verify regenerative practice, and supply Foods and Direct with produce markets and institutions can trust.",
+      "Work with rural farmers to restore land, train producers, verify regenerative practice, and supply Foods and Direct with produce markets and institutions can trust.",
     stats: [
       { value: SOFI.africa.hungryLabel, label: `Africa hunger ${SOFI.dataYearHunger} (SOFI)` },
       { value: "2.8M ha", label: "Regenerative opportunity (plan scale)" },
