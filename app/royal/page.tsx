@@ -33,7 +33,7 @@ export default function RoyalPage() {
             Supporting their work.
           </>
         }
-        subtitle="Big Five Group has close ties to the royal family. We are planning to partner with the royal family and tribal authorities, and we support them and the vital work they do for our communities."
+        subtitle="Big Five Group has close ties to the royal family. We are planning to partner with the royal family, and we support them and the vital work they do for our communities."
         ctas={[
           { href: "#partnership", label: "Our relationship", primary: true },
           { href: "#serve", label: "How we serve communities" },
@@ -57,7 +57,7 @@ export default function RoyalPage() {
           Big Five was born in KwaZulu-Natal. We have{" "}
           <strong className="text-black">close ties to the royal family</strong>, and we are{" "}
           <strong className="text-black">planning to partner</strong> with the royal family and
-          tribal authorities. We{" "}
+          communities. We{" "}
           <strong className="text-black">support them and the work they do</strong> — honouring
           traditional leadership and putting practical tools, jobs, nutrition, and opportunity into
           the hands of the people we serve.
@@ -83,7 +83,7 @@ export default function RoyalPage() {
                 <p>
                   We are{" "}
                   <strong className="text-black">
-                    planning to partner with the royal family and tribal authorities
+                    planning to partner with the royal family
                   </strong>{" "}
                   — with humility, accountability, and a clear commitment to community wellbeing.
                   Formal partnership will build on the ties we already hold.
@@ -91,7 +91,7 @@ export default function RoyalPage() {
                 <p>
                   We <strong className="text-black">support the royal family and the work they do</strong>{" "}
                   — community leadership, heritage, and service to the people. Our role is to serve
-                  families, traditional authorities, youth, farmers, and enterprises: listen first,
+                  families, community partners, youth, farmers, and enterprises: listen first,
                   align with local leadership, and deliver programmes that last.
                 </p>
               </div>
@@ -134,7 +134,7 @@ export default function RoyalPage() {
             {
               icon: Crown,
               t: "Close ties to the royal family",
-              d: "We honour the royal family and tribal authorities. Our close ties and planned partnership guide how we engage communities.",
+              d: "We honour the royal family. Our close ties and planned partnership guide how we engage communities.",
             },
             {
               icon: HandHeart,
@@ -180,7 +180,7 @@ export default function RoyalPage() {
           <SectionHeading
             eyebrow="SERVICE TO OUR COMMUNITIES"
             title="Where support becomes impact"
-            subtitle="Through Big Five pillars, we put our ties and planned partnership with the royal family and tribal authorities into daily service — farms, food, markets, skills, and care."
+            subtitle="Through Big Five pillars, we put our ties and planned partnership with the royal family into daily service — farms, food, markets, skills, and care."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {[
@@ -229,7 +229,7 @@ export default function RoyalPage() {
         <blockquote className="bg-white border-l-4 border-[#f59e0b] rounded-r-2xl sm:rounded-r-3xl p-6 sm:p-10 shadow-sm border border-black/5 border-l-[#f59e0b]">
           <p className="text-xl sm:text-2xl md:text-3xl text-black font-medium tracking-tight leading-snug">
             “We have close ties to the royal family. We are planning to partner with them and with
-            tribal authorities — and we support them and the work they do. We are here to serve our
+            communities — and we support them and the work they do. We are here to serve our
             communities. That is the heart of Big Five.”
           </p>
           <footer className="mt-5 text-sm text-[#737373]">
@@ -253,7 +253,7 @@ export default function RoyalPage() {
           </h2>
           <p className="text-white/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed">
             We do not stand above our people. With close ties to the royal family — and plans to
-            partner with the royal family and tribal authorities — we support them and the work they
+            partner with the royal family — we support them and the work they
             do so communities can{" "}
             <strong className="text-white font-semibold">feed</strong>,{" "}
             <strong className="text-white font-semibold">educate</strong>, and{" "}
@@ -271,7 +271,7 @@ export default function RoyalPage() {
               },
               {
                 title: "Empower",
-                desc: "Markets, access, and enterprise tools that put opportunity into local hands — supporting royal and tribal leadership in service.",
+                desc: "Markets, access, and enterprise tools that put opportunity into local hands — supporting royal leadership in service.",
               },
             ].map((item) => (
               <div
@@ -312,7 +312,7 @@ export default function RoyalPage() {
       <FinalCta
         eyebrow="SERVE WITH US"
         title="Join a path that puts communities first"
-        subtitle="Whether you are a community leader, institution, or partner — walk with us as we support the royal family and plan partnership with the royal family and tribal authorities."
+        subtitle="Whether you are a community leader, institution, or partner — walk with us as we support the royal family and plan partnership with the royal family."
         primary={{ href: "/connect", label: "Partner with Big Five" }}
         secondary={{ href: "/foundation", label: "Foundation programmes" }}
       />

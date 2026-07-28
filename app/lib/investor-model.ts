@@ -315,9 +315,9 @@ export const GROUP_THESIS_PILLARS = [
   {
     slug: "royal",
     problem:
-      "Programmes that ignore traditional authority and community legitimacy lose social licence — service imposed from outside rarely compounds.",
+      "Programmes that ignore community legitimacy lose social licence — service imposed from outside rarely compounds.",
     opportunity:
-      "Close ties and planned partnership with royal family & tribal authorities de-risk Group delivery and multiply dignity outcomes in community-facing work.",
+      "Close ties and planned partnership with royal family de-risk Group delivery and multiply dignity outcomes in community-facing work.",
     source: {
       label: "Group methodology · community partnership framing",
       href: "https://bigfivegroup.africa/methodology",
@@ -763,11 +763,11 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
     name: "Royal",
     fullName: "Big Five Royal",
     color: "#d97706",
-    avenue: "Community legitimacy · planned royal & tribal partnership · social licence",
+    avenue: "Community legitimacy · planned royal partnership · social licence",
     currentState: {
-      markets: "KwaZulu-Natal / traditional authority orientation",
+      markets: "KwaZulu-Natal / community partnership orientation",
       traction: [
-        "Close ties to the royal family; planning formal partnership with royal family & tribal authorities",
+        "Close ties to the royal family; planning formal partnership with royal family",
         "Support for their community work; service narrative (not extractive)",
         "Cross-cutting legitimacy for Feed · Educate · Empower programmes",
       ],

@@ -46,7 +46,7 @@ export const agriDeckConfig: PillarDeckConfig = {
   heroTitle: "Regenerate Africa’s soil.",
   heroHighlight: "Feed the continent ethically.",
   heroBody:
-    "Big Five Agri partners with farmers, traditional authorities and governments to restore land, verify regenerative practice and supply Foods, Direct and institutional programmes with provenance that markets can trust.",
+    "Big Five Agri partners with farmers, communities and governments to restore land, verify regenerative practice and supply Foods, Direct and institutional programmes with provenance that markets can trust.",
   meta: [
     "KwaZulu-Natal · Africa",
     "bigfivegroup.africa/agri",
@@ -105,7 +105,7 @@ export const agriDeckConfig: PillarDeckConfig = {
   proofPoints: [
     "Designed as the regenerative input layer for Big Five Foods",
     "Aligns with national food-security and climate-resilience agendas",
-    "Works with traditional authorities and public partners where mandated",
+    "Works with community partners and public institutions where mandated",
     "On-chain / SA-ready provenance narrative with Connect",
   ],
   howTitle: "How Agri works",
@@ -155,7 +155,7 @@ export const agriDeckConfig: PillarDeckConfig = {
     },
     {
       icon: Handshake,
-      t: "Traditional authorities",
+      t: "Community partners",
       d: "Land and community partnerships with respect for local legitimacy.",
     },
   ],
@@ -196,7 +196,7 @@ export const agriDeckConfig: PillarDeckConfig = {
     },
     {
       t: "Institutional fluency",
-      d: "Traditional authority, government and commercial buyers in one system.",
+      d: "Community partners, government and commercial buyers in one system.",
     },
   ],
   ctaTitle: "Put regeneration on your",

@@ -182,9 +182,9 @@ export const PILLAR_ALIGNMENT: Record<string, PillarAlignment> = {
     missionFit:
       "Royal and traditional partnership empowers legitimacy — community-first programmes with dignity.",
     sofiChallenge:
-      "Lasting food security needs community ownership and traditional authority partnership — not extractive projects.",
+      "Lasting food security needs community ownership and community partnership — not extractive projects.",
     sofiResponse:
-      "Close ties and planned partnership with royal and tribal structures so Agri, Foods and Foundation programmes honour heritage and local leadership.",
+      "Close ties and planned partnership with royal partnership and community structures so Agri, Foods and Foundation programmes honour heritage and local leadership.",
     stats: [
       { value: "Ubuntu", label: "Dignity-first partnership" },
       { value: "Feed", label: "Community nutrition pathways" },

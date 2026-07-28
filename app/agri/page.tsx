@@ -38,7 +38,7 @@ export default function AgriPage() {
             Soil. Sovereignty. Scale.
           </>
         }
-        subtitle="Partnering with Tribal Authorities, the Zulu Kingdom, and governments across Africa to regenerate farmland, empower farmers, and feed the continent with verified provenance."
+        subtitle="Partnering with the Zulu Kingdom, communities, and governments across Africa to regenerate farmland, empower farmers, and feed the continent with verified provenance."
         ctas={[
           { href: "#agri-deck", label: "Agri deck", primary: true },
           { href: "#zulukingdom", label: "Kingdom partnership" },
@@ -123,7 +123,7 @@ export default function AgriPage() {
             <strong className="text-black">~47% income increase potential</strong> for participating
             producers, and a vision that reaches{" "}
             <strong className="text-black">54 African nations</strong>. That is our plan and
-            ambition — delivered step by step with partners, traditional authorities, and verified
+            ambition — delivered step by step with partners, communities, and verified
             markets.
           </p>
         </div>

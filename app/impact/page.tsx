@@ -174,7 +174,7 @@ export default function ImpactPage() {
             {
               icon: Users,
               title: "Stakeholder fluency",
-              desc: "We translate between traditional authorities, ministries, investors, and operators so programmes actually land.",
+              desc: "We translate between communities, ministries, investors, and operators so programmes actually land.",
             },
           ]}
         />

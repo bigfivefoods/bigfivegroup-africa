@@ -231,7 +231,7 @@ export default function AboutPage() {
               {
                 icon: Users,
                 title: "Humility & collaboration",
-                desc: "We learn, partner, and improve. Progress is a team sport — with traditional authorities, governments, enterprises, and communities.",
+                desc: "We learn, partner, and improve. Progress is a team sport — with governments, enterprises, and communities.",
               },
             ].map((v) => (
               <div

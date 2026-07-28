@@ -718,7 +718,7 @@ export default function GlobalPage() {
             {
               icon: Handshake,
               title: "Partner before we plant a flag",
-              desc: "Governments, DFIs, tribal authorities, and local enterprises co-design every new market entry.",
+              desc: "Governments, DFIs, communities, and local enterprises co-design every new market entry.",
             },
             {
               icon: Globe2,

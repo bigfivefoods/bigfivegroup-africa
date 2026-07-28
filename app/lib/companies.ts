@@ -21,7 +21,7 @@ export const companies: Company[] = [
     icon: "Leaf",
     tagline: "Regenerative Farming • Provenance • Farmer Partnership",
     description:
-      "Regenerative agriculture with farmers, traditional authorities and governments — restoring land, verifying practice, and supplying Foods, Direct and institutional programmes with provenance markets can trust.",
+      "Regenerative agriculture with farmers, communities and governments — restoring land, verifying practice, and supplying Foods, Direct and institutional programmes with provenance markets can trust.",
     heroText: "Regenerating Africa's Soil. Feeding the World Ethically.",
     howItWorks: [
       {
@@ -440,14 +440,14 @@ export const companies: Company[] = [
     icon: "Crown",
     tagline: "Close Ties · Planned Partnership · Support · Feed · Educate · Empower",
     description:
-      "Big Five has close ties to the royal family, is planning to partner with the royal family and tribal authorities, and supports them and the work they do — serving communities with dignity starting in KwaZulu-Natal and across Africa.",
+      "Big Five has close ties to the royal family, is planning to partner with the royal family, and supports them and the work they do — serving communities with dignity starting in KwaZulu-Natal and across Africa.",
     heroText:
       "Close ties to the royal family. Planning to partner. Supporting them and the work they do.",
     howItWorks: [
       {
         step: 1,
         title: "Close ties & planned partnership",
-        desc: "Build on close ties to the royal family and plan formal partnership with the royal family and tribal authorities — rooted in respect and local guidance.",
+        desc: "Build on close ties to the royal family and plan formal partnership with the royal family — rooted in respect and local guidance.",
       },
       {
         step: 2,
@@ -462,7 +462,7 @@ export const companies: Company[] = [
     ],
     forStakeholders: [
       {
-        title: "For the royal family & tribal authorities",
+        title: "For the royal family",
         desc: "A trusted enterprise partner with close ties, planning formal partnership, and committed to supporting their work and community wellbeing.",
       },
       {
@@ -471,7 +471,7 @@ export const companies: Company[] = [
       },
       {
         title: "For institutional partners",
-        desc: "A clear channel to support community impact alongside royal and tribal leadership.",
+        desc: "A clear channel to support community impact alongside royal leadership.",
       },
     ],
     impact:

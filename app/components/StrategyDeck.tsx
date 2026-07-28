@@ -142,7 +142,7 @@ const PILLAR_BRIEFS_PRINT: Record<string, string> = {
   foundation: "Registered philanthropy with programme proof.",
   impact: "Cross-pillar PMO — gates, KPIs; health channel via DG of Health relationship.",
   global: "Corridors linking African capacity to world markets.",
-  royal: "Royal & tribal partnership for African legitimacy.",
+  royal: "Royal partnership for African legitimacy.",
 };
 
 /**
@@ -865,7 +865,7 @@ function Slide({ index }: SlideProps) {
               },
               {
                 t: "Institutional fluency + royal partnership",
-                d: "Ministries, DFIs, CSI and traditional authority — feed, educate and empower with local legitimacy.",
+                d: "Ministries, DFIs, CSI and community partners — feed, educate and empower with local legitimacy.",
               },
             ].map((x) => (
               <div
@@ -1368,7 +1368,7 @@ function FeedEducateEmpowerSlide() {
           }`}
         >
           Foundation, Impact and Royal cut across all three — funding, programme delivery, and close
-          ties with planned partnership alongside the royal family and tribal authorities — African
+          ties with planned partnership alongside the royal family — African
           legitimacy for African programmes.
         </p>
       </div>
