@@ -161,7 +161,7 @@ export default function Home() {
             <br />
             Nine Pillars.
             <br />
-            African Impact.
+            One Mission.
           </motion.h1>
 
           <motion.p
@@ -170,7 +170,7 @@ export default function Home() {
             transition={{ duration: 0.55, delay: 0.16 }}
             className="w-full max-w-xl sm:max-w-2xl mx-auto text-sm sm:text-lg md:text-xl lg:text-2xl text-white/90 font-light tracking-tight mb-7 sm:mb-10 text-pretty px-1"
           >
-            Regenerative. Sovereign. Ethical. Tell us the outcome — we map the pillars.
+            Regenerative. Sovereign. Ethical. One mission: Feed · Educate · Empower — we map the pillars.
           </motion.p>
 
           <motion.div
@@ -279,7 +279,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Nine pillars · case studies live inside missions */}
+      {/* Nine pillars · one mission (Feed · Educate · Empower) */}
       <section
         id="pillars"
         className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20"
@@ -289,10 +289,10 @@ export default function Home() {
           <h2 className="section-heading text-black">
             Nine pillars.
             <br />
-            Three missions.
+            One mission.
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[#525252] max-w-xl leading-relaxed">
-            Feed · Educate · Empower — every pillar compounds the others under one Group.
+            Feed · Educate · Empower — every pillar compounds the others under one Group and one mission.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {PILLAR_MISSIONS.map((m) => {
