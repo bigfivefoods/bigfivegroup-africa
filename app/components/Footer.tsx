@@ -178,7 +178,7 @@ export default function Footer() {
                 </nav>
               </FooterNav>
 
-              <FooterNav title="The 10 Pillars">
+              <FooterNav title="The 9 Pillars">
                 <GroupedNav groups={pillarGroups} ariaLabel="Pillars by mission" />
               </FooterNav>
 
