@@ -472,7 +472,7 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GROUP THESIS</DeckEyebrow>
-          <DeckTitle>One holding company. Ten pillars. One mission.</DeckTitle>
+          <DeckTitle>One holding company. Nine pillars. One mission.</DeckTitle>
           <p
             className={`text-[#404040] max-w-3xl leading-relaxed ${
               forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
@@ -625,7 +625,7 @@ function Slide({ index }: { index: number }) {
               },
               {
                 icon: Shield,
-                t: "Leadership · Global · Royal",
+                t: "Leadership · Global · Foundation",
                 d: "Super-Cube® capacity, corridors, and community legitimacy.",
               },
             ].map((c) => (

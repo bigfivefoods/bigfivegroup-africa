@@ -210,7 +210,7 @@ export const AFRICA_PROBLEMS: AfricaProblem[] = [
 
 /**
  * Group thesis — each pillar: problem addressed + opportunity, with external sources.
- * Used on the investor deck “One holding company · Ten pillars” slide.
+ * Used on the investor deck “One holding company · Nine pillars” slide.
  */
 export const GROUP_THESIS_PILLARS = [
   {
@@ -310,17 +310,6 @@ export const GROUP_THESIS_PILLARS = [
     source: {
       label: "AfCFTA · African Continental Free Trade Area",
       href: "https://au-afcfta.org/",
-    },
-  },
-  {
-    slug: "royal",
-    problem:
-      "Programmes that ignore community legitimacy lose social licence — service imposed from outside rarely compounds.",
-    opportunity:
-      "Close ties and planned partnership with royal family de-risk Group delivery and multiply dignity outcomes in community-facing work.",
-    source: {
-      label: "Group methodology · community partnership framing",
-      href: "https://bigfivegroup.africa/methodology",
     },
   },
 ] as const;
@@ -758,53 +747,6 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       },
     },
   },
-  {
-    slug: "royal",
-    name: "Royal",
-    fullName: "Big Five Royal",
-    color: "#d97706",
-    avenue: "Community legitimacy · planned royal partnership · social licence",
-    currentState: {
-      markets: "KwaZulu-Natal / community partnership orientation",
-      traction: [
-        "Close ties to the royal family; planning formal partnership with royal family",
-        "Support for their community work; service narrative (not extractive)",
-        "Cross-cutting legitimacy for Feed · Educate · Empower programmes",
-      ],
-      constraints: "Relationship care, non-commercialisation of heritage, governance clarity",
-    },
-    futureState:
-      "Deep community partnership model that de-risks Group programmes and multiplies dignity outcomes.",
-    problemsAddressed: ["leadership", "hunger", "malnutrition"],
-    howWeAddress:
-      "Align programmes with traditional leadership, listen first, and deliver with respect and proof.",
-    scenarios: {
-      conservative: {
-        y5RevenueUSDm: 1,
-        y10RevenueUSDm: 4,
-        penetration: "Partnership enablement fees limited; mostly strategic",
-        social: "Stronger community acceptance of pilots",
-        economic: "Indirect value via de-risked Group revenue",
-        environmental: "Community-stewarded regen projects",
-      },
-      moderate: {
-        y5RevenueUSDm: 4,
-        y10RevenueUSDm: 12,
-        penetration: "Structured partnership programmes",
-        social: "Scaled community programmes under traditional guidance",
-        economic: "Joint ventures / programme vehicles",
-        environmental: "Landscape partnerships with authority buy-in",
-      },
-      aggressive: {
-        y5RevenueUSDm: 10,
-        y10RevenueUSDm: 35,
-        penetration: "Replicable traditional-authority partnership IP",
-        social: "National model for ethical community enterprise",
-        economic: "Licensable partnership methodology",
-        environmental: "Authority-led conservation + regen corridors",
-      },
-    },
-  },
 ];
 
 export function sumScenario(
@@ -936,7 +878,7 @@ export const TEAM_GOVERNANCE = {
     {
       role: "Group leadership",
       who: "Founder / CEO leadership of Big Five Group",
-      focus: "Holdco strategy, capital allocation, continental integration of the ten pillars.",
+      focus: "Holdco strategy, capital allocation, continental integration of the nine pillars.",
     },
     {
       role: "Foods",
@@ -1028,7 +970,7 @@ export const GROUP_IMPACT_PILLARS = {
     title: "Social impact",
     items: [
       "Nutrition security for learners and households (Foods · Foundation · Direct)",
-      "Farmer and community livelihoods (Agri · Direct · Royal)",
+      "Farmer and community livelihoods (Agri · Direct · Foundation)",
       "Leadership capacity for public and private decision-makers (Leadership)",
       "SME inclusion into verified institutional supply (Access · Connect)",
     ],
@@ -1204,7 +1146,7 @@ export const INVESTOR_RISKS = [
     mitigate: "Certifications, fortification QA, SupplierAdvisor® verification and hold/lot controls.",
   },
   {
-    risk: "Focus dilution across 10 pillars",
+    risk: "Focus dilution across 9 pillars",
     mitigate: "Capital 90% to assets/product on priority rails (Foods, Connect, corridors); kill criteria per opco.",
   },
 ] as const;
@@ -1224,7 +1166,6 @@ export const TRACTION_VS_AMBITION = {
     "12 priority distribution markets listed (9 Africa + DE · HU · GE)",
     "SupplierAdvisor® live product (Connect); SAM positioning",
     "Super-Cube® IP / research lineage (Leadership)",
-    "Close ties to royal family; partnership planned (not claimed as completed deal)",
   ],
   notYetTrue: [
     "~$3.0m (R50m) pipeline fully converted to contracted / recognised revenue",

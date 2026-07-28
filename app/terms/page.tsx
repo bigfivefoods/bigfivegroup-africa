@@ -33,7 +33,7 @@ export default function TermsOfService() {
             <li>Supply chain transparency and verification (Big Five Connect)</li>
             <li>Leadership development programmes (Super-Cube®)</li>
             <li>Donation and impact tracking platforms</li>
-            <li>Information about our ten pillars and continental operations</li>
+            <li>Information about our nine pillars and continental operations</li>
           </ul>
 
           <h2 className="text-3xl font-semibold tracking-tight mt-16 mb-6">3. User Responsibilities</h2>

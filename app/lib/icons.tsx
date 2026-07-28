@@ -9,7 +9,6 @@ import {
   Feather,
   Globe,
   Target,
-  Crown,
   type LucideIcon,
 } from "lucide-react";
 
@@ -24,7 +23,6 @@ const iconMap: Record<string, LucideIcon> = {
   Feather,
   Globe,
   Target,
-  Crown,
 };
 
 export function CompanyIcon({

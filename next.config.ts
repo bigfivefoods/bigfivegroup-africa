@@ -15,8 +15,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/royal",
+        destination: "/group",
+        permanent: true,
+      },
+      {
         source: "/tribal",
-        destination: "/royal",
+        destination: "/group",
         permanent: true,
       },
       {

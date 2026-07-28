@@ -431,52 +431,7 @@ export const companies: Company[] = [
     ],
     impact:
       "Twelve priority distribution markets (including DE · HU · GE in Europe) and a clear expansion horizon across Africa and the world — see /global.",
-  },
-  {
-    slug: "royal",
-    name: "Royal",
-    fullName: "Big Five Royal",
-    color: "#d97706",
-    icon: "Crown",
-    tagline: "Close Ties · Planned Partnership · Support · Feed · Educate · Empower",
-    description:
-      "Big Five has close ties to the royal family, is planning to partner with the royal family, and supports them and the work they do — serving communities with dignity starting in KwaZulu-Natal and across Africa.",
-    heroText:
-      "Close ties to the royal family. Planning to partner. Supporting them and the work they do.",
-    howItWorks: [
-      {
-        step: 1,
-        title: "Close ties & planned partnership",
-        desc: "Build on close ties to the royal family and plan formal partnership with the royal family — rooted in respect and local guidance.",
-      },
-      {
-        step: 2,
-        title: "Support their work",
-        desc: "Support the royal family and the work they do for communities — and deliver food security, skills, leadership and fair opportunity with people, not imposed on them.",
-      },
-      {
-        step: 3,
-        title: "Feed · Educate · Empower",
-        desc: "Through Foods, Leadership, Access and Foundation pathways, we aim to feed, educate and empower the communities we serve.",
-      },
-    ],
-    forStakeholders: [
-      {
-        title: "For the royal family",
-        desc: "A trusted enterprise partner with close ties, planning formal partnership, and committed to supporting their work and community wellbeing.",
-      },
-      {
-        title: "For communities",
-        desc: "Practical programmes that put nutrition, skills and opportunity into local hands.",
-      },
-      {
-        title: "For institutional partners",
-        desc: "A clear channel to support community impact alongside royal leadership.",
-      },
-    ],
-    impact:
-      "Close ties and planned partnership with the royal family — supporting their work and putting communities first: feed, educate and empower.",
-  },
+  }
 ];
 
 export const getCompanyBySlug = (slug: string) => companies.find((c) => c.slug === slug);

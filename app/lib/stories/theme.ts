@@ -78,7 +78,6 @@ const UNIT: Record<
   },
   global: { key: "global", mission: "Group", unitLabel: "Big Five Global", unitHref: "/global" },
   africa: { key: "africa", mission: "Group", unitLabel: "Africa", unitHref: "/africa" },
-  royal: { key: "royal", mission: "Empower", unitLabel: "Royal", unitHref: "/royal" },
   group: { key: "group", mission: "Group", unitLabel: "Big Five Group", unitHref: "/group" },
 };
 
@@ -111,7 +110,6 @@ export function resolveStoryTheme(tag: string, hint = ""): StoryTheme {
     "partnership",
     "global",
     "africa",
-    "royal",
     "group",
   ] as const;
 

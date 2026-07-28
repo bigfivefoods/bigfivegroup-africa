@@ -388,7 +388,7 @@ export default function AboutPage() {
             <p className="text-base sm:text-lg text-[#525252] leading-relaxed">
               Vision sets the north star. Mission names the work —{" "}
               <strong className="text-black">Feed · Educate · Empower</strong>. Values discipline
-              how we deliver. The ten pillars are the operating system that turns SOFI-scale problems
+              how we deliver. The nine pillars are the operating system that turns SOFI-scale problems
               into programmes with proof.
             </p>
           </div>
@@ -435,7 +435,7 @@ export default function AboutPage() {
                 problem:
                   "Without trust rails, capital pathways and programme discipline, nutrition never becomes a plated, auditable outcome.",
                 response:
-                  "Connect verifies trade; Access opens institutional capital; Impact runs the PMO; Foundation funds with proof; Global and Royal extend corridors and legitimacy.",
+                  "Connect verifies trade; Access opens institutional capital; Impact runs the PMO; Foundation funds with proof; Global extends corridors and partnerships.",
                 pillars: [
                   { href: "/connect", name: "Connect" },
                   { href: "/access", name: "Access" },
@@ -504,7 +504,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
               <div>
                 <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[#737373] mb-1">
-                  Ten pillars · one system
+                  Nine pillars · one system
                 </div>
                 <h3 className="text-xl sm:text-2xl font-semibold tracking-tighter text-black">
                   How each pillar is geared to the problem

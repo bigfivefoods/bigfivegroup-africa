@@ -42,10 +42,10 @@ export const PILLAR_MISSIONS: PillarMission[] = [
     label: "03 · Empower",
     mission: "Empower",
     blurb:
-      "Last-mile rails, capital access, verified trade, impact delivery, royal partnership and global corridors.",
+      "Last-mile rails, capital access, verified trade, impact delivery and global corridors.",
     accent: "#059669",
     accentSoft: "#ecfdf5",
     accentDark: "#065f46",
-    slugs: ["connect", "direct", "access", "impact", "royal", "global", "foundation"],
+    slugs: ["connect", "direct", "access", "impact", "global", "foundation"],
   },
 ];

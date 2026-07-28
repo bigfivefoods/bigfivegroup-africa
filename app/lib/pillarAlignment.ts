@@ -176,20 +176,7 @@ export const PILLAR_ALIGNMENT: Record<string, PillarAlignment> = {
       { value: SOFI.africa.hungryLabel, label: "Africa hunger (SOFI)" },
     ],
   },
-  royal: {
-    slug: "royal",
-    mission: "Empower",
-    missionFit:
-      "Royal and traditional partnership empowers legitimacy — community-first programmes with dignity.",
-    sofiChallenge:
-      "Lasting food security needs community ownership and community partnership — not extractive projects.",
-    sofiResponse:
-      "Close ties and planned partnership with royal partnership and community structures so Agri, Foods and Foundation programmes honour heritage and local leadership.",
-    stats: [
-      { value: "Ubuntu", label: "Dignity-first partnership" },
-      { value: "Feed", label: "Community nutrition pathways" },
-    ],
-  },
+
   group: {
     slug: "group",
     mission: "Group",
@@ -200,7 +187,7 @@ export const PILLAR_ALIGNMENT: Record<string, PillarAlignment> = {
     stats: [
       { value: SOFI.africa.hungryLabel, label: "Africa hunger 2025" },
       { value: SOFI.global.hungryLabel, label: "Global hunger 2025" },
-      { value: "10", label: "Pillars · one Group" },
+      { value: "9", label: "Pillars · one Group" },
     ],
   },
 };

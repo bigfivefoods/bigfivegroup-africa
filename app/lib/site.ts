@@ -29,7 +29,6 @@ const OG_SLUGS = new Set([
   "foundation",
   "global",
   "africa",
-  "royal",
   "about",
   "contact",
   "newsletter",

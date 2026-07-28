@@ -450,7 +450,7 @@ export default function PartnerPortalClient({
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
-            TEN PILLARS
+            NINE PILLARS
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
             Public pillar pages

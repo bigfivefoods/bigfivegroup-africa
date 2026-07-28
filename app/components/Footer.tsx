@@ -40,7 +40,6 @@ const pillarGroups: { label: string; links: { href: string; label: string }[] }[
       { href: "/direct", label: "Direct" },
       { href: "/access", label: "Access" },
       { href: "/impact", label: "Impact" },
-      { href: "/royal", label: "Royal" },
       { href: "/global", label: "Global" },
     ],
   },
@@ -139,7 +138,7 @@ export default function Footer() {
               BIG FIVE GROUP
             </div>
             <p className="text-base sm:text-lg font-light tracking-tight mb-2">
-              One Group. Ten Pillars. Infinite African Impact.
+              One Group. Nine Pillars. Infinite African Impact.
             </p>
             <p className="text-[#525252] text-sm">
               Regenerative. Sovereign. On-Chain. On-Purpose.

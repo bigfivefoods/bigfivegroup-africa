@@ -94,7 +94,7 @@ const SDG_ALIGNMENT = [
     icon: "/sdg/sdg-10.png",
     color: "#DD1367",
     how: "Inclusive routes to markets, capital and programmes for producers and communities historically left out of formal systems.",
-    pillars: "Access · Connect · Royal · Foundation",
+    pillars: "Access · Connect · Foundation",
   },
   {
     number: "17",
@@ -103,7 +103,7 @@ const SDG_ALIGNMENT = [
     icon: "/sdg/sdg-17.png",
     color: "#19486A",
     how: "Governments, DFIs, corporates, kingdoms and implementers — one group relationship with audit trails and shared KPIs.",
-    pillars: "Impact · Global · Royal · Connect",
+    pillars: "Impact · Global · Connect",
   },
 ] as const;
 
@@ -121,16 +121,14 @@ const PILLAR_BRIEFS: Record<string, string> = {
   impact:
     "Cross-pillar PMO — design, gates, KPIs and field delivery. Working with the Director General of Health to help drive Group products into SA DoH and African health pathways.",
   global: "International corridors linking African capacity to world markets.",
-  royal:
-    "Close ties to the royal family; planning to partner; supports them and the work they do — feed, educate, empower.",
 };
 
 const GROUP_OVERVIEW =
-  "Big Five Group is a proudly African enterprise — African for Africa — headquartered in KwaZulu-Natal. We are not an import-only story: ten pillars share governance, mission and values so regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership compound as one system built on the continent, for the continent.";
+  "Big Five Group is a proudly African enterprise — African for Africa — headquartered in KwaZulu-Natal. We are not an import-only story: nine pillars share governance, mission and values so regenerative production, fortified nutrition, distribution, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors compound as one system built on the continent, for the continent.";
 
 /** Shorter copy for A4 landscape PDF so the pillar grid stays fully visible. */
 const GROUP_OVERVIEW_PRINT =
-  "Proudly African enterprise — African for Africa — HQ in KwaZulu-Natal. Ten pillars share governance, mission and values: production, fortified nutrition, last-mile, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors and royal partnership — one system built on the continent, for the continent.";
+  "Proudly African enterprise — African for Africa — HQ in KwaZulu-Natal. Nine pillars share governance, mission and values: production, fortified nutrition, last-mile, capital access, ethical commerce, leadership, philanthropy, programme delivery, global corridors — one system built on the continent, for the continent.";
 
 const PILLAR_BRIEFS_PRINT: Record<string, string> = {
   agri: "Regenerative production & smallholder supply.",
@@ -142,7 +140,6 @@ const PILLAR_BRIEFS_PRINT: Record<string, string> = {
   foundation: "Registered philanthropy with programme proof.",
   impact: "Cross-pillar PMO — gates, KPIs; health channel via DG of Health relationship.",
   global: "Corridors linking African capacity to world markets.",
-  royal: "Royal partnership for African legitimacy.",
 };
 
 /**
@@ -308,7 +305,7 @@ function Slide({ index }: SlideProps) {
           </h2>
           <ol className="space-y-3 sm:space-y-3.5 max-w-2xl">
             {[
-              "Proudly African for Africa — who Big Five Group is (ten pillars, one system)",
+              "Proudly African for Africa — who Big Five Group is (nine pillars, one system)",
               "Vision, mission and values — a prosperous Africa we help build",
               "Hunger & food insecurity in Africa (SOFI / GRFC / WFP)",
               "Child malnutrition — stunting, wasting, micronutrients (UNICEF/WHO/WB)",
@@ -811,7 +808,7 @@ function Slide({ index }: SlideProps) {
           </div>
           <ul className="space-y-2 text-sm text-white/70 max-w-2xl">
             <li>· Proudly African for Africa — HQ KwaZulu-Natal · continental mission</li>
-            <li>· Ten pillars under one group governance</li>
+            <li>· Nine pillars under one group governance</li>
             <li>
               · Pathway to feed <strong className="text-white/90">2.5 million children per day</strong>{" "}
               through the National School Nutrition Programme (NSNP / DBE)
@@ -864,7 +861,7 @@ function Slide({ index }: SlideProps) {
                 d: "KwaZulu-Natal base, African markets first, ISO/FSSC-grade manufacturing and verified trade rails.",
               },
               {
-                t: "Institutional fluency + royal partnership",
+                t: "Institutional fluency",
                 d: "Ministries, DFIs, CSI and community partners — feed, educate and empower with local legitimacy.",
               },
             ].map((x) => (
@@ -981,12 +978,12 @@ function Slide({ index }: SlideProps) {
                 </span>
               </h2>
               <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl mb-3 sm:mb-4">
-                If you are a government, DFI, corporate CSI team, implementer or royal partner
+                If you are a government, DFI, corporate CSI team, implementer or programme partner
                 serious about{" "}
                 <strong className="text-white">Zero Hunger, SDG outcomes and last-mile proof</strong>
                 — partner with Big Five Group:{" "}
                 <strong className="text-white">proudly African for Africa</strong>. One
-                relationship. Ten pillars. Feed · Educate · Empower.
+                relationship. Nine pillars. Feed · Educate · Empower.
               </p>
               <p className="text-sm sm:text-base text-violet-200/90 font-medium max-w-2xl mb-6 sm:mb-8">
                 Book a 30-minute strategy call this week. Leave with a clear next step — programme
@@ -1031,7 +1028,7 @@ function Slide({ index }: SlideProps) {
                   href="/group"
                   className="premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-white/10"
                 >
-                  Explore the ten pillars
+                  Explore the nine pillars
                 </Link>
               </div>
             </div>
@@ -1116,7 +1113,7 @@ function GroupTitleSlide() {
               forPrint ? "mt-3 text-xs" : "mt-4 text-sm sm:text-base"
             }`}
           >
-            One Group · Ten Pillars · A proudly African initiative for the continent we serve.
+            One Group · Nine Pillars · A proudly African initiative for the continent we serve.
           </p>
         </div>
         <div
@@ -1148,7 +1145,7 @@ function GroupTitleSlide() {
   );
 }
 
-/** Who we are — densifies for A4 landscape so 10 pillars never clip. */
+/** Who we are — densifies for A4 landscape so 9 pillars never clip. */
 function WhoWeAreSlide() {
   const forPrint = usePrintMode();
   const pdf = usePdfExport();
@@ -1367,9 +1364,8 @@ function FeedEducateEmpowerSlide() {
               : "mt-6 text-sm leading-relaxed max-w-3xl"
           }`}
         >
-          Foundation, Impact and Royal cut across all three — funding, programme delivery, and close
-          ties with planned partnership alongside the royal family — African
-          legitimacy for African programmes.
+          Foundation and Impact cut across all three — funding and programme delivery with
+          transparent proof — African capacity for African programmes.
         </p>
       </div>
     </SlideShell>

@@ -18,7 +18,6 @@ const routes = [
   "/impact",
   "/leadership",
   "/foundation",
-  "/royal",
   "/contact",
   "/updates",
   "/newsletter",

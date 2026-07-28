@@ -147,4 +147,4 @@ No environment variables are required for the static marketing site.
 
 - Hero and product assets live in `/public`.
 - Flag images for the Global page load from `flagcdn.com` (allowed in `next.config.ts`).
-- `/tribal` redirects to `/royal` (legacy URL).
+- `/royal` and `/tribal` redirect to `/group`.

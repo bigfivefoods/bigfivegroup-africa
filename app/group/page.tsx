@@ -93,13 +93,6 @@ const pillarSupport: Record<
     system:
       "Extends partnerships from priority nations so local pillars can scale without losing standards.",
   },
-  royal: {
-    mission: "Cross-cutting",
-    serves:
-      "Close ties to the royal family; planning to partner with the royal family; supports them and the work they do — feed, educate, empower with respect and service.",
-    system:
-      "Anchors the group in heritage and community mandate — service that legitimises every pillar.",
-  },
 };
 
 const missionColors: Record<string, string> = {
@@ -120,20 +113,20 @@ export default function GroupPage() {
           width: 192,
           height: 192,
         }}
-        eyebrow="THE GROUP · TEN PILLARS · ONE SYSTEM"
+        eyebrow="THE GROUP · NINE PILLARS · ONE SYSTEM"
         title={
           <>
             One group.
             <br />
-            Ten pillars.
+            Nine pillars.
             <br />
             One mission.
           </>
         }
-        subtitle="An integrated African enterprise headquartered in KwaZulu-Natal. Ten pillars. One mission: Feed · Educate · Empower."
+        subtitle="An integrated African enterprise headquartered in KwaZulu-Natal. Nine pillars. One mission: Feed · Educate · Empower."
         ctas={[
           { href: "#strategy-deck", label: "Strategic deck", primary: true },
-          { href: "#pillars", label: "Ten pillars" },
+          { href: "#pillars", label: "Nine pillars" },
           { href: "#vision", label: "Vision · mission · values" },
         ]}
         overlayClassName={pageBrand.group.overlay}
@@ -144,7 +137,7 @@ export default function GroupPage() {
         <SectionHeading
           eyebrow="THE ECOSYSTEM"
           title="How the group works as one"
-          subtitle="Regenerative production, fortified nutrition, last-mile, capital access, ethical commerce, leadership, philanthropy, delivery, global corridors and royal partnership — impact compounds instead of competing."
+          subtitle="Regenerative production, fortified nutrition, last-mile, capital access, ethical commerce, leadership, philanthropy, delivery and global corridors — impact compounds instead of competing."
         />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-2 text-left">
           {[
@@ -336,17 +329,16 @@ export default function GroupPage() {
           ))}
         </div>
         <p className="mt-6 text-center text-sm text-[#525252] max-w-2xl mx-auto">
-          <strong className="text-black">Foundation, Impact and Royal</strong> cut across all three —
-          funding, delivering and legitimising service to communities in partnership with heritage
-          and transparent impact.
+          <strong className="text-black">Foundation and Impact</strong> cut across all three —
+          funding and delivering programmes for communities with transparent proof.
         </p>
       </section>
 
-      {/* All 10 pillars */}
+      {/* All 9 pillars */}
       <section id="pillars" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="THE TEN PILLARS"
+            eyebrow="THE NINE PILLARS"
             title="Every business. One vision."
             subtitle="Click any pillar for full detail. Below: how each one supports the group’s vision, mission and values in the living ecosystem."
           />
@@ -475,7 +467,7 @@ export default function GroupPage() {
             {
               step: "04",
               title: "Serve & scale",
-              d: "Foundation funds; Impact delivers; Royal partners communities; Global opens corridors.",
+              d: "Foundation funds; Impact delivers; Global opens corridors.",
             },
           ].map((s) => (
             <div
@@ -493,7 +485,7 @@ export default function GroupPage() {
       {/* Closing */}
       <section className="bg-[#0a0a0a] text-white py-16 sm:py-20 md:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="text-xs tracking-[3px] text-white/40 mb-4">ONE GROUP · TEN PILLARS</div>
+          <div className="text-xs tracking-[3px] text-white/40 mb-4">ONE GROUP · NINE PILLARS</div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-5 text-balance">
             Built so Africa can prosper
           </h2>

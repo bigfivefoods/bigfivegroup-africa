@@ -561,7 +561,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                 <span className="font-semibold text-amber-800 shrink-0">3.</span>
                 <span>
                   <strong className="text-black">Pillar businesses</strong> — Agri, Foods, Direct,
-                  Access, Connect, Leadership, Foundation, Impact, Global, Royal — executed through
+                  Access, Connect, Leadership, Foundation, Impact, Global — executed through
                   the holdco / opco architecture as appropriate.
                 </span>
               </li>

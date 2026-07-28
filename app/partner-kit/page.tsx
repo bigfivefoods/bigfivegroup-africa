@@ -37,7 +37,7 @@ export default function PartnerKitPage() {
                 Big Five Group Africa
               </h1>
               <p className="text-white/70 mt-2 max-w-xl text-sm sm:text-base">
-                Feed · Educate · Empower — one group, ten pillars, measurable African impact.
+                Feed · Educate · Empower — one group, nine pillars, measurable African impact.
               </p>
             </div>
             <PrintButton />

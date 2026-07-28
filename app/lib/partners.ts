@@ -357,7 +357,7 @@ export const PARTNERS: PartnerProfile[] = [
     headline: "The Sharks × Big Five Group",
     summary:
       "Partnership workspace for The Sharks (Durban) and Big Five Group — KwaZulu-Natal rooted community nutrition, high-performance culture and fan engagement pathways (sharksrugby.co.za).",
-    focus: ["Foods", "Foundation", "Leadership", "Royal"],
+    focus: ["Foods", "Foundation", "Leadership"],
     programmes: ["nsnp", "leadership", "impact"],
     logoSrc: "/partners/sharks-logo.png",
     brandColor: "#0A0A0A",
@@ -379,11 +379,6 @@ export const PARTNERS: PartnerProfile[] = [
         href: "/foundation",
         label: "Foundation",
         desc: "Community programmes with transparent design and proof.",
-      },
-      {
-        href: "/royal",
-        label: "Royal",
-        desc: "Community legitimacy and dignity-first partnership framing.",
       },
     ],
     contactNote: "Primary Group contact: craig@bigfivegroup.africa · Sharks partnership coordination via Group leadership",

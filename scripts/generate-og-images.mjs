@@ -40,7 +40,6 @@ const HEROES = {
   foundation: "foundation-hero.jpg",
   global: "global-hero.jpg",
   africa: "africa-hero.jpg",
-  royal: "tribal.jpg",
   about: "about-hero.jpg",
   contact: "home-hero.jpg",
   newsletter: "home-hero.jpg",

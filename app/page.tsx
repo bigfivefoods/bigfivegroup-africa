@@ -159,7 +159,7 @@ export default function Home() {
           >
             One Group.
             <br />
-            Ten Pillars.
+            Nine Pillars.
             <br />
             African Impact.
           </motion.h1>
@@ -279,7 +279,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Ten pillars · case studies live inside missions */}
+      {/* Nine pillars · case studies live inside missions */}
       <section
         id="pillars"
         className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20"
@@ -287,7 +287,7 @@ export default function Home() {
         <div className="mb-8 sm:mb-10 max-w-2xl">
           <div className="uppercase tracking-[3px] text-xs text-[#525252] mb-2">The ecosystem</div>
           <h2 className="section-heading text-black">
-            Ten pillars.
+            Nine pillars.
             <br />
             Three missions.
           </h2>

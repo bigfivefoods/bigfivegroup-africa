@@ -124,16 +124,6 @@ export const pageBrand = {
     overlay: "bg-emerald-950/45",
     eyebrow: "CONTINENT · 54 NATIONS",
   },
-  royal: {
-    slug: "royal",
-    hero: "/tribal.jpg",
-    accent: "#d97706",
-    accentDark: "#92400e",
-    accentSoft: "#fffbeb",
-    accentLight: "#fbbf24",
-    overlay: "bg-amber-950/55",
-    eyebrow: "ROYAL PARTNERSHIP · COMMUNITY FIRST",
-  },
   about: {
     slug: "about",
     hero: "/about-hero.jpg",
@@ -153,7 +143,7 @@ export const pageBrand = {
     accentSoft: "#ecfdf5",
     accentLight: "#6ee7b7",
     overlay: "bg-emerald-950/50",
-    eyebrow: "THE GROUP · TEN PILLARS",
+    eyebrow: "THE GROUP · NINE PILLARS",
   },
 } as const satisfies Record<string, PageBrand>;
 
