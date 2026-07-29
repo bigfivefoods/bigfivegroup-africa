@@ -40,7 +40,7 @@ export default function ImpactPage() {
             that delivers Africa
           </>
         }
-        subtitle="Proudly African for Africa. Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. We work with the Director General of Health to help drive Group products into South Africa’s Department of Health and health pathways across Africa."
+        subtitle="Proudly African for Africa. Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. We aspire to work with the Director General of Health in South Africa to help drive Group products into the Department of Health and related health pathways."
         ctas={[
           { href: "#strategy-deck", label: "Strategic overview deck", primary: true },
           { href: "#health-channel", label: "Health channel" },
@@ -79,10 +79,10 @@ export default function ImpactPage() {
                   mature — always with delivery capacity attached.
                 </p>
                 <p className="text-[11px] sm:text-xs text-[#737373] leading-relaxed max-w-3xl">
-                  Framed as a working relationship with the Director General of Health and a Group
-                  channel coordinated through Impact — not that the DG is part of Big Five Impact,
-                  and not a claim that multi-country Department of Health supply awards are already
-                  closed. Request a dated partner brief for diligence.
+                  Framed as an aspiration to work with the Director General of Health in South
+                  Africa and a Group channel coordinated through Impact — not that the DG is part of
+                  Big Five Impact, and not a claim that Department of Health supply awards are
+                  already closed. Request a dated partner brief for diligence.
                 </p>
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function ImpactPage() {
             {
               icon: HeartPulse,
               title: "Department of Health channel",
-              desc: "Working with the Director General of Health, we help drive Group products into South Africa’s Department of Health and health pathways in other African countries — coordinated through Impact’s PMO.",
+              desc: "We aspire to work with the Director General of Health in South Africa to help drive Group products into the Department of Health — coordinated through Impact’s PMO.",
             },
             {
               icon: Map,
@@ -216,7 +216,7 @@ export default function ImpactPage() {
             {
               step: "03",
               title: "Institutional health channel",
-              desc: "Working with the Director General of Health, help drive Group products into South Africa’s Department of Health and health pathways in other African countries as programmes mature — Impact orchestrates delivery.",
+              desc: "We aspire to work with the Director General of Health in South Africa to help drive Group products into the Department of Health as programmes mature — Impact orchestrates delivery.",
             },
             {
               step: "04",
@@ -242,7 +242,7 @@ export default function ImpactPage() {
               },
               {
                 title: "Department of Health",
-                desc: "Product pathways into SA DoH and African health systems, advanced through our work with the Director General of Health and Impact’s PMO discipline.",
+                desc: "Product pathways into South Africa’s Department of Health — we aspire to work with the Director General of Health in South Africa, with Impact’s PMO discipline coordinating delivery.",
               },
               {
                 title: "Corporates & CSI",
