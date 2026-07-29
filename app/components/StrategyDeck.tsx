@@ -305,7 +305,7 @@ function Slide({ index }: SlideProps) {
           </h2>
           <ol className="space-y-3 sm:space-y-3.5 max-w-2xl">
             {[
-              "Proudly African for Africa — who Big Five Group is (nine pillars, one system)",
+              "Proudly African for Africa — who Big Five Group is (nine pillars, one system); standing with Africa amid continental challenges",
               "Vision, mission and values — a prosperous Africa we help build",
               "Hunger & food insecurity in Africa (SOFI / GRFC / WFP)",
               "Child malnutrition — stunting, wasting, micronutrients (UNICEF/WHO/WB)",
@@ -1169,13 +1169,56 @@ function WhoWeAreSlide() {
           </h2>
           <p
             className={`text-[#525252] leading-snug max-w-3xl ${
-              dense ? "text-[11px] sm:text-xs mb-2" : "text-sm sm:text-base leading-relaxed mb-4"
+              dense ? "text-[11px] sm:text-xs mb-2" : "text-sm sm:text-base leading-relaxed mb-3 sm:mb-4"
             }`}
           >
             This is a <strong className="text-black">proudly African initiative</strong>. Big Five
             Group is <strong className="text-black">proudly African for Africa</strong> — HQ on the
             continent, solutions designed for African households, schools, governments and markets,
             with African partners and delivery capacity attached.
+          </p>
+        </div>
+
+        <div
+          className={`rounded-xl sm:rounded-2xl border border-emerald-200/90 bg-gradient-to-br from-emerald-50 via-white to-amber-50/50 min-w-0 shrink-0 ${
+            dense ? "p-2 mb-2" : "p-3.5 sm:p-4 mb-3 sm:mb-4"
+          }`}
+          role="note"
+        >
+          <div
+            className={`tracking-[1.5px] sm:tracking-[2px] text-emerald-900 font-semibold ${
+              dense ? "text-[8px] mb-0.5" : "text-[10px] mb-1.5"
+            }`}
+          >
+            STANDING WITH AFRICA · FOR AFRICA
+          </div>
+          <p
+            className={`text-[#404040] ${
+              dense
+                ? "text-[9px] sm:text-[10px] leading-snug"
+                : "text-xs sm:text-sm leading-relaxed"
+            }`}
+          >
+            {dense ? (
+              <>
+                We acknowledge recent challenges in South Africa that reverberate across the
+                continent. They are{" "}
+                <strong className="text-black">by no means a reflection of our business</strong>.
+                We <strong className="text-black">stand with Africa, for Africa</strong> —
+                committed to delivery, dignity and partnership on the continent we serve.
+              </>
+            ) : (
+              <>
+                We acknowledge the recent issues and challenges in South Africa that impact
+                communities and confidence across Africa. Those realities deserve honest
+                recognition — and they are{" "}
+                <strong className="text-black">by no means a reflection of our business</strong>,
+                our integrity, or the work of the partners we serve. Big Five Group remains{" "}
+                <strong className="text-black">proudly African for Africa</strong>: we stand with
+                Africa, for Africa — and we keep building regenerative supply, fortified nutrition,
+                ethical commerce and programme delivery that the continent can trust.
+              </>
+            )}
           </p>
         </div>
 
