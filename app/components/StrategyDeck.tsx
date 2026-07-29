@@ -39,12 +39,13 @@ import {
   Bot,
   MessageSquare,
   Cpu,
+  ArrowDown,
 } from "lucide-react";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 import { sa, SA_ONBOARDING } from "../lib/saCopy";
 
-const TOTAL = 19;
+const TOTAL = 20;
 
 /**
  * Priority SDGs — official UN colour tiles (public/sdg/sdg-{n}.png).
@@ -312,6 +313,7 @@ function Slide({ index }: SlideProps) {
               "Disease & health vulnerability — broader burden across Africa (WHO)",
               "Markets, last-mile and institutional trust gaps",
               "How Big Five responds: Feed · Educate · Empower",
+              "Three-stage market model aligned to Feed · Educate · Empower",
               "How we resolve malnutrition and disease-linked household vulnerability",
               "UN SDGs & WFP Zero Hunger — how we align",
               "AI, robotics & SAM — intelligence for the mission",
@@ -499,6 +501,9 @@ function Slide({ index }: SlideProps) {
       return <FeedEducateEmpowerSlide />;
 
     case 9:
+      return <ThreeStageMarketSlide />;
+
+    case 10:
       return (
         <SlideShell accent="emerald">
           <Eyebrow>HOW WE RESOLVE MALNUTRITION</Eyebrow>
@@ -541,7 +546,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 10:
+    case 11:
       return (
         <SlideShell accent="rose">
           <Eyebrow>HOW WE SUPPORT DISEASE-AFFECTED HOUSEHOLDS</Eyebrow>
@@ -594,7 +599,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 11:
+    case 12:
       return (
         <SlideShell>
           <Eyebrow>CHALLENGE → RESPONSE</Eyebrow>
@@ -655,7 +660,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 12:
+    case 13:
       return (
         <SlideShell accent="emerald">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-2 sm:mb-3">
@@ -721,7 +726,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <SlideShell dark accent="amber">
           <Eyebrow light>GLOBAL FRAMEWORK · WFP & ZERO HUNGER</Eyebrow>
@@ -788,7 +793,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 14:
+    case 15:
       return (
         <SlideShell dark>
           <Eyebrow light>PROOF POINTS</Eyebrow>
@@ -822,7 +827,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 15:
+    case 16:
       return (
         <SlideShell>
           <Eyebrow>WHY WORK WITH US · PROUDLY AFRICAN</Eyebrow>
@@ -880,7 +885,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 16:
+    case 17:
       return (
         <SlideShell dark>
           <Eyebrow light>FUTURE SYSTEMS · AI & ROBOTICS</Eyebrow>
@@ -920,7 +925,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 17:
+    case 18:
       return (
         <SlideShell accent="emerald">
           <Eyebrow>SUPPLIERADVISOR® · SAM</Eyebrow>
@@ -964,7 +969,7 @@ function Slide({ index }: SlideProps) {
         </SlideShell>
       );
 
-    case 18:
+    case 19:
       return (
         <SlideShell dark className="!p-0">
           <TitleSlideLayout>
@@ -1137,7 +1142,7 @@ function GroupTitleSlide() {
           >
             <p>Proudly African HQ · KwaZulu-Natal · South Africa</p>
             <p>bigfivegroup.africa/impact#strategy-deck</p>
-            <p>19 slides · Downloadable · Shareable</p>
+            <p>20 slides · Downloadable · Shareable</p>
           </div>
         </div>
       </TitleSlideLayout>
@@ -1293,6 +1298,257 @@ function WhoWeAreSlide() {
             </div>
           ))}
         </div>
+      </div>
+    </SlideShell>
+  );
+}
+
+/**
+ * Three-stage end-market model mapped to Group mission:
+ * Stage 1 Feed · Stage 2 Educate · Stage 3 Empower
+ */
+function ThreeStageMarketSlide() {
+  const forPrint = usePrintMode();
+  const pdf = usePdfExport();
+  const dense = forPrint || pdf;
+
+  const stages = [
+    {
+      n: "01",
+      mission: "Feed",
+      horizon: "Immediate · short term",
+      title: "Supply food now",
+      icon: UtensilsCrossed,
+      color: "#d97706",
+      soft: "#fffbeb",
+      border: "border-amber-200",
+      d: dense
+        ? "Feed first: ship finished fortified foods into the end market to address food security and malnutrition now."
+        : "Feed first — supply finished fortified foods into the end market in the immediate short term. Porridges, soya, one-pots and programme SKUs put nutrition on plates while local capacity is still being built.",
+      bullets: dense
+        ? ["Finished goods to market", "Food security & malnutrition", "Demand & menus established"]
+        : [
+            "Finished goods into schools, institutions and last-mile nodes",
+            "Addresses hunger and malnutrition without waiting for plant build",
+            "Builds demand, menus and trust — the Feed foundation for later stages",
+          ],
+    },
+    {
+      n: "02",
+      mission: "Educate",
+      horizon: "Medium term · 18–36 months",
+      title: "Pack in-market · build capability",
+      icon: GraduationCap,
+      color: "#eab308",
+      soft: "#fefce8",
+      border: "border-yellow-200",
+      d: dense
+        ? "Educate: set up end-market packing; ship blends in; train local teams and create skilled employment."
+        : "Educate the end market industrially — set up a packing factory, ship blends in for local pack, and train people in QA, operations and factory discipline. Local employment with real skills, not only temporary jobs.",
+      bullets: dense
+        ? ["Local packing plant", "Blends in · skills transfer", "Train packing & QA teams"]
+        : [
+            "End-market packing facility commissioned",
+            "Blends sent in; finished packs produced locally",
+            "Skills transfer: packing, QA, warehouse and plant leadership",
+          ],
+    },
+    {
+      n: "03",
+      mission: "Empower",
+      horizon: "Longer term · 36–60 months",
+      title: "Full local self-sufficiency",
+      icon: Shield,
+      color: "#059669",
+      soft: "#ecfdf5",
+      border: "border-emerald-200",
+      d: dense
+        ? "Empower: farmers, blending and packing in-market — self-sufficient factory with export potential."
+        : "Empower the end market economically — establish farmers, blending facilities and full local value chains so the factory is self-sufficient, with export potential on African terms.",
+      bullets: dense
+        ? ["Local farmers & blend", "Self-sufficient plant", "Export potential"]
+        : [
+            "Local farmer supply and regenerative offtake",
+            "In-market blending + packing — full self-sufficiency",
+            "Export potential from a proudly African production base",
+          ],
+    },
+  ] as const;
+
+  return (
+    <SlideShell>
+      <div className="flex flex-col h-full min-h-0">
+        <div className="shrink-0">
+          <Eyebrow>HOW WE PLAN TO DO BUSINESS · FEED · EDUCATE · EMPOWER</Eyebrow>
+          <h2
+            className={`font-semibold tracking-tighter text-balance ${
+              dense
+                ? "text-xl sm:text-2xl mb-1"
+                : "text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3"
+            }`}
+          >
+            Three stages. One mission path.
+          </h2>
+          <p
+            className={`text-[#525252] max-w-3xl ${
+              dense
+                ? "text-[11px] sm:text-xs leading-snug mb-2"
+                : "text-sm sm:text-base leading-relaxed mb-4 sm:mb-5"
+            }`}
+          >
+            Group strategy in every end market:{" "}
+            <strong className="text-black">Feed</strong> with food now,{" "}
+            <strong className="text-black">Educate</strong> with in-market packing and skills, then{" "}
+            <strong className="text-black">Empower</strong> with full local farm-to-factory
+            self-sufficiency and export potential.
+          </p>
+        </div>
+
+        {/* Visual flow: Feed → Educate → Empower */}
+        <div
+          className={`shrink-0 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-5 ${
+            dense ? "mb-2" : ""
+          }`}
+          aria-hidden
+        >
+          {stages.map((s, i) => (
+            <div key={s.n} className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <div
+                className="flex items-center gap-1.5 sm:gap-2 rounded-full px-2.5 sm:px-3.5 py-1 sm:py-1.5 border shadow-sm"
+                style={{ backgroundColor: s.soft, borderColor: `${s.color}44` }}
+              >
+                <span
+                  className="w-5 h-5 sm:w-6 sm:h-6 rounded-full text-white text-[10px] sm:text-xs font-bold flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: s.color }}
+                >
+                  {i + 1}
+                </span>
+                <span
+                  className={`font-semibold tracking-tight ${
+                    dense ? "text-[10px]" : "text-xs sm:text-sm"
+                  }`}
+                  style={{ color: s.color }}
+                >
+                  {s.mission}
+                </span>
+                <span
+                  className={`text-[#737373] hidden sm:inline ${
+                    dense ? "text-[9px]" : "text-[11px]"
+                  }`}
+                >
+                  · {s.title.split("·")[0].trim()}
+                </span>
+              </div>
+              {i < stages.length - 1 && (
+                <ArrowRight
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-[#a3a3a3] shrink-0 hidden sm:block"
+                  strokeWidth={2.5}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div
+          className={`grid min-h-0 flex-1 content-start ${
+            dense
+              ? "grid-cols-3 gap-2"
+              : "grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4"
+          }`}
+        >
+          {stages.map((s, i) => (
+            <div
+              key={s.n}
+              className={`relative rounded-2xl border ${s.border} bg-white flex flex-col min-w-0 overflow-hidden ${
+                dense ? "p-2.5" : "p-4 sm:p-5"
+              }`}
+              style={{ boxShadow: `0 0 0 1px ${s.color}12` }}
+            >
+              <div
+                className="absolute top-0 left-0 right-0 h-1"
+                style={{ backgroundColor: s.color }}
+                aria-hidden
+              />
+              <div className={`flex items-start gap-2.5 ${dense ? "mb-1.5" : "mb-3"}`}>
+                <div
+                  className={`rounded-xl flex items-center justify-center shrink-0 ${
+                    dense ? "w-8 h-8" : "w-11 h-11"
+                  }`}
+                  style={{ backgroundColor: s.soft, color: s.color }}
+                >
+                  <s.icon className={dense ? "w-4 h-4" : "w-5 h-5"} />
+                </div>
+                <div className="min-w-0">
+                  <div
+                    className={`font-bold tracking-[1.5px] uppercase ${
+                      dense ? "text-[8px]" : "text-[10px]"
+                    }`}
+                    style={{ color: s.color }}
+                  >
+                    Stage {s.n} · {s.mission}
+                  </div>
+                  <div
+                    className={`font-semibold tracking-tight text-black ${
+                      dense ? "text-sm leading-tight" : "text-base sm:text-lg leading-snug"
+                    }`}
+                  >
+                    {s.title}
+                  </div>
+                  <div
+                    className={`text-[#737373] font-medium ${
+                      dense ? "text-[9px]" : "text-[11px] sm:text-xs"
+                    }`}
+                  >
+                    {s.horizon}
+                  </div>
+                </div>
+              </div>
+              <p
+                className={`text-[#404040] flex-1 ${
+                  dense
+                    ? "text-[10px] leading-snug mb-1.5"
+                    : "text-xs sm:text-sm leading-relaxed mb-3"
+                }`}
+              >
+                {s.d}
+              </p>
+              <ul className={`space-y-1 ${dense ? "" : "space-y-1.5"}`}>
+                {s.bullets.map((b) => (
+                  <li
+                    key={b}
+                    className={`flex gap-1.5 text-[#525252] ${
+                      dense ? "text-[9px] leading-snug" : "text-[11px] sm:text-xs leading-snug"
+                    }`}
+                  >
+                    <Check
+                      className="shrink-0 mt-0.5"
+                      style={{ color: s.color, width: dense ? 10 : 14, height: dense ? 10 : 14 }}
+                    />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              {i < stages.length - 1 && (
+                <div className="md:hidden flex justify-center pt-2 text-[#a3a3a3]" aria-hidden>
+                  <ArrowDown className="w-4 h-4" />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <p
+          className={`text-[#737373] shrink-0 ${
+            dense
+              ? "mt-2 text-[9px] sm:text-[10px] leading-snug"
+              : "mt-4 text-xs sm:text-sm leading-relaxed"
+          }`}
+        >
+          <strong className="text-black">One Group mission, three stages of delivery.</strong>{" "}
+          Feed · Educate · Empower is the premise; supply → pack → local self-sufficiency is how we
+          execute it in each end market. Timelines (18–36 months packing; 36–60 months full
+          localisation) are planning horizons — not a claim of plant already built everywhere.
+        </p>
       </div>
     </SlideShell>
   );
