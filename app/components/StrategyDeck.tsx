@@ -1017,14 +1017,15 @@ function Slide({ index }: SlideProps) {
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <Link
                   href="/connect"
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-sm sm:text-base font-semibold shadow-none"
+                  className="deck-primary-cta premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-sm sm:text-base font-semibold shadow-none"
+                  style={{ color: "#000000", backgroundColor: "#ffffff" }}
                 >
                   Partner with Big Five — start now
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" style={{ color: "#000000" }} />
                 </Link>
                 <a
                   href="mailto:craig@bigfivegroup.africa?subject=Strategic%20partnership%20—%20Big%20Five%20Group&body=Hello%20Big%20Five%20team%2C%0A%0AI%20would%20like%20to%20discuss%20a%20partnership%20%2F%20programme%20aligned%20to%20Feed%20·%20Educate%20·%20Empower.%0A%0AOrganisation%3A%0AOutcome%20we%20need%3A%0ATimeline%3A%0A%0AThank%20you."
-                  className="deck-email-cta premium-button inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm sm:text-base font-semibold shadow-none"
+                  className="deck-primary-cta deck-email-cta premium-button inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm sm:text-base font-semibold shadow-none"
                   style={{ color: "#000000", backgroundColor: "#ffffff" }}
                 >
                   Email: craig@bigfivegroup.africa
@@ -1909,13 +1910,21 @@ const PRINT_STYLES = `
     opacity: 1 !important;
     visibility: visible !important;
   }
+  /* White CTAs on dark slides — force bg + black type (PDF often drops bg-white) */
+  #${PRINT_ROOT_ID} a.deck-primary-cta,
+  #${PRINT_ROOT_ID} a.deck-primary-cta *,
   #${PRINT_ROOT_ID} a.deck-email-cta,
   #${PRINT_ROOT_ID} a.deck-email-cta * {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
   }
+  #${PRINT_ROOT_ID} a.deck-primary-cta,
   #${PRINT_ROOT_ID} a.deck-email-cta {
     background-color: #ffffff !important;
+    background-image: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    border: 1px solid #e5e5e5 !important;
   }
 
   @page ${PRINT_PAGE_NAME}-landscape { size: A4 landscape; margin: 0; }
@@ -1978,13 +1987,21 @@ const PRINT_STYLES = `
       break-after: auto;
     }
     #${PRINT_ROOT_ID} a { text-decoration: none !important; color: inherit !important; }
+    /* Must beat the blanket a { color: inherit } above — white pill + black type */
+    #${PRINT_ROOT_ID} a.deck-primary-cta,
+    #${PRINT_ROOT_ID} a.deck-primary-cta *,
     #${PRINT_ROOT_ID} a.deck-email-cta,
     #${PRINT_ROOT_ID} a.deck-email-cta * {
       color: #000000 !important;
       -webkit-text-fill-color: #000000 !important;
     }
+    #${PRINT_ROOT_ID} a.deck-primary-cta,
     #${PRINT_ROOT_ID} a.deck-email-cta {
       background-color: #ffffff !important;
+      background-image: none !important;
+      border: 1px solid #e5e5e5 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
   }
 `;
