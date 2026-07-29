@@ -1414,7 +1414,7 @@ function ThreeStageMarketSlide() {
           {stages.map((s, i) => (
             <div key={s.n} className="flex items-center gap-1.5 sm:gap-2 min-w-0">
               <div
-                className="flex items-center gap-1.5 sm:gap-2 rounded-full px-2.5 sm:px-3.5 py-1 sm:py-1.5 border shadow-sm"
+                className="flex items-center gap-1.5 sm:gap-2 rounded-full px-2.5 sm:px-3.5 py-1 sm:py-1.5 border shadow-none"
                 style={{ backgroundColor: s.soft, borderColor: `${s.color}44` }}
               >
                 <span
@@ -1459,10 +1459,9 @@ function ThreeStageMarketSlide() {
           {stages.map((s, i) => (
             <div
               key={s.n}
-              className={`relative rounded-2xl border ${s.border} bg-white flex flex-col min-w-0 overflow-hidden ${
+              className={`relative rounded-2xl border ${s.border} bg-white flex flex-col min-w-0 overflow-hidden shadow-none ${
                 dense ? "p-2.5" : "p-4 sm:p-5"
               }`}
-              style={{ boxShadow: `0 0 0 1px ${s.color}12` }}
             >
               <div
                 className="absolute top-0 left-0 right-0 h-1"
@@ -1896,6 +1895,13 @@ const PRINT_STYLES = `
     max-width: none !important;
     max-height: none !important;
     box-sizing: border-box !important;
+  }
+  /* Shadows/filters rasterise as grey blobs in PDF — strip them */
+  #${PRINT_ROOT_ID},
+  #${PRINT_ROOT_ID} * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
   }
   #${PRINT_ROOT_ID} img {
     -webkit-print-color-adjust: exact !important;
