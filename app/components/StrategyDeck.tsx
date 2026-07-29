@@ -1504,7 +1504,7 @@ function ThreeStageMarketSlide() {
                 </div>
               </div>
               <p
-                className={`text-[#404040] flex-1 ${
+                className={`text-[#404040] shrink-0 ${
                   dense
                     ? "text-[10px] leading-snug mb-1.5"
                     : "text-xs sm:text-sm leading-relaxed mb-3"
@@ -1512,7 +1512,7 @@ function ThreeStageMarketSlide() {
               >
                 {s.d}
               </p>
-              <ul className={`space-y-1 ${dense ? "" : "space-y-1.5"}`}>
+              <ul className={`space-y-1 shrink-0 ${dense ? "" : "space-y-1.5"}`}>
                 {s.bullets.map((b) => (
                   <li
                     key={b}
