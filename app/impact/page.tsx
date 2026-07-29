@@ -108,7 +108,7 @@ export default function ImpactPage() {
             {[
               { v: "2.5m", l: "Children/day NSNP plan (programme landed)" },
               { v: "150k+", l: "Meals delivered to date" },
-              { v: "10", l: "Pillars under one PMO" },
+              { v: "9", l: "Pillars under one PMO" },
               { v: "SDG", l: "1 · 2 · 4 · 8 · 10 · 17 design" },
             ].map((x) => (
               <div
@@ -190,7 +190,7 @@ export default function ImpactPage() {
             accent={ACCENT}
             stats={[
               { value: "PMO", label: "Cross-business programme office" },
-              { value: "10", label: "Pillars integrated into delivery" },
+              { value: "9", label: "Pillars integrated into delivery" },
               { value: "12", label: "Priority distribution markets (Group Global)" },
               { value: "PMO", label: "Outcome-linked workstreams & gates" },
             ]}
