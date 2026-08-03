@@ -46,7 +46,7 @@ const faqJsonLd = {
       name: "How do I start a Leadership programme?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Book a briefing at bigfivegroup.africa/contact?interest=leadership or explore super-cube.com for the model, research and pathways.",
+        text: "Book a briefing at bigfivegroup.africa/contact?interest=leadership or explore super-cube.me for the model, research and pathways.",
       },
     },
   ],

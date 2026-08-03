@@ -965,8 +965,8 @@ export const leadershipDeckConfig: PillarDeckConfig = {
     ],
     bookHref: "/the-super-cube-leadership-model.pdf",
     bookLabel: "Download free book",
-    siteHref: "https://www.super-cube.com",
-    siteLabel: "Explore super-cube.com",
+    siteHref: "https://www.super-cube.me",
+    siteLabel: "Explore super-cube.me",
     caseStudy: {
       eyebrow: SUPER_CUBE_FMCG_CASE.eyebrow,
       title: SUPER_CUBE_FMCG_CASE.title,
@@ -1023,7 +1023,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
   ecosystemBody:
     "Leadership educates the humans who run Agri, Foods, Direct, Access, Connect, Foundation and Impact. Without ethical, whole-person decision-makers, the system cannot hold trust or scale with dignity.",
   ecosystemLinks: [
-    { label: "Super-Cube® site", href: "https://www.super-cube.com" },
+    { label: "Super-Cube® site", href: "https://www.super-cube.me" },
     { label: "Free book PDF", href: "/the-super-cube-leadership-model.pdf" },
     { label: "Connect · SAM", href: "/connect" },
     { label: "Impact", href: "/impact" },
@@ -1105,7 +1105,7 @@ export const leadershipDeckConfig: PillarDeckConfig = {
   ctaPrimary: { label: "Start a leadership conversation", href: "/connect" },
   ctaSecondary: {
     label: "Explore Super-Cube®",
-    href: "https://www.super-cube.com",
+    href: "https://www.super-cube.me",
     external: true,
   },
   ctaEmail: "craig@bigfivegroup.africa",

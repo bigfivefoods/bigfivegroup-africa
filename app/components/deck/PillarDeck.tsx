@@ -632,7 +632,7 @@ function Slide({
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 rounded-full bg-black text-white px-3 py-1.5 text-xs font-semibold hover:bg-[#111]"
                     >
-                      {sc.siteLabel ?? "super-cube.com"}
+                      {sc.siteLabel ?? "super-cube.me"}
                       <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   )}

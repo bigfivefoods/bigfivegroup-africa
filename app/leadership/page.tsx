@@ -19,7 +19,7 @@ import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
 import { pageBrand } from "../lib/pageBrand";
 
-const SUPER_CUBE_URL = "https://www.super-cube.com";
+const SUPER_CUBE_URL = "https://www.super-cube.me";
 
 const pillars = [
   {
@@ -226,7 +226,7 @@ export default function LeadershipPage() {
             rel="noopener noreferrer"
             className="premium-button inline-flex items-center gap-2 bg-black text-white px-9 py-4 rounded-full font-semibold"
           >
-            Full programmes at super-cube.com
+            Full programmes at super-cube.me
             <ExternalLink className="w-4 h-4" />
           </a>
           <p className="mt-4 text-sm text-[#737373]">
@@ -238,7 +238,7 @@ export default function LeadershipPage() {
               rel="noopener noreferrer"
               className="underline underline-offset-2 text-black font-medium"
             >
-              www.super-cube.com
+              www.super-cube.me
             </a>
           </p>
         </div>
@@ -472,7 +472,7 @@ export default function LeadershipPage() {
       <section className="bg-[#0a0a0a] text-white py-20 sm:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tighter mb-4">
-            Continue at www.super-cube.com
+            Continue at www.super-cube.me
           </h2>
           <p className="text-white/65 text-lg mb-8 leading-relaxed">
             Big Five Leadership is the group education pillar. Super-Cube® is the dedicated home for
@@ -485,7 +485,7 @@ export default function LeadershipPage() {
             rel="noopener noreferrer"
             className="premium-button inline-flex items-center gap-3 bg-[#eab308] text-black px-10 py-4 rounded-full text-lg font-semibold"
           >
-            Visit super-cube.com
+            Visit super-cube.me
             <ExternalLink className="w-5 h-5" />
           </a>
         </div>
@@ -504,7 +504,7 @@ export default function LeadershipPage() {
         subtitle="Partner with Big Five Leadership for organisational and public-sector development — or enter Super-Cube® for the full learning journey."
         primary={{
           href: SUPER_CUBE_URL,
-          label: "Go to super-cube.com",
+          label: "Go to super-cube.me",
           external: true,
         }}
         secondary={{ href: "/contact?interest=leadership", label: "Book a Leadership briefing" }}

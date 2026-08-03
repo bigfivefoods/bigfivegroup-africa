@@ -103,7 +103,7 @@ const organizationJsonLd = {
   },
   sameAs: [
     "https://www.supplieradvisor.com",
-    "https://www.super-cube.com",
+    "https://www.super-cube.me",
   ],
   contactPoint: {
     "@type": "ContactPoint",

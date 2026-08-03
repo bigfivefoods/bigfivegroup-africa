@@ -202,7 +202,7 @@ export const AFRICA_PROBLEMS: AfricaProblem[] = [
         label: "Super-Cube® / Leadership (site methodology)",
         href: "https://bigfivegroup.africa/methodology",
       },
-      { label: "super-cube.com", href: "https://www.super-cube.com" },
+      { label: "super-cube.me", href: "https://www.super-cube.me" },
     ],
     opcos: ["leadership", "impact", "foundation"],
   },
@@ -276,7 +276,7 @@ export const GROUP_THESIS_PILLARS = [
       "Super-Cube® programmes (DBA research lineage; developability framing) form public and private leaders who can hold Feed · Educate · Empower systems.",
     source: {
       label: "Super-Cube® · leadership IP",
-      href: "https://www.super-cube.com",
+      href: "https://www.super-cube.me",
     },
   },
   {

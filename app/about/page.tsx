@@ -28,7 +28,7 @@ import { SOFI } from "../lib/sofi";
 import { PILLAR_MISSIONS } from "../lib/pillarMissions";
 import { getPillarAlignment } from "../lib/pillarAlignment";
 
-const SUPER_CUBE_URL = "https://www.super-cube.com";
+const SUPER_CUBE_URL = "https://www.super-cube.me";
 const SUPPLIER_URL = "https://www.supplieradvisor.com/onboarding?type=business";
 
 export default function AboutPage() {
@@ -778,7 +778,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-black"
             >
-              super-cube.com <ExternalLink className="w-4 h-4" />
+              super-cube.me <ExternalLink className="w-4 h-4" />
             </a>
           </div>
           <div className="rounded-3xl border border-black/10 bg-white p-8">
