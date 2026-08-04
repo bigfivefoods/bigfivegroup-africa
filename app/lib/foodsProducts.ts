@@ -57,7 +57,54 @@ export type FoodsShopProduct = {
   /** Prefer quote path (institutional) vs store order */
   quoteFirst?: boolean;
   channel: "retail" | "institutional" | "wholesale";
+  /** Minimum order guidance (cartons / cases as applicable) */
+  moqLabel?: string;
+  /** Typical lead time once order is confirmed on SA */
+  leadTimeLabel?: string;
+  /** Sample pack available via enquiry */
+  sampleAvailable?: boolean;
 };
+
+/** Default commercial terms by range (overridden per product when needed) */
+export const FOODS_RANGE_TERMS: Record<
+  FoodsRangeId,
+  { moqLabel: string; leadTimeLabel: string; sampleAvailable: boolean }
+> = {
+  porridge: {
+    moqLabel: "From 1 carton (retail) · volume pricing on SA",
+    leadTimeLabel: "Typically 5–10 business days (SA confirmed)",
+    sampleAvailable: true,
+  },
+  soya: {
+    moqLabel: "From 1 carton (retail) · volume pricing on SA",
+    leadTimeLabel: "Typically 5–10 business days (SA confirmed)",
+    sampleAvailable: true,
+  },
+  onepot: {
+    moqLabel: "From 1 carton (retail) · volume pricing on SA",
+    leadTimeLabel: "Typically 5–10 business days (SA confirmed)",
+    sampleAvailable: true,
+  },
+  soup: {
+    moqLabel: "From 1 carton (retail) · volume pricing on SA",
+    leadTimeLabel: "Typically 5–10 business days (SA confirmed)",
+    sampleAvailable: true,
+  },
+  nsnp: {
+    moqLabel: "Institutional MOQ · programme quote required",
+    leadTimeLabel: "Programme schedule · confirmed on SA after quote",
+    sampleAvailable: true,
+  },
+};
+
+export function productTerms(p: FoodsShopProduct) {
+  const d = FOODS_RANGE_TERMS[p.range];
+  return {
+    moqLabel: p.moqLabel ?? d.moqLabel,
+    leadTimeLabel: p.leadTimeLabel ?? d.leadTimeLabel,
+    sampleAvailable: p.sampleAvailable ?? d.sampleAvailable,
+  };
+}
 
 /** Orderable catalogue for the Foods sales portal */
 export const FOODS_SHOP_PRODUCTS: FoodsShopProduct[] = [

@@ -26,21 +26,36 @@ function messageFromSearch(): string {
   const productName = params.get("productName") || params.get("product") || "";
   const channel = params.get("channel") || "";
   if (intent === "sample") {
-    return "I would like a sample pack and/or volume quote for Big Five Foods (porridges / soya). Region: · Estimated monthly volume: · Preferred pack format: ·";
+    const productLine = productName
+      ? `Product interest: ${productName}`
+      : "Product interest: porridges / soya / one-pots / soups / NSNP";
+    return [
+      "I would like a sample pack for Big Five Foods.",
+      productLine,
+      "Region: ·",
+      "Organisation type: ·",
+      "If sample succeeds, estimated monthly volume: ·",
+      "Preferred pack format: ·",
+      "Next step: order via SupplierAdvisor® once approved: Yes ·",
+    ].join("\n");
   }
   if (intent === "order") {
+    const products = params.get("products") || "";
     const productLine = productName
-      ? `Product: ${productName}${channel ? ` (${channel})` : ""}`
+      ? `Product(s): ${productName}${channel ? ` (${channel})` : ""}`
       : "Product range: porridges / soya / one-pots / soups / NSNP institutional";
     return [
       "I would like to order or get a volume quote for Big Five Foods.",
       productLine,
+      products ? `Product ids: ${products}` : null,
       "Organisation type (school / government / retailer / catering / other): ·",
       "Region / delivery area: ·",
       "Estimated monthly volume: ·",
       "Preferred pack format: ·",
       "Fulfil via SupplierAdvisor® (preferred): Yes / need onboarding ·",
-    ].join("\n");
+    ]
+      .filter(Boolean)
+      .join("\n");
   }
   if (intent === "cohort") {
     return "I am interested in a Super-Cube® leadership cohort for our organisation. Audience (exec / public / youth): · Preferred format (in-person / blended): · Approximate cohort size: · Timing: ·";
