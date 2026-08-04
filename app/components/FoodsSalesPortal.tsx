@@ -26,16 +26,14 @@ import {
 } from "../lib/saStorefront";
 import { track } from "../lib/analytics";
 
-const ACCENT = "#d97706";
 const ACCENT_DARK = "#b45309";
+
+/** Display order for category sections */
+const RANGE_ORDER: FoodsRangeId[] = ["porridge", "soya", "onepot", "soup", "nsnp"];
 
 const FILTERS: { id: "all" | FoodsRangeId; label: string }[] = [
   { id: "all", label: "All products" },
-  { id: "porridge", label: FOODS_RANGE_LABELS.porridge },
-  { id: "soya", label: FOODS_RANGE_LABELS.soya },
-  { id: "onepot", label: FOODS_RANGE_LABELS.onepot },
-  { id: "soup", label: FOODS_RANGE_LABELS.soup },
-  { id: "nsnp", label: FOODS_RANGE_LABELS.nsnp },
+  ...RANGE_ORDER.map((id) => ({ id, label: FOODS_RANGE_LABELS[id] })),
 ];
 
 function ProductCard({ product }: { product: FoodsShopProduct }) {
@@ -58,39 +56,37 @@ function ProductCard({ product }: { product: FoodsShopProduct }) {
   });
 
   const primaryHref = product.quoteFirst ? quoteUrl : orderUrl;
-  const primaryLabel = product.quoteFirst
-    ? "Request institutional quote"
-    : "Order on SupplierAdvisor®";
+  const primaryLabel = product.quoteFirst ? "Request quote" : "Order on SA";
   const primaryExternal = !product.quoteFirst;
 
   return (
-    <article className="group flex flex-col rounded-2xl border border-black/10 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow min-w-0 h-full">
-      <div className="relative aspect-[4/3] bg-[#f5f5f5] overflow-hidden">
-        <Image
-          src={product.src}
-          alt={product.name}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
+    <article className="group flex flex-col rounded-xl border border-black/10 bg-white overflow-hidden hover:border-amber-300/50 transition-colors min-w-0 h-full">
+      {/* Full product pack — contained, not cropped */}
+      <div className="relative h-28 sm:h-32 bg-[#f8f7f5] border-b border-black/[0.06] flex items-center justify-center p-2.5 sm:p-3">
+        <div className="relative w-full h-full max-w-[7.5rem] sm:max-w-[8.5rem] mx-auto">
+          <Image
+            src={product.src}
+            alt={product.name}
+            fill
+            className="object-contain object-center"
+            sizes="140px"
+          />
+        </div>
         {product.badge && (
-          <span className="absolute top-2.5 left-2.5 text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full bg-emerald-700 text-white">
+          <span className="absolute top-1.5 right-1.5 text-[9px] font-semibold tracking-wide uppercase px-1.5 py-0.5 rounded-md bg-emerald-700 text-white leading-none">
             {product.badge}
           </span>
         )}
       </div>
-      <div className="flex flex-col flex-1 p-4 sm:p-5 min-w-0">
-        <div className="text-[10px] font-semibold tracking-[1.2px] uppercase text-amber-800 mb-1">
-          {FOODS_RANGE_LABELS[product.range]}
-        </div>
-        <h3 className="text-base sm:text-lg font-semibold tracking-tight text-black leading-snug mb-1">
+      <div className="flex flex-col flex-1 p-3 sm:p-3.5 min-w-0">
+        <h3 className="text-sm font-semibold tracking-tight text-black leading-snug mb-0.5 line-clamp-2">
           {product.shortName}
         </h3>
-        <p className="text-xs text-[#737373] mb-2">{product.pack}</p>
-        <p className="text-sm text-[#525252] leading-relaxed line-clamp-3 mb-4 flex-1">
+        <p className="text-[11px] text-[#737373] mb-1.5">{product.pack}</p>
+        <p className="text-[11px] sm:text-xs text-[#525252] leading-snug line-clamp-2 mb-3 flex-1">
           {product.blurb}
         </p>
-        <div className="flex flex-col gap-2 mt-auto">
+        <div className="flex flex-col gap-1.5 mt-auto">
           {primaryExternal ? (
             <a
               href={primaryHref}
@@ -102,10 +98,10 @@ function ProductCard({ product }: { product: FoodsShopProduct }) {
                   channel: product.channel,
                 })
               }
-              className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-4 py-2.5 rounded-full text-sm font-semibold w-full"
+              className="premium-button inline-flex items-center justify-center gap-1.5 bg-black text-white px-3 py-2 rounded-full text-[11px] sm:text-xs font-semibold w-full"
             >
               {primaryLabel}
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3 h-3" />
             </a>
           ) : (
             <Link
@@ -116,39 +112,38 @@ function ProductCard({ product }: { product: FoodsShopProduct }) {
                   channel: product.channel,
                 })
               }
-              className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-4 py-2.5 rounded-full text-sm font-semibold w-full"
+              className="premium-button inline-flex items-center justify-center gap-1.5 bg-black text-white px-3 py-2 rounded-full text-[11px] sm:text-xs font-semibold w-full"
             >
               {primaryLabel}
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3 h-3" />
             </Link>
           )}
-          <div className="flex gap-2">
-            {!product.quoteFirst && (
+          <div className="flex gap-1.5">
+            {!product.quoteFirst ? (
               <Link
                 href={quoteUrl}
-                className="flex-1 inline-flex items-center justify-center gap-1 text-xs font-semibold text-[#404040] border border-black/10 rounded-full py-2 hover:bg-[#fafafa]"
+                className="flex-1 inline-flex items-center justify-center text-[10px] font-semibold text-[#525252] border border-black/10 rounded-full py-1.5 hover:bg-[#fafafa]"
               >
-                Quote instead
+                Quote
               </Link>
-            )}
-            {product.quoteFirst && (
+            ) : (
               <a
                 href={orderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-1 text-xs font-semibold text-[#404040] border border-black/10 rounded-full py-2 hover:bg-[#fafafa]"
+                className="flex-1 inline-flex items-center justify-center gap-0.5 text-[10px] font-semibold text-[#525252] border border-black/10 rounded-full py-1.5 hover:bg-[#fafafa]"
               >
-                Open SA store
-                <ExternalLink className="w-3 h-3" />
+                Store
+                <ExternalLink className="w-2.5 h-2.5" />
               </a>
             )}
             <a
               href={onboardUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-1 text-xs font-semibold text-amber-900 border border-amber-200 bg-amber-50/80 rounded-full py-2 hover:bg-amber-50"
+              className="flex-1 inline-flex items-center justify-center text-[10px] font-semibold text-amber-900 border border-amber-200 bg-amber-50/70 rounded-full py-1.5 hover:bg-amber-50"
             >
-              New on SA?
+              Join SA
             </a>
           </div>
         </div>
@@ -157,13 +152,54 @@ function ProductCard({ product }: { product: FoodsShopProduct }) {
   );
 }
 
+function CategorySection({
+  range,
+  products,
+}: {
+  range: FoodsRangeId;
+  products: FoodsShopProduct[];
+}) {
+  if (products.length === 0) return null;
+  const isNsnp = range === "nsnp";
+
+  return (
+    <div id={`shop-${range}`} className="scroll-mt-28">
+      <div className="flex items-end justify-between gap-3 mb-3 sm:mb-4 border-b border-black/10 pb-2.5">
+        <div className="min-w-0">
+          <h3
+            className={`text-base sm:text-lg font-semibold tracking-tight ${
+              isNsnp ? "text-emerald-900" : "text-black"
+            }`}
+          >
+            {FOODS_RANGE_LABELS[range]}
+          </h3>
+          <p className="text-[11px] sm:text-xs text-[#737373] mt-0.5">
+            {products.length} product{products.length === 1 ? "" : "s"}
+            {isNsnp ? " · institutional / quote-first" : ""}
+          </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5 sm:gap-3">
+        {products.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function FoodsSalesPortal() {
   const [filter, setFilter] = useState<"all" | FoodsRangeId>("all");
 
-  const products = useMemo(() => {
-    if (filter === "all") return FOODS_SHOP_PRODUCTS;
-    return FOODS_SHOP_PRODUCTS.filter((p) => p.range === filter);
+  const grouped = useMemo(() => {
+    const ranges = filter === "all" ? RANGE_ORDER : [filter];
+    return ranges.map((range) => ({
+      range,
+      products: FOODS_SHOP_PRODUCTS.filter((p) => p.range === range),
+    }));
   }, [filter]);
+
+  const totalShown = grouped.reduce((n, g) => n + g.products.length, 0);
 
   return (
     <section
@@ -248,8 +284,8 @@ export default function FoodsSalesPortal() {
           </a>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+        {/* Category filters */}
+        <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
           {FILTERS.map((f) => {
             const active = filter === f.id;
             return (
@@ -269,14 +305,14 @@ export default function FoodsSalesPortal() {
           })}
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {products.map((p) => (
-            <ProductCard key={p.id} product={p} />
+        {/* Products by category */}
+        <div className="space-y-10 sm:space-y-12">
+          {grouped.map(({ range, products }) => (
+            <CategorySection key={range} range={range} products={products} />
           ))}
         </div>
 
-        {products.length === 0 && (
+        {totalShown === 0 && (
           <p className="text-center text-sm text-[#737373] py-12">No products in this range.</p>
         )}
 
