@@ -6,7 +6,7 @@ const social = siteSocialImages("foods");
 export const metadata: Metadata = {
   title: "Foods · Fortified nutrition & NSNP programme",
   description:
-    "Big Five Foods — fortified porridges, soya mince, one-pot meals and soups. NSNP programme landed with South Africa’s Department of Basic Education — planned to feed 2.5 million children per day. Shareable product deck.",
+    "Big Five Foods — fortified porridges, soya mince, one-pot meals and soups. Order online via SupplierAdvisor®. NSNP pathway with DBE — planned to feed 2.5 million children per day.",
   openGraph: {
     title: "Big Five Foods | Fortified African Nutrition · NSNP",
     description:
@@ -46,7 +46,7 @@ const faqJsonLd = {
       name: "How can institutions order Big Five Foods products?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Partners can enquire via bigfivegroup.africa/contact or order through SupplierAdvisor® where programme procurement allows.",
+        text: "Browse the sales portal on bigfivegroup.africa/foods#shop, then order via SupplierAdvisor® where Big Five Foods is the verified company of record. For NSNP and institutional volume, request a quote at bigfivegroup.africa/contact?interest=foods — fulfilment still runs through SupplierAdvisor® where programme procurement allows.",
       },
     },
   ],

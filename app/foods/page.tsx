@@ -20,11 +20,12 @@ import {
   ShieldCheck,
   Package,
 } from "lucide-react";
-import { SA_ONBOARDING } from "../lib/saCopy";
 import { NSNP_PRODUCTS } from "../lib/foodsProducts";
+import { saFoodsOnboardUrl, saFoodsOrderUrl } from "../lib/saStorefront";
 import LocalNewsVideo from "../components/LocalNewsVideo";
 import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
+import FoodsSalesPortal from "../components/FoodsSalesPortal";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
 
@@ -144,13 +145,10 @@ export default function FoodsPage() {
         title="Nourish the Continent"
         subtitle="Fortified porridges, soya, one-pots and soups — certified manufacturing, measurable impact, ordered on SupplierAdvisor®."
         ctas={[
-          { href: "#products", label: "Explore product ranges", primary: true },
+          { href: "#shop", label: "Shop & order", primary: true },
+          { href: "#products", label: "Explore ranges" },
           {
-            href: "/contact?interest=foods&intent=sample",
-            label: "Request sample / quote",
-          },
-          {
-            href: SA_ONBOARDING,
+            href: saFoodsOrderUrl(),
             label: "Order on SupplierAdvisor®",
             external: true,
           },
@@ -189,10 +187,10 @@ export default function FoodsPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 shrink-0">
               <a
-                href="/contact?interest=foods&intent=sample"
+                href="#shop"
                 className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-5 py-3 rounded-full text-sm font-semibold"
               >
-                Sample / quote
+                Sales portal
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
@@ -346,6 +344,9 @@ export default function FoodsPage() {
           </div>
         </div>
       </section>
+
+      {/* Sales portal — order via SupplierAdvisor® (system of record) */}
+      <FoodsSalesPortal />
 
       <SupplierTrust entityName="Big Five Foods" compact />
 
@@ -536,15 +537,16 @@ export default function FoodsPage() {
       <FinalCta
         eyebrow="FEED WITH PURPOSE"
         title="Stock nutrition that scales"
-        subtitle="Schools, governments, retailers and CSI partners — order fortified ranges on SupplierAdvisor®, or talk to us about institutional supply."
+        subtitle="Browse the sales portal, then complete trade on SupplierAdvisor® — where Big Five Foods is the verified seller of record."
         primary={{
-          href: SA_ONBOARDING,
+          href: saFoodsOrderUrl(),
           label: "Order on SupplierAdvisor®",
           external: true,
         }}
         secondary={{
-          href: "/contact?interest=foods",
-          label: "Book a Foods briefing",
+          href: saFoodsOnboardUrl(),
+          label: "Register on SupplierAdvisor®",
+          external: true,
         }}
       />
     </div>

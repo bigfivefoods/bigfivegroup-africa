@@ -21,9 +21,26 @@ function interestFromSearch(): string {
 
 function messageFromSearch(): string {
   if (typeof window === "undefined") return "";
-  const intent = new URLSearchParams(window.location.search).get("intent");
+  const params = new URLSearchParams(window.location.search);
+  const intent = params.get("intent");
+  const productName = params.get("productName") || params.get("product") || "";
+  const channel = params.get("channel") || "";
   if (intent === "sample") {
     return "I would like a sample pack and/or volume quote for Big Five Foods (porridges / soya). Region: · Estimated monthly volume: · Preferred pack format: ·";
+  }
+  if (intent === "order") {
+    const productLine = productName
+      ? `Product: ${productName}${channel ? ` (${channel})` : ""}`
+      : "Product range: porridges / soya / one-pots / soups / NSNP institutional";
+    return [
+      "I would like to order or get a volume quote for Big Five Foods.",
+      productLine,
+      "Organisation type (school / government / retailer / catering / other): ·",
+      "Region / delivery area: ·",
+      "Estimated monthly volume: ·",
+      "Preferred pack format: ·",
+      "Fulfil via SupplierAdvisor® (preferred): Yes / need onboarding ·",
+    ].join("\n");
   }
   if (intent === "cohort") {
     return "I am interested in a Super-Cube® leadership cohort for our organisation. Audience (exec / public / youth): · Preferred format (in-person / blended): · Approximate cohort size: · Timing: ·";
