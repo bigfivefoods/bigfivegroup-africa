@@ -1189,16 +1189,16 @@ function Slide({ index }: { index: number }) {
                 <a
                   href="mailto:craig@bigfivegroup.africa?subject=BFF%20%C3%97%20SWT-AG%20joint%20funding%20%E2%80%94%20SA%20containers%20%26%20Kenya%20school%20feeding"
                   className="deck-primary-cta premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold"
-                  style={{ color: "#000", backgroundColor: "#fff" }}
+                  style={{ color: "#000000", backgroundColor: "#ffffff", WebkitTextFillColor: "#000000" }}
                 >
                   Start the funding conversation
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" style={{ color: "#000000" }} />
                 </a>
                 <a
                   href={SA_FOODS_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="deck-email-cta premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-6 py-3 rounded-full text-sm font-semibold"
+                  className="deck-email-cta premium-button inline-flex items-center justify-center gap-2 border border-white/30 px-6 py-3 rounded-full text-sm font-semibold"
                 >
                   Open Big Five Foods store
                 </a>

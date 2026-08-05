@@ -283,13 +283,21 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     opacity: 1 !important;
     visibility: visible !important;
   }
+  /* White CTAs on dark slides — force bg + black type (PDF often inherits white from parent) */
+  #${printRootId} a.deck-primary-cta,
+  #${printRootId} a.deck-primary-cta *,
   #${printRootId} a.deck-email-cta,
   #${printRootId} a.deck-email-cta * {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
   }
+  #${printRootId} a.deck-primary-cta,
   #${printRootId} a.deck-email-cta {
     background-color: #ffffff !important;
+    background-image: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    border: 1px solid #e5e5e5 !important;
   }
   /* Keep quote attributions (e.g. Nelson Mandela) visible in PDF */
   #${printRootId} blockquote,
@@ -368,13 +376,21 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       break-after: auto;
     }
     #${printRootId} a { text-decoration: none !important; color: inherit !important; }
+    /* Must beat the blanket a { color: inherit } above — white pill + black type */
+    #${printRootId} a.deck-primary-cta,
+    #${printRootId} a.deck-primary-cta *,
     #${printRootId} a.deck-email-cta,
     #${printRootId} a.deck-email-cta * {
       color: #000000 !important;
       -webkit-text-fill-color: #000000 !important;
     }
+    #${printRootId} a.deck-primary-cta,
     #${printRootId} a.deck-email-cta {
       background-color: #ffffff !important;
+      background-image: none !important;
+      border: 1px solid #e5e5e5 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
   }
 `;

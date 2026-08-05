@@ -205,10 +205,16 @@ a {
 }
 
 /**
- * Deck last-slide email CTAs — always black text on white.
+ * Deck last-slide CTAs (primary + email) — always black text on white.
  * Dark slides use text-white on parents; print CSS also sets a { color: inherit }.
  * These rules must win on screen and in print for every presentation.
  */
+a.deck-primary-cta,
+a.deck-primary-cta:link,
+a.deck-primary-cta:visited,
+a.deck-primary-cta:hover,
+a.deck-primary-cta:active,
+a.deck-primary-cta *,
 a.deck-email-cta,
 a.deck-email-cta:link,
 a.deck-email-cta:visited,
@@ -218,6 +224,7 @@ a.deck-email-cta * {
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
 }
+a.deck-primary-cta,
 a.deck-email-cta {
   background-color: #ffffff !important;
   border-color: rgba(255, 255, 255, 0.2);
