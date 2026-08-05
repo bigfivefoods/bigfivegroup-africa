@@ -94,24 +94,28 @@ const RANGES = [
     title: "Fortified porridges",
     src: "/foods/porridge-chocolate.jpg",
     stats: "74% more nutrition design · everyday staple",
+    flavours: ["Original", "Chocolate", "Banana", "Strawberry"],
     how: "Micronutrient-dense breakfast/staple — addresses empty calories and vitamin gaps in household diets.",
   },
   {
     title: "Soya mince",
     src: "/foods/soya-beef.jpg",
     stats: "High protein · low cost per plate",
+    flavours: ["Rich Beef", "Chilli Beef", "Beef & Onion", "Mutton"],
     how: "Affordable plant protein that stretches pots — protein security without premium meat budgets.",
   },
   {
     title: "One-pot meals",
     src: "/foods/onepot-chicken.jpg",
     stats: "1kg → ~4kg prepared · complete plate",
+    flavours: ["Chicken", "Beef", "Chilli Beef", "Chakalaka"],
     how: "Balanced meal formats for caterers and homes — fortification plus convenience at scale.",
   },
   {
     title: "Fortified soups",
     src: "/foods/soup-chicken.jpg",
     stats: "Lowest cost entry · micronutrients",
+    flavours: ["Chicken", "Brown Onion", "Oxtail", "Minestrone"],
     how: "Warmth and vitamins A & C, iron and calcium — accessible entry product for constrained budgets.",
   },
 ] as const;
@@ -465,6 +469,9 @@ function Slide({ index }: { index: number }) {
                 </div>
                 <div className="p-3 flex-1 flex flex-col">
                   <h3 className="text-sm font-semibold text-black mb-0.5">{r.title}</h3>
+                  <p className="text-[10px] font-medium text-amber-900 mb-1 leading-snug">
+                    {r.flavours.join(" · ")}
+                  </p>
                   <p className="text-[10px] font-medium text-amber-800 mb-1.5">{r.stats}</p>
                   <p className="text-[11px] text-[#525252] leading-snug flex-1">{r.how}</p>
                 </div>
