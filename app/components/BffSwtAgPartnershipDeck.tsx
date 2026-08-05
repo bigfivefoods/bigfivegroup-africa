@@ -5,11 +5,17 @@ import {
   ArrowRight,
   Check,
   Globe2,
+  GraduationCap,
+  HeartHandshake,
+  Network,
   Package,
+  School,
   ShieldCheck,
   Store,
   Truck,
+  Users,
   UtensilsCrossed,
+  Wifi,
 } from "lucide-react";
 import DeckShell, {
   DECK_THEMES,
@@ -26,10 +32,17 @@ import { SOFI, SOFI_DECK_STATS } from "../lib/sofi";
 import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
 import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import { NSNP } from "../lib/nsnp";
+import { SA_CASE } from "../lib/supplierAdvisorCase";
 import { SA_FOODS_STORE_URL } from "../lib/saStorefront";
+import { SANTACO, SANTACO_PARTNERSHIP } from "../lib/santaco";
 
 const theme = DECK_THEMES.amber;
-const TOTAL = 18;
+const TOTAL = 21;
+
+/** NSNP plan scale (programme pathway) — cite as plan, not current headcount */
+const NSNP_KIDS_PLAN = "2.5M";
+const NSNP_KIDS_PLAN_DETAIL =
+  "~2.5 million children per day (plan scale · NSNP pathway with DBE · fortified BFF products)";
 
 const SDGS = [
   {
@@ -230,7 +243,10 @@ function Slide({ index }: { index: number }) {
               "Big Five Foods ranges — how each product class answers SOFI",
               "NSNP institutional pathway & programme economics",
               "UN SDG alignment driven by Foods",
-              "How we go to market together · SupplierAdvisor® · next steps",
+              "South Africa: solar mobile containers — Feed · Educate · Empower (4 live)",
+              "Kenya: registered business · school feeding with BFF (drawing on NSNP)",
+              "Connect · SupplierAdvisor® — DBE network (~5,386 schools · ~1,800 providers)",
+              "How we go to market together · next steps",
             ].map((item, i) => (
               <li key={item} className="flex gap-3 items-start">
                 <span className="shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 text-white text-xs font-semibold flex items-center justify-center">
@@ -417,9 +433,8 @@ function Slide({ index }: { index: number }) {
           <p className="mt-4 text-sm text-[#404040] leading-relaxed max-w-3xl">
             <strong className="text-black">Big Five Foods</strong> answers with fortified formats at
             ~{FOODS_ECONOMICS.cheaperThanMarket.value} below typical wholesale/retail pathways
-            (internal) while holding healthy unit economics — so distributors like{" "}
-            <strong className="text-black">SWT-AG</strong> can sell a product that is both mission
-            and margin.
+            (internal) — so distributors like <strong className="text-black">SWT-AG</strong> can sell
+            a product that is both mission-led and commercially competitive.
           </p>
         </DeckSlideShell>
       );
@@ -549,18 +564,13 @@ function Slide({ index }: { index: number }) {
     case 9:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>UNIT ECONOMICS · BFF</DeckEyebrow>
-          <DeckTitle>Competitive cost. Healthy margin. Recurring volume.</DeckTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+          <DeckEyebrow theme={theme}>VALUE · BFF</DeckEyebrow>
+          <DeckTitle>Competitive cost. Real nutrition. Recurring volume.</DeckTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
             <DeckStatTile
               theme={theme}
               value={FOODS_ECONOMICS.cheaperThanMarket.value}
               label={FOODS_ECONOMICS.cheaperThanMarket.label}
-            />
-            <DeckStatTile
-              theme={theme}
-              value={FOODS_ECONOMICS.grossProfit.value}
-              label={FOODS_ECONOMICS.grossProfit.label}
             />
             <DeckStatTile
               theme={theme}
@@ -569,14 +579,20 @@ function Slide({ index }: { index: number }) {
             />
           </div>
           <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-2">
-            {FOODS_ECONOMICS.positioning}
+            Public menus and feeding schemes buy on cost, nutrition and reliability. Big Five Foods
+            offers a structural cost advantage vs typical wholesale/retail pathways while remaining
+            highly fortification-forward — so institutions stretch budgets and partners can scale
+            recurring volume with a product people will reorder.
           </p>
           <p className="text-sm text-[#404040] leading-relaxed max-w-3xl">
             For <strong className="text-black">SWT-AG</strong> as global distributor: a portfolio that
             is easier to sell into public and institutional buyers because cost-per-plate and
             fortification are the pitch — not charity pricing that collapses the chain.
           </p>
-          <p className="mt-3 text-[11px] text-[#737373]">{FOODS_ECONOMICS.honesty}</p>
+          <p className="mt-3 text-[11px] text-[#737373]">
+            Cost-advantage and nutrition-design figures are management-reported / internal analyses —
+            request a dated NDA brief for SKU-level detail. Not audited financial statements.
+          </p>
         </DeckSlideShell>
       );
 
@@ -706,6 +722,200 @@ function Slide({ index }: { index: number }) {
     case 13:
       return (
         <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>SOUTH AFRICA · DIRECT × FOODS</DeckEyebrow>
+          <DeckTitle>Solar-powered mobile containers — 4 in operation</DeckTitle>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 mt-1 min-h-0">
+            <div className="lg:col-span-5 grid grid-cols-2 gap-2 min-h-0">
+              {[
+                { src: "/container-action-1.jpg", alt: "Big Five solar mobile container in community" },
+                { src: "/direct-hero.jpg", alt: "Container last-mile distribution" },
+              ].map((img) => (
+                <div
+                  key={img.src}
+                  className="relative rounded-xl overflow-hidden border border-black/10 bg-[#f5f5f5] aspect-[4/5] sm:aspect-[3/4] min-h-[7.5rem]"
+                >
+                  {pdf ? (
+                    <DeckPrintImage src={img.src} alt={img.alt} fit="cover" />
+                  ) : (
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width:1024px) 45vw, 220px"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="lg:col-span-7 min-w-0 flex flex-col gap-2.5">
+              <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">
+                High-traffic taxi ranks and rural communities — where people already move (
+                {SANTACO.shortName} partnership). Each solar container is a last-mile node for{" "}
+                <strong className="text-black">Feed · Educate · Empower</strong>.{" "}
+                <strong className="text-black">4 containers in operation</strong> today.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                {[
+                  {
+                    icon: UtensilsCrossed,
+                    t: "Feed",
+                    d: "Retail fortified Big Five Foods where footfall is highest.",
+                  },
+                  {
+                    icon: Wifi,
+                    t: "Educate",
+                    d: "Wi‑Fi plus Super-Cube® leadership training on site.",
+                  },
+                  {
+                    icon: Users,
+                    t: "Empower",
+                    d: "Jobs and micro-enterprise for underserved communities.",
+                  },
+                ].map((x) => (
+                  <div
+                    key={x.t}
+                    className="rounded-xl border border-amber-200 bg-amber-50/50 p-2.5 min-w-0"
+                  >
+                    <x.icon className="w-4 h-4 text-amber-800 mb-1" />
+                    <div className="text-xs font-semibold text-black mb-0.5">{x.t}</div>
+                    <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug">{x.d}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-3 flex gap-2 min-w-0">
+                <HeartHandshake className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
+                <p className="text-[11px] sm:text-xs text-[#404040] leading-relaxed">
+                  <strong className="text-black">Funding these containers is humanitarian work</strong>{" "}
+                  with commercial discipline: every unit feeds people, connects communities to Wi‑Fi and
+                  leadership education, and creates jobs. Partner capital multiplies dignity on the
+                  ground — the last-mile expression of Feed · Educate · Empower.
+                </p>
+              </div>
+              <p className="text-[10px] text-[#737373]">
+                Larger rollout planned ({SANTACO_PARTNERSHIP.title}) — 4 live nodes prove the model.
+              </p>
+            </div>
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 14:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>KENYA · SCHOOL FEEDING</DeckEyebrow>
+          <DeckTitle>Registered in Kenya — school feeding with fortified BFF products</DeckTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+            <DeckStatTile
+              theme={theme}
+              value="Kenya"
+              label="Registered Big Five business · East Africa hub template"
+            />
+            <DeckStatTile
+              theme={theme}
+              value={NSNP_KIDS_PLAN}
+              label="Children/day NSNP pathway scale in South Africa (plan) with fortified BFF products"
+            />
+            <DeckStatTile
+              theme={theme}
+              value="Export"
+              label="Ship BFF fortified foods to support Kenyan school feeding schemes"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="rounded-2xl border border-black/10 bg-white p-4 sm:p-5 min-w-0">
+              <School className="w-5 h-5 text-amber-800 mb-2" />
+              <h3 className="text-sm font-semibold text-black mb-1.5">Drawing on the NSNP pathway</h3>
+              <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">
+                In South Africa we are landing school nutrition with fortified institutional formats
+                under the {NSNP.shortName} pathway ({NSNP.departmentShort}) — planned to feed{" "}
+                <strong className="text-black">{NSNP_KIDS_PLAN} children per day</strong> with Big Five
+                Foods porridges, soya and one-pot products (plan scale as delivery ramps — not a claim
+                of current daily operational headcount across every kitchen).
+              </p>
+            </div>
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-4 sm:p-5 min-w-0">
+              <Globe2 className="w-5 h-5 text-emerald-800 mb-2" />
+              <h3 className="text-sm font-semibold text-black mb-1.5">Kenya opportunity</h3>
+              <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">
+                With a <strong className="text-black">registered business in Kenya</strong>, we aim to
+                send Big Five Foods fortified products into Kenyan school feeding schemes — exporting
+                the same product and programme discipline that underpins the South African NSNP pathway.
+                SWT-AG’s global distribution strength can help open and supply those corridors with
+                proof, not one-off donations.
+              </p>
+            </div>
+          </div>
+          <p className="mt-3 text-[11px] text-[#737373] leading-relaxed max-w-3xl">
+            {NSNP_KIDS_PLAN_DETAIL}. Kenya school offtake is a partnership ambition — volumes and
+            awards confirmed as programmes close.
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 15:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>CONNECT · SUPPLIERADVISOR® · DBE</DeckEyebrow>
+          <DeckTitle>Transparent, ethical supply chain for school nutrition</DeckTitle>
+          <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+            <strong className="text-black">Big Five Connect</strong> runs{" "}
+            <strong className="text-black">SupplierAdvisor®</strong> so governments and partners can
+            set approved products and menus, and service providers and schools operate on one verified
+            fabric — compliance by design, not paperwork theatre.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-3">
+            <DeckStatTile theme={theme} value="~5,386" label="Schools on the DBE-aligned network (approx.)" />
+            <DeckStatTile theme={theme} value="~1,800" label="Service providers (approx.)" />
+            <DeckStatTile theme={theme} value="DBE" label="Sets approved products & menus on the OS" />
+            <DeckStatTile theme={theme} value="SA®" label="Live trade · verification · audit trails" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            {[
+              {
+                icon: Network,
+                t: "One network",
+                d: "Department, service providers and schools share the same rules — approved products and menus live where trade happens.",
+              },
+              {
+                icon: ShieldCheck,
+                t: "Incentives to comply",
+                d: "Providers and schools are incentivised to stay inside DBE requirements — good behaviour is the path of least resistance.",
+              },
+              {
+                icon: GraduationCap,
+                t: "Nutrition that reaches the child",
+                d: "When the approved list and the kitchen align, learners are more likely to receive the fortified meals the programme designs.",
+              },
+            ].map((x) => (
+              <div
+                key={x.t}
+                className="rounded-xl border border-cyan-100 bg-cyan-50/40 p-3.5 min-w-0"
+              >
+                <x.icon className="w-4 h-4 text-cyan-800 mb-1.5" />
+                <div className="text-xs font-semibold text-black mb-1">{x.t}</div>
+                <p className="text-[11px] text-[#525252] leading-snug">{x.d}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-[#404040] leading-relaxed max-w-3xl">
+            <strong className="text-black">Rollout with the DBE:</strong> we are planning and advancing
+            this model so roughly <strong className="text-black">5,386 schools</strong> and{" "}
+            <strong className="text-black">±1,800 service providers</strong> drive{" "}
+            <strong className="text-black">convergence</strong> — one system for menus, products and
+            trade. Full case study: bigfivegroup.africa/connect#case-study-sa ·{" "}
+            {SA_CASE.siteUrl.replace("https://", "")}
+          </p>
+          <p className="mt-2 text-[10px] text-[#737373]">
+            School and provider counts are approximate programme-scope figures — not a real-time
+            census. Confirm live scope with Big Five Connect.
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 16:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY THIS PARTNERSHIP</DeckEyebrow>
           <DeckTitle>Why BFF × SWT-AG is commercially and mission-aligned</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mt-1">
@@ -750,7 +960,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 17:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PROOF LANGUAGE</DeckEyebrow>
@@ -759,15 +969,15 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "Plan scale",
-                d: "2.5m children/day NSNP pathway — high-level delivery ambition as programmes ramp, not current daily headcount.",
+                d: `${NSNP_KIDS_PLAN} children/day NSNP pathway — high-level delivery ambition as programmes ramp, not current daily headcount.`,
               },
               {
                 t: "Programme-reported",
-                d: "250k+ meals delivered (programme-reported · Foods) — cite as such in partner materials.",
+                d: "250k+ meals delivered (programme-reported · Foods) · 4 solar containers in operation.",
               },
               {
                 t: "Internal analysis",
-                d: "~50% cheaper · ~45% GP · 74% nutrition design — management/internal; NDA for SKU detail.",
+                d: "~50% cheaper vs wholesale/retail · 74% more nutrition by design — management/internal; NDA for SKU detail.",
               },
             ].map((x) => (
               <div key={x.t} className="rounded-2xl border border-black/10 bg-white p-4 min-w-0">
@@ -784,7 +994,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 18:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>NEXT STEPS</DeckEyebrow>
@@ -793,19 +1003,19 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "Align territory & range priority",
-                d: "Which markets, which SKUs first (retail vs institutional).",
+                d: "Which markets, which SKUs first (retail vs institutional) — SA live containers as proof, Kenya school feeding as next corridor.",
               },
               {
                 t: "Trade on SupplierAdvisor®",
-                d: "Verified company relationship · quotes/orders on the Big Five Foods store.",
+                d: "Verified company relationship · quotes/orders on the Big Five Foods store · DBE network model for institutional buyers.",
               },
               {
                 t: "Sample → approve → scale",
                 d: "Sample packs for key buyers, then recurring volume on SA rails.",
               },
               {
-                t: "Joint narrative pack",
-                d: "SOFI + SDG + product economics for SWT-AG sales teams (this deck).",
+                t: "Humanitarian + commercial capital",
+                d: "Fund container expansion and school-feeding corridors as dignity work with distributor economics.",
               },
             ].map((s, i) => (
               <li key={s.t} className="flex gap-3 items-start">
@@ -822,7 +1032,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 19:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -832,10 +1042,11 @@ function Slide({ index }: { index: number }) {
           <div className="space-y-3 max-w-2xl mt-2">
             {[
               "SOFI 2026: hundreds of millions hungry; Africa the epicentre; healthy diets unaffordable for billions.",
-              "Big Five Foods: fortified, affordable, shelf-stable ranges + NSNP institutional pathway — product that answers the data.",
-              "SDGs 1, 2, 4, 8, 10, 17 — Foods-led alignment, not poster claims.",
+              "Big Five Foods: fortified ranges + NSNP pathway (~2.5M children/day plan) — product that answers the data.",
+              "South Africa: 4 solar containers live — Feed (food retail), Educate (Wi‑Fi + Super-Cube®), Empower (jobs).",
+              "Kenya: registered business — ship fortified BFF into school feeding, drawing on the NSNP model.",
+              "Connect: SupplierAdvisor® with DBE — ~5,386 schools · ~1,800 providers · transparent menus and trade.",
               "SWT-AG: strategic global distributor of BFF products — placement, corridors, commercial relationships.",
-              "Trade with proof on SupplierAdvisor®.",
             ].map((t) => (
               <p key={t} className="flex gap-2 text-sm text-white/80 leading-relaxed">
                 <Check className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" />
@@ -846,7 +1057,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 17:
+    case 20:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <DeckTitleLayout>
@@ -861,8 +1072,9 @@ function Slide({ index }: { index: number }) {
                 <span className="text-amber-300">on the world&apos;s plates.</span>
               </h2>
               <p className="text-white/70 text-sm sm:text-base max-w-xl leading-relaxed mb-6">
-                Align territories, open trade on SupplierAdvisor®, and equip SWT-AG teams with a
-                product story grounded in SOFI and the SDGs.
+                From solar containers in South Africa to school feeding in Kenya and transparent DBE
+                networks on SupplierAdvisor® — partner with BFF as global distributor of a product
+                that answers SOFI and the SDGs.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-2.5">
                 <a
