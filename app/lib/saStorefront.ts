@@ -296,3 +296,29 @@ export const FOODS_BUYER_PATHS = [
     cta: "Register free on SA",
   },
 ] as const;
+
+/** Published commercial terms — keep in sync with ops / SA price lists */
+export const FOODS_COMMERCIAL_TERMS = {
+  responseSla: "We aim to respond to samples and quotes within 1 business day",
+  samplePolicy:
+    "Sample packs available on request for qualified buyers — then order full cartons on SupplierAdvisor®",
+  moqDefault: "From 1 carton (retail/wholesale) · institutional MOQ on quote",
+  leadTimeDefault: "Typically 5–10 business days after confirmation on SA (programme schedules may differ)",
+  delivery: "Primary fulfilment from South Africa · national delivery and export corridors by arrangement",
+  sellerOfRecord: "Big Five Foods — verified company on SupplierAdvisor®",
+  systemOfRecord:
+    "Orders, quotes, stock and invoices live on SupplierAdvisor® — not a separate website cart",
+  nsnpNote:
+    "NSNP / institutional SKUs are quote-first — no false instant checkout for programme supply",
+  paymentNote: "B2B terms and invoicing via SupplierAdvisor® trade relationship (where agreed)",
+} as const;
+
+/** Certifications shown beside the sales portal */
+export const FOODS_TRUST_CERTS = [
+  { name: "ISO 9001", logo: "/foods/iso9001.png", desc: "Quality management" },
+  { name: "FSSC 22000", logo: "/foods/fssc22000.png", desc: "Food safety" },
+  { name: "Sedex", logo: "/foods/sedex.png", desc: "Ethical supply chain" },
+  { name: "SANHA Halaal", logo: "/foods/halaal-sanha.png", desc: "Halaal" },
+  { name: "Kosher", logo: "/foods/kosher.png", desc: "Kosher" },
+  { name: "SupplierAdvisor®", logo: "/foods/supplieradvisor-logo.png", desc: "Verified trade" },
+] as const;

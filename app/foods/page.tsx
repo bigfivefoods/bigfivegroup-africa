@@ -143,10 +143,10 @@ export default function FoodsPage() {
         }}
         eyebrow="PILLAR 02 · FORTIFIED NUTRITION · FEED"
         title="Nourish the Continent"
-        subtitle="Fortified porridges, soya, one-pots and soups — certified manufacturing, measurable impact, ordered on SupplierAdvisor®."
+        subtitle="Fortified porridges, soya, one-pots and soups — certified manufacturing, transparent commercial terms, ordered on SupplierAdvisor® as system of record."
         ctas={[
           { href: "#shop", label: "Shop & order", primary: true },
-          { href: "#products", label: "Explore ranges" },
+          { href: "#how-to-buy", label: "How to buy" },
           {
             href: saFoodsOrderUrl(),
             label: "Order on SupplierAdvisor®",

@@ -43,10 +43,18 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "How can institutions order Big Five Foods products?",
+      name: "How do I order Big Five Foods products?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Browse the sales portal on bigfivegroup.africa/foods#shop, then order via SupplierAdvisor® where Big Five Foods is the verified company of record. For NSNP and institutional volume, request a quote at bigfivegroup.africa/contact?interest=foods — fulfilment still runs through SupplierAdvisor® where programme procurement allows.",
+        text: "Browse bigfivegroup.africa/foods#shop, shortlist products, then complete trade on SupplierAdvisor® at supplieradvisor.com/store/big-five-foods — Big Five Foods is the verified seller of record. NSNP and institutional supply is quote-first. Samples are available on request; we aim to respond within one business day.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where do orders and invoices live?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "SupplierAdvisor® is the system of record for catalog, quotes, orders, stock and invoices. The Group website is the branded storefront and discovery layer — not a separate shopping cart.",
       },
     },
   ],

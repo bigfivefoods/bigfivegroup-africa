@@ -19,6 +19,9 @@ import {
   X,
   Clock,
   Boxes,
+  MessageCircle,
+  Scale,
+  Truck,
 } from "lucide-react";
 import {
   FOODS_RANGE_LABELS,
@@ -29,6 +32,8 @@ import {
 } from "../lib/foodsProducts";
 import {
   FOODS_BUYER_PATHS,
+  FOODS_COMMERCIAL_TERMS,
+  FOODS_TRUST_CERTS,
   SA_FOODS_STORE_URL,
   SA_STOREFRONT_COPY,
   foodsCatalogApiPath,
@@ -125,14 +130,14 @@ function ProductCard({
 
   return (
     <article className="group flex flex-col rounded-xl border border-black/10 bg-white overflow-hidden hover:border-amber-300/50 transition-colors min-w-0 h-full">
-      <div className="relative h-28 sm:h-32 bg-[#f8f7f5] border-b border-black/[0.06] flex items-center justify-center p-2.5 sm:p-3">
-        <div className="relative w-full h-full max-w-[7.5rem] sm:max-w-[8.5rem] mx-auto">
+      <div className="relative h-24 sm:h-28 bg-[#f8f7f5] border-b border-black/[0.06] flex items-center justify-center p-2 sm:p-2.5">
+        <div className="relative w-full h-full max-w-[6.25rem] sm:max-w-[7rem] mx-auto">
           <Image
             src={product.src}
             alt={product.name}
             fill
             className="object-contain object-center"
-            sizes="140px"
+            sizes="112px"
           />
         </div>
         {product.badge && (
@@ -471,7 +476,110 @@ export default function FoodsSalesPortal() {
           </div>
         </div>
 
+        {/* Commercial terms — transparent, published */}
+        <div
+          id="how-to-buy"
+          className="scroll-mt-28 rounded-2xl border border-black/10 bg-white p-5 sm:p-6 md:p-7 mb-6 sm:mb-8"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+            <h3 className="text-base sm:text-lg font-semibold tracking-tight text-black">
+              How to buy · commercial terms
+            </h3>
+            <p className="text-[11px] sm:text-xs text-amber-900 font-semibold flex items-center gap-1.5">
+              <MessageCircle className="w-3.5 h-3.5" />
+              {FOODS_COMMERCIAL_TERMS.responseSla}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
+            {[
+              {
+                icon: Scale,
+                t: "Seller of record",
+                d: FOODS_COMMERCIAL_TERMS.sellerOfRecord,
+              },
+              {
+                icon: ShieldCheck,
+                t: "System of record",
+                d: FOODS_COMMERCIAL_TERMS.systemOfRecord,
+              },
+              {
+                icon: Boxes,
+                t: "Minimum order",
+                d: FOODS_COMMERCIAL_TERMS.moqDefault,
+              },
+              {
+                icon: Clock,
+                t: "Lead time",
+                d: FOODS_COMMERCIAL_TERMS.leadTimeDefault,
+              },
+              {
+                icon: Truck,
+                t: "Delivery",
+                d: FOODS_COMMERCIAL_TERMS.delivery,
+              },
+              {
+                icon: FlaskConical,
+                t: "Samples",
+                d: FOODS_COMMERCIAL_TERMS.samplePolicy,
+              },
+            ].map((item) => (
+              <div
+                key={item.t}
+                className="rounded-xl border border-black/[0.06] bg-[#fafafa] p-3.5 min-w-0"
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <item.icon className="w-4 h-4 text-amber-800 shrink-0" />
+                  <span className="text-xs font-semibold text-black">{item.t}</span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-[#525252] leading-relaxed">{item.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-[11px] sm:text-xs text-[#525252] border-t border-black/5 pt-3">
+            <p className="flex-1 min-w-0">
+              <strong className="text-black">NSNP / institutional:</strong>{" "}
+              {FOODS_COMMERCIAL_TERMS.nsnpNote}
+            </p>
+            <p className="shrink-0">
+              <strong className="text-black">Payment:</strong> {FOODS_COMMERCIAL_TERMS.paymentNote}
+            </p>
+          </div>
+        </div>
+
+        {/* Certifications */}
+        <div className="mb-8 sm:mb-10">
+          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[#737373] mb-3">
+            Quality · safety · ethical trade
+          </div>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            {FOODS_TRUST_CERTS.map((c) => (
+              <div
+                key={c.name}
+                className="flex items-center gap-2 rounded-xl border border-black/10 bg-white px-3 py-2 min-w-0"
+                title={c.desc}
+              >
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
+                  <Image
+                    src={c.logo}
+                    alt={c.name}
+                    fill
+                    className="object-contain"
+                    sizes="36px"
+                  />
+                </div>
+                <div className="min-w-0 hidden sm:block">
+                  <div className="text-[11px] font-semibold text-black leading-tight">{c.name}</div>
+                  <div className="text-[10px] text-[#737373]">{c.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Buyer paths — all land on live SA store / onboarding */}
+        <div className="mb-2">
+          <h3 className="text-sm font-semibold text-black mb-3">Who are you buying as?</h3>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-10">
           {FOODS_BUYER_PATHS.map((path) => {
             const Icon = PATH_ICONS[path.id];

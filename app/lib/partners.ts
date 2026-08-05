@@ -509,43 +509,54 @@ export const PARTNERS: PartnerProfile[] = [
     name: "SWT-AG",
     organisation: "SWT-AG",
     emails: ["jonathan.lancaster@swt-ag.com"],
-    role: "Strategic partner",
-    headline: "SWT-AG × Big Five Group",
+    role: "Strategic global distributor · Big Five Foods",
+    headline: "SWT-AG × Big Five Foods",
     summary:
-      "Partnership workspace for SWT-AG and Big Five Group — joint opportunities across Group rails, programme pathways, and next-step resources tailored to this relationship.",
-    focus: ["Foods", "Connect", "Impact", "Global", "Access"],
-    programmes: ["nsnp", "connect", "impact", "leadership"],
+      "SWT-AG is a strategic global distributor of Big Five Foods products — taking fortified nutrition into international markets with Group supply, programme context and SupplierAdvisor® trade rails.",
+    focus: ["Foods", "Global", "Connect", "Direct", "Impact"],
+    programmes: ["nsnp", "connect", "impact"],
     brandColor: "#0f172a",
     notes: [
-      "Workspace for SWT-AG briefings and shared materials with Big Five Group.",
+      "SWT-AG: strategic global distributor of Big Five Foods fortified ranges (porridges, soya, one-pots, soups and institutional formats where agreed).",
+      "This workspace supports distribution briefings, product decks, order pathways and shared programme context.",
       "Authorised portal login: jonathan.lancaster@swt-ag.com",
-      "Commercial terms and SOWs remain offline / NDA as agreed — this portal is orientation and co-branded context.",
+      "Orders and trade of record: prefer SupplierAdvisor® / Big Five Foods storefront where live; commercial SOWs remain offline / NDA as agreed.",
       "Primary Group contact: craig@bigfivegroup.africa",
     ],
     resources: [
       {
+        href: "#bff-swt-deck",
+        label: "BFF × SWT-AG partnership deck",
+        desc: "Strategic presentation: SOFI challenges, BFF products, SDGs, global distribution.",
+      },
+      {
         href: "/foods#shop",
         label: "Foods · sales portal",
-        desc: "Order fortified nutrition via SupplierAdvisor® — Big Five Foods storefront.",
+        desc: "Order fortified Big Five Foods products via SupplierAdvisor® storefront.",
+      },
+      {
+        href: "/foods#foods-deck",
+        label: "Foods product deck",
+        desc: "Full range, fortification story, institutional and retail economics.",
+      },
+      {
+        href: "/foods#case-study",
+        label: "Foods · NSNP case study",
+        desc: "School nutrition pathway and institutional product context.",
       },
       {
         href: "/connect",
         label: "Connect · SupplierAdvisor®",
-        desc: "Verified trade OS, trial and commercial pathways.",
-      },
-      {
-        href: "/impact#strategy-deck",
-        label: "Impact strategy deck",
-        desc: "Group overview and African problem/response framing.",
+        desc: "Verified trade OS for distribution partners.",
       },
       {
         href: "/global",
         label: "Global corridors",
-        desc: "International route-to-market and African excellence abroad.",
+        desc: "International route-to-market and continental scale.",
       },
     ],
     contactNote:
-      "Primary Group contact: craig@bigfivegroup.africa · SWT-AG portal: jonathan.lancaster@swt-ag.com",
+      "Primary Group contact: craig@bigfivegroup.africa · SWT-AG (global Foods distribution): jonathan.lancaster@swt-ag.com",
   },
   /**
    * Fallback workspace for emails on PARTNER_EMAILS env not mapped above.

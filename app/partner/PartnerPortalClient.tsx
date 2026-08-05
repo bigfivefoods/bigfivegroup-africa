@@ -28,6 +28,7 @@ import {
   type PartnerProgrammeId,
 } from "../lib/partner-public";
 import SparPartnershipDeck from "../components/SparPartnershipDeck";
+import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
 
 function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
   const partnerLogo = partner.logoSrc;
@@ -331,6 +332,9 @@ export default function PartnerPortalClient({
               ...(partner.slug === "spar"
                 ? [{ href: "#spar-partnership-deck", label: "SPAR pitch deck" }]
                 : []),
+              ...(partner.slug === "swt-ag"
+                ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG deck" }]
+                : []),
               { href: "#pillars", label: "Pillars" },
               { href: "#resources", label: "Resources" },
               ...(isAdmin ? [{ href: "#directory", label: "All partners" }] : []),
@@ -483,6 +487,12 @@ export default function PartnerPortalClient({
       {partner.slug === "spar" && (
         <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
           <SparPartnershipDeck />
+        </section>
+      )}
+
+      {partner.slug === "swt-ag" && (
+        <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
+          <BffSwtAgPartnershipDeck />
         </section>
       )}
 
