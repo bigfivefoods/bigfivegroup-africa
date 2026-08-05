@@ -422,7 +422,7 @@ export default function PartnerPortalClient({
                 ? [{ href: "#spar-partnership-deck", label: "SPAR pitch deck" }]
                 : []),
               ...(partner.slug === "swt-ag"
-                ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG deck" }]
+                ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG funding deck" }]
                 : []),
               { href: "#pillars", label: "Pillars" },
               { href: "#resources", label: "Resources" },

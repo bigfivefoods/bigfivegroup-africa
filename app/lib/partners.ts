@@ -509,16 +509,17 @@ export const PARTNERS: PartnerProfile[] = [
     name: "SWT-AG",
     organisation: "SWT-AG",
     emails: ["jonathan.lancaster@swt-ag.com"],
-    role: "Strategic global distributor · Big Five Foods",
+    role: "Strategic partner · Joint funding · Global distribution · Big Five Foods",
     headline: "SWT-AG × Big Five Foods",
     summary:
-      "SWT-AG is a strategic global distributor of Big Five Foods products — taking fortified nutrition into international markets with Group supply, programme context and SupplierAdvisor® trade rails.",
+      "SWT-AG partners with Big Five Foods to raise capital and deliver two programme pillars — solar mobile container rollout in South Africa and humanitarian school feeding in Kenya — with fortified BFF product and all strands managed on SupplierAdvisor® for transparency and efficiency. SWT-AG also acts as strategic global distributor of BFF ranges.",
     focus: ["Foods", "Global", "Connect", "Direct", "Impact"],
     programmes: ["nsnp", "connect", "impact"],
     brandColor: "#0f172a",
     notes: [
+      "Joint funding focus: SA solar container scale-up + Kenya school feeding; OS = SupplierAdvisor®.",
       "SWT-AG: strategic global distributor of Big Five Foods fortified ranges (porridges, soya, one-pots, soups and institutional formats where agreed).",
-      "This workspace supports distribution briefings, product decks, order pathways and shared programme context.",
+      "This workspace supports funding briefings, product decks, order pathways and shared programme context.",
       "Authorised portal login: jonathan.lancaster@swt-ag.com",
       "Orders and trade of record: prefer SupplierAdvisor® / Big Five Foods storefront where live; commercial SOWs remain offline / NDA as agreed.",
       "Primary Group contact: craig@bigfivegroup.africa",
@@ -526,8 +527,8 @@ export const PARTNERS: PartnerProfile[] = [
     resources: [
       {
         href: "#bff-swt-deck",
-        label: "BFF × SWT-AG partnership deck",
-        desc: "Strategic presentation: SOFI challenges, BFF products, SDGs, global distribution.",
+        label: "BFF × SWT-AG joint funding deck",
+        desc: "Fund SA solar containers + Kenya school feeding — managed on SupplierAdvisor®.",
       },
       {
         href: "/foods#shop",

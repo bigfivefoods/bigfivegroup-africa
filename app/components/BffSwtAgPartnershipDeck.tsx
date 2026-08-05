@@ -4,6 +4,7 @@ import Image from "next/image";
 import {
   ArrowRight,
   Check,
+  CircleDollarSign,
   Globe2,
   GraduationCap,
   HeartHandshake,
@@ -85,7 +86,7 @@ const SDGS = [
     title: "Partnerships",
     icon: "/sdg/sdg-17.png",
     color: "#19486A",
-    how: "BFF manufactures; SWT-AG distributes globally — shared proof, shared corridors, one mission: Feed.",
+    how: "BFF × SWT-AG joint programme — capital, product and distribution under one mission: Feed, with SupplierAdvisor® proof.",
   },
 ] as const;
 
@@ -155,7 +156,7 @@ function CoBrandRow({ light }: { light?: boolean }) {
           SWT-AG
         </div>
         <div className={`text-[10px] font-medium ${light ? "text-slate-600" : "text-slate-400"}`}>
-          Strategic global distributor
+          Strategic partner · Joint funding
         </div>
       </div>
     </div>
@@ -215,17 +216,18 @@ function Slide({ index }: { index: number }) {
                     Big Five Foods × SWT-AG
                     <br />
                     <span className="text-amber-300">
-                      Fortified African nutrition. Global distribution.
+                      Fund containers in South Africa. School feeding in Kenya.
                     </span>
                   </h2>
                   <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
-                    A partnership presentation: how Big Five Foods products answer UN SOFI hunger and
-                    malnutrition challenges, align with the SDGs — and how SWT-AG, as strategic global
-                    distributor, takes that nutrition into markets worldwide.
+                    A joint funding briefing: Big Five Foods and SWT-AG raising capital to roll out
+                    solar mobile containers across South Africa and deliver humanitarian school feeding
+                    in Kenya — with every programme strand managed on SupplierAdvisor® for transparency
+                    and efficiency.
                   </p>
                 </div>
                 <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
-                  <p>BFF manufactures · SWT-AG distributes · SupplierAdvisor® verifies trade</p>
+                  <p>Joint capital · SA containers · Kenya school feeding · SupplierAdvisor® OS</p>
                   <p>bigfivegroup.africa/partner/swt-ag#bff-swt-deck</p>
                   <p>{TOTAL} slides · Shareable · Printable · Not a binding offer</p>
                 </div>
@@ -239,18 +241,16 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>AGENDA</DeckEyebrow>
-          <DeckTitle>What this partnership briefing covers</DeckTitle>
+          <DeckTitle>What this funding briefing covers</DeckTitle>
           <ol className={forPrint ? "space-y-1.5 max-w-2xl" : "space-y-2.5 max-w-2xl"}>
             {[
-              "The partnership: BFF product · SWT-AG global distribution",
-              "UN SOFI challenges — global hunger, Africa epicentre, healthy diets, child stunting",
-              "Big Five Foods ranges — how each product class answers SOFI",
-              "NSNP institutional pathway & programme economics",
-              "UN SDG alignment driven by Foods",
-              "South Africa: solar mobile containers — Feed · Educate · Empower (4 live)",
-              "Kenya: registered business · school feeding with BFF (drawing on NSNP)",
-              "Connect · SupplierAdvisor® — DBE network (~5,386 schools · ~1,800 providers)",
-              "How we go to market together · next steps",
+              "The joint ask: BFF × SWT-AG raise capital for two humanitarian pillars",
+              "Why now — UN SOFI hunger, Africa epicentre, diet affordability, child stunting",
+              "The product engine — fortified BFF ranges & NSNP institutional packs",
+              "South Africa: fund solar mobile container rollout (4 live · scale next)",
+              "Kenya: fund humanitarian school feeding with fortified BFF",
+              "SupplierAdvisor® — one OS for transparency, efficiency and audit trails",
+              "Roles, proof language, capital path and next steps",
             ].map((item, i) => (
               <li key={item} className="flex gap-3 items-start">
                 <span className="shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 text-white text-xs font-semibold flex items-center justify-center">
@@ -267,20 +267,20 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE PARTNERSHIP</DeckEyebrow>
-          <DeckTitle>One product engine. One global distributor.</DeckTitle>
+          <DeckTitle>One product engine. One capital partner. One operating system.</DeckTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mt-2">
             <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-4 sm:p-5 min-w-0">
               <UtensilsCrossed className="w-6 h-6 text-amber-800 mb-2" />
               <h3 className="text-lg font-semibold text-black mb-1">Big Five Foods</h3>
               <p className="text-sm text-[#404040] leading-relaxed mb-3">
-                Manufactures fortified African staples — porridges, soya, one-pots, soups and NSNP
-                institutional packs — designed for affordability, shelf life and micronutrient impact.
+                Manufactures fortified African staples and operates last-mile containers and school-channel
+                formats — product, programme design and on-the-ground Feed · Educate · Empower delivery.
               </p>
               <ul className="space-y-1.5 text-xs text-[#525252]">
                 {[
                   "Certified manufacturing (ISO · FSSC · ethical · dietary)",
-                  "~50% cheaper vs wholesale/retail pathways (internal)",
-                  "SupplierAdvisor® verified seller of record",
+                  "4 solar containers live · Kenya registered · NSNP pathway product",
+                  "SupplierAdvisor® seller of record · programme OS",
                 ].map((t) => (
                   <li key={t} className="flex gap-1.5">
                     <Check className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-0.5" />
@@ -293,14 +293,15 @@ function Slide({ index }: { index: number }) {
               <Globe2 className="w-6 h-6 text-slate-800 mb-2" />
               <h3 className="text-lg font-semibold text-black mb-1">SWT-AG</h3>
               <p className="text-sm text-[#404040] leading-relaxed mb-3">
-                Strategic global distributor of Big Five Foods products — taking fortified nutrition
-                into international markets with commercial discipline and corridor reach.
+                Strategic partner and global distributor — co-raising capital with BFF, placing fortified
+                product into corridors, and backing a dual-country humanitarian programme with commercial
+                discipline.
               </p>
               <ul className="space-y-1.5 text-xs text-[#525252]">
                 {[
-                  "Global route-to-market for BFF ranges",
-                  "Distributor of record in agreed territories",
-                  "Shared mission: Feed — at scale, with proof",
+                  "Joint funding partner for SA containers + Kenya school feeding",
+                  "Global distribution of BFF ranges into agreed markets",
+                  "Shared mission: Feed at scale — with transparent proof",
                 ].map((t) => (
                   <li key={t} className="flex gap-1.5">
                     <Check className="w-3.5 h-3.5 text-slate-700 shrink-0 mt-0.5" />
@@ -311,8 +312,11 @@ function Slide({ index }: { index: number }) {
             </div>
           </div>
           <p className="mt-4 text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl">
-            Together: African product designed for SOFI-scale problems, distributed globally with a
-            partner built for international trade — not a one-off export trial.
+            Together we raise and deploy capital into two pillars —{" "}
+            <strong className="text-black">South Africa container rollout</strong> and{" "}
+            <strong className="text-black">Kenya humanitarian school feeding</strong> — managed end-to-end
+            on <strong className="text-black">SupplierAdvisor®</strong> so funders, operators and buyers
+            share one transparent trail.
           </p>
         </DeckSlideShell>
       );
@@ -395,9 +399,11 @@ function Slide({ index }: { index: number }) {
             />
           </div>
           <p className="text-sm text-white/70 leading-relaxed max-w-3xl mb-2">
-            {SOFI.africa.epicentreNote}. Big Five Foods is designed{" "}
-            <strong className="text-white">in Africa, for African plates</strong> — and SWT-AG takes
-            that product into global markets without losing the mission.
+            {SOFI.africa.epicentreNote}. Capital for{" "}
+            <strong className="text-white">South Africa last-mile containers</strong> and{" "}
+            <strong className="text-white">Kenya school feeding</strong> puts fortified African product
+            where SOFI says the need is densest — with SWT-AG and BFF jointly accountable for scale and
+            proof.
           </p>
           <p className="text-[11px] text-white/40 leading-relaxed max-w-3xl">
             {SOFI.shortCite} · child stunting JME framing.
@@ -437,8 +443,9 @@ function Slide({ index }: { index: number }) {
           <p className="mt-4 text-sm text-[#404040] leading-relaxed max-w-3xl">
             <strong className="text-black">Big Five Foods</strong> answers with fortified formats at
             ~{FOODS_ECONOMICS.cheaperThanMarket.value} below typical wholesale/retail pathways
-            (internal) — so distributors like <strong className="text-black">SWT-AG</strong> can sell
-            a product that is both mission-led and commercially competitive.
+            (internal) — so every funded plate in a container or school kitchen stretches further.
+            <strong className="text-black"> SWT-AG × BFF</strong> raise capital against that product
+            engine, not against empty logistics.
           </p>
         </DeckSlideShell>
       );
@@ -496,17 +503,17 @@ function Slide({ index }: { index: number }) {
               {
                 challenge: "Healthy diets unaffordable (2.7B)",
                 product: `~${FOODS_ECONOMICS.cheaperThanMarket.value} cost advantage`,
-                how: "Internal comparison vs wholesale/retail — institutions and households stretch budgets; SWT-AG sells a competitive SKU stack.",
+                how: "Internal comparison vs wholesale/retail — funded school and container programmes stretch every rand and shilling.",
               },
               {
                 challenge: "Child stunting & micronutrients",
                 product: "Fortified porridges + NSNP 5kg institutional packs",
-                how: "Designed micronutrient density; school-channel formats on the NSNP pathway with DBE.",
+                how: "School-channel formats for SA NSNP pathway and Kenya humanitarian feeding — same product discipline.",
               },
               {
                 challenge: "Food system fragility",
-                product: "Long shelf life · pack economics · SA trade rails",
-                how: "Recurring reorder category; SupplierAdvisor® for verified B2B distribution with SWT-AG.",
+                product: "Long shelf life · pack economics · SupplierAdvisor®",
+                how: "Recurring reorder category; every quote, order and delivery trail sits on SA® for funders and operators.",
               },
             ].map((row) => (
               <div
@@ -562,8 +569,8 @@ function Slide({ index }: { index: number }) {
             ))}
           </div>
           <p className="mt-3 text-[11px] text-[#737373]">
-            SWT-AG can open international institutional conversations with the same product story —
-            programme formats that travel with proof.
+            Same institutional formats underpin the Kenya school-feeding pillar of this joint funding
+            ask — programme product with a trail funders can audit on SupplierAdvisor®.
           </p>
         </DeckSlideShell>
       );
@@ -586,15 +593,16 @@ function Slide({ index }: { index: number }) {
             />
           </div>
           <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-2">
-            Public menus and feeding schemes buy on cost, nutrition and reliability. Big Five Foods
-            offers a structural cost advantage vs typical wholesale/retail pathways while remaining
-            highly fortification-forward — so institutions stretch budgets and partners can scale
-            recurring volume with a product people will reorder.
+            Funders and public menus buy on cost, nutrition and reliability. Big Five Foods offers a
+            structural cost advantage vs typical wholesale/retail pathways while remaining highly
+            fortification-forward — so capital for containers and school feeding buys more meals per
+            unit of spend.
           </p>
           <p className="text-sm text-[#404040] leading-relaxed max-w-3xl">
-            For <strong className="text-black">SWT-AG</strong> as global distributor: a portfolio that
-            is easier to sell into public and institutional buyers because cost-per-plate and
-            fortification are the pitch — not charity pricing that collapses the chain.
+            For <strong className="text-black">BFF × SWT-AG</strong> as joint programme partners: a
+            product stack that is easier to fund and operate because cost-per-plate and fortification
+            are the pitch — dignity work with commercial discipline, not charity pricing that collapses
+            the chain.
           </p>
           <p className="mt-3 text-[11px] text-[#737373]">
             Cost-advantage and nutrition-design figures are management-reported / internal analyses —
@@ -641,28 +649,28 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
-            GO-TO-MARKET · THREE STAGES
+            THE ASK · JOINT FUNDING
           </DeckEyebrow>
-          <DeckTitle>Feed · Educate · Empower — in every end market</DeckTitle>
+          <DeckTitle>Two countries. One capital raise. One operating system.</DeckTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-1">
             {[
               {
-                n: "01 · Feed",
-                t: "Supply finished product now",
-                d: "Ship fortified BFF SKUs into the end market immediately — food security and malnutrition addressed while capacity builds. SWT-AG places product with buyers.",
-                h: "Immediate",
+                n: "01 · South Africa",
+                t: "Roll out solar mobile containers",
+                d: "Fund expansion beyond 4 live units — last-mile Feed · Educate · Empower nodes at taxi ranks and rural communities (SANTACO pathway).",
+                h: "Capital use",
               },
               {
-                n: "02 · Educate",
-                t: "Pack in-market · skills",
-                d: "18–36 months: packing facilities in priority markets; blends shipped in; local employment and capability. Distributor + manufacturer co-design.",
-                h: "Medium term",
+                n: "02 · Kenya",
+                t: "Humanitarian school feeding",
+                d: "Fund fortified BFF product into Kenyan school feeding — registered business, institutional packs, drawing on the SA NSNP pathway.",
+                h: "Capital use",
               },
               {
-                n: "03 · Empower",
-                t: "Full local self-sufficiency",
-                d: "36–60 months: farmers, blending and packing — self-sufficient plant with export potential. African production for African and global demand.",
-                h: "Longer term",
+                n: "03 · SupplierAdvisor®",
+                t: "Transparency & efficiency",
+                d: "Manage procurement, offtake, menus, quotes and delivery trails on one OS — so funders and operators see the same proof.",
+                h: "How it is run",
               },
             ].map((s) => (
               <div
@@ -676,6 +684,10 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
+          <p className="mt-4 text-xs text-white/50 leading-relaxed max-w-3xl">
+            BFF and SWT-AG seek partners and capital to deploy together — not a product brochure
+            alone, but a fundable dual-country programme with an audit-ready OS.
+          </p>
         </DeckSlideShell>
       );
 
@@ -683,28 +695,28 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HOW WE WORK TOGETHER</DeckEyebrow>
-          <DeckTitle>Clear roles. Shared proof.</DeckTitle>
+          <DeckTitle>Raise together. Deliver together. Prove on SA®.</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-1">
             {[
               {
+                icon: CircleDollarSign,
+                t: "Joint capital",
+                d: "BFF × SWT-AG co-raise for container rollout and Kenya school feeding — shared ask, shared accountability.",
+              },
+              {
                 icon: Package,
-                t: "BFF supplies",
-                d: "Manufactures, fortifies, certifies and packs — product quality and programme formats.",
+                t: "BFF supplies & operates",
+                d: "Manufactures, fortifies and packs; runs containers and programme logistics on the ground.",
               },
               {
                 icon: Truck,
                 t: "SWT-AG distributes",
-                d: "Strategic global distribution — territories, buyers, logistics and commercial relationships.",
+                d: "Global distribution, corridor relationships and commercial placement of BFF product.",
               },
               {
                 icon: Store,
-                t: "Trade on SA®",
-                d: "SupplierAdvisor®: verified company trade, quotes, orders and audit trails.",
-              },
-              {
-                icon: ShieldCheck,
-                t: "Shared standards",
-                d: "Honest scale language, MOQs, lead times, and SOFI/SDG framing partners can cite.",
+                t: "Manage on SA®",
+                d: "SupplierAdvisor®: verified trade, quotes, orders, menus and audit trails for every funded strand.",
               },
             ].map((x) => (
               <div
@@ -718,10 +730,10 @@ function Slide({ index }: { index: number }) {
             ))}
           </div>
           <p className="mt-4 text-sm text-[#404040] max-w-3xl leading-relaxed">
-            Live storefront:{" "}
+            Live trade rails:{" "}
             <RefLink href={SA_FOODS_STORE_URL}>{SA_FOODS_STORE_URL.replace("https://", "")}</RefLink>
             {" · "}
-            Group portal: bigfivegroup.africa/foods#shop
+            Connect case study: bigfivegroup.africa/connect#case-study-sa
           </p>
         </DeckSlideShell>
       );
@@ -729,8 +741,8 @@ function Slide({ index }: { index: number }) {
     case 13:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>SOUTH AFRICA · DIRECT × FOODS</DeckEyebrow>
-          <DeckTitle>Solar-powered mobile containers — 4 in operation</DeckTitle>
+          <DeckEyebrow theme={theme}>PILLAR 1 · SOUTH AFRICA · FUND CONTAINERS</DeckEyebrow>
+          <DeckTitle>Solar-powered mobile containers — 4 live · capital to scale</DeckTitle>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 mt-1 min-h-0">
             <div className="lg:col-span-5 min-h-0">
               <div className="relative rounded-xl overflow-hidden border border-black/10 bg-[#f5f5f5] aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto lg:h-full min-h-[10rem] max-h-[18rem] lg:max-h-none">
@@ -753,10 +765,12 @@ function Slide({ index }: { index: number }) {
             </div>
             <div className="lg:col-span-7 min-w-0 flex flex-col gap-2.5">
               <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">
-                High-traffic taxi ranks and rural communities — where people already move (
-                {SANTACO.shortName} partnership). Each solar container is a last-mile node for{" "}
+                <strong className="text-black">Funding use:</strong> roll out more solar mobile
+                containers at high-traffic taxi ranks and rural communities ({SANTACO.shortName}{" "}
+                partnership). Each unit is a last-mile node for{" "}
                 <strong className="text-black">Feed · Educate · Empower</strong>.{" "}
-                <strong className="text-black">4 containers in operation</strong> today.
+                <strong className="text-black">4 containers in operation</strong> today prove the
+                model — capital multiplies the network.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {[
@@ -789,14 +803,16 @@ function Slide({ index }: { index: number }) {
               <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-3 flex gap-2 min-w-0">
                 <HeartHandshake className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                 <p className="text-[11px] sm:text-xs text-[#404040] leading-relaxed">
-                  <strong className="text-black">Funding these containers is humanitarian work</strong>{" "}
-                  with commercial discipline: every unit feeds people, connects communities to Wi‑Fi and
-                  leadership education, and creates jobs. Partner capital multiplies dignity on the
-                  ground — the last-mile expression of Feed · Educate · Empower.
+                  <strong className="text-black">BFF × SWT-AG joint capital</strong> funds container
+                  build-out as humanitarian work with commercial discipline: every unit feeds people,
+                  connects communities to Wi‑Fi and Super-Cube® leadership education, and creates jobs.
+                  Procurement and offtake of BFF product for each site run on{" "}
+                  <strong className="text-black">SupplierAdvisor®</strong>.
                 </p>
               </div>
               <p className="text-[10px] text-[#737373]">
-                Larger rollout planned ({SANTACO_PARTNERSHIP.title}) — 4 live nodes prove the model.
+                Larger rollout planned ({SANTACO_PARTNERSHIP.title}) — 4 live nodes are the proof base
+                for the funding ask.
               </p>
             </div>
           </div>
@@ -806,23 +822,23 @@ function Slide({ index }: { index: number }) {
     case 14:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>KENYA · SCHOOL FEEDING</DeckEyebrow>
-          <DeckTitle>Registered in Kenya — school feeding with fortified BFF products</DeckTitle>
+          <DeckEyebrow theme={theme}>PILLAR 2 · KENYA · FUND SCHOOL FEEDING</DeckEyebrow>
+          <DeckTitle>Humanitarian school feeding — fortified BFF, registered in Kenya</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
             <DeckStatTile
               theme={theme}
               value="Kenya"
-              label="Registered Big Five business · East Africa hub template"
+              label="Registered Big Five business · East Africa delivery vehicle"
             />
             <DeckStatTile
               theme={theme}
               value={NSNP_KIDS_PLAN}
-              label="Children/day NSNP pathway scale in South Africa (plan) with fortified BFF products"
+              label="Children/day NSNP pathway scale in SA (plan) — programme design we adapt for Kenya"
             />
             <DeckStatTile
               theme={theme}
-              value="Export"
-              label="Ship BFF fortified foods to support Kenyan school feeding schemes"
+              value="Fund"
+              label="Capital for product, logistics and school-channel delivery — not one-off donations"
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -830,28 +846,31 @@ function Slide({ index }: { index: number }) {
               <School className="w-5 h-5 text-amber-800 mb-2" />
               <h3 className="text-sm font-semibold text-black mb-1.5">Drawing on the NSNP pathway</h3>
               <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">
-                In South Africa we are landing school nutrition with fortified institutional formats
-                under the {NSNP.shortName} pathway ({NSNP.departmentShort}) — planned to feed{" "}
+                In South Africa we land school nutrition with fortified institutional formats under the{" "}
+                {NSNP.shortName} pathway ({NSNP.departmentShort}) — planned to feed{" "}
                 <strong className="text-black">{NSNP_KIDS_PLAN} children per day</strong> with Big Five
                 Foods porridges, soya and one-pot products (plan scale as delivery ramps — not a claim
-                of current daily operational headcount across every kitchen).
+                of current daily operational headcount across every kitchen). That playbook informs Kenya.
               </p>
             </div>
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-4 sm:p-5 min-w-0">
               <Globe2 className="w-5 h-5 text-emerald-800 mb-2" />
-              <h3 className="text-sm font-semibold text-black mb-1.5">Kenya opportunity</h3>
+              <h3 className="text-sm font-semibold text-black mb-1.5">
+                Joint funding · humanitarian delivery
+              </h3>
               <p className="text-xs sm:text-sm text-[#404040] leading-relaxed">
-                With a <strong className="text-black">registered business in Kenya</strong>, we aim to
-                send Big Five Foods fortified products into Kenyan school feeding schemes — exporting
-                the same product and programme discipline that underpins the South African NSNP pathway.
-                SWT-AG’s global distribution strength can help open and supply those corridors with
-                proof, not one-off donations.
+                <strong className="text-black">BFF × SWT-AG capital</strong> funds shipping and
+                programme delivery of fortified BFF into Kenyan school feeding schemes via a{" "}
+                <strong className="text-black">registered Kenya business</strong>. SWT-AG brings
+                corridor and distribution strength; BFF supplies product and programme design. Meals
+                and offtake are managed on <strong className="text-black">SupplierAdvisor®</strong>{" "}
+                for transparency — proof, not one-off donations.
               </p>
             </div>
           </div>
           <p className="mt-3 text-[11px] text-[#737373] leading-relaxed max-w-3xl">
-            {NSNP_KIDS_PLAN_DETAIL}. Kenya school offtake is a partnership ambition — volumes and
-            awards confirmed as programmes close.
+            {NSNP_KIDS_PLAN_DETAIL}. Kenya school offtake volumes are confirmed as programmes and
+            funded awards close.
           </p>
         </DeckSlideShell>
       );
@@ -859,36 +878,38 @@ function Slide({ index }: { index: number }) {
     case 15:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>CONNECT · SUPPLIERADVISOR® · DBE</DeckEyebrow>
-          <DeckTitle>Transparent, ethical supply chain for school nutrition</DeckTitle>
+          <DeckEyebrow theme={theme}>OPERATING SYSTEM · SUPPLIERADVISOR®</DeckEyebrow>
+          <DeckTitle>How the whole programme is managed — transparency & efficiency</DeckTitle>
           <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
-            <strong className="text-black">Big Five Connect</strong> runs{" "}
-            <strong className="text-black">SupplierAdvisor®</strong> so governments and partners can
-            set approved products and menus, and service providers and schools operate on one verified
-            fabric — compliance by design, not paperwork theatre.
+            Every strand of this joint ask — <strong className="text-black">container offtake in
+            South Africa</strong>, <strong className="text-black">Kenya school feeding</strong>, and{" "}
+            institutional trade — is designed to run on{" "}
+            <strong className="text-black">SupplierAdvisor®</strong> (Big Five Connect). Funders,
+            BFF and SWT-AG share one verified fabric: approved products, quotes, orders and delivery
+            trails — not paperwork theatre.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-3">
             <DeckStatTile theme={theme} value="~5,386" label="Schools on the DBE-aligned network (approx.)" />
             <DeckStatTile theme={theme} value="~1,800" label="Service providers (approx.)" />
-            <DeckStatTile theme={theme} value="DBE" label="Sets approved products & menus on the OS" />
+            <DeckStatTile theme={theme} value="SA + KE" label="Containers & school feeding managed on one OS" />
             <DeckStatTile theme={theme} value="SA®" label="Live trade · verification · audit trails" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
             {[
               {
                 icon: Network,
-                t: "One network",
-                d: "Department, service providers and schools share the same rules — approved products and menus live where trade happens.",
+                t: "One system for both pillars",
+                d: "SA container sites and Kenya school channels use the same trade rails — approved product lists, offtake and status where work happens.",
               },
               {
                 icon: ShieldCheck,
-                t: "Incentives to comply",
-                d: "Providers and schools are incentivised to stay inside DBE requirements — good behaviour is the path of least resistance.",
+                t: "Transparency for capital",
+                d: "Quotes, orders and performance leave a trail funders and partners can inspect — efficiency and accountability by design.",
               },
               {
                 icon: GraduationCap,
-                t: "Nutrition that reaches the child",
-                d: "When the approved list and the kitchen align, learners are more likely to receive the fortified meals the programme designs.",
+                t: "Nutrition that reaches the plate",
+                d: "When menus, products and kitchens align on SA®, learners and communities are more likely to receive the fortified meals funded.",
               },
             ].map((x) => (
               <div
@@ -902,11 +923,9 @@ function Slide({ index }: { index: number }) {
             ))}
           </div>
           <p className="mt-3 text-xs text-[#404040] leading-relaxed max-w-3xl">
-            <strong className="text-black">Rollout with the DBE:</strong> we are planning and advancing
-            this model so roughly <strong className="text-black">5,386 schools</strong> and{" "}
-            <strong className="text-black">±1,800 service providers</strong> drive{" "}
-            <strong className="text-black">convergence</strong> — one system for menus, products and
-            trade. Full case study: bigfivegroup.africa/connect#case-study-sa ·{" "}
+            <strong className="text-black">DBE-aligned proof of concept:</strong> planning toward ~5,386
+            schools and ±1,800 service providers on one system for menus, products and trade. Full case
+            study: bigfivegroup.africa/connect#case-study-sa ·{" "}
             {SA_CASE.siteUrl.replace("https://", "")}
           </p>
           <p className="mt-2 text-[10px] text-[#737373]">
@@ -920,32 +939,32 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY THIS PARTNERSHIP</DeckEyebrow>
-          <DeckTitle>Why BFF × SWT-AG is commercially and mission-aligned</DeckTitle>
+          <DeckTitle>Why fund BFF × SWT-AG together</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mt-1">
             {[
               {
+                t: "Clear dual-country ask",
+                d: "Capital has two named uses: SA container rollout and Kenya humanitarian school feeding — not a vague multi-country wishlist.",
+              },
+              {
                 t: "Product answers SOFI",
-                d: "Not generic commodities — fortified, cost-competitive staples built for hunger and diet affordability gaps.",
+                d: "Fortified, cost-competitive staples — every funded meal stretches further with real nutrition design.",
               },
               {
-                t: "Distributor with global reach",
-                d: "SWT-AG as strategic global distributor places BFF where corridors and buyers already move.",
+                t: "Proof already on the ground",
+                d: "4 solar containers live · Kenya registered · NSNP institutional packs and pathway language funders can cite.",
               },
               {
-                t: "Recurring category",
-                d: "Foods is reorder-native — once menus and shelves adopt, volume can sustain and grow with traction.",
+                t: "Managed on SupplierAdvisor®",
+                d: "Transparency and efficiency: quotes, offtake, menus and delivery trails in one OS for capital and operators.",
               },
               {
-                t: "Verified trade rails",
-                d: "SupplierAdvisor® keeps quotes, orders and performance in one OS — transparent for both parties.",
-              },
-              {
-                t: "Institutional story travels",
-                d: "NSNP pathway and school-channel SKUs give public-sector language for international buyers.",
+                t: "Manufacturer + global distributor",
+                d: "BFF makes and operates; SWT-AG places product and co-raises — corridor strength with factory accountability.",
               },
               {
                 t: "One mission: Feed",
-                d: "Group Feed pillar + distributor execution — African excellence, global placement.",
+                d: "Humanitarian dignity with commercial discipline — Feed · Educate · Empower at last mile and in the classroom.",
               },
             ].map((x) => (
               <div
@@ -1001,24 +1020,24 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>NEXT STEPS</DeckEyebrow>
-          <DeckTitle>Practical path for SWT-AG × BFF</DeckTitle>
+          <DeckTitle>Path to capital and deployment</DeckTitle>
           <ol className="space-y-3 max-w-2xl mt-1">
             {[
               {
-                t: "Align territory & range priority",
-                d: "Which markets, which SKUs first (retail vs institutional) — SA live containers as proof, Kenya school feeding as next corridor.",
+                t: "Lock the joint funding brief",
+                d: "Confirm container rollout targets (beyond 4 live) and Kenya school-feeding scope — SKUs, volumes and sites on one BFF × SWT-AG paper.",
               },
               {
-                t: "Trade on SupplierAdvisor®",
-                d: "Verified company relationship · quotes/orders on the Big Five Foods store · DBE network model for institutional buyers.",
+                t: "Structure capital with SA® rails",
+                d: "Every funded offtake and delivery path maps to SupplierAdvisor® — quotes, orders and audit trails from day one.",
               },
               {
-                t: "Sample → approve → scale",
-                d: "Sample packs for key buyers, then recurring volume on SA rails.",
+                t: "Engage funders and programme partners",
+                d: "Present dual-country ask with SOFI/SDG context, live container proof, and Kenya registered vehicle.",
               },
               {
-                t: "Humanitarian + commercial capital",
-                d: "Fund container expansion and school-feeding corridors as dignity work with distributor economics.",
+                t: "Deploy · report · scale",
+                d: "Stand up next SA containers and Kenya school channels; report through SA®; recycle proof into the next capital tranche.",
               },
             ].map((s, i) => (
               <li key={s.t} className="flex gap-3 items-start">
@@ -1041,15 +1060,15 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow light theme={theme}>
             SUMMARY
           </DeckEyebrow>
-          <DeckTitle>African product. Global distributor. Shared mission.</DeckTitle>
+          <DeckTitle>Joint capital. Two countries. One transparent OS.</DeckTitle>
           <div className="space-y-3 max-w-2xl mt-2">
             {[
-              "SOFI 2026: hundreds of millions hungry; Africa the epicentre; healthy diets unaffordable for billions.",
-              "Big Five Foods: fortified ranges + NSNP pathway (~2.5M children/day plan) — product that answers the data.",
-              "South Africa: 4 solar containers live — Feed (food retail), Educate (Wi‑Fi + Super-Cube®), Empower (jobs).",
-              "Kenya: registered business — ship fortified BFF into school feeding, drawing on the NSNP model.",
-              "Connect: SupplierAdvisor® with DBE — ~5,386 schools · ~1,800 providers · transparent menus and trade.",
-              "SWT-AG: strategic global distributor of BFF products — placement, corridors, commercial relationships.",
+              "The ask: BFF × SWT-AG raise capital together for SA container rollout and Kenya humanitarian school feeding.",
+              "Why now: SOFI 2026 — hunger, Africa epicentre, healthy diets unaffordable; product must be fortified and cost-competitive.",
+              "Product engine: BFF ranges + NSNP institutional packs (~2.5M children/day plan scale in SA pathway language).",
+              "Pillar 1 · South Africa: 4 solar containers live — fund scale of Feed · Educate · Empower at last mile.",
+              "Pillar 2 · Kenya: registered business — fund fortified BFF into school feeding with programme discipline.",
+              "OS: SupplierAdvisor® manages offtake, menus and trade trails for transparency and efficiency across both pillars.",
             ].map((t) => (
               <p key={t} className="flex gap-2 text-sm text-white/80 leading-relaxed">
                 <Check className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" />
@@ -1070,37 +1089,37 @@ function Slide({ index }: { index: number }) {
               </DeckEyebrow>
               <CoBrandRow light />
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-white text-balance leading-[1.1] mb-3">
-                Let&apos;s put fortified African nutrition
+                Fund the containers. Feed the schools.
                 <br />
-                <span className="text-amber-300">on the world&apos;s plates.</span>
+                <span className="text-amber-300">Prove every rand on SupplierAdvisor®.</span>
               </h2>
               <p className="text-white/70 text-sm sm:text-base max-w-xl leading-relaxed mb-6">
-                From solar containers in South Africa to school feeding in Kenya and transparent DBE
-                networks on SupplierAdvisor® — partner with BFF as global distributor of a product
-                that answers SOFI and the SDGs.
+                Join Big Five Foods and SWT-AG to raise and deploy capital for South Africa solar
+                container rollout and Kenya humanitarian school feeding — managed for transparency and
+                efficiency on one operating system.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-2.5">
+                <a
+                  href="mailto:craig@bigfivegroup.africa?subject=BFF%20%C3%97%20SWT-AG%20joint%20funding%20%E2%80%94%20SA%20containers%20%26%20Kenya%20school%20feeding"
+                  className="deck-primary-cta premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold"
+                  style={{ color: "#000", backgroundColor: "#fff" }}
+                >
+                  Start the funding conversation
+                  <ArrowRight className="w-4 h-4" />
+                </a>
                 <a
                   href={SA_FOODS_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="deck-primary-cta premium-button inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold"
-                  style={{ color: "#000", backgroundColor: "#fff" }}
-                >
-                  Open Big Five Foods store
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-                <a
-                  href="mailto:craig@bigfivegroup.africa?subject=SWT-AG%20%C3%97%20Big%20Five%20Foods%20partnership"
                   className="deck-email-cta premium-button inline-flex items-center justify-center gap-2 border border-white/30 text-white px-6 py-3 rounded-full text-sm font-semibold"
                 >
-                  Email craig@bigfivegroup.africa
+                  Open Big Five Foods store
                 </a>
               </div>
             </div>
             <div className="text-white/40 text-[10px] sm:text-xs space-y-0.5">
-              <p>Big Five Foods × SWT-AG · Strategic partnership presentation</p>
-              <p>bigfivegroup.africa/partner/swt-ag · Not a binding commercial offer</p>
+              <p>Big Five Foods × SWT-AG · Joint funding presentation</p>
+              <p>bigfivegroup.africa/partner/swt-ag · Not a binding commercial or funding offer</p>
               <p>
                 SOFI sources: {SOFI.shortCite} · Product economics: management/internal as labelled
               </p>
@@ -1119,14 +1138,14 @@ export default function BffSwtAgPartnershipDeck() {
     <div id="bff-swt-deck" className="scroll-mt-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-10">
         <div className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-3 font-semibold text-amber-900">
-          BIG FIVE FOODS × SWT-AG · {TOTAL} SLIDES · STRATEGIC PARTNERSHIP
+          BIG FIVE FOODS × SWT-AG · {TOTAL} SLIDES · JOINT FUNDING BRIEF
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-2 text-balance">
-          Fortified African nutrition for global distribution
+          Fund SA containers &amp; Kenya school feeding
         </h2>
         <p className="text-sm sm:text-base text-[#525252] max-w-2xl mx-auto leading-relaxed">
-          SOFI challenges, Big Five Foods product response, UN SDG alignment, and how SWT-AG takes
-          BFF to market worldwide — shareable and printable.
+          Joint capital for solar mobile container rollout and humanitarian school feeding — managed
+          on SupplierAdvisor® for transparency and efficiency. Shareable and printable.
         </p>
       </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1135,12 +1154,12 @@ export default function BffSwtAgPartnershipDeck() {
           printRootId="bff-swt-deck-print-root"
           total={TOTAL}
           theme={theme}
-          eyebrow="BFF × SWT-AG PARTNERSHIP DECK"
-          title="Big Five Foods × SWT-AG — Strategic partnership"
+          eyebrow="BFF × SWT-AG JOINT FUNDING DECK"
+          title="Big Five Foods × SWT-AG — Fund containers & school feeding"
           description="SOFI challenges, BFF products, SDGs, global distribution."
           sharePath="/partner/swt-ag#bff-swt-deck"
           shareTitle="Big Five Foods × SWT-AG — Strategic partnership"
-          shareText="Fortified African nutrition for global distribution — SOFI, SDGs and BFF product story."
+          shareText="BFF × SWT-AG joint funding: SA solar containers + Kenya school feeding — managed on SupplierAdvisor®."
           renderSlide={(i) => <Slide index={i} />}
         />
       </div>
