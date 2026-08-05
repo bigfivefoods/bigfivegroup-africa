@@ -53,7 +53,7 @@ export const PARTNERS: PartnerProfile[] = [
     headline: "Internal partner briefing hub",
     summary:
       "Group overview for authorised internal use — same briefing structure partners see, with access to every partner workspace.",
-    focus: ["All pillars", "NSNP", "SANTACO", "Connect", "Impact"],
+    focus: ["All pillars", "NSNP", "SANTACO", "Connect", "Impact", "SWT-AG"],
     programmes: ["nsnp", "santaco", "connect", "leadership", "impact"],
     logoSrc: BIG_FIVE_LOGO,
     brandColor: "#052e1c",
@@ -61,6 +61,7 @@ export const PARTNERS: PartnerProfile[] = [
       "Full portal admin: open any partner workspace from All partners below (or go to /partner/[slug] directly).",
       "Add new partners in app/lib/partners.ts — each gets /partner/[slug] with co-branded logo.",
       "Portal super-admin list: PARTNER_PORTAL_ADMINS in partners.ts (currently craig@bigfivegroup.africa).",
+      "SWT-AG workspace: /partner/swt-ag",
     ],
     contactNote: "Internal — coordinate partner onboarding via Group leadership.",
   },
@@ -502,6 +503,49 @@ export const PARTNERS: PartnerProfile[] = [
       },
     ],
     contactNote: "Primary Group contact: craig@bigfivegroup.africa · dmAFRICA: sales@dmafrica.com",
+  },
+  {
+    slug: "swt-ag",
+    name: "SWT-AG",
+    organisation: "SWT-AG",
+    emails: ["jonathan.lancaster@swt-ag.com"],
+    role: "Strategic partner",
+    headline: "SWT-AG × Big Five Group",
+    summary:
+      "Partnership workspace for SWT-AG and Big Five Group — joint opportunities across Group rails, programme pathways, and next-step resources tailored to this relationship.",
+    focus: ["Foods", "Connect", "Impact", "Global", "Access"],
+    programmes: ["nsnp", "connect", "impact", "leadership"],
+    brandColor: "#0f172a",
+    notes: [
+      "Workspace for SWT-AG briefings and shared materials with Big Five Group.",
+      "Authorised portal login: jonathan.lancaster@swt-ag.com",
+      "Commercial terms and SOWs remain offline / NDA as agreed — this portal is orientation and co-branded context.",
+      "Primary Group contact: craig@bigfivegroup.africa",
+    ],
+    resources: [
+      {
+        href: "/foods#shop",
+        label: "Foods · sales portal",
+        desc: "Order fortified nutrition via SupplierAdvisor® — Big Five Foods storefront.",
+      },
+      {
+        href: "/connect",
+        label: "Connect · SupplierAdvisor®",
+        desc: "Verified trade OS, trial and commercial pathways.",
+      },
+      {
+        href: "/impact#strategy-deck",
+        label: "Impact strategy deck",
+        desc: "Group overview and African problem/response framing.",
+      },
+      {
+        href: "/global",
+        label: "Global corridors",
+        desc: "International route-to-market and African excellence abroad.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · SWT-AG portal: jonathan.lancaster@swt-ag.com",
   },
   /**
    * Fallback workspace for emails on PARTNER_EMAILS env not mapped above.
