@@ -5,14 +5,20 @@ import {
   ArrowRight,
   Check,
   CircleDollarSign,
+  Compass,
   Globe2,
   GraduationCap,
+  Heart,
   HeartHandshake,
+  Lightbulb,
   Network,
   Package,
   School,
+  Shield,
   ShieldCheck,
+  Sparkles,
   Store,
+  Target,
   Truck,
   Users,
   UtensilsCrossed,
@@ -33,12 +39,13 @@ import { SOFI, SOFI_DECK_STATS } from "../lib/sofi";
 import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
 import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import { NSNP } from "../lib/nsnp";
+import { GROUP_VMV } from "../lib/pillarAlignment";
 import { SA_CASE } from "../lib/supplierAdvisorCase";
 import { SA_FOODS_STORE_URL } from "../lib/saStorefront";
 import { SANTACO, SANTACO_PARTNERSHIP } from "../lib/santaco";
 
 const theme = DECK_THEMES.amber;
-const TOTAL = 21;
+const TOTAL = 22;
 
 /** NSNP plan scale (programme pathway) — cite as plan, not current headcount */
 const NSNP_KIDS_PLAN = "2.5M";
@@ -245,6 +252,7 @@ function Slide({ index }: { index: number }) {
           <ol className={forPrint ? "space-y-1.5 max-w-2xl" : "space-y-2.5 max-w-2xl"}>
             {[
               "The joint ask: BFF × SWT-AG raise capital for two humanitarian pillars",
+              "Big Five Group vision, mission and values — the north star behind the ask",
               "Why now — UN SOFI hunger, Africa epicentre, diet affordability, child stunting",
               "The product engine — fortified BFF ranges & NSNP institutional packs",
               "South Africa: fund solar mobile container rollout (4 live · scale next)",
@@ -323,6 +331,84 @@ function Slide({ index }: { index: number }) {
 
     case 3:
       return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>BIG FIVE GROUP · NORTH STAR</DeckEyebrow>
+          <DeckTitle>Vision · Mission · Values</DeckTitle>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-3 mt-1 min-h-0">
+            {[
+              {
+                t: "Vision",
+                icon: Compass,
+                bar: "from-emerald-500 to-teal-600",
+                color: "text-emerald-800",
+                title: GROUP_VMV.vision.title,
+                d: GROUP_VMV.vision.body,
+              },
+              {
+                t: "Mission",
+                icon: Target,
+                bar: "from-sky-500 to-blue-600",
+                color: "text-sky-800",
+                title: GROUP_VMV.mission.title,
+                d: GROUP_VMV.mission.body,
+              },
+              {
+                t: "Values",
+                icon: Shield,
+                bar: "from-amber-500 to-orange-600",
+                color: "text-amber-800",
+                title: "What we refuse to compromise",
+                d: "Humanity, innovation, integrity, excellence and impact — how we hire, partner, trade and deliver across every pillar.",
+              },
+            ].map((x) => (
+              <div
+                key={x.t}
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-3.5 sm:p-4 min-w-0 relative overflow-hidden"
+              >
+                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${x.bar}`} />
+                <div
+                  className={`inline-flex items-center gap-1.5 text-[10px] sm:text-xs tracking-[2px] font-semibold mb-1.5 mt-0.5 ${x.color}`}
+                >
+                  <x.icon className="w-3.5 h-3.5" />
+                  {x.t.toUpperCase()}
+                </div>
+                <h3 className="text-sm sm:text-base font-semibold text-black tracking-tight mb-1 leading-snug">
+                  {x.title}
+                </h3>
+                <p className="text-[11px] sm:text-xs text-[#404040] leading-relaxed">{x.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-3">
+            {(
+              [
+                { icon: Users, ...GROUP_VMV.values[0] },
+                { icon: Lightbulb, ...GROUP_VMV.values[1] },
+                { icon: Shield, ...GROUP_VMV.values[2] },
+                { icon: Sparkles, ...GROUP_VMV.values[3] },
+                { icon: Heart, ...GROUP_VMV.values[4] },
+              ] as const
+            ).map((v) => (
+              <div
+                key={v.title}
+                className="rounded-xl border border-amber-200/80 bg-amber-50/40 p-2.5 min-w-0"
+              >
+                <v.icon className="w-3.5 h-3.5 text-amber-800 mb-1" />
+                <div className="text-[11px] font-semibold text-black">{v.title}</div>
+                <p className="text-[10px] text-[#525252] leading-snug mt-0.5">{v.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-[11px] text-[#737373] leading-relaxed max-w-3xl">
+            This joint funding brief sits inside Big Five Group: BFF product, Direct containers and
+            Connect / SupplierAdvisor® are how Feed · Educate · Empower becomes fundable work with
+            SWT-AG — not a one-off export trial.
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 4:
+      return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
             THE CHALLENGE · {SOFI.edition}
@@ -365,7 +451,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 4:
+    case 5:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -411,7 +497,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 5:
+    case 6:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY PRODUCT MATTERS</DeckEyebrow>
@@ -450,7 +536,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 6:
+    case 7:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>BIG FIVE FOODS · RANGES</DeckEyebrow>
@@ -488,7 +574,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 7:
+    case 8:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>BFF × SOFI</DeckEyebrow>
@@ -534,7 +620,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 8:
+    case 9:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>NSNP · INSTITUTIONAL</DeckEyebrow>
@@ -575,7 +661,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 9:
+    case 10:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>VALUE · BFF</DeckEyebrow>
@@ -611,7 +697,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 10:
+    case 11:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>UN SDGs · FOODS-LED</DeckEyebrow>
@@ -645,7 +731,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 12:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -691,7 +777,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HOW WE WORK TOGETHER</DeckEyebrow>
@@ -738,7 +824,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PILLAR 1 · SOUTH AFRICA · FUND CONTAINERS</DeckEyebrow>
@@ -819,7 +905,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PILLAR 2 · KENYA · FUND SCHOOL FEEDING</DeckEyebrow>
@@ -875,7 +961,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 16:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>OPERATING SYSTEM · SUPPLIERADVISOR®</DeckEyebrow>
@@ -935,7 +1021,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 17:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY THIS PARTNERSHIP</DeckEyebrow>
@@ -982,7 +1068,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 17:
+    case 18:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PROOF LANGUAGE</DeckEyebrow>
@@ -1016,7 +1102,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 18:
+    case 19:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>NEXT STEPS</DeckEyebrow>
@@ -1054,7 +1140,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 19:
+    case 20:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -1064,6 +1150,7 @@ function Slide({ index }: { index: number }) {
           <div className="space-y-3 max-w-2xl mt-2">
             {[
               "The ask: BFF × SWT-AG raise capital together for SA container rollout and Kenya humanitarian school feeding.",
+              "North star: Big Five Group vision (prosperous Africa), mission Feed · Educate · Empower, values of humanity through impact.",
               "Why now: SOFI 2026 — hunger, Africa epicentre, healthy diets unaffordable; product must be fortified and cost-competitive.",
               "Product engine: BFF ranges + NSNP institutional packs (~2.5M children/day plan scale in SA pathway language).",
               "Pillar 1 · South Africa: 4 solar containers live — fund scale of Feed · Educate · Empower at last mile.",
@@ -1079,7 +1166,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 20:
+    case 21:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <DeckTitleLayout>
@@ -1156,9 +1243,9 @@ export default function BffSwtAgPartnershipDeck() {
           theme={theme}
           eyebrow="BFF × SWT-AG JOINT FUNDING DECK"
           title="Big Five Foods × SWT-AG — Fund containers & school feeding"
-          description="SOFI challenges, BFF products, SDGs, global distribution."
+          description="Group VMV, joint funding for SA containers and Kenya school feeding, managed on SupplierAdvisor®."
           sharePath="/partner/swt-ag#bff-swt-deck"
-          shareTitle="Big Five Foods × SWT-AG — Strategic partnership"
+          shareTitle="Big Five Foods × SWT-AG — Joint funding brief"
           shareText="BFF × SWT-AG joint funding: SA solar containers + Kenya school feeding — managed on SupplierAdvisor®."
           renderSlide={(i) => <Slide index={i} />}
         />
