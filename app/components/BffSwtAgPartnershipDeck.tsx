@@ -725,28 +725,24 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>SOUTH AFRICA · DIRECT × FOODS</DeckEyebrow>
           <DeckTitle>Solar-powered mobile containers — 4 in operation</DeckTitle>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 mt-1 min-h-0">
-            <div className="lg:col-span-5 grid grid-cols-2 gap-2 min-h-0">
-              {[
-                { src: "/container-action-1.jpg", alt: "Big Five solar mobile container in community" },
-                { src: "/direct-hero.jpg", alt: "Container last-mile distribution" },
-              ].map((img) => (
-                <div
-                  key={img.src}
-                  className="relative rounded-xl overflow-hidden border border-black/10 bg-[#f5f5f5] aspect-[4/5] sm:aspect-[3/4] min-h-[7.5rem]"
-                >
-                  {pdf ? (
-                    <DeckPrintImage src={img.src} alt={img.alt} fit="cover" />
-                  ) : (
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      className="object-cover object-center"
-                      sizes="(max-width:1024px) 45vw, 220px"
-                    />
-                  )}
-                </div>
-              ))}
+            <div className="lg:col-span-5 min-h-0">
+              <div className="relative rounded-xl overflow-hidden border border-black/10 bg-[#f5f5f5] aspect-[4/5] sm:aspect-[3/4] lg:aspect-auto lg:h-full min-h-[10rem] max-h-[18rem] lg:max-h-none">
+                {pdf ? (
+                  <DeckPrintImage
+                    src="/container-action-1.jpg"
+                    alt="Big Five solar-powered mobile container in community"
+                    fit="cover"
+                  />
+                ) : (
+                  <Image
+                    src="/container-action-1.jpg"
+                    alt="Big Five solar-powered mobile container in community"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width:1024px) 90vw, 280px"
+                  />
+                )}
+              </div>
             </div>
             <div className="lg:col-span-7 min-w-0 flex flex-col gap-2.5">
               <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">
