@@ -1,15 +1,19 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
   Building2,
+  Check,
+  Copy,
   ExternalLink,
   FileText,
   Handshake,
   Lock,
   Package,
+  Share2,
   Truck,
   Users,
 } from "lucide-react";
@@ -27,8 +31,90 @@ import {
   type PartnerDirectoryEntry,
   type PartnerProgrammeId,
 } from "../lib/partner-public";
+import { track } from "../lib/analytics";
 import SparPartnershipDeck from "../components/SparPartnershipDeck";
 import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
+
+function partnerShareUrls(slug: string) {
+  const origin =
+    typeof window !== "undefined" ? window.location.origin : "https://bigfivegroup.africa";
+  const workspace = `${origin}/partner/${slug}`;
+  const login = `${origin}/partner/login?from=${encodeURIComponent(`/partner/${slug}`)}`;
+  return { workspace, login };
+}
+
+function SharePartnerButton({ partner }: { partner: ClientPartnerProfile }) {
+  const [state, setState] = useState<"idle" | "copied" | "shared" | "error">("idle");
+
+  const onShare = useCallback(async () => {
+    const { workspace, login } = partnerShareUrls(partner.slug);
+    const title = `${partner.name} × Big Five Group — partner workspace`;
+    const text = [
+      partner.headline,
+      "",
+      "Open your private partner briefing:",
+      workspace,
+      "",
+      "If you need to sign in first:",
+      login,
+    ].join("\n");
+
+    track("partner_share", { slug: partner.slug });
+
+    try {
+      if (typeof navigator !== "undefined" && navigator.share) {
+        await navigator.share({ title, text, url: workspace });
+        setState("shared");
+        window.setTimeout(() => setState("idle"), 2500);
+        return;
+      }
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(`${title}\n\n${text}`);
+        setState("copied");
+        window.setTimeout(() => setState("idle"), 2500);
+        return;
+      }
+      setState("error");
+    } catch (e) {
+      // User cancelled share sheet — ignore
+      if (e instanceof Error && e.name === "AbortError") return;
+      try {
+        await navigator.clipboard.writeText(workspace);
+        setState("copied");
+        window.setTimeout(() => setState("idle"), 2500);
+      } catch {
+        setState("error");
+      }
+    }
+  }, [partner.headline, partner.name, partner.slug]);
+
+  const label =
+    state === "copied"
+      ? "Link copied"
+      : state === "shared"
+        ? "Shared"
+        : state === "error"
+          ? "Copy failed"
+          : "Share workspace";
+
+  return (
+    <button
+      type="button"
+      onClick={onShare}
+      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 hover:bg-white/15 text-white px-4 py-2.5 text-sm font-semibold transition-colors"
+      title="Share this partner page URL (and login link) with your contact"
+    >
+      {state === "copied" || state === "shared" ? (
+        <Check className="w-4 h-4 shrink-0" />
+      ) : state === "error" ? (
+        <Copy className="w-4 h-4 shrink-0" />
+      ) : (
+        <Share2 className="w-4 h-4 shrink-0" />
+      )}
+      {label}
+    </button>
+  );
+}
 
 function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
   const partnerLogo = partner.logoSrc;
@@ -289,7 +375,10 @@ export default function PartnerPortalClient({
                 </div>
               )}
             </div>
-            <LogoutButton />
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2 shrink-0 items-stretch sm:items-end lg:items-stretch">
+              <SharePartnerButton partner={partner} />
+              <LogoutButton />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
