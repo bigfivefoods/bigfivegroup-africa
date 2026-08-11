@@ -6,6 +6,7 @@ const BASE_URL = "https://bigfivegroup.africa";
 const routes = [
   "",
   "/about",
+  "/food-security",
   "/group",
   "/global",
   "/africa",

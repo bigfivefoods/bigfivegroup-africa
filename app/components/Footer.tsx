@@ -16,6 +16,7 @@ const exploreLinks = [
   { href: "/africa", label: "Africa" },
   { href: "/global", label: "Global" },
   { href: "/about", label: "About" },
+  { href: "/food-security", label: "Food security" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -60,6 +61,7 @@ const resourceGroups: { label: string; links: { href: string; label: string }[] 
       { href: "/brand", label: "Brand kit" },
       { href: "/partner-kit", label: "Partner kit" },
       { href: "/methodology", label: "Methodology" },
+      { href: "/food-security", label: "Food security · SOFI & SDGs" },
     ],
   },
   {

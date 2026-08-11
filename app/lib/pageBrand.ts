@@ -134,6 +134,17 @@ export const pageBrand = {
     overlay: "bg-zinc-950/55",
     eyebrow: "ABOUT BIG FIVE GROUP",
   },
+  /** Food security · SOFI / SDG context (not a trading pillar) */
+  foodSecurity: {
+    slug: "food-security",
+    hero: "/africa-hero.jpg",
+    accent: "#059669",
+    accentDark: "#065f46",
+    accentSoft: "#ecfdf5",
+    accentLight: "#6ee7b7",
+    overlay: "bg-emerald-950/55",
+    eyebrow: "FOOD SECURITY · SOFI · SDGs",
+  },
   /** Group overview — deep forest (shared Group green) */
   group: {
     slug: "group",
