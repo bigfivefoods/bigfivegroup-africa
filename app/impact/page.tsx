@@ -31,7 +31,7 @@ const ACCENT = "#7c3aed";
 export default function ImpactPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
-      <CaseStudyPdfLayer ids={["nsnp-foods"]} />
+      <CaseStudyPdfLayer />
       <PageHero
         image="/impact-hero.jpg"
         eyebrow="PILLAR · BIG FIVE IMPACT"

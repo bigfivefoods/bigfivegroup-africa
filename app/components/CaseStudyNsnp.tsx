@@ -21,9 +21,12 @@ export default function CaseStudyNsnp({
       aria-labelledby="nsnp-case-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white overflow-hidden shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            <div className="lg:col-span-5 bg-gradient-to-br from-amber-950 via-[#1c1006] to-black text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between min-w-0">
+        <div
+          data-case-pdf-id="nsnp-foods"
+          className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white overflow-hidden shadow-sm"
+        >
+          <div className="case-study-card-grid grid grid-cols-1 lg:grid-cols-12">
+            <div className="case-study-card-left lg:col-span-5 bg-gradient-to-br from-amber-950 via-[#1c1006] to-black text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between min-w-0">
               <div>
                 <div className="mb-5">
                   <Image
@@ -38,7 +41,7 @@ export default function CaseStudyNsnp({
                 <div className="text-[10px] sm:text-xs tracking-[2px] text-amber-300/90 font-semibold mb-4">
                   {NSNP_CASE.eyebrow}
                 </div>
-                <div className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-2">
+                <div className="case-study-ambition text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-2">
                   {NSNP_CASE.ambition}
                 </div>
                 <div className="text-lg sm:text-xl text-amber-100/90 font-medium mb-4">
@@ -68,7 +71,7 @@ export default function CaseStudyNsnp({
               </div>
             </div>
 
-            <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 min-w-0">
+            <div className="case-study-card-right lg:col-span-7 p-6 sm:p-8 md:p-10 min-w-0">
               <h2
                 id="nsnp-case-heading"
                 className={`font-semibold tracking-tighter text-black text-balance ${
@@ -121,7 +124,7 @@ export default function CaseStudyNsnp({
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+              <div className="case-study-actions flex flex-col sm:flex-row gap-3 items-stretch sm:items-center print:hidden">
                 <CaseStudyPdfDownload
                   pdfId="nsnp-foods"
                   label="Download PDF"

@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import CaseStudyPdfDocument, { CaseStudyPdfStyles } from "./CaseStudyPdfDocument";
-import type { CaseStudyPdfId } from "./CaseStudyPdfDownload";
+import CaseStudyPdfStyles from "./CaseStudyPdfStyles";
 
 /**
- * Screen-hidden print layer portaled to document.body so print CSS can hide
- * the app shell with `body > *:not(.case-study-pdf-print-layer)`.
+ * Body portal host for print clones of live case-study cards.
+ * Content is injected at download time so the PDF matches the web DOM.
  */
-export default function CaseStudyPdfLayer({ ids }: { ids: CaseStudyPdfId[] }) {
+export default function CaseStudyPdfLayer() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -21,9 +20,6 @@ export default function CaseStudyPdfLayer({ ids }: { ids: CaseStudyPdfId[] }) {
   return createPortal(
     <div className="case-study-pdf-print-layer" aria-hidden="true">
       <CaseStudyPdfStyles />
-      {ids.map((id) => (
-        <CaseStudyPdfDocument key={id} pdfId={id} />
-      ))}
     </div>,
     document.body
   );

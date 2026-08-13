@@ -34,10 +34,13 @@ export default function CaseStudySchoolAdvisor({
       aria-labelledby="schooladvisor-case-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white overflow-hidden shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
+        <div
+          data-case-pdf-id="schooladvisor-kitchen"
+          className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white overflow-hidden shadow-sm"
+        >
+          <div className="case-study-card-grid grid grid-cols-1 lg:grid-cols-12">
             {/* Left — problem scale + platform */}
-            <div className="lg:col-span-5 bg-gradient-to-br from-[#7c2d12] via-[#0f172a] to-black text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between min-w-0">
+            <div className="case-study-card-left lg:col-span-5 bg-gradient-to-br from-[#7c2d12] via-[#0f172a] to-black text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between min-w-0">
               <div>
                 <div className="mb-5 inline-flex rounded-2xl bg-white p-3 sm:p-4 shadow-sm">
                   <Image
@@ -53,13 +56,13 @@ export default function CaseStudySchoolAdvisor({
                   <ShieldAlert className="w-3.5 h-3.5" />
                   {c.eyebrow}
                 </div>
-                <div className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-2">
+                <div className="case-study-ambition text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-2">
                   {c.ambition}
                 </div>
                 <div className="text-base sm:text-lg text-orange-100/90 font-medium mb-3">
                   {c.ambitionUnit}
                 </div>
-                <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-1">
+                <div className="case-study-secondary-stat text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-1">
                   {c.secondaryStat.value}
                 </div>
                 <div className="text-sm text-white/70 mb-5">{c.secondaryStat.label}</div>
@@ -119,7 +122,7 @@ export default function CaseStudySchoolAdvisor({
             </div>
 
             {/* Right — response story */}
-            <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 min-w-0">
+            <div className="case-study-card-right lg:col-span-7 p-6 sm:p-8 md:p-10 min-w-0">
               <h2
                 id="schooladvisor-case-heading"
                 className={`font-semibold tracking-tighter text-black text-balance ${
@@ -144,7 +147,7 @@ export default function CaseStudySchoolAdvisor({
                 <p className="text-sm text-[#404040] leading-relaxed">{c.solutionLead}</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-6">
+              <div className="case-study-actors grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-6">
                 {c.actors.map((a, i) => {
                   const Icon = actorIcons[i] ?? School;
                   return (
@@ -164,7 +167,7 @@ export default function CaseStudySchoolAdvisor({
 
               {!compact && (
                 <>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+                  <div className="case-study-stats grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
                     {c.stats.map((s) => (
                       <div
                         key={s.label}
@@ -232,7 +235,7 @@ export default function CaseStudySchoolAdvisor({
                 {c.note}
               </p>
 
-              <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-center">
+              <div className="case-study-actions flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-center print:hidden">
                 <CaseStudyPdfDownload
                   pdfId="schooladvisor-kitchen"
                   label="Download PDF"

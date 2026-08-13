@@ -24,10 +24,13 @@ export default function CaseStudySupplierAdvisor({
       aria-labelledby="sa-case-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white overflow-hidden shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
+        <div
+          data-case-pdf-id="sa-dbe-kzn"
+          className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white overflow-hidden shadow-sm"
+        >
+          <div className="case-study-card-grid grid grid-cols-1 lg:grid-cols-12">
             {/* Left panel — scale + platform */}
-            <div className="lg:col-span-5 bg-gradient-to-br from-[#0c4a6e] via-[#0f172a] to-black text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between min-w-0">
+            <div className="case-study-card-left lg:col-span-5 bg-gradient-to-br from-[#0c4a6e] via-[#0f172a] to-black text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between min-w-0">
               <div>
                 <div className="mb-5 inline-flex rounded-2xl bg-white p-3 sm:p-4 shadow-sm">
                   <Image
@@ -43,13 +46,13 @@ export default function CaseStudySupplierAdvisor({
                   <Network className="w-3.5 h-3.5" />
                   {SA_CASE.eyebrow}
                 </div>
-                <div className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-2">
+                <div className="case-study-ambition text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-none mb-2">
                   {SA_CASE.ambition}
                 </div>
                 <div className="text-base sm:text-lg text-cyan-100/90 font-medium mb-3">
                   {SA_CASE.ambitionUnit}
                 </div>
-                <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-1">
+                <div className="case-study-secondary-stat text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-1">
                   {SA_CASE.secondaryStat.value}
                 </div>
                 <div className="text-sm text-white/70 mb-5">{SA_CASE.secondaryStat.label}</div>
@@ -93,7 +96,7 @@ export default function CaseStudySupplierAdvisor({
             </div>
 
             {/* Right panel — story */}
-            <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 min-w-0">
+            <div className="case-study-card-right lg:col-span-7 p-6 sm:p-8 md:p-10 min-w-0">
               <h2
                 id="sa-case-heading"
                 className={`font-semibold tracking-tighter text-black text-balance ${
@@ -107,7 +110,7 @@ export default function CaseStudySupplierAdvisor({
               </p>
               <p className="text-sm text-[#525252] leading-relaxed mb-5">{SA_CASE.context}</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-6">
+              <div className="case-study-actors grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-6">
                 {SA_CASE.actors.map((a, i) => {
                   const Icon = actorIcons[i] ?? Network;
                   return (
@@ -127,7 +130,7 @@ export default function CaseStudySupplierAdvisor({
 
               {!compact && (
                 <>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+                  <div className="case-study-stats grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
                     {SA_CASE.stats.map((s) => (
                       <div
                         key={s.label}
@@ -189,7 +192,7 @@ export default function CaseStudySupplierAdvisor({
                 {SA_CASE.note}
               </p>
 
-              <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-center">
+              <div className="case-study-actions flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-center print:hidden">
                 <CaseStudyPdfDownload
                   pdfId="sa-dbe-kzn"
                   label="Download PDF"

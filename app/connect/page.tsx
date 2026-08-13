@@ -72,7 +72,7 @@ export default function ConnectPage() {
 
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
-      <CaseStudyPdfLayer ids={["sa-dbe-kzn", "schooladvisor-kitchen"]} />
+      <CaseStudyPdfLayer />
       <PageHero
         image="/connect-hero.jpg"
         logo={{

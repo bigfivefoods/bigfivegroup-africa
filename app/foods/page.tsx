@@ -133,7 +133,7 @@ const capabilities = [
 export default function FoodsPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
-      <CaseStudyPdfLayer ids={["nsnp-foods"]} />
+      <CaseStudyPdfLayer />
       <PageHero
         image="/foods-hero.jpg"
         logo={{
