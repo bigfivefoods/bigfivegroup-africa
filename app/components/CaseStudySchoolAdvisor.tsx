@@ -13,6 +13,7 @@ import {
 import { SCHOOL_ADVISOR_CASE, SCHOOL_MEAL_SAFETY_SOURCE } from "../lib/schoolAdvisorCase";
 import { NSNP } from "../lib/nsnp";
 import CaseStudyPdfDownload from "./case-study/CaseStudyPdfDownload";
+import CaseStudyShare from "./case-study/CaseStudyShare";
 
 const actorIcons = [Landmark, School, UtensilsCrossed] as const;
 
@@ -237,6 +238,7 @@ export default function CaseStudySchoolAdvisor({
                   label="Download PDF"
                   className="premium-button inline-flex items-center justify-center gap-2 bg-orange-800 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto hover:bg-orange-900 disabled:opacity-60 print:hidden"
                 />
+                <CaseStudyShare shareId="schooladvisor-kitchen" />
                 <a
                   href={c.ctaPrimary.href}
                   target="_blank"

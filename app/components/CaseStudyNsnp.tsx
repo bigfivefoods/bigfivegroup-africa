@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, Check } from "lucide-react";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
 import CaseStudyPdfDownload from "./case-study/CaseStudyPdfDownload";
+import CaseStudyShare from "./case-study/CaseStudyShare";
 
 export default function CaseStudyNsnp({
   variant = "full",
@@ -126,6 +127,7 @@ export default function CaseStudyNsnp({
                   label="Download PDF"
                   className="premium-button inline-flex items-center justify-center gap-2 bg-black text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto disabled:opacity-60 print:hidden"
                 />
+                <CaseStudyShare shareId="nsnp-foods" />
                 <Link
                   href={NSNP_CASE.ctaPrimary.href}
                   className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
