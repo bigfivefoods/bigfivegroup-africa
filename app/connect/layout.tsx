@@ -4,13 +4,13 @@ import { siteSocialImages } from "../lib/site";
 const social = siteSocialImages("connect");
 
 export const metadata: Metadata = {
-  title: "Connect · SupplierAdvisor® · SAM",
+  title: "Connect · SupplierAdvisor® · SchoolAdvisor · SAM",
   description:
-    "Big Five Connect runs SupplierAdvisor® — including a case study aligning DBE with ~1,800 service providers and ~6,000 KZN schools for approved products, menus and compliance incentives. ERP, SAM, OTIFEF, SHEQ.",
+    "Big Five Connect runs SupplierAdvisor® — DBE × KZN approved products & menus network, plus SchoolAdvisor for NSNP kitchen food-safety compliance (addressing the public school meal safety gap). ERP, SAM, OTIFEF, SHEQ.",
   openGraph: {
-    title: "Big Five Connect | SupplierAdvisor® · DBE × KZN case",
+    title: "Big Five Connect | SupplierAdvisor® · SchoolAdvisor",
     description:
-      "How SupplierAdvisor® aligns the Department of Basic Education with ~1,800 service providers and ~6,000 KZN schools for school nutrition compliance.",
+      "How SupplierAdvisor® and SchoolAdvisor help DBE govern school nutrition products, menus and kitchen food-safety compliance at scale.",
     images: social.openGraph.images,
   },
   twitter: {

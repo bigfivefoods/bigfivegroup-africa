@@ -512,8 +512,8 @@ export default function FoodSecurityPage() {
             {
               icon: ShieldCheck,
               t: "Connect · SupplierAdvisor®",
-              d: "Verified trade OS for menus, products and offtake — including DBE-aligned school nutrition network design for transparency and compliance.",
-              href: "/connect#case-study-sa",
+              d: "Verified trade OS for menus, products and offtake — plus SchoolAdvisor for kitchen food-safety compliance under NSNP.",
+              href: "/connect#case-study-schooladvisor",
             },
           ].map((x) => (
             <Link

@@ -12,6 +12,7 @@ import {
   FinalCta,
 } from "../components/PageSections";
 import CaseStudySupplierAdvisor from "../components/CaseStudySupplierAdvisor";
+import CaseStudySchoolAdvisor from "../components/CaseStudySchoolAdvisor";
 import {
   CheckCircle,
   Play,
@@ -97,6 +98,7 @@ export default function ConnectPage() {
             external: true,
           },
           { href: "#case-study-sa", label: "DBE × KZN case study" },
+          { href: "#case-study-schooladvisor", label: "SchoolAdvisor · kitchen safety" },
           { href: "#connect-deck", label: "Strategic deck" },
           { href: "#sam", label: `Meet ${sa.sam.name}` },
         ]}
@@ -123,6 +125,10 @@ export default function ConnectPage() {
 
       <div className="bg-[#fafafa] border-b border-black/10">
         <CaseStudySupplierAdvisor />
+      </div>
+
+      <div className="bg-white border-b border-black/10">
+        <CaseStudySchoolAdvisor />
       </div>
 
       <SamSection dark />

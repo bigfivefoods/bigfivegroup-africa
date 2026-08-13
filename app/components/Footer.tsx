@@ -77,7 +77,8 @@ const resourceGroups: { label: string; links: { href: string; label: string }[] 
     label: "Connect",
     links: [
       { href: "/connect", label: "Connect · SAM" },
-      { href: "/connect#case-study-sa", label: "SupplierAdvisor®" },
+      { href: "/connect#case-study-sa", label: "SupplierAdvisor® · DBE network" },
+      { href: "/connect#case-study-schooladvisor", label: "SchoolAdvisor · kitchen safety" },
     ],
   },
 ];
