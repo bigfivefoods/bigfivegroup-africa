@@ -76,7 +76,7 @@ export default function ConnectPage() {
       <PageHero
         image="/connect-hero.jpg"
         logo={{
-          src: "/supplieradvisor-logo-transparent.png",
+          src: "/supplieradvisor-logo-white.png",
           alt: "SupplierAdvisor®",
           width: 280,
           height: 124,
