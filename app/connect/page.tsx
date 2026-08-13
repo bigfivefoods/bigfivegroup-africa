@@ -13,6 +13,7 @@ import {
 } from "../components/PageSections";
 import CaseStudySupplierAdvisor from "../components/CaseStudySupplierAdvisor";
 import CaseStudySchoolAdvisor from "../components/CaseStudySchoolAdvisor";
+import CaseStudyPdfLayer from "../components/case-study/CaseStudyPdfLayer";
 import {
   CheckCircle,
   Play,
@@ -71,6 +72,7 @@ export default function ConnectPage() {
 
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
+      <CaseStudyPdfLayer ids={["sa-dbe-kzn", "schooladvisor-kitchen"]} />
       <PageHero
         image="/connect-hero.jpg"
         logo={{

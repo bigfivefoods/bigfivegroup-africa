@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, Check, Network, School, Building2, Landmark } from "lucide-react";
 import { SA_CASE } from "../lib/supplierAdvisorCase";
 import { NSNP } from "../lib/nsnp";
+import CaseStudyPdfDownload from "./case-study/CaseStudyPdfDownload";
 
 const actorIcons = [Landmark, Building2, School] as const;
 
@@ -188,11 +189,16 @@ export default function CaseStudySupplierAdvisor({
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-center">
+                <CaseStudyPdfDownload
+                  pdfId="sa-dbe-kzn"
+                  label="Download PDF"
+                  className="premium-button inline-flex items-center justify-center gap-2 bg-cyan-800 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto hover:bg-cyan-900 disabled:opacity-60 print:hidden"
+                />
                 <a
                   href={SA_CASE.ctaPrimary.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-cyan-800 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
+                  className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
                 >
                   {SA_CASE.ctaPrimary.label}
                   <ExternalLink className="w-4 h-4" />

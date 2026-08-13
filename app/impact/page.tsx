@@ -22,6 +22,7 @@ import {
   HeartPulse,
 } from "lucide-react";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
+import CaseStudyPdfLayer from "../components/case-study/CaseStudyPdfLayer";
 import { MARKET_TRACTION } from "../lib/investor-model";
 import { pageBrand } from "../lib/pageBrand";
 
@@ -30,6 +31,7 @@ const ACCENT = "#7c3aed";
 export default function ImpactPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
+      <CaseStudyPdfLayer ids={["nsnp-foods"]} />
       <PageHero
         image="/impact-hero.jpg"
         eyebrow="PILLAR · BIG FIVE IMPACT"

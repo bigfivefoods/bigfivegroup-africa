@@ -25,6 +25,7 @@ import { saFoodsOnboardUrl, saFoodsOrderUrl } from "../lib/saStorefront";
 import LocalNewsVideo from "../components/LocalNewsVideo";
 import FoodsStrategyDeck from "../components/FoodsStrategyDeck";
 import CaseStudyNsnp from "../components/CaseStudyNsnp";
+import CaseStudyPdfLayer from "../components/case-study/CaseStudyPdfLayer";
 import FoodsSalesPortal from "../components/FoodsSalesPortal";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
 import { pageBrand } from "../lib/pageBrand";
@@ -132,6 +133,7 @@ const capabilities = [
 export default function FoodsPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
+      <CaseStudyPdfLayer ids={["nsnp-foods"]} />
       <PageHero
         image="/foods-hero.jpg"
         logo={{

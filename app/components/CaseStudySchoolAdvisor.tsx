@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { SCHOOL_ADVISOR_CASE, SCHOOL_MEAL_SAFETY_SOURCE } from "../lib/schoolAdvisorCase";
 import { NSNP } from "../lib/nsnp";
+import CaseStudyPdfDownload from "./case-study/CaseStudyPdfDownload";
 
 const actorIcons = [Landmark, School, UtensilsCrossed] as const;
 
@@ -231,11 +232,16 @@ export default function CaseStudySchoolAdvisor({
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 items-stretch sm:items-center">
+                <CaseStudyPdfDownload
+                  pdfId="schooladvisor-kitchen"
+                  label="Download PDF"
+                  className="premium-button inline-flex items-center justify-center gap-2 bg-orange-800 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto hover:bg-orange-900 disabled:opacity-60 print:hidden"
+                />
                 <a
                   href={c.ctaPrimary.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="premium-button inline-flex items-center justify-center gap-2 bg-cyan-800 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
+                  className="premium-button inline-flex items-center justify-center gap-2 border border-black/15 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
                 >
                   {c.ctaPrimary.label}
                   <ExternalLink className="w-4 h-4" />
