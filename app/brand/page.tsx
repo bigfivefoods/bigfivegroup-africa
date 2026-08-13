@@ -63,14 +63,24 @@ const assets: {
     note: "Full-colour wordmark with cube.",
   },
   {
-    name: "SupplierAdvisor® logo (transparent)",
+    name: "SupplierAdvisor® logo (colour · transparent)",
     src: "/supplieradvisor-logo-transparent.png",
-    note: "Preferred on dark and light backgrounds. Third-party brand — use with permission; always include ® where practical.",
+    note: "Official SA monogram from supplieradvisor.com (navy + cyan check). Use on light backgrounds. Third-party brand — use with permission; always include ® where practical.",
   },
   {
-    name: "SupplierAdvisor® logo (original)",
+    name: "SupplierAdvisor® logo (white · transparent)",
+    src: "/supplieradvisor-logo-white.png",
+    note: "Light variant for dark heroes and dark UI. Same mark as supplieradvisor.com.",
+  },
+  {
+    name: "SupplierAdvisor® logo (colour · PNG)",
     src: "/supplieradvisor-logo.png",
-    note: "Full-colour mark on white field.",
+    note: "Same colour mark as /sa-logo.png on supplieradvisor.com.",
+  },
+  {
+    name: "SupplierAdvisor® app icon 512",
+    src: "/supplieradvisor-icon-512.png",
+    note: "Square app icon from supplieradvisor.com (sa-icon-512.png).",
   },
 ];
 
