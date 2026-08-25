@@ -61,7 +61,30 @@ export const PARTNERS: PartnerProfile[] = [
       "Full portal admin: open any partner workspace from All partners below (or go to /partner/[slug] directly).",
       "Add new partners in app/lib/partners.ts — each gets /partner/[slug] with co-branded logo.",
       "Portal super-admin list: PARTNER_PORTAL_ADMINS in partners.ts (currently craig@bigfivegroup.africa).",
+      "Generic partner deck: /partner/big-five-group#bfg-partner-deck — BFG branding + Foods briefing for partners.",
       "SWT-AG workspace: /partner/swt-ag",
+    ],
+    resources: [
+      {
+        href: "#bfg-partner-deck",
+        label: "Generic partner deck",
+        desc: "BFG-branded briefing: SOFI, Foods ranges, NSNP, partnership pathways — shareable with partners.",
+      },
+      {
+        href: "/foods#foods-deck",
+        label: "Foods product deck",
+        desc: "Public Foods strategy deck on bigfivegroup.africa/foods.",
+      },
+      {
+        href: "/food-security",
+        label: "Food security · SOFI & SDGs",
+        desc: "Challenges and how the Group responds.",
+      },
+      {
+        href: "/connect#case-study-schooladvisor",
+        label: "SchoolAdvisor case study",
+        desc: "Kitchen compliance OS for DBE / NSNP.",
+      },
     ],
     contactNote: "Internal — coordinate partner onboarding via Group leadership.",
   },

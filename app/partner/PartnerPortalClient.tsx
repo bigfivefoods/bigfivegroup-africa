@@ -34,6 +34,7 @@ import {
 import { track } from "../lib/analytics";
 import SparPartnershipDeck from "../components/SparPartnershipDeck";
 import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
+import BfgPartnerDeck from "../components/BfgPartnerDeck";
 
 function partnerShareUrls(slug: string) {
   const origin =
@@ -424,6 +425,9 @@ export default function PartnerPortalClient({
               ...(partner.slug === "swt-ag"
                 ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG funding deck" }]
                 : []),
+              ...(partner.slug === "big-five-group"
+                ? [{ href: "#bfg-partner-deck", label: "Partner deck" }]
+                : []),
               { href: "#pillars", label: "Pillars" },
               { href: "#resources", label: "Resources" },
               ...(isAdmin ? [{ href: "#directory", label: "All partners" }] : []),
@@ -582,6 +586,12 @@ export default function PartnerPortalClient({
       {partner.slug === "swt-ag" && (
         <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
           <BffSwtAgPartnershipDeck />
+        </section>
+      )}
+
+      {partner.slug === "big-five-group" && (
+        <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
+          <BfgPartnerDeck />
         </section>
       )}
 
