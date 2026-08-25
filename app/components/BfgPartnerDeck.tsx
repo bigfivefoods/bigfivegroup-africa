@@ -62,51 +62,51 @@ const SCALE_SCENARIOS = [
 const RANGES = [
   {
     title: "Fortified porridges",
+    tagline: "Breakfast that builds — not empty cereal calories",
     src: "/foods/porridge-chocolate.jpg",
-    stats: "74% more nutrition design · everyday staple",
-    flavours: [
-      { name: "Original", src: "/foods/porridge-original.jpg" },
-      { name: "Chocolate", src: "/foods/porridge-chocolate.jpg" },
-      { name: "Banana", src: "/foods/porridge-banana.jpg" },
-      { name: "Strawberry", src: "/foods/porridge-strawberry.jpg" },
-    ],
-    how: "Micronutrient-dense breakfast/staple — addresses empty calories and vitamin gaps.",
+    stats: "74% more nutrition design · 185% more fortification",
+    flavours: ["Original", "Chocolate", "Banana", "Strawberry"],
+    description:
+      "Instant, vitamin-enriched porridges on local maize where formulation allows — familiar flavours families and ECD centres already accept. Reliable fortification without a cold chain.",
+    benefits:
+      "Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron — micronutrient density aimed at hidden hunger, not only fill.",
+    serve: "Hot breakfast · after-school · care centres · household staple",
   },
   {
     title: "Soya mince",
+    tagline: "Affordable protein that stretches every pot",
     src: "/foods/soya-beef.jpg",
-    stats: "High protein · low cost per plate",
-    flavours: [
-      { name: "Rich Beef", src: "/foods/soya-beef.jpg" },
-      { name: "Chilli Beef", src: "/foods/soya-chilli-beef.jpg" },
-      { name: "Beef & Onion", src: "/foods/soya-beef-onion.jpg" },
-      { name: "Mutton", src: "/foods/soya-mutton.jpg" },
-    ],
-    how: "Affordable plant protein that stretches pots — protein security without premium meat budgets.",
+    stats: "From ±R1.30 / meal · 24.4% more protein · long shelf life",
+    flavours: ["Rich Beef", "Chilli Beef", "Beef & Onion", "Mutton"],
+    description:
+      "Plant-based protein mince in culturally familiar formats for stews, pap and catering menus — a protein upgrade when meat prices spike, without cold-chain meat logistics.",
+    benefits:
+      "High plant protein at low cost — lifts protein quality in starch-heavy diets and supports protein-energy security for families under pressure.",
+    serve: "Stews · mince meals · catering · NGO & household protein stretch",
   },
   {
     title: "One-pot meals",
+    tagline: "A complete plate in one pack",
     src: "/foods/onepot-chicken.jpg",
-    stats: "1kg → ~4kg prepared · 20 × 200g servings",
-    flavours: [
-      { name: "Chicken", src: "/foods/onepot-chicken.jpg" },
-      { name: "Beef", src: "/foods/onepot-beef.jpg" },
-      { name: "Chilli Beef", src: "/foods/onepot-chilli-beef.jpg" },
-      { name: "Chakalaka", src: "/foods/onepot-chakalaka.jpg" },
-    ],
-    how: "Complete fortified plate — at R67 RRP that is R3.35 per 200g serving (R67 ÷ 20).",
+    stats: "1kg → 4kg prepared · 20 × 200g servings · R3.35 / meal at RRP R67",
+    flavours: ["Chicken", "Beef", "Chilli Beef", "Chakalaka"],
+    description:
+      "Ready-to-cook complete meals with balanced fortification and authentic African flavours. One 1kg dry pack makes 4kg of food — 20 × 200g servings at R3.35 per meal on RRP R67.",
+    benefits:
+      "Protein plus vitamins A & D, iron and calcium in a whole-meal format — fights calorie gaps and micronutrient deficiency together.",
+    serve: "Weeknight dinners · workplaces · CSI hampers · institutional menus",
   },
   {
     title: "Fortified soups",
+    tagline: "Warmth, flavour and micronutrients at the lowest cost point",
     src: "/foods/soup-chicken.jpg",
-    stats: "Lowest cost entry · micronutrients",
-    flavours: [
-      { name: "Chicken", src: "/foods/soup-chicken.jpg" },
-      { name: "Brown Onion", src: "/foods/soup-brown-onion.jpg" },
-      { name: "Oxtail", src: "/foods/soup-oxtail.jpg" },
-      { name: "Minestrone", src: "/foods/soup-minestrone.jpg" },
-    ],
-    how: "Warmth and vitamins A & C, iron and calcium — accessible entry product.",
+    stats: "From ±R1.10 / meal · vitamins A & C · iron · calcium",
+    flavours: ["Chicken", "Brown Onion", "Oxtail", "Minestrone"],
+    description:
+      "Fortified instant soup thickeners in classic South African flavours — the accessible entry SKU for constrained budgets, school-adjacent programmes and everyday households.",
+    benefits:
+      "Warmth plus vitamins A & C, iron and calcium — micronutrients in a format people already know how to cook.",
+    serve: "Households · catering · winter / hunger-season lines · entry price point",
   },
 ] as const;
 
@@ -428,10 +428,10 @@ function Slide({ index }: { index: number }) {
                 <div className="p-3 flex-1 flex flex-col">
                   <h3 className="text-sm font-semibold text-black mb-0.5">{r.title}</h3>
                   <p className="text-[10px] font-medium text-amber-900 mb-1 leading-snug">
-                    {r.flavours.map((f) => f.name).join(" · ")}
+                    {r.flavours.join(" · ")}
                   </p>
                   <p className="text-[10px] font-medium text-amber-800 mb-1.5">{r.stats}</p>
-                  <p className="text-[11px] text-[#525252] leading-snug flex-1">{r.how}</p>
+                  <p className="text-[11px] text-[#525252] leading-snug flex-1">{r.tagline}</p>
                 </div>
               </div>
             ))}
@@ -443,35 +443,45 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PRODUCTS · FLAVOUR RANGE</DeckEyebrow>
-          <DeckTitle>Every flavour partners can put on shelf</DeckTitle>
-          <div className="space-y-3 mt-1">
+          <DeckTitle>One product per category — flavours, description & benefits</DeckTitle>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3 mt-1 min-h-0">
             {RANGES.map((r) => (
-              <div key={r.title} className="min-w-0">
-                <div className="text-xs font-semibold text-amber-950 mb-1.5">{r.title}</div>
-                <div className="grid grid-cols-4 gap-2">
-                  {r.flavours.map((f) => (
-                    <div
-                      key={f.name}
-                      className="rounded-xl border border-black/10 bg-white overflow-hidden min-w-0"
-                    >
-                      <div className="relative h-16 sm:h-20 bg-[#f8f7f5]">
-                        {pdf ? (
-                          <DeckPrintImage src={f.src} alt={f.name} fit="contain" paddingClass="p-1" />
-                        ) : (
-                          <Image
-                            src={f.src}
-                            alt={f.name}
-                            fill
-                            className="object-contain p-1"
-                            sizes="120px"
-                          />
-                        )}
-                      </div>
-                      <div className="px-1.5 py-1 text-center text-[10px] font-medium text-black truncate">
-                        {f.name}
-                      </div>
-                    </div>
-                  ))}
+              <div
+                key={r.title}
+                className="rounded-2xl border border-black/10 bg-white overflow-hidden min-w-0 flex gap-2.5 sm:gap-3 p-2.5 sm:p-3"
+              >
+                <div className="relative w-[4.5rem] sm:w-24 shrink-0 self-stretch min-h-[5.5rem] rounded-xl bg-[#f8f7f5] border border-black/5 overflow-hidden">
+                  {pdf ? (
+                    <DeckPrintImage src={r.src} alt={r.title} fit="contain" paddingClass="p-1.5" />
+                  ) : (
+                    <Image
+                      src={r.src}
+                      alt={r.title}
+                      fill
+                      className="object-contain p-1.5"
+                      sizes="96px"
+                    />
+                  )}
+                </div>
+                <div className="min-w-0 flex-1 flex flex-col">
+                  <h3 className="text-sm font-semibold text-black leading-snug">{r.title}</h3>
+                  <p className="text-[10px] font-medium text-amber-900 mt-0.5 leading-snug">
+                    {r.tagline}
+                  </p>
+                  <p className="text-[10px] font-semibold text-amber-800 mt-1">{r.stats}</p>
+                  <p className="text-[10px] sm:text-[11px] text-[#404040] leading-snug mt-1.5">
+                    <span className="font-semibold text-black">Flavours:</span>{" "}
+                    {r.flavours.join(" · ")}
+                  </p>
+                  <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug mt-1.5 flex-1">
+                    {r.description}
+                  </p>
+                  <p className="text-[10px] text-[#404040] leading-snug mt-1.5">
+                    <span className="font-semibold text-black">Benefits:</span> {r.benefits}
+                  </p>
+                  <p className="text-[9px] sm:text-[10px] text-[#737373] leading-snug mt-1">
+                    <span className="font-semibold text-[#525252]">Serve:</span> {r.serve}
+                  </p>
                 </div>
               </div>
             ))}
