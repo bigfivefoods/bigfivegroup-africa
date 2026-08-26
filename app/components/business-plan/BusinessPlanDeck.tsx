@@ -9,11 +9,18 @@ import DeckShell, {
   DeckTitle,
   DeckTitleLayout,
   DECK_THEMES,
+  useDeckPdfExport,
   useDeckPrintMode,
   type DeckTheme,
 } from "../deck/DeckShell";
 import { pageBrand } from "../../lib/pageBrand";
+import { SPAR_PARTNERSHIP } from "../../lib/sparPartnership";
+import { NSNP_PRODUCTS } from "../../lib/foodsProducts";
 import type { BusinessPlan, BusinessPlanChapter } from "../../lib/businessPlans/types";
+
+/** Same four-category retail one-pager layout as the SPAR Mandela Pack products slide. */
+const FOODS_PRODUCT_RANGES = SPAR_PARTNERSHIP.mandelaPackRanges;
+const FOODS_MARGIN = SPAR_PARTNERSHIP.sparMargin;
 
 /**
  * Big Five Foods — Group black (#0a0a0a) + amber/gold chrome + Foods pillar accent.
@@ -435,6 +442,12 @@ function HighlightsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme
 
 function ContentsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
   const forPrint = useDeckPrintMode();
+  const agenda = [
+    ...(plan.meta.slug === "foods"
+      ? [{ n: "P", id: "products", title: "Product range one-pager (four categories)" }]
+      : []),
+    ...plan.chapters.map((ch) => ({ n: ch.n, id: ch.id, title: ch.title })),
+  ];
   return (
     <DeckSlideShell theme={theme}>
       <LightSlideBrandChrome slug={plan.meta.slug}>
@@ -443,7 +456,7 @@ function ContentsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }
         <ol
           className={`grid grid-cols-1 sm:grid-cols-2 ${forPrint ? "gap-1" : "gap-1.5 sm:gap-2"}`}
         >
-          {plan.chapters.map((ch) => (
+          {agenda.map((ch) => (
             <li
               key={ch.id}
               className={`flex gap-2 rounded-lg ${forPrint ? "px-1.5 py-1" : "px-2 py-1.5"} ${
@@ -574,6 +587,112 @@ function ChapterSlide({
   );
 }
 
+/**
+ * Foods products one-pager — mirrors SPAR Mandela Pack products slide:
+ * four categories, pack images (object-contain), flavours, pack pricing.
+ */
+function FoodsProductsSlide({ theme }: { theme: DeckTheme }) {
+  const forPrint = useDeckPrintMode();
+  const pdf = useDeckPdfExport();
+  const M = FOODS_MARGIN;
+
+  return (
+    <DeckSlideShell theme={theme}>
+      <LightSlideBrandChrome slug="foods">
+        <div className="flex h-full min-h-0 flex-col overflow-hidden">
+          <div className="shrink-0">
+            <DeckEyebrow theme={theme}>PRODUCT RANGE · ONE-PAGER</DeckEyebrow>
+            <h2
+              className={`font-semibold tracking-tighter text-black text-balance ${
+                forPrint ? "text-lg mb-1.5" : "text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3"
+              }`}
+            >
+              Four categories. Two pack prices. Sixteen flavours.
+            </h2>
+            <p
+              className={`text-[#525252] leading-snug max-w-4xl ${
+                forPrint ? "text-[9px] mb-1.5" : "text-[10px] sm:text-xs mb-2 sm:mb-3"
+              }`}
+            >
+              <strong className="text-black">1kg</strong> porridges &amp; one-pots ·{" "}
+              <strong className="text-black">R45 ex. VAT / R67 incl. VAT</strong>
+              {" · "}
+              <strong className="text-black">400g</strong> soya &amp; soups ·{" "}
+              <strong className="text-black">R18 ex. VAT / R33.50 incl. VAT</strong>
+              {" · "}
+              fortified · shelf-stable · retail, institutional &amp; Africa trade.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
+            {FOODS_PRODUCT_RANGES.map((range) => {
+              const allFlavours = range.flavours.map((f) => f.name).join(" · ");
+              const tier = range.pricingTier === "kg1" ? M.kg1 : M.g400;
+              return (
+                <div key={range.id} className="min-w-0 flex flex-col">
+                  <div className="w-full aspect-[2/3] max-h-[13rem] sm:max-h-[15rem] rounded-xl border border-black/8 bg-[#f8f7f5] flex items-center justify-center p-2 sm:p-3 shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- print-safe pack art */}
+                    <img
+                      src={range.heroImage}
+                      alt={`${range.title} — ${range.flavours[0]?.name ?? ""}`}
+                      className="max-h-full max-w-full w-auto h-auto object-contain object-center"
+                      loading={pdf ? "eager" : "lazy"}
+                    />
+                  </div>
+                  <div className="text-center mt-1.5 shrink-0 px-0.5">
+                    <div
+                      className={`font-semibold text-black leading-tight ${
+                        forPrint ? "text-[9px]" : "text-[10px] sm:text-xs"
+                      }`}
+                    >
+                      {range.title}
+                    </div>
+                    <div
+                      className={`font-semibold mt-0.5 tabular-nums ${
+                        forPrint ? "text-[8px]" : "text-[9px] sm:text-[10px]"
+                      }`}
+                      style={{ color: theme.accentDark }}
+                    >
+                      {range.packSize} · {range.tradeExVatLabel} → {range.rrpInclVatLabel}
+                    </div>
+                    <div
+                      className={`text-[#525252] leading-snug mt-0.5 font-medium ${
+                        forPrint ? "text-[7px]" : "text-[8px] sm:text-[9px]"
+                      }`}
+                    >
+                      Margin {tier.marginRandLabel} · {tier.marginPctLabel}
+                    </div>
+                    <div
+                      className={`text-[#737373] leading-snug mt-0.5 ${
+                        forPrint ? "text-[7px]" : "text-[8px] sm:text-[9px]"
+                      }`}
+                    >
+                      {allFlavours}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div
+            className={`mt-2 shrink-0 rounded-xl border border-amber-200 bg-amber-50/80 ${
+              forPrint ? "p-2 text-[8px]" : "p-2.5 sm:p-3 text-[10px] sm:text-xs"
+            } text-[#404040] leading-snug`}
+          >
+            <strong className="text-black">Also institutional (NSNP):</strong>{" "}
+            {NSNP_PRODUCTS.map((p) => p.shortName).join(" · ")} — 5kg programme packs on the KZN
+            school-feeding pathway.{" "}
+            <strong className="text-black">One-pot (1kg):</strong>{" "}
+            {SPAR_PARTNERSHIP.product.onePotYield.headline}.{" "}
+            <strong className="text-black">{SPAR_PARTNERSHIP.product.onePotYield.costLine}</strong>
+          </div>
+        </div>
+      </LightSlideBrandChrome>
+    </DeckSlideShell>
+  );
+}
+
 function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
   const forPrint = useDeckPrintMode();
   const isConnect = plan.meta.slug === "connect";
@@ -633,23 +752,36 @@ function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme })
 
 /**
  * Slide index map:
- * 0 cover · 1 highlights · 2 contents · 3..(2+N) chapters · last closing
+ * 0 cover · 1 highlights · 2 contents
+ * [Foods only] 3 products one-pager
+ * then chapters · last closing
  */
+function hasProductsSlide(plan: BusinessPlan): boolean {
+  return plan.meta.slug === "foods";
+}
+
 function slideCount(plan: BusinessPlan): number {
-  return 3 + plan.chapters.length + 1;
+  const extra = hasProductsSlide(plan) ? 1 : 0;
+  return 3 + extra + plan.chapters.length + 1;
 }
 
 export default function BusinessPlanDeck({ plan }: { plan: BusinessPlan }) {
   const theme = themeFor(plan.meta.slug);
   const total = slideCount(plan);
   const slug = plan.meta.slug;
+  const productsSlide = hasProductsSlide(plan);
 
   const renderSlide = useCallback(
     (index: number) => {
       if (index === 0) return <CoverSlide plan={plan} theme={theme} />;
       if (index === 1) return <HighlightsSlide plan={plan} theme={theme} />;
       if (index === 2) return <ContentsSlide plan={plan} theme={theme} />;
-      const chapterIndex = index - 3;
+      let cursor = 3;
+      if (productsSlide) {
+        if (index === cursor) return <FoodsProductsSlide theme={theme} />;
+        cursor += 1;
+      }
+      const chapterIndex = index - cursor;
       if (chapterIndex >= 0 && chapterIndex < plan.chapters.length) {
         return (
           <ChapterSlide
@@ -662,7 +794,7 @@ export default function BusinessPlanDeck({ plan }: { plan: BusinessPlan }) {
       }
       return <ClosingSlide plan={plan} theme={theme} />;
     },
-    [plan, theme]
+    [plan, theme, productsSlide]
   );
 
   return (
