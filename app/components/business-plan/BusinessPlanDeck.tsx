@@ -371,7 +371,7 @@ function CoverSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
           <div
             className={`flex flex-wrap gap-2 ${forPrint ? "text-[10px]" : "text-xs"} text-white/40`}
           >
-            <span>Big Five Group · Big Five Connect</span>
+            <span>{plan.meta.companyName}</span>
             {isConnect ? (
               <>
                 <span>·</span>
