@@ -128,7 +128,7 @@ export const SPAR_PARTNERSHIP = {
       tradeExVatLabel: "R45",
       rrpInclVatLabel: "R67",
       tagline: "Breakfast that builds — not empty cereal calories",
-      heroImage: "/foods/porridge-chocolate.jpg",
+      heroImage: "/foods/porridge-banana.jpg",
       flavours: [
         { name: "Chocolate", image: "/foods/porridge-chocolate.jpg" },
         { name: "Banana", image: "/foods/porridge-banana.jpg" },
@@ -152,7 +152,7 @@ export const SPAR_PARTNERSHIP = {
       tradeExVatLabel: "R45",
       rrpInclVatLabel: "R67",
       tagline: "A complete plate in one pack",
-      heroImage: "/foods/onepot-chakalaka.jpg",
+      heroImage: "/foods/onepot-chicken.jpg",
       flavours: [
         { name: "Chakalaka", image: "/foods/onepot-chakalaka.jpg" },
         { name: "Beef", image: "/foods/onepot-beef.jpg" },
@@ -176,7 +176,7 @@ export const SPAR_PARTNERSHIP = {
       tradeExVatLabel: "R18",
       rrpInclVatLabel: "R33.50",
       tagline: "Affordable protein that stretches every pot",
-      heroImage: "/foods/soya-beef.jpg",
+      heroImage: "/foods/soya-chilli-beef.jpg",
       flavours: [
         { name: "Chilli Beef", image: "/foods/soya-chilli-beef.jpg" },
         { name: "Beef & Onion", image: "/foods/soya-beef-onion.jpg" },
