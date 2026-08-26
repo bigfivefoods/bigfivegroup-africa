@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, type ReactNode } from "react";
 import DeckShell, {
   DeckEyebrow,
+  DeckPrintImage,
   DeckSlideShell,
   DeckStatTile,
   DeckTitle,
@@ -11,23 +12,132 @@ import DeckShell, {
   useDeckPrintMode,
   type DeckTheme,
 } from "../deck/DeckShell";
+import { pageBrand } from "../../lib/pageBrand";
 import type { BusinessPlan, BusinessPlanChapter } from "../../lib/businessPlans/types";
 
-/** Theme per opco — matches company accent on the investor portal. */
-const PLAN_THEMES: Record<string, DeckTheme> = {
-  foods: DECK_THEMES.amber,
-  connect: DECK_THEMES.cyan,
-  agri: DECK_THEMES.emerald,
-  direct: DECK_THEMES.orange,
-  access: DECK_THEMES.violet,
-  impact: DECK_THEMES.gold,
-  leadership: DECK_THEMES.teal,
-  foundation: DECK_THEMES.violet,
-  global: DECK_THEMES.blue,
+/**
+ * Big Five Foods — Group black (#0a0a0a) + amber/gold chrome + Foods pillar accent.
+ * Matches bigfivegroup.africa site branding and /brand kit.
+ */
+const BFG_FOODS_THEME: DeckTheme = {
+  name: "foods-group",
+  accent: pageBrand.foods.accent, // #f59e0b
+  accentDark: pageBrand.foods.accentDark, // #b45309
+  gradientFrom: "#f59e0b",
+  gradientTo: "#fbbf24",
+  frameFrom: pageBrand.foods.accentSoft, // #fffbeb
+  frameTo: "#f3f4f6",
+  darkBg: "#0a0a0a", // Group black (not brown amber)
+  eyebrowLight: "text-amber-300",
+  eyebrow: "text-amber-800",
+  softBorder: "border-amber-200",
+  softBg: "bg-amber-50",
+  softText: "text-amber-950",
 };
 
+type PlanBrandAssets = {
+  theme: DeckTheme;
+  /** Logo on dark backgrounds */
+  logoOnDark: string;
+  /** Logo on light backgrounds */
+  logoOnLight: string;
+  logoAlt: string;
+  /** Optional Group mark (shown on Foods cover) */
+  groupLogoOnDark?: string;
+};
+
+const PLAN_BRAND: Record<string, PlanBrandAssets> = {
+  foods: {
+    theme: BFG_FOODS_THEME,
+    logoOnDark: "/bigfivefoods-logo-white.png",
+    logoOnLight: "/bigfivefoods-logo.png",
+    logoAlt: "Big Five Foods",
+    groupLogoOnDark: "/bigfivegroup-logo.png",
+  },
+  connect: {
+    theme: DECK_THEMES.cyan,
+    logoOnDark: "/supplieradvisor-logo-white.png",
+    logoOnLight: "/supplieradvisor-logo-transparent.png",
+    logoAlt: "SupplierAdvisor®",
+  },
+  agri: { theme: DECK_THEMES.emerald, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Agri" },
+  direct: { theme: DECK_THEMES.orange, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Direct" },
+  access: { theme: DECK_THEMES.violet, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Access" },
+  impact: { theme: DECK_THEMES.gold, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Impact" },
+  leadership: { theme: DECK_THEMES.teal, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Leadership" },
+  foundation: { theme: DECK_THEMES.violet, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Foundation" },
+  global: { theme: DECK_THEMES.blue, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Global" },
+};
+
+function brandFor(slug: string): PlanBrandAssets {
+  return (
+    PLAN_BRAND[slug] ?? {
+      theme: DECK_THEMES.amber,
+      logoOnDark: "/bigfivegroup-logo.png",
+      logoOnLight: "/bigfivegroup-logo.jpg",
+      logoAlt: "Big Five Group",
+    }
+  );
+}
+
 function themeFor(slug: string): DeckTheme {
-  return PLAN_THEMES[slug] ?? DECK_THEMES.amber;
+  return brandFor(slug).theme;
+}
+
+function PlanLogo({
+  slug,
+  onDark,
+  size = "md",
+}: {
+  slug: string;
+  onDark?: boolean;
+  size?: "sm" | "md" | "lg";
+}) {
+  const brand = brandFor(slug);
+  const forPrint = useDeckPrintMode();
+  const box =
+    size === "lg"
+      ? forPrint
+        ? "w-20 h-20"
+        : "w-24 h-24 sm:w-28 sm:h-28"
+      : size === "sm"
+        ? forPrint
+          ? "w-10 h-10"
+          : "w-11 h-11 sm:w-12 sm:h-12"
+        : forPrint
+          ? "w-14 h-14"
+          : "w-16 h-16 sm:w-20 sm:h-20";
+
+  return (
+    <div className={`relative shrink-0 ${box}`} aria-hidden={false}>
+      <DeckPrintImage
+        src={onDark ? brand.logoOnDark : brand.logoOnLight}
+        alt={brand.logoAlt}
+        fit="contain"
+      />
+    </div>
+  );
+}
+
+/** Corner brand mark on light slides (Foods seal / opco logo). */
+function LightSlideBrandChrome({
+  slug,
+  children,
+}: {
+  slug: string;
+  children: ReactNode;
+}) {
+  const forPrint = useDeckPrintMode();
+  return (
+    <div className="relative h-full min-h-0 flex flex-col">
+      <div className="absolute top-0 right-0 z-10">
+        <PlanLogo slug={slug} size="sm" />
+      </div>
+      <div className={`flex-1 min-h-0 flex flex-col ${forPrint ? "pr-12" : "pr-14 sm:pr-16"}`}>
+        {children}
+      </div>
+    </div>
+  );
 }
 
 function truncate(text: string, max: number): string {
@@ -178,13 +288,38 @@ function SlideTable({
 
 function CoverSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
   const forPrint = useDeckPrintMode();
+  const brand = brandFor(plan.meta.slug);
+  const isFoods = plan.meta.slug === "foods";
+
   return (
     <DeckSlideShell dark theme={theme}>
       <DeckTitleLayout>
         <div>
           <DeckEyebrow light theme={theme}>
-            {plan.meta.classification}
+            {isFoods
+              ? "BIG FIVE GROUP · BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL"
+              : plan.meta.classification}
           </DeckEyebrow>
+
+          <div
+            className={`flex items-center gap-4 sm:gap-5 ${forPrint ? "mb-3" : "mb-4 sm:mb-6"}`}
+          >
+            <PlanLogo slug={plan.meta.slug} onDark size="lg" />
+            {isFoods && brand.groupLogoOnDark ? (
+              <div
+                className={`relative shrink-0 border-l border-white/20 pl-4 sm:pl-5 ${
+                  forPrint ? "w-14 h-14" : "w-16 h-16 sm:w-20 sm:h-20"
+                }`}
+              >
+                <DeckPrintImage
+                  src={brand.groupLogoOnDark}
+                  alt="Big Five Group"
+                  fit="contain"
+                />
+              </div>
+            ) : null}
+          </div>
+
           <h2
             className={`font-semibold tracking-tighter text-balance text-white ${
               forPrint ? "text-2xl mb-2" : "text-3xl sm:text-4xl md:text-5xl mb-3"
@@ -202,6 +337,8 @@ function CoverSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
           <div
             className={`flex flex-wrap gap-2 ${forPrint ? "text-[10px]" : "text-xs"} text-white/40`}
           >
+            <span>Big Five Group</span>
+            <span>·</span>
             <span>Version {plan.meta.version}</span>
             <span>·</span>
             <span>As of {plan.meta.asOf}</span>
@@ -231,25 +368,27 @@ function HighlightsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme
   const forPrint = useDeckPrintMode();
   return (
     <DeckSlideShell theme={theme}>
-      <DeckEyebrow theme={theme}>EXECUTIVE HIGHLIGHTS</DeckEyebrow>
-      <DeckTitle>What investors should remember</DeckTitle>
-      <ul className={`space-y-2.5 ${forPrint ? "mt-1" : "mt-2"}`}>
-        {plan.executiveHighlights.slice(0, 6).map((h, i) => (
-          <li key={h.slice(0, 40)} className="flex gap-3">
-            <span
-              className={`shrink-0 font-semibold tabular-nums ${forPrint ? "text-xs" : "text-sm"}`}
-              style={{ color: theme.accentDark }}
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <span
-              className={`${forPrint ? "text-xs leading-snug" : "text-sm sm:text-[15px] leading-relaxed"} text-[#404040]`}
-            >
-              {forPrint ? truncate(h, 180) : h}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <LightSlideBrandChrome slug={plan.meta.slug}>
+        <DeckEyebrow theme={theme}>EXECUTIVE HIGHLIGHTS</DeckEyebrow>
+        <DeckTitle>What investors should remember</DeckTitle>
+        <ul className={`space-y-2.5 ${forPrint ? "mt-1" : "mt-2"}`}>
+          {plan.executiveHighlights.slice(0, 6).map((h, i) => (
+            <li key={h.slice(0, 40)} className="flex gap-3">
+              <span
+                className={`shrink-0 font-semibold tabular-nums ${forPrint ? "text-xs" : "text-sm"}`}
+                style={{ color: theme.accentDark }}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span
+                className={`${forPrint ? "text-xs leading-snug" : "text-sm sm:text-[15px] leading-relaxed"} text-[#404040]`}
+              >
+                {forPrint ? truncate(h, 180) : h}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </LightSlideBrandChrome>
     </DeckSlideShell>
   );
 }
@@ -258,32 +397,34 @@ function ContentsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }
   const forPrint = useDeckPrintMode();
   return (
     <DeckSlideShell theme={theme}>
-      <DeckEyebrow theme={theme}>CONTENTS</DeckEyebrow>
-      <DeckTitle>Presentation agenda</DeckTitle>
-      <ol
-        className={`grid grid-cols-1 sm:grid-cols-2 ${forPrint ? "gap-1" : "gap-1.5 sm:gap-2"}`}
-      >
-        {plan.chapters.map((ch) => (
-          <li
-            key={ch.id}
-            className={`flex gap-2 rounded-lg ${forPrint ? "px-1.5 py-1" : "px-2 py-1.5"} ${
-              forPrint ? "bg-[#fafafa]" : "bg-[#fafafa] border border-black/5"
-            }`}
-          >
-            <span
-              className={`font-semibold tabular-nums shrink-0 ${forPrint ? "text-[10px]" : "text-xs"}`}
-              style={{ color: theme.accentDark }}
+      <LightSlideBrandChrome slug={plan.meta.slug}>
+        <DeckEyebrow theme={theme}>CONTENTS</DeckEyebrow>
+        <DeckTitle>Presentation agenda</DeckTitle>
+        <ol
+          className={`grid grid-cols-1 sm:grid-cols-2 ${forPrint ? "gap-1" : "gap-1.5 sm:gap-2"}`}
+        >
+          {plan.chapters.map((ch) => (
+            <li
+              key={ch.id}
+              className={`flex gap-2 rounded-lg ${forPrint ? "px-1.5 py-1" : "px-2 py-1.5"} ${
+                forPrint ? "bg-[#fafafa]" : "bg-[#fafafa] border border-black/5"
+              }`}
             >
-              {ch.n}
-            </span>
-            <span
-              className={`font-medium text-black ${forPrint ? "text-[11px] leading-snug" : "text-sm leading-snug"}`}
-            >
-              {ch.title}
-            </span>
-          </li>
-        ))}
-      </ol>
+              <span
+                className={`font-semibold tabular-nums shrink-0 ${forPrint ? "text-[10px]" : "text-xs"}`}
+                style={{ color: theme.accentDark }}
+              >
+                {ch.n}
+              </span>
+              <span
+                className={`font-medium text-black ${forPrint ? "text-[11px] leading-snug" : "text-sm leading-snug"}`}
+              >
+                {ch.title}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </LightSlideBrandChrome>
     </DeckSlideShell>
   );
 }
@@ -292,10 +433,12 @@ function ChapterSlide({
   chapter,
   theme,
   planName,
+  planSlug,
 }: {
   chapter: BusinessPlanChapter;
   theme: DeckTheme;
   planName: string;
+  planSlug: string;
 }) {
   const forPrint = useDeckPrintMode();
   const data = useMemo(() => chapterSlideBlocks(chapter), [chapter]);
@@ -304,89 +447,89 @@ function ChapterSlide({
 
   return (
     <DeckSlideShell theme={theme}>
-      <div className="flex items-baseline justify-between gap-3 mb-1">
-        <DeckEyebrow theme={theme}>
-          {chapter.eyebrow ?? `${planName.toUpperCase()} · CHAPTER ${chapter.n}`}
-        </DeckEyebrow>
-        <span
-          className={`shrink-0 font-semibold tabular-nums ${forPrint ? "text-[10px]" : "text-xs"}`}
-          style={{ color: theme.accentDark }}
-        >
-          {chapter.n}
-        </span>
-      </div>
-      <h2
-        className={`font-semibold tracking-tighter text-balance text-black ${
-          forPrint ? "text-lg mb-2" : "text-xl sm:text-2xl md:text-3xl mb-3"
-        }`}
-      >
-        {chapter.title}
-      </h2>
-
-      {data.lead ? (
-        <p
-          className={`font-medium text-black text-pretty ${
-            forPrint ? "text-xs leading-snug mb-2" : "text-sm sm:text-base leading-relaxed mb-3"
-          }`}
-        >
-          {forPrint ? truncate(data.lead, 220) : truncate(data.lead, 320)}
-        </p>
-      ) : data.paragraph ? (
-        <p
-          className={`text-[#404040] text-pretty ${
-            forPrint ? "text-[11px] leading-snug mb-2" : "text-sm leading-relaxed mb-3"
-          }`}
-        >
-          {forPrint ? truncate(data.paragraph, 200) : truncate(data.paragraph, 280)}
-        </p>
-      ) : null}
-
-      {data.stats.length > 0 ? (
-        <div
-          className={`grid grid-cols-2 ${data.stats.length > 2 ? "lg:grid-cols-4" : ""} ${
-            forPrint ? "gap-2 mb-2" : "gap-3 mb-3"
-          }`}
-        >
-          {data.stats.map((s) => (
-            <DeckStatTile key={s.label} value={s.value} label={s.label} theme={theme} />
-          ))}
+      <LightSlideBrandChrome slug={planSlug}>
+        <div className="flex items-baseline justify-between gap-3 mb-1">
+          <DeckEyebrow theme={theme}>
+            {chapter.eyebrow ?? `${planName.toUpperCase()} · CHAPTER ${chapter.n}`}
+          </DeckEyebrow>
+          <span
+            className={`shrink-0 font-semibold tabular-nums ${forPrint ? "text-[10px]" : "text-xs"}`}
+            style={{ color: theme.accentDark }}
+          >
+            {chapter.n}
+          </span>
         </div>
-      ) : null}
-
-      {showBullets ? (
-        <SlideBullets items={data.bullets} forPrint={forPrint} />
-      ) : null}
-
-      {showTable && data.table ? (
-        <SlideTable
-          headers={data.table.headers}
-          rows={data.table.rows}
-          forPrint={forPrint}
-        />
-      ) : null}
-
-      {data.callout ? (
-        <aside
-          className={`rounded-xl border mt-auto ${
-            forPrint ? "mt-2 p-2.5" : "mt-3 p-3 sm:p-4"
-          } border-amber-200 bg-amber-50`}
+        <h2
+          className={`font-semibold tracking-tighter text-balance text-black ${
+            forPrint ? "text-lg mb-2" : "text-xl sm:text-2xl md:text-3xl mb-3"
+          }`}
         >
-          <div
-            className={`font-semibold tracking-wide text-amber-900/70 ${
-              forPrint ? "text-[9px] mb-0.5" : "text-[10px] mb-1"
-            }`}
-          >
-            {data.callout.title.toUpperCase()}
-          </div>
+          {chapter.title}
+        </h2>
+
+        {data.lead ? (
           <p
-            className={`text-amber-950 ${
-              forPrint ? "text-[10px] leading-snug" : "text-xs sm:text-sm leading-relaxed"
+            className={`font-medium text-black text-pretty ${
+              forPrint ? "text-xs leading-snug mb-2" : "text-sm sm:text-base leading-relaxed mb-3"
             }`}
           >
-            {data.callout.body}
+            {forPrint ? truncate(data.lead, 220) : truncate(data.lead, 320)}
           </p>
-        </aside>
-      ) : null}
+        ) : data.paragraph ? (
+          <p
+            className={`text-[#404040] text-pretty ${
+              forPrint ? "text-[11px] leading-snug mb-2" : "text-sm leading-relaxed mb-3"
+            }`}
+          >
+            {forPrint ? truncate(data.paragraph, 200) : truncate(data.paragraph, 280)}
+          </p>
+        ) : null}
+
+        {data.stats.length > 0 ? (
+          <div
+            className={`grid grid-cols-2 ${data.stats.length > 2 ? "lg:grid-cols-4" : ""} ${
+              forPrint ? "gap-2 mb-2" : "gap-3 mb-3"
+            }`}
+          >
+            {data.stats.map((s) => (
+              <DeckStatTile key={s.label} value={s.value} label={s.label} theme={theme} />
+            ))}
+          </div>
+        ) : null}
+
+        {showBullets ? <SlideBullets items={data.bullets} forPrint={forPrint} /> : null}
+
+        {showTable && data.table ? (
+          <SlideTable
+            headers={data.table.headers}
+            rows={data.table.rows}
+            forPrint={forPrint}
+          />
+        ) : null}
+
+        {data.callout ? (
+          <aside
+            className={`rounded-xl border mt-auto ${
+              forPrint ? "mt-2 p-2.5" : "mt-3 p-3 sm:p-4"
+            } border-amber-200 bg-amber-50`}
+          >
+            <div
+              className={`font-semibold tracking-wide text-amber-900/70 ${
+                forPrint ? "text-[9px] mb-0.5" : "text-[10px] mb-1"
+              }`}
+            >
+              {data.callout.title.toUpperCase()}
+            </div>
+            <p
+              className={`text-amber-950 ${
+                forPrint ? "text-[10px] leading-snug" : "text-xs sm:text-sm leading-relaxed"
+              }`}
+            >
+              {data.callout.body}
+            </p>
+          </aside>
+        ) : null}
+      </LightSlideBrandChrome>
     </DeckSlideShell>
   );
 }
@@ -397,6 +540,9 @@ function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme })
     <DeckSlideShell dark theme={theme}>
       <DeckTitleLayout>
         <div>
+          <div className={`flex items-center gap-4 ${forPrint ? "mb-3" : "mb-4"}`}>
+            <PlanLogo slug={plan.meta.slug} onDark size="md" />
+          </div>
           <DeckEyebrow light theme={theme}>
             NEXT STEP · NDA DILIGENCE
           </DeckEyebrow>
@@ -416,12 +562,12 @@ function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme })
           </p>
         </div>
         <div
-          className={`rounded-xl border border-white/15 bg-white/[0.06] ${
+          className={`rounded-xl border border-amber-400/25 bg-amber-400/10 ${
             forPrint ? "p-3" : "p-4 sm:p-5"
           }`}
         >
           <div
-            className={`text-amber-200/80 font-semibold tracking-wide ${
+            className={`text-amber-200 font-semibold tracking-wide ${
               forPrint ? "text-[9px] mb-1" : "text-[10px] mb-2"
             }`}
           >
@@ -430,9 +576,7 @@ function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme })
           <p className={`text-white font-semibold ${forPrint ? "text-sm" : "text-base sm:text-lg"}`}>
             {plan.closing.cta}
           </p>
-          <p
-            className={`text-white/45 mt-1 ${forPrint ? "text-[10px]" : "text-xs"}`}
-          >
+          <p className={`text-white/45 mt-1 ${forPrint ? "text-[10px]" : "text-xs"}`}>
             {plan.meta.disclaimer.slice(0, 160)}…
           </p>
         </div>
@@ -466,6 +610,7 @@ export default function BusinessPlanDeck({ plan }: { plan: BusinessPlan }) {
             chapter={plan.chapters[chapterIndex]}
             theme={theme}
             planName={plan.meta.companyName}
+            planSlug={plan.meta.slug}
           />
         );
       }

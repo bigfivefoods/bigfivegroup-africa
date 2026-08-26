@@ -175,13 +175,40 @@ function ChapterView({
 
 function PlanDocument({ plan }: { plan: BusinessPlan }) {
   const planSlug = plan.meta.slug;
+  const isFoods = planSlug === "foods";
+  const coverLogo = isFoods
+    ? { src: "/bigfivefoods-logo-white.png", alt: "Big Five Foods" }
+    : planSlug === "connect"
+      ? { src: "/supplieradvisor-logo-white.png", alt: "SupplierAdvisor®" }
+      : null;
+
   return (
     <div className="business-plan-document" data-business-plan={planSlug}>
-      {/* Cover */}
+      {/* Cover — Group black + amber gold chrome */}
       <header className="rounded-2xl border border-black/10 bg-[#0a0a0a] text-white p-6 sm:p-8 md:p-10 mb-6 print:break-after-page">
         <div className="text-[10px] tracking-[2px] text-amber-400/90 mb-3">
-          {plan.meta.classification}
+          {isFoods
+            ? "BIG FIVE GROUP · BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL"
+            : plan.meta.classification}
         </div>
+        {coverLogo ? (
+          <div className="flex items-center gap-4 sm:gap-5 mb-5">
+            {/* eslint-disable-next-line @next/next/no-img-element -- print-safe brand mark */}
+            <img
+              src={coverLogo.src}
+              alt={coverLogo.alt}
+              className="h-16 w-16 sm:h-20 sm:w-20 object-contain object-left"
+            />
+            {isFoods ? (
+              // eslint-disable-next-line @next/next/no-img-element -- print-safe group mark
+              <img
+                src="/bigfivegroup-logo.png"
+                alt="Big Five Group"
+                className="h-12 w-12 sm:h-14 sm:w-14 object-contain border-l border-white/20 pl-4 sm:pl-5"
+              />
+            ) : null}
+          </div>
+        ) : null}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-2 text-balance">
           {plan.meta.fullTitle}
         </h2>
