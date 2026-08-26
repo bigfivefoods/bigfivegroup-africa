@@ -387,54 +387,68 @@ function Slide({ index }: { index: number }) {
       const dense = forPrint || pdf;
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>HOW SPAR DOES GOOD</DeckEyebrow>
-          <DeckTitle>Sell · donate · 10% ring-fenced for foundations</DeckTitle>
-          <div className={`grid grid-cols-1 md:grid-cols-3 ${dense ? "gap-2 mb-2" : "gap-2 sm:gap-3 mb-3"}`}>
-            {[
-              { icon: ShoppingCart, ...P.pathways[0]! },
-              { icon: Gift, ...P.pathways[1]! },
-              { icon: HandHeart, ...P.pathways[2]! },
-            ].map((path) => (
+          <div className="flex h-full min-h-0 flex-col">
+            <div className="shrink-0">
+              <DeckEyebrow theme={theme}>HOW SPAR DOES GOOD</DeckEyebrow>
+              <DeckTitle>Sell · donate · 10% ring-fenced for foundations</DeckTitle>
+            </div>
+            <div
+              className={`grid grid-cols-1 md:grid-cols-3 shrink-0 ${
+                dense ? "gap-1.5 mb-2" : "gap-2 sm:gap-3 mb-3"
+              }`}
+            >
+              {[
+                { icon: ShoppingCart, ...P.pathways[0]! },
+                { icon: Gift, ...P.pathways[1]! },
+                { icon: HandHeart, ...P.pathways[2]! },
+              ].map((path) => (
+                <div
+                  key={path.id}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
+                    dense ? "p-2" : "p-4"
+                  }`}
+                >
+                  <path.icon
+                    className={`mb-1 ${dense ? "w-3.5 h-3.5" : "w-5 h-5"}`}
+                    style={{ color: theme.accentDark }}
+                  />
+                  <div className={`font-semibold text-black mb-0.5 ${dense ? "text-[11px]" : "text-sm"}`}>
+                    {path.title}
+                  </div>
+                  <p className={`text-[#525252] leading-snug ${dense ? "text-[9px]" : "text-xs"}`}>
+                    {path.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div
+              className={`rounded-2xl border-2 border-emerald-200 bg-emerald-50/60 shrink-0 ${
+                dense ? "p-2" : "p-4 sm:p-5"
+              }`}
+            >
               <div
-                key={path.id}
-                className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
-                  dense ? "p-2.5" : "p-4"
+                className={`font-bold tracking-wide uppercase mb-1 ${dense ? "text-[9px]" : "text-[10px]"}`}
+                style={{ color: theme.accentDark }}
+              >
+                10% model · SPAR 5% + Big Five Foods 5%
+              </div>
+              <p
+                className={`text-[#404040] leading-snug ${
+                  dense ? "text-[9px]" : "text-sm leading-relaxed"
                 }`}
               >
-                <path.icon
-                  className={`mb-1.5 ${dense ? "w-4 h-4" : "w-5 h-5"}`}
-                  style={{ color: theme.accentDark }}
-                />
-                <div className={`font-semibold text-black mb-1 ${dense ? "text-xs" : "text-sm"}`}>
-                  {path.title}
-                </div>
-                <p className={`text-[#525252] leading-snug ${dense ? "text-[10px]" : "text-xs"}`}>
-                  {path.desc}
-                </p>
+                {dense
+                  ? "SPAR and Big Five Foods ring-fence 10% of partnership product turnover (SPAR 5% + Foods 5%) so every sale supports Restore Africa Foundation and A Heart To Help — SPAR as the face of good in the community."
+                  : P.giving.detail}
+              </p>
+              <div
+                className={`mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-1 ${
+                  dense ? "text-[8px]" : "text-[11px]"
+                } text-[#525252]`}
+              >
+                <p className="leading-snug">{P.giving.bases.spar}</p>
+                <p className="leading-snug">{P.giving.bases.foods}</p>
               </div>
-            ))}
-          </div>
-          <div
-            className={`rounded-2xl border-2 border-emerald-200 bg-emerald-50/60 ${
-              dense ? "p-2.5" : "p-4 sm:p-5"
-            }`}
-          >
-            <div
-              className={`font-bold tracking-wide uppercase mb-1 ${dense ? "text-[9px]" : "text-[10px]"}`}
-              style={{ color: theme.accentDark }}
-            >
-              10% model · SPAR 5% + Big Five Foods 5%
-            </div>
-            <p className={`text-[#404040] leading-snug ${dense ? "text-[10px]" : "text-sm leading-relaxed"}`}>
-              {P.giving.detail}
-            </p>
-            <div
-              className={`mt-2 grid grid-cols-1 sm:grid-cols-2 gap-1.5 ${
-                dense ? "text-[9px]" : "text-[11px]"
-              } text-[#525252]`}
-            >
-              <p className="leading-snug">{P.giving.bases.spar}</p>
-              <p className="leading-snug">{P.giving.bases.foods}</p>
             </div>
           </div>
         </DeckSlideShell>
@@ -486,72 +500,83 @@ function Slide({ index }: { index: number }) {
 
     case 7: {
       const dense = forPrint || pdf;
-      /** Shorter print copy so A4 landscape does not clip SA Harvest */
+      /** Compact copy for A4 landscape — logo sits beside text, not above */
       const npoPrintSummary: Record<string, string> = {
         "restore-africa-foundation":
-          "NPC investing in children — nutritious support, school-linked programmes (e.g. Veggies4Kids), and community rebuild. KZN roots; pathways with education partners.",
+          "NPC for children — nutritious support, school-linked programmes (e.g. Veggies4Kids), community rebuild. KZN roots; education pathways.",
         "a-heart-to-help":
-          "Supports women experiencing abuse — and their children — with safety, counselling, skills and pathways to independence. Freedom Farm centre on the KZN North Coast.",
+          "Safety, counselling and skills for women experiencing abuse — and their children. Freedom Farm centre, KZN North Coast.",
         "sa-harvest":
-          "Food rescue and last-mile delivery: moves donated SPAR × Big Five Foods product to soup kitchens, feeding schemes, Restore Africa Foundation and A Heart To Help — so donations reach plates.",
+          "Last-mile delivery of donated product to soup kitchens, feeding schemes, Restore Africa Foundation and A Heart To Help — so SPAR donations reach plates.",
       };
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>WHO SPAR STANDS WITH</DeckEyebrow>
-          <DeckTitle>Foundations + last-mile delivery</DeckTitle>
-          <div className={`grid grid-cols-1 md:grid-cols-3 ${dense ? "gap-2 mt-1" : "gap-2.5 sm:gap-3 mt-1"}`}>
-            {P.npos.map((n) => (
-              <div
-                key={n.name}
-                className={`rounded-2xl border border-black/10 bg-white min-w-0 flex flex-col ${
-                  dense ? "p-2.5" : "p-4"
-                }`}
-              >
-                <div className={`relative w-full ${dense ? "h-9 mb-2" : "h-12 mb-3"}`}>
-                  {pdf ? (
-                    <DeckPrintImage src={n.logoSrc} alt={n.name} fit="contain" />
-                  ) : (
-                    <Image
-                      src={n.logoSrc}
-                      alt={n.name}
-                      fill
-                      className="object-contain object-left"
-                      sizes="180px"
-                    />
-                  )}
-                </div>
+          <div className="flex h-full min-h-0 flex-col">
+            <div className="shrink-0">
+              <DeckEyebrow theme={theme}>WHO SPAR STANDS WITH</DeckEyebrow>
+              <DeckTitle>Foundations + last-mile delivery</DeckTitle>
+            </div>
+            {/* Three horizontal cards: logo | copy — saves vertical space in PDF */}
+            <div className={`flex flex-col flex-1 min-h-0 ${dense ? "gap-2" : "gap-2.5 sm:gap-3"}`}>
+              {P.npos.map((n) => (
                 <div
-                  className={`font-bold tracking-wide uppercase text-emerald-800 mb-1 ${
-                    dense ? "text-[9px]" : "text-[10px]"
+                  key={n.name}
+                  className={`rounded-2xl border border-black/10 bg-white min-w-0 flex flex-row items-start gap-3 ${
+                    dense ? "p-2.5" : "p-3 sm:p-4"
                   }`}
                 >
-                  {n.role}
+                  <div
+                    className={`relative shrink-0 bg-[#fafafa] rounded-xl border border-black/5 ${
+                      dense ? "h-14 w-28" : "h-16 w-32 sm:h-[4.5rem] sm:w-36"
+                    }`}
+                  >
+                    {pdf ? (
+                      <DeckPrintImage src={n.logoSrc} alt={n.name} fit="contain" paddingClass="p-1.5" />
+                    ) : (
+                      <Image
+                        src={n.logoSrc}
+                        alt={n.name}
+                        fill
+                        className="object-contain object-center p-1.5"
+                        sizes="144px"
+                      />
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div
+                      className={`font-bold tracking-wide uppercase text-emerald-800 ${
+                        dense ? "text-[9px]" : "text-[10px]"
+                      }`}
+                    >
+                      {n.role}
+                    </div>
+                    <h3
+                      className={`font-semibold text-black leading-snug ${
+                        dense ? "text-xs mt-0.5" : "text-sm mt-0.5"
+                      }`}
+                    >
+                      {n.name}
+                    </h3>
+                    <p
+                      className={`text-[#525252] leading-snug mt-1 ${
+                        dense ? "text-[9px]" : "text-[11px] sm:text-xs"
+                      }`}
+                    >
+                      {dense ? npoPrintSummary[n.slug] ?? n.summary : n.summary}
+                    </p>
+                  </div>
                 </div>
-                <h3
-                  className={`font-semibold text-black mb-1 leading-snug ${
-                    dense ? "text-xs" : "text-sm mb-1.5"
-                  }`}
-                >
-                  {n.name}
-                </h3>
-                <p
-                  className={`text-[#525252] leading-snug flex-1 ${
-                    dense ? "text-[9px]" : "text-[11px]"
-                  }`}
-                >
-                  {dense ? npoPrintSummary[n.slug] ?? n.summary : n.summary}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p
+              className={`shrink-0 text-[#525252] leading-snug ${
+                dense ? "mt-2 text-[9px]" : "mt-3 text-[11px] leading-relaxed"
+              }`}
+            >
+              <strong className="text-black">Chain:</strong> SPAR sells or donates · Big Five Foods
+              supplies · SA Harvest delivers to soup kitchens, feeding schemes and the foundations.
+            </p>
           </div>
-          <p
-            className={`mt-2 text-[#525252] leading-snug ${
-              dense ? "text-[9px]" : "mt-3 text-[11px] leading-relaxed"
-            }`}
-          >
-            <strong className="text-black">Chain:</strong> SPAR sells or donates · Big Five Foods
-            supplies · SA Harvest delivers to soup kitchens, feeding schemes and the foundations.
-          </p>
         </DeckSlideShell>
       );
     }
