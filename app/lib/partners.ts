@@ -293,7 +293,7 @@ export const PARTNERS: PartnerProfile[] = [
     website: "https://www.spar.co.za/Home",
     websiteLabel: "spar.co.za",
     notes: [
-      "Open the SPAR partnership deck below — SPAR-led narrative: store margin, Mandela pack, foundations, and “SPAR does good”.",
+      "Open the condensed SPAR deck for a short briefing, or the full 20-slide deck for deep-dive sessions.",
       "Trade R45 (ex. VAT) · RRP R67 (incl. VAT) · indicative SPAR front margin ~R15.25 / ~23% of RRP (VAT-aligned) — not manufacturer GP.",
       "10% model: SPAR 5% of retail sell-through + Big Five Foods 5% of trade → Restore Africa Foundation and A Heart To Help.",
       "Dual pathways: shelf sales and/or donation POs into the two foundations — SPAR is the face of the good.",
@@ -301,9 +301,14 @@ export const PARTNERS: PartnerProfile[] = [
     ],
     resources: [
       {
+        href: "#spar-partnership-deck-condensed",
+        label: "SPAR condensed briefing",
+        desc: "11-slide short pitch: margin, Mandela pack, 10% foundations, impact snapshot, the ask.",
+      },
+      {
         href: "#spar-partnership-deck",
-        label: "SPAR does good — pitch deck",
-        desc: "20-slide pitch: SPAR margin, Mandela pack, impact report, RAF · AHTH · SA Harvest delivery.",
+        label: "SPAR does good — full pitch deck",
+        desc: "20-slide pitch: SPAR margin, Mandela pack, full impact report, RAF · AHTH · SA Harvest delivery.",
       },
       {
         href: "/foods",
