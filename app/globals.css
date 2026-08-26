@@ -100,6 +100,21 @@ img {
   body {
     background: white !important;
   }
+
+  /* Investor opco business plans — chapter page breaks */
+  .business-plan-chapter {
+    break-before: page;
+    page-break-before: always;
+  }
+  .business-plan-chapter:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
+  }
+  .business-plan-document header,
+  .business-plan-document nav[aria-label="Business plan contents"] {
+    break-after: page;
+    page-break-after: always;
+  }
 }
 
 /* Next.js Image with fill is position:absolute — keep full box */
