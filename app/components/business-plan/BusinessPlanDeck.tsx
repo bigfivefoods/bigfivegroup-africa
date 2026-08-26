@@ -114,21 +114,51 @@ function PlanLogo({
 }) {
   const brand = brandFor(slug);
   const forPrint = useDeckPrintMode();
+  const pdf = useDeckPdfExport();
   const wide = brand.logoShape === "wide";
+  const src = onDark ? brand.logoOnDark : brand.logoOnLight;
 
-  const box = wide
-    ? size === "lg"
-      ? forPrint
-        ? "h-12 w-44"
-        : "h-14 w-52 sm:h-16 sm:w-60"
-      : size === "sm"
+  /**
+   * Wide SupplierAdvisor® wordmark (~640×277) must NOT use absolute-fill + overflow-hidden
+   * — that cropped the mark. Flex + max-contain (SPAR co-brand pattern) keeps the full logo.
+   */
+  if (wide) {
+    const shell =
+      size === "lg"
         ? forPrint
-          ? "h-7 w-28"
-          : "h-8 w-32 sm:h-9 sm:w-36"
-        : forPrint
-          ? "h-9 w-36"
-          : "h-10 w-40 sm:h-11 sm:w-44"
-    : size === "lg"
+          ? "h-11 max-w-[15rem] px-3 py-1.5"
+          : "h-12 sm:h-14 max-w-[16rem] sm:max-w-[18rem] px-3 sm:px-3.5 py-1.5 sm:py-2"
+        : size === "sm"
+          ? forPrint
+            ? "h-8 max-w-[9.5rem] px-2 py-1"
+            : "h-8 sm:h-9 max-w-[10rem] sm:max-w-[11rem] px-2 py-1"
+          : forPrint
+            ? "h-9 max-w-[12rem] px-2.5 py-1"
+            : "h-10 sm:h-11 max-w-[13rem] sm:max-w-[14rem] px-2.5 py-1.5";
+
+    return (
+      <div
+        className={`shrink-0 flex items-center justify-center overflow-visible ${shell} ${
+          plate
+            ? "rounded-xl bg-white border border-white/35 shadow-sm"
+            : "rounded-lg bg-white/95 border border-black/5"
+        }`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element -- print-safe wide wordmark */}
+        <img
+          src={src}
+          alt={brand.logoAlt}
+          className="max-h-full max-w-full w-auto h-auto object-contain object-center"
+          loading={pdf ? "eager" : "lazy"}
+          decoding={pdf ? "sync" : "async"}
+          {...(pdf ? { fetchPriority: "high" as const } : {})}
+        />
+      </div>
+    );
+  }
+
+  const box =
+    size === "lg"
       ? forPrint
         ? "w-20 h-20"
         : "w-24 h-24 sm:w-28 sm:h-28"
@@ -141,19 +171,8 @@ function PlanLogo({
           : "w-16 h-16 sm:w-20 sm:h-20";
 
   return (
-    <div
-      className={`relative shrink-0 overflow-hidden ${box} ${
-        plate
-          ? "rounded-xl bg-white px-2.5 py-1.5 border border-white/30 shadow-sm"
-          : ""
-      }`}
-    >
-      <DeckPrintImage
-        src={onDark ? brand.logoOnDark : brand.logoOnLight}
-        alt={brand.logoAlt}
-        fit="contain"
-        paddingClass={plate ? "p-0.5" : undefined}
-      />
+    <div className={`relative shrink-0 ${box}`}>
+      <DeckPrintImage src={src} alt={brand.logoAlt} fit="contain" />
     </div>
   );
 }
@@ -170,15 +189,15 @@ function LightSlideBrandChrome({
   const wide = brandFor(slug).logoShape === "wide";
   return (
     <div className="relative h-full min-h-0 flex flex-col">
-      <div className="absolute top-0 right-0 z-10">
+      <div className="absolute top-0 right-0 z-10 max-w-[42%]">
         <PlanLogo slug={slug} size="sm" />
       </div>
       <div
         className={`flex-1 min-h-0 flex flex-col ${
           wide
             ? forPrint
-              ? "pr-32"
-              : "pr-36 sm:pr-40"
+              ? "pr-[10.5rem]"
+              : "pr-40 sm:pr-44"
             : forPrint
               ? "pr-12"
               : "pr-14 sm:pr-16"
