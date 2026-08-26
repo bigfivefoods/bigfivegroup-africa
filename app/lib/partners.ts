@@ -294,7 +294,7 @@ export const PARTNERS: PartnerProfile[] = [
     websiteLabel: "spar.co.za",
     notes: [
       "Open the condensed SPAR deck for a short briefing, or the full 20-slide deck for deep-dive sessions.",
-      "Trade R45 (ex. VAT) · RRP R67 (incl. VAT) · indicative SPAR front margin ~R15.25 / ~23% of RRP (VAT-aligned) — not manufacturer GP.",
+      "Two pack tiers: 1kg porridges & one-pots at R45 ex. VAT / R67 RRP (~R15.25 / ~23% SPAR front margin); 400g soya & soups at R18 / R33.50 (~R12.80 / ~38%) — VAT-aligned, not manufacturer GP.",
       "10% model: SPAR 5% of retail sell-through + Big Five Foods 5% of trade → Restore Africa Foundation and A Heart To Help.",
       "Dual pathways: shelf sales and/or donation POs into the two foundations — SPAR is the face of the good.",
       "Add authorised SPAR emails to this profile when portal logins are ready.",

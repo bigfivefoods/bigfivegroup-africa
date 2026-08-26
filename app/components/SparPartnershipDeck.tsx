@@ -327,96 +327,101 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PRICING · SPAR MARGIN</DeckEyebrow>
-          <DeckTitle>Clear prices — and what SPAR makes on every pack</DeckTitle>
+          <DeckTitle>Two pack tiers — clear SPAR front margin on each</DeckTitle>
           <p
-            className={`text-[#525252] mb-4 max-w-3xl leading-relaxed ${
+            className={`text-[#525252] mb-3 max-w-3xl leading-relaxed ${
               forPrint ? "text-[11px]" : "text-sm"
             }`}
           >
             {P.product.vatNote}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-            <div
-              className={`rounded-2xl border border-black/10 bg-[#0a0a0a] text-white ${
-                forPrint ? "p-3" : "p-5"
-              }`}
-            >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+            {[M.kg1, M.g400].map((tier) => (
               <div
-                className={`font-semibold tracking-wide uppercase text-emerald-300/90 ${
-                  forPrint ? "text-[9px]" : "text-[10px]"
-                }`}
+                key={tier.packSize}
+                className="rounded-2xl border-2 bg-white overflow-hidden min-w-0"
+                style={{ borderColor: theme.accent }}
               >
-                SPAR cost · trade
+                <div
+                  className="px-4 py-2.5 text-white"
+                  style={{
+                    background: `linear-gradient(135deg, ${theme.gradientFrom}, ${theme.gradientTo})`,
+                  }}
+                >
+                  <div className="text-[10px] font-bold tracking-wide uppercase opacity-90">
+                    {tier.packSize} pack
+                  </div>
+                  <div className="text-sm font-semibold">{tier.categories}</div>
+                </div>
+                <div className="grid grid-cols-3 gap-0 border-t border-black/5">
+                  <div className={`bg-[#0a0a0a] text-white ${forPrint ? "p-2.5" : "p-4"}`}>
+                    <div className="text-[9px] font-semibold uppercase text-emerald-300/90">Buy</div>
+                    <div
+                      className={`font-semibold tracking-tighter tabular-nums ${
+                        forPrint ? "text-xl" : "text-2xl sm:text-3xl"
+                      }`}
+                    >
+                      {tier.tradeExVatLabel}
+                    </div>
+                    <div className="text-[9px] text-white/55">ex. VAT</div>
+                  </div>
+                  <div className={`border-l border-black/5 ${forPrint ? "p-2.5" : "p-4"}`}>
+                    <div
+                      className="text-[9px] font-semibold uppercase"
+                      style={{ color: theme.accentDark }}
+                    >
+                      Sell RRP
+                    </div>
+                    <div
+                      className={`font-semibold tracking-tighter tabular-nums text-black ${
+                        forPrint ? "text-xl" : "text-2xl sm:text-3xl"
+                      }`}
+                    >
+                      {tier.rrpInclVatLabel}
+                    </div>
+                    <div className="text-[9px] text-[#737373]">incl. VAT</div>
+                  </div>
+                  <div
+                    className={`border-l border-emerald-100 bg-emerald-50/80 ${
+                      forPrint ? "p-2.5" : "p-4"
+                    }`}
+                  >
+                    <div
+                      className="text-[9px] font-semibold uppercase"
+                      style={{ color: theme.accentDark }}
+                    >
+                      Margin
+                    </div>
+                    <div
+                      className={`font-semibold tracking-tighter tabular-nums ${
+                        forPrint ? "text-xl" : "text-2xl sm:text-3xl"
+                      }`}
+                      style={{ color: theme.accentDark }}
+                    >
+                      {tier.marginRandLabel}
+                    </div>
+                    <div className="text-[9px] font-semibold" style={{ color: theme.accentDark }}>
+                      {tier.marginPctLabel} of RRP
+                    </div>
+                  </div>
+                </div>
+                <p className="px-3 py-2 text-[10px] text-[#525252] leading-snug border-t border-black/5">
+                  Cost aligned at 15% VAT: {tier.tradeExVatLabel} → {tier.tradeInclVatLabel} incl. ·
+                  margin = RRP − VAT-aligned cost
+                </p>
               </div>
-              <div
-                className={`font-semibold tracking-tighter tabular-nums ${
-                  forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
-                }`}
-              >
-                {P.product.tradePriceExVatLabel}
-              </div>
-              <div className={`text-white/60 ${forPrint ? "text-[10px]" : "text-xs"}`}>
-                exclusive of VAT
-              </div>
-            </div>
-            <div
-              className={`rounded-2xl border-2 bg-white ${forPrint ? "p-3" : "p-5"}`}
-              style={{ borderColor: theme.accent }}
-            >
-              <div
-                className={`font-semibold tracking-wide uppercase ${
-                  forPrint ? "text-[9px]" : "text-[10px]"
-                }`}
-                style={{ color: theme.accentDark }}
-              >
-                RRP · Mandela pack
-              </div>
-              <div
-                className={`font-semibold tracking-tighter tabular-nums text-black ${
-                  forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
-                }`}
-              >
-                {P.product.rrpInclVatLabel}
-              </div>
-              <div className={`text-[#525252] ${forPrint ? "text-[10px]" : "text-xs"}`}>
-                inclusive of VAT · shelf
-              </div>
-            </div>
-            <div
-              className={`rounded-2xl border-2 bg-emerald-50 ${forPrint ? "p-3" : "p-5"}`}
-              style={{ borderColor: theme.accentDark }}
-            >
-              <div
-                className={`font-semibold tracking-wide uppercase ${
-                  forPrint ? "text-[9px]" : "text-[10px]"
-                }`}
-                style={{ color: theme.accentDark }}
-              >
-                SPAR front margin
-              </div>
-              <div
-                className={`font-semibold tracking-tighter tabular-nums ${
-                  forPrint ? "text-2xl" : "text-3xl sm:text-4xl"
-                }`}
-                style={{ color: theme.accentDark }}
-              >
-                {M.marginRandLabel}
-              </div>
-              <div className={`text-[#525252] ${forPrint ? "text-[10px]" : "text-xs"}`}>
-                ~{Math.round(M.marginPctOfRrp)}% of RRP · indicative
-              </div>
-            </div>
+            ))}
           </div>
           <div
             className={`rounded-xl border border-emerald-100 bg-emerald-50/60 ${
-              forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
-            } text-[#404040] leading-relaxed mb-2.5`}
+              forPrint ? "p-2.5 text-[10px]" : "p-3 text-sm"
+            } text-[#404040] leading-relaxed mb-2`}
           >
             <strong className="text-black">For SPAR retailers:</strong> {M.detail}
           </div>
           <div
             className={`rounded-xl border-2 bg-white ${
-              forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
+              forPrint ? "p-2.5 text-[10px]" : "p-3 text-sm"
             } text-[#404040] leading-relaxed`}
             style={{ borderColor: theme.accent }}
           >
@@ -426,7 +431,7 @@ function Slide({ index }: { index: number }) {
               }`}
               style={{ color: theme.accentDark }}
             >
-              One-pot yield · shelf talk
+              One-pot yield · shelf talk (1kg)
             </div>
             <p className="text-black font-semibold leading-snug mb-1">
               {P.product.onePotYield.headline}
@@ -447,12 +452,15 @@ function Slide({ index }: { index: number }) {
             <div className="shrink-0">
               <DeckEyebrow theme={theme}>MANDELA PACK · FULL RANGE</DeckEyebrow>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2 sm:mb-3">
-                Four categories. Sixteen flavours. One purpose pack story.
+                Four categories. Two pack prices. Sixteen flavours.
               </h2>
               <p className="text-[10px] sm:text-xs text-[#525252] leading-snug max-w-4xl mb-2 sm:mb-3">
-                Full Big Five Foods packaging for SPAR — trade{" "}
-                <strong className="text-black">{P.product.tradePriceExVatLabel} ex. VAT</strong> · RRP{" "}
-                <strong className="text-black">{P.product.rrpInclVatLabel} incl. VAT</strong> ·
+                <strong className="text-black">1kg</strong> porridges &amp; one-pots ·{" "}
+                <strong className="text-black">R45 ex. VAT / R67 incl. VAT</strong>
+                {" · "}
+                <strong className="text-black">400g</strong> soya &amp; soups ·{" "}
+                <strong className="text-black">R18 ex. VAT / R33.50 incl. VAT</strong>
+                {" · "}
                 fortified · shelf-stable · sell or donate.
               </p>
             </div>
@@ -461,10 +469,11 @@ function Slide({ index }: { index: number }) {
               {RANGES.map((range) => {
                 const heroFlavour = range.flavours[0]?.name ?? "";
                 const allFlavours = range.flavours.map((f) => f.name).join(" · ");
+                const tier = range.pricingTier === "kg1" ? M.kg1 : M.g400;
                 return (
                   <div key={range.id} className="min-w-0 flex flex-col">
                     {/* Fixed-height plate — full pack visible (no aspect/max-h crop) */}
-                    <div className="relative w-full h-[9.5rem] sm:h-[12rem] md:h-[14rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden shrink-0">
+                    <div className="relative w-full h-[8.5rem] sm:h-[11rem] md:h-[12.5rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden shrink-0">
                       <DeckPrintImage
                         src={range.heroImage}
                         alt={`${range.title} — ${heroFlavour}`}
@@ -475,6 +484,15 @@ function Slide({ index }: { index: number }) {
                     <div className="text-center mt-1.5 shrink-0 px-0.5">
                       <div className="text-[10px] sm:text-xs font-semibold text-black leading-tight">
                         {range.title}
+                      </div>
+                      <div
+                        className="text-[9px] sm:text-[10px] font-semibold mt-0.5 tabular-nums"
+                        style={{ color: theme.accentDark }}
+                      >
+                        {range.packSize} · {range.tradeExVatLabel} → {range.rrpInclVatLabel}
+                      </div>
+                      <div className="text-[8px] sm:text-[9px] text-[#525252] leading-snug mt-0.5 font-medium">
+                        Margin {tier.marginRandLabel} · {tier.marginPctLabel}
                       </div>
                       <div className="text-[8px] sm:text-[9px] text-[#737373] leading-snug mt-0.5">
                         {allFlavours}

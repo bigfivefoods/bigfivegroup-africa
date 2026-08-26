@@ -7,14 +7,26 @@
 /** SA standard VAT rate used only to align trade (ex. VAT) with RRP (incl. VAT). */
 const VAT_RATE = 0.15;
 
-const TRADE_EX_VAT = 45;
-const RRP_INCL_VAT = 67;
-/** Cost to SPAR on an incl.-VAT basis for margin comparison with RRP */
-const TRADE_INCL_VAT = TRADE_EX_VAT * (1 + VAT_RATE);
-/** Indicative front margin rands per pack at RRP (incl. VAT shelf vs cost incl. VAT) */
-const SPAR_MARGIN_RAND = RRP_INCL_VAT - TRADE_INCL_VAT;
-/** Indicative front margin % of RRP (incl. VAT) */
-const SPAR_MARGIN_PCT = (SPAR_MARGIN_RAND / RRP_INCL_VAT) * 100;
+/** Mandela 1kg pack — One-Pot + Fortified Porridges */
+const TRADE_EX_VAT_1KG = 45;
+const RRP_INCL_VAT_1KG = 67;
+const TRADE_INCL_VAT_1KG = TRADE_EX_VAT_1KG * (1 + VAT_RATE); // 51.75
+const MARGIN_RAND_1KG = RRP_INCL_VAT_1KG - TRADE_INCL_VAT_1KG; // 15.25
+const MARGIN_PCT_1KG = (MARGIN_RAND_1KG / RRP_INCL_VAT_1KG) * 100; // ~22.8%
+
+/** 400g pack — Soya Mince + Fortified Soups */
+const TRADE_EX_VAT_400G = 18;
+const RRP_INCL_VAT_400G = 33.5;
+const TRADE_INCL_VAT_400G = TRADE_EX_VAT_400G * (1 + VAT_RATE); // 20.70
+const MARGIN_RAND_400G = RRP_INCL_VAT_400G - TRADE_INCL_VAT_400G; // 12.80
+const MARGIN_PCT_400G = (MARGIN_RAND_400G / RRP_INCL_VAT_400G) * 100; // ~38.2%
+
+/** @deprecated aliases — flagship 1kg Mandela pack (kept for impact model / legacy refs) */
+const TRADE_EX_VAT = TRADE_EX_VAT_1KG;
+const RRP_INCL_VAT = RRP_INCL_VAT_1KG;
+const TRADE_INCL_VAT = TRADE_INCL_VAT_1KG;
+const SPAR_MARGIN_RAND = MARGIN_RAND_1KG;
+const SPAR_MARGIN_PCT = MARGIN_PCT_1KG;
 
 /**
  * Flagship 1kg one-pot prepared yield (Mandela pack economics for shoppers).
@@ -24,7 +36,34 @@ const ONE_POT_DRY_KG = 1;
 const ONE_POT_PREPARED_KG = 4;
 const ONE_POT_SERVING_G = 200;
 const ONE_POT_SERVINGS = (ONE_POT_PREPARED_KG * 1000) / ONE_POT_SERVING_G; // 20
-const ONE_POT_COST_PER_SERVING = RRP_INCL_VAT / ONE_POT_SERVINGS; // 3.35
+const ONE_POT_COST_PER_SERVING = RRP_INCL_VAT_1KG / ONE_POT_SERVINGS; // 3.35
+
+function packPricing(
+  packSize: string,
+  tradeExVat: number,
+  rrpInclVat: number,
+  categories: string
+) {
+  const tradeIncl = tradeExVat * (1 + VAT_RATE);
+  const marginRand = rrpInclVat - tradeIncl;
+  const marginPct = (marginRand / rrpInclVat) * 100;
+  const tradeLabel = `R${tradeExVat % 1 === 0 ? tradeExVat.toFixed(0) : tradeExVat.toFixed(2)}`;
+  const rrpLabel = `R${rrpInclVat % 1 === 0 ? rrpInclVat.toFixed(0) : rrpInclVat.toFixed(2)}`;
+  return {
+    packSize,
+    categories,
+    tradeExVat,
+    tradeExVatLabel: tradeLabel,
+    tradeInclVatAligned: tradeIncl,
+    tradeInclVatLabel: `R${tradeIncl.toFixed(2)}`,
+    rrpInclVat,
+    rrpInclVatLabel: rrpLabel,
+    marginRand,
+    marginRandLabel: `R${marginRand.toFixed(2)}`,
+    marginPctOfRrp: marginPct,
+    marginPctLabel: `~${Math.round(marginPct)}%`,
+  };
+}
 
 export const SPAR_PARTNERSHIP = {
   title: "SPAR × Big Five Foods",
@@ -35,21 +74,26 @@ export const SPAR_PARTNERSHIP = {
   sparUrl: "https://www.spar.co.za/Home",
   contactEmail: "craig@bigfivegroup.africa",
 
-  /** Flagship partnership SKU / campaign pricing (Nelson Mandela pack). */
+  /** Flagship partnership SKU / campaign pricing (two pack tiers). */
   product: {
-    name: "Big Five Foods · fortified staple (Nelson Mandela campaign pack)",
-    tradePriceExVat: TRADE_EX_VAT,
+    name: "Big Five Foods · fortified staple (Nelson Mandela campaign range)",
+    /** @deprecated prefer pricingTiers.kg1 — kept for impact model & legacy slide refs */
+    tradePriceExVat: TRADE_EX_VAT_1KG,
     tradePriceExVatLabel: "R45",
-    tradePriceNote: "SPAR cost price · exclusive of VAT",
-    rrpInclVat: RRP_INCL_VAT,
+    tradePriceNote: "1kg Mandela pack · SPAR cost · exclusive of VAT",
+    rrpInclVat: RRP_INCL_VAT_1KG,
     rrpInclVatLabel: "R67",
-    rrpNote: "Recommended retail price · inclusive of VAT · Nelson Mandela pack",
+    rrpNote: "1kg Mandela pack · RRP inclusive of VAT",
     currency: "ZAR",
     vatRate: VAT_RATE,
     vatNote:
-      "Trade is quoted ex. VAT (R45). RRP R67 is inclusive of VAT for the Nelson Mandela campaign pack. SPAR margin below aligns cost to an incl.-VAT basis at 15% VAT for a fair shelf comparison.",
+      "Two listing tiers: 1kg Mandela pack (porridges & one-pots) at R45 ex. VAT / R67 incl. VAT; 400g (soya & soups) at R18 ex. VAT / R33.50 incl. VAT. SPAR front margin aligns each trade cost to 15% VAT for a fair shelf comparison.",
     campaignLine:
-      "Nelson Mandela pack — purpose-led shelf range: four fortified African categories, one clear RRP, SPAR margin, and 10% ring-fenced for foundations.",
+      "Nelson Mandela range — four fortified African categories, two clear pack prices, SPAR margin on every SKU, and 10% ring-fenced for foundations.",
+    pricingTiers: {
+      kg1: packPricing("1kg", TRADE_EX_VAT_1KG, RRP_INCL_VAT_1KG, "One-Pot Meals · Fortified Porridges"),
+      g400: packPricing("400g", TRADE_EX_VAT_400G, RRP_INCL_VAT_400G, "Soya Mince · Fortified Soups"),
+    },
     /**
      * 1kg one-pot yield — specific claim for SPAR shelf talk and impact maths.
      * Dry pack prepares to 4× weight; 200g plate servings → 20 meals at RRP R67.
@@ -59,7 +103,7 @@ export const SPAR_PARTNERSHIP = {
       preparedKg: ONE_POT_PREPARED_KG,
       servingGrams: ONE_POT_SERVING_G,
       servingsPerPack: ONE_POT_SERVINGS,
-      rrpInclVat: RRP_INCL_VAT,
+      rrpInclVat: RRP_INCL_VAT_1KG,
       rrpInclVatLabel: "R67",
       costPerServingInclVat: ONE_POT_COST_PER_SERVING,
       costPerServingLabel: `R${ONE_POT_COST_PER_SERVING.toFixed(2)}`,
@@ -72,12 +116,16 @@ export const SPAR_PARTNERSHIP = {
 
   /**
    * Mandela pack range — all four Big Five Foods categories for SPAR shelf / donation.
-   * Pricing model (R45 / R67) applies to agreed campaign SKUs; pack sizes locked on term sheet.
+   * 1kg: porridges + one-pots (R45 / R67). 400g: soya + soups (R18 / R33.50).
    */
   mandelaPackRanges: [
     {
       id: "porridge",
       title: "Fortified Porridges",
+      packSize: "1kg",
+      pricingTier: "kg1" as const,
+      tradeExVatLabel: "R45",
+      rrpInclVatLabel: "R67",
       tagline: "Breakfast that builds — not empty cereal calories",
       heroImage: "/foods/porridge-chocolate.jpg",
       flavours: [
@@ -86,7 +134,7 @@ export const SPAR_PARTNERSHIP = {
         { name: "Original", image: "/foods/porridge-original.jpg" },
         { name: "Strawberry", image: "/foods/porridge-strawberry.jpg" },
       ],
-      stats: "74% more nutrition design · 185% more fortification · school & household ready",
+      stats: "1kg Mandela pack · R45 ex. VAT · R67 RRP · 74% more nutrition design",
       blurb:
         "Instant, vitamin-enriched porridges on local maize where formulation allows — familiar flavours families and ECD centres already accept. Designed for growing children, care settings and busy households that need reliable fortification without a cold chain.",
       nutrition:
@@ -98,6 +146,10 @@ export const SPAR_PARTNERSHIP = {
     {
       id: "soya",
       title: "Soya Mince",
+      packSize: "400g",
+      pricingTier: "g400" as const,
+      tradeExVatLabel: "R18",
+      rrpInclVatLabel: "R33.50",
       tagline: "Affordable protein that stretches every pot",
       heroImage: "/foods/soya-beef.jpg",
       flavours: [
@@ -106,7 +158,7 @@ export const SPAR_PARTNERSHIP = {
         { name: "Rich Beef", image: "/foods/soya-beef.jpg" },
         { name: "Mutton", image: "/foods/soya-mutton.jpg" },
       ],
-      stats: "From ±R1.30 / meal · 24.4% more protein · long shelf life",
+      stats: "400g pack · R18 ex. VAT · R33.50 RRP · high protein · long shelf life",
       blurb:
         "Plant-based protein mince in culturally familiar formats for stews, pap and institutional menus. Gives SPAR shoppers a protein upgrade when meat prices spike — and gives foundations a stable protein line without cold-chain meat logistics.",
       nutrition:
@@ -118,6 +170,10 @@ export const SPAR_PARTNERSHIP = {
     {
       id: "onepot",
       title: "One-Pot Meals",
+      packSize: "1kg",
+      pricingTier: "kg1" as const,
+      tradeExVatLabel: "R45",
+      rrpInclVatLabel: "R67",
       tagline: "A complete plate in one pack",
       heroImage: "/foods/onepot-chakalaka.jpg",
       flavours: [
@@ -126,7 +182,7 @@ export const SPAR_PARTNERSHIP = {
         { name: "Chicken", image: "/foods/onepot-chicken.jpg" },
         { name: "Chilli Beef", image: "/foods/onepot-chilli-beef.jpg" },
       ],
-      stats: "1kg → 4kg prepared · 20 × 200g servings · R3.35 / meal at RRP R67",
+      stats: "1kg Mandela pack · R45 / R67 · 1kg → 4kg prepared · 20 × 200g · R3.35 / meal",
       blurb:
         "Ready-to-cook complete meals with balanced fortification and authentic African flavours. A 1kg dry one-pot pack makes 4kg of food when prepared — 20 × 200g servings. At Mandela pack RRP R67 that is R3.35 per meal (R67 ÷ 20).",
       nutrition:
@@ -138,6 +194,10 @@ export const SPAR_PARTNERSHIP = {
     {
       id: "soup",
       title: "Fortified Soups",
+      packSize: "400g",
+      pricingTier: "g400" as const,
+      tradeExVatLabel: "R18",
+      rrpInclVatLabel: "R33.50",
       tagline: "Warmth, flavour and micronutrients at the lowest cost point",
       heroImage: "/foods/soup-chicken.jpg",
       flavours: [
@@ -146,7 +206,7 @@ export const SPAR_PARTNERSHIP = {
         { name: "Minestrone", image: "/foods/soup-minestrone.jpg" },
         { name: "Chicken", image: "/foods/soup-chicken.jpg" },
       ],
-      stats: "From ±R1.10 / meal · vitamins A & C · iron · calcium",
+      stats: "400g pack · R18 ex. VAT · R33.50 RRP · vitamins A & C · iron · calcium",
       blurb:
         "Fortified instant soup thickeners in classic South African flavours — elders, children and clinics already trust the format. Extends food budgets and fills the plate between main meals when fuel and time are scarce.",
       nutrition:
@@ -159,20 +219,24 @@ export const SPAR_PARTNERSHIP = {
 
   /**
    * SPAR store / retailer economics — what SPAR makes (not Big Five GP).
+   * Two listing tiers: 1kg Mandela pack + 400g soya/soups.
    */
   sparMargin: {
-    tradeExVat: TRADE_EX_VAT,
-    tradeInclVatAligned: TRADE_INCL_VAT,
-    rrpInclVat: RRP_INCL_VAT,
-    marginRand: SPAR_MARGIN_RAND,
-    marginPctOfRrp: SPAR_MARGIN_PCT,
-    marginRandLabel: `R${SPAR_MARGIN_RAND.toFixed(2)}`,
-    marginPctLabel: `~${Math.round(SPAR_MARGIN_PCT)}%`,
+    /** Flagship 1kg (legacy single-tier fields for impact model) */
+    tradeExVat: TRADE_EX_VAT_1KG,
+    tradeInclVatAligned: TRADE_INCL_VAT_1KG,
+    rrpInclVat: RRP_INCL_VAT_1KG,
+    marginRand: MARGIN_RAND_1KG,
+    marginPctOfRrp: MARGIN_PCT_1KG,
+    marginRandLabel: `R${MARGIN_RAND_1KG.toFixed(2)}`,
+    marginPctLabel: `~${Math.round(MARGIN_PCT_1KG)}%`,
     headline: "Healthy front margin for SPAR on every pack sold at RRP",
     detail:
-      "At R45 ex. VAT cost and R67 incl. VAT RRP, SPAR’s indicative front margin is about R15.25 per pack (~23% of RRP) after aligning cost to 15% VAT — before any promotional activity. Exact store economics depend on franchisee costs and local pricing discipline.",
+      "1kg Mandela pack (porridges & one-pots): R45 ex. VAT → R67 RRP → about R15.25 front margin (~23% of RRP). 400g soya & soups: R18 ex. VAT → R33.50 RRP → about R12.80 front margin (~38% of RRP). Both align cost at 15% VAT before promotions.",
     honesty:
-      "Margin figures are illustrative front margin (RRP less VAT-aligned cost). They exclude store overheads, promotions, shrink and the 5% SPAR contribution to foundations. Confirm on the term sheet.",
+      "Margin figures are illustrative front margin (RRP less VAT-aligned cost). They exclude store overheads, promotions, shrink and the 5% SPAR contribution to foundations. Confirm pack sizes and SKUs on the term sheet.",
+    kg1: packPricing("1kg", TRADE_EX_VAT_1KG, RRP_INCL_VAT_1KG, "One-Pot · Porridges"),
+    g400: packPricing("400g", TRADE_EX_VAT_400G, RRP_INCL_VAT_400G, "Soya mince · Soups"),
   },
 
   /**
@@ -382,8 +446,8 @@ export const SPAR_PARTNERSHIP = {
   ],
 
   honesty: [
-    "R45 ex. VAT trade and R67 incl. VAT RRP are proposed partnership prices for the Nelson Mandela campaign pack — confirm pack size, SKU list and VAT treatment on the term sheet.",
-    "SPAR margin figures are illustrative front margin (RRP less cost aligned at 15% VAT). They are not net store profit and exclude overheads, promotions, shrink and the 5% SPAR contribution.",
+    "Two listing tiers: 1kg Mandela pack (porridges & one-pots) at R45 ex. VAT / R67 incl. VAT; 400g soya & soups at R18 ex. VAT / R33.50 incl. VAT — confirm pack sizes, SKU list and VAT treatment on the term sheet.",
+    "SPAR margin figures are illustrative front margin (RRP less cost aligned at 15% VAT): ~R15.25 (~23%) on 1kg and ~R12.80 (~38%) on 400g. They are not net store profit and exclude overheads, promotions, shrink and the 5% SPAR contribution.",
     "5% + 5% giving bases (SPAR retail sell-through vs Foods trade turnover) are the recommended model; legal wording sits in the commercial agreement.",
     "NPO allocations between Restore Africa Foundation and A Heart To Help can be fixed (e.g. 50/50) or programme-driven each period.",
     "One-pot yield for shelf talk and national meal modelling: 1kg dry pack prepares to 4kg food = 20 × 200g servings; at RRP R67 that is R3.35 per meal (R67 ÷ 20). Meal equivalents / year = packs × 20.",
