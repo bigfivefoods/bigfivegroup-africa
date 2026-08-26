@@ -200,7 +200,7 @@ export const SPAR_PARTNERSHIP = {
       tradeExVatLabel: "R18",
       rrpInclVatLabel: "R33.50",
       tagline: "Warmth, flavour and micronutrients at the lowest cost point",
-      heroImage: "/foods/soup-chicken.jpg",
+      heroImage: "/foods/soup-oxtail.jpg",
       flavours: [
         { name: "Brown Onion", image: "/foods/soup-brown-onion.jpg" },
         { name: "Oxtail", image: "/foods/soup-oxtail.jpg" },
