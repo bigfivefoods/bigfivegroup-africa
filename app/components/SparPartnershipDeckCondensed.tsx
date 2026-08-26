@@ -272,12 +272,14 @@ function Slide({ index }: { index: number }) {
               const tier = range.pricingTier === "kg1" ? M.kg1 : M.g400;
               return (
                 <div key={range.id} className="min-w-0 flex flex-col">
-                  <div className="relative w-full h-[8.5rem] sm:h-[10.5rem] md:h-[12rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden">
-                    <DeckPrintImage
+                  {/* Flex-centred plate (no absolute fill) so tall pack art is never cropped */}
+                  <div className="w-full aspect-[2/3] rounded-xl border border-black/8 bg-[#f8f7f5] flex items-center justify-center p-2.5 sm:p-3.5">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={range.heroImage}
                       alt={range.title}
-                      paddingClass="p-3 sm:p-4"
-                      fit="contain"
+                      className="max-h-full max-w-full w-auto h-auto object-contain object-center"
+                      loading={pdf ? "eager" : "lazy"}
                     />
                   </div>
                   <div className="text-center mt-1.5 px-0.5">

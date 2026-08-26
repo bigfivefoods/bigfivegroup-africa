@@ -472,13 +472,14 @@ function Slide({ index }: { index: number }) {
                 const tier = range.pricingTier === "kg1" ? M.kg1 : M.g400;
                 return (
                   <div key={range.id} className="min-w-0 flex flex-col">
-                    {/* Fixed-height plate — full pack visible (no aspect/max-h crop) */}
-                    <div className="relative w-full h-[8.5rem] sm:h-[11rem] md:h-[12.5rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden shrink-0">
-                      <DeckPrintImage
+                    {/* Flex-centred 2:3 plate — matches tall pack art; never crops */}
+                    <div className="w-full aspect-[2/3] max-h-[15rem] sm:max-h-[16.5rem] rounded-xl border border-black/8 bg-[#f8f7f5] flex items-center justify-center p-2.5 sm:p-3.5 shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={range.heroImage}
                         alt={`${range.title} — ${heroFlavour}`}
-                        paddingClass="p-3 sm:p-4"
-                        fit="contain"
+                        className="max-h-full max-w-full w-auto h-auto object-contain object-center"
+                        loading={pdf ? "eager" : "lazy"}
                       />
                     </div>
                     <div className="text-center mt-1.5 shrink-0 px-0.5">
@@ -1090,12 +1091,13 @@ function Slide({ index }: { index: number }) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
               {PRODUCT_SHOTS.map((s) => (
                 <div key={s.src} className="min-w-0 flex flex-col">
-                  <div className="relative w-full h-[9.5rem] sm:h-[12rem] md:h-[14rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden shrink-0">
-                    <DeckPrintImage
+                  <div className="w-full aspect-[2/3] max-h-[15rem] sm:max-h-[16.5rem] rounded-xl border border-black/8 bg-[#f8f7f5] flex items-center justify-center p-2.5 sm:p-3.5 shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={s.src}
                       alt={`${s.name} — ${s.flavour}`}
-                      paddingClass="p-3 sm:p-4"
-                      fit="contain"
+                      className="max-h-full max-w-full w-auto h-auto object-contain object-center"
+                      loading={pdf ? "eager" : "lazy"}
                     />
                   </div>
                   <div className="text-center mt-1.5 shrink-0">
