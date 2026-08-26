@@ -240,7 +240,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               {
                 href: "#business-plans",
                 label: "Business plans",
-                why: "Long-form opco plans (Foods first) — traction, facility, projections, Africa.",
+                why: "Long-form opco plans (Foods + Connect) — traction, product, projections, Africa.",
               },
               {
                 href: "#impact",
@@ -326,7 +326,7 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                 n: "07",
                 href: "#business-plans",
                 label: "Business plans",
-                why: "10–15 page opco plans starting with Big Five Foods — brand, listings, NSNP, Howick, projections, Africa.",
+                why: "10–15 page opco plans: Foods (listings, Howick) and Connect (SupplierAdvisor®, KZN B2G SaaS, Advisors).",
               },
               {
                 n: "08",

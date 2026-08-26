@@ -1,8 +1,9 @@
 /**
  * Registry of operating-company business plans for the investor portal.
- * Start with Big Five Foods; additional opcos added as authored.
+ * Published: Big Five Foods, Big Five Connect. Additional opcos as authored.
  */
 
+import { connectBusinessPlan } from "./connectBusinessPlan";
 import { foodsBusinessPlan } from "./foodsBusinessPlan";
 import type { BusinessPlan } from "./types";
 
@@ -28,6 +29,16 @@ export const BUSINESS_PLANS: BusinessPlanRegistryEntry[] = [
     plan: foodsBusinessPlan,
   },
   {
+    slug: "connect",
+    opcoSlug: "connect",
+    name: "Connect",
+    fullName: "Big Five Connect",
+    status: "published",
+    blurb:
+      "SupplierAdvisor® OS · 5,386 schools + 1,850 SPs loaded · R299 Core + R199 SchoolAdvisor · GymAdvisor · Africa SaaS",
+    plan: connectBusinessPlan,
+  },
+  {
     slug: "agri",
     opcoSlug: "agri",
     name: "Agri",
@@ -42,14 +53,6 @@ export const BUSINESS_PLANS: BusinessPlanRegistryEntry[] = [
     fullName: "Big Five Direct",
     status: "coming_soon",
     blurb: "Last-mile containers & mobility hubs — business plan forthcoming",
-  },
-  {
-    slug: "connect",
-    opcoSlug: "connect",
-    name: "Connect",
-    fullName: "Big Five Connect",
-    status: "coming_soon",
-    blurb: "SupplierAdvisor® operating system — business plan forthcoming",
   },
   {
     slug: "access",
@@ -98,4 +101,5 @@ export function getBusinessPlan(slug: string): BusinessPlan | undefined {
 }
 
 export { foodsBusinessPlan } from "./foodsBusinessPlan";
+export { connectBusinessPlan } from "./connectBusinessPlan";
 export type { BusinessPlan, BusinessPlanChapter, BusinessPlanBlock } from "./types";

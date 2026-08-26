@@ -115,6 +115,12 @@ img {
     break-after: page;
     page-break-after: always;
   }
+
+  /* Only print the visible (active) opco plan */
+  [data-business-plan-panel][hidden],
+  [data-business-plan-panel].hidden {
+    display: none !important;
+  }
 }
 
 /* Next.js Image with fill is position:absolute — keep full box */

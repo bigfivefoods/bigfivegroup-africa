@@ -139,10 +139,17 @@ function BlockView({ block }: { block: BusinessPlanBlock }) {
   }
 }
 
-function ChapterView({ chapter }: { chapter: BusinessPlanChapter }) {
+function ChapterView({
+  chapter,
+  planSlug,
+}: {
+  chapter: BusinessPlanChapter;
+  planSlug: string;
+}) {
+  const anchor = `bp-${planSlug}-${chapter.id}`;
   return (
     <article
-      id={`bp-${chapter.id}`}
+      id={anchor}
       className="business-plan-chapter scroll-mt-32 border-b border-black/10 py-8 sm:py-10 print:break-before-page print:border-0 print:py-6"
     >
       <div className="flex items-baseline gap-3 mb-1">
@@ -159,15 +166,16 @@ function ChapterView({ chapter }: { chapter: BusinessPlanChapter }) {
         {chapter.title}
       </h3>
       {chapter.blocks.map((b, i) => (
-        <BlockView key={`${chapter.id}-${i}`} block={b} />
+        <BlockView key={`${anchor}-${i}`} block={b} />
       ))}
     </article>
   );
 }
 
 function PlanDocument({ plan }: { plan: BusinessPlan }) {
+  const planSlug = plan.meta.slug;
   return (
-    <div className="business-plan-document" data-business-plan={plan.meta.slug}>
+    <div className="business-plan-document" data-business-plan={planSlug}>
       {/* Cover */}
       <header className="rounded-2xl border border-black/10 bg-[#0a0a0a] text-white p-6 sm:p-8 md:p-10 mb-6 print:break-after-page">
         <div className="text-[10px] tracking-[2px] text-amber-400/90 mb-3">
@@ -233,7 +241,7 @@ function PlanDocument({ plan }: { plan: BusinessPlan }) {
           {plan.chapters.map((ch) => (
             <li key={ch.id}>
               <a
-                href={`#bp-${ch.id}`}
+                href={`#bp-${planSlug}-${ch.id}`}
                 className="flex gap-2 text-sm text-[#404040] hover:text-black hover:bg-[#fafafa] rounded-lg px-2 py-1.5 transition-colors"
               >
                 <span className="text-amber-800 font-semibold tabular-nums shrink-0">{ch.n}</span>
@@ -247,7 +255,7 @@ function PlanDocument({ plan }: { plan: BusinessPlan }) {
       {/* Chapters */}
       <div className="bg-white rounded-2xl border border-black/10 px-4 sm:px-6 md:px-8">
         {plan.chapters.map((ch) => (
-          <ChapterView key={ch.id} chapter={ch} />
+          <ChapterView key={ch.id} chapter={ch} planSlug={planSlug} />
         ))}
       </div>
 
@@ -339,12 +347,11 @@ function PlanCard({
 
 export default function BusinessPlanSection() {
   const published = useMemo(
-    () => BUSINESS_PLANS.filter((p) => p.status === "published"),
+    () => BUSINESS_PLANS.filter((p) => p.status === "published" && p.plan),
     []
   );
   const [activeSlug, setActiveSlug] = useState(published[0]?.slug ?? "foods");
-  const active = BUSINESS_PLANS.find((p) => p.slug === activeSlug);
-  const plan = active?.plan;
+  const activePlan = published.find((p) => p.slug === activeSlug)?.plan;
 
   return (
     <section
@@ -368,13 +375,14 @@ export default function BusinessPlanSection() {
               Business plans by operating company
             </h2>
             <p className="text-sm sm:text-base text-[#404040] leading-relaxed text-pretty">
-              Detailed opco plans for investors who want depth beyond the Group deck — starting with{" "}
-              <strong className="text-black">Big Five Foods</strong> (brand establishment, retail &
-              NSNP traction, Howick facility, commercial projections and Africa acceleration).
-              Additional opco plans will publish here as authored.
+              Detailed opco plans for investors who want depth beyond the Group deck. Live now:{" "}
+              <strong className="text-black">Big Five Foods</strong> (brand, retail & NSNP, Howick,
+              projections) and <strong className="text-black">Big Five Connect</strong>{" "}
+              (SupplierAdvisor® OS, KZN B2G subscriptions, GymAdvisor®, SaaS scale). Additional opco
+              plans will publish here as authored.
             </p>
           </div>
-          {plan ? (
+          {activePlan ? (
             <button
               type="button"
               onClick={() => window.print()}
@@ -399,7 +407,21 @@ export default function BusinessPlanSection() {
           ))}
         </div>
 
-        {plan ? <PlanDocument plan={plan} /> : null}
+        {/* Keep all published plans in the DOM so content is present for diligence / crawl;
+            only the active plan is visible (and printed). */}
+        {published.map((entry) => {
+          const isActive = entry.slug === activeSlug;
+          return (
+            <div
+              key={entry.slug}
+              hidden={!isActive}
+              className={isActive ? undefined : "hidden"}
+              data-business-plan-panel={entry.slug}
+            >
+              {entry.plan ? <PlanDocument plan={entry.plan} /> : null}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
