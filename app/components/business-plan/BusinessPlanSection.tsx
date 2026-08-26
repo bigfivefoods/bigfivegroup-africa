@@ -194,7 +194,7 @@ function PlanDocument({ plan }: { plan: BusinessPlan }) {
           }`}
         >
           {isFoods
-            ? "BIG FIVE GROUP · BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL"
+            ? "BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL"
             : isConnect
               ? "BIG FIVE CONNECT · SUPPLIERADVISOR® · WWW.SUPPLIERADVISOR.COM · CONFIDENTIAL"
               : plan.meta.classification}
@@ -211,21 +211,13 @@ function PlanDocument({ plan }: { plan: BusinessPlan }) {
                 />
               </div>
             ) : (
-              // eslint-disable-next-line @next/next/no-img-element -- print-safe brand mark
+              // eslint-disable-next-line @next/next/no-img-element -- print-safe Foods mark only
               <img
                 src={coverLogo.src}
                 alt={coverLogo.alt}
                 className="h-16 w-16 sm:h-20 sm:w-20 object-contain object-left"
               />
             )}
-            {isFoods ? (
-              // eslint-disable-next-line @next/next/no-img-element -- print-safe group mark
-              <img
-                src="/bigfivegroup-logo.png"
-                alt="Big Five Group"
-                className="h-12 w-12 sm:h-14 sm:w-14 object-contain border-l border-white/20 pl-4 sm:pl-5"
-              />
-            ) : null}
           </div>
         ) : null}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-2 text-balance">

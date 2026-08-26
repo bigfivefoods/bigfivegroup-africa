@@ -42,8 +42,6 @@ type PlanBrandAssets = {
   /** Logo on light backgrounds */
   logoOnLight: string;
   logoAlt: string;
-  /** Optional Group mark (shown on Foods cover) */
-  groupLogoOnDark?: string;
   /**
    * Aspect handling — SupplierAdvisor® wordmark from www.supplieradvisor.com
    * is wide (~640×277); Foods seal is near-square.
@@ -58,9 +56,8 @@ const PLAN_BRAND: Record<string, PlanBrandAssets> = {
     logoOnDark: "/bigfivefoods-logo-white.png",
     logoOnLight: "/bigfivefoods-logo.png",
     logoAlt: "Big Five Foods",
-    groupLogoOnDark: "/bigfivegroup-logo.png",
     logoShape: "square",
-    coverEyebrow: "BIG FIVE GROUP · BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL",
+    coverEyebrow: "BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL",
   },
   connect: {
     theme: DECK_THEMES.cyan,
@@ -335,7 +332,6 @@ function SlideTable({
 function CoverSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
   const forPrint = useDeckPrintMode();
   const brand = brandFor(plan.meta.slug);
-  const isFoods = plan.meta.slug === "foods";
   const isConnect = plan.meta.slug === "connect";
 
   return (
@@ -356,19 +352,6 @@ function CoverSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
               size="lg"
               plate={isConnect}
             />
-            {isFoods && brand.groupLogoOnDark ? (
-              <div
-                className={`relative shrink-0 border-l border-white/20 pl-4 sm:pl-5 ${
-                  forPrint ? "w-14 h-14" : "w-16 h-16 sm:w-20 sm:h-20"
-                }`}
-              >
-                <DeckPrintImage
-                  src={brand.groupLogoOnDark}
-                  alt="Big Five Group"
-                  fit="contain"
-                />
-              </div>
-            ) : null}
           </div>
 
           <h2
