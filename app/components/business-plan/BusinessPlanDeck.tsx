@@ -44,6 +44,12 @@ type PlanBrandAssets = {
   logoAlt: string;
   /** Optional Group mark (shown on Foods cover) */
   groupLogoOnDark?: string;
+  /**
+   * Aspect handling — SupplierAdvisor® wordmark from www.supplieradvisor.com
+   * is wide (~640×277); Foods seal is near-square.
+   */
+  logoShape?: "square" | "wide";
+  coverEyebrow?: string;
 };
 
 const PLAN_BRAND: Record<string, PlanBrandAssets> = {
@@ -53,20 +59,26 @@ const PLAN_BRAND: Record<string, PlanBrandAssets> = {
     logoOnLight: "/bigfivefoods-logo.png",
     logoAlt: "Big Five Foods",
     groupLogoOnDark: "/bigfivegroup-logo.png",
+    logoShape: "square",
+    coverEyebrow: "BIG FIVE GROUP · BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL",
   },
   connect: {
     theme: DECK_THEMES.cyan,
+    /** Official colour wordmark (same asset as https://www.supplieradvisor.com/sa-logo.png) */
+    logoOnLight: "/sa-logo.png",
     logoOnDark: "/supplieradvisor-logo-white.png",
-    logoOnLight: "/supplieradvisor-logo-transparent.png",
     logoAlt: "SupplierAdvisor®",
+    logoShape: "wide",
+    coverEyebrow:
+      "BIG FIVE CONNECT · SUPPLIERADVISOR® · WWW.SUPPLIERADVISOR.COM · CONFIDENTIAL",
   },
-  agri: { theme: DECK_THEMES.emerald, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Agri" },
-  direct: { theme: DECK_THEMES.orange, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Direct" },
-  access: { theme: DECK_THEMES.violet, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Access" },
-  impact: { theme: DECK_THEMES.gold, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Impact" },
-  leadership: { theme: DECK_THEMES.teal, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Leadership" },
-  foundation: { theme: DECK_THEMES.violet, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Foundation" },
-  global: { theme: DECK_THEMES.blue, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Global" },
+  agri: { theme: DECK_THEMES.emerald, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Agri", logoShape: "square" },
+  direct: { theme: DECK_THEMES.orange, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Direct", logoShape: "square" },
+  access: { theme: DECK_THEMES.violet, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Access", logoShape: "square" },
+  impact: { theme: DECK_THEMES.gold, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Impact", logoShape: "square" },
+  leadership: { theme: DECK_THEMES.teal, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Leadership", logoShape: "square" },
+  foundation: { theme: DECK_THEMES.violet, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Foundation", logoShape: "square" },
+  global: { theme: DECK_THEMES.blue, logoOnDark: "/bigfivegroup-logo.png", logoOnLight: "/bigfivegroup-logo.jpg", logoAlt: "Big Five Global", logoShape: "square" },
 };
 
 function brandFor(slug: string): PlanBrandAssets {
@@ -88,15 +100,31 @@ function PlanLogo({
   slug,
   onDark,
   size = "md",
+  plate,
 }: {
   slug: string;
   onDark?: boolean;
   size?: "sm" | "md" | "lg";
+  /** Light plate behind wide wordmarks on dark slides (optional) */
+  plate?: boolean;
 }) {
   const brand = brandFor(slug);
   const forPrint = useDeckPrintMode();
-  const box =
-    size === "lg"
+  const wide = brand.logoShape === "wide";
+
+  const box = wide
+    ? size === "lg"
+      ? forPrint
+        ? "h-12 w-44"
+        : "h-14 w-52 sm:h-16 sm:w-60"
+      : size === "sm"
+        ? forPrint
+          ? "h-7 w-28"
+          : "h-8 w-32 sm:h-9 sm:w-36"
+        : forPrint
+          ? "h-9 w-36"
+          : "h-10 w-40 sm:h-11 sm:w-44"
+    : size === "lg"
       ? forPrint
         ? "w-20 h-20"
         : "w-24 h-24 sm:w-28 sm:h-28"
@@ -109,17 +137,24 @@ function PlanLogo({
           : "w-16 h-16 sm:w-20 sm:h-20";
 
   return (
-    <div className={`relative shrink-0 ${box}`} aria-hidden={false}>
+    <div
+      className={`relative shrink-0 overflow-hidden ${box} ${
+        plate
+          ? "rounded-xl bg-white px-2.5 py-1.5 border border-white/30 shadow-sm"
+          : ""
+      }`}
+    >
       <DeckPrintImage
         src={onDark ? brand.logoOnDark : brand.logoOnLight}
         alt={brand.logoAlt}
         fit="contain"
+        paddingClass={plate ? "p-0.5" : undefined}
       />
     </div>
   );
 }
 
-/** Corner brand mark on light slides (Foods seal / opco logo). */
+/** Corner brand mark on light slides (Foods seal / SupplierAdvisor® wordmark). */
 function LightSlideBrandChrome({
   slug,
   children,
@@ -128,12 +163,23 @@ function LightSlideBrandChrome({
   children: ReactNode;
 }) {
   const forPrint = useDeckPrintMode();
+  const wide = brandFor(slug).logoShape === "wide";
   return (
     <div className="relative h-full min-h-0 flex flex-col">
       <div className="absolute top-0 right-0 z-10">
         <PlanLogo slug={slug} size="sm" />
       </div>
-      <div className={`flex-1 min-h-0 flex flex-col ${forPrint ? "pr-12" : "pr-14 sm:pr-16"}`}>
+      <div
+        className={`flex-1 min-h-0 flex flex-col ${
+          wide
+            ? forPrint
+              ? "pr-32"
+              : "pr-36 sm:pr-40"
+            : forPrint
+              ? "pr-12"
+              : "pr-14 sm:pr-16"
+        }`}
+      >
         {children}
       </div>
     </div>
@@ -290,21 +336,26 @@ function CoverSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
   const forPrint = useDeckPrintMode();
   const brand = brandFor(plan.meta.slug);
   const isFoods = plan.meta.slug === "foods";
+  const isConnect = plan.meta.slug === "connect";
 
   return (
     <DeckSlideShell dark theme={theme}>
       <DeckTitleLayout>
         <div>
           <DeckEyebrow light theme={theme}>
-            {isFoods
-              ? "BIG FIVE GROUP · BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL"
-              : plan.meta.classification}
+            {brand.coverEyebrow ?? plan.meta.classification}
           </DeckEyebrow>
 
           <div
-            className={`flex items-center gap-4 sm:gap-5 ${forPrint ? "mb-3" : "mb-4 sm:mb-6"}`}
+            className={`flex flex-wrap items-center gap-4 sm:gap-5 ${forPrint ? "mb-3" : "mb-4 sm:mb-6"}`}
           >
-            <PlanLogo slug={plan.meta.slug} onDark size="lg" />
+            {/* Connect: official SupplierAdvisor® wordmark (www.supplieradvisor.com/sa-logo.png) */}
+            <PlanLogo
+              slug={plan.meta.slug}
+              onDark={isConnect ? false : true}
+              size="lg"
+              plate={isConnect}
+            />
             {isFoods && brand.groupLogoOnDark ? (
               <div
                 className={`relative shrink-0 border-l border-white/20 pl-4 sm:pl-5 ${
@@ -337,7 +388,13 @@ function CoverSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
           <div
             className={`flex flex-wrap gap-2 ${forPrint ? "text-[10px]" : "text-xs"} text-white/40`}
           >
-            <span>Big Five Group</span>
+            <span>Big Five Group · Big Five Connect</span>
+            {isConnect ? (
+              <>
+                <span>·</span>
+                <span>supplieradvisor.com</span>
+              </>
+            ) : null}
             <span>·</span>
             <span>Version {plan.meta.version}</span>
             <span>·</span>
@@ -536,12 +593,18 @@ function ChapterSlide({
 
 function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }) {
   const forPrint = useDeckPrintMode();
+  const isConnect = plan.meta.slug === "connect";
   return (
     <DeckSlideShell dark theme={theme}>
       <DeckTitleLayout>
         <div>
           <div className={`flex items-center gap-4 ${forPrint ? "mb-3" : "mb-4"}`}>
-            <PlanLogo slug={plan.meta.slug} onDark size="md" />
+            <PlanLogo
+              slug={plan.meta.slug}
+              onDark={!isConnect}
+              size="md"
+              plate={isConnect}
+            />
           </div>
           <DeckEyebrow light theme={theme}>
             NEXT STEP · NDA DILIGENCE

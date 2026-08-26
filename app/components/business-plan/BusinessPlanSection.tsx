@@ -176,29 +176,48 @@ function ChapterView({
 function PlanDocument({ plan }: { plan: BusinessPlan }) {
   const planSlug = plan.meta.slug;
   const isFoods = planSlug === "foods";
+  const isConnect = planSlug === "connect";
+  /** Connect uses the official www.supplieradvisor.com wordmark (/sa-logo.png). */
   const coverLogo = isFoods
-    ? { src: "/bigfivefoods-logo-white.png", alt: "Big Five Foods" }
-    : planSlug === "connect"
-      ? { src: "/supplieradvisor-logo-white.png", alt: "SupplierAdvisor®" }
+    ? { src: "/bigfivefoods-logo-white.png", alt: "Big Five Foods", wide: false }
+    : isConnect
+      ? { src: "/sa-logo.png", alt: "SupplierAdvisor®", wide: true }
       : null;
 
   return (
     <div className="business-plan-document" data-business-plan={planSlug}>
       {/* Cover — Group black + amber gold chrome */}
       <header className="rounded-2xl border border-black/10 bg-[#0a0a0a] text-white p-6 sm:p-8 md:p-10 mb-6 print:break-after-page">
-        <div className="text-[10px] tracking-[2px] text-amber-400/90 mb-3">
+        <div
+          className={`text-[10px] tracking-[2px] mb-3 ${
+            isConnect ? "text-cyan-300/90" : "text-amber-400/90"
+          }`}
+        >
           {isFoods
             ? "BIG FIVE GROUP · BIG FIVE FOODS · BUSINESS PLAN · CONFIDENTIAL"
-            : plan.meta.classification}
+            : isConnect
+              ? "BIG FIVE CONNECT · SUPPLIERADVISOR® · WWW.SUPPLIERADVISOR.COM · CONFIDENTIAL"
+              : plan.meta.classification}
         </div>
         {coverLogo ? (
           <div className="flex items-center gap-4 sm:gap-5 mb-5">
-            {/* eslint-disable-next-line @next/next/no-img-element -- print-safe brand mark */}
-            <img
-              src={coverLogo.src}
-              alt={coverLogo.alt}
-              className="h-16 w-16 sm:h-20 sm:w-20 object-contain object-left"
-            />
+            {coverLogo.wide ? (
+              <div className="rounded-xl bg-white px-3 py-2 border border-white/25 shadow-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element -- print-safe SA wordmark */}
+                <img
+                  src={coverLogo.src}
+                  alt={coverLogo.alt}
+                  className="h-10 sm:h-12 w-auto max-w-[14rem] sm:max-w-[16rem] object-contain object-left"
+                />
+              </div>
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element -- print-safe brand mark
+              <img
+                src={coverLogo.src}
+                alt={coverLogo.alt}
+                className="h-16 w-16 sm:h-20 sm:w-20 object-contain object-left"
+              />
+            )}
             {isFoods ? (
               // eslint-disable-next-line @next/next/no-img-element -- print-safe group mark
               <img
