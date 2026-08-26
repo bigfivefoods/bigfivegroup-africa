@@ -266,11 +266,12 @@ function Slide({ index }: { index: number }) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
             {RANGES.map((range) => (
               <div key={range.id} className="min-w-0 flex flex-col">
-                <div className="relative w-full aspect-[3/4] max-h-[14rem] rounded-xl border border-black/8 bg-white overflow-hidden">
+                {/* Fixed-height plate — object-contain + padding so full pack is visible (no top/bottom crop) */}
+                <div className="relative w-full h-[9.5rem] sm:h-[11.5rem] md:h-[13rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden">
                   <DeckPrintImage
                     src={range.heroImage}
                     alt={range.title}
-                    paddingClass="p-2 sm:p-3"
+                    paddingClass="p-3 sm:p-4"
                     fit="contain"
                   />
                 </div>

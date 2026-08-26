@@ -463,11 +463,12 @@ function Slide({ index }: { index: number }) {
                 const allFlavours = range.flavours.map((f) => f.name).join(" · ");
                 return (
                   <div key={range.id} className="min-w-0 flex flex-col">
-                    <div className="relative w-full aspect-[3/4] max-h-[15rem] sm:max-h-[17rem] rounded-xl border border-black/8 bg-white overflow-hidden shrink-0">
+                    {/* Fixed-height plate — full pack visible (no aspect/max-h crop) */}
+                    <div className="relative w-full h-[9.5rem] sm:h-[12rem] md:h-[14rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden shrink-0">
                       <DeckPrintImage
                         src={range.heroImage}
                         alt={`${range.title} — ${heroFlavour}`}
-                        paddingClass="p-2 sm:p-3"
+                        paddingClass="p-3 sm:p-4"
                         fit="contain"
                       />
                     </div>
@@ -1071,11 +1072,11 @@ function Slide({ index }: { index: number }) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
               {PRODUCT_SHOTS.map((s) => (
                 <div key={s.src} className="min-w-0 flex flex-col">
-                  <div className="relative w-full aspect-[3/4] max-h-[15rem] sm:max-h-[17rem] rounded-xl border border-black/8 bg-white overflow-hidden shrink-0">
+                  <div className="relative w-full h-[9.5rem] sm:h-[12rem] md:h-[14rem] rounded-xl border border-black/8 bg-[#f8f7f5] overflow-hidden shrink-0">
                     <DeckPrintImage
                       src={s.src}
                       alt={`${s.name} — ${s.flavour}`}
-                      paddingClass="p-2 sm:p-3"
+                      paddingClass="p-3 sm:p-4"
                       fit="contain"
                     />
                   </div>
