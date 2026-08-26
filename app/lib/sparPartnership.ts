@@ -118,6 +118,7 @@ export const SPAR_PARTNERSHIP = {
    * Mandela pack range — all four Big Five Foods categories for SPAR shelf / donation.
    * 1kg: porridges + one-pots (R45 / R67). 400g: soya + soups (R18 / R33.50).
    */
+  /** Display order L→R: porridge · one-pot · soya · soup */
   mandelaPackRanges: [
     {
       id: "porridge",
@@ -144,30 +145,6 @@ export const SPAR_PARTNERSHIP = {
       serve: "Hot breakfast · after-school · care centres · household staple",
     },
     {
-      id: "soya",
-      title: "Soya Mince",
-      packSize: "400g",
-      pricingTier: "g400" as const,
-      tradeExVatLabel: "R18",
-      rrpInclVatLabel: "R33.50",
-      tagline: "Affordable protein that stretches every pot",
-      heroImage: "/foods/soya-beef.jpg",
-      flavours: [
-        { name: "Chilli Beef", image: "/foods/soya-chilli-beef.jpg" },
-        { name: "Beef & Onion", image: "/foods/soya-beef-onion.jpg" },
-        { name: "Rich Beef", image: "/foods/soya-beef.jpg" },
-        { name: "Mutton", image: "/foods/soya-mutton.jpg" },
-      ],
-      stats: "400g pack · R18 ex. VAT · R33.50 RRP · high protein · long shelf life",
-      blurb:
-        "Plant-based protein mince in culturally familiar formats for stews, pap and institutional menus. Gives SPAR shoppers a protein upgrade when meat prices spike — and gives foundations a stable protein line without cold-chain meat logistics.",
-      nutrition:
-        "High plant protein at low cost — lifts protein quality in starch-heavy diets and supports protein-energy security for families under pressure.",
-      sparAngle:
-        "Value protein for the main meal occasion. Clear Mandela-pack shelf talker: “protein with purpose.” Ideal CSI bulk for community kitchens and feeding days.",
-      serve: "Stews · mince meals · catering · NGO & household protein stretch",
-    },
-    {
       id: "onepot",
       title: "One-Pot Meals",
       packSize: "1kg",
@@ -190,6 +167,30 @@ export const SPAR_PARTNERSHIP = {
       sparAngle:
         "Premium-feel convenience with purpose: busy families, students, workers. Hero pack for Mandela Day endcaps and donation hampers — 20 meals from one pack at R3.35 each on RRP. Feels dignified, not bare.",
       serve: "Weeknight dinners · workplaces · CSI hampers · institutional menus · 20 plates per 1kg pack",
+    },
+    {
+      id: "soya",
+      title: "Soya Mince",
+      packSize: "400g",
+      pricingTier: "g400" as const,
+      tradeExVatLabel: "R18",
+      rrpInclVatLabel: "R33.50",
+      tagline: "Affordable protein that stretches every pot",
+      heroImage: "/foods/soya-beef.jpg",
+      flavours: [
+        { name: "Chilli Beef", image: "/foods/soya-chilli-beef.jpg" },
+        { name: "Beef & Onion", image: "/foods/soya-beef-onion.jpg" },
+        { name: "Rich Beef", image: "/foods/soya-beef.jpg" },
+        { name: "Mutton", image: "/foods/soya-mutton.jpg" },
+      ],
+      stats: "400g pack · R18 ex. VAT · R33.50 RRP · high protein · long shelf life",
+      blurb:
+        "Plant-based protein mince in culturally familiar formats for stews, pap and institutional menus. Gives SPAR shoppers a protein upgrade when meat prices spike — and gives foundations a stable protein line without cold-chain meat logistics.",
+      nutrition:
+        "High plant protein at low cost — lifts protein quality in starch-heavy diets and supports protein-energy security for families under pressure.",
+      sparAngle:
+        "Value protein for the main meal occasion. Clear Mandela-pack shelf talker: “protein with purpose.” Ideal CSI bulk for community kitchens and feeding days.",
+      serve: "Stews · mince meals · catering · NGO & household protein stretch",
     },
     {
       id: "soup",
