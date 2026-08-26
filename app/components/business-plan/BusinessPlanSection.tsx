@@ -7,8 +7,8 @@ import {
   BookOpen,
   CheckCircle2,
   Clock,
+  Download,
   FileText,
-  Printer,
 } from "lucide-react";
 import { BUSINESS_PLANS, type BusinessPlanRegistryEntry } from "../../lib/businessPlans";
 import type {
@@ -19,6 +19,7 @@ import type {
 import { companies } from "../../lib/companies";
 import { CompanyIcon } from "../../lib/icons";
 import { CONTACT_EMAIL } from "../../lib/contact";
+import BusinessPlanDeck from "./BusinessPlanDeck";
 
 function BlockView({ block }: { block: BusinessPlanBlock }) {
   switch (block.type) {
@@ -365,7 +366,7 @@ export default function BusinessPlanSection() {
             <div className="flex items-center gap-2 mb-2">
               <BookOpen className="w-5 h-5 text-amber-700" />
               <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373]">
-                OPERATING COMPANIES · LONG-FORM DILIGENCE
+                OPERATING COMPANIES · PDF PRESENTATIONS · WRITTEN PLANS
               </div>
             </div>
             <h2
@@ -375,22 +376,21 @@ export default function BusinessPlanSection() {
               Business plans by operating company
             </h2>
             <p className="text-sm sm:text-base text-[#404040] leading-relaxed text-pretty">
-              Detailed opco plans for investors who want depth beyond the Group deck. Live now:{" "}
-              <strong className="text-black">Big Five Foods</strong> (brand, retail & NSNP, Howick,
-              projections) and <strong className="text-black">Big Five Connect</strong>{" "}
-              (SupplierAdvisor® OS, KZN B2G subscriptions, GymAdvisor®, SaaS scale). Additional opco
-              plans will publish here as authored.
+              Each published opco plan is a downloadable PDF presentation (A4 landscape or portrait —
+              choose <strong className="text-black">Save as PDF</strong> in the print dialog). Live
+              now: <strong className="text-black">Big Five Foods</strong> and{" "}
+              <strong className="text-black">Big Five Connect</strong>. Full written narrative sits
+              under each deck for on-page reading. Additional opcos publish here as authored.
             </p>
           </div>
           {activePlan ? (
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full border border-black/15 bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-black hover:text-white transition-colors print:hidden"
+            <a
+              href={`#business-plan-deck-${activePlan.meta.slug}`}
+              className="shrink-0 inline-flex items-center justify-center gap-2 rounded-full border border-black/15 bg-black text-white px-5 py-2.5 text-sm font-semibold hover:bg-[#262626] transition-colors print:hidden"
             >
-              <Printer className="w-4 h-4" />
-              Print / Save PDF
-            </button>
+              <Download className="w-4 h-4" />
+              Jump to PDF deck
+            </a>
           ) : null}
         </div>
 
@@ -407,21 +407,20 @@ export default function BusinessPlanSection() {
           ))}
         </div>
 
-        {/* Keep all published plans in the DOM so content is present for diligence / crawl;
-            only the active plan is visible (and printed). */}
-        {published.map((entry) => {
-          const isActive = entry.slug === activeSlug;
-          return (
-            <div
-              key={entry.slug}
-              hidden={!isActive}
-              className={isActive ? undefined : "hidden"}
-              data-business-plan-panel={entry.slug}
-            >
-              {entry.plan ? <PlanDocument plan={entry.plan} /> : null}
+        {/* Mount only the active opco deck so keyboard + PDF export stay unambiguous.
+            Each DeckShell provides A4 Landscape / Portrait → Save as PDF. */}
+        {activePlan ? (
+          <div data-business-plan-panel={activePlan.meta.slug}>
+            <BusinessPlanDeck key={activePlan.meta.slug} plan={activePlan} />
+            <div className="mb-4 flex items-center gap-2 print:hidden">
+              <FileText className="w-4 h-4 text-amber-700" />
+              <h3 className="text-sm font-semibold tracking-tight text-black">
+                Full written plan · {activePlan.meta.companyName}
+              </h3>
             </div>
-          );
-        })}
+            <PlanDocument plan={activePlan} />
+          </div>
+        ) : null}
       </div>
     </section>
   );
