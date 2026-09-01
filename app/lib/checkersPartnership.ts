@@ -68,12 +68,57 @@ function packPricing(
 
 export const CHECKERS_PARTNERSHIP = {
   title: "Checkers × Big Five Foods",
-  subtitle: "Checkers leads. Communities eat better. Foundations go further.",
-  tagline: "Every Checkers pack can nourish a family and strengthen a foundation.",
+  subtitle: "Premium shelves. Real nutrition. Communities that feel it.",
+  tagline:
+    "Align fortified African staples with Checkers’ drive to democratise premium food retail — convenience, quality and freshness with purpose.",
   groupUrl: "https://www.bigfivegroup.africa",
   foodsUrl: "https://www.bigfivegroup.africa/foods",
   checkersUrl: "https://www.checkers.co.za/",
+  shopriteHoldingsUrl: "https://www.shopriteholdings.co.za/group/brands/checkers.html",
   contactEmail: "craig@bigfivegroup.africa",
+
+  /**
+   * Shoprite Holdings · Checkers brand strategy (public group positioning).
+   * @see https://www.shopriteholdings.co.za/group/brands/checkers.html
+   * @see Shoprite Holdings Integrated / YE results (FY2025) for store counts.
+   */
+  groupStrategy: {
+    parent: "Shoprite Holdings",
+    parentPurpose:
+      "Shoprite Holdings’ purpose is to uplift lives every day by pioneering access to affordable goods and services, creating economic opportunity and protecting the planet.",
+    brandPosition:
+      "Checkers is the Group’s mid-to-upper / premium supermarket banner — serving customers who prioritise convenience, quality and freshness.",
+    strategicPillars: [
+      {
+        t: "Democratise premium food retail",
+        d: "Checkers’ stated vision is to make premium grocery accessible — FreshX upgrades, range depth and experience that compete in the mid-to-upper market.",
+      },
+      {
+        t: "FreshX & store experience",
+        d: "Ongoing conversion to FreshX formats (~152 stores / ~40% of the Checkers supermarket footprint in FY2025 reporting) — premium ambience, fresh departments and partner brands in-store.",
+      },
+      {
+        t: "Omnichannel · Sixty60",
+        d: "Sixty60 on-demand delivery extends Checkers beyond the aisle — partnership SKUs can travel on the same omnichannel rails customers already trust.",
+      },
+      {
+        t: "Loyalty & wellness partnerships",
+        d: "Xtra Savings, Discovery Vitality HealthyFood and related rewards programmes deepen engagement — fortified Mandela packs fit a wellness-with-purpose shelf story.",
+      },
+      {
+        t: "Network expansion",
+        d: "Checkers continues to open and upgrade stores where the premium offer is under-represented — listing early locks range into a growing estate.",
+      },
+    ],
+    howWeAlign: [
+      "Fortified, shelf-stable African staples that belong on a premium-yet-accessible Checkers shelf — not a charity-only aisle.",
+      "Clear Mandela campaign story that strengthens Checkers’ community leadership while protecting store margin.",
+      "Sell + donate pathways that sit beside CSI and foundation relationships Checkers / Shoprite already run.",
+      "Omnichannel-ready packs for store, FreshX and Sixty60 fulfilment where ranging allows.",
+      "10% ring-fence (Checkers 5% + Foods 5%) so every partnership sale also advances uplift — consistent with Group purpose language.",
+    ],
+    brandPageUrl: "https://www.shopriteholdings.co.za/group/brands/checkers.html",
+  },
 
   /** Flagship partnership SKU / campaign pricing (two pack tiers). */
   product: {
@@ -379,11 +424,11 @@ export const CHECKERS_PARTNERSHIP = {
   checkersStory: [
     {
       t: "Checkers feeds",
-      d: "Put fortified African staples where families already shop — dignity on the shelf, not only in a warehouse.",
+      d: "Put fortified African staples on Checkers and FreshX shelves — and into Sixty60 baskets — where mid-to-upper customers already shop for quality and convenience.",
     },
     {
       t: "Checkers funds",
-      d: "Ring-fence 5% of sell-through; Big Five Foods matches with 5% of trade — 10% total into verified NPO pathways.",
+      d: "Ring-fence 5% of sell-through; Big Five Foods matches with 5% of trade — 10% total into verified NPO pathways, aligned with Shoprite Holdings’ uplift purpose.",
     },
     {
       t: "Checkers stands with foundations",
@@ -391,7 +436,7 @@ export const CHECKERS_PARTNERSHIP = {
     },
     {
       t: "Checkers leads the narrative",
-      d: "Mandela pack, store campaigns, franchisee CSI — Checkers is the hero of the story; Big Five Foods is the product partner behind the shelf.",
+      d: "Democratise premium with purpose: Mandela pack, FreshX endcaps, Sixty60 campaigns — Checkers is the hero; Big Five Foods is the product partner behind the shelf.",
     },
   ],
 
@@ -454,31 +499,38 @@ export const CHECKERS_PARTNERSHIP = {
     "NPO allocations between Restore Africa Foundation and A Heart To Help can be fixed (e.g. 50/50) or programme-driven each period.",
     "One-pot yield for shelf talk and national meal modelling: 1kg dry pack prepares to 4kg food = 20 × 200g servings; at RRP R67 that is R3.35 per meal (R67 ÷ 20). Meal equivalents / year = packs × 20.",
     "Impact meal counts and programme stories remain illustrative planning figures until SKU mix, menus and foundation reporting are locked.",
-    "National store total and format split are illustrative planning assumptions for Checkers / Checkers Hyper (not a Checkers-published breakdown). Packs/store/month and people-fed estimates remain modelling assumptions — not forecasts. Replace with Checkers network data on the term sheet.",
+    "Store counts for impact modelling use published Shoprite Holdings / Checkers FY2025 network figures: 310 Checkers + 40 Checkers Hyper = 350 grocery stores (Mandela pack listing estate). Separately, Checkers LiquorShop (~311) and adjacent brands sit outside the grocery listing model. Packs/store/month and people-fed estimates remain modelling assumptions — not forecasts.",
   ],
 
   /**
-   * Illustrative national impact model across Checkers South Africa formats.
-   * Store total anchored to checkers.co.za (“more than 850 stores nationwide”).
-   * Format split and velocity are planning assumptions — confirm on term sheet.
+   * Illustrative national impact model across Checkers grocery formats.
+   * Store counts anchored to Shoprite Holdings FY2025 reporting / Integrated Report
+   * (310 Checkers + 40 Hyper = 350; 661 including LiquorShop across SA/Botswana/Namibia).
+   * Velocity assumptions are planning only — confirm on term sheet.
    */
   impactReport: {
     title: "National Checkers impact model (illustrative)",
     period: "Per full year at steady-state listing",
     /**
-     * Public network claim (Checkers South Africa consumer site).
+     * Published network (Shoprite Holdings FY2025 / Integrated Report 2025).
+     * @see https://www.shopriteholdings.co.za/group/brands/checkers.html
      * @see https://www.checkers.co.za/
-     * @see https://www.checkers.co.za/ (meta: “more than 850 stores nationwide”)
      */
     networkSource: {
-      claim: "More than 850 stores nationwide",
-      formatsNamed: "Checkers · Checkers Hyper",
-      url: "https://www.checkers.co.za/",
-      /** Working total for models — “850+” estate (not an audited count) */
-      storeCountAnchor: 870,
+      claim: "350 Checkers grocery stores (310 Checkers + 40 Checkers Hyper) · 661 including LiquorShop (SA, Botswana, Namibia)",
+      formatsNamed: "Checkers · Checkers Hyper · FreshX · Sixty60 · LiquorShop (context)",
+      url: "https://www.shopriteholdings.co.za/group/brands/checkers.html",
+      /** Grocery listing estate used in Mandela pack impact maths */
+      storeCountAnchor: 350,
+      checkersSupermarkets: 310,
+      checkersHyper: 40,
+      checkersLiquorShop: 311,
+      freshXApprox: 152,
+      bannerTotalInclLiquor: 661,
+      asOfNote: "FY2025 / Integrated Report 2025 network figures (public reporting).",
     },
     disclaimer:
-      "Store total is modelled from Checkers South Africa’s public claim of the Checkers / Checkers Hyper estate nationwide (checkers.co.za) — illustrative format split for planning. Format counts are a planning allocation of that estate, not a Checkers-published split. Packs/store/month, sales rates and people-fed metrics are partnership discussion assumptions only — replace with Checkers network and sell-through data on the term sheet. Front margin is not net store profit.",
+      "Grocery listing model uses 310 Checkers + 40 Checkers Hyper = 350 stores from Shoprite Holdings FY2025 public reporting. LiquorShop and adjacent brands are excluded from pack-velocity maths. Packs/store/month, sales rates and people-fed metrics are partnership discussion assumptions only — replace with Checkers sell-through data on the term sheet. Front margin is not net store profit.",
     unitAssumptions: {
       tradeExVat: TRADE_EX_VAT,
       rrpInclVat: RRP_INCL_VAT,
@@ -490,25 +542,25 @@ export const CHECKERS_PARTNERSHIP = {
       peopleFedMethod:
         "Meal equivalents (packs × 20 servings) ÷ 365 ≈ people fed one meal a day for a year (illustrative, not unique individuals).",
       donationShareOfSales: 0.02,
-      donationNote: "2% of sell-through volume assumed as CSI / franchisee donation POs (illustrative).",
+      donationNote: "2% of sell-through volume assumed as CSI / store donation POs (illustrative).",
     },
     /**
-     * Format tiers — allocate the Checkers / Checkers Hyper estate (public claim)
-     * across Checkers and Checkers Hyper. Sixty60 delivery and smaller formats sit alongside the grocery estate — not added as extra national stores.
-     * Split is illustrative for planning (sum = 870).
+     * Format tiers — published Checkers grocery estate (ex-LiquorShop).
+     * FreshX is a format upgrade within Checkers stores, not an additive store count.
+     * Sixty60 is fulfilment from the grocery estate.
      */
     storeTiers: [
       {
         format: "Checkers",
-        stores: 220,
-        packsPerStorePerMonth: 160,
-        note: "Core Checkers supermarket — main Mandela pack velocity · checkers.co.za",
+        stores: 310,
+        packsPerStorePerMonth: 140,
+        note: "Checkers supermarkets incl. FreshX conversions — core Mandela pack velocity · Shoprite Holdings FY2025",
       },
       {
         format: "Checkers Hyper",
         stores: 40,
-        packsPerStorePerMonth: 320,
-        note: "Larger Hyper format — range depth + promo endcaps · checkers.co.za",
+        packsPerStorePerMonth: 280,
+        note: "Large-format Hyper — range depth, GM adjacency, promo endcaps · Shoprite Holdings FY2025",
       },
     ],
   },

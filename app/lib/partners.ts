@@ -285,11 +285,11 @@ export const PARTNERS: PartnerProfile[] = [
     role: "Retail · fortified nutrition · feeding partnership",
     headline: "Checkers does good × Big Five Foods",
     summary:
-      "Partnership workspace for Checkers South Africa — put fortified Big Five Foods on shelf (Nelson Mandela pack: R45 trade ex. VAT · R67 RRP incl. VAT · healthy Checkers front margin), sell with purpose and/or donate to Restore Africa Foundation and A Heart To Help, with 10% of partnership turnover (Checkers 5% + Big Five Foods 5%) supporting those foundations. Checkers leads the community story.",
+      "Partnership workspace for Checkers (Shoprite Holdings) — align fortified Big Five Foods with Checkers’ premium grocery strategy across 350 stores (310 Checkers + 40 Hyper · FY2025). Mandela pack pricing, healthy front margin, FreshX / Sixty60 fit, and 10% foundation giving (Checkers 5% + Foods 5%) to Restore Africa Foundation and A Heart To Help.",
     focus: ["Retail listing", "Mandela pack", "CSI / donate", "Foundations"],
     programmes: ["nsnp", "connect", "impact"],
     logoSrc: "/partners/checkers-logo.png",
-    brandColor: "#001C5A",
+    brandColor: "#38A8AE",
     website: "https://www.checkers.co.za/",
     websiteLabel: "checkers.co.za",
     notes: [

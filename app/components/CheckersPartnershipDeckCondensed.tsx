@@ -48,7 +48,7 @@ function CoBrandRow({ light }: { light?: boolean }) {
     <div className="flex flex-nowrap items-center gap-2.5 sm:gap-4 mb-3 sm:mb-5 max-w-full">
       <div
         className={`relative h-11 sm:h-14 w-[8.5rem] sm:w-44 shrink-0 bg-white rounded-xl px-2.5 py-1 border-2 shadow-sm overflow-hidden ${
-          light ? "border-white/40" : "border-[#001C5A]/25"
+          light ? "border-white/40" : "border-[#38A8AE]/25"
         }`}
       >
         {pdf ? (
@@ -87,7 +87,7 @@ function MandelaQuote({ light = true, compact = false }: { light?: boolean; comp
   return (
     <blockquote
       className={`max-w-2xl border-l-2 pl-3 sm:pl-4 ${compact ? "mt-3" : "mt-4 sm:mt-5"}`}
-      style={{ borderColor: "#6BBAEF" }}
+      style={{ borderColor: "#5ec4c9" }}
     >
       <p
         className={`italic leading-snug text-balance ${
@@ -101,7 +101,7 @@ function MandelaQuote({ light = true, compact = false }: { light?: boolean; comp
         className={`block not-italic font-semibold tracking-wide uppercase ${
           compact ? "mt-1 text-[10px]" : "mt-1.5 text-[10px] sm:text-xs"
         }`}
-        style={{ color: light ? "#6BBAEF" : "#001C5A", fontStyle: "normal" }}
+        style={{ color: light ? "#5ec4c9" : "#38A8AE", fontStyle: "normal" }}
       >
         — Nelson Mandela
       </cite>
@@ -134,10 +134,10 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #000e2ef2 0%, #001C5Ae6 42%, #000e2e99 100%)",
+                  "linear-gradient(105deg, #0a2a2cf2 0%, #38A8AEe6 42%, #0a2a2c99 100%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#000a1f]/95 via-transparent to-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#061c1e]/95 via-transparent to-black/25" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
@@ -146,9 +146,9 @@ function Slide({ index }: { index: number }) {
                   </DeckEyebrow>
                   <CoBrandRow light />
                   <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem]">
-                    When Checkers does good,
+                    Democratise premium —
                     <br />
-                    <span style={{ color: "#6BBAEF" }}>the whole community feels it.</span>
+                    <span style={{ color: "#5ec4c9" }}>with nutrition communities can feel.</span>
                   </h2>
                   <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
                     Condensed partnership brief: Mandela pack on Checkers shelves, healthy store margin
@@ -206,52 +206,43 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
-            WHY Checkers LEADS
+            CHECKERS · SHOPRITE STRATEGY
           </DeckEyebrow>
           <DeckTitle>
             <span className="text-white">
-              Communities already trust Checkers. This partnership makes that trust feed people.
+              Aligned to democratising premium food retail — FreshX, Sixty60 and 350 grocery stores.
             </span>
           </DeckTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mt-2">
-            {[
-              {
-                icon: Store,
-                t: "Checkers is already in the community",
-                d: "Independent retailers sit where people live — purpose needs a Checkers shelf, not a new warehouse.",
-              },
-              {
-                icon: Users,
-                t: "Shoppers want to feel proud",
-                d: "A R67 Mandela pack is a weekly choice with a story: Checkers feeds families and supports foundations.",
-              },
-              {
-                icon: Heart,
-                t: "CSI customers can see",
-                d: "Product donated and sell-through that funds care — not only a donation cheque.",
-              },
-              {
-                icon: Target,
-                t: "Reputation that compounds",
-                d: "Every pack strengthens Checkers as the retailer that does good — commercially healthy, publicly proud.",
-              },
-            ].map((p) => (
+          <p
+            className={`text-white/70 max-w-3xl mb-3 leading-relaxed ${
+              forPrint ? "text-[10px]" : "text-xs sm:text-sm"
+            }`}
+          >
+            {P.groupStrategy.brandPosition}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mt-1">
+            {P.groupStrategy.strategicPillars.slice(0, 4).map((c) => (
               <div
-                key={p.t}
+                key={c.t}
                 className={`rounded-xl border border-white/10 bg-white/[0.06] min-w-0 ${
-                  forPrint ? "p-2.5" : "p-4"
+                  forPrint ? "p-2.5" : "p-3.5"
                 }`}
               >
-                <p.icon className={`mb-2 text-sky-300 ${forPrint ? "w-4 h-4" : "w-5 h-5"}`} />
-                <div className={`font-semibold text-sky-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
-                  {p.t}
+                <div className={`font-semibold text-teal-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
+                  {c.t}
                 </div>
-                <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
-                  {p.d}
+                <p className={`text-white/65 leading-snug ${forPrint ? "text-[9px]" : "text-xs sm:text-sm"}`}>
+                  {c.d}
                 </p>
               </div>
             ))}
           </div>
+          <p className={`mt-3 text-white/45 ${forPrint ? "text-[8px]" : "text-[10px]"}`}>
+            Network: {IMPACT.networkSource.checkersSupermarkets} Checkers +{" "}
+            {IMPACT.networkSource.checkersHyper} Hyper = {IMPACT.networkSource.storeCountAnchor} grocery
+            · {IMPACT.networkSource.bannerTotalInclLiquor} incl. LiquorShop · FreshX ~
+            {IMPACT.networkSource.freshXApprox} (Shoprite Holdings FY2025)
+          </p>
         </DeckSlideShell>
       );
 
@@ -306,7 +297,7 @@ function Slide({ index }: { index: number }) {
             })}
           </div>
           <div
-            className={`mt-3 rounded-xl border border-sky-200 bg-sky-50/70 ${
+            className={`mt-3 rounded-xl border border-teal-200 bg-teal-50/70 ${
               forPrint ? "p-2 text-[9px]" : "p-2.5 text-[10px] sm:text-xs"
             } text-[#404040] leading-snug`}
           >
@@ -341,7 +332,7 @@ function Slide({ index }: { index: number }) {
                 </div>
                 <div className="grid grid-cols-3 gap-0 border-t border-black/5">
                   <div className="p-3 bg-[#0a0a0a] text-white">
-                    <div className="text-[9px] font-semibold uppercase text-sky-300/90">Buy</div>
+                    <div className="text-[9px] font-semibold uppercase text-teal-300/90">Buy</div>
                     <div className="text-xl font-semibold tracking-tight tabular-nums">
                       {tier.tradeExVatLabel}
                     </div>
@@ -356,7 +347,7 @@ function Slide({ index }: { index: number }) {
                     </div>
                     <div className="text-[9px] text-[#737373]">incl. VAT</div>
                   </div>
-                  <div className="p-3 border-l border-sky-100 bg-sky-50/80">
+                  <div className="p-3 border-l border-teal-100 bg-teal-50/80">
                     <div className="text-[9px] font-semibold uppercase" style={{ color: theme.accentDark }}>
                       Margin
                     </div>
@@ -424,7 +415,7 @@ function Slide({ index }: { index: number }) {
               ))}
             </div>
             <div
-              className={`rounded-2xl border-2 border-sky-200 bg-sky-50/60 shrink-0 ${
+              className={`rounded-2xl border-2 border-teal-200 bg-teal-50/60 shrink-0 ${
                 dense ? "p-2" : "p-4 sm:p-5"
               }`}
             >
@@ -463,14 +454,15 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>IMPACT · NATIONAL SNAPSHOT</DeckEyebrow>
           <DeckTitle>Illustrative scale across Checkers South Africa</DeckTitle>
           <p className="text-[10px] sm:text-xs text-[#525252] mb-3 max-w-3xl leading-snug">
-            Network: {IMPACT.networkSource.claim} · modelled {IMPACT.networkSource.storeCountAnchor}{" "}
+            Grocery listing estate: {IMPACT.networkSource.storeCountAnchor} stores (310 Checkers + 40
+            Hyper · FY2025) · modelled{" "}
             stores. Planning assumptions only.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
             <DeckStatTile
               theme={theme}
               value={IMPACT.national.stores.toLocaleString("en-ZA")}
-              label="Stores modelled (Checkers / Hyper)"
+              label="Grocery stores (310 + 40 Hyper)"
             />
             <DeckStatTile
               theme={theme}
@@ -546,7 +538,7 @@ function Slide({ index }: { index: number }) {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div
-                      className={`font-bold tracking-wide uppercase text-sky-800 ${
+                      className={`font-bold tracking-wide uppercase text-teal-800 ${
                         dense ? "text-[9px]" : "text-[10px]"
                       }`}
                     >
@@ -616,7 +608,7 @@ function Slide({ index }: { index: number }) {
             ].map((it) => (
               <div
                 key={it.t}
-                className="rounded-xl border border-sky-100 bg-sky-50/50 p-3 flex gap-2 min-w-0"
+                className="rounded-xl border border-teal-100 bg-teal-50/50 p-3 flex gap-2 min-w-0"
               >
                 <it.icon className="w-4 h-4 shrink-0 mt-0.5" style={{ color: theme.accentDark }} />
                 <div>
@@ -675,7 +667,7 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #000e2ef2 0%, #001C5Ae6 50%, #000a1fcc 100%)",
+                  "linear-gradient(105deg, #0a2a2cf2 0%, #38A8AEe6 50%, #061c1ecc 100%)",
               }}
             />
             <div className="relative z-10 h-full">
@@ -688,7 +680,7 @@ function Slide({ index }: { index: number }) {
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-white text-balance leading-[1.1] mb-3">
                     Help Checkers lead —
                     <br />
-                    <span style={{ color: "#6BBAEF" }}>commercially sound. Visibly good.</span>
+                    <span style={{ color: "#5ec4c9" }}>commercially sound. Visibly good.</span>
                   </h2>
                   <p className="text-white/75 max-w-xl text-sm leading-relaxed mb-5">
                     Healthy Checkers margin · Mandela pack at R67 · 10% to foundations · sell or donate.
@@ -726,13 +718,13 @@ export default function CheckersPartnershipDeckCondensed() {
     <div id="checkers-partnership-deck-condensed" className="scroll-mt-28 w-full min-w-0">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
         <div className="flex justify-center mb-4">
-          <div className="relative h-12 sm:h-14 w-40 sm:w-52 bg-white rounded-xl border-2 border-[#001C5A]/20 px-3 py-1 shadow-sm">
+          <div className="relative h-12 sm:h-14 w-40 sm:w-52 bg-white rounded-xl border-2 border-[#38A8AE]/20 px-3 py-1 shadow-sm">
             <DeckPrintImage src="/partners/checkers-logo-on-white.png" alt="Checkers" paddingClass="p-1" fit="contain" />
           </div>
         </div>
         <div
           className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-3 font-semibold"
-          style={{ color: "#001C5A" }}
+          style={{ color: "#38A8AE" }}
         >
           CHECKERS CONDENSED BRIEFING · {TOTAL} SLIDES · PRIVATE · CHECKERS ONLY
         </div>

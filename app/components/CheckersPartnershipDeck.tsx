@@ -66,7 +66,7 @@ function CoBrandRow({ light }: { light?: boolean }) {
     <div className="flex flex-nowrap items-center gap-2.5 sm:gap-4 mb-3 sm:mb-5 max-w-full">
       <div
         className={`relative h-11 sm:h-14 w-[8.5rem] sm:w-44 shrink-0 bg-white rounded-xl px-2.5 py-1 border-2 shadow-sm overflow-hidden ${
-          light ? "border-white/40" : "border-[#001C5A]/25"
+          light ? "border-white/40" : "border-[#38A8AE]/35"
         }`}
       >
         {pdf ? (
@@ -109,7 +109,7 @@ function MandelaQuote({ light = true, compact = false }: { light?: boolean; comp
   return (
     <blockquote
       className={`max-w-2xl border-l-2 pl-3 sm:pl-4 ${compact ? "mt-3" : "mt-4 sm:mt-5"}`}
-      style={{ borderColor: "#6BBAEF" }}
+      style={{ borderColor: "#5ec4c9" }}
     >
       <p
         className={`italic leading-snug text-balance ${
@@ -124,7 +124,7 @@ function MandelaQuote({ light = true, compact = false }: { light?: boolean; comp
         className={`block not-italic font-semibold tracking-wide uppercase ${
           compact ? "mt-1 text-[10px]" : "mt-1.5 text-[10px] sm:text-xs"
         }`}
-        style={{ color: light ? "#6BBAEF" : "#001C5A", fontStyle: "normal" }}
+        style={{ color: light ? "#5ec4c9" : "#38A8AE", fontStyle: "normal" }}
       >
         — Nelson Mandela
       </cite>
@@ -159,31 +159,32 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #000e2ef2 0%, #001C5Ae6 42%, #000e2e99 100%)",
+                  "linear-gradient(105deg, #0a2a2cf2 0%, #1f7a7fe6 42%, #0a2a2c99 100%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#000a1f]/95 via-transparent to-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#061c1e]/95 via-transparent to-black/25" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
                   <DeckEyebrow light theme={theme}>
-                    CHECKERS SOUTH AFRICA · PARTNERSHIP PRESENTATION · CONFIDENTIAL
+                    CHECKERS · SHOPRITE HOLDINGS · PARTNERSHIP PRESENTATION · CONFIDENTIAL
                   </DeckEyebrow>
                   <CoBrandRow light />
                   <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem]">
-                    When Checkers does good,
+                    Democratise premium —
                     <br />
-                    <span style={{ color: "#6BBAEF" }}>the whole community feels it.</span>
+                    <span style={{ color: "#5ec4c9" }}>with nutrition communities can feel.</span>
                   </h2>
                   <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
-                    Put fortified Big Five Foods on Checkers shelves. Earn a healthy store margin.
-                    Ring-fence 10% of partnership turnover (Checkers 5% + Big Five Foods 5%) for Restore
-                    Africa Foundation and A Heart To Help — sell with purpose or donate with dignity.
+                    Align fortified Big Five Foods with Checkers’ mid-to-upper strategy: convenience,
+                    quality and freshness across {IMPACT.networkSource.storeCountAnchor} grocery stores
+                    (310 Checkers + 40 Hyper). Healthy store margin · 10% ring-fence for foundations ·
+                    sell with purpose or donate with dignity.
                   </p>
                   <MandelaQuote light />
                 </div>
                 <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
-                  <p>Checkers leads the narrative · Big Five Foods supplies the product</p>
+                  <p>Checkers leads · Shoprite Holdings brand · Big Five Foods supplies</p>
                   <p>bigfivegroup.africa · /partner/checkers#checkers-partnership-deck</p>
                   <p>{TOTAL} slides · Shareable · Printable · Not a binding offer</p>
                 </div>
@@ -200,13 +201,13 @@ function Slide({ index }: { index: number }) {
           <DeckTitle>A Checkers story of good — commercially sound</DeckTitle>
           <ol className={forPrint ? "space-y-1 max-w-2xl" : "space-y-2 max-w-2xl"}>
             {[
-              "Why Checkers should own the food-security narrative",
-              "How Checkers does good — feed, fund, stand with foundations",
+              "Shoprite Holdings · Checkers strategy (premium · FreshX · Sixty60)",
+              "How Big Five Foods aligns — shelf, wellness, purpose",
               "Mandela pack pricing · Checkers’ margin on every sale",
               "Mandela pack products — all four Big Five Foods categories",
               "Sell with purpose · donate with dignity · campaign hybrid",
               "The 10% model · Checkers 5% + Big Five Foods 5%",
-              "National impact report — stores, sales, Checkers profit, people fed",
+              "National impact — 350 grocery stores (310 + 40 Hyper)",
               "Restore Africa Foundation · A Heart To Help · SA Harvest delivery",
               "Governance · roadmap · the ask",
             ].map((item, i) => (
@@ -236,87 +237,110 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
-            Checkers DOES GOOD
+            SHOPRITE HOLDINGS · CHECKERS STRATEGY
           </DeckEyebrow>
           <DeckTitle>
             <span className="text-white">
-              Communities already trust Checkers. This partnership makes that trust feed people.
+              Built for Checkers’ premium grocery play — not a side CSI project.
             </span>
           </DeckTitle>
           <p
-            className={`text-white/70 max-w-3xl mb-5 leading-relaxed ${
-              forPrint ? "text-xs" : "text-sm sm:text-base"
+            className={`text-white/70 max-w-3xl mb-3 leading-relaxed ${
+              forPrint ? "text-[10px]" : "text-xs sm:text-sm"
             }`}
           >
-            Hunger and hardship show up in the same towns as Checkers stores. This is not abstract CSI —
-            it is fortified food on the shelf, rand into foundations, and Checkers as the face of care.
+            {P.groupStrategy.brandPosition} {P.groupStrategy.parentPurpose}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-            {P.checkersStory.map((c) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3">
+            {P.groupStrategy.strategicPillars.slice(0, 4).map((c) => (
               <div
                 key={c.t}
                 className={`rounded-xl border border-white/10 bg-white/[0.06] min-w-0 ${
-                  forPrint ? "p-2.5" : "p-4"
+                  forPrint ? "p-2.5" : "p-3.5"
                 }`}
               >
                 <div
-                  className={`font-semibold text-sky-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}
+                  className={`font-semibold text-teal-200 mb-1 ${forPrint ? "text-[11px]" : "text-sm"}`}
                 >
                   {c.t}
                 </div>
                 <p
-                  className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}
+                  className={`text-white/65 leading-snug ${forPrint ? "text-[9px]" : "text-xs sm:text-sm"}`}
                 >
                   {c.d}
                 </p>
               </div>
             ))}
           </div>
+          <p className={`text-white/45 ${forPrint ? "text-[8px]" : "text-[10px]"}`}>
+            Brand positioning: shopriteholdings.co.za/group/brands/checkers.html · Network:{" "}
+            {P.groupStrategy.strategicPillars[4]?.t ?? "Network expansion"}
+          </p>
         </DeckSlideShell>
       );
 
     case 3:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>WHY Checkers LEADS</DeckEyebrow>
-          <DeckTitle>Only Checkers can put purpose at the till and in the community</DeckTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1 content-start">
+          <DeckEyebrow theme={theme}>HOW WE ALIGN</DeckEyebrow>
+          <DeckTitle>Big Five Foods on the Checkers strategy — shelf, Sixty60 and purpose</DeckTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1 content-start mb-3">
+            {P.groupStrategy.howWeAlign.map((d, i) => (
+              <div
+                key={d.slice(0, 28)}
+                className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 flex gap-2.5 ${
+                  forPrint ? "p-2.5" : "p-3.5"
+                }`}
+              >
+                <span
+                  className={`shrink-0 font-semibold tabular-nums ${forPrint ? "text-[10px]" : "text-xs"}`}
+                  style={{ color: theme.accentDark }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className={`text-[#404040] leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
+                  {d}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {[
               {
                 icon: Store,
-                t: "Checkers is already in the community",
-                d: "Independent retailers sit where people live. Purpose does not need a new warehouse — it needs a Checkers shelf.",
+                t: "350 grocery stores",
+                d: "310 Checkers + 40 Hyper (FY2025)",
               },
               {
                 icon: Users,
-                t: "Shoppers want to feel proud",
-                d: "A R67 Mandela pack is a weekly choice with a story: Checkers feeds families and supports foundations.",
+                t: "FreshX momentum",
+                d: "~152 FreshX stores · premium experience",
               },
               {
                 icon: Heart,
-                t: "CSI customers can see",
-                d: "Not only a donation cheque — product donated to Restore Africa Foundation and A Heart To Help, plus sell-through that funds care.",
+                t: "Sixty60 ready",
+                d: "Omnichannel packs for on-demand baskets",
               },
               {
                 icon: Target,
-                t: "Reputation that compounds",
-                d: "Every pack strengthens Checkers as the retailer that does good — commercially healthy, publicly proud.",
+                t: "661 banner total",
+                d: "Incl. LiquorShop · SA / Botswana / Namibia",
               },
             ].map((p) => (
               <div
                 key={p.t}
-                className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
-                  forPrint ? "p-2.5" : "p-4"
+                className={`rounded-xl border border-black/10 bg-white min-w-0 ${
+                  forPrint ? "p-2" : "p-3"
                 }`}
               >
                 <p.icon
-                  className={`mb-2 ${forPrint ? "w-4 h-4" : "w-5 h-5"}`}
+                  className={`mb-1.5 ${forPrint ? "w-3.5 h-3.5" : "w-4 h-4"}`}
                   style={{ color: theme.accentDark }}
                 />
-                <div className={`font-semibold text-black mb-1 ${forPrint ? "text-sm" : "text-base"}`}>
+                <div className={`font-semibold text-black mb-0.5 ${forPrint ? "text-[10px]" : "text-xs"}`}>
                   {p.t}
                 </div>
-                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
+                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[8px]" : "text-[10px]"}`}>
                   {p.d}
                 </p>
               </div>
@@ -357,7 +381,7 @@ function Slide({ index }: { index: number }) {
                 </div>
                 <div className="grid grid-cols-3 gap-0 border-t border-black/5">
                   <div className={`bg-[#0a0a0a] text-white ${forPrint ? "p-2.5" : "p-4"}`}>
-                    <div className="text-[9px] font-semibold uppercase text-sky-300/90">Buy</div>
+                    <div className="text-[9px] font-semibold uppercase text-teal-300/90">Buy</div>
                     <div
                       className={`font-semibold tracking-tighter tabular-nums ${
                         forPrint ? "text-xl" : "text-2xl sm:text-3xl"
@@ -384,7 +408,7 @@ function Slide({ index }: { index: number }) {
                     <div className="text-[9px] text-[#737373]">incl. VAT</div>
                   </div>
                   <div
-                    className={`border-l border-sky-100 bg-sky-50/80 ${
+                    className={`border-l border-teal-100 bg-teal-50/80 ${
                       forPrint ? "p-2.5" : "p-4"
                     }`}
                   >
@@ -415,7 +439,7 @@ function Slide({ index }: { index: number }) {
             ))}
           </div>
           <div
-            className={`rounded-xl border border-sky-100 bg-sky-50/60 ${
+            className={`rounded-xl border border-teal-100 bg-teal-50/60 ${
               forPrint ? "p-2.5 text-[10px]" : "p-3 text-sm"
             } text-[#404040] leading-relaxed mb-2`}
           >
@@ -507,7 +531,7 @@ function Slide({ index }: { index: number }) {
             </div>
 
             <div
-              className={`mt-2 shrink-0 rounded-xl border border-sky-200 bg-sky-50/70 ${
+              className={`mt-2 shrink-0 rounded-xl border border-teal-200 bg-teal-50/70 ${
                 forPrint ? "p-2 text-[8px]" : "p-2.5 sm:p-3 text-[10px] sm:text-xs"
               } text-[#404040] leading-snug`}
             >
@@ -605,7 +629,7 @@ function Slide({ index }: { index: number }) {
                 forPrint ? "p-2.5" : "p-4"
               }`}
             >
-              <div className={`font-semibold text-sky-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
+              <div className={`font-semibold text-teal-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
                 Checkers’ 5%
               </div>
               <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
@@ -617,7 +641,7 @@ function Slide({ index }: { index: number }) {
                 forPrint ? "p-2.5" : "p-4"
               }`}
             >
-              <div className={`font-semibold text-sky-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
+              <div className={`font-semibold text-teal-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
                 Big Five Foods’ 5%
               </div>
               <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
@@ -661,7 +685,7 @@ function Slide({ index }: { index: number }) {
             }`}
           >
             <div
-              className={`text-sky-300/90 uppercase tracking-wide font-semibold ${
+              className={`text-teal-300/90 uppercase tracking-wide font-semibold ${
                 forPrint ? "text-[9px]" : "text-[10px]"
               }`}
             >
@@ -694,11 +718,15 @@ function Slide({ index }: { index: number }) {
               forPrint ? "text-[9px]" : "text-xs sm:text-sm"
             }`}
           >
-            Network anchor:{" "}
+            Published network (Shoprite Holdings FY2025):{" "}
             <strong className="text-black font-semibold">
-              {IMPACT.networkSource.claim}
-            </strong>{" "}
-            ({IMPACT.networkSource.formatsNamed}) —{" "}
+              {IMPACT.networkSource.checkersSupermarkets} Checkers +{" "}
+              {IMPACT.networkSource.checkersHyper} Hyper = {IMPACT.networkSource.storeCountAnchor}{" "}
+              grocery stores
+            </strong>
+            {" · "}
+            {IMPACT.networkSource.bannerTotalInclLiquor} incl. LiquorShop (SA / Botswana / Namibia) ·
+            FreshX ~{IMPACT.networkSource.freshXApprox}.{" "}
             <a
               href={IMPACT.networkSource.url}
               target="_blank"
@@ -706,10 +734,9 @@ function Slide({ index }: { index: number }) {
               className="font-semibold underline underline-offset-2"
               style={{ color: theme.accentDark }}
             >
-              checkers.co.za
+              shopriteholdings.co.za/group/brands/checkers
             </a>
-            . Model estate: {IMPACT.networkSource.storeCountAnchor.toLocaleString("en-ZA")} stores
-            (850+).
+            . Listing model uses the {IMPACT.networkSource.storeCountAnchor} grocery estate (ex-Liquor).
           </p>
           <p
             className={`text-[#525252] max-w-3xl mb-2 leading-relaxed ${
@@ -756,8 +783,8 @@ function Slide({ index }: { index: number }) {
                     </td>
                   </tr>
                 ))}
-                <tr className="bg-sky-50/80 font-semibold text-black">
-                  <td className="py-1.5 pr-2">National total (Checkers estate · modelled)</td>
+                <tr className="bg-teal-50/80 font-semibold text-black">
+                  <td className="py-1.5 pr-2">National grocery total (350 · modelled velocity)</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">
                     {IMPACT.national.stores.toLocaleString("en-ZA")}
                   </td>
@@ -818,7 +845,7 @@ function Slide({ index }: { index: number }) {
               {formatZarCompact(IMPACT.national.checkersGive5)} still leaving a large commercial pool for
               retailers (front margin is not net profit).
             </div>
-            <div className="rounded-xl border border-sky-100 bg-sky-50/50 p-2 sm:p-2.5 text-[#404040] leading-snug">
+            <div className="rounded-xl border border-teal-100 bg-teal-50/50 p-2 sm:p-2.5 text-[#404040] leading-snug">
               <strong className="text-black">Community takeaway:</strong> ~{" "}
               {Math.round(IMPACT.national.mealEquivalents).toLocaleString("en-ZA")} meal equivalents
               sold into homes · + ~{Math.round(IMPACT.national.donatedMeals).toLocaleString("en-ZA")}{" "}
@@ -872,7 +899,7 @@ function Slide({ index }: { index: number }) {
           </p>
           {"verse" in P.npos[0]! && P.npos[0].verse && (
             <blockquote
-              className={`max-w-3xl mb-3 rounded-xl border border-sky-100 bg-sky-50/40 ${
+              className={`max-w-3xl mb-3 rounded-xl border border-teal-100 bg-teal-50/40 ${
                 forPrint ? "p-2.5 text-[10px]" : "p-4 text-sm"
               } text-[#404040] leading-relaxed`}
             >
@@ -888,7 +915,7 @@ function Slide({ index }: { index: number }) {
             {P.npos[0]!.focus.map((f) => (
               <span
                 key={f}
-                className={`rounded-full border border-sky-200 bg-sky-50 font-semibold ${
+                className={`rounded-full border border-teal-200 bg-teal-50 font-semibold ${
                   forPrint ? "text-[9px] px-2 py-0.5" : "text-xs px-2.5 py-1"
                 }`}
                 style={{ color: theme.accentDark }}
@@ -948,7 +975,7 @@ function Slide({ index }: { index: number }) {
             {P.npos[1]!.focus.map((f) => (
               <span
                 key={f}
-                className={`rounded-full border border-sky-200 bg-sky-50 font-semibold ${
+                className={`rounded-full border border-teal-200 bg-teal-50 font-semibold ${
                   forPrint ? "text-[9px] px-2 py-0.5" : "text-xs px-2.5 py-1"
                 }`}
                 style={{ color: theme.accentDark }}
@@ -993,7 +1020,7 @@ function Slide({ index }: { index: number }) {
             {P.npos[2]!.focus.map((f) => (
               <span
                 key={f}
-                className="rounded-full border border-sky-200 bg-sky-50 text-xs font-semibold px-2.5 py-1"
+                className="rounded-full border border-teal-200 bg-teal-50 text-xs font-semibold px-2.5 py-1"
                 style={{ color: theme.accentDark }}
               >
                 {f}
@@ -1028,7 +1055,7 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
-          <div className="rounded-xl border border-sky-100 bg-sky-50/50 p-3 sm:p-4 text-sm text-[#404040] leading-relaxed">
+          <div className="rounded-xl border border-teal-100 bg-teal-50/50 p-3 sm:p-4 text-sm text-[#404040] leading-relaxed">
             <strong className="text-black">How the chain works:</strong> Checkers sells or donates · Big
             Five Foods supplies · <strong className="text-black">SA Harvest delivers</strong> to soup
             kitchens, feeding schemes, Restore Africa Foundation and A Heart To Help — so impact is
@@ -1215,11 +1242,11 @@ function Slide({ index }: { index: number }) {
             {P.honesty.map((h) => (
               <li
                 key={h}
-                className={`flex gap-2 rounded-xl border border-sky-100 bg-sky-50/50 text-[#404040] ${
+                className={`flex gap-2 rounded-xl border border-teal-100 bg-teal-50/50 text-[#404040] ${
                   forPrint ? "p-2 text-[10px]" : "p-3 text-sm"
                 }`}
               >
-                <span className="text-sky-900 shrink-0 font-semibold">·</span>
+                <span className="text-teal-900 shrink-0 font-semibold">·</span>
                 <span className="leading-snug">{h}</span>
               </li>
             ))}
@@ -1281,10 +1308,10 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #000e2ef5 0%, #001C5Aeb 45%, #000e2ea6 100%)",
+                  "linear-gradient(105deg, #0a2a2cf5 0%, #38A8AEeb 45%, #0a2a2ca6 100%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#000a1f] via-transparent to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#061c1e] via-transparent to-black/30" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
@@ -1346,13 +1373,13 @@ export default function CheckersPartnershipDeck() {
     <div id="checkers-partnership-deck" className="scroll-mt-28 w-full min-w-0">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
         <div className="flex justify-center mb-4">
-          <div className="relative h-12 sm:h-14 w-40 sm:w-52 bg-white rounded-xl border-2 border-[#001C5A]/20 px-3 py-1 shadow-sm">
+          <div className="relative h-12 sm:h-14 w-40 sm:w-52 bg-white rounded-xl border-2 border-[#38A8AE]/20 px-3 py-1 shadow-sm">
             <DeckPrintImage src="/partners/checkers-logo-on-white.png" alt="Checkers" paddingClass="p-1" fit="contain" />
           </div>
         </div>
         <div
           className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-3 font-semibold"
-          style={{ color: "#001C5A" }}
+          style={{ color: "#38A8AE" }}
         >
           CHECKERS PARTNERSHIP PRESENTATION · {TOTAL} SLIDES · PRIVATE · CHECKERS ONLY
         </div>
