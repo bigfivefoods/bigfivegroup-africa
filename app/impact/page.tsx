@@ -81,8 +81,9 @@ export default function ImpactPage() {
                 </p>
                 <p className="text-[11px] sm:text-xs text-[#737373] leading-relaxed max-w-3xl">
                   Framed as support for the Director General of Health in South Africa on health and
-                  wellness initiatives, coordinated through Impact — not that the DG is part of Big
-                  Five Impact. Request a dated partner brief for diligence.
+                  wellness initiatives in South Africa, Africa and beyond, coordinated through Impact
+                  — not that the DG is part of Big Five Impact. Request a dated partner brief for
+                  diligence.
                 </p>
               </div>
             </div>
@@ -154,7 +155,7 @@ export default function ImpactPage() {
             {
               icon: HeartPulse,
               title: "Department of Health channel",
-              desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness — coordinated through Impact’s PMO.",
+              desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond — coordinated through Impact’s PMO.",
             },
             {
               icon: Map,
@@ -216,7 +217,7 @@ export default function ImpactPage() {
             {
               step: "03",
               title: "Institutional health channel",
-              desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness — Impact orchestrates delivery.",
+              desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond — Impact orchestrates delivery.",
             },
             {
               step: "04",
@@ -242,7 +243,7 @@ export default function ImpactPage() {
               },
               {
                 title: "Department of Health",
-                desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness, with Impact’s PMO discipline coordinating delivery.",
+                desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond, with Impact’s PMO discipline coordinating delivery.",
               },
               {
                 title: "Corporates & CSI",
