@@ -1040,7 +1040,7 @@ export const MARKET_TRACTION = {
   healthChannel: {
     title: "We support the Director General of Health in South Africa",
     detail:
-      "Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness — a strategic institutional relationship (not that the DG is staff of Big Five Impact). Impact’s PMO coordinates delivery and programme discipline around that channel.",
+      "Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond — a strategic institutional relationship (not that the DG is staff of Big Five Impact). Impact’s PMO coordinates delivery and programme discipline around that channel.",
   },
   asOfNote:
     "Management-reported in ZAR; USD headlines at ~16.5 ZAR/USD (July 2026 approx). Pipeline conversion only under NDA diligence packs.",

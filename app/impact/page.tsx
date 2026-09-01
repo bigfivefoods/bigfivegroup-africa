@@ -42,7 +42,7 @@ export default function ImpactPage() {
             that delivers Africa
           </>
         }
-        subtitle="Proudly African for Africa. Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa."
+        subtitle="Proudly African for Africa. Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond."
         ctas={[
           { href: "#strategy-deck", label: "Strategic overview deck", primary: true },
           { href: "#health-channel", label: "Health channel" },
