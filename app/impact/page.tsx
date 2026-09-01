@@ -80,10 +80,9 @@ export default function ImpactPage() {
                   always with Group delivery capacity attached.
                 </p>
                 <p className="text-[11px] sm:text-xs text-[#737373] leading-relaxed max-w-3xl">
-                  Framed as support for the Director General of Health in South Africa on health and
-                  wellness initiatives in South Africa, Africa and beyond, coordinated through Impact
-                  — not that the DG is part of Big Five Impact. Request a dated partner brief for
-                  diligence.
+                  Support for the Director General of Health in South Africa on health and wellness
+                  initiatives in South Africa, Africa and beyond, coordinated through Impact’s PMO.
+                  Request a dated partner brief for diligence.
                 </p>
               </div>
             </div>

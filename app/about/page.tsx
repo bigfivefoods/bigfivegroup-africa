@@ -618,7 +618,7 @@ export default function AboutPage() {
               href: "/impact",
               title: "Big Five Impact",
               role: "Deliver",
-              desc: "Cross-pillar PMO — working with the Director General of Health on health-system pathways (SA DoH and African channels).",
+              desc: "Cross-pillar PMO — supports the Director General of Health with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond.",
             },
             {
               href: "/foundation",

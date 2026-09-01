@@ -120,7 +120,7 @@ const PILLAR_BRIEFS: Record<string, string> = {
   leadership: "Super-Cube® ethical leadership for business and public life.",
   foundation: "Registered philanthropy funding community programmes with proof.",
   impact:
-    "Cross-pillar PMO — design, gates, KPIs and field delivery. Working with the Director General of Health to help drive Group products into SA DoH and African health pathways.",
+    "Cross-pillar PMO — design, gates, KPIs and field delivery. Supports the Director General of Health with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond.",
   global: "International corridors linking African capacity to world markets.",
 };
 
@@ -139,7 +139,7 @@ const PILLAR_BRIEFS_PRINT: Record<string, string> = {
   connect: "SupplierAdvisor® ethical commerce & verification.",
   leadership: "Super-Cube® ethical leadership for public & private life.",
   foundation: "Registered philanthropy with programme proof.",
-  impact: "Cross-pillar PMO — gates, KPIs; health channel via DG of Health relationship.",
+  impact: "Cross-pillar PMO — gates, KPIs; supports DG of Health on health & wellness initiatives.",
   global: "Corridors linking African capacity to world markets.",
 };
 

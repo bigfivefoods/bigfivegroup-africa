@@ -343,7 +343,7 @@ export const companies: Company[] = [
     icon: "Target",
     tagline: "Project Management • Cross-Pillar Delivery • Continental Results",
     description:
-      "The project management arm of Big Five Group — orchestrating programmes across Agri, Foods, Direct, Access, Connect, Leadership and Foundation to deliver measurable impact across the African continent. Big Five works with the Director General of Health (a strategic institutional relationship, not Impact staff) to help drive Group products into South Africa’s Department of Health and into health pathways in other African countries.",
+      "The project management arm of Big Five Group — orchestrating programmes across Agri, Foods, Direct, Access, Connect, Leadership and Foundation to deliver measurable impact across the African continent. Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond.",
     heroText: "From Strategy to Delivery. Across Africa. On Time. On Impact.",
     howItWorks: [
       {
@@ -359,7 +359,7 @@ export const companies: Company[] = [
       {
         step: 3,
         title: "Institutional health channel",
-        desc: "Working with the Director General of Health, open pathways for Group products into South Africa’s Department of Health and counterpart health departments across Africa — as relationships and programmes mature. Impact coordinates delivery.",
+        desc: "Support the Director General of Health with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond. Impact coordinates delivery.",
       },
       {
         step: 4,
@@ -374,7 +374,7 @@ export const companies: Company[] = [
       },
       {
         title: "For Department of Health & ministries",
-        desc: "A Group channel advanced by working with the Director General of Health and Impact’s PMO — to introduce fortified nutrition and related products into SA DoH and African health systems over time.",
+        desc: "Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond — coordinated through Impact’s PMO.",
       },
       {
         title: "For Corporates & CSI",
@@ -386,7 +386,7 @@ export const companies: Company[] = [
       },
     ],
     impact:
-      "The connective tissue of the group: multi-pillar delivery with gates and KPIs — and a health-system channel through working with the Director General of Health (pathways into SA DoH and African health departments; not claimed as closed multi-country awards).",
+      "The connective tissue of the group: multi-pillar delivery with gates and KPIs — and support for the Director General of Health with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond.",
   },
   {
     slug: "global",

@@ -660,7 +660,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
     currentState: {
       markets: "Group programmes; government / CSI multi-pillar briefs; SA DoH pathway building",
       traction: [
-        "Working with the Director General of Health — helps drive Group products into SA Department of Health and African health pathways (relationship, not Impact staff)",
+        "Supports the Director General of Health with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond",
         "PMO narrative: gates, KPIs, field assurance",
         "Strategic overview deck for partner briefing",
         "Connective tissue across all operating pillars (incl. Foods institutional supply)",
@@ -671,7 +671,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
       "Default continental delivery office for complex Feed · Educate · Empower programmes — with Group products in health-system supply where programmes require them.",
     problemsAddressed: ["markets", "hunger", "malnutrition", "disease", "leadership"],
     howWeAddress:
-      "Design, orchestrate and report multi-pillar programmes so funding becomes outcomes; use Impact leadership (incl. Director General of Health) to open Department of Health and multi-country health channels for Group products.",
+      "Design, orchestrate and report multi-pillar programmes so funding becomes outcomes; support the Director General of Health with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond.",
     scenarios: {
       conservative: {
         y5RevenueUSDm: 10,
@@ -892,8 +892,8 @@ export const TEAM_GOVERNANCE = {
     },
     {
       role: "Impact · Health channel",
-      who: "Director General of Health (working relationship; not Impact staff)",
-      focus: "PMO delivery discipline; pathways into SA DoH and African health systems for Group products.",
+      who: "Director General of Health · health & wellness initiatives",
+      focus: "Support initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond; Impact PMO delivery discipline.",
     },
     {
       role: "Connect",
@@ -1035,12 +1035,12 @@ export const MARKET_TRACTION = {
   credibility: {
     title: "Credibility → multi-department & continental government pathways",
     detail:
-      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five works with the Director General of Health — coordinated through Impact’s PMO — to help drive Group products into South Africa’s Department of Health and into health pathways in other African countries (working relationship and channel — not that the DG is part of Big Five Impact, and not claimed as closed multi-country DoH awards). Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee). Foods unit economics: ~45% GP (management-reported) while remaining ~50% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government programmes and feeding schemes. Direct’s SANTACO partnership places multi-use containers at taxi ranks — high-footfall nodes on SA’s dominant public-transport mode (Stats SA NHTS) — so investors can leverage population mobility for food offtake, surveys, marketing and Super-Cube® education (15,000-container plan scale, phased).",
+      "Landing NSNP builds institutional credibility that should open doors into other government departments in South Africa and, as proof compounds, into public-sector programmes across Africa — always with Group delivery capacity attached. Separately, Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond — coordinated through Impact’s PMO. Foods is a repetitive business: once menus and shelves adopt Group products, reorder cycles should sustain volume and grow as market traction and penetration deepen (model thesis — not a guarantee). Foods unit economics: ~45% GP (management-reported) while remaining ~50% cheaper than wholesale and retail pathways (internal analysis) — super-competitive for government programmes and feeding schemes. Direct’s SANTACO partnership places multi-use containers at taxi ranks — high-footfall nodes on SA’s dominant public-transport mode (Stats SA NHTS) — so investors can leverage population mobility for food offtake, surveys, marketing and Super-Cube® education (15,000-container plan scale, phased).",
   },
   healthChannel: {
     title: "We support the Director General of Health in South Africa",
     detail:
-      "Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond — a strategic institutional relationship (not that the DG is staff of Big Five Impact). Impact’s PMO coordinates delivery and programme discipline around that channel.",
+      "Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond. Impact’s PMO coordinates delivery and programme discipline around that channel.",
   },
   asOfNote:
     "Management-reported in ZAR; USD headlines at ~16.5 ZAR/USD (July 2026 approx). Pipeline conversion only under NDA diligence packs.",

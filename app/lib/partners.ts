@@ -149,7 +149,7 @@ export const PARTNERS: PartnerProfile[] = [
     role: "National health department · institutional pathways",
     headline: "DoH × Big Five Group",
     summary:
-      "Partnership workspace aligned with South Africa’s Department of Health (health.gov.za) — institutional pathways for Group products into the health system as relationships and programmes mature. Big Five works with the Director General of Health as a strategic institutional relationship (not Impact staff); Impact PMO coordinates delivery.",
+      "Partnership workspace aligned with South Africa’s Department of Health (health.gov.za). Big Five Impact supports the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa, Africa and beyond; Impact PMO coordinates delivery.",
     focus: ["Impact", "Foods", "Access", "Connect", "Leadership"],
     programmes: ["impact", "nsnp", "connect", "leadership"],
     logoSrc: "/partners/department-of-health-logo.jpg",
@@ -160,7 +160,7 @@ export const PARTNERS: PartnerProfile[] = [
       "Official Department of Health website: https://www.health.gov.za/",
       "Logo asset: public/partners/department-of-health-logo.jpg (from SA-Department-of-Health-Logo.jpg).",
       "Strategic institutional relationship with the Director General of Health — a working channel into SA DoH and, over time, counterpart health pathways in Africa; not claimed as closed multi-country awards.",
-      "Impact PMO designs gates, KPIs and field delivery; the DG of Health relationship is not a staff appointment within Big Five Impact.",
+      "Impact PMO designs gates, KPIs and field delivery around health and wellness initiatives supported with the Director General of Health.",
       "This portal is a briefing workspace for authorised partners — not a government site and not an endorsement mark beyond the institutional relationship described on Group surfaces.",
       "Add authorised DoH / provincial health emails to this profile when portal logins are ready.",
     ],
