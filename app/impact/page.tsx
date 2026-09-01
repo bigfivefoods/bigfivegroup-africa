@@ -42,7 +42,7 @@ export default function ImpactPage() {
             that delivers Africa
           </>
         }
-        subtitle="Proudly African for Africa. Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. We aspire to work with the Director General of Health in South Africa to help drive Group products into the Department of Health and related health pathways."
+        subtitle="Proudly African for Africa. Big Five Impact is the programme office of the group — orchestrating multi-pillar delivery across the continent so strategy becomes jobs, meals, markets, and measurable results. We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness in South Africa."
         ctas={[
           { href: "#strategy-deck", label: "Strategic overview deck", primary: true },
           { href: "#health-channel", label: "Health channel" },
@@ -76,15 +76,13 @@ export default function ImpactPage() {
                 </h2>
                 <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-4">
                   {MARKET_TRACTION.healthChannel.detail} Together with the NSNP pathway under Basic
-                  Education, this strengthens multi-department credibility in South Africa and
-                  supports Group product introduction into public health systems as programmes
-                  mature — always with delivery capacity attached.
+                  Education, this strengthens multi-department credibility in South Africa —
+                  always with Group delivery capacity attached.
                 </p>
                 <p className="text-[11px] sm:text-xs text-[#737373] leading-relaxed max-w-3xl">
-                  Framed as an aspiration to work with the Director General of Health in South
-                  Africa and a Group channel coordinated through Impact — not that the DG is part of
-                  Big Five Impact, and not a claim that Department of Health supply awards are
-                  already closed. Request a dated partner brief for diligence.
+                  Framed as support for the Director General of Health in South Africa on health and
+                  wellness initiatives, coordinated through Impact — not that the DG is part of Big
+                  Five Impact. Request a dated partner brief for diligence.
                 </p>
               </div>
             </div>
@@ -156,7 +154,7 @@ export default function ImpactPage() {
             {
               icon: HeartPulse,
               title: "Department of Health channel",
-              desc: "We aspire to work with the Director General of Health in South Africa to help drive Group products into the Department of Health — coordinated through Impact’s PMO.",
+              desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness — coordinated through Impact’s PMO.",
             },
             {
               icon: Map,
@@ -218,7 +216,7 @@ export default function ImpactPage() {
             {
               step: "03",
               title: "Institutional health channel",
-              desc: "We aspire to work with the Director General of Health in South Africa to help drive Group products into the Department of Health as programmes mature — Impact orchestrates delivery.",
+              desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness — Impact orchestrates delivery.",
             },
             {
               step: "04",
@@ -244,7 +242,7 @@ export default function ImpactPage() {
               },
               {
                 title: "Department of Health",
-                desc: "Product pathways into South Africa’s Department of Health — we aspire to work with the Director General of Health in South Africa, with Impact’s PMO discipline coordinating delivery.",
+                desc: "We support the Director General of Health in South Africa with initiatives to accelerate and promote health and wellness, with Impact’s PMO discipline coordinating delivery.",
               },
               {
                 title: "Corporates & CSI",
