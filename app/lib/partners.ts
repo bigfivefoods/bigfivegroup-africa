@@ -278,6 +278,53 @@ export const PARTNERS: PartnerProfile[] = [
       "Primary Group contact: craig@bigfivegroup.africa · A Heart To Help: info@ahearttohelp.co.za",
   },
   {
+    slug: "checkers",
+    name: "Checkers",
+    organisation: "Checkers South Africa",
+    emails: ["craig@bigfivegroup.africa"],
+    role: "Retail · fortified nutrition · feeding partnership",
+    headline: "Checkers does good × Big Five Foods",
+    summary:
+      "Partnership workspace for Checkers South Africa — put fortified Big Five Foods on shelf (Nelson Mandela pack: R45 trade ex. VAT · R67 RRP incl. VAT · healthy Checkers front margin), sell with purpose and/or donate to Restore Africa Foundation and A Heart To Help, with 10% of partnership turnover (Checkers 5% + Big Five Foods 5%) supporting those foundations. Checkers leads the community story.",
+    focus: ["Retail listing", "Mandela pack", "CSI / donate", "Foundations"],
+    programmes: ["nsnp", "connect", "impact"],
+    logoSrc: "/partners/checkers-logo.png",
+    brandColor: "#001C5A",
+    website: "https://www.checkers.co.za/",
+    websiteLabel: "checkers.co.za",
+    notes: [
+      "Open the condensed Checkers deck for a short briefing, or the full deck for deep-dive sessions.",
+      "Same commercial model as SPAR: 1kg porridges & one-pots at R45 ex. VAT / R67 RRP; 400g soya & soups at R18 / R33.50 — VAT-aligned front margin, not manufacturer GP.",
+      "10% model: Checkers 5% of retail sell-through + Big Five Foods 5% of trade → Restore Africa Foundation and A Heart To Help.",
+      "Dual pathways: shelf sales and/or donation POs into the two foundations — Checkers is the face of the good.",
+      "Add authorised Checkers emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "#checkers-partnership-deck-condensed",
+        label: "Checkers condensed briefing",
+        desc: "Short Checkers × Foods briefing for commercial / CSI sessions.",
+      },
+      {
+        href: "#checkers-partnership-deck",
+        label: "Checkers does good — full pitch deck",
+        desc: "Full pitch: Checkers margin, Mandela pack, impact model, RAF · AHTH · SA Harvest delivery.",
+      },
+      {
+        href: "/foods#foods-deck",
+        label: "Foods product deck",
+        desc: "Public Foods strategy deck.",
+      },
+      {
+        href: "/foundation",
+        label: "Big Five Foundation",
+        desc: "Group philanthropic pathways alongside NPO partners.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · Checkers commercial / CSI discussions under NDA as required",
+  },
+  {
     slug: "spar",
     name: "SPAR",
     organisation: "SPAR South Africa",

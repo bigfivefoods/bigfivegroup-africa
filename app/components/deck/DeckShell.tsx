@@ -129,6 +129,22 @@ export const DECK_THEMES = {
     softBg: "bg-emerald-50",
     softText: "text-emerald-950",
   },
+  /** Checkers South Africa — navy (#001C5A) + sky accent */
+  checkers: {
+    name: "checkers",
+    accent: "#001C5A",
+    accentDark: "#00143f",
+    gradientFrom: "#6BBAEF",
+    gradientTo: "#001C5A",
+    frameFrom: "#e8f1fb",
+    frameTo: "#f3f4f6",
+    darkBg: "#000e2e",
+    eyebrowLight: "text-sky-200",
+    eyebrow: "text-blue-900",
+    softBorder: "border-blue-200",
+    softBg: "bg-blue-50",
+    softText: "text-blue-950",
+  },
   orange: {
     name: "orange",
     accent: "#ea580c",

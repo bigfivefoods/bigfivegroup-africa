@@ -34,6 +34,8 @@ import {
 import { track } from "../lib/analytics";
 import SparPartnershipDeck from "../components/SparPartnershipDeck";
 import SparPartnershipDeckCondensed from "../components/SparPartnershipDeckCondensed";
+import CheckersPartnershipDeck from "../components/CheckersPartnershipDeck";
+import CheckersPartnershipDeckCondensed from "../components/CheckersPartnershipDeckCondensed";
 import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
 import BfgPartnerDeck from "../components/BfgPartnerDeck";
 
@@ -426,6 +428,12 @@ export default function PartnerPortalClient({
                     { href: "#spar-partnership-deck", label: "SPAR full deck" },
                   ]
                 : []),
+              ...(partner.slug === "checkers"
+                ? [
+                    { href: "#checkers-partnership-deck-condensed", label: "Checkers condensed" },
+                    { href: "#checkers-partnership-deck", label: "Checkers full deck" },
+                  ]
+                : []),
               ...(partner.slug === "swt-ag"
                 ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG funding deck" }]
                 : []),
@@ -588,6 +596,17 @@ export default function PartnerPortalClient({
           </section>
           <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
             <SparPartnershipDeck />
+          </section>
+        </>
+      )}
+
+      {partner.slug === "checkers" && (
+        <>
+          <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+            <CheckersPartnershipDeckCondensed />
+          </section>
+          <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
+            <CheckersPartnershipDeck />
           </section>
         </>
       )}
