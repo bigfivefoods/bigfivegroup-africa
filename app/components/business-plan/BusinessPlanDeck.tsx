@@ -18,16 +18,16 @@ import { SPAR_PARTNERSHIP } from "../../lib/sparPartnership";
 import { NSNP_PRODUCTS } from "../../lib/foodsProducts";
 import type { BusinessPlan, BusinessPlanChapter } from "../../lib/businessPlans/types";
 import {
-  DOH_PORRIDGE,
-  DOH_VOLUME_BASE,
+  INST_PACK_PRICE_ZAR,
   KZN_NSNP_ADDRESSABLE_100,
   KZN_NSNP_SCALE,
-  KZN_SHARE_PCT_BASE,
-  NON_KZN_SHARE_PCT_BASE,
   NSNP_VOLUME_BASE,
+  buildInstitutionalRevenueTable,
   formatTonnes,
-  type VolumeYearKey,
+  formatZarM,
 } from "../../lib/businessPlans/foodsInstitutionalVolumes";
+
+const INST_REVENUE_TABLE = buildInstitutionalRevenueTable();
 
 /** Same four-category retail one-pager layout as the SPAR Mandela Pack products slide. */
 const FOODS_PRODUCT_RANGES = SPAR_PARTNERSHIP.mandelaPackRanges;
@@ -479,7 +479,7 @@ function ContentsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }
           {
             n: "V",
             id: "institutional-volumes-slide",
-            title: "NSNP & DoH institutional volumes (0–5 years)",
+            title: "Institutional revenue by department (DoE · DoH · Defence · DCS)",
           },
         ]
       : []),
@@ -788,104 +788,97 @@ function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme })
 }
 
 /**
- * Foods institutional volumes one-pager — NSNP menu cadence + 0–5yr share ramps + DoH.
+ * Foods institutional revenue one-pager — years as columns, departments with subtotals.
  */
 function FoodsInstitutionalVolumesSlide({ theme }: { theme: DeckTheme }) {
   const forPrint = useDeckPrintMode();
-  const years: { key: VolumeYearKey; label: string }[] = [
-    { key: "y0", label: "Y0" },
-    { key: "y1", label: "Y1" },
-    { key: "y2", label: "Y2" },
-    { key: "y3", label: "Y3" },
-    { key: "y4", label: "Y4" },
-    { key: "y5", label: "Y5" },
-  ];
+  const T = INST_REVENUE_TABLE;
 
   return (
     <DeckSlideShell theme={theme}>
       <LightSlideBrandChrome slug="foods">
         <div className="flex h-full min-h-0 flex-col overflow-hidden">
           <div className="shrink-0">
-            <DeckEyebrow theme={theme}>INSTITUTIONAL VOLUMES · 0–5 YEARS</DeckEyebrow>
+            <DeckEyebrow theme={theme}>INSTITUTIONAL REVENUE · 0–5 YEARS</DeckEyebrow>
             <h2
               className={`font-semibold tracking-tighter text-black text-balance ${
-                forPrint ? "text-lg mb-1" : "text-xl sm:text-2xl mb-2"
+                forPrint ? "text-base mb-1" : "text-lg sm:text-xl mb-1.5"
               }`}
             >
-              KZN NSNP menu → multi-province → DoH porridge
+              DoE · DoH · Defence · Correctional — list-price revenue
             </h2>
             <p
               className={`text-[#525252] leading-snug max-w-4xl ${
-                forPrint ? "text-[8px] mb-1.5" : "text-[10px] sm:text-xs mb-2"
+                forPrint ? "text-[7px] mb-1" : "text-[9px] sm:text-[10px] mb-1.5"
               }`}
             >
-              <strong className="text-black">~{(KZN_NSNP_SCALE.learners / 1e6).toFixed(1)}m</strong>{" "}
-              KZN learners ·{" "}
-              <strong className="text-black">Porridge 5kg daily</strong> ·{" "}
-              <strong className="text-black">Soya 5kg Mondays</strong> ·{" "}
-              <strong className="text-black">One-pot 5kg Fridays</strong>
+              <strong className="text-black">Porridge R{INST_PACK_PRICE_ZAR.porridge5kg}/5kg</strong>
               {" · "}
-              KZN addressable at 100% share ≈{" "}
-              <strong className="text-black">
-                {formatTonnes(KZN_NSNP_ADDRESSABLE_100.totalTonnes)}/yr
-              </strong>
-              . Base-case share ramps; then other provinces + DoH fortified porridge.
+              <strong className="text-black">Soya R{INST_PACK_PRICE_ZAR.soya5kg}/5kg</strong>
+              {" · "}
+              <strong className="text-black">One-pot R{INST_PACK_PRICE_ZAR.onepot5kg}/5kg</strong>
+              {" · "}~{(KZN_NSNP_SCALE.learners / 1e6).toFixed(1)}m KZN learners · addressable{" "}
+              {formatTonnes(KZN_NSNP_ADDRESSABLE_100.totalTonnes)}/yr · Y5 DoE ≈{" "}
+              <strong className="text-black">{formatZarM(NSNP_VOLUME_BASE.y5.totalRevenue)}</strong>
             </p>
           </div>
 
           <div className="overflow-x-auto min-w-0 flex-1">
             <table
               className={`w-full text-left border-collapse ${
-                forPrint ? "text-[7px]" : "text-[9px] sm:text-[10px]"
+                forPrint ? "text-[6.5px]" : "text-[8px] sm:text-[9px]"
               }`}
             >
               <thead>
                 <tr className="border-b border-black/15" style={{ color: theme.accentDark }}>
-                  <th className="py-1 pr-1.5 font-semibold">Year</th>
-                  <th className="py-1 pr-1.5 font-semibold text-right">KZN %</th>
-                  <th className="py-1 pr-1.5 font-semibold text-right">Other %</th>
-                  <th className="py-1 pr-1.5 font-semibold text-right">Porridge</th>
-                  <th className="py-1 pr-1.5 font-semibold text-right">Soya</th>
-                  <th className="py-1 pr-1.5 font-semibold text-right">One-pot</th>
-                  <th className="py-1 pr-1.5 font-semibold text-right">NSNP Σ</th>
-                  <th className="py-1 pr-1.5 font-semibold text-right">DoH %</th>
-                  <th className="py-1 font-semibold text-right">Combined</th>
+                  {T.headers.map((h, i) => (
+                    <th
+                      key={h}
+                      className={`py-0.5 font-semibold ${i === 0 ? "pr-1.5 text-left" : "px-0.5 text-right"}`}
+                    >
+                      {h}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                {years.map(({ key, label }) => {
-                  const v = NSNP_VOLUME_BASE[key];
-                  const doh = DOH_VOLUME_BASE[key];
+                {T.rows.map((r) => {
+                  const isHeader = r.role === "header";
+                  const isSub = r.role === "subtotal";
+                  const isTotal = r.role === "total";
                   return (
-                    <tr key={key} className="border-b border-black/8 text-[#404040]">
-                      <td className="py-1 pr-1.5 font-semibold text-black">{label}</td>
-                      <td className="py-1 pr-1.5 text-right tabular-nums">
-                        {KZN_SHARE_PCT_BASE[key]}%
-                      </td>
-                      <td className="py-1 pr-1.5 text-right tabular-nums">
-                        {NON_KZN_SHARE_PCT_BASE[key]}%
-                      </td>
-                      <td className="py-1 pr-1.5 text-right tabular-nums">
-                        {formatTonnes(v.porridge)}
-                      </td>
-                      <td className="py-1 pr-1.5 text-right tabular-nums">
-                        {formatTonnes(v.soya)}
-                      </td>
-                      <td className="py-1 pr-1.5 text-right tabular-nums">
-                        {formatTonnes(v.onepot)}
-                      </td>
+                    <tr
+                      key={r.id}
+                      className={`border-b border-black/8 ${
+                        isHeader
+                          ? "bg-amber-50/80"
+                          : isSub
+                            ? "bg-[#f5f5f5]"
+                            : isTotal
+                              ? "bg-amber-100/70"
+                              : ""
+                      }`}
+                    >
                       <td
-                        className="py-1 pr-1.5 text-right tabular-nums font-semibold"
-                        style={{ color: theme.accentDark }}
+                        className={`py-0.5 pr-1.5 leading-tight ${
+                          isHeader || isSub || isTotal
+                            ? "font-semibold text-black"
+                            : "text-[#404040]"
+                        }`}
                       >
-                        {formatTonnes(v.total)}
+                        {r.label}
                       </td>
-                      <td className="py-1 pr-1.5 text-right tabular-nums">
-                        {DOH_PORRIDGE.sharePct[key]}%
-                      </td>
-                      <td className="py-1 text-right tabular-nums font-semibold text-black">
-                        {formatTonnes(v.total + doh)}
-                      </td>
+                      {r.cells.map((c, i) => (
+                        <td
+                          key={`${r.id}-${i}`}
+                          className={`py-0.5 px-0.5 text-right tabular-nums leading-tight ${
+                            isSub || isTotal ? "font-semibold text-black" : "text-[#404040]"
+                          }`}
+                          style={isTotal ? { color: theme.accentDark } : undefined}
+                        >
+                          {isHeader ? "" : c}
+                        </td>
+                      ))}
                     </tr>
                   );
                 })}
@@ -894,13 +887,11 @@ function FoodsInstitutionalVolumesSlide({ theme }: { theme: DeckTheme }) {
           </div>
 
           <p
-            className={`mt-1.5 shrink-0 text-[#737373] leading-snug ${
-              forPrint ? "text-[7px]" : "text-[8px] sm:text-[9px]"
+            className={`mt-1 shrink-0 text-[#737373] leading-snug ${
+              forPrint ? "text-[6.5px]" : "text-[7px] sm:text-[8px]"
             }`}
           >
-            Illustrative dry tonnes — not contracted offtake. Portion grams &amp; school-day calendar
-            are planning assumptions. DoH = fortified porridge pathway share of an illustrative
-            addressable (not a closed award). Confirm under NDA.
+            {T.footnote}
           </p>
         </div>
       </LightSlideBrandChrome>

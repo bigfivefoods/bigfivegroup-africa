@@ -91,28 +91,54 @@ function BlockView({ block }: { block: BusinessPlanBlock }) {
           <table className="w-full min-w-[28rem] text-left text-xs sm:text-sm">
             <thead>
               <tr className="border-b border-black/10 text-[10px] tracking-[1px] text-[#737373]">
-                {block.table.headers.map((h) => (
-                  <th key={h} className="py-2.5 px-3 sm:px-4 font-semibold">
+                {block.table.headers.map((h, hi) => (
+                  <th
+                    key={h}
+                    className={`py-2.5 px-3 sm:px-4 font-semibold ${hi > 0 ? "text-right" : ""}`}
+                  >
                     {h}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {block.table.rows.map((row, i) => (
-                <tr key={i} className="border-t border-black/5 align-top">
-                  {row.cells.map((c, j) => (
-                    <td
-                      key={j}
-                      className={`py-2.5 px-3 sm:px-4 text-[#404040] leading-relaxed ${
-                        j === 0 ? "font-semibold text-black" : ""
-                      }`}
-                    >
-                      {c}
-                    </td>
-                  ))}
-                </tr>
-              ))}
+              {block.table.rows.map((row, i) => {
+                const label = row.cells[0] ?? "";
+                const isDeptHeader =
+                  !label.startsWith(" ") &&
+                  !label.startsWith("Subtotal") &&
+                  !label.startsWith("Grand total") &&
+                  row.cells.slice(1).every((c) => !c);
+                const isSubtotal = label.startsWith("Subtotal");
+                const isGrand = label.startsWith("Grand total");
+                return (
+                  <tr
+                    key={i}
+                    className={`border-t border-black/5 align-top ${
+                      isDeptHeader
+                        ? "bg-amber-50/70"
+                        : isSubtotal
+                          ? "bg-[#f5f5f5]"
+                          : isGrand
+                            ? "bg-amber-100/60"
+                            : ""
+                    }`}
+                  >
+                    {row.cells.map((c, j) => (
+                      <td
+                        key={j}
+                        className={`py-2.5 px-3 sm:px-4 leading-relaxed ${
+                          j === 0 || isSubtotal || isGrand || isDeptHeader
+                            ? "font-semibold text-black"
+                            : "text-[#404040]"
+                        } ${j > 0 ? "text-right tabular-nums" : ""}`}
+                      >
+                        {isDeptHeader && j > 0 ? "" : c}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
           {block.table.footnote ? (

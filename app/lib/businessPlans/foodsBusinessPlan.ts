@@ -11,18 +11,23 @@ import { NSNP, NSNP_CASE } from "../nsnp";
 import { SOFI } from "../sofi";
 import type { BusinessPlan } from "./types";
 import {
+  CORRECTIONAL_SCALE,
+  DEFENCE_SCALE,
   DOH_PORRIDGE,
-  DOH_VOLUME_BASE,
+  INST_PACK_PRICE_ZAR,
   INSTITUTIONAL_VOLUME_DISCLAIMER,
   KZN_NSNP_ADDRESSABLE_100,
   KZN_NSNP_SCALE,
   KZN_SHARE_PCT_BASE,
   NON_KZN_SHARE_PCT_BASE,
-  NSNP_VOLUME_BASE,
+  buildInstitutionalRevenueTable,
   formatPacks,
   formatTonnes,
-  type VolumeYearKey,
+  formatZarM,
+  NSNP_VOLUME_BASE,
 } from "./foodsInstitutionalVolumes";
+
+const INST_REVENUE_TABLE = buildInstitutionalRevenueTable();
 
 const FX = 16.5; // approx mid-market ZAR/USD for headline conversion
 
@@ -45,7 +50,7 @@ export const foodsBusinessPlan: BusinessPlan = {
     fullTitle: "Big Five Foods Business Plan",
     subtitle:
       "Fortified African staples at institutional and retail scale — from brand establishment to Howick manufacturing, South Africa and continental corridors",
-    version: "1.1",
+    version: "1.2",
     asOf: "September 2026",
     classification: "PRIVATE · INVESTOR DILIGENCE · CONFIDENTIAL",
     pageTarget: "12–18 pages",
@@ -329,53 +334,55 @@ export const foodsBusinessPlan: BusinessPlan = {
     {
       n: "06",
       id: "institutional-volumes",
-      title: "Institutional volumes — NSNP & Department of Health (0–5 years)",
-      eyebrow: "KZN MENU · MULTI-PROVINCE · DoH PORRIDGE",
+      title: "Institutional volumes & revenue — DoE, DoH, Defence & Correctional (0–5 years)",
+      eyebrow: "LIST PRICES · DEPARTMENT MIX · YEAR COLUMNS",
       blocks: [
         {
           type: "lead",
-          text: "Big Five Foods’ institutional engine starts in KwaZulu-Natal NSNP: 5kg enriched porridge every school day, 5kg beef soya mince on Mondays, and 5kg one-pot mix on Fridays — then expands into other South African provinces and into Department of Health fortified-porridge pathways as contract share grows.",
+          text: "Big Five Foods’ institutional engine starts in KwaZulu-Natal NSNP (DoE): 5kg enriched porridge every school day @ R90, 5kg beef soya mince on Mondays @ R150, and 5kg one-pot on Fridays @ R200 — then expands into other provinces and adjacent departments (Health, Defence, Correctional Services) as contract share grows.",
         },
         {
           type: "paragraph",
           text:
             KZN_NSNP_SCALE.sourceNote +
-            " National NSNP reaches ~9.8 million learners across provinces (DBE/PMG breakdown); KZN is the beachhead.",
+            " National NSNP reaches ~9.8 million learners across provinces (DBE/PMG breakdown); KZN is the beachhead. List prices below are management institutional prices for revenue modelling.",
         },
         {
           type: "stats",
           items: [
             {
-              value: `~${(KZN_NSNP_SCALE.learners / 1_000_000).toFixed(1)}m`,
-              label: "KZN NSNP learners (programme scale)",
+              value: `R${INST_PACK_PRICE_ZAR.porridge5kg}`,
+              label: "Porridge 5kg list",
+              note: "DoE NSNP · DoH · other depts",
             },
             {
-              value: KZN_NSNP_SCALE.schools.toLocaleString("en-ZA"),
-              label: "KZN NSNP schools (approx.)",
+              value: `R${INST_PACK_PRICE_ZAR.soya5kg}`,
+              label: "Soya mince 5kg list",
+              note: "NSNP Mondays · institutional",
             },
             {
-              value: formatTonnes(KZN_NSNP_ADDRESSABLE_100.totalTonnes),
-              label: "KZN addressable · 100% menu share",
-              note: "Porridge + soya + one-pot tonnes/year",
+              value: `R${INST_PACK_PRICE_ZAR.onepot5kg}`,
+              label: "One-pot 5kg list",
+              note: "NSNP Fridays · institutional",
             },
             {
-              value: "DoH",
-              label: "Fortified porridge pathway",
-              note: "Illustrative share ramp · not a closed award",
+              value: formatZarM(NSNP_VOLUME_BASE.y5.totalRevenue),
+              label: "DoE NSNP revenue · Y5 base",
+              note: "Illustrative at list prices",
             },
           ],
         },
         {
           type: "table",
           table: {
-            caption: "KZN NSNP menu pattern (institutional 5kg SKUs)",
-            headers: ["SKU", "Cadence", "Days / year", "Planning portion", "Role"],
+            caption: "KZN NSNP menu pattern & list prices (institutional 5kg SKUs)",
+            headers: ["SKU", "Cadence", "List price", "Planning portion", "Role"],
             rows: [
               {
                 cells: [
                   "Enriched Porridge 5kg",
                   "Daily",
-                  String(KZN_NSNP_SCALE.schoolDaysPerYear),
+                  `R${INST_PACK_PRICE_ZAR.porridge5kg}`,
                   "40g dry / learner / day",
                   "Staple fortification every school day",
                 ],
@@ -384,7 +391,7 @@ export const foodsBusinessPlan: BusinessPlan = {
                 cells: [
                   "Beef Soya Mince 5kg",
                   "Mondays",
-                  String(KZN_NSNP_SCALE.mondaysPerYear),
+                  `R${INST_PACK_PRICE_ZAR.soya5kg}`,
                   "30g dry / learner / Monday",
                   "Protein-forward weekly menu",
                 ],
@@ -393,7 +400,7 @@ export const foodsBusinessPlan: BusinessPlan = {
                 cells: [
                   "One-Pot mix 5kg",
                   "Fridays",
-                  String(KZN_NSNP_SCALE.fridaysPerYear),
+                  `R${INST_PACK_PRICE_ZAR.onepot5kg}`,
                   "50g dry / learner / Friday",
                   "Complete institutional meal format",
                 ],
@@ -404,140 +411,40 @@ export const foodsBusinessPlan: BusinessPlan = {
           },
         },
         {
-          type: "table",
-          table: {
-            caption: "KZN addressable volume at 100% share of stated menu (tonnes / year)",
-            headers: ["SKU", "Tonnes / year", "5kg packs / year (approx.)"],
-            rows: [
-              {
-                cells: [
-                  "Porridge (daily)",
-                  formatTonnes(KZN_NSNP_ADDRESSABLE_100.porridgeTonnes),
-                  formatPacks((KZN_NSNP_ADDRESSABLE_100.porridgeTonnes * 1000) / 5),
-                ],
-              },
-              {
-                cells: [
-                  "Soya mince (Mondays)",
-                  formatTonnes(KZN_NSNP_ADDRESSABLE_100.soyaTonnes),
-                  formatPacks((KZN_NSNP_ADDRESSABLE_100.soyaTonnes * 1000) / 5),
-                ],
-              },
-              {
-                cells: [
-                  "One-pot (Fridays)",
-                  formatTonnes(KZN_NSNP_ADDRESSABLE_100.onepotTonnes),
-                  formatPacks((KZN_NSNP_ADDRESSABLE_100.onepotTonnes * 1000) / 5),
-                ],
-              },
-              {
-                cells: [
-                  "KZN total addressable",
-                  formatTonnes(KZN_NSNP_ADDRESSABLE_100.totalTonnes),
-                  formatPacks((KZN_NSNP_ADDRESSABLE_100.totalTonnes * 1000) / 5),
-                ],
-              },
-            ],
-            footnote:
-              "100% share is a sizing ceiling for diligence — not a Year-5 claim. Base-case ramps below assume increasing contract / call-off share.",
-          },
-        },
-        {
           type: "paragraph",
-          text: `Base-case market share of KZN addressable: Y0 ${KZN_SHARE_PCT_BASE.y0}% → Y1 ${KZN_SHARE_PCT_BASE.y1}% → Y2 ${KZN_SHARE_PCT_BASE.y2}% → Y3 ${KZN_SHARE_PCT_BASE.y3}% → Y4 ${KZN_SHARE_PCT_BASE.y4}% → Y5 ${KZN_SHARE_PCT_BASE.y5}%. From Y2, incremental share of non-KZN national NSNP learners (~7.3m) ramps Y2 ${NON_KZN_SHARE_PCT_BASE.y2}% → Y5 ${NON_KZN_SHARE_PCT_BASE.y5}% as other provinces adopt the same SKU cadence.`,
+          text: `Base-case DoE (NSNP) share of KZN addressable (~${formatTonnes(KZN_NSNP_ADDRESSABLE_100.totalTonnes)}/yr at 100%): Y0 ${KZN_SHARE_PCT_BASE.y0}% → Y5 ${KZN_SHARE_PCT_BASE.y5}%. Other provinces from Y2 (${NON_KZN_SHARE_PCT_BASE.y2}% → Y5 ${NON_KZN_SHARE_PCT_BASE.y5}%). DoH, Defence (~${DEFENCE_SCALE.beneficiaries.toLocaleString("en-ZA")} beneficiaries planning base) and Correctional Services (~${CORRECTIONAL_SCALE.beneficiaries.toLocaleString("en-ZA")}) ramp from Y1 with increasing contract share.`,
         },
         {
           type: "table",
           table: {
-            caption: "NSNP volume plan (base case) — tonnes / year by SKU",
-            headers: [
-              "Year",
-              "KZN share",
-              "Other provinces share",
-              "Porridge",
-              "Soya (Mon)",
-              "One-pot (Fri)",
-              "NSNP total",
-            ],
-            rows: (
-              [
-                ["y0", "Y0 · Landing"],
-                ["y1", "Y1"],
-                ["y2", "Y2"],
-                ["y3", "Y3"],
-                ["y4", "Y4"],
-                ["y5", "Y5"],
-              ] as const
-            ).map(([key, label]) => ({
-              cells: [
-                label,
-                `${KZN_SHARE_PCT_BASE[key as VolumeYearKey]}%`,
-                `${NON_KZN_SHARE_PCT_BASE[key as VolumeYearKey]}%`,
-                formatTonnes(NSNP_VOLUME_BASE[key as VolumeYearKey].porridge),
-                formatTonnes(NSNP_VOLUME_BASE[key as VolumeYearKey].soya),
-                formatTonnes(NSNP_VOLUME_BASE[key as VolumeYearKey].onepot),
-                formatTonnes(NSNP_VOLUME_BASE[key as VolumeYearKey].total),
-              ],
+            caption:
+              "Institutional revenue plan (base case) — years as columns · grouped by department",
+            headers: INST_REVENUE_TABLE.headers,
+            rows: INST_REVENUE_TABLE.rows.map((r) => ({
+              cells: [r.label, ...r.cells],
             })),
-            footnote:
-              "Tonnes are dry product. Pack counts ≈ tonnes × 200 (5kg). Multi-province share applies the same daily / Monday / Friday cadence to non-KZN learners.",
+            footnote: INST_REVENUE_TABLE.footnote,
           },
         },
         {
           type: "callout",
           tone: "emerald",
-          title: "Department of Health — fortified porridge",
-          body: DOH_PORRIDGE.detail,
-        },
-        {
-          type: "table",
-          table: {
-            caption: "DoH fortified porridge + combined institutional tonnes (base case)",
-            headers: [
-              "Year",
-              "DoH porridge share",
-              "DoH porridge tonnes",
-              "NSNP total tonnes",
-              "Combined institutional",
-            ],
-            rows: (
-              [
-                ["y0", "Y0"],
-                ["y1", "Y1"],
-                ["y2", "Y2"],
-                ["y3", "Y3"],
-                ["y4", "Y4"],
-                ["y5", "Y5"],
-              ] as const
-            ).map(([key, label]) => ({
-              cells: [
-                label,
-                `${DOH_PORRIDGE.sharePct[key as VolumeYearKey]}%`,
-                formatTonnes(DOH_VOLUME_BASE[key as VolumeYearKey]),
-                formatTonnes(NSNP_VOLUME_BASE[key as VolumeYearKey].total),
-                formatTonnes(
-                  NSNP_VOLUME_BASE[key as VolumeYearKey].total +
-                    DOH_VOLUME_BASE[key as VolumeYearKey]
-                ),
-              ],
-            })),
-            footnote:
-              "DoH share is of an illustrative Y5 addressable meal-day base (fortified porridge), not a published DoH headcount. Combined column = NSNP + DoH porridge only (excludes retail).",
-          },
+          title: "Department mix beyond education",
+          body: `${DOH_PORRIDGE.detail} ${DEFENCE_SCALE.note} ${CORRECTIONAL_SCALE.note} Same 5kg list prices apply across departments unless a tender specifies otherwise.`,
         },
         {
           type: "bullets",
           items: [
-            "Y0–Y1: land and deepen KZN call-offs on the three 5kg NSNP SKUs — porridge every school day, soya Mondays, one-pot Fridays.",
-            "Y2–Y3: replicate menu cadence into additional provinces; Howick packing absorbs institutional tonnes; DoH porridge pilots convert to recurring offtake.",
-            "Y4–Y5: material multi-province NSNP share plus growing DoH porridge penetration — capacity and working capital must track combined institutional tonnes.",
-            "Revenue realisation depends on tender prices, delivery schedules and debtor terms — volume plan is the capacity and share thesis; ZAR build-up under NDA.",
+            "Y0–Y1: land and deepen KZN DoE/NSNP call-offs — porridge @ R90 daily, soya @ R150 Mondays, one-pot @ R200 Fridays; open DoH porridge and first Defence / Correctional pilots.",
+            "Y2–Y3: multi-province NSNP share; Howick packing absorbs tonnes; DoH / Defence / Correctional revenue becomes material beside education.",
+            "Y4–Y5: diversified institutional book — DoE remains the largest line; DoH, Defence and Correctional Services compound with rising contract share.",
+            `Y5 DoE NSNP illustrative list-price revenue ≈ ${formatZarM(NSNP_VOLUME_BASE.y5.totalRevenue)} in the base case (before other departments).`,
           ],
         },
         {
           type: "callout",
           tone: "slate",
-          title: "Honesty on institutional volumes",
+          title: "Honesty on institutional volumes & revenue",
           body: INSTITUTIONAL_VOLUME_DISCLAIMER,
         },
       ],
