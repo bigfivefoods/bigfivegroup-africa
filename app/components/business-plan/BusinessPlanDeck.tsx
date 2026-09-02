@@ -17,6 +17,17 @@ import { pageBrand } from "../../lib/pageBrand";
 import { SPAR_PARTNERSHIP } from "../../lib/sparPartnership";
 import { NSNP_PRODUCTS } from "../../lib/foodsProducts";
 import type { BusinessPlan, BusinessPlanChapter } from "../../lib/businessPlans/types";
+import {
+  DOH_PORRIDGE,
+  DOH_VOLUME_BASE,
+  KZN_NSNP_ADDRESSABLE_100,
+  KZN_NSNP_SCALE,
+  KZN_SHARE_PCT_BASE,
+  NON_KZN_SHARE_PCT_BASE,
+  NSNP_VOLUME_BASE,
+  formatTonnes,
+  type VolumeYearKey,
+} from "../../lib/businessPlans/foodsInstitutionalVolumes";
 
 /** Same four-category retail one-pager layout as the SPAR Mandela Pack products slide. */
 const FOODS_PRODUCT_RANGES = SPAR_PARTNERSHIP.mandelaPackRanges;
@@ -463,7 +474,14 @@ function ContentsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }
   const forPrint = useDeckPrintMode();
   const agenda = [
     ...(plan.meta.slug === "foods"
-      ? [{ n: "P", id: "products", title: "Product range one-pager (four categories)" }]
+      ? [
+          { n: "P", id: "products", title: "Product range one-pager (four categories)" },
+          {
+            n: "V",
+            id: "institutional-volumes-slide",
+            title: "NSNP & DoH institutional volumes (0–5 years)",
+          },
+        ]
       : []),
     ...plan.chapters.map((ch) => ({ n: ch.n, id: ch.id, title: ch.title })),
   ];
@@ -770,17 +788,143 @@ function ClosingSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme })
 }
 
 /**
+ * Foods institutional volumes one-pager — NSNP menu cadence + 0–5yr share ramps + DoH.
+ */
+function FoodsInstitutionalVolumesSlide({ theme }: { theme: DeckTheme }) {
+  const forPrint = useDeckPrintMode();
+  const years: { key: VolumeYearKey; label: string }[] = [
+    { key: "y0", label: "Y0" },
+    { key: "y1", label: "Y1" },
+    { key: "y2", label: "Y2" },
+    { key: "y3", label: "Y3" },
+    { key: "y4", label: "Y4" },
+    { key: "y5", label: "Y5" },
+  ];
+
+  return (
+    <DeckSlideShell theme={theme}>
+      <LightSlideBrandChrome slug="foods">
+        <div className="flex h-full min-h-0 flex-col overflow-hidden">
+          <div className="shrink-0">
+            <DeckEyebrow theme={theme}>INSTITUTIONAL VOLUMES · 0–5 YEARS</DeckEyebrow>
+            <h2
+              className={`font-semibold tracking-tighter text-black text-balance ${
+                forPrint ? "text-lg mb-1" : "text-xl sm:text-2xl mb-2"
+              }`}
+            >
+              KZN NSNP menu → multi-province → DoH porridge
+            </h2>
+            <p
+              className={`text-[#525252] leading-snug max-w-4xl ${
+                forPrint ? "text-[8px] mb-1.5" : "text-[10px] sm:text-xs mb-2"
+              }`}
+            >
+              <strong className="text-black">~{(KZN_NSNP_SCALE.learners / 1e6).toFixed(1)}m</strong>{" "}
+              KZN learners ·{" "}
+              <strong className="text-black">Porridge 5kg daily</strong> ·{" "}
+              <strong className="text-black">Soya 5kg Mondays</strong> ·{" "}
+              <strong className="text-black">One-pot 5kg Fridays</strong>
+              {" · "}
+              KZN addressable at 100% share ≈{" "}
+              <strong className="text-black">
+                {formatTonnes(KZN_NSNP_ADDRESSABLE_100.totalTonnes)}/yr
+              </strong>
+              . Base-case share ramps; then other provinces + DoH fortified porridge.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto min-w-0 flex-1">
+            <table
+              className={`w-full text-left border-collapse ${
+                forPrint ? "text-[7px]" : "text-[9px] sm:text-[10px]"
+              }`}
+            >
+              <thead>
+                <tr className="border-b border-black/15" style={{ color: theme.accentDark }}>
+                  <th className="py-1 pr-1.5 font-semibold">Year</th>
+                  <th className="py-1 pr-1.5 font-semibold text-right">KZN %</th>
+                  <th className="py-1 pr-1.5 font-semibold text-right">Other %</th>
+                  <th className="py-1 pr-1.5 font-semibold text-right">Porridge</th>
+                  <th className="py-1 pr-1.5 font-semibold text-right">Soya</th>
+                  <th className="py-1 pr-1.5 font-semibold text-right">One-pot</th>
+                  <th className="py-1 pr-1.5 font-semibold text-right">NSNP Σ</th>
+                  <th className="py-1 pr-1.5 font-semibold text-right">DoH %</th>
+                  <th className="py-1 font-semibold text-right">Combined</th>
+                </tr>
+              </thead>
+              <tbody>
+                {years.map(({ key, label }) => {
+                  const v = NSNP_VOLUME_BASE[key];
+                  const doh = DOH_VOLUME_BASE[key];
+                  return (
+                    <tr key={key} className="border-b border-black/8 text-[#404040]">
+                      <td className="py-1 pr-1.5 font-semibold text-black">{label}</td>
+                      <td className="py-1 pr-1.5 text-right tabular-nums">
+                        {KZN_SHARE_PCT_BASE[key]}%
+                      </td>
+                      <td className="py-1 pr-1.5 text-right tabular-nums">
+                        {NON_KZN_SHARE_PCT_BASE[key]}%
+                      </td>
+                      <td className="py-1 pr-1.5 text-right tabular-nums">
+                        {formatTonnes(v.porridge)}
+                      </td>
+                      <td className="py-1 pr-1.5 text-right tabular-nums">
+                        {formatTonnes(v.soya)}
+                      </td>
+                      <td className="py-1 pr-1.5 text-right tabular-nums">
+                        {formatTonnes(v.onepot)}
+                      </td>
+                      <td
+                        className="py-1 pr-1.5 text-right tabular-nums font-semibold"
+                        style={{ color: theme.accentDark }}
+                      >
+                        {formatTonnes(v.total)}
+                      </td>
+                      <td className="py-1 pr-1.5 text-right tabular-nums">
+                        {DOH_PORRIDGE.sharePct[key]}%
+                      </td>
+                      <td className="py-1 text-right tabular-nums font-semibold text-black">
+                        {formatTonnes(v.total + doh)}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <p
+            className={`mt-1.5 shrink-0 text-[#737373] leading-snug ${
+              forPrint ? "text-[7px]" : "text-[8px] sm:text-[9px]"
+            }`}
+          >
+            Illustrative dry tonnes — not contracted offtake. Portion grams &amp; school-day calendar
+            are planning assumptions. DoH = fortified porridge pathway share of an illustrative
+            addressable (not a closed award). Confirm under NDA.
+          </p>
+        </div>
+      </LightSlideBrandChrome>
+    </DeckSlideShell>
+  );
+}
+
+/**
  * Slide index map:
  * 0 cover · 1 highlights · 2 contents
- * [Foods only] 3 products one-pager
+ * [Foods only] 3 products · 4 institutional volumes
  * then chapters · last closing
  */
 function hasProductsSlide(plan: BusinessPlan): boolean {
   return plan.meta.slug === "foods";
 }
 
+function hasInstitutionalVolumesSlide(plan: BusinessPlan): boolean {
+  return plan.meta.slug === "foods";
+}
+
 function slideCount(plan: BusinessPlan): number {
-  const extra = hasProductsSlide(plan) ? 1 : 0;
+  const extra =
+    (hasProductsSlide(plan) ? 1 : 0) + (hasInstitutionalVolumesSlide(plan) ? 1 : 0);
   return 3 + extra + plan.chapters.length + 1;
 }
 
@@ -789,6 +933,7 @@ export default function BusinessPlanDeck({ plan }: { plan: BusinessPlan }) {
   const total = slideCount(plan);
   const slug = plan.meta.slug;
   const productsSlide = hasProductsSlide(plan);
+  const volumesSlide = hasInstitutionalVolumesSlide(plan);
 
   const renderSlide = useCallback(
     (index: number) => {
@@ -798,6 +943,10 @@ export default function BusinessPlanDeck({ plan }: { plan: BusinessPlan }) {
       let cursor = 3;
       if (productsSlide) {
         if (index === cursor) return <FoodsProductsSlide theme={theme} />;
+        cursor += 1;
+      }
+      if (volumesSlide) {
+        if (index === cursor) return <FoodsInstitutionalVolumesSlide theme={theme} />;
         cursor += 1;
       }
       const chapterIndex = index - cursor;
@@ -813,7 +962,7 @@ export default function BusinessPlanDeck({ plan }: { plan: BusinessPlan }) {
       }
       return <ClosingSlide plan={plan} theme={theme} />;
     },
-    [plan, theme, productsSlide]
+    [plan, theme, productsSlide, volumesSlide]
   );
 
   return (
