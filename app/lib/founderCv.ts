@@ -1,0 +1,431 @@
+/**
+ * Founder CV — Dr. Craig R. Muller (investor portal).
+ * Polished professional profile for diligence; includes LinkedIn / ResearchGate.
+ */
+
+export const FOUNDER_CV = {
+  name: "Dr. Craig R. Muller",
+  fullName: "Dr. Craig Ross Muller",
+  title: "Founder & Group CEO",
+  organisation: "Big Five Group Africa",
+  tagline:
+    "DBA-credentialed executive building Feed · Educate · Empower platforms across Africa — fortified nutrition, measurable leadership development, and ethical digital commerce.",
+  photo: {
+    src: "/craig-muller.png",
+    alt: "Dr. Craig R. Muller, Founder & Group CEO of Big Five Group Africa",
+  },
+  personal: {
+    email: "craig@super-cube.com",
+    emailAlt: "craig@bigfivegroup.africa",
+    mobile: "+27 (0) 82 581 4215",
+    mobileE164: "+27825814215",
+    idNumber: "800101 5069 081",
+    location: "Durban, KwaZulu-Natal, South Africa",
+    workAuthorisation: "South Africa",
+  },
+  links: [
+    {
+      label: "LinkedIn",
+      href: "https://za.linkedin.com/in/craigmuller",
+    },
+    {
+      label: "ResearchGate",
+      href: "https://www.researchgate.net/profile/Craig-Muller",
+    },
+    {
+      label: "Big Five Group",
+      href: "https://bigfivegroup.africa",
+    },
+    {
+      label: "Super-Cube®",
+      href: "https://www.super-cube.me",
+    },
+    {
+      label: "SupplierAdvisor®",
+      href: "https://supplieradvisor.com",
+    },
+  ],
+  profile: [
+    "Doctor of Business Administration (DBA) with a research focus on leadership skills development, and more than two decades of blue-chip experience across FMCG operations, global supply chains, and top-tier management consulting (Accenture, Pcubed London — Aston Martin, Merrill Lynch / Bank of America, VISA, RBS).",
+    "Founder & Group CEO of Big Five Group Africa (bigfivegroup.africa) — building an integrated Feed · Educate · Empower ecosystem: Big Five Foods™ (fortified nutrition and institutional programmes), Super-Cube® leadership development, and SupplierAdvisor® ethical digital commerce.",
+    "Creator of the Super-Cube® leadership model — empirically validated in an African FMCG business-network (UKZN doctoral research; peer-reviewed in SAJEMS). Measured average leadership-capacity gains of +32.2% across six human-centric constructs.",
+    "Track record of turning around and scaling operations: ±R140m net-profit improvement at Imana Foods; R17.5m annualised cost-reduction programme at Petrow; multi-country cold-chain leadership at Merlog; £500m product-creation system work at Aston Martin.",
+    "Committed to ESG / SDG outcomes — accelerating leadership capability in supply chains to improve society, business, and the natural environment. YPO public speaking, academic publishing, United Nations volunteering, and continuous personal development.",
+  ],
+  education: [
+    {
+      award: "D.B.A.",
+      subject: "Doctor of Business Administration — Leadership skills development",
+      institution: "University of KwaZulu-Natal",
+      country: "South Africa",
+      year: "2021",
+      note: "Thesis: A leadership skills development model for the Kwaden Group — case study of an African FMCG business-network (Super-Cube®).",
+    },
+    {
+      award: "M.B.A.",
+      subject: "Master of Business Administration",
+      institution: "University of KwaZulu-Natal",
+      country: "South Africa",
+      year: "2006",
+      note: "Dissertation on sub-Saharan vendor reliability — distinction.",
+    },
+    {
+      award: "P.D.M.",
+      subject: "Postgraduate Diploma in Management (Advanced Management)",
+      institution: "University of KwaZulu-Natal",
+      country: "South Africa",
+      year: "2004",
+    },
+    {
+      award: "B.Comm",
+      subject: "Supply Chain, Human Resources & Economics",
+      institution: "University of Natal",
+      country: "South Africa",
+      year: "2002",
+    },
+  ],
+  certifications: [
+    {
+      name: "Project Management Professional (PMP)",
+      institute: "PMI",
+      year: "2009",
+    },
+    {
+      name: "Managing Successful Programmes (MSP)",
+      institute: "OGC",
+      year: "2008",
+    },
+    {
+      name: "PRINCE2",
+      institute: "OGC",
+      year: "2008",
+    },
+    {
+      name: "Microsoft Office SharePoint Server (MCP)",
+      institute: "Microsoft",
+      year: "2008",
+    },
+    {
+      name: "Enterprise Project Management — EPM (MCP)",
+      institute: "Microsoft",
+      year: "2008",
+    },
+    {
+      name: "Lean Six Sigma Black Belt",
+      institute: "Acuity Institute",
+      year: "2007",
+    },
+  ],
+  publications: [
+    {
+      title:
+        "A proposed leadership skills development model for African FMCG business-networks: Super-Cube®",
+      venue: "South African Journal of Economic and Management Sciences (SAJEMS)",
+      year: "2022",
+      href: "https://journals.co.za/doi/10.4102/sajems.v25i1.4303",
+    },
+    {
+      title:
+        "A leadership skills development model for the Kwaden Group: a case study of an African FMCG business-network",
+      venue: "14th International Business Conference; Journal of Contemporary Management",
+      year: "2021–2022",
+      href: "https://www.researchgate.net/profile/Craig-Muller",
+    },
+  ],
+  careerSummary: [
+    {
+      years: "2025 – Present",
+      org: "Big Five Group Africa",
+      role: "Founder & Group CEO",
+      industry: "Holding · Foods · Leadership · Digital",
+      country: "South Africa / Africa",
+    },
+    {
+      years: "Oct 2023 – Present",
+      org: "Merlog Foods",
+      role: "Operations Executive",
+      industry: "FMCG · Cold chain",
+      country: "South Africa",
+    },
+    {
+      years: "Feb – Oct 2023",
+      org: "Petrow Food Ingredients",
+      role: "Chief Operating Officer",
+      industry: "FMCG",
+      country: "South Africa",
+    },
+    {
+      years: "2014 – 2023",
+      org: "Imana Foods (Kwaden Group)",
+      role: "Supply Chain Executive / Acting COO",
+      industry: "FMCG",
+      country: "South Africa",
+    },
+    {
+      years: "2011 – 2014",
+      org: "Varsity College",
+      role: "Lecturer — Supply Chain (part-time evenings)",
+      industry: "Higher education",
+      country: "South Africa",
+    },
+    {
+      years: "2010 – 2014",
+      org: "Barrows Design & Manufacture (WPP)",
+      role: "Managing Director (final 1.5 yrs); Group Commercial Manager",
+      industry: "Retail marketing",
+      country: "South Africa / Global",
+    },
+    {
+      years: "2009 – 2010",
+      org: "Accenture",
+      role: "Management Consultant — Strategy, Process & Innovation",
+      industry: "Professional services",
+      country: "South Africa",
+    },
+    {
+      years: "2007 – 2009",
+      org: "Pcubed (Programme Planning Professionals)",
+      role: "Management Consultant — Enterprise Project Management",
+      industry: "Professional services",
+      country: "United Kingdom",
+    },
+    {
+      years: "2006 – 2007",
+      org: "TLC Consulting",
+      role: "Management Consultant (contract)",
+      industry: "Professional services",
+      country: "South Africa",
+    },
+    {
+      years: "2006",
+      org: "Toyota Tsusho Africa",
+      role: "Supply Chain Manager",
+      industry: "Automotive",
+      country: "South Africa",
+    },
+    {
+      years: "2004 – 2006",
+      org: "Kingfisher Sourcing Africa plc",
+      role: "Supply Chain Manager",
+      industry: "FMCG / DIY",
+      country: "South Africa / UK",
+    },
+    {
+      years: "2003 – 2004",
+      org: "Matelec",
+      role: "Operations Manager",
+      industry: "Manufacturing",
+      country: "South Africa",
+    },
+    {
+      years: "1999 – 2000",
+      org: "BDO Spencer Steward",
+      role: "Article Clerk",
+      industry: "Professional services",
+      country: "South Africa",
+    },
+  ],
+  experience: [
+    {
+      org: "Big Five Group Africa",
+      role: "Founder & Group CEO",
+      period: "2025 – Present (≈18 months)",
+      location: "KwaZulu-Natal · Africa corridors",
+      overview:
+        "Founded and leads Big Five Group Africa (bigfivegroup.africa) — One Group · integrated pillars delivering Feed (Big Five Foods™), Educate (Super-Cube® / Leadership), and Empower (SupplierAdvisor® / Connect), with aligned Agri, Access, Foundation and related rails. Building institutional nutrition pathways (NSNP-aligned), retail wholesale (SPAR listed; Shoprite Holdings in discussion), regenerative supply, and measurable leadership capacity across the continent.",
+      highlights: [
+        "Architected the group holding and opco model for investor-grade scale across foods, leadership, and digital commerce",
+        "Big Five Foods™ — fortified porridges, one-pot meals, soya and soups for institutional, retail and community channels; Sharks Women’s Rugby partnership and school/nutrition programme traction",
+        "Scaled Super-Cube® from doctoral research into a commercial leadership platform (super-cube.me) with baseline assessment, deliberate practice and verified growth reporting",
+        "Advanced SupplierAdvisor® as the ethical B2B/B2G commerce and transparency rail for African supply networks",
+        "Engaged government, retail (SPAR / Shoprite Checkers pathway), foundation and corporate partners around food security and leadership outcomes",
+      ],
+    },
+    {
+      org: "Merlog Foods",
+      role: "Operations Executive",
+      period: "October 2023 – Present",
+      location: "South Africa · Sub-Saharan Africa",
+      overview:
+        "Multi-nation, multi-billion-Rand FMCG operator in the cold supply chain across Sub-Saharan Africa — serving SMEs and blue-chip customers globally.",
+      highlights: [
+        "Lead day-to-day operations and global supply chain; appointed to lead Manco and join group Exco",
+        "Company-wide KPIs and real-time SharePoint / Power BI dashboards",
+        "Lead 14,000 pallet-bay cold store with 7 direct reports and ~193 people, including 3PL cold stores across Sub-Saharan Africa",
+        "Lead SHEQ (ISO 45001, ISO 18001, ISO 55001 pathway), >40-vehicle national/international fleet, and vehicle management system (R/km and R/kg metrics)",
+        "Lead group IT (ERP and Power BI) and group-wide supply-chain optimisation and digitalisation",
+      ],
+    },
+    {
+      org: "Petrow Food Ingredients (C.J. Petrow Group)",
+      role: "Chief Operating Officer",
+      period: "February 2023 – October 2023",
+      location: "KwaZulu-Natal & Johannesburg (weekly travel)",
+      overview:
+        "Product innovation and development partnerships for local and multinational food and retail companies. Business rescue commenced within two months of appointment.",
+      highlights: [
+        "End-to-end operations ownership; KPI framework on SharePoint",
+        "Production efficiency improved by 448%; customer strike rate from 60% to 93%",
+        "National inventory (~R150m) and HR Director accountability (~280 staff)",
+        "Operational efficiency programme targeting R17.5m annual cost reduction — R3.7m realised during tenure",
+      ],
+    },
+    {
+      org: "Imana Foods (Kwaden Investments Group)",
+      role: "Supply Chain Executive · Assumed COO duties from 2015",
+      period: "April 2014 – January 2023",
+      location: "New Germany, South Africa",
+      overview:
+        "Privately owned food manufacturer delivering meal solutions across the African continent.",
+      highlights: [
+        "Full P&L leadership across commercial, financial, operational, technology and HR (~250 staff)",
+        "Improved net profit before tax by approximately R140 million within four years",
+        "Implemented leadership skills development across the supply chain based on doctoral Super-Cube® research",
+        "Led ISO 45001 (OHS) and FSSC 22000 (food safety); group OHS lead for Imana 16.2 and Kwaden",
+        "Built employee capability programmes, leadership models and training budgets",
+      ],
+    },
+    {
+      org: "Barrows Design and Manufacture (WPP)",
+      role: "Managing Director (1.5 years) · previously Group Commercial Manager (2 years)",
+      period: "October 2010 – March 2014",
+      location: "South Africa · USA, Canada, UK, Africa & APAC",
+      overview:
+        "Global retail marketing and manufacturing leader with lean supply chain and strong governance.",
+      highlights: [
+        "Led innovation business unit (including commercial solar freezer launch, New York, June 2014)",
+        "Commercial and supply-chain framework for global and regional operations",
+        "Strategic direction for group ERP / MIS; bespoke balanced scorecard with KPAs & KPIs",
+        "Leadership skills development framework (Super-Cube® precursor) linked to the scorecard",
+        "Group value proposition encompassing Lean Six Sigma methodologies",
+      ],
+    },
+    {
+      org: "Accenture",
+      role: "Management Consultant — Manager, Strategy, Process & Innovation Performance",
+      period: "November 2009 – October 2010",
+      location: "South Africa",
+      overview:
+        "Engagements with WesBank (Lean Six Sigma corporate BPI) and Standard Bank (SAP Connect 2 / Private & Personal Banking).",
+      highlights: [
+        "WesBank: project leadership for schedule, resources, deliverables, RAID and commercials; Lean Six Sigma on Corporate Asset Finance; target operating model with balanced scorecard",
+        "Standard Bank: end-to-end SAP System Connect 2 project management; Lean Six Sigma ‘to-be’ analysis for Private and Personal Banking",
+      ],
+    },
+    {
+      org: "Pcubed — London",
+      role: "Management Consultant — Enterprise Project Management",
+      period: "August 2007 – August 2009",
+      location: "United Kingdom (returned to South Africa for personal reasons)",
+      overview:
+        "Global programme and project-management consultancy — client accounts, PMO design, BPR and EPM architecture. Founded and ran the Pcubed EMEA social club.",
+      highlights: [
+        "Aston Martin (£500m AMPCS): direct weekly reviews with CEO, COO and Strategy Director; BPR; change management; bespoke EPM; director/PMO/PM training across Europe",
+        "Merrill Lynch / Bank of America: global EPM solution architecture and deployment; PMO governance and RAID; Americas / Europe / Asia-Pac training",
+        "Additional clients: Royal Bank of Scotland, Lloyds Register (£85m relocation), VISA, Orange (£10m billing programme)",
+      ],
+    },
+    {
+      org: "TLC Consulting",
+      role: "Management Consultant (contract — HSMP / Tier 1 visa period)",
+      period: "November 2006 – June 2007",
+      location: "Durban, South Africa",
+      overview:
+        "Lean Six Sigma deployment of a Standard Operating Model for Group Five (2010 World Cup stadium programme).",
+      highlights: [
+        "DMAIC process and system mapping for procurement; bespoke Group Five balanced scorecard",
+        "Direct reporting to Group Five supply-chain director",
+      ],
+    },
+    {
+      org: "Toyota Tsusho Africa",
+      role: "Supply Chain Manager (promoted within three months)",
+      period: "March 2006 – November 2006",
+      location: "South Africa",
+      overview:
+        "Vendor-to-vendor components for Toyota manufacturing — ~R950m annual turnover, 55+ Sub-Saharan vendors, key clients in Singapore and Japan.",
+      highlights: [
+        "Activity-Based Costing reduced logistics costs by R36m per annum",
+        "Turned R4m monthly loss into R6m monthly profit within three months",
+        "Customer Satisfaction Index 3.71 → 4.50/5.0 across 55 South African vendors",
+        "Guest speaker — Toyota Supply Chain World Conference (Singapore & Indonesia)",
+      ],
+    },
+    {
+      org: "Kingfisher Sourcing Africa plc",
+      role: "Supply Chain Manager",
+      period: "November 2004 – March 2006",
+      location: "South Africa / Europe",
+      overview:
+        "Strategic sourcing of FMCG and DIY products into Europe and Asia (~£40m spend). MBA dissertation on Sub-Saharan vendor reliability completed with distinction during this period.",
+      highlights: [
+        "Designed MIS / stakeholder dashboard for vendor management",
+        "Commercial SLAs between South African vendors and European buyers",
+        "Board reporting on financial and operational performance to Europe",
+      ],
+    },
+    {
+      org: "Matelec",
+      role: "Operations Manager (contract — IT inventory control)",
+      period: "February 2003 – October 2004",
+      location: "South Africa",
+      overview:
+        "National and international electrical-component manufacturing and distribution.",
+      highlights: [
+        "Designed and implemented inventory tracking across manufacturing, warehousing and vendors — ~R10m net annual cost reduction",
+        "MPS / BOM / MRP with 30 external vendors; WAN for perpetual inventory",
+      ],
+    },
+    {
+      org: "BDO Spencer Steward",
+      role: "Article Clerk",
+      period: "January 1999 – December 2000",
+      location: "South Africa",
+      overview:
+        "Articles covering auditing, taxation and preparation of annual financial statements. Founded and managed the social club.",
+      highlights: [],
+    },
+  ],
+  expertise: [
+    {
+      area: "Strategy & performance",
+      detail:
+        "Strategy maps, balanced scorecard, KPAs & KPIs; commercial and financial performance management",
+    },
+    {
+      area: "Supply chain",
+      detail:
+        "End-to-end management and optimisation; cold chain; vendor reliability (MBA research); multi-country logistics",
+    },
+    {
+      area: "Leadership & people",
+      detail:
+        "Recruitment, coaching, mentoring, culture; Super-Cube® leadership skills development (DBA); YPO speaking",
+    },
+    {
+      area: "Process excellence",
+      detail: "Lean Six Sigma Black Belt; DMAIC; standard operating models; business process redesign",
+    },
+    {
+      area: "Technology & analytics",
+      detail:
+        "ERP / MIS architecture; SharePoint; Power BI; JIRA; Confluence; business intelligence and predictive analytics",
+    },
+    {
+      area: "Programme & project management",
+      detail: "PMP, PRINCE2, MSP, Microsoft EPM — PMO design, RAID, transformation programmes",
+    },
+    {
+      area: "Marketing & GTM",
+      detail: "Segmentation, targeting and positioning; retail marketing (WPP / Barrows); institutional and wholesale pathways",
+    },
+  ],
+  interests: [
+    "Golf; provincial swimming and triathlon; Comrades Marathon (2023); full Ironman (Port Elizabeth, 2022 & 2025)",
+    "Day-yacht skipper; kayak fishing; time with family and friends",
+    "Public speaking (YPO), lecturing, and publishing on strategy and leadership",
+    "Social upliftment (United Nations volunteer) and developing leaders at every level of society",
+  ],
+} as const;
+
+export type FounderCv = typeof FOUNDER_CV;

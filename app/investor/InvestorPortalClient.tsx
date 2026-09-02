@@ -30,6 +30,7 @@ import LogoutButton from "./LogoutButton";
 import { CONTACT_EMAIL } from "../lib/contact";
 import InvestorStrategyDeck from "../components/InvestorStrategyDeck";
 import BusinessPlanSection from "../components/business-plan/BusinessPlanSection";
+import FounderCvSection from "../components/FounderCvSection";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 
@@ -248,6 +249,11 @@ export default function InvestorPortalClient({ email }: { email: string }) {
                 why: "Social, economic and environmental outcomes beyond pure revenue.",
               },
               {
+                href: "#founder-cv",
+                label: "Founder CV",
+                why: "Dr. Craig R. Muller — full professional profile for leadership diligence.",
+              },
+              {
                 href: "#disclaimer",
                 label: "Disclaimer",
                 why: "Illustrative model boundaries — not audited financials or a prospectus.",
@@ -282,7 +288,8 @@ export default function InvestorPortalClient({ email }: { email: string }) {
           <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-5">
             Jump links above follow a standard private-market diligence path: narrative first, then
             terms, legal structure, market need, numbers, opco depth, long-form business plans,
-            impact, and legal framing. Each block answers a question investors actually ask.
+            impact, founder profile, and legal framing. Each block answers a question investors
+            actually ask.
           </p>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
@@ -336,6 +343,12 @@ export default function InvestorPortalClient({ email }: { email: string }) {
               },
               {
                 n: "09",
+                href: "#founder-cv",
+                label: "Founder CV",
+                why: "Who leads the Group: Dr. Craig R. Muller (DBA) — career, credentials, publications and Big Five founding story.",
+              },
+              {
+                n: "10",
                 href: "#disclaimer",
                 label: "Disclaimer",
                 why: "Hard boundary: figures are illustrative / management-reported where noted — not audited statements, forecasts or a prospectus.",
@@ -934,6 +947,9 @@ export default function InvestorPortalClient({ email }: { email: string }) {
           </div>
         </div>
       </section>
+
+      {/* Founder CV */}
+      <FounderCvSection />
 
       {/* CTA */}
       <section className="bg-white py-12 sm:py-16 border-t border-black/10">
