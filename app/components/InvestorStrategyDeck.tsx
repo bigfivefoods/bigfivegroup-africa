@@ -118,7 +118,8 @@ function Slide({ index }: { index: number }) {
                       forPrint ? "text-xs" : "text-sm sm:text-base"
                     } leading-relaxed`}
                   >
-                    Market traction (~$45k · ~$3.0m pipeline · NSNP landed) · USD scenarios · unit
+                    Market traction ({MARKET_TRACTION.initialTurnover.value} ·{" "}
+                    {MARKET_TRACTION.pipeline6m.value} pipeline · NSNP landed) · USD scenarios · unit
                     economics · milestones · risks · Seychelles holdco + end-market opcos.
                   </p>
                 </div>
@@ -1261,7 +1262,7 @@ function Slide({ index }: { index: number }) {
             {[
               {
                 t: "With the raise",
-                d: "Working capital to convert the ~$3.0m (R50m) pipeline into recurring Foods offtake; pilot and densify SANTACO taxi-rank containers (toward 15k plan); stand up NSNP; advance SA DoH pathway via Impact; Seychelles holdco + IP; 90/10 deploy.",
+                d: `Working capital to convert the ${MARKET_TRACTION.pipeline6m.value} (${MARKET_TRACTION.pipeline6m.valueZar}) pipeline into recurring Foods offtake; pilot and densify SANTACO taxi-rank containers (toward 15k plan); stand up NSNP; advance SA DoH pathway via Impact; Seychelles holdco + IP; 90/10 deploy.`,
               },
               {
                 t: "Without it",
@@ -1362,8 +1363,9 @@ export default function InvestorStrategyDeck() {
           Big Five Group — investor deck
         </h2>
         <p className="text-sm sm:text-base text-[#525252] max-w-2xl mx-auto leading-relaxed">
-          Shareable, printable presentation: market traction (~$45k · ~$3.0m pipeline · NSNP), ask,
-          structure, unit economics, USD scenarios, milestones, risks, and impact.
+          Shareable, printable presentation: market traction ({MARKET_TRACTION.initialTurnover.value} ·{" "}
+          {MARKET_TRACTION.pipeline6m.value} pipeline · NSNP), ask, structure, unit economics, USD
+          scenarios, milestones, risks, and impact.
         </p>
       </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

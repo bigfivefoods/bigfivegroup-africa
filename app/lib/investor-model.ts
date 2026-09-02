@@ -376,7 +376,7 @@ export const OPCO_MODELS: OpcoInvestorModel[] = [
         "Repeat / recurring demand model: schools, institutions and households reorder as menus and shelves turn — traction should sustain and compound as penetration deepens",
         "NSNP programme landed (DBE) — planned to feed 2.5m children/day (plan scale, not current daily count)",
         "Department of Health pathway via Impact (Director General of Health) — SA DoH + African health systems over time",
-        "Initial-stage group turnover ~$45k / R750k (management-reported); ~$3.0m / R50m pipeline next 6 months as market penetration builds",
+        "Initial-stage group turnover ~$60k / R990k (management-reported); ~$4.9m / R81m pipeline next 6 months as market penetration builds",
         "Programme-reported delivery totals (meals / children) + internal cost/nutrition analyses",
       ],
       constraints: "Working capital to convert pipeline, tender cycles, distribution partners, fortification capacity",
@@ -925,7 +925,7 @@ export const PROOF_DASHBOARD_18MO = {
   gates: [
     {
       metric: "Pipeline conversion",
-      target: "≥40–60% of ~$3.0m / R50m",
+      target: "≥40–60% of ~$4.9m / R81m",
       how: "Contracted offtake + recognised revenue on institutional / commercial lanes",
       kill: "Conversion stalls below threshold after WC deploy",
     },
@@ -1009,22 +1009,22 @@ export const MARKET_TRACTION = {
   fxNote: "USD headlines ≈ mid-market ~16.5 ZAR/USD (July 2026); underlying management figures in ZAR",
   initialTurnover: {
     /** Headline for investor decks / portal */
-    value: "~$45k",
-    valueZar: "R750k",
-    numericZar: 750_000,
-    numericUsdApprox: 45_000,
+    value: "~$60k",
+    valueZar: "R990k",
+    numericZar: 990_000,
+    numericUsdApprox: 60_000,
     label: "Initial-stage turnover",
     detail:
-      "Management-reported turnover of R750k (~USD 45k at ~16.5 ZAR/USD) realised in the initial market stages as traction and penetration build.",
+      "Management-reported turnover of R990k (~USD 60k at ~16.5 ZAR/USD) realised in the initial market stages as traction and penetration build — including a further ~USD 15k of recent turnover.",
   },
   pipeline6m: {
-    value: "~$3.0m",
-    valueZar: "R50m",
-    numericZar: 50_000_000,
-    numericUsdApprox: 3_000_000,
+    value: "~$4.9m",
+    valueZar: "R81m",
+    numericZar: 81_000_000,
+    numericUsdApprox: 4_900_000,
     label: "Pipeline · next 6 months",
     detail:
-      "Commercial pipeline of R50m (~USD 3.0m at ~16.5 ZAR/USD) over the next six months as market traction and penetration deepen. Pipeline is opportunity-stage — not contracted or booked revenue until converted.",
+      "Commercial pipeline of R81m (~USD 4.9m at ~16.5 ZAR/USD) over the next six months as market traction and penetration deepen. Pipeline is opportunity-stage — not contracted or booked revenue until converted.",
   },
   nsnp: {
     value: "2.5m",
@@ -1071,7 +1071,7 @@ export const UNIT_ECONOMICS = [
         v: "Recurring food business — high GP + cost advantage compounds as penetration deepens",
       },
     ],
-    path: "Initial turnover (~$45k / R750k) → convert ~$3.0m / R50m pipeline → recurring offtake (NSNP + DoH + retail) → multi-country institutional scale",
+    path: "Initial turnover (~$60k / R990k) → convert ~$4.9m / R81m pipeline → recurring offtake (NSNP + DoH + retail) → multi-country institutional scale",
     kill: "If pipeline conversion, reorder retention, and NSNP delivery rhythm stall after capital for working inventory, pause aggressive multi-corridor volume expansion.",
   },
   {
@@ -1095,7 +1095,7 @@ export const MILESTONES_12_18 = [
     q: "0–6 mo",
     title: "Foundation",
     items: [
-      "Convert ~$3.0m (R50m) commercial pipeline into contracted offtake (working capital + delivery)",
+      "Convert ~$4.9m (R81m) commercial pipeline into contracted offtake (working capital + delivery)",
       "Stand up NSNP delivery rhythm toward 2.5m children/day plan scale",
       "SANTACO container pilot corridors: first live ranks with Foods + Wi‑Fi + marketing + Super-Cube® modules",
       "Advance SA Department of Health product pathway via Impact (Director General of Health)",
@@ -1154,8 +1154,8 @@ export const INVESTOR_RISKS = [
 /** Brutal honesty: what is true today vs ambition. */
 export const TRACTION_VS_AMBITION = {
   trueToday: [
-    "Initial-stage turnover ~$45k / R750k (management-reported) as market traction starts",
-    "~$3.0m / R50m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
+    "Initial-stage turnover ~$60k / R990k (management-reported) as market traction starts",
+    "~$4.9m / R81m commercial pipeline over the next 6 months as penetration builds (opportunity-stage, not booked)",
     "NSNP programme landed with DBE — planned to feed 2.5m children/day (programme plan scale)",
     "Working with the Director General of Health — channel to help drive Group products into SA DoH and African health pathways",
     "Foods is a repeat / recurring purchase category — as traction lands, offtake should sustain and grow with penetration (model thesis, not a guarantee)",
@@ -1168,7 +1168,7 @@ export const TRACTION_VS_AMBITION = {
     "Super-Cube® IP / research lineage (Leadership)",
   ],
   notYetTrue: [
-    "~$3.0m (R50m) pipeline fully converted to contracted / recognised revenue",
+    "~$4.9m (R81m) pipeline fully converted to contracted / recognised revenue",
     "2.5m children fed per day as current operational headcount",
     "All 15,000 SANTACO containers live and monetised at full national density",
     "Department of Health supply awards closed at multi-country scale",
