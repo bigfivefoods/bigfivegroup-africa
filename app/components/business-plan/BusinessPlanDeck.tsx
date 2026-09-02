@@ -479,7 +479,7 @@ function ContentsSlide({ plan, theme }: { plan: BusinessPlan; theme: DeckTheme }
           {
             n: "V",
             id: "institutional-volumes-slide",
-            title: "Institutional revenue by department (DoE · DoH · Defence · DCS)",
+            title: "Revenue by channel (DoE · DoH · Defence · DCS · SPAR · Shoprite)",
           },
         ]
       : []),
@@ -799,26 +799,24 @@ function FoodsInstitutionalVolumesSlide({ theme }: { theme: DeckTheme }) {
       <LightSlideBrandChrome slug="foods">
         <div className="flex h-full min-h-0 flex-col overflow-hidden">
           <div className="shrink-0">
-            <DeckEyebrow theme={theme}>INSTITUTIONAL REVENUE · 0–5 YEARS</DeckEyebrow>
+            <DeckEyebrow theme={theme}>INSTITUTIONAL + WHOLESALE REVENUE · 0–5 YEARS</DeckEyebrow>
             <h2
               className={`font-semibold tracking-tighter text-black text-balance ${
                 forPrint ? "text-base mb-1" : "text-lg sm:text-xl mb-1.5"
               }`}
             >
-              DoE · DoH · Defence · Correctional — list-price revenue
+              Government + SPAR listed + Shoprite in discussion
             </h2>
             <p
               className={`text-[#525252] leading-snug max-w-4xl ${
                 forPrint ? "text-[7px] mb-1" : "text-[9px] sm:text-[10px] mb-1.5"
               }`}
             >
-              <strong className="text-black">Porridge R{INST_PACK_PRICE_ZAR.porridge5kg}/5kg</strong>
+              <strong className="text-black">Inst. 5kg:</strong> R{INST_PACK_PRICE_ZAR.porridge5kg} / R
+              {INST_PACK_PRICE_ZAR.soya5kg} / R{INST_PACK_PRICE_ZAR.onepot5kg}
               {" · "}
-              <strong className="text-black">Soya R{INST_PACK_PRICE_ZAR.soya5kg}/5kg</strong>
-              {" · "}
-              <strong className="text-black">One-pot R{INST_PACK_PRICE_ZAR.onepot5kg}/5kg</strong>
-              {" · "}~{(KZN_NSNP_SCALE.learners / 1e6).toFixed(1)}m KZN learners · addressable{" "}
-              {formatTonnes(KZN_NSNP_ADDRESSABLE_100.totalTonnes)}/yr · Y5 DoE ≈{" "}
+              <strong className="text-black">Wholesale Mandela:</strong> 1kg @ R45 · 400g @ R18
+              {" · "}SPAR rolling out · Shoprite Holdings in discussion · Y5 DoE ≈{" "}
               <strong className="text-black">{formatZarM(NSNP_VOLUME_BASE.y5.totalRevenue)}</strong>
             </p>
           </div>

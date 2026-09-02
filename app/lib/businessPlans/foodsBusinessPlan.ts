@@ -20,8 +20,12 @@ import {
   KZN_NSNP_SCALE,
   KZN_SHARE_PCT_BASE,
   NON_KZN_SHARE_PCT_BASE,
+  SHOPRITE_WHOLESALE,
+  SHOPRITE_WHOLESALE_BASE,
+  SPAR_WHOLESALE,
+  SPAR_WHOLESALE_BASE,
+  WHOLESALE_TRADE_PRICE_ZAR,
   buildInstitutionalRevenueTable,
-  formatPacks,
   formatTonnes,
   formatZarM,
   NSNP_VOLUME_BASE,
@@ -50,7 +54,7 @@ export const foodsBusinessPlan: BusinessPlan = {
     fullTitle: "Big Five Foods Business Plan",
     subtitle:
       "Fortified African staples at institutional and retail scale — from brand establishment to Howick manufacturing, South Africa and continental corridors",
-    version: "1.2",
+    version: "1.3",
     asOf: "September 2026",
     classification: "PRIVATE · INVESTOR DILIGENCE · CONFIDENTIAL",
     pageTarget: "12–18 pages",
@@ -84,7 +88,7 @@ export const foodsBusinessPlan: BusinessPlan = {
   executiveHighlights: [
     "First 18 months: brand established, product ranges developed, samples placed into trade — response from retail and institutions has been phenomenal.",
     "Major retailer listings in progress with Boxer, Spar, Bargains and additional national accounts; institutional credibility unlocked via the KZN NSNP school-feeding pathway.",
-    "Institutional menu design for KZN NSNP: 5kg enriched porridge daily, 5kg soya mince on Mondays, 5kg one-pot on Fridays — then multi-province and Department of Health fortified-porridge growth (0–5 year share ramps).",
+    "Institutional menu design for KZN NSNP: 5kg enriched porridge daily, 5kg soya mince on Mondays, 5kg one-pot on Fridays — then multi-province, DoH, Defence and Correctional Services. Wholesale: SPAR listed Mandela pack rolling out (1kg @ R45 · 400g @ R18); Shoprite Holdings in discussion for the same pathway.",
     `Near-term commercial momentum: ${FOODS_PIPELINE_4M.valueZar} sales pipeline over the ${FOODS_PIPELINE_4M.horizon}, with a clear mandate to accelerate growth into East and West Africa.`,
     "Next 18 months: establish Big Five Foods’ own facility in Howick — packing and warehousing first (1,000–2,000 m²), then convert into a blending plant to supply South Africa and African export clients.",
     `Unit economics remain compelling: ~${FOODS_ECONOMICS.grossProfit.value} gross profit (management-reported) while remaining ~${FOODS_ECONOMICS.cheaperThanMarket.value} cheaper than typical wholesale/retail pathways (internal) — built for government menus and feeding schemes.`,
@@ -297,7 +301,7 @@ export const foodsBusinessPlan: BusinessPlan = {
         },
         {
           type: "paragraph",
-          text: "Retail. We are listing with Boxer, Spar, Bargains and many more. These are not vanity logo slides: they are the mass-market and value channels where African staples move every week. Listing converts sample acceptance into shelf presence, barcode velocity and reorder discipline — the flywheel of a repetitive food business.",
+          text: "Retail. We are listed with SPAR and rolling the Mandela pack across stores (1kg fortified porridge and 1kg one-pot at R45 trade; 400g soya and soup at R18). We are also listing with Boxer, Bargains and others, and are in discussion with Shoprite Holdings for a parallel Mandela pack pathway into Checkers / Hyper. Listing converts sample acceptance into shelf presence, barcode velocity and reorder discipline — the flywheel of a repetitive food business.",
         },
         {
           type: "paragraph",
@@ -334,12 +338,12 @@ export const foodsBusinessPlan: BusinessPlan = {
     {
       n: "06",
       id: "institutional-volumes",
-      title: "Institutional volumes & revenue — DoE, DoH, Defence & Correctional (0–5 years)",
-      eyebrow: "LIST PRICES · DEPARTMENT MIX · YEAR COLUMNS",
+      title: "Institutional & wholesale revenue — government + SPAR / Shoprite (0–5 years)",
+      eyebrow: "DoE · DoH · DEFENCE · DCS · SPAR LISTED · SHOPRITE IN DISCUSSION",
       blocks: [
         {
           type: "lead",
-          text: "Big Five Foods’ institutional engine starts in KwaZulu-Natal NSNP (DoE): 5kg enriched porridge every school day @ R90, 5kg beef soya mince on Mondays @ R150, and 5kg one-pot on Fridays @ R200 — then expands into other provinces and adjacent departments (Health, Defence, Correctional Services) as contract share grows.",
+          text: "Big Five Foods’ institutional engine starts in KwaZulu-Natal NSNP (DoE): 5kg enriched porridge every school day @ R90, 5kg beef soya mince on Mondays @ R150, and 5kg one-pot on Fridays @ R200 — then expands into other provinces and adjacent departments (Health, Defence, Correctional Services). In parallel, wholesale Mandela pack is listed with SPAR and rolling out across stores (1kg porridge & one-pot @ R45 trade; 400g soya & soup @ R18), with Shoprite Holdings in discussion for the same pathway.",
         },
         {
           type: "paragraph",
@@ -366,11 +370,17 @@ export const foodsBusinessPlan: BusinessPlan = {
               note: "NSNP Fridays · institutional",
             },
             {
-              value: formatZarM(NSNP_VOLUME_BASE.y5.totalRevenue),
-              label: "DoE NSNP revenue · Y5 base",
-              note: "Illustrative at list prices",
+              value: formatZarM(SPAR_WHOLESALE_BASE.y5.totalRevenue),
+              label: "SPAR wholesale · Y5 base",
+              note: "Mandela pack listed · rolling out",
             },
           ],
+        },
+        {
+          type: "callout",
+          tone: "amber",
+          title: "Wholesale · SPAR listed · Shoprite Holdings in discussion",
+          body: `${SPAR_WHOLESALE.note} ${SHOPRITE_WHOLESALE.note} Trade: 1kg porridge & one-pot @ R${WHOLESALE_TRADE_PRICE_ZAR.porridge1kg}; 400g soya & soup @ R${WHOLESALE_TRADE_PRICE_ZAR.soya400g}.`,
         },
         {
           type: "table",
@@ -418,7 +428,7 @@ export const foodsBusinessPlan: BusinessPlan = {
           type: "table",
           table: {
             caption:
-              "Institutional revenue plan (base case) — years as columns · grouped by department",
+              "Revenue plan (base case) — years as columns · grouped by department / wholesale channel",
             headers: INST_REVENUE_TABLE.headers,
             rows: INST_REVENUE_TABLE.rows.map((r) => ({
               cells: [r.label, ...r.cells],
@@ -435,10 +445,10 @@ export const foodsBusinessPlan: BusinessPlan = {
         {
           type: "bullets",
           items: [
-            "Y0–Y1: land and deepen KZN DoE/NSNP call-offs — porridge @ R90 daily, soya @ R150 Mondays, one-pot @ R200 Fridays; open DoH porridge and first Defence / Correctional pilots.",
-            "Y2–Y3: multi-province NSNP share; Howick packing absorbs tonnes; DoH / Defence / Correctional revenue becomes material beside education.",
-            "Y4–Y5: diversified institutional book — DoE remains the largest line; DoH, Defence and Correctional Services compound with rising contract share.",
-            `Y5 DoE NSNP illustrative list-price revenue ≈ ${formatZarM(NSNP_VOLUME_BASE.y5.totalRevenue)} in the base case (before other departments).`,
+            "Y0–Y1: deepen KZN DoE/NSNP call-offs; accelerate SPAR Mandela pack store rollout (listed); open DoH porridge and first Defence / Correctional pilots; advance Shoprite Holdings discussions toward listing.",
+            "Y2–Y3: multi-province NSNP; SPAR ranging majority of estate; Shoprite/Checkers Mandela pack live and scaling; Howick packing absorbs institutional + wholesale tonnes.",
+            "Y4–Y5: diversified book — DoE NSNP still large; wholesale SPAR + Shoprite Holdings material; DoH / Defence / Correctional compound.",
+            `Y5 illustrative: DoE NSNP ≈ ${formatZarM(NSNP_VOLUME_BASE.y5.totalRevenue)} · SPAR wholesale ≈ ${formatZarM(SPAR_WHOLESALE_BASE.y5.totalRevenue)} · Shoprite Holdings wholesale ≈ ${formatZarM(SHOPRITE_WHOLESALE_BASE.y5.totalRevenue)} (list/trade prices · base-case share).`,
           ],
         },
         {

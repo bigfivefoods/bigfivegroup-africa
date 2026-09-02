@@ -439,17 +439,19 @@ export function buildInstitutionalRevenueLines(): RevenueLine[] {
 
   const grand = line(
     "grand",
-    "Grand total · institutional",
+    "Grand total · institutional + wholesale",
     "total",
     (y) =>
       NSNP_VOLUME_BASE[y].totalRevenue +
       DOH_VOLUME_BASE[y].revenue +
       DEFENCE_VOLUME_BASE[y].totalRevenue +
-      CORRECTIONAL_VOLUME_BASE[y].totalRevenue
+      CORRECTIONAL_VOLUME_BASE[y].totalRevenue +
+      SPAR_WHOLESALE_BASE[y].totalRevenue +
+      SHOPRITE_WHOLESALE_BASE[y].totalRevenue
   );
 
   return [
-    line("doe-hdr", "DoE · NSNP (DBE)", "subtotal", () => 0), // header marker — filtered in UI
+    line("doe-hdr", "DoE · NSNP (DBE)", "subtotal", () => 0),
     doePorridge,
     doeSoya,
     doeOnepot,
@@ -655,8 +657,120 @@ export function buildInstitutionalRevenueTable(): {
       ),
     },
     {
+      id: "spar-hdr",
+      label: "Wholesale · SPAR (listed · Mandela pack rollout)",
+      role: "header",
+      cells: VOLUME_YEAR_KEYS.map(() => ""),
+    },
+    {
+      id: "spar-porridge",
+      label: " 1kg fortified porridge @ R45",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SPAR_WHOLESALE_BASE[y].porridgeRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "spar-onepot",
+      label: " 1kg one-pot @ R45",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SPAR_WHOLESALE_BASE[y].onepotRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "spar-soya",
+      label: " 400g soya mince @ R18",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SPAR_WHOLESALE_BASE[y].soyaRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "spar-soup",
+      label: " 400g fortified soup @ R18",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SPAR_WHOLESALE_BASE[y].soupRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "spar-sub",
+      label: "Subtotal · SPAR wholesale",
+      role: "subtotal",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SPAR_WHOLESALE_BASE[y].totalRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "shop-hdr",
+      label: "Wholesale · Shoprite Holdings (in discussion)",
+      role: "header",
+      cells: VOLUME_YEAR_KEYS.map(() => ""),
+    },
+    {
+      id: "shop-porridge",
+      label: " 1kg fortified porridge @ R45",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SHOPRITE_WHOLESALE_BASE[y].porridgeRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "shop-onepot",
+      label: " 1kg one-pot @ R45",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SHOPRITE_WHOLESALE_BASE[y].onepotRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "shop-soya",
+      label: " 400g soya mince @ R18",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SHOPRITE_WHOLESALE_BASE[y].soyaRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "shop-soup",
+      label: " 400g fortified soup @ R18",
+      role: "sku",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SHOPRITE_WHOLESALE_BASE[y].soupRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
+      id: "shop-sub",
+      label: "Subtotal · Shoprite Holdings wholesale",
+      role: "subtotal",
+      cells: fmtYears(
+        Object.fromEntries(
+          VOLUME_YEAR_KEYS.map((y) => [y, SHOPRITE_WHOLESALE_BASE[y].totalRevenue])
+        ) as Record<VolumeYearKey, number>
+      ),
+    },
+    {
       id: "grand",
-      label: "Grand total · institutional",
+      label: "Grand total · institutional + wholesale",
       role: "total",
       cells: fmtYears(
         Object.fromEntries(
@@ -665,7 +779,9 @@ export function buildInstitutionalRevenueTable(): {
             NSNP_VOLUME_BASE[y].totalRevenue +
               DOH_VOLUME_BASE[y].revenue +
               DEFENCE_VOLUME_BASE[y].totalRevenue +
-              CORRECTIONAL_VOLUME_BASE[y].totalRevenue,
+              CORRECTIONAL_VOLUME_BASE[y].totalRevenue +
+              SPAR_WHOLESALE_BASE[y].totalRevenue +
+              SHOPRITE_WHOLESALE_BASE[y].totalRevenue,
           ])
         ) as Record<VolumeYearKey, number>
       ),
@@ -676,9 +792,106 @@ export function buildInstitutionalRevenueTable(): {
     headers,
     rows,
     footnote:
-      "Illustrative list-price revenue (porridge R90 · soya R150 · one-pot R200 per 5kg). Years are columns; departments grouped with subtotals. NSNP volumes from KZN→multi-province share ramps; DoH / Defence / Correctional Services are later-stage planning pathways. Not contracted offtake or audited forecasts — confirm under NDA.",
+      "Illustrative revenue. Institutional 5kg: porridge R90 · soya R150 · one-pot R200. Wholesale Mandela pack: 1kg porridge & one-pot @ R45 trade · 400g soya & soup @ R18. SPAR is listed and rolling out; Shoprite Holdings is in discussion (Checkers/Hyper estate). Years are columns; channels grouped with subtotals. Not contracted offtake or audited forecasts — confirm under NDA.",
   };
 }
+
+/**
+ * Wholesale / retail Mandela pack — SPAR (listed · rolling out) & Shoprite Holdings (in discussion).
+ * Trade prices: 1kg porridge & one-pot @ R45; 400g soya & soup @ R18 (ex. VAT partnership list).
+ */
+export const WHOLESALE_TRADE_PRICE_ZAR = {
+  porridge1kg: 45,
+  onepot1kg: 45,
+  soya400g: 18,
+  soup400g: 18,
+} as const;
+
+type WholesaleBanner = {
+  id: string;
+  name: string;
+  status: string;
+  stores: number;
+  /** % of estate ranged / selling Mandela pack */
+  storeSharePct: Record<VolumeYearKey, number>;
+  /** Packs per ranged store per month at full SKU set */
+  packsPerStorePerMonth: {
+    porridge1kg: number;
+    onepot1kg: number;
+    soya400g: number;
+    soup400g: number;
+  };
+  note: string;
+};
+
+export const SPAR_WHOLESALE: WholesaleBanner = {
+  id: "spar",
+  name: "SPAR South Africa",
+  status: "Listed · rolling out Mandela pack across stores",
+  stores: 870, // SPAR partnership model estate (850+ public claim · planning allocation)
+  storeSharePct: { y0: 15, y1: 35, y2: 55, y3: 70, y4: 85, y5: 95 },
+  packsPerStorePerMonth: {
+    porridge1kg: 48,
+    onepot1kg: 48,
+    soya400g: 36,
+    soup400g: 36,
+  },
+  note: "Big Five Foods is listed with SPAR; Mandela pack (1kg porridge & one-pot @ R45 trade; 400g soya & soup @ R18) rolling out across the SPAR / SUPERSPAR / KWIKSPAR estate.",
+};
+
+export const SHOPRITE_WHOLESALE: WholesaleBanner = {
+  id: "shoprite",
+  name: "Shoprite Holdings (Checkers / Hyper)",
+  status: "In discussion · likely Mandela pack pathway",
+  stores: 350, // Checkers 310 + Hyper 40 (FY2025 grocery)
+  storeSharePct: { y0: 0, y1: 5, y2: 20, y3: 40, y4: 60, y5: 75 },
+  packsPerStorePerMonth: {
+    porridge1kg: 52,
+    onepot1kg: 52,
+    soya400g: 40,
+    soup400g: 40,
+  },
+  note: "In discussion with Shoprite Holdings — likely same Mandela pack wholesale model across Checkers / Checkers Hyper once listed.",
+};
+
+function wholesaleYear(banner: WholesaleBanner, sharePct: number) {
+  const storesLive = banner.stores * (sharePct / 100);
+  const months = 12;
+  const porridgePacks = storesLive * banner.packsPerStorePerMonth.porridge1kg * months;
+  const onepotPacks = storesLive * banner.packsPerStorePerMonth.onepot1kg * months;
+  const soyaPacks = storesLive * banner.packsPerStorePerMonth.soya400g * months;
+  const soupPacks = storesLive * banner.packsPerStorePerMonth.soup400g * months;
+  const porridgeRevenue = revenueFromPacks(porridgePacks, WHOLESALE_TRADE_PRICE_ZAR.porridge1kg);
+  const onepotRevenue = revenueFromPacks(onepotPacks, WHOLESALE_TRADE_PRICE_ZAR.onepot1kg);
+  const soyaRevenue = revenueFromPacks(soyaPacks, WHOLESALE_TRADE_PRICE_ZAR.soya400g);
+  const soupRevenue = revenueFromPacks(soupPacks, WHOLESALE_TRADE_PRICE_ZAR.soup400g);
+  return {
+    porridgePacks,
+    onepotPacks,
+    soyaPacks,
+    soupPacks,
+    totalPacks: porridgePacks + onepotPacks + soyaPacks + soupPacks,
+    porridgeRevenue,
+    onepotRevenue,
+    soyaRevenue,
+    soupRevenue,
+    totalRevenue: porridgeRevenue + onepotRevenue + soyaRevenue + soupRevenue,
+  };
+}
+
+function buildWholesaleVolumes(banner: WholesaleBanner) {
+  return {
+    y0: wholesaleYear(banner, banner.storeSharePct.y0),
+    y1: wholesaleYear(banner, banner.storeSharePct.y1),
+    y2: wholesaleYear(banner, banner.storeSharePct.y2),
+    y3: wholesaleYear(banner, banner.storeSharePct.y3),
+    y4: wholesaleYear(banner, banner.storeSharePct.y4),
+    y5: wholesaleYear(banner, banner.storeSharePct.y5),
+  } as const;
+}
+
+export const SPAR_WHOLESALE_BASE = buildWholesaleVolumes(SPAR_WHOLESALE);
+export const SHOPRITE_WHOLESALE_BASE = buildWholesaleVolumes(SHOPRITE_WHOLESALE);
 
 export const INSTITUTIONAL_MENU = [
   {
@@ -708,4 +921,4 @@ export const INSTITUTIONAL_MENU = [
 ] as const;
 
 export const INSTITUTIONAL_VOLUME_DISCLAIMER =
-  "Illustrative only — not contracted volumes, awards or audited forecasts. Built from public KZN NSNP learner/school scale, management menu cadence (porridge daily · soya Mondays · one-pot Fridays), planning portion grams, list prices (R90 / R150 / R200 per 5kg), and assumed market-share ramps across DoE, DoH, Defence and Correctional Services. Confirm menus, grams, calendars, tender share and pricing under NDA.";
+  "Illustrative only — not contracted volumes, awards or audited forecasts. Institutional: KZN NSNP scale, menu cadence, portion grams, 5kg list prices (R90 / R150 / R200), and share ramps across DoE, DoH, Defence and Correctional Services. Wholesale: SPAR listed Mandela pack rollout and Shoprite Holdings (in discussion) at 1kg @ R45 and 400g @ R18 trade, with store-share ramps. Confirm menus, ranging, calendars, tender share and pricing under NDA.";
