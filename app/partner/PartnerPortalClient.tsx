@@ -36,6 +36,8 @@ import SparPartnershipDeck from "../components/SparPartnershipDeck";
 import SparPartnershipDeckCondensed from "../components/SparPartnershipDeckCondensed";
 import CheckersPartnershipDeck from "../components/CheckersPartnershipDeck";
 import CheckersPartnershipDeckCondensed from "../components/CheckersPartnershipDeckCondensed";
+import PicknPayPartnershipDeck from "../components/PicknPayPartnershipDeck";
+import PicknPayPartnershipDeckCondensed from "../components/PicknPayPartnershipDeckCondensed";
 import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
 import BfgPartnerDeck from "../components/BfgPartnerDeck";
 
@@ -434,6 +436,15 @@ export default function PartnerPortalClient({
                     { href: "#checkers-partnership-deck", label: "Checkers full deck" },
                   ]
                 : []),
+              ...(partner.slug === "pick-n-pay"
+                ? [
+                    {
+                      href: "#pick-n-pay-partnership-deck-condensed",
+                      label: "Pick n Pay condensed",
+                    },
+                    { href: "#pick-n-pay-partnership-deck", label: "Pick n Pay full deck" },
+                  ]
+                : []),
               ...(partner.slug === "swt-ag"
                 ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG funding deck" }]
                 : []),
@@ -607,6 +618,17 @@ export default function PartnerPortalClient({
           </section>
           <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
             <CheckersPartnershipDeck />
+          </section>
+        </>
+      )}
+
+      {partner.slug === "pick-n-pay" && (
+        <>
+          <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+            <PicknPayPartnershipDeckCondensed />
+          </section>
+          <section className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
+            <PicknPayPartnershipDeck />
           </section>
         </>
       )}

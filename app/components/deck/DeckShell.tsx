@@ -145,6 +145,22 @@ export const DECK_THEMES = {
     softBg: "bg-teal-50",
     softText: "text-teal-950",
   },
+  /** Pick n Pay South Africa — brand red (#BA0C2F family from pnp.co.za) */
+  picknpay: {
+    name: "picknpay",
+    accent: "#BA0C2F",
+    accentDark: "#8a0923",
+    gradientFrom: "#e01c00",
+    gradientTo: "#BA0C2F",
+    frameFrom: "#fdf2f4",
+    frameTo: "#f3f4f6",
+    darkBg: "#2a050c",
+    eyebrowLight: "text-red-200",
+    eyebrow: "text-red-900",
+    softBorder: "border-red-200",
+    softBg: "bg-red-50",
+    softText: "text-red-950",
+  },
   orange: {
     name: "orange",
     accent: "#ea580c",

@@ -377,6 +377,59 @@ export const PARTNERS: PartnerProfile[] = [
       "Primary Group contact: craig@bigfivegroup.africa · SPAR commercial / CSI discussions under NDA as required",
   },
   {
+    slug: "pick-n-pay",
+    name: "Pick n Pay",
+    organisation: "Pick n Pay South Africa",
+    emails: [],
+    role: "Retail · fortified nutrition · feeding partnership",
+    headline: "Pick n Pay does good × Big Five Foods",
+    summary:
+      "Partnership workspace for Pick n Pay (pnp.co.za) — same Mandela pack commercial principle as SPAR: R45 trade ex. VAT / R67 RRP on 1kg porridges & one-pots; R18 / R33.50 on 400g soya & soups; healthy Pick n Pay front margin; 10% foundation giving (Pick n Pay 5% + Foods 5%) to Restore Africa Foundation and A Heart To Help. Modelled across ~709 grocery touchpoints (Hyper · Supermarket · Express · FY26) with Smart Shopper reach.",
+    focus: ["Foods", "Foundation", "Impact", "Feed", "Retail", "CSI", "Smart Shopper"],
+    programmes: ["nsnp", "connect", "impact"],
+    logoSrc: "/partners/pick-n-pay-logo.png",
+    brandColor: "#BA0C2F",
+    website: "https://www.pnp.co.za/",
+    websiteLabel: "pnp.co.za",
+    notes: [
+      "Open the condensed Pick n Pay deck for a short briefing, or the full deck for deep-dive sessions.",
+      "Same commercial model as SPAR: 1kg porridges & one-pots at R45 ex. VAT / R67 RRP (~R15.25 / ~23% front margin); 400g soya & soups at R18 / R33.50 (~R12.80 / ~38%) — VAT-aligned, not manufacturer GP.",
+      "10% model: Pick n Pay 5% of retail sell-through + Big Five Foods 5% of trade → Restore Africa Foundation and A Heart To Help.",
+      "Dual pathways: shelf sales and/or donation POs into the two foundations — Pick n Pay is the face of the good.",
+      "Network modelled on FY26 Pick n Pay grocery formats (~709 Hyper + Supermarket + Express); Smart Shopper ~20.6m members for loyalty storytelling.",
+      "Add authorised Pick n Pay emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "#pick-n-pay-partnership-deck-condensed",
+        label: "Pick n Pay condensed briefing",
+        desc: "Short Pick n Pay × Foods briefing: margin, Mandela pack, 10% foundations, impact snapshot, the ask.",
+      },
+      {
+        href: "#pick-n-pay-partnership-deck",
+        label: "Pick n Pay does good — full pitch deck",
+        desc: "Full pitch: Pick n Pay margin, Mandela pack, national impact model, RAF · AHTH · SA Harvest delivery.",
+      },
+      {
+        href: "/foods",
+        label: "Big Five Foods",
+        desc: "Full product ranges, fortification story and institutional packs.",
+      },
+      {
+        href: "/foods#foods-deck",
+        label: "Foods product & impact deck",
+        desc: "Ranges, fortification, certifications and how to order.",
+      },
+      {
+        href: "/foundation",
+        label: "Foundation",
+        desc: "Group philanthropic pathways alongside NPO partners.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · Pick n Pay commercial / CSI discussions under NDA as required",
+  },
+  {
     slug: "restore-africa-foundation",
     name: "Restore Africa Foundation",
     organisation: "Restore Africa Foundation",
