@@ -204,34 +204,41 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
-            WHY Pick n Pay LEADS
+            WHY Pick n Pay LEADS · INVESTOR ALIGNMENT
           </DeckEyebrow>
           <DeckTitle>
             <span className="text-white">
-              Communities already trust Pick n Pay. This partnership makes that trust feed people.
+              “{P.groupStrategy.foundingPrinciple}.” This partnership makes that principle edible.
             </span>
           </DeckTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mt-2">
+          <p
+            className={`text-white/70 max-w-3xl leading-snug ${
+              forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
+            }`}
+          >
+            {P.groupStrategy.brandPosition}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mt-1">
             {[
               {
-                icon: Store,
-                t: "Pick n Pay is already in the community",
-                d: "Independent retailers sit where people live — purpose needs a Pick n Pay shelf, not a new warehouse.",
+                icon: Heart,
+                t: P.groupStrategy.strategicPillars[0]!.t,
+                d: P.groupStrategy.strategicPillars[0]!.d,
               },
               {
                 icon: Users,
-                t: "Shoppers want to feel proud",
-                d: "A R67 Mandela pack is a weekly choice with a story: Pick n Pay feeds families and supports foundations.",
+                t: P.groupStrategy.strategicPillars[1]!.t,
+                d: P.groupStrategy.strategicPillars[1]!.d,
               },
               {
-                icon: Heart,
-                t: "CSI customers can see",
-                d: "Product donated and sell-through that funds care — not only a donation cheque.",
+                icon: Store,
+                t: P.groupStrategy.strategicPillars[3]!.t,
+                d: P.groupStrategy.strategicPillars[3]!.d,
               },
               {
                 icon: Target,
-                t: "Reputation that compounds",
-                d: "Every pack strengthens Pick n Pay as the retailer that does good — commercially healthy, publicly proud.",
+                t: P.groupStrategy.strategicPillars[4]!.t,
+                d: P.groupStrategy.strategicPillars[4]!.d,
               },
             ].map((p) => (
               <div
@@ -250,6 +257,19 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
+          <p className={`text-white/45 mt-3 ${forPrint ? "text-[9px]" : "text-[10px]"}`}>
+            Source:{" "}
+            <a
+              href={P.groupStrategy.brandPageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 text-red-200/80"
+            >
+              picknpayinvestor.co.za
+            </a>
+            {" · "}
+            ESG / CSI: Feed the Nation · School Club · People n Planet
+          </p>
         </DeckSlideShell>
       );
 
@@ -461,7 +481,8 @@ function Slide({ index }: { index: number }) {
           <DeckEyebrow theme={theme}>IMPACT · NATIONAL SNAPSHOT</DeckEyebrow>
           <DeckTitle>Illustrative scale across Pick n Pay South Africa</DeckTitle>
           <p className="text-[10px] sm:text-xs text-[#525252] mb-3 max-w-3xl leading-snug">
-            Network: {IMPACT.networkSource.claim} · modelled {IMPACT.networkSource.storeCountAnchor}{" "}
+            Network: {IMPACT.networkSource.claim} · modelled{" "}
+            {IMPACT.networkSource.storeCountAnchor.toLocaleString("en-ZA")}{" "}
             stores. Planning assumptions only.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">

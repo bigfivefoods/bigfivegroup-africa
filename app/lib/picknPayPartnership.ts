@@ -68,12 +68,86 @@ function packPricing(
 
 export const PICK_N_PAY_PARTNERSHIP = {
   title: "Pick n Pay × Big Five Foods",
-  subtitle: "Pick n Pay leads. Communities eat better. Foundations go further.",
-  tagline: "Every Pick n Pay pack can nourish a family and strengthen a foundation.",
+  subtitle: "Doing good is good business — on the shelf and in the community.",
+  tagline:
+    "Every Pick n Pay Mandela pack can nourish a family, strengthen a foundation, and prove that doing good is good business.",
   groupUrl: "https://www.bigfivegroup.africa",
   foodsUrl: "https://www.bigfivegroup.africa/foods",
   picknPayUrl: "https://www.pnp.co.za/",
+  investorUrl: "https://www.picknpayinvestor.co.za/index.php",
   contactEmail: "craig@bigfivegroup.africa",
+
+  /**
+   * Pick n Pay Group public positioning (investor relations).
+   * @see https://www.picknpayinvestor.co.za/index.php
+   * @see https://www.picknpayinvestor.co.za/pnp-at-a-glance.php
+   * @see https://www.picknpayinvestor.co.za/our-commitment.php
+   * @see Pick n Pay Group FY26 Integrated Annual Report / store estate (1 March 2026)
+   */
+  groupStrategy: {
+    parent: "Pick n Pay Group",
+    foundingPrinciple: "Doing good is good business",
+    peopleNPlanet:
+      "People n Planet isn’t just a part of our business, it is our business — partnering to shift the food system, investing in people, supporting communities and reducing environmental impacts.",
+    mission:
+      "We serve — with our hearts we create a great place to be; with our minds we create an excellent place to shop.",
+    brandPosition:
+      "Pick n Pay is a much-loved, inclusive multi-format and multi-channel retailer — owned and franchise — welcoming customers from the most to the least affluent, built on a genuine desire to make life better for customers and a positive contribution to the communities it serves.",
+    brandPositionSource: "picknpayinvestor.co.za · Group home",
+    strategicPillars: [
+      {
+        t: "Doing good is good business",
+        d: "Founding principle still central through the turnaround — customers reward retailers they see at the heart of society. This partnership makes that principle edible on the shelf.",
+      },
+      {
+        t: "Supporting communities · food security",
+        d: "CSI focuses on food security and education (Feed the Nation hunger relief; Pick n Pay School Club supporting 3,380 schools). Mandela packs complement — they do not replace — those public programmes.",
+      },
+      {
+        t: "Sustainable supply chains · affordable healthy food",
+        d: "Group ESG priority: access to affordable, healthy, safe and responsibly sourced food. Fortified African staples fit that shelf and donation story.",
+      },
+      {
+        t: "Omnichannel · asap! · Online",
+        d: "Pick n Pay Online, asap! (on-demand ~60 minutes) and groceries on Mr D extend the aisle — partnership SKUs can travel on rails customers already use, where ranging allows.",
+      },
+      {
+        t: "Smart Shopper loyalty",
+        d: "App-driven rewards and personalised engagement (~20.6m Smart Shopper members · FY26 ESG databook) — a natural home for Mandela purpose promotions and multipacks.",
+      },
+      {
+        t: "Strategic reset · franchise strength",
+        d: "Modernising and right-sizing the supermarket estate while franchisees remain community-centred partners. Listing early locks range into a recovering, customer-led core.",
+      },
+    ],
+    howWeAlign: [
+      "Commercial Mandela packs that belong on an inclusive Pick n Pay shelf — dignity and fortification, not a charity-only aisle.",
+      "Sell + donate pathways that sit beside Feed the Nation, School Club and CSI food-security work without claiming those brands.",
+      "10% ring-fence (Pick n Pay 5% + Foods 5%) so every partnership sale advances “doing good is good business.”",
+      "Omnichannel-ready packs for store, asap! and online fulfilment where ranging allows.",
+      "Transparent foundation reporting Pick n Pay can share with customers, franchisees and ESG stakeholders.",
+    ],
+    communityProgrammes: [
+      {
+        name: "Feed the Nation",
+        role: "Group hunger-relief / food-security CSI",
+        note: "Partnership donations and sell-through giving complement Feed the Nation — coordination under CSI, not a rebrand of Feed the Nation.",
+      },
+      {
+        name: "Pick n Pay School Club",
+        role: "Education CSI · 3,380 schools (FY26 at-a-glance)",
+        note: "School-linked nutrition and Mandela storytelling can sit beside School Club education materials where CSI agrees.",
+      },
+    ],
+    valuesEcho: [
+      "We are passionate about our customers and will fight for their rights",
+      "We support and participate in our communities",
+      "We live by honesty and integrity",
+    ],
+    brandPageUrl: "https://www.picknpayinvestor.co.za/index.php",
+    glanceUrl: "https://www.picknpayinvestor.co.za/pnp-at-a-glance.php",
+    esgUrl: "https://www.picknpayinvestor.co.za/our-commitment.php",
+  },
 
   /** Flagship partnership SKU / campaign pricing (two pack tiers). */
   product: {
@@ -288,17 +362,17 @@ export const PICK_N_PAY_PARTNERSHIP = {
     {
       id: "retail",
       title: "Pick n Pay sells with purpose",
-      desc: "Stock the Mandela pack at RRP R67. Shoppers leave with fortified food; Pick n Pay earns margin and funds community good from sell-through.",
+      desc: "Stock the Mandela pack at RRP R67. Shoppers leave with fortified food; Pick n Pay earns front margin and funds community good from sell-through — doing good is good business at the till.",
     },
     {
       id: "donate",
       title: "Pick n Pay donates with dignity",
-      desc: "Pick n Pay CSI or franchisees purchase product for foundations and feeding schemes — real meals, with Pick n Pay’s name on the act of care. SA Harvest moves donations to soup kitchens, feeding schemes, Restore Africa Foundation and A Heart To Help.",
+      desc: "Pick n Pay CSI or franchisees purchase product for foundations and feeding schemes — real meals beside Feed the Nation and School Club food-security work, with Pick n Pay’s name on the act of care. SA Harvest moves donations to soup kitchens, feeding schemes, Restore Africa Foundation and A Heart To Help.",
     },
     {
       id: "hybrid",
       title: "Pick n Pay campaigns that stick",
-      desc: "Shelf sales + Mandela Day / hunger-season drives + store collections. One pack, sell + donate + SA Harvest last-mile: Pick n Pay does good.",
+      desc: "Shelf sales + Mandela Day / hunger-season drives + Smart Shopper / asap! promotions + store collections. One pack, sell + donate + SA Harvest last-mile: Pick n Pay does good.",
     },
   ],
 
@@ -359,39 +433,39 @@ export const PICK_N_PAY_PARTNERSHIP = {
   /** Pick n Pay-centred narrative outcomes */
   outcomes: [
     {
-      t: "Pick n Pay as a force for good",
-      d: "Every Mandela pack sold or donated carries Pick n Pay’s community leadership — not abstract CSI, but food people can eat.",
+      t: "Doing good is good business — made visible",
+      d: "Every Mandela pack sold or donated carries Pick n Pay’s founding principle into the aisle — not abstract CSI, but food people can eat.",
     },
     {
-      t: "Shoppers feel the difference",
-      d: "Affordable fortified staples on Pick n Pay shelves; a clear Mandela-aligned story customers are proud to support.",
+      t: "Inclusive shelves, proud shoppers",
+      d: "Affordable fortified staples for the broad socio-economic customer base Pick n Pay already serves; a Mandela story Smart Shopper customers can support.",
     },
     {
-      t: "Foundations go further",
-      d: "Restore Africa Foundation and A Heart To Help receive product and contribution rand — with SA Harvest delivering into soup kitchens and feeding schemes.",
+      t: "CSI that compounds food security",
+      d: "Restore Africa Foundation and A Heart To Help receive product and contribution rand — with SA Harvest delivering into kitchens and schemes alongside Group food-security CSI.",
     },
     {
-      t: "Stores win commercially",
-      d: "Healthy front margin at R67 RRP, plus a purpose line that strengthens Pick n Pay’s local reputation and loyalty.",
+      t: "Stores and franchisees win commercially",
+      d: "Healthy front margin at R67 RRP, plus a purpose line that strengthens local reputation, franchise community standing and loyalty.",
     },
   ],
 
   picknPayStory: [
     {
       t: "Pick n Pay feeds",
-      d: "Put fortified African staples where families already shop — dignity on the shelf, not only in a warehouse.",
+      d: "Put fortified African staples where families already shop — owned stores, franchise stores and asap! / online where ranging allows.",
     },
     {
       t: "Pick n Pay funds",
-      d: "Ring-fence 5% of sell-through; Big Five Foods matches with 5% of trade — 10% total into verified NPO pathways.",
+      d: "Ring-fence 5% of sell-through; Big Five Foods matches with 5% of trade — 10% total into verified NPO pathways under “doing good is good business.”",
     },
     {
-      t: "Pick n Pay stands with foundations",
-      d: "Restore Africa Foundation (children · rebuild) and A Heart To Help (safety · rehabilitation) — with SA Harvest as last-mile delivery to kitchens and schemes.",
+      t: "Pick n Pay stands with communities",
+      d: "Restore Africa Foundation and A Heart To Help — with SA Harvest last-mile — complementing Feed the Nation and School Club food-security and education CSI.",
     },
     {
       t: "Pick n Pay leads the narrative",
-      d: "Mandela pack, store campaigns, franchisee CSI — Pick n Pay is the hero of the story; Big Five Foods is the product partner behind the shelf.",
+      d: "Mandela pack, Smart Shopper campaigns, franchisee CSI — Pick n Pay is the hero; Big Five Foods is the product partner behind the shelf.",
     },
   ],
 
@@ -454,7 +528,8 @@ export const PICK_N_PAY_PARTNERSHIP = {
     "NPO allocations between Restore Africa Foundation and A Heart To Help can be fixed (e.g. 50/50) or programme-driven each period.",
     "One-pot yield for shelf talk and national meal modelling: 1kg dry pack prepares to 4kg food = 20 × 200g servings; at RRP R67 that is R3.35 per meal (R67 ÷ 20). Meal equivalents / year = packs × 20.",
     "Impact meal counts and programme stories remain illustrative planning figures until SKU mix, menus and foundation reporting are locked.",
-    "National grocery store total is modelled from Pick n Pay Group FY26 public footprint for Pick n Pay Hypermarkets, company-owned and franchise Supermarkets and Express (excluding Boxer and clothing/liquor-only formats unless co-located). Format split is a planning allocation — not a Pick n Pay-published partnership forecast. Packs/store/month and people-fed estimates remain modelling assumptions — not forecasts.",
+    "National grocery store total is modelled from Pick n Pay Group FY26 public footprint (picknpayinvestor.co.za · at a glance / integrated report, footprint at 1 March 2026) for Pick n Pay Hypermarkets, company-owned and franchise Supermarkets and Express. Boxer trades under a separate banner (Group retains majority after JSE listing) and is excluded unless co-located ranging is agreed. Format split is a planning allocation — not a Pick n Pay-published partnership forecast. Packs/store/month and people-fed estimates remain modelling assumptions — not forecasts.",
+    "Group CSI programmes named on the investor site (Feed the Nation, Pick n Pay School Club · 3,380 schools) are acknowledged for alignment only — this partnership does not rebrand or replace those programmes.",
   ],
 
   /**
@@ -466,23 +541,29 @@ export const PICK_N_PAY_PARTNERSHIP = {
     title: "National Pick n Pay impact model (illustrative)",
     period: "Per full year at steady-state listing",
     /**
-     * Public network claim (Pick n Pay Group FY26 integrated reporting / pnp.co.za).
+     * Public network claim (Pick n Pay Group FY26 · picknpayinvestor.co.za).
      * Grocery-focused estate for Mandela pack ranging (excludes Boxer; clothing/liquor-only not primary).
+     * @see https://www.picknpayinvestor.co.za/index.php
+     * @see https://www.picknpayinvestor.co.za/pnp-at-a-glance.php
      * @see https://www.pnp.co.za/
-     * @see https://www.picknpayinvestor.co.za/ (FY26 store estate)
      */
     networkSource: {
-      claim: "Pick n Pay grocery network · Hyper · Supermarket · Express (owned & franchise) · FY26",
+      claim:
+        "Pick n Pay grocery network · Hyper · Supermarket · Express (owned & franchise) · FY26 footprint at 1 March 2026",
       formatsNamed: "Hypermarket · Supermarket · Express",
-      url: "https://www.pnp.co.za/",
+      url: "https://www.picknpayinvestor.co.za/pnp-at-a-glance.php",
+      investorHomeUrl: "https://www.picknpayinvestor.co.za/index.php",
       /** Working total for models — grocery-focused PnP formats (not whole Group incl. Boxer) */
       storeCountAnchor: 709,
       smartShopperMembersM: 20.6,
       groupStoresTotal: 2261,
-      note: "FY26: 23 Hypermarkets · 285 company-owned Supermarkets · ~211 franchise Supermarkets · 190 Express (+7 Market) ≈ 709 grocery touchpoints. Smart Shopper ~20.6m members. Group total 2,261 stores across six countries includes Boxer and other formats.",
+      groupCountries: 6,
+      groupTurnoverRbn: 120.3,
+      schoolClubSchools: 3380,
+      note: "FY26 (1 March 2026): Group 2,261 stores across six countries · R120.3bn turnover. Pick n Pay grocery model uses 23 Hypermarkets · 285 company-owned Supermarkets · ~211 franchise Supermarkets · 190 Express (+7 Market) ≈ 709 grocery touchpoints. Franchise supermarket count from at-a-glance footnote (408 franchise SM line includes 211 SM + 190 Express + 7 Market). Smart Shopper ~20.6m members (ESG databook). Boxer excluded as separate banner.",
     },
     disclaimer:
-      "Store total is modelled from Pick n Pay Group FY26 public footprint for grocery-relevant Pick n Pay formats (Hypermarkets, company-owned and franchise Supermarkets, Express). Boxer and clothing/liquor-only formats are excluded from this partnership model unless co-located ranging is agreed. Format counts are a planning allocation, not a Pick n Pay-published partnership split. Packs/store/month, sales rates and people-fed metrics are discussion assumptions only — replace with Pick n Pay network and sell-through data on the term sheet. Front margin is not net store profit. Smart Shopper membership (~20.6m) is Group-reported for loyalty storytelling, not a claim of unique buyers of partnership SKUs.",
+      "Store total is modelled from Pick n Pay Group FY26 public footprint on picknpayinvestor.co.za (at a glance / integrated reporting) for grocery-relevant Pick n Pay formats (Hypermarkets, company-owned and franchise Supermarkets, Express). Boxer and clothing/liquor-only formats are excluded unless co-located ranging is agreed. Format counts are a planning allocation, not a Pick n Pay-published partnership split. Packs/store/month, sales rates and people-fed metrics are discussion assumptions only — replace with Pick n Pay network and sell-through data on the term sheet. Front margin is not net store profit. Smart Shopper membership (~20.6m) is Group-reported for loyalty storytelling, not a claim of unique buyers of partnership SKUs.",
     unitAssumptions: {
       tradeExVat: TRADE_EX_VAT,
       rrpInclVat: RRP_INCL_VAT,

@@ -234,20 +234,21 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
-            Pick n Pay DOES GOOD
+            DOING GOOD IS GOOD BUSINESS
           </DeckEyebrow>
           <DeckTitle>
             <span className="text-white">
-              Communities already trust Pick n Pay. This partnership makes that trust feed people.
+              “{P.groupStrategy.foundingPrinciple}.” This partnership makes that principle edible.
             </span>
           </DeckTitle>
           <p
-            className={`text-white/70 max-w-3xl mb-5 leading-relaxed ${
+            className={`text-white/70 max-w-3xl mb-4 leading-relaxed ${
               forPrint ? "text-xs" : "text-sm sm:text-base"
             }`}
           >
-            Hunger and hardship show up in the same towns as Pick n Pay stores. This is not abstract CSI —
-            it is fortified food on the shelf, rand into foundations, and Pick n Pay as the face of care.
+            {P.groupStrategy.brandPosition} Hunger shows up in the same towns as Pick n Pay stores —
+            this is fortified food on the shelf, rand into foundations, and Pick n Pay as the face of
+            care beside Feed the Nation and School Club CSI.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
             {P.picknPayStory.map((c) => (
@@ -270,56 +271,55 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
+          <p className={`text-white/40 mt-3 ${forPrint ? "text-[9px]" : "text-[10px]"}`}>
+            Aligned to{" "}
+            <a
+              href={P.groupStrategy.brandPageUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 text-red-200/80"
+            >
+              picknpayinvestor.co.za
+            </a>
+            {" · "}
+            People n Planet · Supporting communities · Sustainable supply chains
+          </p>
         </DeckSlideShell>
       );
 
     case 3:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>WHY Pick n Pay LEADS</DeckEyebrow>
-          <DeckTitle>Only Pick n Pay can put purpose at the till and in the community</DeckTitle>
+          <DeckEyebrow theme={theme}>WHY Pick n Pay LEADS · INVESTOR ALIGNMENT</DeckEyebrow>
+          <DeckTitle>Purpose at the till — and in the communities Pick n Pay already serves</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1 content-start">
-            {[
-              {
-                icon: Store,
-                t: "Pick n Pay is already in the community",
-                d: "Independent retailers sit where people live. Purpose does not need a new warehouse — it needs a Pick n Pay shelf.",
-              },
-              {
-                icon: Users,
-                t: "Shoppers want to feel proud",
-                d: "A R67 Mandela pack is a weekly choice with a story: Pick n Pay feeds families and supports foundations.",
-              },
-              {
-                icon: Heart,
-                t: "CSI customers can see",
-                d: "Not only a donation cheque — product donated to Restore Africa Foundation and A Heart To Help, plus sell-through that funds care.",
-              },
-              {
-                icon: Target,
-                t: "Reputation that compounds",
-                d: "Every pack strengthens Pick n Pay as the retailer that does good — commercially healthy, publicly proud.",
-              },
-            ].map((p) => (
-              <div
-                key={p.t}
-                className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
-                  forPrint ? "p-2.5" : "p-4"
-                }`}
-              >
-                <p.icon
-                  className={`mb-2 ${forPrint ? "w-4 h-4" : "w-5 h-5"}`}
-                  style={{ color: theme.accentDark }}
-                />
-                <div className={`font-semibold text-black mb-1 ${forPrint ? "text-sm" : "text-base"}`}>
-                  {p.t}
+            {P.groupStrategy.strategicPillars.slice(0, 4).map((p, i) => {
+              const Icon = [Heart, Users, Store, Target][i] ?? Target;
+              return (
+                <div
+                  key={p.t}
+                  className={`rounded-xl border border-black/10 bg-[#fafafa] min-w-0 ${
+                    forPrint ? "p-2.5" : "p-4"
+                  }`}
+                >
+                  <Icon
+                    className={`mb-2 ${forPrint ? "w-4 h-4" : "w-5 h-5"}`}
+                    style={{ color: theme.accentDark }}
+                  />
+                  <div className={`font-semibold text-black mb-1 ${forPrint ? "text-sm" : "text-base"}`}>
+                    {p.t}
+                  </div>
+                  <p className={`text-[#525252] leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
+                    {p.d}
+                  </p>
                 </div>
-                <p className={`text-[#525252] leading-snug ${forPrint ? "text-[10px]" : "text-sm"}`}>
-                  {p.d}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
+          <p className={`text-[#737373] mt-3 ${forPrint ? "text-[9px]" : "text-[10px]"}`}>
+            Sources: picknpayinvestor.co.za (home · at a glance · ESG overview) · FY26 footprint at 1
+            March 2026 · Group 2,261 stores · R120.3bn turnover
+          </p>
         </DeckSlideShell>
       );
 
