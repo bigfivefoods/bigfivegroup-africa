@@ -157,10 +157,10 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #002916f2 0%, #004d26e6 42%, #00291699 100%)",
+                  "linear-gradient(105deg, #001a2ef2 0%, #003359e6 42%, #001a2e99 100%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2a050c]/95 via-transparent to-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001528]/95 via-transparent to-black/25" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
@@ -171,7 +171,7 @@ function Slide({ index }: { index: number }) {
                   <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem]">
                     When Pick n Pay does good,
                     <br />
-                    <span style={{ color: "#7ddea8" }}>the whole community feels it.</span>
+                    <span style={{ color: "#7eb8e0" }}>the whole community feels it.</span>
                   </h2>
                   <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
                     Put fortified Big Five Foods on Pick n Pay shelves. Earn a healthy store margin.
@@ -1279,10 +1279,10 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #002916f5 0%, #004d26eb 45%, #002916a6 100%)",
+                  "linear-gradient(105deg, #001a2ef5 0%, #003359eb 45%, #001a2ea6 100%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2a050c] via-transparent to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001528] via-transparent to-black/30" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
@@ -1297,7 +1297,7 @@ function Slide({ index }: { index: number }) {
                   >
                     Let Pick n Pay be known for
                     <br />
-                    <span style={{ color: theme.gradientFrom }}>feeding hope — every week.</span>
+                    <span style={{ color: "#7eb8e0" }}>feeding hope — every week.</span>
                   </h2>
                   <p
                     className={`text-white/75 max-w-2xl mt-4 ${

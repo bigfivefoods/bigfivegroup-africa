@@ -132,10 +132,10 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #002916f2 0%, #004d26e6 42%, #00291699 100%)",
+                  "linear-gradient(105deg, #001a2ef2 0%, #003359e6 42%, #001a2e99 100%)",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2a050c]/95 via-transparent to-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001528]/95 via-transparent to-black/25" />
             <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
@@ -146,7 +146,7 @@ function Slide({ index }: { index: number }) {
                   <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem]">
                     When Pick n Pay does good,
                     <br />
-                    <span style={{ color: "#7ddea8" }}>the whole community feels it.</span>
+                    <span style={{ color: "#7eb8e0" }}>the whole community feels it.</span>
                   </h2>
                   <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
                     Condensed partnership brief: Mandela pack on Pick n Pay shelves, healthy store margin
@@ -694,7 +694,7 @@ function Slide({ index }: { index: number }) {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(105deg, #002916f2 0%, #004d26e6 50%, #001a0ecc 100%)",
+                  "linear-gradient(105deg, #001a2ef2 0%, #003359e6 50%, #001528cc 100%)",
               }}
             />
             <div className="relative z-10 h-full">
@@ -707,7 +707,7 @@ function Slide({ index }: { index: number }) {
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-white text-balance leading-[1.1] mb-3">
                     Help Pick n Pay lead —
                     <br />
-                    <span style={{ color: "#7ddea8" }}>commercially sound. Visibly good.</span>
+                    <span style={{ color: "#7eb8e0" }}>commercially sound. Visibly good.</span>
                   </h2>
                   <p className="text-white/75 max-w-xl text-sm leading-relaxed mb-5">
                     Healthy Pick n Pay margin · Mandela pack at R67 · 10% to foundations · sell or donate.
