@@ -122,7 +122,7 @@ function MandelaQuote({ light = true, compact = false }: { light?: boolean; comp
         className={`block not-italic font-semibold tracking-wide uppercase ${
           compact ? "mt-1 text-[10px]" : "mt-1.5 text-[10px] sm:text-xs"
         }`}
-        style={{ color: light ? "#7ddea8" : "#006633", fontStyle: "normal" }}
+        style={{ color: light ? "#ffffff" : "#006633", fontStyle: "normal" }}
       >
         — Nelson Mandela
       </cite>
