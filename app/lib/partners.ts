@@ -511,6 +511,7 @@ export const PARTNERS: PartnerProfile[] = [
       "Open the CMH Ford feeding-scheme partnership deck for the full strategic brief.",
       "Direct purchase: fortified porridge R45 / 1kg · one-pot meal R45 / 1kg — from Big Five Foods for CSI / feeding drives.",
       "One-pot yield: 1kg one-pot provides 4kg of food when prepared = 20 × 200g meals · R2.25 per meal · 24-month shelf life for dealership storage.",
+      "Giving (same principle as SPAR / Pick n Pay decks): CMH Ford 5% + Big Five Foods 5% of pack turnover at R45 → Restore Africa Foundation and A Heart To Help (GBV organisation).",
       "Aligned to Ford Building Together (food security, dealer food drives) and Global Caring Month — public Ford programmes; this briefing is a CMH Ford × Big Five Foods proposal.",
       "Dealership page: https://cmhford.co.za/ballito/ — KZN North Coast approved Ford dealer; CMH Ford network includes Durban, Umhlanga and other SA sites.",
       "Add authorised CMH Ford Group emails to this profile when portal logins are ready.",

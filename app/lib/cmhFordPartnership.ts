@@ -177,6 +177,74 @@ export const CMH_FORD_PARTNERSHIP = {
       "Illustrative: many hot-meal or parcel programmes budget several rand per serving once logistics and waste are included. At R2.25 per 200g fortified serving from a shelf-stable pack, CMH Ford can multiply meal equivalents from the same CSI budget — confirm against your current feeding-scheme unit cost.",
   },
 
+  /**
+   * Same principle as SPAR / Pick n Pay presentations:
+   * 10% of partnership product turnover — CMH Ford 5% + Big Five Foods 5% —
+   * ring-fenced to Restore Africa Foundation and A Heart To Help (GBV).
+   * Base = trade purchase price R45 (feeding-scheme / donation packs).
+   */
+  giving: {
+    totalPct: 10,
+    cmhFordPct: 5,
+    foodsPct: 5,
+    label: "10% of partnership product turnover",
+    detail:
+      "Together, CMH Ford Group and Big Five Foods ring-fence 10% of partnership product turnover on feeding-scheme packs (CMH Ford 5% + Big Five Foods 5%) so every donation purchase also supports Restore Africa Foundation and A Heart To Help — the GBV safety and rehabilitation NPO.",
+    bases: {
+      cmhFord:
+        "CMH Ford: 5% of donation / feeding-scheme purchase value (at R45 per pack) — CSI spend CMH already commits.",
+      foods:
+        "Big Five Foods: 5% of trade turnover on packs sold to CMH Ford (at R45) — matching CMH Ford’s commitment.",
+    },
+    perPack: {
+      basis: "Per 1kg pack purchased at R45",
+      cmhFord: TRADE_EX_VAT * 0.05, // R2.25
+      foods: TRADE_EX_VAT * 0.05, // R2.25
+      total: TRADE_EX_VAT * 0.1, // R4.50
+      cmhFordLabel: `R${(TRADE_EX_VAT * 0.05).toFixed(2)}`,
+      foodsLabel: `R${(TRADE_EX_VAT * 0.05).toFixed(2)}`,
+      totalLabel: `R${(TRADE_EX_VAT * 0.1).toFixed(2)}`,
+    },
+    beneficiaries: "Restore Africa Foundation · A Heart To Help (GBV)",
+    example: {
+      units: 10_000,
+      label: "Illustrative · 10,000 packs purchased for the feeding scheme",
+      tradeTurnover: 10_000 * TRADE_EX_VAT,
+      cmhFordContribution: 10_000 * TRADE_EX_VAT * 0.05,
+      foodsContribution: 10_000 * TRADE_EX_VAT * 0.05,
+      get combined() {
+        return this.cmhFordContribution + this.foodsContribution;
+      },
+    },
+  },
+
+  npos: [
+    {
+      slug: "restore-africa-foundation",
+      name: "Restore Africa Foundation",
+      short: "RAF",
+      role: "NPC · children · community rebuild · KZN",
+      summary:
+        "Registered Non-Profit Company investing in South Africa’s children — nutritious support, school-linked programmes (e.g. Veggies4Kids), and community rebuild after crisis. KZN North Coast roots (Ballito / Ballitoville) — natural adjacency to CMH Ford Ballito.",
+      focus: ["Children first", "School nutrition skills", "Community rebuild", "KZN"],
+      logoSrc: "/partners/restore-africa-foundation-logo.png",
+      brandColor: "#0F5A37",
+      website: "https://www.facebook.com/p/Restore-Africa-Foundation-61573115377603/",
+    },
+    {
+      slug: "a-heart-to-help",
+      name: "A Heart To Help",
+      short: "AHTH",
+      role: "NPO · GBV safety · rehabilitation",
+      summary:
+        "Supports women experiencing gender-based violence — and their children — with safety, counselling, skills development and pathways to independence. Building the Freedom Farm centre on the KZN North Coast as proof of concept for a national network.",
+      focus: ["GBV safety", "Skills", "Independence", "KZN North Coast"],
+      logoSrc: "/partners/a-heart-to-help-logo.png",
+      brandColor: "#0E4A4D",
+      website: "https://ahearttohelp.co.za/",
+    },
+  ],
+
   pathways: [
     {
       id: "buy-direct",
@@ -189,9 +257,9 @@ export const CMH_FORD_PARTNERSHIP = {
       desc: "24-month shelf life lets dealers hold stock for drives, Mandela Day, disaster response and weekly scheme drop-offs without cold chain.",
     },
     {
-      id: "report",
-      title: "Report meals, not only kilograms",
-      desc: "Pack counts × 20 = meal equivalents; rand spent and people reached for CSI / Ford Building Together reporting.",
+      id: "foundations",
+      title: "5% + 5% to RAF & A Heart To Help",
+      desc: "Same principle as other Big Five retail partnerships: CMH Ford 5% + Big Five Foods 5% of pack turnover ring-fenced to Restore Africa Foundation and A Heart To Help (GBV) — on top of the meals delivered.",
     },
   ],
 
@@ -204,7 +272,7 @@ export const CMH_FORD_PARTNERSHIP = {
     {
       n: "02",
       t: "Order",
-      d: "Purchase direct from Big Five Foods at R45 / 1kg pack — fortified porridge and one-pot SKUs.",
+      d: "Purchase direct from Big Five Foods at R45 / 1kg pack — fortified porridge and one-pot SKUs; lock CMH 5% + Foods 5% to RAF & A Heart To Help.",
     },
     {
       n: "03",
@@ -214,7 +282,7 @@ export const CMH_FORD_PARTNERSHIP = {
     {
       n: "04",
       t: "Prove",
-      d: "Quarterly pack: packs bought, meal equivalents, rand, photos and partner stories for ESG packs.",
+      d: "Quarterly pack: packs bought, meal equivalents, rand to RAF / AHTH, photos and partner stories for ESG packs.",
     },
   ],
 
@@ -222,6 +290,7 @@ export const CMH_FORD_PARTNERSHIP = {
     "Trade price of R45 per 1kg pack (fortified porridge or one-pot) is the feeding-scheme / CSI purchase price from Big Five Foods — confirm VAT treatment and SKU list on the order form / term sheet.",
     "Yield claim: 1kg dry pack prepares to approximately 4kg of food = 20 × 200g servings; R45 ÷ 20 = R2.25 per meal. Preparation water, fuel and kitchen labour are outside this pack cost.",
     "24-month shelf life is product design / stated shelf life under correct storage — follow pack instructions and FIFO at the dealership.",
+    "Giving model matches other Big Five partnership presentations: CMH Ford 5% + Big Five Foods 5% (10% total) of partnership pack turnover at R45, ring-fenced to Restore Africa Foundation and A Heart To Help (GBV organisation). Legal wording and NPO split (e.g. 50/50) sit in the commercial / CSI agreement.",
     "Ford Building Together, Global Caring Month and dealer food drives are Ford public programmes; this briefing proposes how CMH Ford can supply fortified staples into those CSI pathways — it is not a Ford Motor Company endorsement.",
     "Scale examples (1k / 5k / 10k packs) are illustrative planning figures, not forecasts or commitments.",
   ],

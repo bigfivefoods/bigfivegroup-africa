@@ -32,9 +32,10 @@ import {
 } from "../lib/cmhFordPartnership";
 
 const theme = DECK_THEMES.ford;
-const TOTAL = 14;
+const TOTAL = 15;
 const P = CMH_FORD_PARTNERSHIP;
 const Y = P.product.yield;
+const G = P.giving;
 
 function CoBrandRow({ light }: { light?: boolean }) {
   const pdf = useDeckPdfExport();
@@ -147,9 +148,9 @@ function Slide({ index }: { index: number }) {
           <ol className={forPrint ? "space-y-1.5 max-w-2xl" : "space-y-2.5 max-w-2xl"}>
             {[
               "Ford Building Together · food security & dealer food drives",
-              "Buy direct: R45 porridge · R45 one-pot",
-              "One-pot yield: 1kg → 4kg of food · 20 meals · R2.25 each",
+              "Buy direct: R45 porridge · R45 one-pot · 1kg → 4kg food",
               "24-month shelf life — plan drives without waste",
+              "5% + 5% to Restore Africa Foundation & A Heart To Help (GBV)",
               "Reach more people for less · activation & the ask",
             ].map((item, i) => (
               <li key={item} className="flex gap-2.5 items-start">
@@ -476,6 +477,68 @@ function Slide({ index }: { index: number }) {
     case 10:
       return (
         <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>FOUNDATIONS · SAME PRINCIPLE AS OTHER PARTNERSHIPS</DeckEyebrow>
+          <DeckTitle>5% + 5% ring-fenced for RAF &amp; A Heart To Help</DeckTitle>
+          <p className="text-xs sm:text-sm text-[#525252] mb-3 max-w-3xl leading-snug">
+            As with SPAR and Pick n Pay presentations:{" "}
+            <strong className="text-black">CMH Ford 5%</strong> +{" "}
+            <strong className="text-black">Big Five Foods 5%</strong> of pack turnover (at R45) —
+            <strong className="text-black"> 10% total</strong> — supports{" "}
+            <strong className="text-black">Restore Africa Foundation</strong> and{" "}
+            <strong className="text-black">A Heart To Help</strong> (GBV organisation), on top of the
+            meals delivered to the feeding scheme.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mb-4">
+            <DeckStatTile theme={theme} label="CMH Ford · 5% per pack" value={G.perPack.cmhFordLabel} />
+            <DeckStatTile theme={theme} label="Big Five Foods · 5% per pack" value={G.perPack.foodsLabel} />
+            <DeckStatTile theme={theme} label="Combined · 10% per pack" value={G.perPack.totalLabel} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mb-3">
+            <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-3.5 text-xs text-[#404040] leading-snug">
+              <strong className="text-black">CMH Ford 5%:</strong> {G.bases.cmhFord}
+            </div>
+            <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-3.5 text-xs text-[#404040] leading-snug">
+              <strong className="text-black">Foods 5%:</strong> {G.bases.foods}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {P.npos.map((npo) => (
+              <div
+                key={npo.slug}
+                className="rounded-2xl border border-black/10 bg-white p-4 flex gap-3 min-w-0"
+              >
+                <div className="relative h-12 w-12 shrink-0 rounded-lg border border-black/10 bg-[#fafafa] overflow-hidden">
+                  {pdf ? (
+                    <DeckPrintImage src={npo.logoSrc} alt={npo.name} fit="contain" />
+                  ) : (
+                    <Image
+                      src={npo.logoSrc}
+                      alt={npo.name}
+                      fill
+                      className="object-contain p-1"
+                      sizes="48px"
+                    />
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <div className="font-semibold text-black text-sm">{npo.name}</div>
+                  <div className="text-[10px] text-[#003478] font-medium mb-1">{npo.role}</div>
+                  <p className="text-[11px] text-[#525252] leading-relaxed">{npo.summary}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-[#737373] mt-3 leading-relaxed max-w-3xl">
+            Illustrative at 10,000 packs: trade {formatZar(G.example.tradeTurnover)} · foundations
+            combined ~{formatZar(G.example.cmhFordContribution + G.example.foodsContribution)} (
+            {G.example.label}).
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 11:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>WHY CMH FORD</DeckEyebrow>
           <DeckTitle>Dealerships already sit where communities gather</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -514,7 +577,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 12:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>ROADMAP</DeckEyebrow>
@@ -538,7 +601,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE ASK</DeckEyebrow>
@@ -546,10 +609,10 @@ function Slide({ index }: { index: number }) {
           <ol className="space-y-2.5 max-w-2xl mt-1">
             {[
               "Approve direct purchase of Big Five Foods fortified porridges and one-pots at R45 per 1kg pack for the Ford feeding scheme",
+              "Adopt CMH Ford 5% + Big Five Foods 5% giving to Restore Africa Foundation and A Heart To Help (GBV)",
               "Pilot volume (e.g. 1,000–5,000 packs) across Ballito and selected CMH Ford dealerships",
               "Nominate CSI / marketing leads for ordering, storage FIFO and beneficiary drop-offs",
-              "Align messaging with Ford Building Together / dealer food-drive calendars",
-              "Agree a simple quarterly meal-equivalent report for ESG packs",
+              "Agree a simple quarterly meal-equivalent + foundations report for ESG packs",
             ].map((a, i) => (
               <li key={a} className="flex gap-3 items-start">
                 <span
@@ -565,7 +628,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 14:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
@@ -597,11 +660,11 @@ function Slide({ index }: { index: number }) {
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-white text-balance leading-[1.1] mb-3">
                     Go further on food security —
                     <br />
-                    <span style={{ color: "#7eb8e0" }}>R2.25 a meal · 24 months ready.</span>
+                    <span style={{ color: "#7eb8e0" }}>meals + 10% to foundations.</span>
                   </h2>
                   <p className="text-white/75 max-w-xl text-sm leading-relaxed mb-5">
-                    R45 porridge · R45 one-pot · 1kg one-pot provides 4kg of food · 20 meals at R2.25
-                    · bought direct from Big Five Foods for the CMH Ford / Ford feeding scheme.
+                    R45 packs · 1kg one-pot → 4kg food · R2.25/meal · 24-month shelf life · CMH Ford
+                    5% + Foods 5% to Restore Africa Foundation and A Heart To Help (GBV).
                   </p>
                 </div>
                 <div className="space-y-3">
