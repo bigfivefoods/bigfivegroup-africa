@@ -82,14 +82,24 @@ export default function PartnerInviteAdmin({
       const res = await fetch("/api/partner/admin/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
         body: JSON.stringify({ slug, name, email, sendInvite }),
       });
-      const data = (await res.json()) as {
+      let data: {
         ok?: boolean;
         error?: string;
         loginUrl?: string;
         invite?: { ok?: boolean; mode?: string; reason?: string };
-      };
+      } = {};
+      try {
+        data = (await res.json()) as typeof data;
+      } catch {
+        setMessage({
+          tone: "err",
+          text: `Could not add contact (HTTP ${res.status}). Refresh and try again.`,
+        });
+        return;
+      }
       if (!res.ok || !data.ok) {
         setMessage({ tone: "err", text: data.error || "Could not add contact." });
         return;
@@ -124,14 +134,24 @@ export default function PartnerInviteAdmin({
       const res = await fetch("/api/partner/admin/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
         body: JSON.stringify({ email: contactEmail, resendOnly: true }),
       });
-      const data = (await res.json()) as {
+      let data: {
         ok?: boolean;
         error?: string;
         loginUrl?: string;
         invite?: { mode?: string; reason?: string };
-      };
+      } = {};
+      try {
+        data = (await res.json()) as typeof data;
+      } catch {
+        setMessage({
+          tone: "err",
+          text: `Could not resend invite (HTTP ${res.status}). Try again.`,
+        });
+        return;
+      }
       if (!res.ok || !data.ok) {
         setMessage({ tone: "err", text: data.error || "Could not resend invite." });
         return;

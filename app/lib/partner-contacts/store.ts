@@ -90,11 +90,21 @@ async function readFileStore(filePath: string): Promise<PartnerContactsSnapshot>
   }
 }
 
-async function writeFileStore(filePath: string, data: PartnerContactsSnapshot): Promise<void> {
-  await fs.mkdir(path.dirname(filePath), { recursive: true });
-  const tmp = `${filePath}.${process.pid}.tmp`;
-  await fs.writeFile(tmp, JSON.stringify(data, null, 2), "utf8");
-  await fs.rename(tmp, filePath);
+async function writeFileStore(filePath: string, data: PartnerContactsSnapshot): Promise<boolean> {
+  try {
+    await fs.mkdir(path.dirname(filePath), { recursive: true });
+    const tmp = `${filePath}.${process.pid}.tmp`;
+    await fs.writeFile(tmp, JSON.stringify(data, null, 2), "utf8");
+    await fs.rename(tmp, filePath);
+    return true;
+  } catch (err) {
+    // Vercel serverless: /var/task is read-only — Redis is the durable store there.
+    console.warn(
+      "[partner-contacts] file write skipped:",
+      err instanceof Error ? err.message : err
+    );
+    return false;
+  }
 }
 
 function pickNewer(
@@ -126,10 +136,18 @@ export async function savePartnerContacts(snap: PartnerContactsSnapshot): Promis
     updatedAt: new Date().toISOString(),
   };
   memorySnap = next;
-  // Always write file so API routes and RSC pages share state without Redis.
+  // Redis first (required on Vercel). File is best-effort for local multi-bundle sharing.
+  const redisOk = await writeRedis(next);
   const filePath = process.env.PARTNER_CONTACTS_FILE?.trim() || DEFAULT_DATA_FILE;
-  await writeFileStore(filePath, next);
-  await writeRedis(next);
+  const fileOk = await writeFileStore(filePath, next);
+  if (!redisOk && !fileOk && !upstashConfigured()) {
+    // Dev without Redis: memory-only is acceptable for a single process.
+    console.warn("[partner-contacts] saved to memory only (no Redis / writable file).");
+  } else if (!redisOk && !fileOk) {
+    throw new Error(
+      "Could not save partner contacts — Redis write failed and the filesystem is not writable."
+    );
+  }
 }
 
 export async function listActiveContacts(slug?: string): Promise<PartnerContact[]> {
