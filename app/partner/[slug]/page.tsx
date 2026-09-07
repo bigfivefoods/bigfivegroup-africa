@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { PARTNER_COOKIE, verifyPartnerToken } from "../../lib/partner-auth";
 import {
   canAccessPartnerPageAsync,
+  canManagePartnerInvitesAsync,
   getPartnerBySlug,
   getPartnerDirectoryEntries,
   isPartnerAdmin,
@@ -33,12 +34,14 @@ export default async function PartnerSlugPage({ params }: Props) {
   }
 
   const admin = isPartnerAdmin(session.email);
+  const canInvite = await canManagePartnerInvitesAsync(session.email, slug);
 
   return (
     <PartnerPortalClient
       email={session.email}
       partner={toClientPartner(partner)}
       isAdmin={admin}
+      canInvite={canInvite}
       directory={admin ? getPartnerDirectoryEntries() : undefined}
     />
   );

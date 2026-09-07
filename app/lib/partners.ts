@@ -897,6 +897,35 @@ export async function canAccessPartnerPageAsync(
   return slug === "general";
 }
 
+/**
+ * Can this email invite (or revoke) people for this organisation workspace?
+ * - Group admins: any real organisation slug
+ * - Registry / invited users: only their own organisation (not general / hub)
+ */
+export async function canManagePartnerInvitesAsync(
+  email: string,
+  slug: string
+): Promise<boolean> {
+  const s = slug.trim().toLowerCase();
+  if (!s || !getPartnerBySlug(s)) return false;
+  if (s === "general" || s === "big-five-group") return false;
+  if (PARTNER_DIRECTORY_HIDDEN_SLUGS.has(s)) return false;
+  if (isPartnerAdmin(email)) return true;
+  return canAccessPartnerPageAsync(email, s);
+}
+
+/** Organisation slug this email may manage invites for (non-admins). Null if none / admin-only hub. */
+export async function partnerInviteScopeSlugAsync(
+  email: string
+): Promise<string | null> {
+  if (isPartnerAdmin(email)) return null; // admin uses hub + any slug
+  const home = await partnerHomePathAsync(email);
+  const m = home.match(/^\/partner\/([a-z0-9-]+)/i);
+  const slug = m?.[1]?.toLowerCase() ?? null;
+  if (!slug || !(await canManagePartnerInvitesAsync(email, slug))) return null;
+  return slug;
+}
+
 /** Canonical home path (registry only — sync). Prefer partnerHomePathAsync. */
 export function partnerHomePath(email: string): string {
   if (isPartnerAdmin(email)) return "/partner/big-five-group";

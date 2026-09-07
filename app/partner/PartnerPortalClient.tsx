@@ -416,11 +416,14 @@ export default function PartnerPortalClient({
   email,
   partner,
   isAdmin,
+  canInvite,
   directory,
 }: {
   email: string;
   partner: ClientPartnerProfile;
   isAdmin?: boolean;
+  /** May invite colleagues to this organisation workspace. */
+  canInvite?: boolean;
   /** Admin-only list of other workspaces (no emails). */
   directory?: PartnerDirectoryEntry[];
 }) {
@@ -537,6 +540,9 @@ export default function PartnerPortalClient({
                 ? [{ href: "#pillars", label: "Pillars" }]
                 : []),
               { href: "#resources", label: "Resources" },
+              ...(canInvite && partner.slug !== "big-five-group"
+                ? [{ href: "#invite-partners", label: "Invite team" }]
+                : []),
               // Admin tools only on the Group hub — keep other org workspaces clean/isolated
               ...(isAdmin && partner.slug === "big-five-group"
                 ? [
@@ -812,11 +818,30 @@ export default function PartnerPortalClient({
         </div>
       </section>
 
+      {/* Org members invite colleagues to THIS workspace only */}
+      {canInvite && partner.slug !== "big-five-group" && partner.slug !== "general" && (
+        <PartnerInviteAdmin
+          mode="org"
+          lockedSlug={partner.slug}
+          viewerEmail={email}
+          organisations={[
+            {
+              slug: partner.slug,
+              name: partner.name,
+              organisation: partner.organisation,
+            },
+          ]}
+        />
+      )}
+
+      {/* Group admin hub: invite to any organisation */}
       {isAdmin &&
         partner.slug === "big-five-group" &&
         directory &&
         directory.length > 0 && (
         <PartnerInviteAdmin
+          mode="admin"
+          viewerEmail={email}
           organisations={directory.map((p) => ({
             slug: p.slug,
             name: p.name,

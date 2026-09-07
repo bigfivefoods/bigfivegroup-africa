@@ -23,6 +23,7 @@ import type { PartnerContact } from "./types";
 
 export type { PartnerContact } from "./types";
 export { partnerLoginUrl } from "./invite-email";
+export { findActiveContactByEmail } from "./store";
 
 function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
