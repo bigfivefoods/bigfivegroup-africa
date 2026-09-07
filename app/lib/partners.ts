@@ -493,6 +493,59 @@ export const PARTNERS: PartnerProfile[] = [
       "Primary Group contact: craig@bigfivegroup.africa · Restore Africa Foundation coordination via Group partnership lead",
   },
   {
+    slug: "cmh-ford-ballito",
+    name: "CMH Ford Ballito",
+    organisation: "CMH Ford Ballito · KwaZulu-Natal North Coast",
+    emails: [],
+    role: "Approved Ford dealership · Ballito · community",
+    headline: "CMH Ford Ballito × Big Five Group",
+    summary:
+      "Partnership workspace for CMH Ford Ballito (cmhford.co.za) and Big Five Group — an approved Ford dealership on the KwaZulu-Natal North Coast. Shared KZN / Ballito footprint with community nutrition, CSI and local foundation pathways alongside Foods, Foundation and Impact.",
+    focus: ["Foods", "Foundation", "Impact", "Community", "KZN"],
+    programmes: ["nsnp", "impact"],
+    logoSrc: "/partners/cmh-ford-ballito-logo.png",
+    brandColor: "#003478",
+    website: "https://cmhford.co.za/",
+    websiteLabel: "cmhford.co.za",
+    notes: [
+      "Official CMH + Ford marks sourced from cmhford.co.za for co-branded partner briefing.",
+      "Dealership page: https://cmhford.co.za/ballito/ — approved Ford dealership on the North Coast of KwaZulu-Natal (new, used, service, parts, finance).",
+      "CMH Ford network also includes Durban, Umhlanga and other SA dealerships; this workspace is scoped to the Ballito partnership.",
+      "Natural KZN North Coast adjacency with Restore Africa Foundation (Ballito / Ballitoville) and A Heart To Help for community and CSI conversations.",
+      "Foods, Foundation and Impact can support staff wellness, CSI donations and local feeding pathways where the partnership requires them.",
+      "Add authorised CMH Ford Ballito emails to this profile when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "https://cmhford.co.za/",
+        label: "CMH Ford website",
+        desc: "Official CMH Ford dealership site — new vehicles, specials, service and finance.",
+      },
+      {
+        href: "https://cmhford.co.za/ballito/",
+        label: "CMH Ford Ballito",
+        desc: "Ballito dealership home — North Coast KZN approved Ford dealer.",
+      },
+      {
+        href: "/foundation",
+        label: "Big Five Foundation",
+        desc: "Community and philanthropic pathways alongside local NPO partners.",
+      },
+      {
+        href: "/foods",
+        label: "Big Five Foods",
+        desc: "Fortified staples for staff, CSI and community feeding pathways.",
+      },
+      {
+        href: "/impact",
+        label: "Big Five Impact",
+        desc: "Programme design, PMO discipline and community outcomes.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · CMH Ford Ballito partnership coordination via Group leadership",
+  },
+  {
     slug: "the-sharks",
     name: "The Sharks",
     organisation: "The Sharks · Durban",
