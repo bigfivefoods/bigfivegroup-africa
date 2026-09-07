@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { PARTNER_COOKIE, verifyPartnerToken } from "../lib/partner-auth";
-import { partnerHomePath } from "../lib/partners";
+import { partnerHomePathAsync } from "../lib/partners";
 
 export const dynamic = "force-dynamic";
 
@@ -16,5 +16,5 @@ export default async function PartnerPortalIndexPage() {
     redirect("/partner/login?from=/partner");
   }
 
-  redirect(partnerHomePath(session.email));
+  redirect(await partnerHomePathAsync(session.email));
 }

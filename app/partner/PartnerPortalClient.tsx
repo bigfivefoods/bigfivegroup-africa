@@ -41,6 +41,7 @@ import PicknPayPartnershipDeckCondensed from "../components/PicknPayPartnershipD
 import CmhFordPartnershipDeck from "../components/CmhFordPartnershipDeck";
 import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
 import BfgPartnerDeck from "../components/BfgPartnerDeck";
+import PartnerInviteAdmin from "./PartnerInviteAdmin";
 
 function partnerShareUrls(slug: string) {
   const origin =
@@ -457,7 +458,12 @@ export default function PartnerPortalClient({
                 : []),
               { href: "#pillars", label: "Pillars" },
               { href: "#resources", label: "Resources" },
-              ...(isAdmin ? [{ href: "#directory", label: "All partners" }] : []),
+              ...(isAdmin
+                ? [
+                    { href: "#invite-partners", label: "Invite partners" },
+                    { href: "#directory", label: "All partners" },
+                  ]
+                : []),
               { href: "#contact", label: "Contact" },
             ];
             return (
@@ -712,6 +718,16 @@ export default function PartnerPortalClient({
           </div>
         </div>
       </section>
+
+      {isAdmin && directory && directory.length > 0 && (
+        <PartnerInviteAdmin
+          organisations={directory.map((p) => ({
+            slug: p.slug,
+            name: p.name,
+            organisation: p.organisation,
+          }))}
+        />
+      )}
 
       {isAdmin && directory && directory.length > 0 && (
         <section

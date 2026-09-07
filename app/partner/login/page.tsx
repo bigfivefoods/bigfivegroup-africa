@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { PARTNER_COOKIE, verifyPartnerToken } from "../../lib/partner-auth";
-import { partnerHomePath } from "../../lib/partners";
+import { partnerHomePathAsync } from "../../lib/partners";
 import PartnerLoginForm from "./PartnerLoginForm";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,7 @@ export default async function PartnerLoginPage() {
   const token = jar.get(PARTNER_COOKIE)?.value;
   const session = await verifyPartnerToken(token);
   if (session) {
-    redirect(partnerHomePath(session.email));
+    redirect(await partnerHomePathAsync(session.email));
   }
 
   return (

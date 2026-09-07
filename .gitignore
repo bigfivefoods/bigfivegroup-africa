@@ -17,6 +17,7 @@ playwright-report/
 # Local newsletter subscriber store
 data/newsletter-subscribers.json
 data/newsletter-campaigns.json
+data/partner-contacts.json
 data/*.tmp
 
 # Env secrets

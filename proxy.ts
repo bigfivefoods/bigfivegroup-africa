@@ -9,14 +9,17 @@ import {
   verifyPartnerToken,
 } from "./app/lib/partner-auth";
 import {
-  canAccessPartnerPage,
-  partnerHomePath,
+  canAccessPartnerPageAsync,
+  partnerHomePathAsync,
 } from "./app/lib/partners";
 
 /**
  * Next.js Proxy — gate /investor/* and /partner/* behind signed session cookies.
  * Partner routes are also organisation-scoped: non-admins may only open their own slug.
  * Login + logout APIs stay public.
+ *
+ * Access checks are async so invited contacts (partner-contacts store) are honoured —
+ * sync registry-only checks would bounce invitees between /partner/general and their org.
  */
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -39,8 +42,8 @@ export async function proxy(request: NextRequest) {
     const slugMatch = pathname.match(/^\/partner\/([a-z0-9-]+)(?:\/|$)/i);
     if (slugMatch?.[1]) {
       const slug = slugMatch[1].toLowerCase();
-      if (!canAccessPartnerPage(session.email, slug)) {
-        const home = partnerHomePath(session.email);
+      if (!(await canAccessPartnerPageAsync(session.email, slug))) {
+        const home = await partnerHomePathAsync(session.email);
         return NextResponse.redirect(new URL(home, request.url));
       }
     }

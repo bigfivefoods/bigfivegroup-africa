@@ -823,7 +823,8 @@ export function getPartnerBySlug(slug: string): PartnerProfile | undefined {
 }
 
 /**
- * Resolve partner profile for a signed-in email.
+ * Resolve partner profile for a signed-in email (registry only — sync).
+ * Prefer resolvePartnerForEmailAsync when invite contacts may apply.
  * - Mapped org email → that organisation only
  * - Portal admin → Big Five Group hub
  * - Ad-hoc PARTNER_EMAILS env (not in registry) → general workspace
@@ -838,6 +839,27 @@ export function getPartnerByEmail(email: string): PartnerProfile | undefined {
   return getPartnerBySlug("general");
 }
 
+/**
+ * Resolve partner including invited contacts from the durable store.
+ */
+export async function resolvePartnerForEmailAsync(
+  email: string
+): Promise<PartnerProfile | undefined> {
+  const n = normalizeEmail(email);
+  const match = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
+  if (match) return match;
+  if (PARTNER_PORTAL_ADMINS.map(normalizeEmail).includes(n)) {
+    return getPartnerBySlug("big-five-group");
+  }
+  // Dynamic import keeps partner-contacts server-only and avoids cycles at module load
+  const { findActiveContactByEmail } = await import("./partner-contacts/store");
+  const contact = await findActiveContactByEmail(n);
+  if (contact) {
+    return getPartnerBySlug(contact.slug) ?? getPartnerBySlug("general");
+  }
+  return getPartnerBySlug("general");
+}
+
 export function isPartnerAdmin(email: string): boolean {
   const n = normalizeEmail(email);
   if (PARTNER_PORTAL_ADMINS.map(normalizeEmail).includes(n)) return true;
@@ -846,30 +868,48 @@ export function isPartnerAdmin(email: string): boolean {
 }
 
 /**
- * Can this email view this partner slug?
- *
- * Hard isolation:
- * - Non-admins may ONLY open the single /partner/[slug] tied to their email
- *   (e.g. SPAR emails → /partner/spar only; dmAFRICA → /partner/dmafrica only).
- * - They cannot open another organisation’s page even with a direct URL.
- * - Ad-hoc PARTNER_EMAILS (env, not in registry) may only open /partner/general.
- * - PARTNER_PORTAL_ADMINS (Craig) may open any slug for internal briefing.
+ * Can this email view this partner slug? (registry only — sync)
+ * Prefer canAccessPartnerPageAsync when invite contacts may apply.
  */
 export function canAccessPartnerPage(email: string, slug: string): boolean {
   if (isPartnerAdmin(email)) return true;
   const n = normalizeEmail(email);
   const partner = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
   if (partner) return partner.slug === slug;
-  // Env / ad-hoc allowlist: isolated general workspace only
   return slug === "general";
 }
 
-/** Canonical home path for a signed-in partner (always their own space). */
+export async function canAccessPartnerPageAsync(
+  email: string,
+  slug: string
+): Promise<boolean> {
+  if (isPartnerAdmin(email)) return true;
+  const n = normalizeEmail(email);
+  const partner = PARTNERS.find((p) => p.emails.map(normalizeEmail).includes(n));
+  if (partner) return partner.slug === slug;
+  const { findActiveContactByEmail } = await import("./partner-contacts/store");
+  const contact = await findActiveContactByEmail(n);
+  if (contact) return contact.slug === slug;
+  return slug === "general";
+}
+
+/** Canonical home path (registry only — sync). Prefer partnerHomePathAsync. */
 export function partnerHomePath(email: string): string {
   if (isPartnerAdmin(email)) return "/partner/big-five-group";
   const n = normalizeEmail(email);
   const p = PARTNERS.find((x) => x.emails.map(normalizeEmail).includes(n));
   return p ? `/partner/${p.slug}` : "/partner/general";
+}
+
+export async function partnerHomePathAsync(email: string): Promise<string> {
+  if (isPartnerAdmin(email)) return "/partner/big-five-group";
+  const n = normalizeEmail(email);
+  const p = PARTNERS.find((x) => x.emails.map(normalizeEmail).includes(n));
+  if (p) return `/partner/${p.slug}`;
+  const { findActiveContactByEmail } = await import("./partner-contacts/store");
+  const contact = await findActiveContactByEmail(n);
+  if (contact) return `/partner/${contact.slug}`;
+  return "/partner/general";
 }
 
 /**
@@ -884,11 +924,20 @@ export function resolvePostLoginPath(email: string, requestedFrom?: string | nul
   if (from === "/partner" || from === "/partner/" || from.startsWith("/partner/login")) {
     return home;
   }
-  // /partner/[slug] or nested under it
   const m = from.match(/^\/partner\/([a-z0-9-]+)/i);
   if (!m?.[1]) return home;
   if (!getPartnerBySlug(m[1])) return home;
   return `/partner/${m[1]}`;
+}
+
+export async function resolvePostLoginPathAsync(
+  email: string,
+  requestedFrom?: string | null
+): Promise<string> {
+  if (isPartnerAdmin(email)) {
+    return resolvePostLoginPath(email, requestedFrom);
+  }
+  return partnerHomePathAsync(email);
 }
 
 /** Admin-only directory cards (no emails). */

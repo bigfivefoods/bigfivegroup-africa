@@ -89,6 +89,8 @@ export async function sendResendEmail(opts: {
   subject: string;
   text: string;
   html: string;
+  /** Override From (defaults to NEWSLETTER_FROM / RESEND_FROM / CONTACT_EMAIL). */
+  from?: string;
   /** Visitor address — Resend Reply-To so you can reply from your inbox */
   replyTo?: string | string[];
   headers?: Record<string, string>;
@@ -112,7 +114,7 @@ export async function sendResendEmail(opts: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: fromAddress(),
+        from: opts.from?.trim() || fromAddress(),
         to,
         reply_to: replyTo,
         subject: opts.subject,

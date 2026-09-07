@@ -1,4 +1,5 @@
 import { PARTNER_ALLOWLIST } from "./partner-allowlist";
+import { findActiveContactByEmail } from "./partner-contacts/store";
 
 export const PARTNER_COOKIE = "bfg_partner_session";
 /** Session length: 30 days */
@@ -8,7 +9,7 @@ function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
 }
 
-/** Allowed partner emails from code allowlist + env */
+/** Allowed partner emails from code allowlist + env (sync — registry only) */
 export function getAllowedPartnerEmails(): Set<string> {
   const fromEnv = (process.env.PARTNER_EMAILS ?? "")
     .split(/[,;\n]+/)
@@ -18,10 +19,19 @@ export function getAllowedPartnerEmails(): Set<string> {
   return new Set([...fromCode, ...fromEnv]);
 }
 
+/** Sync check — registry + env only (no invite store). Prefer isPartnerEmailAllowedAsync. */
 export function isPartnerEmailAllowed(email: string): boolean {
   const set = getAllowedPartnerEmails();
   if (set.size === 0) return false;
   return set.has(normalizeEmail(email));
+}
+
+/** Full allowlist: registry + env + invited contacts (active). */
+export async function isPartnerEmailAllowedAsync(email: string): Promise<boolean> {
+  const n = normalizeEmail(email);
+  if (isPartnerEmailAllowed(n)) return true;
+  const contact = await findActiveContactByEmail(n);
+  return Boolean(contact);
 }
 
 /**
@@ -90,7 +100,7 @@ export async function createPartnerToken(email: string): Promise<string | null> 
   const secret = getSecret();
   if (!secret) return null;
   const normalized = normalizeEmail(email);
-  if (!isPartnerEmailAllowed(normalized)) return null;
+  if (!(await isPartnerEmailAllowedAsync(normalized))) return null;
   const exp = Math.floor(Date.now() / 1000) + PARTNER_SESSION_MAX_AGE_SEC;
   const payload = base64UrlEncode(
     JSON.stringify({ email: normalized, exp } satisfies PartnerSession)
@@ -120,7 +130,7 @@ export async function verifyPartnerToken(
     const data = JSON.parse(base64UrlDecode(payload)) as PartnerSession;
     if (!data?.email || !data?.exp) return null;
     if (data.exp < Math.floor(Date.now() / 1000)) return null;
-    if (!isPartnerEmailAllowed(data.email)) return null;
+    if (!(await isPartnerEmailAllowedAsync(data.email))) return null;
     return data;
   } catch {
     return null;

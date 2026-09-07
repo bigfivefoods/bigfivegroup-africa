@@ -4,11 +4,11 @@ import {
   hasPartnerAuthConfigured,
   PARTNER_COOKIE,
   PARTNER_SESSION_MAX_AGE_SEC,
-  isPartnerEmailAllowed,
+  isPartnerEmailAllowedAsync,
 } from "../../../lib/partner-auth";
 import {
   isPartnerAdmin,
-  resolvePostLoginPath,
+  resolvePostLoginPathAsync,
 } from "../../../lib/partners";
 
 export async function POST(request: Request) {
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Enter a valid email address." }, { status: 400 });
   }
 
-  if (!isPartnerEmailAllowed(email)) {
+  if (!(await isPartnerEmailAllowedAsync(email))) {
     return NextResponse.json(
       {
         ok: false,
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const home = resolvePostLoginPath(email, body.from);
+  const home = await resolvePostLoginPathAsync(email, body.from);
   const admin = isPartnerAdmin(email);
 
   const res = NextResponse.json({

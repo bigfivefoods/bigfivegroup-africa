@@ -2,11 +2,11 @@ import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import { PARTNER_COOKIE, verifyPartnerToken } from "../../lib/partner-auth";
 import {
-  canAccessPartnerPage,
+  canAccessPartnerPageAsync,
   getPartnerBySlug,
   getPartnerDirectoryEntries,
   isPartnerAdmin,
-  partnerHomePath,
+  partnerHomePathAsync,
   toClientPartner,
 } from "../../lib/partners";
 import PartnerPortalClient from "../PartnerPortalClient";
@@ -28,8 +28,8 @@ export default async function PartnerSlugPage({ params }: Props) {
   }
 
   // Hard isolation: each partner email only sees its own /partner/[slug]
-  if (!canAccessPartnerPage(session.email, slug)) {
-    redirect(partnerHomePath(session.email));
+  if (!(await canAccessPartnerPageAsync(session.email, slug))) {
+    redirect(await partnerHomePathAsync(session.email));
   }
 
   const admin = isPartnerAdmin(session.email);
