@@ -178,7 +178,7 @@ export const CMH_FORD_PARTNERSHIP = {
   },
 
   /**
-   * Same principle as SPAR / Pick n Pay presentations:
+   * Ring-fenced giving model for this CMH Ford × Big Five Foods partnership:
    * 10% of partnership product turnover — CMH Ford 5% + Big Five Foods 5% —
    * ring-fenced to Restore Africa Foundation and A Heart To Help (GBV).
    * Base = trade purchase price R45 (feeding-scheme / donation packs).
@@ -332,7 +332,7 @@ export const CMH_FORD_PARTNERSHIP = {
     {
       id: "foundations",
       title: "5% + 5% to RAF & A Heart To Help",
-      desc: "Same principle as other Big Five retail partnerships: CMH Ford 5% + Big Five Foods 5% of pack turnover ring-fenced to Restore Africa Foundation and A Heart To Help (GBV) — on top of the meals delivered.",
+      desc: "CMH Ford 5% + Big Five Foods 5% of pack turnover ring-fenced to Restore Africa Foundation and A Heart To Help (GBV) — on top of the meals delivered.",
     },
   ],
 
@@ -363,7 +363,7 @@ export const CMH_FORD_PARTNERSHIP = {
     "Trade price of R45 per 1kg pack (fortified porridge or one-pot) is the feeding-scheme / CSI purchase price from Big Five Foods — confirm VAT treatment and SKU list on the order form / term sheet.",
     "Yield claim: 1kg dry pack prepares to approximately 4kg of food = 20 × 200g servings; R45 ÷ 20 = R2.25 per meal. Preparation water, fuel and kitchen labour are outside this pack cost.",
     "24-month shelf life is product design / stated shelf life under correct storage — follow pack instructions and FIFO at the dealership.",
-    "Giving model matches other Big Five partnership presentations: CMH Ford 5% + Big Five Foods 5% (10% total) of partnership pack turnover at R45, ring-fenced to Restore Africa Foundation and A Heart To Help (GBV organisation). Legal wording and NPO split (e.g. 50/50) sit in the commercial / CSI agreement.",
+    "Giving model: CMH Ford 5% + Big Five Foods 5% (10% total) of partnership pack turnover at R45, ring-fenced to Restore Africa Foundation and A Heart To Help (GBV organisation). Legal wording and NPO split (e.g. 50/50) sit in the commercial / CSI agreement.",
     "Ford Building Together, Global Caring Month and dealer food drives are Ford public programmes; this briefing proposes how CMH Ford can supply fortified staples into those CSI pathways — it is not a Ford Motor Company endorsement.",
     "Scale examples (1k / 5k / 10k packs) are illustrative planning figures, not forecasts or commitments.",
   ],

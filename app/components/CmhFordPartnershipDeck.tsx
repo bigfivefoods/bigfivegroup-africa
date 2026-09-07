@@ -505,10 +505,10 @@ function Slide({ index }: { index: number }) {
     case 10:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>FOUNDATIONS · SAME PRINCIPLE AS OTHER PARTNERSHIPS</DeckEyebrow>
+          <DeckEyebrow theme={theme}>FOUNDATIONS · RING-FENCED GIVING</DeckEyebrow>
           <DeckTitle>5% + 5% ring-fenced for RAF &amp; A Heart To Help</DeckTitle>
           <p className="text-xs sm:text-sm text-[#525252] mb-3 max-w-3xl leading-snug">
-            As with SPAR and Pick n Pay presentations:{" "}
+            For this CMH Ford × Big Five Foods partnership:{" "}
             <strong className="text-black">CMH Ford 5%</strong> +{" "}
             <strong className="text-black">Big Five Foods 5%</strong> of pack turnover (at R45) —
             <strong className="text-black"> 10% total</strong> — supports{" "}

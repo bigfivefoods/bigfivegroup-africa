@@ -23,6 +23,16 @@ export type ClientPartnerProfile = {
   notes?: string[];
   programmes?: PartnerProgrammeId[];
   resources?: PartnerResource[];
+  /**
+   * When true, append shared Group links (partner kit, methodology, Foods deck, etc.).
+   * Default false — each organisation only sees its own `resources` (strict isolation).
+   */
+  includeDefaultResources?: boolean;
+  /**
+   * When true, show the public nine-pillar directory on the portal.
+   * Default false — commercial partners stay on their own materials only.
+   */
+  showPublicPillars?: boolean;
   contactNote?: string;
   logoSrc?: string;
   brandColor?: string;
@@ -74,10 +84,15 @@ export const DEFAULT_PARTNER_RESOURCES: PartnerResource[] = [
   },
 ];
 
+/**
+ * Resources for this organisation workspace only.
+ * Shared Group defaults are opt-in via `includeDefaultResources` (hubs / general).
+ */
 export function mergePartnerResources(
-  partner: Pick<ClientPartnerProfile, "resources">
+  partner: Pick<ClientPartnerProfile, "resources" | "includeDefaultResources">
 ): PartnerResource[] {
   const custom = partner.resources ?? [];
+  if (!partner.includeDefaultResources) return custom;
   const seen = new Set(custom.map((r) => r.href));
   return [...custom, ...DEFAULT_PARTNER_RESOURCES.filter((r) => !seen.has(r.href))];
 }

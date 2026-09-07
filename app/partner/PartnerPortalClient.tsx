@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -32,16 +33,106 @@ import {
   type PartnerProgrammeId,
 } from "../lib/partner-public";
 import { track } from "../lib/analytics";
-import SparPartnershipDeck from "../components/SparPartnershipDeck";
-import SparPartnershipDeckCondensed from "../components/SparPartnershipDeckCondensed";
-import CheckersPartnershipDeck from "../components/CheckersPartnershipDeck";
-import CheckersPartnershipDeckCondensed from "../components/CheckersPartnershipDeckCondensed";
-import PicknPayPartnershipDeck from "../components/PicknPayPartnershipDeck";
-import PicknPayPartnershipDeckCondensed from "../components/PicknPayPartnershipDeckCondensed";
-import CmhFordPartnershipDeck from "../components/CmhFordPartnershipDeck";
-import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
-import BfgPartnerDeck from "../components/BfgPartnerDeck";
 import PartnerInviteAdmin from "./PartnerInviteAdmin";
+
+/** Lazy-load decks so other organisations' pitch materials never enter this partner's JS bundle. */
+const SparPartnershipDeck = dynamic(() => import("../components/SparPartnershipDeck"), {
+  ssr: false,
+  loading: () => <DeckLoading label="SPAR deck" />,
+});
+const SparPartnershipDeckCondensed = dynamic(
+  () => import("../components/SparPartnershipDeckCondensed"),
+  { ssr: false, loading: () => <DeckLoading label="SPAR condensed" /> }
+);
+const CheckersPartnershipDeck = dynamic(() => import("../components/CheckersPartnershipDeck"), {
+  ssr: false,
+  loading: () => <DeckLoading label="Checkers deck" />,
+});
+const CheckersPartnershipDeckCondensed = dynamic(
+  () => import("../components/CheckersPartnershipDeckCondensed"),
+  { ssr: false, loading: () => <DeckLoading label="Checkers condensed" /> }
+);
+const PicknPayPartnershipDeck = dynamic(() => import("../components/PicknPayPartnershipDeck"), {
+  ssr: false,
+  loading: () => <DeckLoading label="Pick n Pay deck" />,
+});
+const PicknPayPartnershipDeckCondensed = dynamic(
+  () => import("../components/PicknPayPartnershipDeckCondensed"),
+  { ssr: false, loading: () => <DeckLoading label="Pick n Pay condensed" /> }
+);
+const CmhFordPartnershipDeck = dynamic(() => import("../components/CmhFordPartnershipDeck"), {
+  ssr: false,
+  loading: () => <DeckLoading label="CMH Ford deck" />,
+});
+const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
+  ssr: false,
+  loading: () => <DeckLoading label="SWT-AG deck" />,
+});
+const BfgPartnerDeck = dynamic(() => import("../components/BfgPartnerDeck"), {
+  ssr: false,
+  loading: () => <DeckLoading label="Partner deck" />,
+});
+
+function DeckLoading({ label }: { label: string }) {
+  return (
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-[#737373]">
+      Loading {label}…
+    </div>
+  );
+}
+
+type HeroTile = {
+  icon: typeof Package;
+  t: string;
+  d: string;
+};
+
+/** Hero cards follow this organisation's programmes — not a fixed Group-wide strip. */
+function heroTilesForPartner(partner: ClientPartnerProfile): HeroTile[] {
+  const programmes = new Set(partner.programmes ?? []);
+  const tiles: HeroTile[] = [];
+  if (programmes.has("nsnp")) {
+    tiles.push({
+      icon: Package,
+      t: "Foods · nutrition",
+      d: "Fortified packs and institutional / CSI feeding pathways",
+    });
+  }
+  if (programmes.has("santaco")) {
+    tiles.push({
+      icon: Truck,
+      t: "Direct · SANTACO",
+      d: "Rank & rural container partnership plan",
+    });
+  }
+  if (programmes.has("connect")) {
+    tiles.push({
+      icon: Users,
+      t: "Connect · SupplierAdvisor®",
+      d: "Verified trade rails for this partnership",
+    });
+  }
+  if (programmes.has("leadership")) {
+    tiles.push({
+      icon: Building2,
+      t: "Leadership · Super-Cube®",
+      d: "Whole-person capacity for delivery teams",
+    });
+  }
+  if (programmes.has("impact") && tiles.length < 3) {
+    tiles.push({
+      icon: FileText,
+      t: "Impact · delivery",
+      d: "Gates, KPIs and field assurance where programmes run",
+    });
+  }
+  tiles.push({
+    icon: Handshake,
+    t: partner.name,
+    d: "Private organisation workspace — your materials only",
+  });
+  return tiles.slice(0, 3);
+}
 
 function partnerShareUrls(slug: string) {
   const origin =
@@ -390,23 +481,7 @@ export default function PartnerPortalClient({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              {
-                icon: Package,
-                t: "Foods · NSNP",
-                d: "Programme landed · plan scale · institutional economics",
-              },
-              {
-                icon: Truck,
-                t: "Direct · SANTACO",
-                d: "Rank & rural container partnership plan",
-              },
-              {
-                icon: Handshake,
-                t: partner.name,
-                d: "Your organisation workspace on Big Five Group",
-              },
-            ].map((c) => (
+            {heroTilesForPartner(partner).map((c) => (
               <div
                 key={c.t}
                 className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 min-w-0"
@@ -425,7 +500,9 @@ export default function PartnerPortalClient({
           {(() => {
             const navLinks = [
               { href: "#for-you", label: "For you" },
-              { href: "#programmes", label: "Programmes" },
+              ...((partner.programmes?.length ?? 0) > 0
+                ? [{ href: "#programmes", label: "Programmes" }]
+                : []),
               ...(partner.slug === "spar"
                 ? [
                     { href: "#spar-partnership-deck-condensed", label: "SPAR condensed" },
@@ -456,9 +533,12 @@ export default function PartnerPortalClient({
               ...(partner.slug === "big-five-group"
                 ? [{ href: "#bfg-partner-deck", label: "Partner deck" }]
                 : []),
-              { href: "#pillars", label: "Pillars" },
+              ...(partner.showPublicPillars
+                ? [{ href: "#pillars", label: "Pillars" }]
+                : []),
               { href: "#resources", label: "Resources" },
-              ...(isAdmin
+              // Admin tools only on the Group hub — keep other org workspaces clean/isolated
+              ...(isAdmin && partner.slug === "big-five-group"
                 ? [
                     { href: "#invite-partners", label: "Invite partners" },
                     { href: "#directory", label: "All partners" },
@@ -559,56 +639,60 @@ export default function PartnerPortalClient({
         </div>
       </section>
 
-      <section
-        id="programmes"
-        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
-            PROGRAMMES RELEVANT TO YOU
+      {(partner.programmes?.length ?? 0) > 0 && (
+        <section
+          id="programmes"
+          className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
+              PROGRAMMES FOR THIS PARTNERSHIP
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8 text-balance">
+              Pathways relevant to {partner.name}
+            </h2>
+            <ProgrammeBlocks ids={partner.programmes} />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8 text-balance">
-            Flagship pathways
-          </h2>
-          <ProgrammeBlocks ids={partner.programmes} />
-        </div>
-      </section>
+        </section>
+      )}
 
-      <section
-        id="pillars"
-        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
-            NINE PILLARS
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
-            Public pillar pages
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
-            {companies.map((c) => (
-              <Link
-                key={c.slug}
-                href={`/${c.slug}`}
-                className="rounded-xl border border-black/10 bg-[#fafafa] p-3 sm:p-4 hover:border-black/25 transition-colors min-w-0 group"
-              >
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center mb-2"
-                  style={{ backgroundColor: `${c.color}18`, color: c.color }}
+      {partner.showPublicPillars && (
+        <section
+          id="pillars"
+          className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
+              NINE PILLARS
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
+              Public pillar pages
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
+              {companies.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/${c.slug}`}
+                  className="rounded-xl border border-black/10 bg-[#fafafa] p-3 sm:p-4 hover:border-black/25 transition-colors min-w-0 group"
                 >
-                  <CompanyIcon name={c.icon} size={16} />
-                </div>
-                <div className="text-xs sm:text-sm font-semibold text-black group-hover:underline underline-offset-2 truncate">
-                  {c.name}
-                </div>
-                <div className="text-[10px] text-[#737373] line-clamp-2 mt-0.5 leading-snug">
-                  {c.tagline}
-                </div>
-              </Link>
-            ))}
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center mb-2"
+                    style={{ backgroundColor: `${c.color}18`, color: c.color }}
+                  >
+                    <CompanyIcon name={c.icon} size={16} />
+                  </div>
+                  <div className="text-xs sm:text-sm font-semibold text-black group-hover:underline underline-offset-2 truncate">
+                    {c.name}
+                  </div>
+                  <div className="text-[10px] text-[#737373] line-clamp-2 mt-0.5 leading-snug">
+                    {c.tagline}
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {partner.slug === "spar" && (
         <>
@@ -672,10 +756,19 @@ export default function PartnerPortalClient({
               RESOURCES
             </div>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6 text-balance">
-            Decks and pages for this partnership
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2 text-balance">
+            Materials for {partner.name}
           </h2>
+          <p className="text-sm text-[#525252] mb-6 max-w-2xl leading-relaxed">
+            Only this organisation&apos;s workspace materials — other partners cannot open these
+            links from their portals, and you will not see theirs.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {resources.length === 0 ? (
+              <p className="text-sm text-[#737373] sm:col-span-2 lg:col-span-3">
+                No resources listed yet for this workspace. Contact Big Five to add decks or links.
+              </p>
+            ) : null}
             {resources.map((r) => {
               const external = /^https?:\/\//i.test(r.href);
               const cardClass =
@@ -719,7 +812,10 @@ export default function PartnerPortalClient({
         </div>
       </section>
 
-      {isAdmin && directory && directory.length > 0 && (
+      {isAdmin &&
+        partner.slug === "big-five-group" &&
+        directory &&
+        directory.length > 0 && (
         <PartnerInviteAdmin
           organisations={directory.map((p) => ({
             slug: p.slug,
@@ -729,7 +825,10 @@ export default function PartnerPortalClient({
         />
       )}
 
-      {isAdmin && directory && directory.length > 0 && (
+      {isAdmin &&
+        partner.slug === "big-five-group" &&
+        directory &&
+        directory.length > 0 && (
         <section
           id="directory"
           className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
