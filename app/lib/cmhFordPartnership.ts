@@ -117,8 +117,11 @@ export const CMH_FORD_PARTNERSHIP = {
         tradeLabel: "R45",
         tagline: "A complete fortified plate in one pack",
         heroImage: "/foods/onepot-chicken.jpg",
+        /** Flagship feeding-scheme claim — always surface in decks */
+        stats: "1kg one-pot → 4kg prepared food = 20 × 200g meals · R2.25 / meal",
+        yieldLine: "1kg dry one-pot pack provides 4kg of food when prepared",
         blurb:
-          "Ready-to-cook complete meals with authentic African flavours. One 1kg pack prepares to 4kg of food — 20 dignified plates for feeding schemes and community kitchens.",
+          "Ready-to-cook complete meals with authentic African flavours. A 1kg one-pot pack provides 4kg of food when prepared — that is 20 × 200g meals at R2.25 each (R45 ÷ 20).",
         serve: "Community kitchens · CSI hampers · institutional menus · 20 plates per pack",
       },
     ],

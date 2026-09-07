@@ -121,11 +121,12 @@ function Slide({ index }: { index: number }) {
                     <span style={{ color: "#7eb8e0" }}>more meals, less money.</span>
                   </h2>
                   <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
-                    Buy fortified porridges and one-pot meals direct from Big Five Foods at{" "}
+                    Buy fortified porridges and one-pots at{" "}
                     <strong className="text-white">R45</strong> a pack ·{" "}
-                    <strong className="text-white">24-month</strong> shelf life ·{" "}
-                    <strong className="text-white">4kg</strong> prepared food ·{" "}
-                    <strong className="text-white">R2.25</strong> per meal.
+                    <strong className="text-white">1kg one-pot → 4kg of food</strong> ·{" "}
+                    <strong className="text-white">20 meals</strong> at{" "}
+                    <strong className="text-white">R2.25</strong> ·{" "}
+                    <strong className="text-white">24-month</strong> shelf life.
                   </p>
                 </div>
                 <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
@@ -147,7 +148,7 @@ function Slide({ index }: { index: number }) {
             {[
               "Ford Building Together · food security & dealer food drives",
               "Buy direct: R45 porridge · R45 one-pot",
-              "Yield maths: 1kg → 4kg · 20 meals · R2.25 each",
+              "One-pot yield: 1kg → 4kg of food · 20 meals · R2.25 each",
               "24-month shelf life — plan drives without waste",
               "Reach more people for less · activation & the ask",
             ].map((item, i) => (
@@ -259,11 +260,17 @@ function Slide({ index }: { index: number }) {
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PRODUCT · BUY DIRECT</DeckEyebrow>
           <DeckTitle>Two hero packs · R45 each</DeckTitle>
-          <p className="text-xs sm:text-sm text-[#525252] mb-4 max-w-3xl leading-snug">
+          <p className="text-xs sm:text-sm text-[#525252] mb-3 max-w-3xl leading-snug">
             Fortified porridge <strong className="text-black">or</strong> one-pot meal — same{" "}
             <strong className="text-black">R45</strong> purchase price for the feeding scheme, bought
             direct from Big Five Foods.
           </p>
+          <div className="rounded-xl border border-[#003478]/25 bg-[#003478] text-white px-4 py-3 mb-4 max-w-3xl">
+            <p className="text-sm sm:text-base font-semibold leading-snug">
+              1kg one-pot provides <span className="text-sky-200">4kg of food</span> when prepared —
+              20 × 200g meals at R2.25 each.
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {P.product.skus.map((sku) => (
               <div
@@ -289,6 +296,11 @@ function Slide({ index }: { index: number }) {
                   </div>
                   <div className="font-semibold text-black text-base mb-1">{sku.title}</div>
                   <p className="text-xs text-[#525252] leading-relaxed mb-2">{sku.tagline}</p>
+                  {"stats" in sku && sku.stats ? (
+                    <p className="text-[11px] font-semibold text-[#003478] leading-snug mb-1.5">
+                      {sku.stats}
+                    </p>
+                  ) : null}
                   <p className="text-[11px] text-[#737373] leading-relaxed">{sku.blurb}</p>
                 </div>
               </div>
@@ -300,21 +312,31 @@ function Slide({ index }: { index: number }) {
     case 5:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>YIELD · COST PER MEAL</DeckEyebrow>
-          <DeckTitle>1kg → 4kg prepared food = 20 meals</DeckTitle>
+          <DeckEyebrow theme={theme}>YIELD · ONE-POT METRIC</DeckEyebrow>
+          <DeckTitle>1kg one-pot → 4kg of food = 20 meals</DeckTitle>
+          <p className="text-xs sm:text-sm text-[#525252] mb-3 max-w-3xl leading-snug">
+            Flagship feeding-scheme claim: a{" "}
+            <strong className="text-black">1kg Big Five Foods one-pot</strong> pack provides{" "}
+            <strong className="text-black">4kg of food</strong> when prepared.
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4">
-            <DeckStatTile theme={theme} label="Pack price · porridge or one-pot" value="R45" />
-            <DeckStatTile theme={theme} label="Prepared yield from 1kg dry" value="4kg" />
-            <DeckStatTile theme={theme} label="Servings · 200g plates" value="20" />
+            <DeckStatTile theme={theme} label="One-pot pack price" value="R45" />
+            <DeckStatTile theme={theme} label="Food from 1kg one-pot" value="4kg" />
+            <DeckStatTile theme={theme} label="Meals · 200g plates" value="20" />
             <DeckStatTile theme={theme} label="Cost per meal · R45 ÷ 20" value={Y.costPerMealLabel} />
           </div>
           <div className="rounded-2xl border border-blue-100 bg-blue-50/60 p-4 sm:p-5 max-w-3xl">
             <div className="flex items-start gap-3">
               <Utensils className="w-5 h-5 text-[#003478] shrink-0 mt-0.5" />
               <div>
-                <div className="font-semibold text-black text-sm mb-1">{Y.headline}</div>
+                <div className="font-semibold text-black text-sm mb-1">
+                  1kg one-pot provides 4kg of food when prepared
+                </div>
                 <p className="text-sm text-[#404040] leading-relaxed">
-                  {Y.costLine}. {Y.detail}
+                  That is 20 × 200g servings. At R45 per pack:{" "}
+                  <strong className="text-black">{Y.costLine}</strong>. Same R45 pack price applies
+                  to fortified porridge for breakfast occasions — one-pot is the complete-plate hero
+                  for community kitchens and feeding-scheme drop-offs.
                 </p>
               </div>
             </div>
@@ -578,8 +600,8 @@ function Slide({ index }: { index: number }) {
                     <span style={{ color: "#7eb8e0" }}>R2.25 a meal · 24 months ready.</span>
                   </h2>
                   <p className="text-white/75 max-w-xl text-sm leading-relaxed mb-5">
-                    R45 porridge · R45 one-pot · 4kg prepared · 20 meals per pack · bought direct from
-                    Big Five Foods for the CMH Ford / Ford feeding scheme.
+                    R45 porridge · R45 one-pot · 1kg one-pot provides 4kg of food · 20 meals at R2.25
+                    · bought direct from Big Five Foods for the CMH Ford / Ford feeding scheme.
                   </p>
                 </div>
                 <div className="space-y-3">
