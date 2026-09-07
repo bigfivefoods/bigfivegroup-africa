@@ -80,6 +80,32 @@ function CoBrandRow({ light }: { light?: boolean }) {
   );
 }
 
+function MandelaQuote({ light = true, compact = false }: { light?: boolean; compact?: boolean }) {
+  return (
+    <blockquote
+      className={`max-w-2xl border-l-2 pl-3 sm:pl-4 ${compact ? "mt-3" : "mt-4 sm:mt-5"}`}
+      style={{ borderColor: light ? "#7eb8e0" : "#003478" }}
+    >
+      <p
+        className={`italic leading-snug text-balance ${
+          compact ? "text-sm" : "text-sm sm:text-base"
+        }`}
+        style={{ color: light ? "#e8f4fc" : "#171717" }}
+      >
+        “It always seems impossible until it&apos;s done.”
+      </p>
+      <cite
+        className={`block not-italic font-semibold tracking-wide uppercase ${
+          compact ? "mt-1 text-[10px]" : "mt-1.5 text-[10px] sm:text-xs"
+        }`}
+        style={{ color: light ? "#ffffff" : "#003478", fontStyle: "normal" }}
+      >
+        — Nelson Mandela
+      </cite>
+    </blockquote>
+  );
+}
+
 function Slide({ index }: { index: number }) {
   const forPrint = useDeckPrintMode();
   const pdf = useDeckPdfExport();
@@ -129,6 +155,7 @@ function Slide({ index }: { index: number }) {
                     <strong className="text-white">R2.25</strong> ·{" "}
                     <strong className="text-white">24-month</strong> shelf life.
                   </p>
+                  <MandelaQuote light />
                 </div>
                 <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
                   <p>{TOTAL} slides · Aligned to Ford Building Together · food security</p>
