@@ -38,6 +38,7 @@ import CheckersPartnershipDeck from "../components/CheckersPartnershipDeck";
 import CheckersPartnershipDeckCondensed from "../components/CheckersPartnershipDeckCondensed";
 import PicknPayPartnershipDeck from "../components/PicknPayPartnershipDeck";
 import PicknPayPartnershipDeckCondensed from "../components/PicknPayPartnershipDeckCondensed";
+import CmhFordPartnershipDeck from "../components/CmhFordPartnershipDeck";
 import BffSwtAgPartnershipDeck from "../components/BffSwtAgPartnershipDeck";
 import BfgPartnerDeck from "../components/BfgPartnerDeck";
 
@@ -445,6 +446,9 @@ export default function PartnerPortalClient({
                     { href: "#pick-n-pay-partnership-deck", label: "Pick n Pay full deck" },
                   ]
                 : []),
+              ...(partner.slug === "cmh-ford-ballito"
+                ? [{ href: "#cmh-ford-partnership-deck", label: "Feeding scheme deck" }]
+                : []),
               ...(partner.slug === "swt-ag"
                 ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG funding deck" }]
                 : []),
@@ -631,6 +635,12 @@ export default function PartnerPortalClient({
             <PicknPayPartnershipDeck />
           </section>
         </>
+      )}
+
+      {partner.slug === "cmh-ford-ballito" && (
+        <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+          <CmhFordPartnershipDeck />
+        </section>
       )}
 
       {partner.slug === "swt-ag" && (

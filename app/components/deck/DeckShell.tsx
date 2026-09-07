@@ -161,6 +161,22 @@ export const DECK_THEMES = {
     softBg: "bg-red-50",
     softText: "text-red-950",
   },
+  /** Ford / CMH Ford — Ford blue (#003478 family) */
+  ford: {
+    name: "ford",
+    accent: "#003478",
+    accentDark: "#002456",
+    gradientFrom: "#1a5fad",
+    gradientTo: "#003478",
+    frameFrom: "#eef4fb",
+    frameTo: "#f3f4f6",
+    darkBg: "#001528",
+    eyebrowLight: "text-sky-200",
+    eyebrow: "text-blue-900",
+    softBorder: "border-blue-200",
+    softBg: "bg-blue-50",
+    softText: "text-blue-950",
+  },
   orange: {
     name: "orange",
     accent: "#ea580c",
