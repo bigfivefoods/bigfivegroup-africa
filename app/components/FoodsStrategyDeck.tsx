@@ -38,6 +38,7 @@ import {
 import { SA_LOGIN, SA_ONBOARDING, SA_URL, sa } from "../lib/saCopy";
 import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import { GROUP_VMV } from "./deck/GroupVmvContent";
+import { isFormFieldKeyTarget } from "./deck/keyboard";
 
 const TOTAL = 16;
 const PRINT_ROOT_ID = "foods-deck-print-root";
@@ -1453,6 +1454,7 @@ export default function FoodsStrategyDeck() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (printMode || preparingPdf) return;
+      if (isFormFieldKeyTarget(e.target)) return;
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         go(index + 1);

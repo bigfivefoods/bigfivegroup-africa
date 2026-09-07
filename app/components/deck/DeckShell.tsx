@@ -21,6 +21,7 @@ import {
   Share2,
 } from "lucide-react";
 import { track } from "../../lib/analytics";
+import { isFormFieldKeyTarget } from "./keyboard";
 
 export type PrintOrientation = "landscape" | "portrait";
 
@@ -693,6 +694,8 @@ export default function DeckShell({
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (printMode || preparingPdf) return;
+      // Don't steal Space/arrows while typing in invite forms, etc.
+      if (isFormFieldKeyTarget(e.target)) return;
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         go(index + 1);

@@ -44,6 +44,7 @@ import {
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 import { sa, SA_ONBOARDING } from "../lib/saCopy";
+import { isFormFieldKeyTarget } from "./deck/keyboard";
 
 const TOTAL = 20;
 
@@ -2043,6 +2044,7 @@ export default function StrategyDeck() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (printMode || preparingPdf) return;
+      if (isFormFieldKeyTarget(e.target)) return;
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         go(index + 1);
