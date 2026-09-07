@@ -32,10 +32,11 @@ import {
 } from "../lib/cmhFordPartnership";
 
 const theme = DECK_THEMES.ford;
-const TOTAL = 15;
+const TOTAL = 17;
 const P = CMH_FORD_PARTNERSHIP;
 const Y = P.product.yield;
 const G = P.giving;
+const SDGS = P.sdgAlignment;
 
 function CoBrandRow({ light }: { light?: boolean }) {
   const pdf = useDeckPdfExport();
@@ -175,10 +176,10 @@ function Slide({ index }: { index: number }) {
           <ol className={forPrint ? "space-y-1.5 max-w-2xl" : "space-y-2.5 max-w-2xl"}>
             {[
               "Ford Building Together · food security & dealer food drives",
-              "Buy direct: R45 porridge · R45 one-pot · 1kg → 4kg food",
-              "24-month shelf life — plan drives without waste",
+              "Buy direct: R45 packs · 1kg one-pot → 4kg food · R2.25/meal",
               "5% + 5% to Restore Africa Foundation & A Heart To Help (GBV)",
-              "Reach more people for less · activation & the ask",
+              "UN SDGs · South Africa & Africa impact",
+              "Activation roadmap & the ask",
             ].map((item, i) => (
               <li key={item} className="flex gap-2.5 items-start">
                 <span
@@ -607,6 +608,123 @@ function Slide({ index }: { index: number }) {
     case 12:
       return (
         <DeckSlideShell theme={theme}>
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
+            <DeckEyebrow theme={theme}>GLOBAL FRAMEWORK · UN SDGs</DeckEyebrow>
+            <div className="relative w-24 h-12 sm:w-28 sm:h-14 shrink-0">
+              {pdf ? (
+                <DeckPrintImage
+                  src="/sdg/un-sdg-logo.png"
+                  alt="United Nations Sustainable Development Goals"
+                  fit="contain"
+                />
+              ) : (
+                <Image
+                  src="/sdg/un-sdg-logo.png"
+                  alt="United Nations Sustainable Development Goals"
+                  fill
+                  sizes="112px"
+                  className="object-contain object-right"
+                />
+              )}
+            </div>
+          </div>
+          <DeckTitle>How this partnership serves the Goals</DeckTitle>
+          <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+            Fortified meals for the Ford feeding scheme, plus 10% to Restore Africa Foundation and A
+            Heart To Help, map cleanly onto the UN 2030 Agenda — reportable for CSI and ESG packs.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 min-h-0">
+            {SDGS.map((g) => (
+              <div
+                key={`sdg-${g.number}`}
+                className="rounded-xl border border-black/10 bg-white p-2.5 sm:p-3 min-w-0 flex gap-2.5 sm:gap-3 items-start"
+              >
+                <div className="relative w-10 h-10 sm:w-11 sm:h-11 shrink-0 overflow-hidden rounded-md ring-1 ring-black/10 bg-white">
+                  {pdf ? (
+                    <DeckPrintImage
+                      src={g.icon}
+                      alt={`United Nations SDG ${g.number} — ${g.title}`}
+                      fit="contain"
+                    />
+                  ) : (
+                    <Image
+                      src={g.icon}
+                      alt={`United Nations SDG ${g.number} — ${g.title}`}
+                      fill
+                      sizes="44px"
+                      className="object-contain object-center"
+                      priority={g.number === "1" || g.number === "2"}
+                    />
+                  )}
+                </div>
+                <div className="min-w-0 flex-1 pt-0.5">
+                  <div
+                    className="text-[10px] tracking-[1.5px] font-bold mb-0.5"
+                    style={{ color: g.color }}
+                  >
+                    SDG {g.number}
+                  </div>
+                  <div className="text-xs sm:text-sm font-semibold text-black leading-tight mb-1">
+                    {g.title}
+                  </div>
+                  <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug line-clamp-4">
+                    {g.how}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-2.5 text-[10px] sm:text-xs text-[#737373] leading-relaxed">
+            Official UN SDG colour tiles · sdgs.un.org/goals · Goals 1 · 2 · 4 · 8 · 10 · 17
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 13:
+      return (
+        <DeckSlideShell dark theme={theme}>
+          <DeckEyebrow light theme={theme}>
+            SOUTH AFRICA · AFRICA · ZERO HUNGER
+          </DeckEyebrow>
+          <DeckTitle>
+            <span className="text-white">{P.africaImpact.title}</span>
+          </DeckTitle>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <DeckStatTile theme={theme} dark label="People in Africa faced hunger (2025)" value="309M" />
+            <DeckStatTile theme={theme} dark label="~Share of Africa’s population" value="1 in 5" />
+            <DeckStatTile
+              theme={theme}
+              dark
+              label="Meal cost from a R45 one-pot"
+              value={Y.costPerMealLabel}
+            />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+            {P.africaImpact.points.map((p) => (
+              <div
+                key={p.t}
+                className={`rounded-xl border border-white/10 bg-white/[0.06] min-w-0 ${
+                  forPrint ? "p-2.5" : "p-3.5"
+                }`}
+              >
+                <div className={`font-semibold text-sky-200 mb-1 ${forPrint ? "text-xs" : "text-sm"}`}>
+                  {p.t}
+                </div>
+                <p className={`text-white/65 leading-snug ${forPrint ? "text-[10px]" : "text-xs"}`}>
+                  {p.d}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className={`text-white/40 mt-3 ${forPrint ? "text-[9px]" : "text-[10px]"}`}>
+            {P.africaImpact.sofiNote}
+          </p>
+        </DeckSlideShell>
+      );
+
+    case 14:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>ROADMAP</DeckEyebrow>
           <DeckTitle>From brief to first meal drop</DeckTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
@@ -628,7 +746,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE ASK</DeckEyebrow>
@@ -655,7 +773,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 16:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
@@ -689,10 +807,11 @@ function Slide({ index }: { index: number }) {
                     <br />
                     <span style={{ color: "#7eb8e0" }}>meals + 10% to foundations.</span>
                   </h2>
-                  <p className="text-white/75 max-w-xl text-sm leading-relaxed mb-5">
+                  <p className="text-white/75 max-w-xl text-sm leading-relaxed mb-3">
                     R45 packs · 1kg one-pot → 4kg food · R2.25/meal · 24-month shelf life · CMH Ford
                     5% + Foods 5% to Restore Africa Foundation and A Heart To Help (GBV).
                   </p>
+                  <MandelaQuote light compact />
                 </div>
                 <div className="space-y-3">
                   <a

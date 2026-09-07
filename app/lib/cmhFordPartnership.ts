@@ -245,6 +245,79 @@ export const CMH_FORD_PARTNERSHIP = {
     },
   ],
 
+  /**
+   * UN SDG alignment for the CMH Ford × Big Five Foods feeding partnership.
+   * Official UN colour tiles: public/sdg/sdg-{n}.png · https://sdgs.un.org/goals
+   */
+  sdgAlignment: [
+    {
+      number: "1",
+      title: "No Poverty",
+      icon: "/sdg/sdg-1.png",
+      color: "#E5243B",
+      how: "Affordable fortified meals (R2.25 each) stretch CSI budgets so more households in need are reached — dignity on the plate, not only a rand transferred.",
+    },
+    {
+      number: "2",
+      title: "Zero Hunger",
+      icon: "/sdg/sdg-2.png",
+      color: "#DDA63A",
+      how: "Core of this partnership: 1kg one-pot → 4kg food · 20 meals · 24-month shelf life — dealer food drives and feeding schemes that actually fill plates.",
+    },
+    {
+      number: "4",
+      title: "Quality Education",
+      icon: "/sdg/sdg-4.png",
+      color: "#C5192D",
+      how: "Fortified porridge and meals for children and ECD / school-linked kitchens — hungry children cannot learn; fed children can.",
+    },
+    {
+      number: "8",
+      title: "Decent Work & Growth",
+      icon: "/sdg/sdg-8.png",
+      color: "#A21942",
+      how: "Local South African fortified food production and ethical supply — CSI spend that also supports domestic manufacturing and jobs.",
+    },
+    {
+      number: "10",
+      title: "Reduced Inequalities",
+      icon: "/sdg/sdg-10.png",
+      color: "#DD1367",
+      how: "5%+5% to Restore Africa Foundation and A Heart To Help (GBV) — children and women historically left behind get nutrition and safety pathways.",
+    },
+    {
+      number: "17",
+      title: "Partnerships for the Goals",
+      icon: "/sdg/sdg-17.png",
+      color: "#19486A",
+      how: "CMH Ford × Big Five Foods × RAF × AHTH — private-sector CSI aligned to Ford Building Together and the UN 2030 Agenda with reportable meal KPIs.",
+    },
+  ],
+
+  africaImpact: {
+    title: "Why this matters for South Africa — and Africa",
+    points: [
+      {
+        t: "Africa still carries the largest hunger burden",
+        d: "SOFI 2026: about one in five people in Africa faced hunger in 2025 — the region with the largest number of people facing hunger. Efficient, fortified, shelf-stable CSI is not optional; it is strategic.",
+      },
+      {
+        t: "South Africa needs practical CSI that scales",
+        d: "Dealer networks already sit in communities. Turning Ford Building Together food drives into fortified meal equivalents (R2.25/meal · 24-month stock) multiplies impact from the same rand.",
+      },
+      {
+        t: "A model for the continent",
+        d: "What CMH Ford proves in KZN / SA — buy direct, store safely, feed more, report SDGs — can travel with Ford’s dealer footprint and African partners who share Zero Hunger ambitions.",
+      },
+      {
+        t: "ESG you can count",
+        d: "Packs × 20 = meals; 10% to RAF & AHTH; official SDG icons for board and sustainability packs — contribution language governments and DFIs recognise.",
+      },
+    ],
+    sofiNote:
+      "Hunger figures: UN SOFI 2026 (FAO / IFAD / UNICEF / WFP / WHO) — external multi-agency estimates, not Big Five or Ford audited counts.",
+  },
+
   pathways: [
     {
       id: "buy-direct",

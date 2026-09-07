@@ -520,7 +520,7 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#cmh-ford-partnership-deck",
         label: "CMH Ford feeding scheme deck",
-        desc: "14-slide strategic partnership: R45 packs, meal economics, Ford Building Together alignment, the ask.",
+        desc: "17-slide strategic partnership: R45 packs, meal economics, foundations giving, UN SDGs, Ford Building Together, the ask.",
       },
       {
         href: "https://cmhford.co.za/",
