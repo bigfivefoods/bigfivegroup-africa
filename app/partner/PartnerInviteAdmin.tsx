@@ -24,24 +24,20 @@ type ContactRow = {
 
 export default function PartnerInviteAdmin({
   organisations,
-  mode = "admin",
   lockedSlug,
   viewerEmail,
 }: {
   organisations: OrgOption[];
-  /** admin = Group hub (any org). org = locked to this workspace. */
-  mode?: "admin" | "org";
-  /** Required in org mode — invites only go to this slug. */
-  lockedSlug?: string;
+  /** Invites only go to this organisation workspace. */
+  lockedSlug: string;
   /** Signed-in email — cannot revoke yourself. */
   viewerEmail?: string;
 }) {
-  const isOrgMode = mode === "org";
   const initialSlug = (lockedSlug || organisations[0]?.slug || "").toLowerCase();
   const [orgs] = useState<OrgOption[]>(organisations);
   const [contacts, setContacts] = useState<ContactRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [slug, setSlug] = useState(initialSlug);
+  const [slug] = useState(initialSlug);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [sendInvite, setSendInvite] = useState(true);
@@ -49,13 +45,11 @@ export default function PartnerInviteAdmin({
   const [message, setMessage] = useState<{ tone: "ok" | "err"; text: string } | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
   const [lastLoginUrl, setLastLoginUrl] = useState<string | null>(null);
-  const [filterSlug, setFilterSlug] = useState(isOrgMode ? initialSlug : "");
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const effectiveFilter = isOrgMode ? lockedSlug || initialSlug : filterSlug;
-      const q = effectiveFilter ? `?slug=${encodeURIComponent(effectiveFilter)}` : "";
+      const q = `?slug=${encodeURIComponent(lockedSlug || initialSlug)}`;
       const res = await fetch(`/api/partner/admin/contacts${q}`, {
         cache: "no-store",
         credentials: "same-origin",
@@ -75,7 +69,7 @@ export default function PartnerInviteAdmin({
     } finally {
       setLoading(false);
     }
-  }, [filterSlug, isOrgMode, lockedSlug, initialSlug]);
+  }, [lockedSlug, initialSlug]);
 
   useEffect(() => {
     void load();
@@ -93,7 +87,7 @@ export default function PartnerInviteAdmin({
     setBusy(true);
     setMessage(null);
     try {
-      const targetSlug = isOrgMode ? lockedSlug || slug : slug;
+      const targetSlug = lockedSlug || slug;
       const res = await fetch("/api/partner/admin/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -238,65 +232,30 @@ export default function PartnerInviteAdmin({
         <div className="flex items-center gap-2 mb-2">
           <UserPlus className="w-5 h-5 text-emerald-800" />
           <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold">
-            {isOrgMode ? "YOUR TEAM · INVITE COLLEAGUES" : "ADMIN · INVITE PARTNERS"}
+            ADMIN · INVITE PARTNERS
           </div>
         </div>
         <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2 text-balance">
-          {isOrgMode
-            ? `Invite people to ${workspaceLabel}`
-            : "Add names & emails · send invites"}
+          Invite people to {workspaceLabel}
         </h2>
         <p className="text-sm text-[#525252] mb-8 max-w-2xl leading-relaxed">
-          {isOrgMode ? (
-            <>
-              Add colleagues to <strong className="text-[#404040]">{workspaceLabel}</strong>. They
-              sign in with their email at{" "}
-              <code className="text-xs bg-white border border-black/10 px-1.5 py-0.5 rounded">
-                /partner/login
-              </code>{" "}
-              and only see this organisation&apos;s materials — not other partners.
-            </>
-          ) : (
-            <>
-              Invite people to a specific organisation workspace. They sign in with their email at{" "}
-              <code className="text-xs bg-white border border-black/10 px-1.5 py-0.5 rounded">
-                /partner/login
-              </code>{" "}
-              and only see that partner&apos;s materials. Contacts are stored server-side and never
-              shown to other partners.
-            </>
-          )}
+          Add people to <strong className="text-[#404040]">{workspaceLabel}</strong> only. They
+          sign in with their email at{" "}
+          <code className="text-xs bg-white border border-black/10 px-1.5 py-0.5 rounded">
+            /partner/login
+          </code>{" "}
+          and only see this organisation&apos;s materials — not other partners. Anyone already on
+          this page can invite more colleagues here.
         </p>
 
         <form
           onSubmit={onSubmit}
           className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4"
         >
-          {isOrgMode ? (
-            <div className="sm:col-span-2 rounded-xl border border-emerald-200 bg-emerald-50/80 px-3.5 py-2.5 text-sm text-emerald-950">
-              Workspace: <strong>{workspaceLabel}</strong>
-              <span className="text-emerald-800/80"> · /partner/{slug}</span>
-            </div>
-          ) : (
-            <label className="block sm:col-span-2">
-              <span className="text-xs font-medium text-[#737373] uppercase tracking-wide mb-1.5 block">
-                Organisation
-              </span>
-              <select
-                id="invite-org-select"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                required
-                className="w-full rounded-xl border border-black/15 bg-[#fafafa] px-3.5 py-2.5 text-sm text-black"
-              >
-                {orgs.map((o) => (
-                  <option key={o.slug} value={o.slug}>
-                    {o.name} — {o.organisation}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
+          <div className="sm:col-span-2 rounded-xl border border-emerald-200 bg-emerald-50/80 px-3.5 py-2.5 text-sm text-emerald-950">
+            Workspace: <strong>{workspaceLabel}</strong>
+            <span className="text-emerald-800/80"> · /partner/{slug}</span>
+          </div>
           <label className="block">
             <span className="text-xs font-medium text-[#737373] uppercase tracking-wide mb-1.5 block">
               Full name
@@ -388,26 +347,7 @@ export default function PartnerInviteAdmin({
         )}
 
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
-          <h3 className="text-lg font-semibold tracking-tight text-black">
-            {isOrgMode ? "People with access" : "Active invites"}
-          </h3>
-          {!isOrgMode && (
-            <label className="text-sm text-[#525252]">
-              Filter{" "}
-              <select
-                value={filterSlug}
-                onChange={(e) => setFilterSlug(e.target.value)}
-                className="ml-1 rounded-lg border border-black/15 bg-white px-2 py-1.5 text-sm"
-              >
-                <option value="">All organisations</option>
-                {orgs.map((o) => (
-                  <option key={o.slug} value={o.slug}>
-                    {o.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
+          <h3 className="text-lg font-semibold tracking-tight text-black">People with access</h3>
         </div>
 
         {loading ? (
@@ -416,20 +356,15 @@ export default function PartnerInviteAdmin({
           </div>
         ) : contacts.length === 0 ? (
           <p className="text-sm text-[#737373]">
-            {isOrgMode
-              ? "No colleagues invited yet — add the first person above."
-              : "No invited contacts yet for this filter."}
+            No one invited yet — add the first person above.
           </p>
         ) : (
           <div className="overflow-x-auto rounded-2xl border border-black/10 bg-white">
-            <table className="w-full min-w-[40rem] text-left text-sm">
+            <table className="w-full min-w-[36rem] text-left text-sm">
               <thead>
                 <tr className="text-[10px] tracking-[1px] text-[#737373] border-b border-black/10">
                   <th className="py-2.5 px-3 font-semibold">Name</th>
                   <th className="py-2.5 px-3 font-semibold">Email</th>
-                  {!isOrgMode && (
-                    <th className="py-2.5 px-3 font-semibold">Organisation</th>
-                  )}
                   <th className="py-2.5 px-3 font-semibold">Invited</th>
                   <th className="py-2.5 px-3 font-semibold text-right">Actions</th>
                 </tr>
@@ -450,12 +385,6 @@ export default function PartnerInviteAdmin({
                         ) : null}
                       </td>
                       <td className="py-2.5 px-3 text-[#404040] break-all">{c.email}</td>
-                      {!isOrgMode && (
-                        <td className="py-2.5 px-3 text-[#525252]">
-                          {orgName(c.slug)}
-                          <div className="text-[10px] text-[#a3a3a3]">/partner/{c.slug}</div>
-                        </td>
-                      )}
                       <td className="py-2.5 px-3 text-xs text-[#737373] tabular-nums whitespace-nowrap">
                         {c.invitedAt
                           ? new Date(c.invitedAt).toLocaleString("en-ZA", {

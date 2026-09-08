@@ -540,15 +540,12 @@ export default function PartnerPortalClient({
                 ? [{ href: "#pillars", label: "Pillars" }]
                 : []),
               { href: "#resources", label: "Resources" },
-              ...(canInvite && partner.slug !== "big-five-group"
-                ? [{ href: "#invite-partners", label: "Invite team" }]
+              // Invites only on each partner workspace page — never from the Group hub
+              ...(canInvite && partner.slug !== "big-five-group" && partner.slug !== "general"
+                ? [{ href: "#invite-partners", label: "Invite partners" }]
                 : []),
-              // Admin tools only on the Group hub — keep other org workspaces clean/isolated
               ...(isAdmin && partner.slug === "big-five-group"
-                ? [
-                    { href: "#invite-partners", label: "Invite partners" },
-                    { href: "#directory", label: "All partners" },
-                  ]
+                ? [{ href: "#directory", label: "All partners" }]
                 : []),
               { href: "#contact", label: "Contact" },
             ];
@@ -818,10 +815,13 @@ export default function PartnerPortalClient({
         </div>
       </section>
 
-      {/* Org members invite colleagues to THIS workspace only */}
+      {/*
+        Invite partners ONLY on the organisation workspace itself (e.g. /partner/spar).
+        The Group hub (/partner/big-five-group) cannot invite people into other portals —
+        open that partner’s page to invite there. Anyone already on the page can invite more.
+      */}
       {canInvite && partner.slug !== "big-five-group" && partner.slug !== "general" && (
         <PartnerInviteAdmin
-          mode="org"
           lockedSlug={partner.slug}
           viewerEmail={email}
           organisations={[
@@ -831,22 +831,6 @@ export default function PartnerPortalClient({
               organisation: partner.organisation,
             },
           ]}
-        />
-      )}
-
-      {/* Group admin hub: invite to any organisation */}
-      {isAdmin &&
-        partner.slug === "big-five-group" &&
-        directory &&
-        directory.length > 0 && (
-        <PartnerInviteAdmin
-          mode="admin"
-          viewerEmail={email}
-          organisations={directory.map((p) => ({
-            slug: p.slug,
-            name: p.name,
-            organisation: p.organisation,
-          }))}
         />
       )}
 
@@ -866,8 +850,9 @@ export default function PartnerPortalClient({
               Partner directory
             </h2>
             <p className="text-sm text-[#525252] mb-6 max-w-2xl leading-relaxed">
-              Group admins only. Each partner email can open only their own workspace; this list
-              is not shown to partner logins.
+              Group admins only — open a partner workspace to invite people to that page. Invites
+              cannot be sent from this hub into other portals. Each partner email can open only
+              their own workspace; this list is not shown to partner logins.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {directory.map((p) => (
