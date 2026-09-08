@@ -372,7 +372,7 @@ export default function FoodsPage() {
           stats={[
             { value: "~50%", label: "Cheaper vs wholesale & retail" },
             { value: "2.5m", label: "Children / day NSNP plan (DBE)" },
-            { value: "150k", label: "Meals delivered (programme-reported)" },
+            { value: "355k", label: "Meals delivered (programme-reported)" },
             { value: "74%", label: "More nutrition by design" },
           ]}
         />

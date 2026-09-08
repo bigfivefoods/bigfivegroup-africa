@@ -803,7 +803,7 @@ function Slide({ index }: SlideProps) {
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-5 sm:mb-6">
             {[
-              { v: "150k", l: "Meals delivered (programme-reported)" },
+              { v: "355k", l: "Meals delivered (programme-reported)" },
               { v: "100k", l: "Children reached (programme-reported)" },
               { v: "2.5M", l: "Kids per day — NSNP / DBE feeding ambition" },
               { v: "~50%", l: "Cheaper vs wholesale & retail" },
@@ -1570,8 +1570,8 @@ function FeedEducateEmpowerSlide() {
         ? "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable for African households, schools and institutions. Pathway to feed 2.5M kids/day via NSNP (DBE)."
         : "Agri + Foods: regenerative production and fortified nutrition — affordable, shelf-stable, designed for African households, schools and institutions. We will feed 2.5 million children per day through the National School Nutrition Programme (NSNP / DBE).",
       proof: dense
-        ? "150k meals · 100k children · ~50% cheaper · 2.5M kids/day NSNP (DBE)"
-        : "150k meals · 100k children · ~50% cheaper vs wholesale/retail · 2.5M kids/day through NSNP (DBE)",
+        ? "355k meals · 100k children · ~50% cheaper · 2.5M kids/day NSNP (DBE)"
+        : "355k meals · 100k children · ~50% cheaper vs wholesale/retail · 2.5M kids/day through NSNP (DBE)",
     },
     {
       icon: GraduationCap,

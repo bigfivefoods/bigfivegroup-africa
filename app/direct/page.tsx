@@ -213,7 +213,7 @@ export default function DirectPage() {
         <StatRow
           accent={ACCENT}
           stats={[
-            { value: "150k", label: "Meals delivered (programme-reported, with Foods)" },
+            { value: "355k", label: "Meals delivered (programme-reported, with Foods)" },
             { value: "100k", label: "Children reached (programme-reported)" },
             { value: "~45%", label: "Foods GP (management-reported)" },
             { value: "~50%", label: "Cheaper vs wholesale & retail" },

@@ -706,7 +706,7 @@ function ProofSlide() {
           <StatTile dark value="2.5m" label="Children/day plan · NSNP (DBE)" />
           <StatTile dark value="100k" label="Children reached (programme-reported)" />
           <StatTile dark value="~50%" label="Cheaper vs wholesale & retail" />
-          <StatTile dark value="150k" label="Meals delivered to date" />
+          <StatTile dark value="355k" label="Meals delivered to date" />
           <StatTile dark value="74%" label="More nutrition by design" />
         </div>
         <div
@@ -998,7 +998,7 @@ function CtaSlide() {
               Ethical · on-chain · supplieradvisor.com
             </p>
             <p>
-              Big Five Foods · ~50% cheaper vs wholesale/retail · 150k meals · 100k children · 2.5M kids/day NSNP (DBE)
+              Big Five Foods · ~50% cheaper vs wholesale/retail · 355k meals · 100k children · 2.5M kids/day NSNP (DBE)
             </p>
           </div>
         </div>
@@ -1665,7 +1665,7 @@ export default function FoodsStrategyDeck() {
   const onShare = async () => {
     const payload = {
       title: "Big Five Foods — Product & Impact Deck",
-      text: "Fortified African nutrition: ~50% cheaper vs wholesale/retail, 150k meals, 100k children, 2.5M kids/day NSNP (DBE) pathway, 74% more nutrition design.",
+      text: "Fortified African nutrition: ~50% cheaper vs wholesale/retail, 355k meals, 100k children, 2.5M kids/day NSNP (DBE) pathway, 74% more nutrition design.",
       url: shareUrl,
     };
     try {

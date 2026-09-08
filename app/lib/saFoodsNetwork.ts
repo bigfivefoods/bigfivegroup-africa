@@ -78,7 +78,7 @@ export const PUBLISHED_FOODS_NETWORK: FoodsNetworkPayload = {
   },
   impact: {
     mealsDeliveredLabel: "Meals delivered",
-    mealsDelivered: 150_000,
+    mealsDelivered: 355_000,
     childrenReachedLabel: "Children reached",
     childrenReached: 100_000,
     productRanges: 4,

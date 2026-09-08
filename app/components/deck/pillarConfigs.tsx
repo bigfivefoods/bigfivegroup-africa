@@ -283,7 +283,7 @@ export const directDeckConfig: PillarDeckConfig = {
   proofTitle: "What Direct puts on the table",
   proofStats: [
     { value: "15k", label: "Containers · SANTACO partnership plan" },
-    { value: "Foods", label: "150k meals · 100k children (programme-reported)" },
+    { value: "Foods", label: "355k meals · 100k children (programme-reported)" },
     { value: "NHTS", label: "Taxis ~80% of public-transport trips (Stats SA)" },
     { value: "SA", label: "Verified trade rails · live map" },
   ],
