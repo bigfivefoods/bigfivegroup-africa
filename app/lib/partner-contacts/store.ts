@@ -75,18 +75,19 @@ async function writeRedis(snap: PartnerContactsSnapshot): Promise<boolean> {
   }
 }
 
-async function readFileStore(filePath: string): Promise<PartnerContactsSnapshot> {
+/** null = no real file on disk (do not invent a "newer" empty stamp that beats Redis). */
+async function readFileStore(filePath: string): Promise<PartnerContactsSnapshot | null> {
   try {
     const raw = await fs.readFile(filePath, "utf8");
     const data = JSON.parse(raw) as PartnerContactsSnapshot;
-    if (!data?.contacts || !Array.isArray(data.contacts)) return emptySnapshot();
+    if (!data?.contacts || !Array.isArray(data.contacts)) return null;
     return {
       version: 1,
       updatedAt: data.updatedAt || new Date().toISOString(),
       contacts: data.contacts,
     };
   } catch {
-    return emptySnapshot();
+    return null;
   }
 }
 
@@ -113,6 +114,10 @@ function pickNewer(
 ): PartnerContactsSnapshot {
   if (!a) return b ?? emptySnapshot();
   if (!b) return a;
+  // Never let an empty snapshot overwrite a populated one just because its clock is newer
+  // (missing file used to return emptySnapshot() with Date.now() and wipe Redis on Vercel).
+  if (a.contacts.length === 0 && b.contacts.length > 0) return b;
+  if (b.contacts.length === 0 && a.contacts.length > 0) return a;
   return Date.parse(a.updatedAt) >= Date.parse(b.updatedAt) ? a : b;
 }
 
@@ -121,8 +126,8 @@ export async function loadPartnerContacts(): Promise<PartnerContactsSnapshot> {
   const redis = await readRedis();
   const file = await readFileStore(filePath);
   // Prefer durable stores over in-process memory (Next may isolate API vs RSC bundles).
-  const durable = pickNewer(redis, file.contacts.length || file.updatedAt ? file : null);
-  if (durable.contacts.length > 0 || redis || file.contacts.length > 0) {
+  const durable = pickNewer(redis, file);
+  if (durable.contacts.length > 0 || redis || file) {
     memorySnap = durable;
     return durable;
   }
@@ -140,6 +145,11 @@ export async function savePartnerContacts(snap: PartnerContactsSnapshot): Promis
   const redisOk = await writeRedis(next);
   const filePath = process.env.PARTNER_CONTACTS_FILE?.trim() || DEFAULT_DATA_FILE;
   const fileOk = await writeFileStore(filePath, next);
+  if (process.env.VERCEL && !upstashConfigured()) {
+    throw new Error(
+      "Partner contacts require UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN on Vercel."
+    );
+  }
   if (!redisOk && !fileOk && !upstashConfigured()) {
     // Dev without Redis: memory-only is acceptable for a single process.
     console.warn("[partner-contacts] saved to memory only (no Redis / writable file).");
@@ -147,6 +157,8 @@ export async function savePartnerContacts(snap: PartnerContactsSnapshot): Promis
     throw new Error(
       "Could not save partner contacts — Redis write failed and the filesystem is not writable."
     );
+  } else if (process.env.VERCEL && !redisOk) {
+    throw new Error("Could not save partner contacts — Redis write failed on Vercel.");
   }
 }
 
