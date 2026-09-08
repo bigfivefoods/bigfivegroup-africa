@@ -1081,7 +1081,7 @@ function Slide({ index }: { index: number }) {
               },
               {
                 t: "Programme-reported",
-                d: "350k+ meals delivered (programme-reported · Foods) · 4 solar containers in operation.",
+                d: "355k meals delivered (programme-reported · Foods) · 4 solar containers in operation.",
               },
               {
                 t: "Internal analysis",

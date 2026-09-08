@@ -57,7 +57,7 @@ const proofMetrics = [
     source: "Foods · DBE pathway · plan scale",
   },
   {
-    value: "350k+",
+    value: "355k",
     label: "Meals delivered",
     source: "Programme-reported · Foods",
   },
