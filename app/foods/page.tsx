@@ -12,6 +12,7 @@ import {
 } from "../components/PageSections";
 import {
   ArrowRight,
+  BookOpen,
   ExternalLink,
   UtensilsCrossed,
   ChefHat,
@@ -20,6 +21,8 @@ import {
   School,
   ShieldCheck,
   Package,
+  ShoppingBag,
+  Store,
 } from "lucide-react";
 import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import { saFoodsOnboardUrl, saFoodsOrderUrl } from "../lib/saStorefront";
@@ -131,6 +134,33 @@ const capabilities = [
   { name: "BUOSD SA", logo: "/foods/buosd-sa.png", desc: "Kosher authority certification" },
 ];
 
+const FOODS_JUMP_NAV = [
+  {
+    href: "#shop",
+    label: "Products",
+    desc: "Full catalogue to order",
+    icon: Package,
+  },
+  {
+    href: "#how-to-buy",
+    label: "Order",
+    desc: "Buy on SupplierAdvisor®",
+    icon: Store,
+  },
+  {
+    href: "#about",
+    label: "About",
+    desc: "Quality & certifications",
+    icon: ShieldCheck,
+  },
+  {
+    href: "#case-study",
+    label: "Case study",
+    desc: "NSNP pathway proof",
+    icon: BookOpen,
+  },
+] as const;
+
 export default function FoodsPage() {
   return (
     <div className="overflow-x-clip bg-[#fafafa]">
@@ -158,6 +188,40 @@ export default function FoodsPage() {
         ]}
         overlayClassName={pageBrand.foods.overlay}
       />
+
+      {/* Jump nav — page 2 under hero */}
+      <nav
+        aria-label="Foods page sections"
+        className="sticky top-[var(--navbar-height)] z-20 border-b border-black/10 bg-white/95 backdrop-blur-md"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+            {FOODS_JUMP_NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="group flex items-center gap-3 rounded-2xl border border-black/10 bg-[#fafafa] px-3.5 py-3 sm:px-4 sm:py-3.5 hover:border-amber-300/70 hover:bg-white hover:shadow-sm transition-all min-w-0"
+              >
+                <span
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-sm"
+                  style={{ backgroundColor: ACCENT_DARK }}
+                >
+                  <item.icon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-semibold tracking-tight text-black group-hover:underline underline-offset-2">
+                    {item.label}
+                  </span>
+                  <span className="block text-[11px] sm:text-xs text-[#737373] leading-snug truncate">
+                    {item.desc}
+                  </span>
+                </span>
+                <ArrowRight className="w-4 h-4 shrink-0 text-[#a3a3a3] group-hover:text-amber-800 transition-colors" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
 
       {/* ─── 1. PRODUCT RANGES (first after hero) ─── */}
       <section
@@ -486,10 +550,13 @@ export default function FoodsPage() {
 
       <LocalNewsVideo accent={ACCENT} />
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
+      <section
+        id="about"
+        className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24"
+      >
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10">
           <SectionHeading
-            eyebrow="CERTIFICATIONS"
+            eyebrow="ABOUT · CERTIFICATIONS"
             title="Quality the market can audit"
             subtitle="Standards partners and procurement teams recognise — not claims without evidence."
           />
