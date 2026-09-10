@@ -33,6 +33,12 @@ export const HOME_PARTNERS: HomePartner[] = [
     wide: true,
   },
   {
+    name: "Blessman International",
+    logo: "/partners/blessman-international-logo.png",
+    href: "https://www.blessmaninternational.org/",
+    wide: true,
+  },
+  {
     name: "A Heart To Help",
     logo: "/partners/a-heart-to-help-logo.png",
     href: "https://ahearttohelp.co.za/",

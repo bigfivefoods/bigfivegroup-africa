@@ -232,6 +232,86 @@ export const PARTNERS: PartnerProfile[] = [
     contactNote: "Primary Group contact: craig@bigfivegroup.africa · SA Harvest coordination via partnership lead",
   },
   {
+    slug: "blessman-international",
+    name: "Blessman International",
+    organisation: "Blessman International, Inc.",
+    emails: [],
+    role: "Faith-based NGO · Limpopo feeding hubs · child nutrition",
+    headline: "Blessman International × Big Five Foods",
+    summary:
+      "Partnership workspace aligned with Blessman International (blessmaninternational.org) — a faith-based ministry feeding children across Limpopo and Southern Africa through a network of feeding hubs, school- and community-linked care points, and locally sustainable programmes. Shared ambition: nutritious African food for African children, with transparent supply and impact pathways alongside Big Five Foods, Access and Impact.",
+    focus: ["Foods", "NSNP", "Foundation", "Impact", "Feed", "School nutrition"],
+    programmes: ["nsnp", "impact"],
+    logoSrc: "/partners/blessman-international-logo.png",
+    brandColor: "#b32317",
+    website: "https://www.blessmaninternational.org/",
+    websiteLabel: "blessmaninternational.org",
+    notes: [
+      "Official Blessman International website: https://www.blessmaninternational.org/",
+      "Logo asset: public/partners/blessman-international-logo.png (sourced from blessmaninternational.org branding).",
+      "Mission (public): share hope with South African children and families through faith formation and locally sustainable programmes that feed hungry people, foster food-secure communities, and support water, sanitation and child development.",
+      "Public scale language (Blessman): started feeding ~300 children/year; now preparing and serving multi-million meals annually through a network of feeding hubs across South Africa, Eswatini and Lesotho — with a vision toward every child in Limpopo having nutritious food, clean water and safe sanitation.",
+      "Strategic fit with Big Five: “Feeding African children with African food” — fortified Big Five Foods institutional packs (including NSNP 5kg pathway formats) for hub and care-point kitchens; Access for institutional / school nutrition pathways; Impact PMO for multi-hub programme assurance.",
+      "Blessman campuses in Limpopo (including Del Cramer Children’s Campus and farm / egg programmes) illustrate school-day and after-school feeding contexts where shelf-stable fortified staples and transparent SupplierAdvisor® trade can complement existing US meal-packet partnerships.",
+      "This portal is a briefing workspace for authorised partners — not a Blessman site and not an endorsement mark beyond the partnership relationship described here.",
+      "Add authorised Blessman International emails to this profile when portal logins are ready (public US contact channel: blessmaninternational.org/contact).",
+    ],
+    resources: [
+      {
+        href: "https://www.blessmaninternational.org/",
+        label: "Blessman International",
+        desc: "Official ministry site — feeding programme, campuses and get involved.",
+      },
+      {
+        href: "https://www.blessmaninternational.org/who-we-are",
+        label: "Who we are",
+        desc: "Mission, vision and Limpopo campus overview from Blessman.",
+      },
+      {
+        href: "/foods",
+        label: "Big Five Foods",
+        desc: "Fortified porridges, soya, one-pots and institutional packs for hub kitchens.",
+      },
+      {
+        href: "/foods#shop",
+        label: "Order · sales portal",
+        desc: "Browse and shortlist Foods SKUs; trade on SupplierAdvisor®.",
+      },
+      {
+        href: "/foods#case-study",
+        label: "NSNP case study",
+        desc: "Institutional school-nutrition pathway proof with Big Five Foods.",
+      },
+      {
+        href: "/access",
+        label: "Access",
+        desc: "Government and institutional capital pathways for school nutrition programmes.",
+      },
+      {
+        href: "/food-security",
+        label: "Food security · SOFI & SDGs",
+        desc: "External hunger context and how Group pillars respond.",
+      },
+      {
+        href: "/foundation",
+        label: "Foundation",
+        desc: "Group philanthropic pathways alongside NPO feeding partners.",
+      },
+      {
+        href: "/impact",
+        label: "Impact PMO",
+        desc: "Gates, KPIs and field assurance for multi-hub programmes.",
+      },
+      {
+        href: "/connect#case-study-schooladvisor",
+        label: "SchoolAdvisor case study",
+        desc: "Kitchen compliance OS for school and institutional feeding contexts.",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa · Blessman International: blessmaninternational.org/contact",
+  },
+  {
     slug: "a-heart-to-help",
     name: "A Heart To Help",
     organisation: "A Heart To Help",
