@@ -10,7 +10,11 @@
 import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type { PartnerContact, PartnerContactsSnapshot } from "./types";
+import type {
+  PartnerAccessRecord,
+  PartnerContact,
+  PartnerContactsSnapshot,
+} from "./types";
 
 const DEFAULT_DATA_FILE = path.join(process.cwd(), "data", "partner-contacts.json");
 const REDIS_KEY = "bfg:partner-contacts:v1";
@@ -18,7 +22,16 @@ const REDIS_KEY = "bfg:partner-contacts:v1";
 let memorySnap: PartnerContactsSnapshot = emptySnapshot();
 
 function emptySnapshot(): PartnerContactsSnapshot {
-  return { version: 1, updatedAt: new Date().toISOString(), contacts: [] };
+  return { version: 1, updatedAt: new Date().toISOString(), contacts: [], access: [] };
+}
+
+function normalizeSnapshot(data: PartnerContactsSnapshot): PartnerContactsSnapshot {
+  return {
+    version: 1,
+    updatedAt: data.updatedAt || new Date().toISOString(),
+    contacts: Array.isArray(data.contacts) ? data.contacts : [],
+    access: Array.isArray(data.access) ? data.access : [],
+  };
 }
 
 function upstashConfigured(): boolean {
@@ -53,11 +66,7 @@ async function readRedis(): Promise<PartnerContactsSnapshot | null> {
     if (!raw || typeof raw !== "string") return null;
     const data = JSON.parse(raw) as PartnerContactsSnapshot;
     if (!data?.contacts || !Array.isArray(data.contacts)) return null;
-    return {
-      version: 1,
-      updatedAt: data.updatedAt || new Date().toISOString(),
-      contacts: data.contacts,
-    };
+    return normalizeSnapshot(data);
   } catch (err) {
     console.warn("[partner-contacts] redis read failed:", err instanceof Error ? err.message : err);
     return null;
@@ -81,11 +90,7 @@ async function readFileStore(filePath: string): Promise<PartnerContactsSnapshot 
     const raw = await fs.readFile(filePath, "utf8");
     const data = JSON.parse(raw) as PartnerContactsSnapshot;
     if (!data?.contacts || !Array.isArray(data.contacts)) return null;
-    return {
-      version: 1,
-      updatedAt: data.updatedAt || new Date().toISOString(),
-      contacts: data.contacts,
-    };
+    return normalizeSnapshot(data);
   } catch {
     return null;
   }
@@ -116,8 +121,10 @@ function pickNewer(
   if (!b) return a;
   // Never let an empty snapshot overwrite a populated one just because its clock is newer
   // (missing file used to return emptySnapshot() with Date.now() and wipe Redis on Vercel).
-  if (a.contacts.length === 0 && b.contacts.length > 0) return b;
-  if (b.contacts.length === 0 && a.contacts.length > 0) return a;
+  const aLen = a.contacts.length + (a.access?.length ?? 0);
+  const bLen = b.contacts.length + (b.access?.length ?? 0);
+  if (aLen === 0 && bLen > 0) return b;
+  if (bLen === 0 && aLen > 0) return a;
   return Date.parse(a.updatedAt) >= Date.parse(b.updatedAt) ? a : b;
 }
 
@@ -127,11 +134,11 @@ export async function loadPartnerContacts(): Promise<PartnerContactsSnapshot> {
   const file = await readFileStore(filePath);
   // Prefer durable stores over in-process memory (Next may isolate API vs RSC bundles).
   const durable = pickNewer(redis, file);
-  if (durable.contacts.length > 0 || redis || file) {
-    memorySnap = durable;
-    return durable;
+  if (durable.contacts.length > 0 || (durable.access?.length ?? 0) > 0 || redis || file) {
+    memorySnap = normalizeSnapshot(durable);
+    return memorySnap;
   }
-  return memorySnap;
+  return normalizeSnapshot(memorySnap);
 }
 
 export async function savePartnerContacts(snap: PartnerContactsSnapshot): Promise<void> {
@@ -188,12 +195,16 @@ export async function upsertPartnerContact(
   const idx = snap.contacts.findIndex((c) => c.email.toLowerCase() === email);
   const nextContact: PartnerContact = { ...contact, email };
   if (idx >= 0) {
+    const prev = snap.contacts[idx]!;
     snap.contacts[idx] = {
-      ...snap.contacts[idx],
+      ...prev,
       ...nextContact,
-      id: snap.contacts[idx]!.id,
-      createdAt: snap.contacts[idx]!.createdAt,
-      createdBy: snap.contacts[idx]!.createdBy,
+      id: prev.id,
+      createdAt: prev.createdAt,
+      createdBy: prev.createdBy,
+      // Preserve access telemetry unless explicitly updated
+      lastLoginAt: nextContact.lastLoginAt ?? prev.lastLoginAt,
+      loginCount: nextContact.loginCount ?? prev.loginCount,
     };
   } else {
     snap.contacts.push(nextContact);
@@ -231,4 +242,68 @@ export async function markContactInvited(
     lastInviteId: inviteId,
   };
   await savePartnerContacts(snap);
+}
+
+/**
+ * Record a successful portal sign-in for admin visibility.
+ * Updates invite-contact row when present, and always upserts the access log.
+ */
+export async function recordPartnerLogin(opts: {
+  email: string;
+  slug: string;
+  name?: string;
+}): Promise<void> {
+  const email = opts.email.trim().toLowerCase();
+  if (!email) return;
+  const now = new Date().toISOString();
+  const slug = (opts.slug || "general").trim().toLowerCase() || "general";
+  const snap = normalizeSnapshot(await loadPartnerContacts());
+
+  const contactIdx = snap.contacts.findIndex((c) => c.email.toLowerCase() === email);
+  let displayName = opts.name?.trim() || "";
+  if (contactIdx >= 0) {
+    const prev = snap.contacts[contactIdx]!;
+    displayName = displayName || prev.name;
+    snap.contacts[contactIdx] = {
+      ...prev,
+      lastLoginAt: now,
+      loginCount: (prev.loginCount ?? 0) + 1,
+    };
+  }
+  if (!displayName) {
+    displayName = email.split("@")[0] || email;
+  }
+
+  const access = [...(snap.access ?? [])];
+  const accessIdx = access.findIndex((a) => a.email.toLowerCase() === email);
+  if (accessIdx >= 0) {
+    const prev = access[accessIdx]!;
+    access[accessIdx] = {
+      ...prev,
+      slug,
+      name: displayName || prev.name,
+      lastLoginAt: now,
+      loginCount: (prev.loginCount ?? 0) + 1,
+    };
+  } else {
+    const row: PartnerAccessRecord = {
+      email,
+      slug,
+      name: displayName,
+      firstLoginAt: now,
+      lastLoginAt: now,
+      loginCount: 1,
+    };
+    access.push(row);
+  }
+  access.sort((a, b) => Date.parse(b.lastLoginAt) - Date.parse(a.lastLoginAt));
+  snap.access = access;
+  await savePartnerContacts(snap);
+}
+
+export async function listPartnerAccess(): Promise<PartnerAccessRecord[]> {
+  const snap = normalizeSnapshot(await loadPartnerContacts());
+  return [...(snap.access ?? [])].sort(
+    (a, b) => Date.parse(b.lastLoginAt) - Date.parse(a.lastLoginAt)
+  );
 }

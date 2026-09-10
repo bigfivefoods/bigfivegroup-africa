@@ -268,7 +268,7 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#blessman-partnership-deck",
         label: "Strategic partnership deck",
-        desc: "15-slide briefing — kingdom alignment + fortified porridge nutrition deep-dive.",
+        desc: "19-slide briefing — kingdom alignment + full fortified porridge nutrition panels.",
       },
       {
         href: "#kingdom",

@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import { PARTNER_COOKIE, verifyPartnerToken } from "../../lib/partner-auth";
+import { listPartnerAccess } from "../../lib/partner-contacts";
 import {
   canAccessPartnerPageAsync,
   canManagePartnerInvitesAsync,
@@ -35,6 +36,8 @@ export default async function PartnerSlugPage({ params }: Props) {
 
   const admin = isPartnerAdmin(session.email);
   const canInvite = await canManagePartnerInvitesAsync(session.email, slug);
+  const accessLog =
+    admin && slug === "big-five-group" ? await listPartnerAccess() : undefined;
 
   return (
     <PartnerPortalClient
@@ -43,6 +46,7 @@ export default async function PartnerSlugPage({ params }: Props) {
       isAdmin={admin}
       canInvite={canInvite}
       directory={admin ? getPartnerDirectoryEntries() : undefined}
+      accessLog={accessLog}
     />
   );
 }

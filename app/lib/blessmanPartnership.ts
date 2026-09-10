@@ -117,6 +117,79 @@ export const BLESSMAN_PARTNERSHIP = {
       "Shelf-stable instant prep — hot breakfast without cold-chain risk",
       "Portionable for hubs, ECD, after-school campuses and household hampers",
     ],
+    /**
+     * Typical fortified porridge nutrition information panel (as provided for partner briefing).
+     * Serving size: 80 g dry product (typical serving).
+     */
+    label: {
+      servingNote: "Typical serving = 80 g dry fortified porridge",
+      macros: [
+        { nutrient: "Energy", per100g: "1590 kJ", perServing: "1272 kJ" },
+        { nutrient: "Protein", per100g: "12.8 g", perServing: "10.2 g" },
+        { nutrient: "Glycaemic carbohydrate", per100g: "69.6 g", perServing: "55.8 g" },
+        { nutrient: "— of which total sugar", per100g: "18.9 g", perServing: "15.1 g", indent: true },
+        { nutrient: "Total fat", per100g: "7 g", perServing: "5.6 g" },
+        { nutrient: "— saturated fat", per100g: "2.7 g", perServing: "2.2 g", indent: true },
+        { nutrient: "— monounsaturated fatty acids", per100g: "2.6 g", perServing: "2.1 g", indent: true },
+        { nutrient: "— polyunsaturated fatty acids", per100g: "1.7 g", perServing: "1.4 g", indent: true },
+        { nutrient: "Dietary fibre", per100g: "7 g", perServing: "5.6 g" },
+        { nutrient: "Total sodium", per100g: "451.8 mg", perServing: "361.4 mg" },
+      ],
+      vitamins: [
+        { nutrient: "Vitamin A", per100g: "1235 µg", perServing: "988 µg", nrv: "110%" },
+        { nutrient: "Biotin", per100g: "41 µg", perServing: "32.8 µg", nrv: "110%" },
+        { nutrient: "Vitamin B1 (Thiamine)", per100g: "11 mg", perServing: "8.8 mg", nrv: "722%" },
+        { nutrient: "Vitamin B2 (Riboflavin)", per100g: "12 mg", perServing: "9.6 mg", nrv: "725%" },
+        { nutrient: "Vitamin B6 (Pyridoxine)", per100g: "14 mg", perServing: "11.2 mg", nrv: "669%" },
+        { nutrient: "Vitamin B9 (Folic acid / folate)", per100g: "550 µg", perServing: "440 µg", nrv: "110%" },
+        { nutrient: "Vitamin B12 (Cyanocobalamin)", per100g: "17 µg", perServing: "13.6 µg", nrv: "570%" },
+        { nutrient: "Vitamin C (Ascorbic acid)", per100g: "435 mg", perServing: "348 mg", nrv: "348%" },
+        { nutrient: "Vitamin D", per100g: "21 µg", perServing: "16.8 µg", nrv: "110%" },
+        { nutrient: "Vitamin E", per100g: "36 mg", perServing: "28.8 mg", nrv: "193%" },
+        { nutrient: "Nicotinamide (Niacin)", per100g: "22 mg", perServing: "17.6 mg", nrv: "110%" },
+        { nutrient: "Pantothenic acid", per100g: "27 mg", perServing: "21.6 mg", nrv: "432%" },
+      ],
+      minerals: [
+        { nutrient: "Chromium", per100g: "6.7 µg", perServing: "5.4 µg", nrv: "15%" },
+        { nutrient: "Copper", per100g: "0.2 µg", perServing: "0.2 µg", nrv: "15%" },
+        { nutrient: "Calcium", per100g: "244.5 mg", perServing: "195.6 mg", nrv: "15%" },
+        { nutrient: "Iodine", per100g: "28.7 mg", perServing: "23 mg", nrv: "15%" },
+        { nutrient: "Iron", per100g: "3.5 mg", perServing: "2.8 mg", nrv: "15%" },
+        { nutrient: "Magnesium", per100g: "97 mg", perServing: "77.6 mg", nrv: "18%" },
+        { nutrient: "Manganese", per100g: "0.2 mg", perServing: "0.2 mg", nrv: "9%" },
+        { nutrient: "Molybdenum", per100g: "8.6 µg", perServing: "6.9 µg", nrv: "15%" },
+        { nutrient: "Phosphate", per100g: "192.5 mg", perServing: "154 mg", nrv: "12%" },
+        { nutrient: "Selenium", per100g: "10.5 µg", perServing: "8.4 µg", nrv: "15%" },
+        { nutrient: "Zinc", per100g: "2.1 mg", perServing: "1.7 mg", nrv: "15%" },
+        { nutrient: "Choline", per100g: "105.4 mg", perServing: "84.3 mg", nrv: "15%" },
+      ],
+      childBenefits: [
+        {
+          t: "Energy to learn and play",
+          d: "1 272 kJ per typical 80 g serving — sustained energy from glycaemic carbohydrate plus protein, so children are not running on empty calories alone.",
+        },
+        {
+          t: "Protein for growth",
+          d: "10.2 g protein per serving supports tissue growth and recovery — critical where diets are starch-heavy and animal protein is scarce or costly.",
+        },
+        {
+          t: "Iron, folate & B-vitamins",
+          d: "Iron plus very high B1, B2, B6, B12 and folate %NRV help close gaps linked to anaemia, tiredness and impaired concentration in school-age children.",
+        },
+        {
+          t: "Vitamins A, C, D & E",
+          d: "Vitamin A (110% NRV), C (348%), D (110%) and E (193%) support immunity, vision and healthy development — targets of hidden hunger programmes worldwide.",
+        },
+        {
+          t: "Calcium, zinc & minerals",
+          d: "Calcium, zinc, magnesium, selenium and related minerals at meaningful %NRV levels support bones, immunity and metabolic health in growing bodies.",
+        },
+        {
+          t: "Fibre without sacrifice",
+          d: "5.6 g dietary fibre per serving — better than empty refined staples — while flavours stay delicious enough for children to finish the bowl.",
+        },
+      ],
+    },
     superiority: [
       {
         t: "Against empty calories",
@@ -209,6 +282,7 @@ export const BLESSMAN_PARTNERSHIP = {
   ],
 
   honesty: [
+    "Detailed nutrition panels (per 100 g / per 80 g serving / % NRV) are typical fortified porridge label values for partner briefing — confirm the governing pack label / CoA for the SKU and batch you order.",
     "Nutrition superiority figures (e.g. ~74% more nutrition by design, ~185% more fortification) are internal Foods design comparisons vs alternative formulations — not clinical trial outcomes or medical claims.",
     "Cost advantage (~50% vs wholesale/retail) and meal maths (1kg → 4kg prepared ≈ 20 × 200g; R45 ÷ 20 ≈ R2.25) are management / partner-briefing figures — confirm SKU list, VAT and preparation assumptions on order.",
     "Blessman feeding-scale language is drawn from Blessman’s public communications; this deck does not restate audited Blessman financials.",

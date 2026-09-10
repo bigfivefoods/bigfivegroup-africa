@@ -576,12 +576,33 @@ function ProgrammeBlocks({ ids }: { ids?: PartnerProgrammeId[] }) {
   );
 }
 
+type AccessLogRow = {
+  email: string;
+  slug: string;
+  name: string;
+  firstLoginAt: string;
+  lastLoginAt: string;
+  loginCount: number;
+};
+
+function formatAccessWhen(iso: string) {
+  try {
+    return new Date(iso).toLocaleString("en-ZA", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+  } catch {
+    return iso;
+  }
+}
+
 export default function PartnerPortalClient({
   email,
   partner,
   isAdmin,
   canInvite,
   directory,
+  accessLog,
 }: {
   email: string;
   partner: ClientPartnerProfile;
@@ -590,6 +611,8 @@ export default function PartnerPortalClient({
   canInvite?: boolean;
   /** Admin-only list of other workspaces (no emails). */
   directory?: PartnerDirectoryEntry[];
+  /** Admin-only portal access activity (Group hub). */
+  accessLog?: AccessLogRow[];
 }) {
   const resources = mergePartnerResources(partner);
 
@@ -715,7 +738,10 @@ export default function PartnerPortalClient({
                 ? [{ href: "#invite-partners", label: "Invite partners" }]
                 : []),
               ...(isAdmin && partner.slug === "big-five-group"
-                ? [{ href: "#directory", label: "All partners" }]
+                ? [
+                    { href: "#directory", label: "All partners" },
+                    { href: "#access-log", label: "Access log" },
+                  ]
                 : []),
               { href: "#contact", label: "Contact" },
             ];
@@ -1083,6 +1109,86 @@ export default function PartnerPortalClient({
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {isAdmin && partner.slug === "big-five-group" && (
+        <section
+          id="access-log"
+          className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-[10px] sm:text-xs tracking-[2px] text-[#737373] font-semibold mb-2">
+              ADMIN · PORTAL ACCESS
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-2 text-balance">
+              Who has signed in
+            </h2>
+            <p className="text-sm text-[#525252] mb-6 max-w-2xl leading-relaxed">
+              System admins only — last successful partner-portal sign-in for each email (invite
+              contacts and registry logins). Open an organisation workspace to see last login next
+              to each invited person&apos;s name.
+            </p>
+            {!accessLog || accessLog.length === 0 ? (
+              <p className="text-sm text-[#737373]">
+                No sign-ins recorded yet. Activity appears here after someone uses{" "}
+                <code className="text-xs bg-white border border-black/10 px-1.5 py-0.5 rounded">
+                  /partner/login
+                </code>
+                .
+              </p>
+            ) : (
+              <div className="overflow-x-auto rounded-2xl border border-black/10 bg-white">
+                <table className="w-full min-w-[40rem] text-left text-sm">
+                  <thead>
+                    <tr className="text-[10px] tracking-[1px] text-[#737373] border-b border-black/10">
+                      <th className="py-2.5 px-3 font-semibold">Name</th>
+                      <th className="py-2.5 px-3 font-semibold">Email</th>
+                      <th className="py-2.5 px-3 font-semibold">Workspace</th>
+                      <th className="py-2.5 px-3 font-semibold">Last login</th>
+                      <th className="py-2.5 px-3 font-semibold">Sign-ins</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {accessLog.map((row) => {
+                      const isSelf =
+                        row.email.trim().toLowerCase() === email.trim().toLowerCase();
+                      return (
+                        <tr key={row.email} className="border-t border-black/5 align-top">
+                          <td className="py-2.5 px-3 font-medium text-black">
+                            {row.name}
+                            {isSelf ? (
+                              <span className="ml-2 text-[10px] font-semibold uppercase tracking-wide text-emerald-800">
+                                You
+                              </span>
+                            ) : null}
+                          </td>
+                          <td className="py-2.5 px-3 text-[#404040] break-all">{row.email}</td>
+                          <td className="py-2.5 px-3 text-xs text-[#525252] whitespace-nowrap">
+                            <Link
+                              href={`/partner/${row.slug}`}
+                              className="font-semibold text-emerald-900 hover:underline"
+                            >
+                              /partner/{row.slug}
+                            </Link>
+                          </td>
+                          <td className="py-2.5 px-3 text-xs text-[#404040] tabular-nums whitespace-nowrap">
+                            {formatAccessWhen(row.lastLoginAt)}
+                            <span className="block text-[10px] text-[#a3a3a3]">
+                              First: {formatAccessWhen(row.firstLoginAt)}
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-3 text-xs tabular-nums text-[#404040]">
+                            {row.loginCount}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </section>
       )}

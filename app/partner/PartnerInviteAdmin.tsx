@@ -20,7 +20,21 @@ type ContactRow = {
   status: string;
   createdAt: string;
   invitedAt?: string;
+  lastLoginAt?: string;
+  loginCount?: number;
 };
+
+function formatWhen(iso?: string) {
+  if (!iso) return null;
+  try {
+    return new Date(iso).toLocaleString("en-ZA", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+  } catch {
+    return iso;
+  }
+}
 
 export default function PartnerInviteAdmin({
   organisations,
@@ -360,12 +374,13 @@ export default function PartnerInviteAdmin({
           </p>
         ) : (
           <div className="overflow-x-auto rounded-2xl border border-black/10 bg-white">
-            <table className="w-full min-w-[36rem] text-left text-sm">
+            <table className="w-full min-w-[44rem] text-left text-sm">
               <thead>
                 <tr className="text-[10px] tracking-[1px] text-[#737373] border-b border-black/10">
                   <th className="py-2.5 px-3 font-semibold">Name</th>
                   <th className="py-2.5 px-3 font-semibold">Email</th>
                   <th className="py-2.5 px-3 font-semibold">Invited</th>
+                  <th className="py-2.5 px-3 font-semibold">Last login</th>
                   <th className="py-2.5 px-3 font-semibold text-right">Actions</th>
                 </tr>
               </thead>
@@ -374,6 +389,7 @@ export default function PartnerInviteAdmin({
                   const isSelf =
                     !!viewerEmail &&
                     c.email.trim().toLowerCase() === viewerEmail.trim().toLowerCase();
+                  const lastLogin = formatWhen(c.lastLoginAt);
                   return (
                     <tr key={c.id} className="border-t border-black/5 align-top">
                       <td className="py-2.5 px-3 font-medium text-black">
@@ -386,12 +402,21 @@ export default function PartnerInviteAdmin({
                       </td>
                       <td className="py-2.5 px-3 text-[#404040] break-all">{c.email}</td>
                       <td className="py-2.5 px-3 text-xs text-[#737373] tabular-nums whitespace-nowrap">
-                        {c.invitedAt
-                          ? new Date(c.invitedAt).toLocaleString("en-ZA", {
-                              dateStyle: "medium",
-                              timeStyle: "short",
-                            })
-                          : "—"}
+                        {formatWhen(c.invitedAt) ?? "—"}
+                      </td>
+                      <td className="py-2.5 px-3 text-xs tabular-nums whitespace-nowrap">
+                        {lastLogin ? (
+                          <span className="text-[#404040]">
+                            {lastLogin}
+                            {typeof c.loginCount === "number" && c.loginCount > 0 ? (
+                              <span className="block text-[10px] text-[#a3a3a3]">
+                                {c.loginCount} sign-in{c.loginCount === 1 ? "" : "s"}
+                              </span>
+                            ) : null}
+                          </span>
+                        ) : (
+                          <span className="text-[#a3a3a3]">Never</span>
+                        )}
                       </td>
                       <td className="py-2.5 px-3 text-right whitespace-nowrap">
                         <button

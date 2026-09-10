@@ -7,7 +7,12 @@ import {
   isPartnerEmailAllowedAsync,
 } from "../../../lib/partner-auth";
 import {
+  findActiveContactByEmail,
+  recordPartnerLogin,
+} from "../../../lib/partner-contacts";
+import {
   isPartnerAdmin,
+  partnerHomePathAsync,
   resolvePostLoginPathAsync,
 } from "../../../lib/partners";
 
@@ -56,6 +61,23 @@ export async function POST(request: Request) {
 
   const home = await resolvePostLoginPathAsync(email, body.from);
   const admin = isPartnerAdmin(email);
+
+  // Best-effort access log for system admins (do not fail the login).
+  try {
+    const homePath = await partnerHomePathAsync(email);
+    const slugMatch = homePath.match(/^\/partner\/([a-z0-9-]+)/i);
+    const contact = await findActiveContactByEmail(email);
+    await recordPartnerLogin({
+      email,
+      slug: slugMatch?.[1]?.toLowerCase() || contact?.slug || "general",
+      name: contact?.name,
+    });
+  } catch (err) {
+    console.warn(
+      "[partner-login] could not record last login:",
+      err instanceof Error ? err.message : err
+    );
+  }
 
   const res = NextResponse.json({
     ok: true,

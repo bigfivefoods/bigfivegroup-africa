@@ -21,9 +21,13 @@ import {
 import { partnerLoginUrl, sendPartnerInviteEmail } from "./invite-email";
 import type { PartnerContact } from "./types";
 
-export type { PartnerContact } from "./types";
+export type { PartnerAccessRecord, PartnerContact } from "./types";
 export { partnerLoginUrl } from "./invite-email";
-export { findActiveContactByEmail } from "./store";
+export {
+  findActiveContactByEmail,
+  listPartnerAccess,
+  recordPartnerLogin,
+} from "./store";
 
 function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
