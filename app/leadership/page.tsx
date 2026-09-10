@@ -25,6 +25,7 @@ const ACCENT_DARK = "#a16207";
 const ACCENT_SOFT = "#fefce8";
 
 const LEADERSHIP_JUMP_NAV = [
+  { href: "#model", label: "Model", desc: "Super-Cube® six faces", icon: "target" },
   { href: "#case-study", label: "Case study", desc: "FMCG Super-Cube® proof", icon: "award" },
   { href: "#book", label: "Book", desc: "Free leadership book", icon: "book" },
   { href: "#programmes", label: "Programmes", desc: "Development offers", icon: "graduation" },
@@ -147,7 +148,10 @@ export default function LeadershipPage() {
       </section>
 
       {/* Super-Cube intro */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section
+        id="model"
+        className="scroll-mt-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24"
+      >
         <div className="text-center mb-12">
           <Image
             src="/super-cube-logo-transparent.png"
