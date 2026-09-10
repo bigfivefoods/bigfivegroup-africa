@@ -22,7 +22,7 @@ import DeckShell, {
 import { BLESSMAN_PARTNERSHIP } from "../lib/blessmanPartnership";
 
 const theme = DECK_THEMES.blessman;
-const TOTAL = 16;
+const TOTAL = 18;
 const P = BLESSMAN_PARTNERSHIP;
 const PORRIDGE = P.porridge;
 const LABEL = PORRIDGE.label;
@@ -580,7 +580,171 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 9:
+    case 9: {
+      const pc = P.packCompare;
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>{pc.eyebrow}</DeckEyebrow>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2">
+            {pc.title}
+          </h2>
+          <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+            {pc.intro}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 flex-1 min-h-0">
+            {pc.options.map((o) => (
+              <div
+                key={o.id}
+                className={`rounded-2xl border p-3 sm:p-4 flex flex-col min-w-0 ${
+                  o.highlight
+                    ? "border-[#b32317]/40 bg-[#fdf4f2] ring-1 ring-[#b32317]/20 shadow-sm"
+                    : "border-black/10 bg-white"
+                }`}
+              >
+                <div
+                  className={`text-[10px] tracking-[2px] font-semibold mb-2 ${
+                    o.highlight ? "text-[#b32317]" : "text-[#737373]"
+                  }`}
+                >
+                  {o.badge}
+                </div>
+                <div className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black tabular-nums">
+                  {o.packLabel}
+                </div>
+                <div className="text-sm font-semibold text-[#737373] tabular-nums mt-0.5">
+                  {o.packUsd}
+                  {"wasPackLabel" in o && o.wasPackLabel ? (
+                    <span className="ml-2 text-[11px] font-medium text-[#a3a3a3] line-through">
+                      {o.wasPackLabel}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="mt-3 space-y-1.5 text-xs text-[#404040] leading-snug flex-1">
+                  <div className="flex justify-between gap-2">
+                    <span className="text-[#737373]">Per kg</span>
+                    <span className="font-semibold tabular-nums">{o.perKgLabel}</span>
+                  </div>
+                  <div className="flex justify-between gap-2">
+                    <span className="text-[#737373]">Meals / pack</span>
+                    <span className="font-semibold tabular-nums">{o.meals}</span>
+                  </div>
+                  <div className="rounded-xl border border-black/10 bg-white/80 px-2.5 py-2 mt-2">
+                    <div className="text-[10px] tracking-[1.5px] font-semibold text-[#b32317] mb-0.5">
+                      PER MEAL
+                    </div>
+                    <div className="text-lg font-semibold tracking-tighter text-black tabular-nums">
+                      {o.mealLabel}
+                    </div>
+                    <div className="text-xs font-semibold text-[#737373] tabular-nums">
+                      {o.mealUsd}
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-2 text-[10px] sm:text-[11px] text-[#737373] leading-snug">{o.note}</p>
+                {"saveLabel" in o && o.saveLabel ? (
+                  <p className="mt-1 text-[10px] font-semibold text-[#b32317]">
+                    Save {o.saveLabel} per 5kg pack
+                  </p>
+                ) : null}
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-[10px] sm:text-[11px] text-[#737373] leading-relaxed">{pc.yieldNote}</p>
+        </DeckSlideShell>
+      );
+    }
+
+    case 10: {
+      const day = P.threeMealsDay;
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>{day.eyebrow}</DeckEyebrow>
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tighter text-black text-balance mb-1.5">
+            {day.title}
+          </h2>
+          <p className="text-[11px] sm:text-xs text-[#525252] leading-snug max-w-3xl mb-2 line-clamp-2">
+            {day.intro}
+          </p>
+          {/* Totals first so day/month stay visible on short mobile viewports */}
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-3 mb-2 shrink-0">
+            <div className="rounded-xl sm:rounded-2xl border border-[#b32317]/25 bg-[#fdf4f2] px-3 py-2 sm:px-4 sm:py-3">
+              <div className="text-[8px] sm:text-[10px] tracking-[1.5px] sm:tracking-[2px] font-semibold text-[#b32317] mb-0.5">
+                {day.day.label.toUpperCase()}
+              </div>
+              <div className="text-xl sm:text-3xl font-semibold tracking-tighter text-black tabular-nums">
+                {day.day.total.zar}
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-[#737373] tabular-nums">
+                {day.day.total.usd}
+              </div>
+              <p className="text-[9px] sm:text-[10px] text-[#737373] mt-0.5 leading-snug line-clamp-1">
+                {day.day.detail}
+              </p>
+            </div>
+            <div className="rounded-xl sm:rounded-2xl border border-black/10 bg-[#0a0a0a] px-3 py-2 sm:px-4 sm:py-3 text-white">
+              <div className="text-[8px] sm:text-[10px] tracking-[1.5px] sm:tracking-[2px] font-semibold text-amber-300/90 mb-0.5">
+                {day.month.label.toUpperCase()}
+              </div>
+              <div className="text-xl sm:text-3xl font-semibold tracking-tighter tabular-nums">
+                {day.month.total.zar}
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-white/70 tabular-nums">
+                {day.month.total.usd}
+              </div>
+              <p className="text-[9px] sm:text-[10px] text-white/50 mt-0.5 leading-snug line-clamp-1">
+                {day.month.detail}
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5 min-h-0 flex-1">
+            {day.meals.map((m) => (
+              <div
+                key={m.slot}
+                className="rounded-xl sm:rounded-2xl border border-black/10 bg-white p-2 sm:p-3 flex flex-col min-w-0 shadow-sm"
+              >
+                <div className="flex gap-1.5 sm:gap-2 mb-1.5">
+                  <div className="relative h-12 w-9 sm:h-16 sm:w-12 shrink-0 rounded-md overflow-hidden bg-[#fafafa] border border-black/5 flex items-center justify-center p-0.5">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={m.src}
+                      alt={m.product}
+                      data-deck-src={m.src}
+                      data-deck-fit="contain"
+                      className="max-h-full max-w-full object-contain"
+                      loading={pdf ? "eager" : "lazy"}
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[8px] sm:text-[10px] tracking-[1.5px] sm:tracking-[2px] font-semibold text-[#b32317]">
+                      {m.slot.toUpperCase()}
+                    </div>
+                    <div className="text-[11px] sm:text-sm font-semibold text-black leading-snug line-clamp-2">
+                      {m.product}
+                    </div>
+                  </div>
+                </div>
+                <p className="hidden sm:block text-[11px] text-[#525252] leading-snug mb-1.5 line-clamp-2 flex-1">
+                  {m.blurb}
+                </p>
+                <div className="rounded-lg bg-[#fdf4f2] border border-[#b32317]/15 px-2 py-1.5 mt-auto">
+                  <div className="text-sm sm:text-base font-semibold tracking-tighter text-black tabular-nums">
+                    {m.cost.zar}
+                  </div>
+                  <div className="text-[10px] sm:text-xs font-semibold text-[#737373] tabular-nums">
+                    {m.cost.usd}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-1.5 text-[9px] sm:text-[10px] text-[#737373] leading-snug line-clamp-2 shrink-0">
+            {day.footnote}
+          </p>
+        </DeckSlideShell>
+      );
+    }
+
+    case 11:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HUBS · CAMPUSES · LOGISTICS</DeckEyebrow>
@@ -616,7 +780,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 10:
+    case 12:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FULL RANGE · PORRIDGE FIRST</DeckEyebrow>
@@ -661,7 +825,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 13:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -695,7 +859,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PARTNERSHIP PATHWAYS</DeckEyebrow>
@@ -721,7 +885,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>NEXT STEPS</DeckEyebrow>
@@ -745,7 +909,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 16:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HONEST LANGUAGE</DeckEyebrow>
@@ -765,7 +929,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 17:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">

@@ -40,6 +40,40 @@ const PACK = zarUsd(CMH_FORD_PARTNERSHIP.product.tradeExVat, { zarDigits: 0 });
 const SOYA_MEAL = zarUsd(1.3, { approx: true, zarDigits: 2 });
 const SOUP_MEAL = zarUsd(1.1, { approx: true, zarDigits: 2 });
 
+/** Pack / meal maths for Blessman partnership briefing (ex. VAT framing). */
+const SERVINGS_PER_KG = Y.servingsPerPack; // 20 × 200g from 1kg dry → 4kg prepared
+const PACK_1KG_ZAR = CMH_FORD_PARTNERSHIP.product.tradeExVat; // 45
+const PACK_5KG_ZAR = 170;
+const FBO_DISCOUNT = 0.1; // 10% for faith-based organisations on 5kg
+const PACK_5KG_FBO_ZAR = Math.round(PACK_5KG_ZAR * (1 - FBO_DISCOUNT) * 100) / 100; // 153
+const MEALS_1KG = SERVINGS_PER_KG; // 20
+const MEALS_5KG = SERVINGS_PER_KG * 5; // 100
+const MEAL_1KG_ZAR = PACK_1KG_ZAR / MEALS_1KG; // 2.25
+const MEAL_5KG_ZAR = PACK_5KG_ZAR / MEALS_5KG; // 1.70
+const MEAL_5KG_FBO_ZAR = PACK_5KG_FBO_ZAR / MEALS_5KG; // 1.53
+
+const PACK_1KG = zarUsd(PACK_1KG_ZAR, { zarDigits: 0 });
+const PACK_5KG = zarUsd(PACK_5KG_ZAR, { zarDigits: 0 });
+const PACK_5KG_FBO = zarUsd(PACK_5KG_FBO_ZAR, { zarDigits: 0 });
+const MEAL_1KG = zarUsd(MEAL_1KG_ZAR, { zarDigits: 2 });
+const MEAL_5KG = zarUsd(MEAL_5KG_ZAR, { zarDigits: 2 });
+const MEAL_5KG_FBO = zarUsd(MEAL_5KG_FBO_ZAR, { zarDigits: 2 });
+
+/** 3 meals/day for a child — FBO 5kg rate for porridge + one-pot; soya for dinner. */
+const DAY_BREAKFAST_ZAR = MEAL_5KG_FBO_ZAR; // porridge
+const DAY_LUNCH_ZAR = MEAL_5KG_FBO_ZAR; // one-pot
+const DAY_DINNER_ZAR = 1.3; // soya mince (soup from ~R1.10)
+const DAY_TOTAL_ZAR =
+  Math.round((DAY_BREAKFAST_ZAR + DAY_LUNCH_ZAR + DAY_DINNER_ZAR) * 100) / 100;
+const MONTH_DAYS = 30;
+const MONTH_TOTAL_ZAR = Math.round(DAY_TOTAL_ZAR * MONTH_DAYS * 100) / 100;
+
+const DAY_BREAKFAST = zarUsd(DAY_BREAKFAST_ZAR, { zarDigits: 2 });
+const DAY_LUNCH = zarUsd(DAY_LUNCH_ZAR, { zarDigits: 2 });
+const DAY_DINNER = zarUsd(DAY_DINNER_ZAR, { approx: true, zarDigits: 2 });
+const DAY_TOTAL = zarUsd(DAY_TOTAL_ZAR, { zarDigits: 2 });
+const MONTH_TOTAL = zarUsd(MONTH_TOTAL_ZAR, { zarDigits: 2 });
+
 export const BLESSMAN_PARTNERSHIP = {
   title: "Blessman International × Big Five Group",
   subtitle: "Kingdom partnership — delicious, nutritious, affordable food for children.",
@@ -342,6 +376,119 @@ export const BLESSMAN_PARTNERSHIP = {
     },
   ],
 
+  /**
+   * Pack pricing comparison — 1kg vs 5kg vs faith-based 10% on 5kg.
+   * Yield: 1kg dry → 4kg prepared = 20 × 200g meals (same per-kg for 5kg).
+   */
+  packCompare: {
+    eyebrow: "PACK PRICING · FAITH-BASED OFFER",
+    title: "1kg, 5kg — and 10% off for faith-based organisations",
+    intro:
+      "Same fortified yield maths: every kilogram prepares to about 4kg of food (20 × 200g meals). Bigger packs lower the cost per meal — and Blessman qualifies for a faith-based 10% on the 5kg institutional pack.",
+    options: [
+      {
+        id: "1kg",
+        badge: "1KG PACK",
+        packZar: PACK_1KG_ZAR,
+        packLabel: PACK_1KG.zar,
+        packUsd: PACK_1KG.usd,
+        packInline: PACK_1KG.inline,
+        perKgLabel: `${PACK_1KG.zar}/kg`,
+        meals: MEALS_1KG,
+        mealZar: MEAL_1KG_ZAR,
+        mealLabel: MEAL_1KG.zar,
+        mealUsd: MEAL_1KG.usd,
+        mealInline: MEAL_1KG.inline,
+        highlight: false,
+        note: "Retail / catering entry pack",
+      },
+      {
+        id: "5kg",
+        badge: "5KG INSTITUTIONAL",
+        packZar: PACK_5KG_ZAR,
+        packLabel: PACK_5KG.zar,
+        packUsd: PACK_5KG.usd,
+        packInline: PACK_5KG.inline,
+        perKgLabel: `R${(PACK_5KG_ZAR / 5).toFixed(0)}/kg`,
+        meals: MEALS_5KG,
+        mealZar: MEAL_5KG_ZAR,
+        mealLabel: MEAL_5KG.zar,
+        mealUsd: MEAL_5KG.usd,
+        mealInline: MEAL_5KG.inline,
+        highlight: false,
+        note: "Hub / campus volume pack",
+      },
+      {
+        id: "5kg-fbo",
+        badge: "FAITH-BASED · 10% OFF",
+        packZar: PACK_5KG_FBO_ZAR,
+        packLabel: PACK_5KG_FBO.zar,
+        packUsd: PACK_5KG_FBO.usd,
+        packInline: PACK_5KG_FBO.inline,
+        perKgLabel: `R${(PACK_5KG_FBO_ZAR / 5).toFixed(2)}/kg`,
+        meals: MEALS_5KG,
+        mealZar: MEAL_5KG_FBO_ZAR,
+        mealLabel: MEAL_5KG_FBO.zar,
+        mealUsd: MEAL_5KG_FBO.usd,
+        mealInline: MEAL_5KG_FBO.inline,
+        highlight: true,
+        note: `10% off ${PACK_5KG.zar} 5kg for faith-based organisations (e.g. Blessman)`,
+        wasPackLabel: PACK_5KG.zar,
+        saveLabel: zarUsd(PACK_5KG_ZAR - PACK_5KG_FBO_ZAR, { zarDigits: 0 }).inline,
+      },
+    ],
+    yieldNote: `Yield: 1kg dry → ~4kg prepared = ${MEALS_1KG} × 200g meals · 5kg = ${MEALS_5KG} meals. ${BLESSMAN_FX.note}`,
+  },
+
+  /**
+   * Full-day plate for a child — porridge breakfast, one-pot lunch, soya/soup dinner.
+   * Porridge + one-pot priced on faith-based 5kg meal rate; dinner on soya band.
+   */
+  threeMealsDay: {
+    eyebrow: "THREE MEALS · ONE CHILD",
+    title: "Breakfast, lunch and dinner — what it costs to feed a child",
+    intro:
+      "A simple kingdom day: fortified porridge in the morning, a one-pot plate at midday, and soya mince or soup in the evening — priced on the faith-based 5kg offer for porridge and one-pots.",
+    meals: [
+      {
+        slot: "Breakfast",
+        product: "Fortified porridge",
+        blurb: "Warm, familiar flavours children finish — micronutrients to start the day.",
+        src: "/foods/porridge-banana.jpg",
+        cost: DAY_BREAKFAST,
+        basis: `Faith-based 5kg meal rate (${MEAL_5KG_FBO.inline})`,
+      },
+      {
+        slot: "Lunch",
+        product: "One-pot meal",
+        blurb: "A complete fortified plate — authentic African flavours, ~20 minutes cook.",
+        src: "/foods/onepot-chicken.jpg",
+        cost: DAY_LUNCH,
+        basis: `Faith-based 5kg meal rate (${MEAL_5KG_FBO.inline})`,
+      },
+      {
+        slot: "Dinner",
+        product: "Soya mince / soup",
+        blurb: "Plant protein or a light fortified soup — stretch the evening pot.",
+        src: "/foods/soya-beef.jpg",
+        cost: DAY_DINNER,
+        basis: `From ${SOYA_MEAL.inline} soya · soup from ${SOUP_MEAL.inline}`,
+      },
+    ],
+    day: {
+      label: "Per child / day",
+      total: DAY_TOTAL,
+      detail: `Breakfast ${DAY_BREAKFAST.zar} + lunch ${DAY_LUNCH.zar} + dinner ${DAY_DINNER.zar}`,
+    },
+    month: {
+      label: `Per child / month (${MONTH_DAYS} days)`,
+      total: MONTH_TOTAL,
+      detail: `${DAY_TOTAL.inline} × ${MONTH_DAYS} days`,
+      days: MONTH_DAYS,
+    },
+    footnote: `Porridge and one-pot use the faith-based 5kg rate (${PACK_5KG_FBO.inline} → ${MEAL_5KG_FBO.inline}/meal). Dinner uses soya mince at ~R1.30 (soup from ~R1.10). Preparation water, fuel and kitchen labour sit outside pack cost. ${BLESSMAN_FX.note}`,
+  },
+
   pathways: [
     {
       t: "Programme supply",
@@ -383,6 +530,8 @@ export const BLESSMAN_PARTNERSHIP = {
     "Detailed nutrition panels (per 100 g / per 80 g serving / % NRV) are typical fortified porridge label values for partner briefing — confirm the governing pack label / CoA for the SKU and batch you order.",
     "Nutrition superiority figures (e.g. ~74% more nutrition by design, ~185% more fortification) are internal Foods design comparisons vs alternative formulations — not clinical trial outcomes or medical claims.",
     `Cost advantage (~50% vs wholesale/retail) and meal maths (1kg → 4kg prepared ≈ 20 × 200g; ${PACK.zar} ÷ 20 ≈ ${MEAL.zar} / ${MEAL.usd}) are management / partner-briefing figures — confirm SKU list, VAT and preparation assumptions on order.`,
+    `5kg institutional pack at ${PACK_5KG.inline} (${MEALS_5KG} meals → ${MEAL_5KG.inline}/meal) and faith-based 10% offer at ${PACK_5KG_FBO.inline} (→ ${MEAL_5KG_FBO.inline}/meal) are partner-briefing trade figures — confirm eligibility, VAT and SKU list on order.`,
+    `Three-meals-a-day child cost (${DAY_TOTAL.inline}/day · ${MONTH_TOTAL.inline}/${MONTH_DAYS} days) uses faith-based 5kg meal rate for porridge and one-pot, and ~R1.30 for soya dinner — confirm menu mix and pack sizes for your hubs.`,
     BLESSMAN_FX.note,
     "Blessman feeding-scale language is drawn from Blessman’s public communications; this deck does not restate audited Blessman financials.",
     "Kingdom framing describes shared purpose; it is not a claim of formal ecclesiastical affiliation beyond the partnership relationship.",
