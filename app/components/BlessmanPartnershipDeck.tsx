@@ -202,54 +202,54 @@ function Slide({ index }: { index: number }) {
     case 0:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
-          <div className="relative h-full w-full min-h-0">
-            {pdf ? (
-              <DeckPrintImage src="/foods/porridge-banana.jpg" alt="" fit="cover" />
-            ) : (
-              <Image
-                src="/foods/porridge-banana.jpg"
-                alt=""
-                fill
-                className="object-cover object-center"
-                sizes="(max-width:1280px) 100vw, 1200px"
-                priority
-              />
-            )}
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(105deg, #2a0a08f5 0%, #8a1a12e6 42%, #2a0a0899 100%)",
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2a0a08]/95 via-transparent to-black/25" />
-            <div className="relative z-10 h-full">
-              <DeckTitleLayout>
-                <div>
-                  <DeckEyebrow light theme={theme}>
-                    STRATEGIC PARTNERSHIP · CONDENSED
-                  </DeckEyebrow>
-                  <CoBrandRow light />
-                  <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem]">
-                    Kingdom plates.
-                    <br />
-                    <span style={{ color: "#f47835" }}>Delicious. Nutritious. Affordable.</span>
-                  </h2>
-                  <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
-                    {P.tagline}
-                  </p>
-                  <ScriptureQuote
-                    light
-                    className="mt-4 sm:mt-5 max-w-xl"
-                    verse={P.scripture.title.verse}
-                    citation={P.scripture.title.ref}
-                  />
-                </div>
-                <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
-                  <p>Private partner briefing · {TOTAL} slides</p>
-                  <p>bigfivegroup.africa/partner/blessman-international#blessman-partnership-deck</p>
-                </div>
-              </DeckTitleLayout>
+          <div
+            className="relative h-full w-full min-h-0 overflow-hidden"
+            style={{
+              background: "linear-gradient(105deg, #2a0a08 0%, #8a1a12 55%, #4a100c 100%)",
+            }}
+          >
+            <div className="relative z-10 grid h-full min-h-0 grid-cols-[minmax(0,1.2fr)_minmax(140px,0.8fr)] sm:grid-cols-[minmax(0,1.15fr)_minmax(200px,0.85fr)]">
+              <div className="min-w-0 min-h-0">
+                <DeckTitleLayout>
+                  <div className="max-w-xl sm:max-w-2xl">
+                    <DeckEyebrow light theme={theme}>
+                      STRATEGIC PARTNERSHIP · CONDENSED
+                    </DeckEyebrow>
+                    <CoBrandRow light />
+                    <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem]">
+                      Kingdom plates.
+                      <br />
+                      <span style={{ color: "#f47835" }}>Delicious. Nutritious. Affordable.</span>
+                    </h2>
+                    <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
+                      {P.tagline}
+                    </p>
+                    <ScriptureQuote
+                      light
+                      className="mt-4 sm:mt-5 max-w-xl"
+                      verse={P.scripture.title.verse}
+                      citation={P.scripture.title.ref}
+                    />
+                  </div>
+                  <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
+                    <p>Private partner briefing · {TOTAL} slides</p>
+                    <p>bigfivegroup.africa/partner/blessman-international#blessman-partnership-deck</p>
+                  </div>
+                </DeckTitleLayout>
+              </div>
+              <div className="flex items-center justify-center p-2 sm:p-4 md:p-6 min-h-0">
+                {/* In-flow img — survives A4 PDF clones (absolute fill was collapsing) */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/foods/porridge-banana.jpg"
+                  alt="Big Five Foods fortified porridge"
+                  data-deck-src="/foods/porridge-banana.jpg"
+                  data-deck-fit="contain"
+                  className="max-h-full max-w-full w-auto h-auto object-contain object-center drop-shadow-2xl"
+                  style={{ maxHeight: "100%" }}
+                  loading={pdf ? "eager" : "lazy"}
+                />
+              </div>
             </div>
           </div>
         </DeckSlideShell>
@@ -362,38 +362,38 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FORTIFIED PORRIDGES</DeckEyebrow>
-          <div className="flex items-center gap-2 mb-2">
-            <UtensilsCrossed className="w-5 h-5 text-[#b32317]" aria-hidden />
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black text-balance">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+            <UtensilsCrossed className="w-5 h-5 text-[#b32317] shrink-0" aria-hidden />
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance">
               Flavours children ask for again
             </h2>
           </div>
-          <p className="text-sm text-[#525252] mb-4 max-w-3xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#525252] mb-2.5 sm:mb-3 max-w-3xl leading-relaxed">
             {PORRIDGE.title}. Four taste-forward SKUs — Original, Chocolate, Banana, Strawberry —
             so nutrition arrives in a bowl children finish.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 flex-1 min-h-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 auto-rows-fr">
             {PORRIDGE.flavours.map((f) => (
               <div
                 key={f.name}
-                className="rounded-2xl border border-black/10 bg-white overflow-hidden shadow-sm flex flex-col min-h-0"
+                className="rounded-2xl border border-black/10 bg-white overflow-hidden shadow-sm flex flex-col"
               >
-                <div className="relative aspect-square bg-[#fafafa] p-2 sm:p-3">
-                  {pdf ? (
-                    <DeckPrintImage src={f.src} alt={f.name} fit="contain" paddingClass="p-2" />
-                  ) : (
-                    <Image
-                      src={f.src}
-                      alt={f.name}
-                      fill
-                      className="object-contain p-1"
-                      sizes="220px"
-                    />
-                  )}
+                {/* Fixed-height in-flow frame — absolute/aspect boxes collapsed in A4 PDF clones */}
+                <div className="flex h-40 sm:h-48 md:h-52 w-full shrink-0 items-center justify-center bg-[#fafafa] p-2 sm:p-3">
+                  <img
+                    src={f.src}
+                    alt={f.name}
+                    data-deck-src={f.src}
+                    data-deck-fit="contain"
+                    className="max-h-full max-w-full w-auto object-contain object-center"
+                    loading={pdf ? "eager" : "lazy"}
+                  />
                 </div>
-                <div className="p-2.5 sm:p-3 border-t border-black/5">
-                  <div className="text-sm font-semibold text-black mb-0.5">{f.name}</div>
-                  <p className="text-[11px] text-[#737373] leading-snug">{f.blurb}</p>
+                <div className="p-2 sm:p-2.5 border-t border-black/5 shrink-0">
+                  <div className="text-xs sm:text-sm font-semibold text-black mb-0.5">{f.name}</div>
+                  <p className="text-[10px] sm:text-[11px] text-[#737373] leading-snug line-clamp-2">
+                    {f.blurb}
+                  </p>
                 </div>
               </div>
             ))}
@@ -413,6 +413,7 @@ function Slide({ index }: { index: number }) {
               <DeckStatTile
                 key={s.label}
                 value={s.value}
+                subvalue={"usd" in s ? s.usd : undefined}
                 label={s.label}
                 theme={theme}
               />
@@ -549,8 +550,18 @@ function Slide({ index }: { index: number }) {
             Stretch every kingdom rand further
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-            <DeckStatTile value={PORRIDGE.tradeExVatLabel} label="Per 1kg pack (ex. VAT framing)" theme={theme} />
-            <DeckStatTile value={PORRIDGE.yield.costPerMealLabel} label="Per 200g fortified meal" theme={theme} />
+            <DeckStatTile
+              value={PORRIDGE.tradeExVatLabel}
+              subvalue={PORRIDGE.tradeExVatUsd}
+              label="Per 1kg pack (ex. VAT framing)"
+              theme={theme}
+            />
+            <DeckStatTile
+              value={PORRIDGE.yield.costPerMealLabel}
+              subvalue={PORRIDGE.yield.costPerMealUsd}
+              label="Per 200g fortified meal"
+              theme={theme}
+            />
             <DeckStatTile value={PORRIDGE.shelfLifeLabel} label="Shelf life" theme={theme} />
           </div>
           <div className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 sm:p-5 flex-1 min-h-0">
@@ -563,7 +574,7 @@ function Slide({ index }: { index: number }) {
             </p>
             <p className="text-[11px] text-[#737373] leading-relaxed">
               Preparation water, fuel and kitchen labour sit outside pack cost. Confirm VAT and SKU
-              list on order.
+              list on order. {P.fx.note}
             </p>
           </div>
         </DeckSlideShell>
@@ -622,18 +633,15 @@ function Slide({ index }: { index: number }) {
                     : "border-black/10 bg-white"
                 }`}
               >
-                <div className="relative h-24 w-24 sm:h-28 sm:w-28 shrink-0 rounded-xl overflow-hidden bg-white border border-black/5 p-1.5">
-                  {pdf ? (
-                    <DeckPrintImage src={r.src} alt={r.title} fit="contain" paddingClass="p-1.5" />
-                  ) : (
-                    <Image
-                      src={r.src}
-                      alt={r.title}
-                      fill
-                      className="object-contain p-1"
-                      sizes="112px"
-                    />
-                  )}
+                <div className="flex h-28 w-20 sm:h-32 sm:w-24 shrink-0 items-center justify-center rounded-xl overflow-hidden bg-white border border-black/5 p-1.5">
+                  <img
+                    src={r.src}
+                    alt={r.title}
+                    data-deck-src={r.src}
+                    data-deck-fit="contain"
+                    className="max-h-full max-w-full w-auto object-contain object-center"
+                    loading={pdf ? "eager" : "lazy"}
+                  />
                 </div>
                 <div className="min-w-0 flex-1 self-center">
                   <div className="text-sm font-semibold text-black mb-0.5">
@@ -760,70 +768,69 @@ function Slide({ index }: { index: number }) {
     case 15:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
-          <div className="relative h-full w-full min-h-0">
-            {pdf ? (
-              <DeckPrintImage src="/foods/porridge-chocolate.jpg" alt="" fit="cover" />
-            ) : (
-              <Image
-                src="/foods/porridge-chocolate.jpg"
-                alt=""
-                fill
-                className="object-cover object-center"
-                sizes="(max-width:1280px) 100vw, 1200px"
-                priority
-              />
-            )}
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(105deg, #2a0a08f5 0%, #8a1a12e6 42%, #2a0a08a6 100%)",
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2a0a08]/95 via-transparent to-black/30" />
-            <div className="relative z-10 h-full">
-              <DeckTitleLayout>
-                <div>
-                  <DeckEyebrow light theme={theme}>
-                    CALL TO ACTION
-                  </DeckEyebrow>
-                  <CoBrandRow light />
-                  <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl">
-                    Put fortified porridge
-                    <br />
-                    <span style={{ color: "#f47835" }}>on kingdom tables.</span>
-                  </h2>
-                  <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed mb-3">
-                    Delicious flavours · ~74% more nutrition by design · ~R2.25 per meal · African
-                    food for African children — with Dr. Craig R. Muller and Big Five Group as
-                    kingdom partners in the plate.
-                  </p>
-                  <ScriptureQuote
-                    light
-                    className="max-w-xl mb-4"
-                    verse={P.scripture.cta.verse}
-                    citation={P.scripture.cta.ref}
-                  />
-                </div>
-                <div className="space-y-3">
-                  <a
-                    href={`mailto:${P.contactEmail}?subject=${encodeURIComponent(
-                      "Blessman International × Big Five Foods — fortified porridge partnership"
-                    )}&body=${encodeURIComponent(
-                      "Hello Dr. Craig / Big Five team,\n\nI would like to progress the Blessman International × Big Five Foods partnership — starting with fortified porridge tasting and a pilot for our hubs / campuses.\n\nName:\nRole / campus or hub:\nEstimated children served:\n\nThank you."
-                    )}`}
-                    className="deck-email-cta inline-flex items-center gap-2 rounded-full bg-white font-semibold px-6 py-3.5 text-sm"
-                    style={{ color: "#000000" }}
-                  >
-                    Email {P.contactEmail}
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                  <div className="text-white/45 text-xs">
-                    blessmaninternational.org · bigfivegroup.africa/foods · Confidential partner
-                    briefing
+          <div
+            className="relative h-full w-full min-h-0 overflow-hidden"
+            style={{
+              background: "linear-gradient(105deg, #2a0a08 0%, #8a1a12 55%, #4a100c 100%)",
+            }}
+          >
+            <div className="relative z-10 grid h-full min-h-0 grid-cols-[minmax(0,1.2fr)_minmax(140px,0.8fr)] sm:grid-cols-[minmax(0,1.15fr)_minmax(200px,0.85fr)]">
+              <div className="min-w-0 min-h-0">
+                <DeckTitleLayout>
+                  <div className="max-w-xl sm:max-w-2xl">
+                    <DeckEyebrow light theme={theme}>
+                      CALL TO ACTION
+                    </DeckEyebrow>
+                    <CoBrandRow light />
+                    <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance text-2xl sm:text-3xl md:text-4xl">
+                      Put fortified porridge
+                      <br />
+                      <span style={{ color: "#f47835" }}>on kingdom tables.</span>
+                    </h2>
+                    <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed mb-3">
+                      Delicious flavours · ~74% more nutrition by design ·{" "}
+                      {PORRIDGE.yield.costPerMealInline} per meal · African food for African children
+                      — with Dr. Craig R. Muller and Big Five Group as kingdom partners in the plate.
+                    </p>
+                    <ScriptureQuote
+                      light
+                      className="max-w-xl mb-4"
+                      verse={P.scripture.cta.verse}
+                      citation={P.scripture.cta.ref}
+                    />
                   </div>
-                </div>
-              </DeckTitleLayout>
+                  <div className="space-y-3">
+                    <a
+                      href={`mailto:${P.contactEmail}?subject=${encodeURIComponent(
+                        "Blessman International × Big Five Foods — fortified porridge partnership"
+                      )}&body=${encodeURIComponent(
+                        "Hello Dr. Craig / Big Five team,\n\nI would like to progress the Blessman International × Big Five Foods partnership — starting with fortified porridge tasting and a pilot for our hubs / campuses.\n\nName:\nRole / campus or hub:\nEstimated children served:\n\nThank you."
+                      )}`}
+                      className="deck-email-cta inline-flex items-center justify-center gap-2 rounded-full bg-white font-semibold px-6 py-3.5 text-sm"
+                      style={{ color: "#000000" }}
+                    >
+                      Email {P.contactEmail}
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                    <div className="text-white/45 text-xs">
+                      blessmaninternational.org · bigfivegroup.africa/foods · Confidential partner
+                      briefing
+                    </div>
+                  </div>
+                </DeckTitleLayout>
+              </div>
+              <div className="flex items-center justify-center p-2 sm:p-4 md:p-6 min-h-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/foods/porridge-chocolate.jpg"
+                  alt="Big Five Foods chocolate fortified porridge"
+                  data-deck-src="/foods/porridge-chocolate.jpg"
+                  data-deck-fit="contain"
+                  className="max-h-full max-w-full w-auto h-auto object-contain object-center drop-shadow-2xl"
+                  style={{ maxHeight: "100%" }}
+                  loading={pdf ? "eager" : "lazy"}
+                />
+              </div>
             </div>
           </div>
         </DeckSlideShell>
@@ -868,10 +875,10 @@ export default function BlessmanPartnershipDeck() {
           theme={theme}
           eyebrow="BLESSMAN PARTNERSHIP DECK"
           title="Blessman International × Big Five Group — kingdom partnership"
-          description="Fortified porridges that are delicious, nutritious and affordable — ~74% more nutrition by design, ~R2.25 per meal."
+          description={`Fortified porridges that are delicious, nutritious and affordable — ~74% more nutrition by design, ${PORRIDGE.yield.costPerMealInline} per meal.`}
           sharePath="/partner/blessman-international#blessman-partnership-deck"
           shareTitle="Blessman International × Big Five Group"
-          shareText="Kingdom partnership: delicious fortified porridges for children — nutritious, affordable, African."
+          shareText={`Kingdom partnership: delicious fortified porridges for children — nutritious, affordable (${PORRIDGE.yield.costPerMealInline}/meal), African.`}
           renderSlide={(i) => <Slide index={i} />}
         />
       </div>

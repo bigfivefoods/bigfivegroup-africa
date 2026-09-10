@@ -485,8 +485,9 @@ export function DeckSlideShell({
   const forPrint = useDeckPrintMode();
   const pdf = useDeckPdfExport();
   const zeroPad = /\b!?p-0\b/.test(className);
-  // PDF matches digital: same padding/chrome as screen; only compact mode squeezes
-  const lockOverflow = forPrint || pdf;
+  // Only compact densify mode hard-clips. WYSIWYG PDF keeps scroll so clones can
+  // measure full slide content (overflow-hidden was dropping lower sections).
+  const lockOverflow = forPrint;
 
   return (
     <div
@@ -566,11 +567,14 @@ export function DeckTitle({ children }: { children: ReactNode }) {
 
 export function DeckStatTile({
   value,
+  subvalue,
   label,
   dark,
   theme,
 }: {
   value: string;
+  /** Optional second line under the value (e.g. USD next to ZAR) */
+  subvalue?: string;
   label: string;
   dark?: boolean;
   theme: DeckTheme;
@@ -596,6 +600,15 @@ export function DeckStatTile({
       >
         {value}
       </div>
+      {subvalue ? (
+        <div
+          className={`font-semibold tabular-nums ${
+            forPrint ? "text-[11px] mt-0.5" : "text-sm sm:text-base mt-0.5"
+          } ${dark ? "text-amber-100/80" : "text-[#737373]"}`}
+        >
+          {subvalue}
+        </div>
+      ) : null}
       <div
         className={`mt-1 leading-snug ${forPrint ? "text-[10px]" : "text-xs sm:text-sm"} ${
           dark ? "text-white/60" : "text-[#525252]"
@@ -636,6 +649,8 @@ export function DeckPrintImage({
   className = "",
   fit = "contain",
   paddingClass = "",
+  /** Absolute fill parent (default). Set false for in-flow product shots that survive PDF clones. */
+  fill = true,
 }: {
   src: string;
   alt: string;
@@ -643,6 +658,7 @@ export function DeckPrintImage({
   fit?: "contain" | "cover";
   /** e.g. p-1.5 applied on the img */
   paddingClass?: string;
+  fill?: boolean;
 }) {
   const pdf = useDeckPdfExport();
   return (
@@ -650,9 +666,10 @@ export function DeckPrintImage({
     <img
       src={src}
       alt={alt}
+      data-deck-src={src}
+      data-deck-fit={fit}
       className={[
-        // Always absolute-fill parent (screen + PDF)
-        "absolute inset-0 h-full w-full",
+        fill ? "absolute inset-0 h-full w-full" : "max-h-full max-w-full h-auto w-auto",
         fit === "cover" ? "object-cover object-center" : "object-contain object-center",
         paddingClass,
         className,
@@ -823,13 +840,19 @@ export default function DeckShell({
         await waitForImages(viewport);
         await new Promise((r) => window.setTimeout(r, 100));
 
-        // Exact digital frame: clone the live slide at the on-screen viewport size
+        // Exact digital frame: clone the live slide. Prefer full content height so
+        // lower sections are not dropped when the on-screen viewport scrolls.
         const source =
           (Array.from(viewport.children).find(
             (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
           ) as HTMLElement | undefined) ?? viewport;
         const w = Math.max(1, viewport.clientWidth);
-        const h = Math.max(1, viewport.clientHeight);
+        const contentH = Math.max(
+          viewport.clientHeight,
+          source.scrollHeight || 0,
+          source.clientHeight || 0
+        );
+        const h = Math.max(1, contentH);
 
         const page = document.createElement("div");
         page.className = "deck-print-page";
@@ -849,13 +872,46 @@ export default function DeckShell({
         clone.style.height = "100%";
         clone.style.maxWidth = "none";
         clone.style.maxHeight = "none";
+        // Prefer original asset URLs over Next optimizer thumbnails in the PDF clone
         clone.querySelectorAll("img").forEach((node) => {
           const img = node as HTMLImageElement;
-          if (img.currentSrc) img.src = img.currentSrc;
+          const raw =
+            img.getAttribute("data-deck-src") ||
+            img.getAttribute("data-src") ||
+            (() => {
+              try {
+                const u = new URL(img.currentSrc || img.src, window.location.origin);
+                const nested = u.searchParams.get("url");
+                if (u.pathname.includes("/_next/image") && nested) {
+                  return nested.startsWith("/") ? nested : `/${nested}`;
+                }
+              } catch {
+                /* ignore */
+              }
+              return null;
+            })();
+          if (raw) img.src = raw;
+          else if (img.currentSrc) img.src = img.currentSrc;
           else if (img.src) img.setAttribute("src", img.src);
+          img.removeAttribute("srcset");
+          img.sizes = "";
           img.loading = "eager";
           img.style.opacity = "1";
           img.style.visibility = "visible";
+          // Keep product photos fully visible in PDF (avoid inherited cover crops)
+          if (img.className.includes("object-contain") || img.dataset.deckFit === "contain") {
+            img.style.objectFit = "contain";
+            img.style.objectPosition = "center";
+            // Rescue absolute-fill imgs whose parent collapsed during clone layout
+            if (img.className.includes("absolute") && img.clientHeight < 24) {
+              img.style.position = "relative";
+              img.style.inset = "auto";
+              img.style.width = "auto";
+              img.style.height = "auto";
+              img.style.maxWidth = "100%";
+              img.style.maxHeight = "100%";
+            }
+          }
         });
         clone.querySelectorAll("button, a").forEach((el) => {
           (el as HTMLElement).style.pointerEvents = "none";
@@ -866,7 +922,7 @@ export default function DeckShell({
         page.appendChild(scaleWrap);
         portal.appendChild(page);
 
-        // Scale the exact digital frame into the A4 page
+        // Scale the full digital frame into the A4 page
         await new Promise<void>((r) => requestAnimationFrame(() => r()));
         const availW = page.clientWidth || page.getBoundingClientRect().width;
         const availH = page.clientHeight || page.getBoundingClientRect().height;
@@ -1117,76 +1173,80 @@ export default function DeckShell({
   );
 
   return (
-    <div id={id} className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center min-w-0">
-        <div
-          className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-3 font-medium px-1"
-          style={{ color: theme.accentDark }}
-        >
-          {eyebrow}
+    <PrintModeContext.Provider
+      value={{ active: printMode, orientation: printOrientation, compact: false }}
+    >
+      <div id={id} className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center min-w-0">
+          <div
+            className="text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] mb-3 font-medium px-1"
+            style={{ color: theme.accentDark }}
+          >
+            {eyebrow}
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-black mb-3 sm:mb-4 text-balance px-1">
+            {title}
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-5 sm:mb-6 px-1">
+            {description}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto">
+            <button
+              type="button"
+              onClick={onShare}
+              className="premium-button inline-flex items-center justify-center gap-2 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
+              style={{ backgroundColor: theme.accentDark }}
+            >
+              <Share2 className="w-4 h-4 shrink-0" />
+              {shareState === "copied"
+                ? "Link copied"
+                : shareState === "shared"
+                  ? "Shared"
+                  : "Share this deck"}
+            </button>
+            <button
+              type="button"
+              onClick={() => onDownload("landscape")}
+              disabled={preparingPdf}
+              className={`premium-button inline-flex items-center justify-center gap-2 border bg-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 w-full sm:w-auto ${theme.softBorder} ${theme.softText}`}
+            >
+              <Download className="w-4 h-4 shrink-0" />
+              <span className="truncate">
+                {preparingPdf && printOrientation === "landscape"
+                  ? "Preparing…"
+                  : "PDF · A4 Landscape"}
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onDownload("portrait")}
+              disabled={preparingPdf}
+              className="premium-button inline-flex items-center justify-center gap-2 border border-black/10 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 w-full sm:w-auto"
+            >
+              <Download className="w-4 h-4 shrink-0" />
+              <span className="truncate">
+                {preparingPdf && printOrientation === "portrait"
+                  ? "Preparing…"
+                  : "PDF · A4 Portrait"}
+              </span>
+            </button>
+          </div>
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-black mb-3 sm:mb-4 text-balance px-1">
-          {title}
-        </h2>
-        <p className="text-sm sm:text-base md:text-lg text-[#525252] max-w-2xl mx-auto leading-relaxed mb-5 sm:mb-6 px-1">
-          {description}
+        <div className="px-0 sm:px-0 min-w-0 w-full max-w-6xl mx-auto sm:px-6 lg:px-8">
+          {deck}
+        </div>
+        <p className="mt-4 text-center text-[11px] sm:text-xs text-[#737373] px-4 max-w-2xl mx-auto leading-relaxed">
+          <span className="hidden sm:inline">Keyboard: ← → · </span>
+          Share: <span className="font-medium text-black break-all">{sharePath}</span>
+          {" · "}
+          PDF: choose <strong className="text-black">Save as PDF</strong>
+          {preparingPdf
+            ? ` · ${printOrientation === "landscape" ? "Landscape" : "Portrait"}`
+            : ""}
+          .
         </p>
-        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-center items-stretch sm:items-center max-w-sm sm:max-w-none mx-auto">
-          <button
-            type="button"
-            onClick={onShare}
-            className="premium-button inline-flex items-center justify-center gap-2 text-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold w-full sm:w-auto"
-            style={{ backgroundColor: theme.accentDark }}
-          >
-            <Share2 className="w-4 h-4 shrink-0" />
-            {shareState === "copied"
-              ? "Link copied"
-              : shareState === "shared"
-                ? "Shared"
-                : "Share this deck"}
-          </button>
-          <button
-            type="button"
-            onClick={() => onDownload("landscape")}
-            disabled={preparingPdf}
-            className={`premium-button inline-flex items-center justify-center gap-2 border bg-white px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 w-full sm:w-auto ${theme.softBorder} ${theme.softText}`}
-          >
-            <Download className="w-4 h-4 shrink-0" />
-            <span className="truncate">
-              {preparingPdf && printOrientation === "landscape"
-                ? "Preparing…"
-                : "PDF · A4 Landscape"}
-            </span>
-          </button>
-          <button
-            type="button"
-            onClick={() => onDownload("portrait")}
-            disabled={preparingPdf}
-            className="premium-button inline-flex items-center justify-center gap-2 border border-black/10 bg-white text-black px-5 sm:px-6 py-3 rounded-full text-sm font-semibold hover:bg-black/5 disabled:opacity-60 w-full sm:w-auto"
-          >
-            <Download className="w-4 h-4 shrink-0" />
-            <span className="truncate">
-              {preparingPdf && printOrientation === "portrait"
-                ? "Preparing…"
-                : "PDF · A4 Portrait"}
-            </span>
-          </button>
-        </div>
+        {printPortal}
       </div>
-      <div className="px-0 sm:px-0 min-w-0 w-full max-w-6xl mx-auto sm:px-6 lg:px-8">
-        {deck}
-      </div>
-      <p className="mt-4 text-center text-[11px] sm:text-xs text-[#737373] px-4 max-w-2xl mx-auto leading-relaxed">
-        <span className="hidden sm:inline">Keyboard: ← → · </span>
-        Share: <span className="font-medium text-black break-all">{sharePath}</span>
-        {" · "}
-        PDF: choose <strong className="text-black">Save as PDF</strong>
-        {preparingPdf
-          ? ` · ${printOrientation === "landscape" ? "Landscape" : "Portrait"}`
-          : ""}
-        .
-      </p>
-      {printPortal}
-    </div>
+    </PrintModeContext.Provider>
   );
 }

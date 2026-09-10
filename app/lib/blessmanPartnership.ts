@@ -9,11 +9,42 @@ import { CMH_FORD_PARTNERSHIP } from "./cmhFordPartnership";
 
 const Y = CMH_FORD_PARTNERSHIP.product.yield;
 
+/**
+ * Indicative ZAR→USD for partner briefing (not a live FX quote).
+ * Locked for deck consistency at ~R18.50 / $1.
+ */
+export const BLESSMAN_FX = {
+  zarPerUsd: 18.5,
+  note: "USD figures are indicative at ~R18.50 / $1 for partner briefing — not a live FX quote; confirm on order.",
+} as const;
+
+/** Format a ZAR amount with an indicative USD pair. */
+export function zarUsd(zar: number, opts?: { approx?: boolean; zarDigits?: number }) {
+  const approx = opts?.approx ?? false;
+  const zarDigits = opts?.zarDigits ?? (Number.isInteger(zar) ? 0 : 2);
+  const zarStr = `${approx ? "~" : ""}R${zar.toFixed(zarDigits)}`;
+  const usd = zar / BLESSMAN_FX.zarPerUsd;
+  const usdStr = `~$${usd.toFixed(2)}`;
+  return {
+    zar: zarStr,
+    usd: usdStr,
+    /** e.g. R2.25 (~$0.12) */
+    inline: `${zarStr} (${usdStr})`,
+    /** e.g. ~R2.25 / meal (~$0.12) */
+    perMeal: `${zarStr} / meal (${usdStr})`,
+  };
+}
+
+const MEAL = zarUsd(Y.costPerMeal, { zarDigits: 2 });
+const PACK = zarUsd(CMH_FORD_PARTNERSHIP.product.tradeExVat, { zarDigits: 0 });
+const SOYA_MEAL = zarUsd(1.3, { approx: true, zarDigits: 2 });
+const SOUP_MEAL = zarUsd(1.1, { approx: true, zarDigits: 2 });
+
 export const BLESSMAN_PARTNERSHIP = {
   title: "Blessman International × Big Five Group",
   subtitle: "Kingdom partnership — delicious, nutritious, affordable food for children.",
-  tagline:
-    "Fortified porridges children want to eat · ~74% more nutrition by design · ~R2.25 per meal · African food for African children.",
+  tagline: `Fortified porridges children want to eat · ~74% more nutrition by design · ${MEAL.inline} per meal · African food for African children.`,
+  fx: BLESSMAN_FX,
   groupUrl: "https://www.bigfivegroup.africa",
   foodsUrl: "https://www.bigfivegroup.africa/foods",
   aboutUrl: "https://www.bigfivegroup.africa/about",
@@ -117,8 +148,7 @@ export const BLESSMAN_PARTNERSHIP = {
       "Banana, Strawberry, Chocolate and Original fortified porridges — taste-forward formats children and families recognise and ask for again.",
     nutritious:
       "Vitamin-enriched, mineral-dense formulations designed for growing children and care settings — not empty cereal calories.",
-    affordable:
-      "Roughly 50% cheaper than comparable wholesale/retail pathways (internal), with clear meal maths at about R2.25 per 200g serving from a R45 1kg pack.",
+    affordable: `Roughly 50% cheaper than comparable wholesale/retail pathways (internal), with clear meal maths at about ${MEAL.inline} per 200g serving from a ${PACK.inline} 1kg pack.`,
   },
 
   porridge: {
@@ -141,9 +171,10 @@ export const BLESSMAN_PARTNERSHIP = {
         detail: FOODS_ECONOMICS.cheaperThanMarket.detail,
       },
       {
-        value: Y.costPerMealLabel,
+        value: MEAL.zar,
+        usd: MEAL.usd,
         label: "Per 200g meal",
-        detail: Y.costLine,
+        detail: `${PACK.zar} ÷ 20 meals = ${MEAL.inline} per meal`,
       },
     ],
     flavours: [
@@ -266,8 +297,17 @@ export const BLESSMAN_PARTNERSHIP = {
         d: "No cold chain; instant prep; packs that move to Limpopo hubs, care points and school-linked kitchens.",
       },
     ],
-    yield: Y,
-    tradeExVatLabel: CMH_FORD_PARTNERSHIP.product.tradeExVatLabel,
+    yield: {
+      ...Y,
+      costPerMealLabel: MEAL.zar,
+      costPerMealUsd: MEAL.usd,
+      costPerMealInline: MEAL.inline,
+      costLine: `${PACK.zar} ÷ 20 meals = ${MEAL.inline} per meal`,
+      detail: `Each 1kg Big Five Foods fortified porridge pack makes 4kg of food when prepared — that is 20 × 200g servings. At ${PACK.inline} per pack, every meal costs ${MEAL.inline}. Clear maths for programme budgets and stewardship reporting.`,
+    },
+    tradeExVatLabel: PACK.zar,
+    tradeExVatUsd: PACK.usd,
+    tradeExVatInline: PACK.inline,
     shelfLifeLabel: CMH_FORD_PARTNERSHIP.product.shelfLifeLabel,
   },
 
@@ -283,21 +323,21 @@ export const BLESSMAN_PARTNERSHIP = {
       title: "Soya Mince",
       emphasis: false,
       blurb: "Affordable plant protein that stretches every pot — pairs with pap and stews.",
-      stats: "From ~R1.30 / meal · high protein",
+      stats: `From ${SOYA_MEAL.perMeal} · high protein`,
       src: "/foods/soya-beef.jpg",
     },
     {
       title: "One-Pot Meals",
       emphasis: false,
       blurb: "Complete fortified plates — authentic African flavours, ~20 minutes cook.",
-      stats: `${Y.headline} · ${Y.costPerMealLabel}/meal`,
+      stats: `${Y.headline} · ${MEAL.inline}/meal`,
       src: "/foods/onepot-chicken.jpg",
     },
     {
       title: "Soups",
       emphasis: false,
       blurb: "Lowest-cost micronutrient pathway — vitamins A & C, iron, calcium.",
-      stats: "From ~R1.10 / meal",
+      stats: `From ${SOUP_MEAL.perMeal}`,
       src: "/foods/soup-chicken.jpg",
     },
   ],
@@ -342,7 +382,8 @@ export const BLESSMAN_PARTNERSHIP = {
   honesty: [
     "Detailed nutrition panels (per 100 g / per 80 g serving / % NRV) are typical fortified porridge label values for partner briefing — confirm the governing pack label / CoA for the SKU and batch you order.",
     "Nutrition superiority figures (e.g. ~74% more nutrition by design, ~185% more fortification) are internal Foods design comparisons vs alternative formulations — not clinical trial outcomes or medical claims.",
-    "Cost advantage (~50% vs wholesale/retail) and meal maths (1kg → 4kg prepared ≈ 20 × 200g; R45 ÷ 20 ≈ R2.25) are management / partner-briefing figures — confirm SKU list, VAT and preparation assumptions on order.",
+    `Cost advantage (~50% vs wholesale/retail) and meal maths (1kg → 4kg prepared ≈ 20 × 200g; ${PACK.zar} ÷ 20 ≈ ${MEAL.zar} / ${MEAL.usd}) are management / partner-briefing figures — confirm SKU list, VAT and preparation assumptions on order.`,
+    BLESSMAN_FX.note,
     "Blessman feeding-scale language is drawn from Blessman’s public communications; this deck does not restate audited Blessman financials.",
     "Kingdom framing describes shared purpose; it is not a claim of formal ecclesiastical affiliation beyond the partnership relationship.",
   ],
