@@ -500,8 +500,9 @@ export function DeckSlideShell({
   const forPrint = useDeckPrintMode();
   const pdf = useDeckPdfExport();
   const zeroPad = /\b!?p-0\b/.test(className);
-  // During PDF/compact, lock to the viewport frame so clones match the slide.
-  const lockOverflow = forPrint || pdf;
+  // Only compact densify mode hard-clips. PDF keeps website overflow so the
+  // clone matches the embedded (non-fullscreen) presentation on the page.
+  const lockOverflow = forPrint;
 
   return (
     <div
@@ -524,7 +525,7 @@ export function DeckSlideShell({
           background: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`,
         }}
       />
-      {!forPrint && !dark && !pdf && (
+      {!forPrint && !dark && (
         <div
           className="pointer-events-none absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-40"
           style={{ backgroundColor: theme.accent }}
@@ -768,8 +769,8 @@ export default function DeckShell({
   }, [fullscreen]);
 
   /**
-   * WYSIWYG PDF: size the live viewport to the A4 content aspect, clone each
-   * visible frame at that size, scale into the page, then print.
+   * WYSIWYG PDF: clone each slide exactly as shown in the embedded
+   * (non-fullscreen) website deck, then scale that frame into A4.
    */
   useEffect(() => {
     if (!printMode) return;
@@ -867,23 +868,17 @@ export default function DeckShell({
         return;
       }
 
-      // Size the live viewport to the A4 content-box aspect so slides reflow
-      // like the printed page, then clone that exact frame into each A4 page.
+      // Do NOT resize the viewport to A4 aspect — that reflows slides away from
+      // the embedded website presentation. Clone the on-page frame as-is, then
+      // scale it into the A4 page (letterbox if aspect differs slightly).
       const box = a4ContentBoxPx(printOrientation);
-      const availW = Math.max(320, viewport.clientWidth || box.w);
-      const targetW = Math.min(availW, box.w);
-      const targetH = Math.round(targetW * (box.h / box.w));
-      viewport.style.flex = "none";
-      viewport.style.width = `${targetW}px`;
-      viewport.style.height = `${targetH}px`;
-      viewport.style.minHeight = `${targetH}px`;
-      viewport.style.maxHeight = `${targetH}px`;
-      viewport.style.overflow = "hidden";
-
       await new Promise<void>((r) =>
         requestAnimationFrame(() => requestAnimationFrame(() => r()))
       );
       if (cancelled) return;
+
+      const frameW = Math.max(1, viewport.clientWidth);
+      const frameH = Math.max(1, viewport.clientHeight);
 
       for (let i = 0; i < total; i++) {
         if (cancelled) return;
@@ -898,9 +893,9 @@ export default function DeckShell({
           (Array.from(viewport.children).find(
             (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
           ) as HTMLElement | undefined) ?? viewport;
-        // Exact visible frame only — inflated scrollHeight was shrinking title/CTA
-        const w = Math.max(1, viewport.clientWidth || targetW);
-        const h = Math.max(1, viewport.clientHeight || targetH);
+        // Exact embedded website frame (non-fullscreen)
+        const w = Math.max(1, viewport.clientWidth || frameW);
+        const h = Math.max(1, viewport.clientHeight || frameH);
 
         const page = document.createElement("div");
         page.className = "deck-print-page";
@@ -1102,6 +1097,8 @@ export default function DeckShell({
   const onDownload = (orientation: PrintOrientation) => {
     track("deck_pdf", { path: sharePath, orientation });
     resumeIndexRef.current = index;
+    // Always export the embedded (non-fullscreen) website frame
+    setFullscreen(false);
     setPrintOrientation(orientation);
     setPreparingPdf(true);
     setPrintMode(true);
@@ -1278,8 +1275,8 @@ export default function DeckShell({
       value={{
         active: printMode,
         orientation: printOrientation,
-        // Densify typography during PDF so slides fit the A4 frame like the deck
-        compact: printMode,
+        // Keep website typography/spacing — PDF must match the embedded deck
+        compact: false,
       }}
     >
       <div id={id} className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
