@@ -76,7 +76,10 @@ export default function LocalNewsVideo({
   }
 
   return (
-    <section id={id} className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24">
+    <section
+      id={id}
+      className="scroll-mt-28 bg-white border-y border-black/10 py-14 sm:py-20 md:py-24"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">{inner}</div>
     </section>
   );

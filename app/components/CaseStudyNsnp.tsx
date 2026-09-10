@@ -15,7 +15,7 @@ export default function CaseStudyNsnp({
   return (
     <section
       id="case-study"
-      className={`scroll-mt-24 ${
+      className={`scroll-mt-28 ${
         compact ? "py-10 sm:py-12" : "py-14 sm:py-20 md:py-24"
       }`}
       aria-labelledby="nsnp-case-heading"

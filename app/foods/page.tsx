@@ -21,7 +21,7 @@ import {
   School,
   ShieldCheck,
   Package,
-  ShoppingBag,
+  Newspaper,
   Store,
 } from "lucide-react";
 import { NSNP_PRODUCTS } from "../lib/foodsProducts";
@@ -159,6 +159,12 @@ const FOODS_JUMP_NAV = [
     desc: "NSNP pathway proof",
     icon: BookOpen,
   },
+  {
+    href: "#news",
+    label: "News",
+    desc: "SABC feature · YouTube",
+    icon: Newspaper,
+  },
 ] as const;
 
 export default function FoodsPage() {
@@ -195,7 +201,7 @@ export default function FoodsPage() {
         className="sticky top-[var(--navbar-height)] z-20 border-b border-black/10 bg-white/95 backdrop-blur-md"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
             {FOODS_JUMP_NAV.map((item) => (
               <a
                 key={item.href}
@@ -412,58 +418,10 @@ export default function FoodsPage() {
         </div>
       </section>
 
-      {/* Sales portal — order via SupplierAdvisor® (system of record) */}
-      <FoodsSalesPortal />
-
-      <SupplierTrust entityName="Big Five Foods" compact />
-
-      <PillarAlignmentBand slug="foods" accent={ACCENT} accentSoft={ACCENT_SOFT} />
-
-      {/* Proof */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="text-center mb-8 max-w-2xl mx-auto">
-          <div
-            className="text-[10px] sm:text-xs tracking-[2.5px] font-semibold uppercase mb-2"
-            style={{ color: ACCENT_DARK }}
-          >
-            Proof partners put in briefs
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black text-balance">
-            Scale, cost and nutrition — in one glance
-          </h2>
-        </div>
-        <StatRow
-          accent={ACCENT}
-          stats={[
-            { value: "~50%", label: "Cheaper vs wholesale & retail" },
-            { value: "2.5m", label: "Children / day NSNP plan (DBE)" },
-            { value: "355k", label: "Meals delivered (programme-reported)" },
-            { value: "74%", label: "More nutrition by design" },
-          ]}
-        />
-        <p className="mt-5 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
-          Foods remains ~50% cheaper than wholesale and retail pathways (internal analyses) —
-          super-competitive for government and feeding schemes. Pathway to feed{" "}
-          <strong className="text-[#404040]">2.5 million children per day</strong> through the
-          National School Nutrition Programme (NSNP / DBE). Historic meals are programme-reported.
-          Request the latest dated brief when you enquire.{" "}
-          <a
-            href="/contact?interest=foods"
-            className="underline underline-offset-2 text-black font-medium"
-          >
-            Partner with Foods
-          </a>
-        </p>
-      </section>
-
-      <div className="bg-white border-y border-black/10">
-        <CaseStudyNsnp />
-      </div>
-
-      {/* NSNP 5kg SKU deep-dive */}
+      {/* ─── PRODUCTS (continued): NSNP 5kg deep-dive ─── */}
       <section
         id="nsnp-products"
-        className="bg-gradient-to-b from-emerald-50/60 via-amber-50/40 to-[#fafafa] border-b border-black/10 py-14 sm:py-20"
+        className="scroll-mt-28 bg-gradient-to-b from-emerald-50/60 via-amber-50/40 to-[#fafafa] border-b border-black/10 py-14 sm:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -517,7 +475,7 @@ export default function FoodsPage() {
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                       <Link
-                        href={`#shop-nsnp`}
+                        href="#shop-nsnp"
                         className="inline-flex items-center justify-center gap-1 text-xs font-semibold text-emerald-900 hover:underline"
                       >
                         View in shop
@@ -548,67 +506,72 @@ export default function FoodsPage() {
         </div>
       </section>
 
-      <LocalNewsVideo accent={ACCENT} />
+      {/* ─── ORDER: sales portal on SupplierAdvisor® ─── */}
+      <FoodsSalesPortal />
+      <SupplierTrust entityName="Big Five Foods" compact />
 
+      {/* ─── ABOUT: quality, how it works, proof, deck ─── */}
       <section
         id="about"
-        className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-16 sm:py-20 md:py-24"
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10">
-          <SectionHeading
-            eyebrow="ABOUT · CERTIFICATIONS"
-            title="Quality the market can audit"
-            subtitle="Standards partners and procurement teams recognise — not claims without evidence."
-          />
-          <div className="hidden sm:flex items-center gap-2 text-xs text-[#737373] shrink-0 pb-1">
-            <ShieldCheck className="w-4 h-4 text-emerald-700" />
-            Verified pathways
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10">
+            <SectionHeading
+              eyebrow="ABOUT · CERTIFICATIONS"
+              title="Quality the market can audit"
+              subtitle="Standards partners and procurement teams recognise — not claims without evidence."
+            />
+            <div className="hidden sm:flex items-center gap-2 text-xs text-[#737373] shrink-0 pb-1">
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+              Verified pathways
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-          {capabilities.map((c) => {
-            const cardClass =
-              "bg-white border border-black/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center hover:border-amber-300/50 hover:shadow-md transition-all min-w-0 h-full flex flex-col";
-            const inner = (
-              <>
-                <div className="relative h-12 sm:h-16 mb-3 sm:mb-4 flex items-center justify-center">
-                  <Image
-                    src={c.logo}
-                    alt={c.name}
-                    width={120}
-                    height={64}
-                    className="object-contain max-h-12 sm:max-h-16 w-auto max-w-full"
-                  />
-                </div>
-                <div className="font-semibold text-black text-xs sm:text-sm mb-1">{c.name}</div>
-                <div className="text-[11px] sm:text-xs text-[#525252] leading-snug flex-1">
-                  {c.desc}
-                </div>
-              </>
-            );
-            if ("href" in c && c.href) {
-              return (
-                <a
-                  key={c.name}
-                  href={c.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${cardClass} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
-                >
-                  {inner}
-                </a>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+            {capabilities.map((c) => {
+              const cardClass =
+                "bg-[#fafafa] border border-black/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-center hover:border-amber-300/50 hover:shadow-md transition-all min-w-0 h-full flex flex-col";
+              const inner = (
+                <>
+                  <div className="relative h-12 sm:h-16 mb-3 sm:mb-4 flex items-center justify-center">
+                    <Image
+                      src={c.logo}
+                      alt={c.name}
+                      width={120}
+                      height={64}
+                      className="object-contain max-h-12 sm:max-h-16 w-auto max-w-full"
+                    />
+                  </div>
+                  <div className="font-semibold text-black text-xs sm:text-sm mb-1">{c.name}</div>
+                  <div className="text-[11px] sm:text-xs text-[#525252] leading-snug flex-1">
+                    {c.desc}
+                  </div>
+                </>
               );
-            }
-            return (
-              <div key={c.name} className={cardClass}>
-                {inner}
-              </div>
-            );
-          })}
+              if ("href" in c && c.href) {
+                return (
+                  <a
+                    key={c.name}
+                    href={c.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${cardClass} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black`}
+                  >
+                    {inner}
+                  </a>
+                );
+              }
+              return (
+                <div key={c.name} className={cardClass}>
+                  {inner}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      <section className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
+      <section className="bg-[#fafafa] border-b border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="FROM FARM TO FORK"
@@ -638,12 +601,58 @@ export default function FoodsPage() {
         </div>
       </section>
 
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="text-center mb-8 max-w-2xl mx-auto">
+          <div
+            className="text-[10px] sm:text-xs tracking-[2.5px] font-semibold uppercase mb-2"
+            style={{ color: ACCENT_DARK }}
+          >
+            Proof partners put in briefs
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black text-balance">
+            Scale, cost and nutrition — in one glance
+          </h2>
+        </div>
+        <StatRow
+          accent={ACCENT}
+          stats={[
+            { value: "~50%", label: "Cheaper vs wholesale & retail" },
+            { value: "2.5m", label: "Children / day NSNP plan (DBE)" },
+            { value: "355k", label: "Meals delivered (programme-reported)" },
+            { value: "74%", label: "More nutrition by design" },
+          ]}
+        />
+        <p className="mt-5 text-center text-[11px] sm:text-xs text-[#737373] max-w-2xl mx-auto leading-relaxed">
+          Foods remains ~50% cheaper than wholesale and retail pathways (internal analyses) —
+          super-competitive for government and feeding schemes. Pathway to feed{" "}
+          <strong className="text-[#404040]">2.5 million children per day</strong> through the
+          National School Nutrition Programme (NSNP / DBE). Historic meals are programme-reported.
+          Request the latest dated brief when you enquire.{" "}
+          <a
+            href="/contact?interest=foods"
+            className="underline underline-offset-2 text-black font-medium"
+          >
+            Partner with Foods
+          </a>
+        </p>
+      </section>
+
+      <PillarAlignmentBand slug="foods" accent={ACCENT} accentSoft={ACCENT_SOFT} />
+
       <section
         id="foods-deck"
         className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
       >
         <FoodsStrategyDeck />
       </section>
+
+      {/* ─── CASE STUDY ─── */}
+      <div className="bg-[#fafafa] border-b border-black/10">
+        <CaseStudyNsnp />
+      </div>
+
+      {/* ─── NEWS ─── */}
+      <LocalNewsVideo id="news" accent={ACCENT} />
 
       <FinalCta
         eyebrow="FEED WITH PURPOSE"
