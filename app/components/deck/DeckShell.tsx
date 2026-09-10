@@ -162,6 +162,22 @@ export const DECK_THEMES = {
     softBg: "bg-red-50",
     softText: "text-red-950",
   },
+  /** Blessman International — brand red (#b32317 from official logo) */
+  blessman: {
+    name: "blessman",
+    accent: "#b32317",
+    accentDark: "#8a1a12",
+    gradientFrom: "#f47835",
+    gradientTo: "#b32317",
+    frameFrom: "#fdf4f2",
+    frameTo: "#f3f4f6",
+    darkBg: "#2a0a08",
+    eyebrowLight: "text-orange-200",
+    eyebrow: "text-red-900",
+    softBorder: "border-red-200",
+    softBg: "bg-red-50",
+    softText: "text-red-950",
+  },
   /** Ford / CMH Ford — Ford blue (#003478 family) */
   ford: {
     name: "ford",

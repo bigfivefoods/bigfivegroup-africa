@@ -9,9 +9,11 @@ import {
   Building2,
   Check,
   Copy,
+  Cross,
   ExternalLink,
   FileText,
   Handshake,
+  Heart,
   Lock,
   Package,
   Share2,
@@ -64,6 +66,10 @@ const CmhFordPartnershipDeck = dynamic(() => import("../components/CmhFordPartne
   ssr: false,
   loading: () => <DeckLoading label="CMH Ford deck" />,
 });
+const BlessmanPartnershipDeck = dynamic(() => import("../components/BlessmanPartnershipDeck"), {
+  ssr: true,
+  loading: () => <DeckLoading label="Blessman deck" />,
+});
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
   loading: () => <DeckLoading label="SWT-AG deck" />,
@@ -89,6 +95,25 @@ type HeroTile = {
 
 /** Hero cards follow this organisation's programmes — not a fixed Group-wide strip. */
 function heroTilesForPartner(partner: ClientPartnerProfile): HeroTile[] {
+  if (partner.slug === "blessman-international") {
+    return [
+      {
+        icon: Heart,
+        t: "Kingdom · shared calling",
+        d: "Faith, dignity and hope for children — Blessman × Big Five",
+      },
+      {
+        icon: Package,
+        t: "Feed the hungry",
+        d: "Fortified African food for hubs, schools and care points",
+      },
+      {
+        icon: Users,
+        t: "Form people who serve",
+        d: "Super-Cube® whole-person leadership, including Spiritual intelligence",
+      },
+    ];
+  }
   const programmes = new Set(partner.programmes ?? []);
   const tiles: HeroTile[] = [];
   if (programmes.has("nsnp")) {
@@ -132,6 +157,143 @@ function heroTilesForPartner(partner: ClientPartnerProfile): HeroTile[] {
     d: "Private organisation workspace — your materials only",
   });
   return tiles.slice(0, 3);
+}
+
+function BlessmanKingdomSection() {
+  const shared = [
+    {
+      t: "Feed hungry people",
+      d: "Blessman’s hubs and care points · Big Five Foods fortified staples for African kitchens.",
+    },
+    {
+      t: "Dignity before dependency",
+      d: "Locally sustainable programmes · compassionate empowerment — skills, markets and capacity, not charity theatre.",
+    },
+    {
+      t: "Form whole people",
+      d: "Faith formation and child development · Super-Cube® (including Spiritual intelligence) for those who lead and serve.",
+    },
+    {
+      t: "Prove love with honesty",
+      d: "Transparent stewardship · Impact PMO and SupplierAdvisor® where commerce and programmes need rails of trust.",
+    },
+  ];
+
+  return (
+    <section
+      id="kingdom"
+      className="scroll-mt-28 border-b border-black/10 bg-[#0a0a0a] text-white py-12 sm:py-16"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-[10px] sm:text-xs tracking-[2px] text-amber-400/90 font-semibold mb-2">
+          KINGDOM WORK · SHARED CALLING
+        </div>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-balance mb-3 max-w-3xl">
+          Where Blessman International and Big Five Group meet
+        </h2>
+        <p className="text-white/65 text-sm sm:text-base leading-relaxed max-w-3xl mb-8 sm:mb-10">
+          This partnership is framed first as{" "}
+          <strong className="text-white">kingdom-centred work</strong> — serving South African
+          children with hope, food and dignity — then as practical rails (Foods, Leadership,
+          Foundation, Impact) that help that calling scale with integrity.
+        </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 mb-8 sm:mb-10">
+          <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 min-w-0">
+            <div className="flex items-center gap-2 text-[10px] tracking-[2px] font-semibold text-[#f47835] mb-3">
+              <Cross className="w-3.5 h-3.5" aria-hidden />
+              BLESSMAN INTERNATIONAL
+            </div>
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-3">
+              Gospel hope · locally sustainable ministry
+            </h3>
+            <p className="text-sm text-white/70 leading-relaxed mb-4">
+              Blessman International exists to share the hope of Jesus Christ with South African
+              children and families through faith formation and programmes that feed the hungry,
+              foster food-secure communities, offer dignity through water and sanitation, and support
+              child development — with a vision that every child in Limpopo would know hope and
+              receive nurturing support.
+            </p>
+            <a
+              href="https://www.blessmaninternational.org/who-we-are"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2 hover:text-amber-200"
+            >
+              Blessman · Who we are
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </article>
+
+          <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 min-w-0">
+            <div className="text-[10px] tracking-[2px] font-semibold text-amber-400 mb-3">
+              BIG FIVE GROUP · FOUNDER
+            </div>
+            <div className="flex gap-4 mb-4">
+              <div className="relative h-16 w-12 sm:h-20 sm:w-14 shrink-0 rounded-xl overflow-hidden border border-white/15 bg-white/5">
+                <Image
+                  src="/craig-muller.png"
+                  alt="Dr. Craig R. Muller, Founder & CEO of Big Five Group"
+                  fill
+                  className="object-cover object-top"
+                  sizes="56px"
+                />
+              </div>
+              <div className="min-w-0">
+                <h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-1">
+                  Dr. Craig R. Muller
+                </h3>
+                <p className="text-xs sm:text-sm text-white/55 leading-snug">
+                  Founder &amp; CEO · visionary architect of kingdom-centred leadership and
+                  sustainable impact in Africa
+                </p>
+              </div>
+            </div>
+            <p className="text-sm text-white/70 leading-relaxed mb-4">
+              His life goal is to <strong className="text-white">feed</strong> (Big Five Foods™),{" "}
+              <strong className="text-white">educate</strong> (Super-Cube®) and{" "}
+              <strong className="text-white">empower</strong> (SupplierAdvisor®) people across Africa
+              — integrating commercial excellence with doctoral research and a deep commitment to
+              ethical, kingdom-centred impact. The Group&apos;s values put humanity, integrity and
+              compassionate empowerment first — Ubuntu in practice.
+            </p>
+            <Link
+              href="/about#founder"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2 hover:text-amber-200"
+            >
+              Read the founder story on About
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </article>
+        </div>
+
+        <div className="rounded-2xl border border-amber-400/25 bg-gradient-to-br from-amber-400/10 via-transparent to-white/[0.03] p-5 sm:p-6 md:p-7">
+          <div className="text-[10px] sm:text-xs tracking-[2px] font-semibold text-amber-300 mb-2">
+            ALIGNED GOALS · KINGDOM STEWARDSHIP
+          </div>
+          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight mb-2 text-balance">
+            One table of purpose
+          </h3>
+          <p className="text-sm text-white/65 leading-relaxed max-w-3xl mb-6">
+            Blessman brings gospel-rooted presence among children in Limpopo and Southern Africa.
+            Big Five brings systems — fortified food, leadership formation and transparent delivery —
+            so that calling can scale without losing dignity or honesty.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {shared.map((item) => (
+              <div
+                key={item.t}
+                className="rounded-xl border border-white/10 bg-black/20 px-4 py-3.5 min-w-0"
+              >
+                <div className="text-sm font-semibold text-white mb-1">{item.t}</div>
+                <p className="text-xs text-white/60 leading-relaxed">{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function partnerShareUrls(slug: string) {
@@ -503,6 +665,9 @@ export default function PartnerPortalClient({
           {(() => {
             const navLinks = [
               { href: "#for-you", label: "For you" },
+              ...(partner.slug === "blessman-international"
+                ? [{ href: "#kingdom", label: "Kingdom" }]
+                : []),
               ...((partner.programmes?.length ?? 0) > 0
                 ? [{ href: "#programmes", label: "Programmes" }]
                 : []),
@@ -529,6 +694,9 @@ export default function PartnerPortalClient({
                 : []),
               ...(partner.slug === "cmh-ford-ballito"
                 ? [{ href: "#cmh-ford-partnership-deck", label: "Feeding scheme deck" }]
+                : []),
+              ...(partner.slug === "blessman-international"
+                ? [{ href: "#blessman-partnership-deck", label: "Partnership deck" }]
                 : []),
               ...(partner.slug === "swt-ag"
                 ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG funding deck" }]
@@ -605,28 +773,52 @@ export default function PartnerPortalClient({
             </ul>
           )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {[
-              {
-                n: "01",
-                t: "Define the outcome",
-                d: "Nutrition, markets, leadership, capital access or multi-pillar programmes.",
-              },
-              {
-                n: "02",
-                t: "Attach the rails",
-                d: "Foods, Direct, Connect, Impact and others as the work requires.",
-              },
-              {
-                n: "03",
-                t: "Deliver with gates",
-                d: "Impact PMO, verification where commerce runs on SupplierAdvisor®.",
-              },
-              {
-                n: "04",
-                t: "Report honestly",
-                d: "Ambition vs programme-reported vs internal analysis — see Methodology.",
-              },
-            ].map((s) => (
+            {(partner.slug === "blessman-international"
+              ? [
+                  {
+                    n: "01",
+                    t: "Centre the Kingdom calling",
+                    d: "Children fed with dignity, hope proclaimed, communities strengthened — not transactions first.",
+                  },
+                  {
+                    n: "02",
+                    t: "Put African food on African plates",
+                    d: "Big Five Foods fortified staples for Blessman hubs, schools and care points.",
+                  },
+                  {
+                    n: "03",
+                    t: "Form people who serve",
+                    d: "Super-Cube® whole-person leadership — including Spiritual intelligence — for teams and partners.",
+                  },
+                  {
+                    n: "04",
+                    t: "Steward with proof",
+                    d: "Foundation and Impact rails so generosity and delivery stay transparent and honest.",
+                  },
+                ]
+              : [
+                  {
+                    n: "01",
+                    t: "Define the outcome",
+                    d: "Nutrition, markets, leadership, capital access or multi-pillar programmes.",
+                  },
+                  {
+                    n: "02",
+                    t: "Attach the rails",
+                    d: "Foods, Direct, Connect, Impact and others as the work requires.",
+                  },
+                  {
+                    n: "03",
+                    t: "Deliver with gates",
+                    d: "Impact PMO, verification where commerce runs on SupplierAdvisor®.",
+                  },
+                  {
+                    n: "04",
+                    t: "Report honestly",
+                    d: "Ambition vs programme-reported vs internal analysis — see Methodology.",
+                  },
+                ]
+            ).map((s) => (
               <div
                 key={s.n}
                 className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 min-w-0"
@@ -641,6 +833,8 @@ export default function PartnerPortalClient({
           </div>
         </div>
       </section>
+
+      {partner.slug === "blessman-international" && <BlessmanKingdomSection />}
 
       {(partner.programmes?.length ?? 0) > 0 && (
         <section
@@ -733,6 +927,12 @@ export default function PartnerPortalClient({
       {partner.slug === "cmh-ford-ballito" && (
         <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
           <CmhFordPartnershipDeck />
+        </section>
+      )}
+
+      {partner.slug === "blessman-international" && (
+        <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+          <BlessmanPartnershipDeck />
         </section>
       )}
 
