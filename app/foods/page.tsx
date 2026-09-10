@@ -136,15 +136,15 @@ const capabilities = [
 
 const FOODS_JUMP_NAV = [
   {
-    href: "#shop",
+    href: "#products",
     label: "Products",
-    desc: "Full catalogue to order",
+    desc: "Ranges · porridges to NSNP",
     icon: Package,
   },
   {
-    href: "#how-to-buy",
+    href: "#shop",
     label: "Order",
-    desc: "Buy on SupplierAdvisor®",
+    desc: "Sales portal on SupplierAdvisor®",
     icon: Store,
   },
   {
@@ -226,7 +226,7 @@ export default function FoodsPage() {
       {/* ─── 1. PRODUCT RANGES (first after hero) ─── */}
       <section
         id="products"
-        className="relative bg-white border-b border-black/10 py-14 sm:py-18 md:py-24"
+        className="relative scroll-mt-28 bg-white border-b border-black/10 py-14 sm:py-18 md:py-24"
       >
         <div
           className="absolute inset-x-0 top-0 h-1"
