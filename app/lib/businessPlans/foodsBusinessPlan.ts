@@ -505,12 +505,12 @@ export const foodsBusinessPlan: BusinessPlan = {
                 ],
               },
             ],
-            footnote: FOODS_ECONOMICS.honesty,
+            footnote: FOODS_ECONOMICS.honestyWithGp,
           },
         },
         {
           type: "paragraph",
-          text: FOODS_ECONOMICS.positioning,
+          text: FOODS_ECONOMICS.positioningWithGp,
         },
         {
           type: "paragraph",

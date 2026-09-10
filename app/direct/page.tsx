@@ -232,7 +232,6 @@ export default function DirectPage() {
           stats={[
             { value: "355k", label: "Meals delivered (programme-reported, with Foods)" },
             { value: "100k", label: "Children reached (programme-reported)" },
-            { value: "~45%", label: "Foods GP (management-reported)" },
             { value: "~50%", label: "Cheaper vs wholesale & retail" },
             { value: "74%", label: "More nutrition design (internal analysis)" },
           ]}

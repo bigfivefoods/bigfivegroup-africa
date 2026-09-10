@@ -461,9 +461,11 @@ function ProgrammeBlocks({ ids }: { ids?: PartnerProgrammeId[] }) {
           </h3>
           <p className="text-sm text-[#404040] leading-relaxed mb-4">{NSNP_CASE.approval}</p>
           <ul className="space-y-1.5 text-sm text-[#525252] mb-4">
-            <li>· {FOODS_ECONOMICS.grossProfit.value} GP (management-reported)</li>
             <li>
               · {FOODS_ECONOMICS.cheaperThanMarket.value} cheaper vs wholesale & retail (internal)
+            </li>
+            <li>
+              · {FOODS_ECONOMICS.nutritionDesign.value} more nutrition by design (internal)
             </li>
             <li>· Recurring institutional demand as menus reorder</li>
           </ul>

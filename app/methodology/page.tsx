@@ -166,10 +166,10 @@ export default function MethodologyPage() {
           <p className="text-sm text-[#404040] leading-relaxed mb-2">
             Historic meals and children-reached figures on Foods pages are{" "}
             <strong>programme-reported delivery totals</strong> (cumulative, partner-facing). Cost
-            (e.g. ~45% Foods GP; ~50% cheaper vs wholesale and retail) and nutrition design
-            comparisons are{" "}
+            (e.g. ~50% cheaper vs wholesale and retail) and nutrition design comparisons are{" "}
             <strong>internal analyses</strong> versus alternative formulations or procurement
-            pathways — request the latest worksheet when you partner.
+            pathways — request the latest worksheet when you partner. Margin detail is reserved for
+            confidential investor materials.
           </p>
         </article>
 

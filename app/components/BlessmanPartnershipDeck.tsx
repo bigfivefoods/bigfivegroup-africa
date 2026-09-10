@@ -92,29 +92,37 @@ function Slide({ index }: { index: number }) {
                 alt=""
                 fill
                 className="object-cover object-center"
-                sizes="100vw"
+                sizes="(max-width:1280px) 100vw, 1200px"
                 priority
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#2a0a08]/95 via-[#2a0a08]/80 to-[#2a0a08]/45" />
-            <div className="absolute inset-0 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(105deg, #2a0a08f5 0%, #8a1a12e6 42%, #2a0a0899 100%)",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2a0a08]/95 via-transparent to-black/25" />
+            <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
                   <DeckEyebrow light theme={theme}>
                     STRATEGIC PARTNERSHIP · CONDENSED
                   </DeckEyebrow>
                   <CoBrandRow light />
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-white text-balance leading-[1.05] mb-3">
+                  <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem]">
                     Kingdom plates.
                     <br />
                     <span style={{ color: "#f47835" }}>Delicious. Nutritious. Affordable.</span>
                   </h2>
-                  <p className="text-white/75 max-w-xl text-sm sm:text-base leading-relaxed">
+                  <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
                     {P.tagline}
                   </p>
                 </div>
-                <div className="text-white/50 text-xs">
-                  Private partner briefing · {TOTAL} slides · bigfivegroup.africa/partner/blessman-international
+                <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
+                  <p>Private partner briefing · {TOTAL} slides</p>
+                  <p>bigfivegroup.africa/partner/blessman-international#blessman-partnership-deck</p>
                 </div>
               </DeckTitleLayout>
             </div>
@@ -227,14 +235,20 @@ function Slide({ index }: { index: number }) {
                 key={f.name}
                 className="rounded-2xl border border-black/10 bg-white overflow-hidden shadow-sm flex flex-col min-h-0"
               >
-                <div className="relative aspect-[4/3] bg-[#fafafa]">
+                <div className="relative aspect-square bg-[#fafafa] p-2 sm:p-3">
                   {pdf ? (
-                    <DeckPrintImage src={f.src} alt={f.name} fit="cover" />
+                    <DeckPrintImage src={f.src} alt={f.name} fit="contain" paddingClass="p-2" />
                   ) : (
-                    <Image src={f.src} alt={f.name} fill className="object-cover" sizes="200px" />
+                    <Image
+                      src={f.src}
+                      alt={f.name}
+                      fill
+                      className="object-contain p-1"
+                      sizes="220px"
+                    />
                   )}
                 </div>
-                <div className="p-2.5 sm:p-3">
+                <div className="p-2.5 sm:p-3 border-t border-black/5">
                   <div className="text-sm font-semibold text-black mb-0.5">{f.name}</div>
                   <p className="text-[11px] text-[#737373] leading-snug">{f.blurb}</p>
                 </div>
@@ -390,20 +404,26 @@ function Slide({ index }: { index: number }) {
             {P.ranges.map((r) => (
               <div
                 key={r.title}
-                className={`rounded-2xl border overflow-hidden flex gap-3 p-3 sm:p-3.5 ${
+                className={`rounded-2xl border flex gap-3 p-3 sm:p-3.5 min-w-0 ${
                   r.emphasis
                     ? "border-[#b32317]/35 bg-[#fdf4f2] ring-1 ring-[#b32317]/15"
                     : "border-black/10 bg-white"
                 }`}
               >
-                <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 rounded-xl overflow-hidden bg-[#fafafa]">
+                <div className="relative h-24 w-24 sm:h-28 sm:w-28 shrink-0 rounded-xl overflow-hidden bg-white border border-black/5 p-1.5">
                   {pdf ? (
-                    <DeckPrintImage src={r.src} alt={r.title} fit="cover" />
+                    <DeckPrintImage src={r.src} alt={r.title} fit="contain" paddingClass="p-1.5" />
                   ) : (
-                    <Image src={r.src} alt={r.title} fill className="object-cover" sizes="96px" />
+                    <Image
+                      src={r.src}
+                      alt={r.title}
+                      fill
+                      className="object-contain p-1"
+                      sizes="112px"
+                    />
                   )}
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 self-center">
                   <div className="text-sm font-semibold text-black mb-0.5">
                     {r.title}
                     {r.emphasis ? (
@@ -527,23 +547,31 @@ function Slide({ index }: { index: number }) {
                 alt=""
                 fill
                 className="object-cover object-center"
-                sizes="100vw"
+                sizes="(max-width:1280px) 100vw, 1200px"
+                priority
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2a0a08] via-[#2a0a08]/85 to-[#2a0a08]/40" />
-            <div className="absolute inset-0 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(105deg, #2a0a08f5 0%, #8a1a12e6 42%, #2a0a08a6 100%)",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2a0a08]/95 via-transparent to-black/30" />
+            <div className="relative z-10 h-full">
               <DeckTitleLayout>
                 <div>
                   <DeckEyebrow light theme={theme}>
                     CALL TO ACTION
                   </DeckEyebrow>
                   <CoBrandRow light />
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-white text-balance leading-[1.1] mb-3">
+                  <h2 className="font-semibold tracking-tighter leading-[1.08] text-white text-balance max-w-3xl text-2xl sm:text-3xl md:text-4xl">
                     Put fortified porridge
                     <br />
                     <span style={{ color: "#f47835" }}>on kingdom tables.</span>
                   </h2>
-                  <p className="text-white/75 max-w-xl text-sm leading-relaxed mb-4">
+                  <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed mb-4">
                     Delicious flavours · ~74% more nutrition by design · ~R2.25 per meal · African
                     food for African children — with Dr. Craig R. Muller and Big Five Group as
                     kingdom partners in the plate.
@@ -563,7 +591,8 @@ function Slide({ index }: { index: number }) {
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <div className="text-white/45 text-xs">
-                    blessmaninternational.org · bigfivegroup.africa/foods · Confidential partner briefing
+                    blessmaninternational.org · bigfivegroup.africa/foods · Confidential partner
+                    briefing
                   </div>
                 </div>
               </DeckTitleLayout>

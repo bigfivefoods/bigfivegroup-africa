@@ -665,7 +665,7 @@ function Slide({ index }: { index: number }) {
               forPrint ? "text-[10px] mb-2" : "text-xs sm:text-sm mb-3"
             }`}
           >
-            {FOODS_ECONOMICS.whyGovernment}
+            {FOODS_ECONOMICS.whyGovernmentWithGp}
           </p>
           <div className={`grid grid-cols-3 gap-2 ${forPrint ? "mb-2" : "mb-3"}`}>
             <DeckStatTile
@@ -717,13 +717,15 @@ function Slide({ index }: { index: number }) {
                   />
                 </div>
                 <p className={`text-[#737373] mt-0.5 ${forPrint ? "text-[8px]" : "text-[9px]"}`}>
-                  {row.note}
+                  {row.tone === "foods"
+                    ? FOODS_ECONOMICS.competitiveIndexFoodsNoteWithGp
+                    : row.note}
                 </p>
               </div>
             ))}
           </div>
           <p className={`text-[#a3a3a3] ${forPrint ? "text-[8px]" : "text-[9px]"}`}>
-            {FOODS_ECONOMICS.honesty}
+            {FOODS_ECONOMICS.honestyWithGp}
           </p>
         </DeckSlideShell>
       );
