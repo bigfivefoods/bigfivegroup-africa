@@ -91,8 +91,8 @@ export const FOODS_RANGE_TERMS: Record<
     sampleAvailable: true,
   },
   nsnp: {
-    moqLabel: "Institutional MOQ · programme quote required",
-    leadTimeLabel: "Programme schedule · confirmed on SA after quote",
+    moqLabel: "From 1 × 5kg pack · volume pricing on SA",
+    leadTimeLabel: "Typically 5–10 business days (SA confirmed)",
     sampleAvailable: true,
   },
 };
@@ -268,7 +268,7 @@ export const FOODS_SHOP_PRODUCTS: FoodsShopProduct[] = [
     blurb: "Minestrone fortified soup thickener for households and catering.",
     channel: "retail",
   },
-  // NSNP institutional — quote-first by default
+  // NSNP institutional — orderable on SupplierAdvisor® store (same path as retail)
   ...NSNP_PRODUCTS.map(
     (p): FoodsShopProduct => ({
       id: p.id,
@@ -279,7 +279,7 @@ export const FOODS_SHOP_PRODUCTS: FoodsShopProduct[] = [
       badge: p.badge,
       src: p.src,
       blurb: p.blurb,
-      quoteFirst: true,
+      quoteFirst: false,
       channel: "institutional",
     })
   ),

@@ -85,7 +85,9 @@ function normalizeRemoteProduct(
       ? raw.quoteFirst
       : typeof raw.quote_first === "boolean"
         ? (raw.quote_first as boolean)
-        : channel === "institutional" || Boolean(base?.quoteFirst);
+        : typeof base?.quoteFirst === "boolean"
+          ? base.quoteFirst
+          : false;
 
   return {
     id,

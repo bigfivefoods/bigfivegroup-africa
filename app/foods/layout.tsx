@@ -46,7 +46,7 @@ const faqJsonLd = {
       name: "How do I order Big Five Foods products?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Browse bigfivegroup.africa/foods#shop, shortlist products, then complete trade on SupplierAdvisor® at supplieradvisor.com/store/big-five-foods — Big Five Foods is the verified seller of record. NSNP and institutional supply is quote-first. Samples are available on request; we aim to respond within one business day.",
+        text: "Browse bigfivegroup.africa/foods#shop (including NSNP 5kg institutional packs), shortlist products, then complete trade on SupplierAdvisor® at supplieradvisor.com/store/big-five-foods — Big Five Foods is the verified seller of record. Large programme volumes can still request a quote. Samples are available on request; we aim to respond within one business day.",
       },
     },
     {

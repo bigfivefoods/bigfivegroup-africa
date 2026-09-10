@@ -266,11 +266,11 @@ export const SA_STOREFRONT_COPY = {
     {
       n: "03",
       t: "Trade with proof",
-      d: "Quotes, POs, invoices and fulfilment run on SA — NSNP stays quote-first.",
+      d: "Quotes, POs, invoices and fulfilment run on SA — including NSNP 5kg institutional packs.",
     },
   ],
   note:
-    "SupplierAdvisor® is the system of record. This site is the branded storefront. Institutional / NSNP supply uses quote-first (no false instant checkout).",
+    "SupplierAdvisor® is the system of record. This site is the branded storefront. Retail and NSNP institutional packs order on the Big Five Foods store; large programme volumes can still request a quote.",
   platformUrl: SA_URL,
   deliveryNote: "Primary fulfilment from South Africa · national and export corridors by arrangement",
   storePath: `/store/${SA_FOODS_COMPANY_SLUG}`,
@@ -280,8 +280,8 @@ export const FOODS_BUYER_PATHS = [
   {
     id: "institution" as const,
     title: "School · government · programme",
-    desc: "NSNP and institutional supply — open the store on institutional channel, then request a quote on SA.",
-    cta: "Open institutional store",
+    desc: "NSNP 5kg packs and institutional supply — order on the Big Five Foods store on SupplierAdvisor®.",
+    cta: "Order NSNP on SupplierAdvisor®",
   },
   {
     id: "trade" as const,
@@ -302,14 +302,14 @@ export const FOODS_COMMERCIAL_TERMS = {
   responseSla: "We aim to respond to samples and quotes within 1 business day",
   samplePolicy:
     "Sample packs available on request for qualified buyers — then order full cartons on SupplierAdvisor®",
-  moqDefault: "From 1 carton (retail/wholesale) · institutional MOQ on quote",
+  moqDefault: "From 1 carton (retail/wholesale) · NSNP from 1 × 5kg pack",
   leadTimeDefault: "Typically 5–10 business days after confirmation on SA (programme schedules may differ)",
   delivery: "Primary fulfilment from South Africa · national delivery and export corridors by arrangement",
   sellerOfRecord: "Big Five Foods — verified company on SupplierAdvisor®",
   systemOfRecord:
     "Orders, quotes, stock and invoices live on SupplierAdvisor® — not a separate website cart",
   nsnpNote:
-    "NSNP / institutional SKUs are quote-first — no false instant checkout for programme supply",
+    "NSNP 5kg institutional packs order on SupplierAdvisor® — large multi-site programmes can still request a quote",
   paymentNote: "B2B terms and invoicing via SupplierAdvisor® trade relationship (where agreed)",
 } as const;
 

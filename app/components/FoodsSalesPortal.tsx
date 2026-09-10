@@ -286,7 +286,7 @@ function CategorySection({
           </h3>
           <p className="text-[11px] sm:text-xs text-[#737373] mt-0.5">
             {products.length} product{products.length === 1 ? "" : "s"}
-            {isNsnp ? " · institutional / quote-first" : ""}
+            {isNsnp ? " · institutional · order on SupplierAdvisor®" : ""}
             {" · "}
             {terms.moqLabel}
           </p>
@@ -734,16 +734,27 @@ export default function FoodsSalesPortal() {
             <div className="min-w-0">
               <h3 className="text-base font-semibold text-black mb-1">Wholesale & programmes</h3>
               <p className="text-sm text-[#525252] leading-relaxed mb-3">
-                Volume, NSNP institutional packs, and multi-site supply — request a quote and we
-                fulfil via SupplierAdvisor® where programme rules allow.
+                Order NSNP 5kg packs and retail ranges on SupplierAdvisor®. For multi-site or
+                programme-scale volumes, request a quote and we fulfil on the same OS.
               </p>
-              <Link
-                href="/contact?interest=foods&intent=order"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-900 hover:underline"
-              >
-                Institutional / volume enquiry
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <a
+                  href={saFoodsOrderUrl({ channel: "institutional" })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-900 hover:underline"
+                >
+                  Order NSNP on SA
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+                <Link
+                  href="/contact?interest=foods&intent=order"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#525252] hover:underline"
+                >
+                  Volume / programme enquiry
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
           </div>
           <div className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 flex gap-4 items-start">
