@@ -290,7 +290,21 @@ const A4 = {
   landscape: { w: "297mm", h: "210mm" },
   portrait: { w: "210mm", h: "297mm" },
   margin: "6mm",
+  padMm: 5,
 } as const;
+
+/** CSS px per mm at 96dpi — used to size the live viewport to the A4 content box. */
+const PX_PER_MM = 96 / 25.4;
+
+function a4ContentBoxPx(orientation: PrintOrientation) {
+  const pageWmm = orientation === "landscape" ? 297 : 210;
+  const pageHmm = orientation === "landscape" ? 210 : 297;
+  const pad = A4.padMm * PX_PER_MM;
+  return {
+    w: Math.round(pageWmm * PX_PER_MM - pad * 2),
+    h: Math.round(pageHmm * PX_PER_MM - pad * 2),
+  };
+}
 
 /**
  * WYSIWYG print styles: each page is A4, digital slide clone is scaled to fit
@@ -312,7 +326,7 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     box-sizing: border-box;
     overflow: hidden;
     margin: 0 0 12px;
-    background: #f3f4f6;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -485,9 +499,8 @@ export function DeckSlideShell({
   const forPrint = useDeckPrintMode();
   const pdf = useDeckPdfExport();
   const zeroPad = /\b!?p-0\b/.test(className);
-  // Only compact densify mode hard-clips. WYSIWYG PDF keeps scroll so clones can
-  // measure full slide content (overflow-hidden was dropping lower sections).
-  const lockOverflow = forPrint;
+  // During PDF/compact, lock to the viewport frame so clones match the slide.
+  const lockOverflow = forPrint || pdf;
 
   return (
     <div
@@ -626,12 +639,12 @@ export function DeckTitleLayout({ children }: { children: ReactNode }) {
   return (
     <div
       className={`relative flex flex-col justify-between h-full min-h-0 box-border ${
-        forPrint
-          ? "p-4 md:p-5"
-          : pdf
-            ? // Match digital padding, but fill the A4 page height (no 70dvh min that overflows print)
-              "h-full p-5 sm:p-8 md:p-10 lg:p-12"
-            : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
+        forPrint || pdf
+          ? // Fill the fixed print/PDF frame (never min-h 70dvh — that inflated clone height)
+            forPrint
+              ? "h-full p-4 md:p-5"
+              : "h-full p-5 sm:p-8 md:p-10 lg:p-12"
+          : "min-h-[min(70dvh,36rem)] p-5 sm:p-8 md:p-10 lg:p-12"
       }`}
     >
       {children}
@@ -754,8 +767,8 @@ export default function DeckShell({
   }, [fullscreen]);
 
   /**
-   * WYSIWYG PDF: walk every digital slide, clone the live DOM (exact screen layout),
-   * scale each clone into an A4 page, then print. No separate re-layout of slides.
+   * WYSIWYG PDF: size the live viewport to the A4 content aspect, clone each
+   * visible frame at that size, scale into the page, then print.
    */
   useEffect(() => {
     if (!printMode) return;
@@ -793,8 +806,31 @@ export default function DeckShell({
       );
     };
 
+    const viewportEl = slideViewportRef.current;
+    const prevViewport = viewportEl
+      ? {
+          width: viewportEl.style.width,
+          height: viewportEl.style.height,
+          minHeight: viewportEl.style.minHeight,
+          maxHeight: viewportEl.style.maxHeight,
+          overflow: viewportEl.style.overflow,
+          flex: viewportEl.style.flex,
+        }
+      : null;
+
+    const restoreViewport = () => {
+      if (!viewportEl || !prevViewport) return;
+      viewportEl.style.width = prevViewport.width;
+      viewportEl.style.height = prevViewport.height;
+      viewportEl.style.minHeight = prevViewport.minHeight;
+      viewportEl.style.maxHeight = prevViewport.maxHeight;
+      viewportEl.style.overflow = prevViewport.overflow;
+      viewportEl.style.flex = prevViewport.flex;
+    };
+
     const finish = () => {
       if (cancelled) return;
+      restoreViewport();
       rootEl.removeAttribute("data-deck-print");
       rootEl.removeAttribute("data-deck-print-active");
       const portal = document.getElementById(printRootId);
@@ -807,7 +843,6 @@ export default function DeckShell({
     };
 
     const run = async () => {
-      // Mount empty portal shell
       await new Promise((r) => window.setTimeout(r, 50));
       if (cancelled) return;
 
@@ -831,6 +866,24 @@ export default function DeckShell({
         return;
       }
 
+      // Size the live viewport to the A4 content-box aspect so slides reflow
+      // like the printed page, then clone that exact frame into each A4 page.
+      const box = a4ContentBoxPx(printOrientation);
+      const availW = Math.max(320, viewport.clientWidth || box.w);
+      const targetW = Math.min(availW, box.w);
+      const targetH = Math.round(targetW * (box.h / box.w));
+      viewport.style.flex = "none";
+      viewport.style.width = `${targetW}px`;
+      viewport.style.height = `${targetH}px`;
+      viewport.style.minHeight = `${targetH}px`;
+      viewport.style.maxHeight = `${targetH}px`;
+      viewport.style.overflow = "hidden";
+
+      await new Promise<void>((r) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => r()))
+      );
+      if (cancelled) return;
+
       for (let i = 0; i < total; i++) {
         if (cancelled) return;
         flushSync(() => setIndex(i));
@@ -838,21 +891,15 @@ export default function DeckShell({
           requestAnimationFrame(() => requestAnimationFrame(() => r()))
         );
         await waitForImages(viewport);
-        await new Promise((r) => window.setTimeout(r, 100));
+        await new Promise((r) => window.setTimeout(r, 120));
 
-        // Exact digital frame: clone the live slide. Prefer full content height so
-        // lower sections are not dropped when the on-screen viewport scrolls.
         const source =
           (Array.from(viewport.children).find(
             (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
           ) as HTMLElement | undefined) ?? viewport;
-        const w = Math.max(1, viewport.clientWidth);
-        const contentH = Math.max(
-          viewport.clientHeight,
-          source.scrollHeight || 0,
-          source.clientHeight || 0
-        );
-        const h = Math.max(1, contentH);
+        // Exact visible frame only — inflated scrollHeight was shrinking title/CTA
+        const w = Math.max(1, viewport.clientWidth || targetW);
+        const h = Math.max(1, viewport.clientHeight || targetH);
 
         const page = document.createElement("div");
         page.className = "deck-print-page";
@@ -872,7 +919,7 @@ export default function DeckShell({
         clone.style.height = "100%";
         clone.style.maxWidth = "none";
         clone.style.maxHeight = "none";
-        // Prefer original asset URLs over Next optimizer thumbnails in the PDF clone
+        clone.style.overflow = "hidden";
         clone.querySelectorAll("img").forEach((node) => {
           const img = node as HTMLImageElement;
           const raw =
@@ -898,19 +945,13 @@ export default function DeckShell({
           img.loading = "eager";
           img.style.opacity = "1";
           img.style.visibility = "visible";
-          // Keep product photos fully visible in PDF (avoid inherited cover crops)
           if (img.className.includes("object-contain") || img.dataset.deckFit === "contain") {
             img.style.objectFit = "contain";
             img.style.objectPosition = "center";
-            // Rescue absolute-fill imgs whose parent collapsed during clone layout
-            if (img.className.includes("absolute") && img.clientHeight < 24) {
-              img.style.position = "relative";
-              img.style.inset = "auto";
-              img.style.width = "auto";
-              img.style.height = "auto";
-              img.style.maxWidth = "100%";
-              img.style.maxHeight = "100%";
-            }
+          }
+          if (img.className.includes("object-cover") || img.dataset.deckFit === "cover") {
+            img.style.objectFit = "cover";
+            img.style.objectPosition = "center";
           }
         });
         clone.querySelectorAll("button, a").forEach((el) => {
@@ -922,16 +963,16 @@ export default function DeckShell({
         page.appendChild(scaleWrap);
         portal.appendChild(page);
 
-        // Scale the full digital frame into the A4 page
         await new Promise<void>((r) => requestAnimationFrame(() => r()));
-        const availW = page.clientWidth || page.getBoundingClientRect().width;
-        const availH = page.clientHeight || page.getBoundingClientRect().height;
-        const scale = Math.min(availW / w, availH / h);
+        const pageW = page.clientWidth || page.getBoundingClientRect().width || box.w;
+        const pageH = page.clientHeight || page.getBoundingClientRect().height || box.h;
+        const scale = Math.min(pageW / w, pageH / h);
+        cloneHost.style.transformOrigin = "center center";
         cloneHost.style.transform = `scale(${scale})`;
       }
 
       await waitForImages(portal);
-      await new Promise((r) => window.setTimeout(r, 150));
+      await new Promise((r) => window.setTimeout(r, 200));
       if (cancelled) return;
 
       requestAnimationFrame(() => {
@@ -949,6 +990,7 @@ export default function DeckShell({
 
     return () => {
       cancelled = true;
+      restoreViewport();
       rootEl.removeAttribute("data-deck-print");
       rootEl.removeAttribute("data-deck-print-active");
       window.clearTimeout(fallback);
@@ -1174,7 +1216,12 @@ export default function DeckShell({
 
   return (
     <PrintModeContext.Provider
-      value={{ active: printMode, orientation: printOrientation, compact: false }}
+      value={{
+        active: printMode,
+        orientation: printOrientation,
+        // Densify typography during PDF so slides fit the A4 frame like the deck
+        compact: printMode,
+      }}
     >
       <div id={id} className="scroll-mt-24 sm:scroll-mt-28 w-full min-w-0 max-w-full">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center min-w-0">
