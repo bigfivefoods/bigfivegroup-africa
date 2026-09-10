@@ -476,7 +476,44 @@ export default function FoodsSalesPortal() {
           </div>
         </div>
 
-        {/* Commercial terms — transparent, published */}
+        {/* Storefront products — immediately after header */}
+        <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+          {FILTERS.map((f) => {
+            const active = filter === f.id;
+            return (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => setFilter(f.id)}
+                className={`rounded-full px-3 py-1.5 text-[11px] sm:text-xs font-semibold border transition-colors ${
+                  active
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-[#404040] border-black/10 hover:border-amber-300/70"
+                }`}
+              >
+                {f.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="space-y-10 sm:space-y-12 mb-10 sm:mb-12">
+          {grouped.map(({ range, products }) => (
+            <CategorySection
+              key={range}
+              range={range}
+              products={products}
+              listIds={listIds}
+              onToggleList={toggleList}
+            />
+          ))}
+        </div>
+
+        {totalShown === 0 && (
+          <p className="text-center text-sm text-[#737373] py-12 mb-10">No products in this range.</p>
+        )}
+
+        {/* How to buy · commercial terms */}
         <div
           id="how-to-buy"
           className="scroll-mt-28 rounded-2xl border border-black/10 bg-white p-5 sm:p-6 md:p-7 mb-6 sm:mb-8"
@@ -546,37 +583,7 @@ export default function FoodsSalesPortal() {
           </div>
         </div>
 
-        {/* Certifications */}
-        <div className="mb-8 sm:mb-10">
-          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[#737373] mb-3">
-            Quality · safety · ethical trade
-          </div>
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            {FOODS_TRUST_CERTS.map((c) => (
-              <div
-                key={c.name}
-                className="flex items-center gap-2 rounded-xl border border-black/10 bg-white px-3 py-2 min-w-0"
-                title={c.desc}
-              >
-                <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
-                  <Image
-                    src={c.logo}
-                    alt={c.name}
-                    fill
-                    className="object-contain"
-                    sizes="36px"
-                  />
-                </div>
-                <div className="min-w-0 hidden sm:block">
-                  <div className="text-[11px] font-semibold text-black leading-tight">{c.name}</div>
-                  <div className="text-[10px] text-[#737373]">{c.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Buyer paths — all land on live SA store / onboarding */}
+        {/* Buyer paths */}
         <div className="mb-2">
           <h3 className="text-sm font-semibold text-black mb-3">Who are you buying as?</h3>
         </div>
@@ -668,6 +675,36 @@ export default function FoodsSalesPortal() {
           ))}
         </div>
 
+        {/* Certifications */}
+        <div className="mb-8 sm:mb-10">
+          <div className="text-[10px] font-semibold tracking-[2px] uppercase text-[#737373] mb-3">
+            Quality · safety · ethical trade
+          </div>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            {FOODS_TRUST_CERTS.map((c) => (
+              <div
+                key={c.name}
+                className="flex items-center gap-2 rounded-xl border border-black/10 bg-white px-3 py-2 min-w-0"
+                title={c.desc}
+              >
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
+                  <Image
+                    src={c.logo}
+                    alt={c.name}
+                    fill
+                    className="object-contain"
+                    sizes="36px"
+                  />
+                </div>
+                <div className="min-w-0 hidden sm:block">
+                  <div className="text-[11px] font-semibold text-black leading-tight">{c.name}</div>
+                  <div className="text-[10px] text-[#737373]">{c.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Trust strip */}
         <div className="flex flex-wrap items-start gap-3 sm:gap-4 mb-8 rounded-2xl border border-amber-200/80 bg-amber-50/50 px-4 py-3.5">
           <ShieldCheck className="w-5 h-5 text-amber-800 shrink-0 mt-0.5" />
@@ -689,46 +726,8 @@ export default function FoodsSalesPortal() {
           </a>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
-          {FILTERS.map((f) => {
-            const active = filter === f.id;
-            return (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setFilter(f.id)}
-                className={`rounded-full px-3 py-1.5 text-[11px] sm:text-xs font-semibold border transition-colors ${
-                  active
-                    ? "bg-black text-white border-black"
-                    : "bg-white text-[#404040] border-black/10 hover:border-amber-300/70"
-                }`}
-              >
-                {f.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Products by category */}
-        <div className="space-y-10 sm:space-y-12 pb-20 sm:pb-16">
-          {grouped.map(({ range, products }) => (
-            <CategorySection
-              key={range}
-              range={range}
-              products={products}
-              listIds={listIds}
-              onToggleList={toggleList}
-            />
-          ))}
-        </div>
-
-        {totalShown === 0 && (
-          <p className="text-center text-sm text-[#737373] py-12">No products in this range.</p>
-        )}
-
         {/* Bottom CTAs */}
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 pb-4 sm:pb-0">
           <div className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 flex gap-4 items-start">
             <Package className="w-6 h-6 text-amber-700 shrink-0 mt-0.5" />
             <div className="min-w-0">
