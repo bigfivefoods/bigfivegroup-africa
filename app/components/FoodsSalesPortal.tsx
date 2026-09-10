@@ -410,7 +410,7 @@ export default function FoodsSalesPortal() {
   return (
     <section
       id="shop"
-      className="scroll-mt-24 border-b border-black/10 bg-[#fafafa] py-14 sm:py-20 md:py-24"
+      className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-14 sm:py-20 md:py-24"
       aria-labelledby="foods-shop-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

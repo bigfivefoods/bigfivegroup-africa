@@ -195,34 +195,26 @@ export default function FoodsPage() {
         overlayClassName={pageBrand.foods.overlay}
       />
 
-      {/* Jump nav — page 2 under hero */}
+      {/* Jump nav — compact sticky chip bar (mobile-first; avoids tall card grid jump) */}
       <nav
         aria-label="Foods page sections"
         className="sticky top-[var(--navbar-height)] z-20 border-b border-black/10 bg-white/95 backdrop-blur-md"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-1.5 sm:py-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {FOODS_JUMP_NAV.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="group flex items-center gap-3 rounded-2xl border border-black/10 bg-[#fafafa] px-3.5 py-3 sm:px-4 sm:py-3.5 hover:border-amber-300/70 hover:bg-white hover:shadow-sm transition-all min-w-0"
+                title={item.desc}
+                className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-black/10 bg-[#fafafa] px-2.5 py-1.5 sm:px-3 sm:py-1.5 text-[12px] sm:text-sm font-medium text-[#404040] hover:border-amber-300/70 hover:bg-white hover:text-black transition-colors"
               >
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-sm"
-                  style={{ backgroundColor: ACCENT_DARK }}
-                >
-                  <item.icon className="w-4.5 h-4.5 w-[18px] h-[18px]" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-sm font-semibold tracking-tight text-black group-hover:underline underline-offset-2">
-                    {item.label}
-                  </span>
-                  <span className="block text-[11px] sm:text-xs text-[#737373] leading-snug truncate">
-                    {item.desc}
-                  </span>
-                </span>
-                <ArrowRight className="w-4 h-4 shrink-0 text-[#a3a3a3] group-hover:text-amber-800 transition-colors" />
+                <item.icon
+                  className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0"
+                  style={{ color: ACCENT_DARK }}
+                  aria-hidden
+                />
+                <span className="whitespace-nowrap">{item.label}</span>
               </a>
             ))}
           </div>
