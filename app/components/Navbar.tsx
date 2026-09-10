@@ -24,9 +24,9 @@ const MISSION_ICONS = {
 } as const;
 
 const SIMPLE_LINKS = [
+  { href: "/food-security", label: "Food Security" },
   { href: "/group", label: "Group" },
   { href: "/about", label: "About" },
-  { href: "/food-security", label: "Food Security" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
