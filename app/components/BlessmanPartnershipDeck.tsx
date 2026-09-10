@@ -46,26 +46,27 @@ function NutriPanel({
 }) {
   return (
     <div className="rounded-xl border border-black/10 bg-white overflow-hidden min-h-0 flex flex-col shadow-sm">
-      <div className="px-2.5 py-1.5 bg-[#fdf4f2] border-b border-[#b32317]/15">
+      <div className="px-2.5 py-1.5 bg-[#fdf4f2] border-b border-[#b32317]/15 shrink-0">
         <div className="text-[9px] sm:text-[10px] tracking-[1.5px] font-semibold text-[#b32317] uppercase">
           {title}
         </div>
       </div>
-      <div className="overflow-auto min-h-0 flex-1">
+      {/* No overflow-auto — scroll tracks painted as a grey bar in PDF screenshots */}
+      <div className="min-h-0 flex-1 overflow-hidden">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-black/5 bg-[#fafafa]">
-              <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373]">
+              <th className="px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[9px] font-semibold text-[#737373]">
                 Nutrient
               </th>
-              <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
+              <th className="px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
                 /100g
               </th>
-              <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
+              <th className="px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
                 /80g
               </th>
               {showNrv ? (
-                <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
+                <th className="px-1.5 sm:px-2 py-0.5 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
                   %NRV
                 </th>
               ) : null}
@@ -75,20 +76,20 @@ function NutriPanel({
             {rows.map((row) => (
               <tr key={row.nutrient} className="border-b border-black/[0.04] last:border-0">
                 <td
-                  className={`px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] leading-tight ${
+                  className={`px-1.5 sm:px-2 py-px sm:py-0.5 text-[8px] sm:text-[9px] leading-tight ${
                     row.indent ? "pl-2.5 sm:pl-3 text-[#737373]" : "font-medium text-[#404040]"
                   }`}
                 >
                   {row.nutrient}
                 </td>
-                <td className="px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] text-right tabular-nums text-[#171717] leading-tight">
+                <td className="px-1.5 sm:px-2 py-px sm:py-0.5 text-[8px] sm:text-[9px] text-right tabular-nums text-[#171717] leading-tight">
                   {row.per100g}
                 </td>
-                <td className="px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] text-right tabular-nums text-[#171717] leading-tight">
+                <td className="px-1.5 sm:px-2 py-px sm:py-0.5 text-[8px] sm:text-[9px] text-right tabular-nums text-[#171717] leading-tight">
                   {row.perServing}
                 </td>
                 {showNrv ? (
-                  <td className="px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] text-right tabular-nums font-semibold text-[#b32317] leading-tight">
+                  <td className="px-1.5 sm:px-2 py-px sm:py-0.5 text-[8px] sm:text-[9px] text-right tabular-nums font-semibold text-[#b32317] leading-tight">
                     {row.nrv}
                   </td>
                 ) : null}
@@ -146,28 +147,27 @@ function ScriptureQuote({
 }
 
 function CoBrandRow({ light }: { light?: boolean }) {
-  const pdf = useDeckPdfExport();
+  // Always native <img> + colour logos on white plates so html-to-image PDF
+  // screenshots capture real brand marks (Next/Image /_next/image often blanks).
   const blessmanSrc = "/partners/blessman-international-logo.png";
-  const foodsSrc = light ? "/bigfivefoods-logo-white.png" : "/bigfivefoods-logo.png";
+  const foodsSrc = "/bigfivefoods-logo.png";
   return (
     <div className="flex flex-nowrap items-center gap-2.5 sm:gap-4 mb-3 sm:mb-5 max-w-full">
       <div
-        className={`relative h-11 sm:h-14 w-[9.5rem] sm:w-52 shrink-0 bg-white rounded-xl px-2.5 py-1 border-2 shadow-sm overflow-hidden ${
-          light ? "border-white/40" : "border-[#b32317]/25"
+        className={`relative h-11 sm:h-14 w-[9.5rem] sm:w-52 shrink-0 bg-white rounded-xl px-2.5 py-1 border-2 shadow-sm overflow-hidden flex items-center justify-center ${
+          light ? "border-white/50" : "border-[#b32317]/25"
         }`}
       >
-        {pdf ? (
-          <DeckPrintImage src={blessmanSrc} alt="Blessman International" paddingClass="p-1" fit="contain" />
-        ) : (
-          <Image
-            src={blessmanSrc}
-            alt="Blessman International"
-            fill
-            className="object-contain p-1"
-            sizes="208px"
-            priority
-          />
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={blessmanSrc}
+          alt="Blessman International"
+          data-deck-src={blessmanSrc}
+          data-deck-fit="contain"
+          className="max-h-full max-w-full w-auto h-auto object-contain p-0.5"
+          width={208}
+          height={73}
+        />
       </div>
       <span
         className={`shrink-0 text-base sm:text-xl font-light leading-none ${
@@ -177,19 +177,21 @@ function CoBrandRow({ light }: { light?: boolean }) {
       >
         ×
       </span>
-      <div className="relative h-11 w-11 sm:h-14 sm:w-14 shrink-0 overflow-hidden drop-shadow-md">
-        {pdf ? (
-          <DeckPrintImage src={foodsSrc} alt="Big Five Foods" fit="contain" />
-        ) : (
-          <Image
-            src={foodsSrc}
-            alt="Big Five Foods"
-            fill
-            className="object-contain object-center"
-            sizes="56px"
-            priority
-          />
-        )}
+      <div
+        className={`relative h-11 w-11 sm:h-14 sm:w-14 shrink-0 overflow-hidden rounded-xl bg-white border-2 shadow-sm flex items-center justify-center ${
+          light ? "border-white/50" : "border-black/10"
+        }`}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={foodsSrc}
+          alt="Big Five Foods"
+          data-deck-src={foodsSrc}
+          data-deck-fit="contain"
+          className="max-h-full max-w-full w-auto h-auto object-contain p-0.5"
+          width={56}
+          height={56}
+        />
       </div>
     </div>
   );
@@ -471,7 +473,9 @@ function Slide({ index }: { index: number }) {
               <span className="text-[#a3a3a3]">Typical Big Five Foods fortified porridge label</span>
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 sm:gap-2.5 flex-1 min-h-0">
+          {/* items-start + no flex-1: panels size to content so vitamins don't
+              get an inner scroll track (showed as a grey bar in PDF screenshots) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 sm:gap-2.5 content-start items-start">
             <NutriPanel title="Macronutrients" rows={LABEL.macros} />
             <NutriPanel title="Vitamins" rows={LABEL.vitamins} showNrv />
             <NutriPanel title="Minerals & choline" rows={LABEL.minerals} showNrv />

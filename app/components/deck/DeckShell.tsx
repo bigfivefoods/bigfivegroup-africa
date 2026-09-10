@@ -799,16 +799,55 @@ export default function DeckShell({
         await new Promise((r) => window.setTimeout(r, 180));
         if (cancelled) return;
 
-        // Pixel-perfect capture of the on-page slide (exactly as the website)
-        const dataUrl = await toPng(viewport, {
-          cacheBust: true,
-          pixelRatio: Math.min(2, window.devicePixelRatio || 2),
-          backgroundColor: "#ffffff",
-          filter: (node) => {
-            if (!(node instanceof HTMLElement)) return true;
-            return !node.classList.contains("sr-only");
-          },
+        // Rewrite Next optimizer URLs → original assets so logos/photos paint in the PNG
+        const restored: Array<{ img: HTMLImageElement; src: string; srcset: string }> = [];
+        viewport.querySelectorAll("img").forEach((node) => {
+          const img = node as HTMLImageElement;
+          const prevSrc = img.getAttribute("src") || "";
+          const prevSrcset = img.getAttribute("srcset") || "";
+          const raw =
+            img.getAttribute("data-deck-src") ||
+            (() => {
+              try {
+                const u = new URL(img.currentSrc || img.src, window.location.origin);
+                const nested = u.searchParams.get("url");
+                if (u.pathname.includes("/_next/image") && nested) {
+                  return nested.startsWith("http") || nested.startsWith("/")
+                    ? nested
+                    : `/${nested}`;
+                }
+              } catch {
+                /* ignore */
+              }
+              return null;
+            })();
+          if (!raw) return;
+          restored.push({ img, src: prevSrc, srcset: prevSrcset });
+          img.removeAttribute("srcset");
+          img.src = raw;
         });
+        await waitForImages(viewport);
+        await new Promise((r) => window.setTimeout(r, 60));
+
+        // Pixel-perfect capture of the on-page slide (exactly as the website)
+        let dataUrl: string;
+        try {
+          dataUrl = await toPng(viewport, {
+            cacheBust: true,
+            pixelRatio: Math.min(2, window.devicePixelRatio || 2),
+            backgroundColor: "#ffffff",
+            filter: (node) => {
+              if (!(node instanceof HTMLElement)) return true;
+              return !node.classList.contains("sr-only");
+            },
+          });
+        } finally {
+          // Restore original srcs so the live deck stays untouched
+          restored.forEach(({ img, src, srcset }) => {
+            if (src) img.setAttribute("src", src);
+            if (srcset) img.setAttribute("srcset", srcset);
+          });
+        }
         shots.push(dataUrl);
       }
 
