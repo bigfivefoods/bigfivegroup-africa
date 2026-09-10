@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { createPortal, flushSync } from "react-dom";
+import { toPng } from "html-to-image";
 import {
   Check,
   ChevronLeft,
@@ -308,8 +309,8 @@ function a4ContentBoxPx(orientation: PrintOrientation) {
 }
 
 /**
- * WYSIWYG print styles: each page is A4, digital slide clone is scaled to fit
- * so the PDF matches the on-screen deck exactly (same DOM/CSS as digital).
+ * Print styles for screenshot pages: each A4 page holds one PNG of the
+ * exact on-website (non-fullscreen) slide — no DOM reflow.
  */
 function buildPrintStyles(printRootId: string, pageName: string) {
   return `
@@ -333,58 +334,17 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     justify-content: center;
   }
   #${printRootId}[data-orientation="landscape"] .deck-print-page {
-    width: 297mm; height: 210mm; padding: 2mm;
+    width: 297mm; height: 210mm; padding: 0;
   }
   #${printRootId}[data-orientation="portrait"] .deck-print-page {
-    width: 210mm; height: 297mm; padding: 2mm;
+    width: 210mm; height: 297mm; padding: 0;
   }
-  #${printRootId} .deck-print-scale-wrap {
+  #${printRootId} .deck-print-shot {
+    display: block;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  #${printRootId} .deck-print-slide-clone {
-    flex-shrink: 0;
-    transform-origin: center center;
-    overflow: hidden;
-  }
-  #${printRootId} .deck-print-slide-clone > * {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-  }
-  #${printRootId} img {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  /* White CTAs on dark slides — force bg + black type (PDF often inherits white from parent) */
-  #${printRootId} a.deck-primary-cta,
-  #${printRootId} a.deck-primary-cta *,
-  #${printRootId} a.deck-email-cta,
-  #${printRootId} a.deck-email-cta * {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-  }
-  #${printRootId} a.deck-primary-cta,
-  #${printRootId} a.deck-email-cta {
-    background-color: #ffffff !important;
-    background-image: none !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    border: 1px solid #e5e5e5 !important;
-  }
-  /* Keep quote attributions (e.g. Nelson Mandela) visible in PDF */
-  #${printRootId} blockquote,
-  #${printRootId} blockquote p,
-  #${printRootId} blockquote cite {
-    opacity: 1 !important;
-    visibility: visible !important;
+    object-fit: contain;
+    object-position: center;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -417,17 +377,6 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
-    #${printRootId} img {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
-    #${printRootId} blockquote,
-    #${printRootId} blockquote p,
-    #${printRootId} blockquote cite {
-      opacity: 1 !important;
-      visibility: visible !important;
-      display: block !important;
-    }
     #${printRootId} .deck-print-page {
       box-sizing: border-box !important;
       margin: 0 !important;
@@ -443,20 +392,27 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       page: ${pageName}-landscape;
       width: ${A4.landscape.w} !important;
       height: ${A4.landscape.h} !important;
-      padding: ${A4.padMm}mm !important;
+      padding: 0 !important;
     }
     #${printRootId}[data-orientation="portrait"] .deck-print-page {
       page: ${pageName}-portrait;
       width: ${A4.portrait.w} !important;
       height: ${A4.portrait.h} !important;
-      padding: ${A4.padMm}mm !important;
+      padding: 0 !important;
     }
     #${printRootId} .deck-print-page:last-child {
       page-break-after: auto;
       break-after: auto;
     }
+    #${printRootId} .deck-print-shot {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    /* legacy selectors kept harmless if old clone markup appears */
     #${printRootId} a { text-decoration: none !important; color: inherit !important; }
-    /* Must beat the blanket a { color: inherit } above — white pill + black type */
     #${printRootId} a.deck-primary-cta,
     #${printRootId} a.deck-primary-cta *,
     #${printRootId} a.deck-email-cta,
@@ -769,16 +725,16 @@ export default function DeckShell({
   }, [fullscreen]);
 
   /**
-   * WYSIWYG PDF: clone each slide exactly as shown in the embedded
-   * (non-fullscreen) website deck, then scale that frame into A4.
+   * Exact PDF: screenshot each slide exactly as rendered on the website
+   * (non-fullscreen, no print reflow), then place those PNGs on A4 pages.
    */
   useEffect(() => {
-    if (!printMode) return;
+    if (!preparingPdf) return;
     let cancelled = false;
     const rootEl = document.documentElement;
     rootEl.setAttribute("data-deck-print", printOrientation);
     rootEl.setAttribute("data-deck-print-active", "true");
-    const pageName = printRootId.replace(/[^a-z0-9-]/gi, "");
+    const pageName = printRootId.replace(/[^a-z0-9-]+/gi, "");
 
     const waitForImages = async (root: ParentNode) => {
       const imgs = Array.from(root.querySelectorAll("img"));
@@ -808,31 +764,8 @@ export default function DeckShell({
       );
     };
 
-    const viewportEl = slideViewportRef.current;
-    const prevViewport = viewportEl
-      ? {
-          width: viewportEl.style.width,
-          height: viewportEl.style.height,
-          minHeight: viewportEl.style.minHeight,
-          maxHeight: viewportEl.style.maxHeight,
-          overflow: viewportEl.style.overflow,
-          flex: viewportEl.style.flex,
-        }
-      : null;
-
-    const restoreViewport = () => {
-      if (!viewportEl || !prevViewport) return;
-      viewportEl.style.width = prevViewport.width;
-      viewportEl.style.height = prevViewport.height;
-      viewportEl.style.minHeight = prevViewport.minHeight;
-      viewportEl.style.maxHeight = prevViewport.maxHeight;
-      viewportEl.style.overflow = prevViewport.overflow;
-      viewportEl.style.flex = prevViewport.flex;
-    };
-
     const finish = () => {
       if (cancelled) return;
-      restoreViewport();
       rootEl.removeAttribute("data-deck-print");
       rootEl.removeAttribute("data-deck-print-active");
       const portal = document.getElementById(printRootId);
@@ -845,7 +778,40 @@ export default function DeckShell({
     };
 
     const run = async () => {
-      await new Promise((r) => window.setTimeout(r, 50));
+      // Let fullscreen exit settle — capture the embedded website frame only
+      await new Promise((r) => window.setTimeout(r, 120));
+      if (cancelled) return;
+
+      const viewport = slideViewportRef.current;
+      if (!viewport) {
+        finish();
+        return;
+      }
+
+      const shots: string[] = [];
+      for (let i = 0; i < total; i++) {
+        if (cancelled) return;
+        flushSync(() => setIndex(i));
+        await new Promise<void>((r) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => r()))
+        );
+        await waitForImages(viewport);
+        await new Promise((r) => window.setTimeout(r, 180));
+        if (cancelled) return;
+
+        // Pixel-perfect capture of the on-page slide (exactly as the website)
+        const dataUrl = await toPng(viewport, {
+          cacheBust: true,
+          pixelRatio: Math.min(2, window.devicePixelRatio || 2),
+          backgroundColor: "#ffffff",
+          filter: (node) => {
+            if (!(node instanceof HTMLElement)) return true;
+            return !node.classList.contains("sr-only");
+          },
+        });
+        shots.push(dataUrl);
+      }
+
       if (cancelled) return;
 
       let portal = document.getElementById(printRootId);
@@ -862,172 +828,22 @@ export default function DeckShell({
         buildPrintStyles(printRootId, pageName) + printPageCss(printOrientation);
       portal.appendChild(style);
 
-      const viewport = slideViewportRef.current;
-      if (!viewport) {
-        finish();
-        return;
-      }
-
-      // Do NOT resize the viewport to A4 aspect — that reflows slides away from
-      // the embedded website presentation. Clone the on-page frame as-is, then
-      // scale it into the A4 page (letterbox if aspect differs slightly).
-      const box = a4ContentBoxPx(printOrientation);
-      await new Promise<void>((r) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => r()))
-      );
-      if (cancelled) return;
-
-      const frameW = Math.max(1, viewport.clientWidth);
-      const frameH = Math.max(1, viewport.clientHeight);
-
-      for (let i = 0; i < total; i++) {
-        if (cancelled) return;
-        flushSync(() => setIndex(i));
-        await new Promise<void>((r) =>
-          requestAnimationFrame(() => requestAnimationFrame(() => r()))
-        );
-        await waitForImages(viewport);
-        await new Promise((r) => window.setTimeout(r, 120));
-
-        const source =
-          (Array.from(viewport.children).find(
-            (el) => el instanceof HTMLElement && !el.classList.contains("sr-only")
-          ) as HTMLElement | undefined) ?? viewport;
-        // Exact embedded website frame (non-fullscreen)
-        const w = Math.max(1, viewport.clientWidth || frameW);
-        const h = Math.max(1, viewport.clientHeight || frameH);
-
+      for (const src of shots) {
         const page = document.createElement("div");
         page.className = "deck-print-page";
-
-        const scaleWrap = document.createElement("div");
-        scaleWrap.className = "deck-print-scale-wrap";
-
-        const cloneHost = document.createElement("div");
-        cloneHost.className = "deck-print-slide-clone";
-        cloneHost.style.width = `${w}px`;
-        cloneHost.style.height = `${h}px`;
-        cloneHost.style.overflow = "hidden";
-        cloneHost.style.position = "relative";
-
-        const clone = source.cloneNode(true) as HTMLElement;
-        clone.style.width = "100%";
-        clone.style.height = "100%";
-        clone.style.maxWidth = "none";
-        clone.style.maxHeight = "none";
-        clone.style.overflow = "hidden";
-        clone.querySelectorAll("img").forEach((node) => {
-          const img = node as HTMLImageElement;
-          const raw =
-            img.getAttribute("data-deck-src") ||
-            img.getAttribute("data-src") ||
-            (() => {
-              try {
-                const u = new URL(img.currentSrc || img.src, window.location.origin);
-                const nested = u.searchParams.get("url");
-                if (u.pathname.includes("/_next/image") && nested) {
-                  return nested.startsWith("/") ? nested : `/${nested}`;
-                }
-              } catch {
-                /* ignore */
-              }
-              return null;
-            })();
-          if (raw) img.src = raw;
-          else if (img.currentSrc) img.src = img.currentSrc;
-          else if (img.src) img.setAttribute("src", img.src);
-          img.removeAttribute("srcset");
-          img.sizes = "";
-          img.loading = "eager";
-          img.decoding = "sync";
-          img.style.opacity = "1";
-          img.style.visibility = "visible";
-          img.style.display = "block";
-        });
-        clone.querySelectorAll("button, a").forEach((el) => {
-          (el as HTMLElement).style.pointerEvents = "none";
-        });
-
-        cloneHost.appendChild(clone);
-        scaleWrap.appendChild(cloneHost);
-        page.appendChild(scaleWrap);
+        const img = document.createElement("img");
+        img.className = "deck-print-shot";
+        img.src = src;
+        img.alt = "";
+        page.appendChild(img);
         portal.appendChild(page);
-
-        // Wait for cloned images to decode, then force pixel sizes. Off-screen
-        // clones often layout contain-imgs at 0×0 (max-h-full fails), which is
-        // what made porridge packs look cropped in A4 landscape.
-        await waitForImages(cloneHost);
-        await new Promise<void>((r) => requestAnimationFrame(() => r()));
-        clone.querySelectorAll("img").forEach((node) => {
-          const img = node as HTMLImageElement;
-          const fit =
-            img.dataset.deckFit === "cover" || img.className.includes("object-cover")
-              ? "cover"
-              : "contain";
-          const parent = img.parentElement as HTMLElement | null;
-          const pw = Math.max(0, parent?.clientWidth || parent?.offsetWidth || 0);
-          const ph = Math.max(0, parent?.clientHeight || parent?.offsetHeight || 0);
-          const nw = img.naturalWidth || 0;
-          const nh = img.naturalHeight || 0;
-
-          if (fit === "cover") {
-            img.style.position = "absolute";
-            img.style.inset = "0";
-            img.style.width = "100%";
-            img.style.height = "100%";
-            img.style.maxWidth = "none";
-            img.style.maxHeight = "none";
-            img.style.objectFit = "cover";
-            img.style.objectPosition = "center";
-            if (parent) {
-              const cs = window.getComputedStyle(parent);
-              if (cs.position === "static") parent.style.position = "relative";
-              if (ph < 8) {
-                parent.style.minHeight = "100%";
-                parent.style.height = "100%";
-              }
-            }
-            return;
-          }
-
-          // contain — pin explicit px size from parent box × intrinsic ratio
-          img.style.position = "relative";
-          img.style.inset = "auto";
-          img.style.objectFit = "contain";
-          img.style.objectPosition = "center";
-          if (pw > 0 && ph > 0 && nw > 0 && nh > 0) {
-            const s = Math.min(pw / nw, ph / nh);
-            const iw = Math.max(1, Math.floor(nw * s));
-            const ih = Math.max(1, Math.floor(nh * s));
-            img.style.width = `${iw}px`;
-            img.style.height = `${ih}px`;
-            img.style.maxWidth = `${pw}px`;
-            img.style.maxHeight = `${ph}px`;
-          } else if (ph > 0) {
-            img.style.height = `${ph}px`;
-            img.style.width = "auto";
-            img.style.maxWidth = "100%";
-            img.style.maxHeight = `${ph}px`;
-          } else {
-            img.style.width = "100%";
-            img.style.height = "auto";
-            img.style.maxWidth = "100%";
-            img.style.maxHeight = "100%";
-          }
-        });
-
-        await new Promise<void>((r) => requestAnimationFrame(() => r()));
-        const pageW = page.clientWidth || page.getBoundingClientRect().width || box.w;
-        const pageH = page.clientHeight || page.getBoundingClientRect().height || box.h;
-        // Fill the A4 content box as tightly as possible (presentation-like)
-        const scale = Math.min(pageW / w, pageH / h);
-        cloneHost.style.transformOrigin = "center center";
-        cloneHost.style.transform = `scale(${scale})`;
       }
 
       await waitForImages(portal);
-      await new Promise((r) => window.setTimeout(r, 250));
+      await new Promise((r) => window.setTimeout(r, 200));
       if (cancelled) return;
+
+      flushSync(() => setPrintMode(true));
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -1037,20 +853,22 @@ export default function DeckShell({
       });
     };
 
-    void run();
+    void run().catch((err) => {
+      console.error("Deck PDF screenshot export failed", err);
+      finish();
+    });
 
     window.addEventListener("afterprint", finish);
     const fallback = window.setTimeout(finish, 180_000);
 
     return () => {
       cancelled = true;
-      restoreViewport();
       rootEl.removeAttribute("data-deck-print");
       rootEl.removeAttribute("data-deck-print-active");
       window.clearTimeout(fallback);
       window.removeEventListener("afterprint", finish);
     };
-  }, [printMode, printOrientation, printRootId, total]);
+  }, [preparingPdf, printOrientation, printRootId, total]);
 
   const shareUrl = (() => {
     const base =
@@ -1097,16 +915,16 @@ export default function DeckShell({
   const onDownload = (orientation: PrintOrientation) => {
     track("deck_pdf", { path: sharePath, orientation });
     resumeIndexRef.current = index;
-    // Always export the embedded (non-fullscreen) website frame
+    // Always export the embedded (non-fullscreen) website frame as screenshots
     setFullscreen(false);
     setPrintOrientation(orientation);
+    setPrintMode(false); // keep website layout during capture
     setPreparingPdf(true);
-    setPrintMode(true);
   };
 
-  // Empty portal host for WYSIWYG clones (filled imperatively)
+  // Portal host for screenshot pages (filled imperatively after capture)
   const printPortal =
-    printMode && typeof document !== "undefined"
+    preparingPdf && typeof document !== "undefined"
       ? createPortal(
           <div id={printRootId} aria-hidden="true" data-orientation={printOrientation} />,
           document.body
