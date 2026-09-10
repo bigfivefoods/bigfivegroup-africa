@@ -290,7 +290,8 @@ const A4 = {
   landscape: { w: "297mm", h: "210mm" },
   portrait: { w: "210mm", h: "297mm" },
   margin: "6mm",
-  padMm: 5,
+  /** Keep tight so landscape pages fill like the on-screen presentation */
+  padMm: 2,
 } as const;
 
 /** CSS px per mm at 96dpi — used to size the live viewport to the A4 content box. */
@@ -332,10 +333,10 @@ function buildPrintStyles(printRootId: string, pageName: string) {
     justify-content: center;
   }
   #${printRootId}[data-orientation="landscape"] .deck-print-page {
-    width: 297mm; height: 210mm; padding: 5mm;
+    width: 297mm; height: 210mm; padding: 2mm;
   }
   #${printRootId}[data-orientation="portrait"] .deck-print-page {
-    width: 210mm; height: 297mm; padding: 5mm;
+    width: 210mm; height: 297mm; padding: 2mm;
   }
   #${printRootId} .deck-print-scale-wrap {
     width: 100%;
@@ -442,13 +443,13 @@ function buildPrintStyles(printRootId: string, pageName: string) {
       page: ${pageName}-landscape;
       width: ${A4.landscape.w} !important;
       height: ${A4.landscape.h} !important;
-      padding: 5mm !important;
+      padding: ${A4.padMm}mm !important;
     }
     #${printRootId}[data-orientation="portrait"] .deck-print-page {
       page: ${pageName}-portrait;
       width: ${A4.portrait.w} !important;
       height: ${A4.portrait.h} !important;
-      padding: 5mm !important;
+      padding: ${A4.padMm}mm !important;
     }
     #${printRootId} .deck-print-page:last-child {
       page-break-after: auto;
@@ -943,16 +944,10 @@ export default function DeckShell({
           img.removeAttribute("srcset");
           img.sizes = "";
           img.loading = "eager";
+          img.decoding = "sync";
           img.style.opacity = "1";
           img.style.visibility = "visible";
-          if (img.className.includes("object-contain") || img.dataset.deckFit === "contain") {
-            img.style.objectFit = "contain";
-            img.style.objectPosition = "center";
-          }
-          if (img.className.includes("object-cover") || img.dataset.deckFit === "cover") {
-            img.style.objectFit = "cover";
-            img.style.objectPosition = "center";
-          }
+          img.style.display = "block";
         });
         clone.querySelectorAll("button, a").forEach((el) => {
           (el as HTMLElement).style.pointerEvents = "none";
@@ -963,16 +958,80 @@ export default function DeckShell({
         page.appendChild(scaleWrap);
         portal.appendChild(page);
 
+        // Wait for cloned images to decode, then force pixel sizes. Off-screen
+        // clones often layout contain-imgs at 0×0 (max-h-full fails), which is
+        // what made porridge packs look cropped in A4 landscape.
+        await waitForImages(cloneHost);
+        await new Promise<void>((r) => requestAnimationFrame(() => r()));
+        clone.querySelectorAll("img").forEach((node) => {
+          const img = node as HTMLImageElement;
+          const fit =
+            img.dataset.deckFit === "cover" || img.className.includes("object-cover")
+              ? "cover"
+              : "contain";
+          const parent = img.parentElement as HTMLElement | null;
+          const pw = Math.max(0, parent?.clientWidth || parent?.offsetWidth || 0);
+          const ph = Math.max(0, parent?.clientHeight || parent?.offsetHeight || 0);
+          const nw = img.naturalWidth || 0;
+          const nh = img.naturalHeight || 0;
+
+          if (fit === "cover") {
+            img.style.position = "absolute";
+            img.style.inset = "0";
+            img.style.width = "100%";
+            img.style.height = "100%";
+            img.style.maxWidth = "none";
+            img.style.maxHeight = "none";
+            img.style.objectFit = "cover";
+            img.style.objectPosition = "center";
+            if (parent) {
+              const cs = window.getComputedStyle(parent);
+              if (cs.position === "static") parent.style.position = "relative";
+              if (ph < 8) {
+                parent.style.minHeight = "100%";
+                parent.style.height = "100%";
+              }
+            }
+            return;
+          }
+
+          // contain — pin explicit px size from parent box × intrinsic ratio
+          img.style.position = "relative";
+          img.style.inset = "auto";
+          img.style.objectFit = "contain";
+          img.style.objectPosition = "center";
+          if (pw > 0 && ph > 0 && nw > 0 && nh > 0) {
+            const s = Math.min(pw / nw, ph / nh);
+            const iw = Math.max(1, Math.floor(nw * s));
+            const ih = Math.max(1, Math.floor(nh * s));
+            img.style.width = `${iw}px`;
+            img.style.height = `${ih}px`;
+            img.style.maxWidth = `${pw}px`;
+            img.style.maxHeight = `${ph}px`;
+          } else if (ph > 0) {
+            img.style.height = `${ph}px`;
+            img.style.width = "auto";
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = `${ph}px`;
+          } else {
+            img.style.width = "100%";
+            img.style.height = "auto";
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "100%";
+          }
+        });
+
         await new Promise<void>((r) => requestAnimationFrame(() => r()));
         const pageW = page.clientWidth || page.getBoundingClientRect().width || box.w;
         const pageH = page.clientHeight || page.getBoundingClientRect().height || box.h;
+        // Fill the A4 content box as tightly as possible (presentation-like)
         const scale = Math.min(pageW / w, pageH / h);
         cloneHost.style.transformOrigin = "center center";
         cloneHost.style.transform = `scale(${scale})`;
       }
 
       await waitForImages(portal);
-      await new Promise((r) => window.setTimeout(r, 200));
+      await new Promise((r) => window.setTimeout(r, 250));
       if (cancelled) return;
 
       requestAnimationFrame(() => {

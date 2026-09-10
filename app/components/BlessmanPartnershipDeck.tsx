@@ -380,12 +380,15 @@ function Slide({ index }: { index: number }) {
               >
                 {/* Fixed-height in-flow frame — absolute/aspect boxes collapsed in A4 PDF clones */}
                 <div className="flex h-40 sm:h-48 md:h-52 w-full shrink-0 items-center justify-center bg-[#fafafa] p-2 sm:p-3">
+                  {/* width/height attrs help PDF clones size packs (max-h-full alone was 0×0) */}
                   <img
                     src={f.src}
                     alt={f.name}
+                    width={220}
+                    height={310}
                     data-deck-src={f.src}
                     data-deck-fit="contain"
-                    className="max-h-full max-w-full w-auto object-contain object-center"
+                    className="max-h-full max-w-full h-auto w-auto object-contain object-center"
                     loading={pdf ? "eager" : "lazy"}
                   />
                 </div>
