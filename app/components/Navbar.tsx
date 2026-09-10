@@ -26,7 +26,7 @@ const MISSION_ICONS = {
 const SIMPLE_LINKS = [
   { href: "/group", label: "Group" },
   { href: "/about", label: "About" },
-  { href: "/food-security", label: "Food security" },
+  { href: "/food-security", label: "Food Security" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
