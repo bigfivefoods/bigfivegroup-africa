@@ -164,18 +164,30 @@ function BlessmanKingdomSection() {
     {
       t: "Feed hungry people",
       d: "Blessman’s hubs and care points · Big Five Foods fortified staples for African kitchens.",
+      verse:
+        "“For I was hungry and you gave me something to eat, I was thirsty and you gave me something to drink…”",
+      ref: "Matthew 25:35",
     },
     {
       t: "Dignity before dependency",
       d: "Locally sustainable programmes · compassionate empowerment — skills, markets and capacity, not charity theatre.",
+      verse:
+        "“Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done.”",
+      ref: "Proverbs 19:17",
     },
     {
       t: "Form whole people",
       d: "Faith formation and child development · Super-Cube® (including Spiritual intelligence) for those who lead and serve.",
+      verse:
+        "“Start children off on the way they should go, and even when they are old they will not turn from it.”",
+      ref: "Proverbs 22:6",
     },
     {
       t: "Prove love with honesty",
       d: "Transparent stewardship · Impact PMO and SupplierAdvisor® where commerce and programmes need rails of trust.",
+      verse:
+        "“Dear children, let us not love with words or speech but with actions and in truth.”",
+      ref: "1 John 3:18",
     },
   ];
 
@@ -283,10 +295,18 @@ function BlessmanKingdomSection() {
             {shared.map((item) => (
               <div
                 key={item.t}
-                className="rounded-xl border border-white/10 bg-black/20 px-4 py-3.5 min-w-0"
+                className="rounded-xl border border-white/10 bg-black/20 px-4 py-3.5 min-w-0 flex flex-col"
               >
                 <div className="text-sm font-semibold text-white mb-1">{item.t}</div>
-                <p className="text-xs text-white/60 leading-relaxed">{item.d}</p>
+                <p className="text-xs text-white/60 leading-relaxed mb-3">{item.d}</p>
+                <blockquote className="mt-auto border-l-2 border-amber-400/50 pl-3">
+                  <p className="text-[11px] sm:text-xs text-amber-100/90 italic leading-relaxed">
+                    {item.verse}
+                  </p>
+                  <cite className="mt-1.5 block text-[10px] not-italic font-semibold tracking-wide text-amber-300/80 uppercase">
+                    — {item.ref}
+                  </cite>
+                </blockquote>
               </div>
             ))}
           </div>

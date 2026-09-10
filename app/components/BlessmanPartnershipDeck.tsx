@@ -22,86 +22,81 @@ import DeckShell, {
 import { BLESSMAN_PARTNERSHIP } from "../lib/blessmanPartnership";
 
 const theme = DECK_THEMES.blessman;
-const TOTAL = 19;
+const TOTAL = 16;
 const P = BLESSMAN_PARTNERSHIP;
 const PORRIDGE = P.porridge;
 const LABEL = PORRIDGE.label;
 
-function NutriTable({
+type NutriRow = {
+  nutrient: string;
+  per100g: string;
+  perServing: string;
+  nrv?: string;
+  indent?: boolean;
+};
+
+function NutriPanel({
+  title,
   rows,
   showNrv,
-  compact,
 }: {
-  rows: readonly {
-    nutrient: string;
-    per100g: string;
-    perServing: string;
-    nrv?: string;
-    indent?: boolean;
-  }[];
+  title: string;
+  rows: readonly NutriRow[];
   showNrv?: boolean;
-  compact?: boolean;
 }) {
   return (
-    <div className="overflow-auto rounded-xl border border-black/10 bg-white min-h-0 flex-1">
-      <table className="w-full text-left border-collapse">
-        <thead>
-          <tr className="bg-[#fdf4f2] border-b border-[#b32317]/15">
-            <th
-              className={`font-semibold text-[#b32317] ${compact ? "px-2 py-1.5 text-[9px]" : "px-2.5 py-2 text-[10px] sm:text-xs"}`}
-            >
-              Nutrient
-            </th>
-            <th
-              className={`font-semibold text-[#b32317] text-right whitespace-nowrap ${compact ? "px-2 py-1.5 text-[9px]" : "px-2.5 py-2 text-[10px] sm:text-xs"}`}
-            >
-              Per 100 g
-            </th>
-            <th
-              className={`font-semibold text-[#b32317] text-right whitespace-nowrap ${compact ? "px-2 py-1.5 text-[9px]" : "px-2.5 py-2 text-[10px] sm:text-xs"}`}
-            >
-              Per 80 g serving
-            </th>
-            {showNrv ? (
-              <th
-                className={`font-semibold text-[#b32317] text-right whitespace-nowrap ${compact ? "px-2 py-1.5 text-[9px]" : "px-2.5 py-2 text-[10px] sm:text-xs"}`}
-              >
-                % NRV
+    <div className="rounded-xl border border-black/10 bg-white overflow-hidden min-h-0 flex flex-col shadow-sm">
+      <div className="px-2.5 py-1.5 bg-[#fdf4f2] border-b border-[#b32317]/15">
+        <div className="text-[9px] sm:text-[10px] tracking-[1.5px] font-semibold text-[#b32317] uppercase">
+          {title}
+        </div>
+      </div>
+      <div className="overflow-auto min-h-0 flex-1">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b border-black/5 bg-[#fafafa]">
+              <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373]">
+                Nutrient
               </th>
-            ) : null}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row.nutrient} className="border-b border-black/5 last:border-0">
-              <td
-                className={`text-[#404040] ${compact ? "px-2 py-1 text-[9px]" : "px-2.5 py-1.5 text-[10px] sm:text-xs"} ${
-                  row.indent ? "pl-4 sm:pl-5 text-[#737373]" : "font-medium"
-                }`}
-              >
-                {row.nutrient}
-              </td>
-              <td
-                className={`text-right tabular-nums text-[#171717] ${compact ? "px-2 py-1 text-[9px]" : "px-2.5 py-1.5 text-[10px] sm:text-xs"}`}
-              >
-                {row.per100g}
-              </td>
-              <td
-                className={`text-right tabular-nums text-[#171717] ${compact ? "px-2 py-1 text-[9px]" : "px-2.5 py-1.5 text-[10px] sm:text-xs"}`}
-              >
-                {row.perServing}
-              </td>
+              <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
+                /100g
+              </th>
+              <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
+                /80g
+              </th>
               {showNrv ? (
-                <td
-                  className={`text-right tabular-nums font-semibold text-[#b32317] ${compact ? "px-2 py-1 text-[9px]" : "px-2.5 py-1.5 text-[10px] sm:text-xs"}`}
-                >
-                  {row.nrv}
-                </td>
+                <th className="px-1.5 sm:px-2 py-1 text-[8px] sm:text-[9px] font-semibold text-[#737373] text-right whitespace-nowrap">
+                  %NRV
+                </th>
               ) : null}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.nutrient} className="border-b border-black/[0.04] last:border-0">
+                <td
+                  className={`px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] leading-tight ${
+                    row.indent ? "pl-2.5 sm:pl-3 text-[#737373]" : "font-medium text-[#404040]"
+                  }`}
+                >
+                  {row.nutrient}
+                </td>
+                <td className="px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] text-right tabular-nums text-[#171717] leading-tight">
+                  {row.per100g}
+                </td>
+                <td className="px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] text-right tabular-nums text-[#171717] leading-tight">
+                  {row.perServing}
+                </td>
+                {showNrv ? (
+                  <td className="px-1.5 sm:px-2 py-0.5 sm:py-[3px] text-[8px] sm:text-[9px] text-right tabular-nums font-semibold text-[#b32317] leading-tight">
+                    {row.nrv}
+                  </td>
+                ) : null}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -391,61 +386,56 @@ function Slide({ index }: { index: number }) {
     case 6:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>NUTRITION INFORMATION · MACRONUTRIENTS</DeckEyebrow>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-1">
-            Energy, protein, carbs, fats &amp; fibre
-          </h2>
-          <p className="text-[11px] sm:text-xs text-[#737373] mb-3 leading-relaxed">
-            {LABEL.servingNote}. Values typical for Big Five Foods fortified porridge.
-          </p>
-          <NutriTable rows={LABEL.macros} />
-          <p className="mt-2 text-[10px] text-[#a3a3a3] leading-relaxed">
-            Per typical serving: <strong className="text-[#525252]">1 272 kJ</strong> energy ·{" "}
-            <strong className="text-[#525252]">10.2 g protein</strong> ·{" "}
-            <strong className="text-[#525252]">5.6 g fibre</strong> — a breakfast that fills and
-            builds.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-2">
+            <div className="min-w-0">
+              <DeckEyebrow theme={theme}>NUTRITION INFORMATION PANEL</DeckEyebrow>
+              <h2 className="text-xl sm:text-2xl md:text-[1.65rem] font-semibold tracking-tighter text-black text-balance leading-tight">
+                Fortified porridge — full nutrient profile
+              </h2>
+            </div>
+            <p className="text-[10px] sm:text-[11px] text-[#737373] leading-snug sm:text-right shrink-0 max-w-xs">
+              {LABEL.servingNote}
+              <br />
+              <span className="text-[#a3a3a3]">Typical Big Five Foods fortified porridge label</span>
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 sm:gap-2.5 flex-1 min-h-0">
+            <NutriPanel title="Macronutrients" rows={LABEL.macros} />
+            <NutriPanel title="Vitamins" rows={LABEL.vitamins} showNrv />
+            <NutriPanel title="Minerals & choline" rows={LABEL.minerals} showNrv />
+          </div>
+          <div className="mt-2 flex flex-wrap gap-1.5 sm:gap-2">
+            {[
+              "1 272 kJ / serving",
+              "10.2 g protein",
+              "5.6 g fibre",
+              "High B-vitamins %NRV",
+              "Iron · calcium · zinc",
+            ].map((chip) => (
+              <span
+                key={chip}
+                className="inline-flex items-center rounded-full border border-[#b32317]/20 bg-[#fdf4f2] px-2.5 py-1 text-[9px] sm:text-[10px] font-semibold text-[#8a1a12]"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
         </DeckSlideShell>
       );
 
     case 7:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>NUTRITION INFORMATION · VITAMINS</DeckEyebrow>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-1">
-            Vitamin panel — closing hidden hunger
+          <DeckEyebrow theme={theme}>ADDRESSING MALNUTRITION</DeckEyebrow>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2">
+            Why this porridge is so good for children — and people
           </h2>
-          <p className="text-[11px] sm:text-xs text-[#737373] mb-2 leading-relaxed">
-            % NRV per typical 80 g serving. Several B-vitamins and vitamins C &amp; E deliver well
-            above daily reference levels — designed for micronutrient-deficient diets.
+          <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+            Empty calories fill stomachs; fortified porridge fills gaps. Energy, protein and a dense
+            micronutrient panel help children learn, grow and stay healthier — in a flavour they will
+            finish.
           </p>
-          <NutriTable rows={LABEL.vitamins} showNrv compact />
-        </DeckSlideShell>
-      );
-
-    case 8:
-      return (
-        <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>NUTRITION INFORMATION · MINERALS</DeckEyebrow>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-1">
-            Mineral &amp; choline panel
-          </h2>
-          <p className="text-[11px] sm:text-xs text-[#737373] mb-2 leading-relaxed">
-            Iron, calcium, zinc, magnesium and related minerals at meaningful % NRV — the building
-            blocks for blood, bones, immunity and growth in children and families.
-          </p>
-          <NutriTable rows={LABEL.minerals} showNrv compact />
-        </DeckSlideShell>
-      );
-
-    case 9:
-      return (
-        <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>FOR CHILDREN &amp; PEOPLE</DeckEyebrow>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-3">
-            How this panel fights malnutrition
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 flex-1 min-h-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 flex-1 min-h-0 mb-2">
             {LABEL.childBenefits.map((b, i) => (
               <div
                 key={b.t}
@@ -459,35 +449,25 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
-          <p className="mt-2 text-[10px] text-[#a3a3a3] leading-relaxed">
-            Fortified porridge is not a medicine — it is a daily food designed so children get
-            energy, protein and micronutrients in a flavour they will finish.
-          </p>
-        </DeckSlideShell>
-      );
-
-    case 10:
-      return (
-        <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>AGAINST MALNUTRITION</DeckEyebrow>
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black text-balance mb-4">
-            Four ways porridge protects the child
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 min-h-0">
-            {PORRIDGE.superiority.map((s, i) => (
-              <div key={s.t} className="rounded-2xl border border-black/10 bg-white p-4 sm:p-5 shadow-sm">
-                <div className="text-[10px] tracking-[2px] font-semibold text-[#b32317] mb-1">
-                  {String(i + 1).padStart(2, "0")}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2">
+            {PORRIDGE.superiority.map((s) => (
+              <div
+                key={s.t}
+                className="rounded-lg border border-[#b32317]/15 bg-[#fdf4f2] px-2.5 py-2 min-w-0"
+              >
+                <div className="text-[10px] sm:text-[11px] font-semibold text-[#8a1a12] mb-0.5">
+                  {s.t}
                 </div>
-                <div className="text-sm sm:text-base font-semibold text-black mb-1.5">{s.t}</div>
-                <p className="text-xs sm:text-sm text-[#525252] leading-relaxed">{s.d}</p>
+                <p className="text-[9px] sm:text-[10px] text-[#737373] leading-snug line-clamp-3">
+                  {s.d}
+                </p>
               </div>
             ))}
           </div>
         </DeckSlideShell>
       );
 
-    case 11:
+    case 8:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>AFFORDABLE AT SCALE</DeckEyebrow>
@@ -515,7 +495,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 9:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HUBS · CAMPUSES · LOGISTICS</DeckEyebrow>
@@ -551,7 +531,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 10:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>FULL RANGE · PORRIDGE FIRST</DeckEyebrow>
@@ -599,7 +579,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 11:
       return (
         <DeckSlideShell dark theme={theme}>
           <DeckEyebrow light theme={theme}>
@@ -628,7 +608,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 12:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PARTNERSHIP PATHWAYS</DeckEyebrow>
@@ -649,7 +629,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>NEXT STEPS</DeckEyebrow>
@@ -673,7 +653,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 17:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>HONEST LANGUAGE</DeckEyebrow>
@@ -693,7 +673,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 18:
+    case 15:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <div className="relative h-full w-full min-h-0">
