@@ -101,6 +101,50 @@ function NutriPanel({
   );
 }
 
+function ScriptureQuote({
+  verse,
+  citation,
+  light,
+  compact,
+  className = "",
+}: {
+  verse: string;
+  citation: string;
+  light?: boolean;
+  /** Tighter type for dense cards / height-constrained slides */
+  compact?: boolean;
+  className?: string;
+}) {
+  return (
+    <blockquote
+      className={`border-l-2 ${compact ? "pl-2" : "pl-3"} ${
+        light ? "border-amber-300/60" : "border-[#b32317]/40"
+      } ${className}`}
+    >
+      <p
+        className={`italic leading-snug text-balance ${
+          compact
+            ? light
+              ? "text-amber-50/90 text-[10px] sm:text-[11px]"
+              : "text-[#525252] text-[10px] sm:text-[11px]"
+            : light
+              ? "text-amber-50/90 text-xs sm:text-sm"
+              : "text-[#525252] text-xs sm:text-sm"
+        }`}
+      >
+        {verse}
+      </p>
+      <cite
+        className={`block not-italic font-semibold tracking-wide uppercase ${
+          compact ? "mt-1 text-[9px]" : "mt-1.5 text-[10px]"
+        } ${light ? "text-amber-200/85" : "text-[#b32317]"}`}
+      >
+        — {citation}
+      </cite>
+    </blockquote>
+  );
+}
+
 function CoBrandRow({ light }: { light?: boolean }) {
   const pdf = useDeckPdfExport();
   const blessmanSrc = "/partners/blessman-international-logo.png";
@@ -194,6 +238,12 @@ function Slide({ index }: { index: number }) {
                   <p className="text-white/75 max-w-2xl mt-3 sm:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
                     {P.tagline}
                   </p>
+                  <ScriptureQuote
+                    light
+                    className="mt-4 sm:mt-5 max-w-xl"
+                    verse={P.scripture.title.verse}
+                    citation={P.scripture.title.ref}
+                  />
                 </div>
                 <div className="text-white/45 space-y-0.5 text-[10px] sm:text-xs">
                   <p>Private partner briefing · {TOTAL} slides</p>
@@ -210,32 +260,44 @@ function Slide({ index }: { index: number }) {
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>KINGDOM ALIGNMENT</DeckEyebrow>
           <CoBrandRow />
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black text-balance mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2 sm:mb-3">
             Shared calling — hope on the plate
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 flex-1 min-h-0">
-            <div className="rounded-2xl border border-[#b32317]/20 bg-[#fdf4f2] p-4 sm:p-5">
-              <div className="flex items-center gap-2 text-[10px] tracking-[2px] font-semibold text-[#b32317] mb-2">
-                <Cross className="w-3.5 h-3.5" aria-hidden />
-                BLESSMAN INTERNATIONAL
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-3 min-h-0">
+            <div className="rounded-lg sm:rounded-2xl border border-[#b32317]/20 bg-[#fdf4f2] p-2 sm:p-4">
+              <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] tracking-[1.5px] sm:tracking-[2px] font-semibold text-[#b32317] mb-1 sm:mb-1.5">
+                <Cross className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" aria-hidden />
+                <span className="leading-tight">BLESSMAN INTERNATIONAL</span>
               </div>
-              <p className="text-sm text-[#404040] leading-relaxed">{P.kingdom.blessman}</p>
+              <p className="text-[10px] sm:text-sm text-[#404040] leading-snug line-clamp-3 sm:line-clamp-5">
+                {P.kingdom.blessman}
+              </p>
             </div>
-            <div className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 sm:p-5">
-              <div className="text-[10px] tracking-[2px] font-semibold text-[#92400e] mb-2">
+            <div className="rounded-lg sm:rounded-2xl border border-black/10 bg-[#fafafa] p-2 sm:p-4">
+              <div className="text-[9px] sm:text-[10px] tracking-[1.5px] sm:tracking-[2px] font-semibold text-[#92400e] mb-1 sm:mb-1.5 leading-tight">
                 DR. CRAIG R. MULLER · BIG FIVE GROUP
               </div>
-              <p className="text-sm text-[#404040] leading-relaxed">{P.kingdom.founder}</p>
+              <p className="text-[10px] sm:text-sm text-[#404040] leading-snug line-clamp-3 sm:line-clamp-5">
+                {P.kingdom.founder}
+              </p>
             </div>
           </div>
-          <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {P.kingdom.shared.map((line) => (
+          <div className="mt-1.5 sm:mt-3 grid grid-cols-2 gap-1 sm:gap-2 min-h-0">
+            {P.kingdom.shared.map((item) => (
               <div
-                key={line}
-                className="flex gap-2 rounded-xl border border-black/10 bg-white px-3 py-2.5 text-xs sm:text-sm text-[#404040]"
+                key={item.line}
+                className="rounded-lg sm:rounded-xl border border-black/10 bg-white px-1.5 py-1.5 sm:px-2.5 sm:py-2 min-w-0 flex flex-col gap-1"
               >
-                <Heart className="w-3.5 h-3.5 text-[#b32317] shrink-0 mt-0.5" aria-hidden />
-                <span>{line}</span>
+                <div className="flex gap-1 sm:gap-1.5 text-[10px] sm:text-xs text-[#404040]">
+                  <Heart className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#b32317] shrink-0 mt-0.5" aria-hidden />
+                  <span className="font-medium leading-snug line-clamp-2">{item.line}</span>
+                </div>
+                <ScriptureQuote
+                  compact
+                  verse={item.verse}
+                  citation={item.ref}
+                  className="mt-auto"
+                />
               </div>
             ))}
           </div>
@@ -257,10 +319,11 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
-          <p className="mt-3 text-[11px] text-[#737373] leading-relaxed">
-            Feeding programmes win when food is eaten, nutrient-dense and affordable enough to serve
-            every school day — that is the design brief for Big Five Foods fortified porridges.
-          </p>
+          <ScriptureQuote
+            className="mt-3"
+            verse={P.scripture.challenge.verse}
+            citation={P.scripture.challenge.ref}
+          />
         </DeckSlideShell>
       );
 
@@ -287,6 +350,11 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
+          <ScriptureQuote
+            className="mt-3"
+            verse={P.scripture.product.verse}
+            citation={P.scripture.product.ref}
+          />
         </DeckSlideShell>
       );
 
@@ -449,7 +517,7 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 mb-2">
             {PORRIDGE.superiority.map((s) => (
               <div
                 key={s.t}
@@ -464,6 +532,12 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
+          <ScriptureQuote
+            compact
+            className="shrink-0"
+            verse={P.scripture.malnutrition.verse}
+            citation={P.scripture.malnutrition.ref}
+          />
         </DeckSlideShell>
       );
 
@@ -593,7 +667,7 @@ function Slide({ index }: { index: number }) {
             shame the child. Fortified porridge is practical kingdom stewardship — delicious enough
             to finish, nutritious enough to build, affordable enough to serve again tomorrow.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
             {[
               { t: "Dignity", d: "Familiar flavours · African food for African children" },
               { t: "Development", d: "Micronutrients for growth, immunity and learning" },
@@ -605,6 +679,11 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
+          <ScriptureQuote
+            light
+            verse={P.scripture.kingdomPlate.verse}
+            citation={P.scripture.kingdomPlate.ref}
+          />
         </DeckSlideShell>
       );
 
@@ -626,6 +705,11 @@ function Slide({ index }: { index: number }) {
               </div>
             ))}
           </div>
+          <ScriptureQuote
+            className="mt-3"
+            verse={P.scripture.pathways.verse}
+            citation={P.scripture.pathways.ref}
+          />
         </DeckSlideShell>
       );
 
@@ -709,11 +793,17 @@ function Slide({ index }: { index: number }) {
                     <br />
                     <span style={{ color: "#f47835" }}>on kingdom tables.</span>
                   </h2>
-                  <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed mb-3">
                     Delicious flavours · ~74% more nutrition by design · ~R2.25 per meal · African
                     food for African children — with Dr. Craig R. Muller and Big Five Group as
                     kingdom partners in the plate.
                   </p>
+                  <ScriptureQuote
+                    light
+                    className="max-w-xl mb-4"
+                    verse={P.scripture.cta.verse}
+                    citation={P.scripture.cta.ref}
+                  />
                 </div>
                 <div className="space-y-3">
                   <a

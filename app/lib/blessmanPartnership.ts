@@ -28,11 +28,69 @@ export const BLESSMAN_PARTNERSHIP = {
     founder:
       "Dr. Craig R. Muller, Founder & CEO of Big Five Group, is a visionary architect of kingdom-centred leadership and sustainable impact in Africa. His life goal is to Feed (Big Five Foods™), Educate (Super-Cube®) and Empower (SupplierAdvisor®) — so children eat with dignity and communities rise under their own power.",
     shared: [
-      "Feed hungry children with food they will actually eat",
-      "Close micronutrient gaps that drive stunting and hidden hunger",
-      "Keep meals affordable so hubs and care points can stretch every rand",
-      "Serve with dignity — African food for African children, not dependency theatre",
+      {
+        line: "Feed hungry children with food they will actually eat",
+        verse:
+          "“For I was hungry and you gave me something to eat, I was thirsty and you gave me something to drink…”",
+        ref: "Matthew 25:35",
+      },
+      {
+        line: "Close micronutrient gaps that drive stunting and hidden hunger",
+        verse:
+          "“Is it not to share your food with the hungry and to provide the poor wanderer with shelter…”",
+        ref: "Isaiah 58:7",
+      },
+      {
+        line: "Keep meals affordable so hubs and care points can stretch every rand",
+        verse:
+          "“Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done.”",
+        ref: "Proverbs 19:17",
+      },
+      {
+        line: "Serve with dignity — African food for African children, not dependency theatre",
+        verse:
+          "“Dear children, let us not love with words or speech but with actions and in truth.”",
+        ref: "1 John 3:18",
+      },
     ],
+  },
+
+  /** Scripture used across deck slides */
+  scripture: {
+    title: {
+      verse: "“I am the bread of life. Whoever comes to me will never go hungry…”",
+      ref: "John 6:35",
+    },
+    challenge: {
+      verse:
+        "“The generous will themselves be blessed, for they share their food with the poor.”",
+      ref: "Proverbs 22:9",
+    },
+    product: {
+      verse:
+        "“So whether you eat or drink or whatever you do, do it all for the glory of God.”",
+      ref: "1 Corinthians 10:31",
+    },
+    malnutrition: {
+      verse:
+        "“Start children off on the way they should go, and even when they are old they will not turn from it.”",
+      ref: "Proverbs 22:6",
+    },
+    kingdomPlate: {
+      verse:
+        "“Religion that God our Father accepts as pure and faultless is this: to look after orphans and widows in their distress…”",
+      ref: "James 1:27",
+    },
+    pathways: {
+      verse:
+        "“And let us consider how we may spur one another on toward love and good deeds.”",
+      ref: "Hebrews 10:24",
+    },
+    cta: {
+      verse:
+        "“And the King will reply, ‘Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me.’”",
+      ref: "Matthew 25:40",
+    },
   },
 
   challenge: {
