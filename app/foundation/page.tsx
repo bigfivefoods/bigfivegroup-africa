@@ -14,9 +14,20 @@ import { Heart, TrendingUp, Leaf, Users, ShieldCheck, ExternalLink } from "lucid
 import { SA_URL } from "../lib/saCopy";
 import FoundationStrategyDeck from "../components/FoundationStrategyDeck";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
+import PageJumpNav from "../components/PageJumpNav";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#0d9488";
+const ACCENT_DARK = "#0f766e";
+const ACCENT_SOFT = "#f0fdfa";
+
+const FOUNDATION_JUMP_NAV = [
+  { href: "#purpose", label: "Purpose", desc: "Why the Foundation", icon: "heart" },
+  { href: "#impact", label: "Impact", desc: "Impact model", icon: "trending" },
+  { href: "#programmes", label: "Programmes", desc: "What we fund", icon: "users" },
+  { href: "#donate", label: "Donate", desc: "Give with proof", icon: "leaf" },
+  { href: "#foundation-deck", label: "Deck", desc: "Foundation strategy deck", icon: "shield" },
+] as const;
 
 const sdgGoals = [
   {
@@ -83,11 +94,18 @@ export default function FoundationPage() {
         overlayClassName={pageBrand.foundation.overlay}
       />
 
+      <PageJumpNav
+        ariaLabel="Foundation page sections"
+        accentDark={ACCENT_DARK}
+        accentSoft={ACCENT_SOFT}
+        items={FOUNDATION_JUMP_NAV}
+      />
+
       <SupplierTrust entityName="Big Five Foundation" compact />
 
       <PillarAlignmentBand slug="foundation" accent={ACCENT} accentSoft="#f0fdfa" />
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">
+      <section id="purpose" className="scroll-mt-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 text-center">
         <SectionHeading
           eyebrow="OUR PURPOSE"
           title="Why Big Five Foundation?"
@@ -130,7 +148,7 @@ export default function FoundationPage() {
         </div>
       </section>
 
-      <section id="impact" className="bg-white border-y border-black/10 py-20 sm:py-24">
+      <section id="impact" className="scroll-mt-28 bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="HOW WE WORK"
@@ -149,7 +167,7 @@ export default function FoundationPage() {
         </div>
       </section>
 
-      <section id="programmes" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <section id="programmes" className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         <SectionHeading
           eyebrow="PROGRAMME TYPES"
           title="Where Foundation capital goes to work"
@@ -278,7 +296,7 @@ export default function FoundationPage() {
         />
       </section>
 
-      <section id="donate" className="bg-[#0f766e] text-white py-20 sm:py-24">
+      <section id="donate" className="scroll-mt-28 bg-[#0f766e] text-white py-20 sm:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tighter mb-4">
             How to fund or partner
@@ -324,7 +342,7 @@ export default function FoundationPage() {
 
       <section
         id="foundation-deck"
-        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-28"
       >
         <FoundationStrategyDeck />
       </section>

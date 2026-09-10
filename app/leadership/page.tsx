@@ -16,10 +16,21 @@ import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
 import LeadershipStrategyDeck from "../components/LeadershipStrategyDeck";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
+import PageJumpNav from "../components/PageJumpNav";
 import { SUPER_CUBE_FMCG_CASE } from "../lib/superCubeCase";
 import { pageBrand } from "../lib/pageBrand";
 
 const SUPER_CUBE_URL = "https://www.super-cube.me";
+const ACCENT_DARK = "#a16207";
+const ACCENT_SOFT = "#fefce8";
+
+const LEADERSHIP_JUMP_NAV = [
+  { href: "#case-study", label: "Case study", desc: "FMCG Super-Cube® proof", icon: "award" },
+  { href: "#book", label: "Book", desc: "Free leadership book", icon: "book" },
+  { href: "#programmes", label: "Programmes", desc: "Development offers", icon: "graduation" },
+  { href: "#research", label: "Research", desc: "Doctoral model", icon: "globe" },
+  { href: "#leadership-deck", label: "Deck", desc: "Leadership strategy deck", icon: "building" },
+] as const;
 
 const pillars = [
   {
@@ -91,6 +102,13 @@ export default function LeadershipPage() {
           { href: "#book", label: "Free leadership book" },
         ]}
         overlayClassName={pageBrand.leadership.overlay}
+      />
+
+      <PageJumpNav
+        ariaLabel="Leadership page sections"
+        accentDark={ACCENT_DARK}
+        accentSoft={ACCENT_SOFT}
+        items={LEADERSHIP_JUMP_NAV}
       />
 
       <PillarAlignmentBand slug="leadership" accent="#eab308" accentSoft="#fefce8" />
@@ -247,7 +265,7 @@ export default function LeadershipPage() {
       {/* FMCG CASE STUDY */}
       <section
         id="case-study"
-        className="bg-[#0a0a0a] text-white py-16 sm:py-20 md:py-24 border-y border-white/5"
+        className="scroll-mt-28 bg-[#0a0a0a] text-white py-16 sm:py-20 md:py-24 border-y border-white/5"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-[10px] sm:text-xs tracking-[2px] text-amber-400/90 font-semibold mb-3">
@@ -325,7 +343,7 @@ export default function LeadershipPage() {
       {/* BOOK */}
       <section
         id="book"
-        className="py-20 sm:py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fde68a]/50"
+        className="scroll-mt-28 py-20 sm:py-24 bg-gradient-to-br from-[#fefce8] via-[#fffbeb] to-[#fefce8] border-y border-[#fde68a]/50"
       >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-[#eab308] text-black px-4 py-1.5 rounded-full text-xs font-bold tracking-[2px] mb-6">
@@ -351,7 +369,7 @@ export default function LeadershipPage() {
       </section>
 
       {/* PROGRAMME OFFER */}
-      <section id="programmes" className="bg-white border-y border-black/10 py-16 sm:py-20">
+      <section id="programmes" className="scroll-mt-28 bg-white border-y border-black/10 py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="PROGRAMMES"
@@ -431,7 +449,7 @@ export default function LeadershipPage() {
       </section>
 
       {/* RESEARCH */}
-      <section id="research" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section id="research" className="scroll-mt-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="PEER-REVIEWED"
           title="The research behind the model"
@@ -493,7 +511,7 @@ export default function LeadershipPage() {
 
       <section
         id="leadership-deck"
-        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-28"
       >
         <LeadershipStrategyDeck />
       </section>

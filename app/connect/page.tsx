@@ -36,9 +36,20 @@ import { sa, SA_URL, SA_ONBOARDING, SA_EMAIL, SA_LOGIN } from "../lib/saCopy";
 import SamSection from "../components/SamSection";
 import ConnectStrategyDeck from "../components/ConnectStrategyDeck";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
+import PageJumpNav from "../components/PageJumpNav";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#06b6d4";
+const ACCENT_DARK = "#0e7490";
+const ACCENT_SOFT = "#ecfeff";
+
+const CONNECT_JUMP_NAV = [
+  { href: "#case-study-sa", label: "Case study", desc: "DBE × KZN proof", icon: "school" },
+  { href: "#sam", label: "SAM", desc: "Grok messenger", icon: "brain" },
+  { href: "#how", label: "How", desc: "60-second story", icon: "play" },
+  { href: "#trust", label: "Trust", desc: "Why buyers trust Connect", icon: "shield" },
+  { href: "#connect-deck", label: "Deck", desc: "Connect strategy deck", icon: "activity" },
+] as const;
 
 const moduleIcons = [
   Activity,
@@ -107,6 +118,13 @@ export default function ConnectPage() {
         overlayClassName={pageBrand.connect.overlay}
       />
 
+      <PageJumpNav
+        ariaLabel="Connect page sections"
+        accentDark={ACCENT_DARK}
+        accentSoft={ACCENT_SOFT}
+        items={CONNECT_JUMP_NAV}
+      />
+
       <SupplierTrust entityName="Big Five Connect" compact />
 
       <PillarAlignmentBand slug="connect" accent={ACCENT} accentSoft="#ecfeff" />
@@ -136,7 +154,7 @@ export default function ConnectPage() {
       <SamSection dark />
 
       {/* 60-second story */}
-      <section id="how" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
+      <section id="how" className="scroll-mt-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <SectionHeading
           eyebrow="60-second story"
           title="How trust blocks risk — without a demo call"
@@ -248,7 +266,7 @@ export default function ConnectPage() {
       </section>
 
       {/* Trust layer */}
-      <section id="trust" className="scroll-mt-24 bg-white border-y border-black/10 py-16 sm:py-20">
+      <section id="trust" className="scroll-mt-28 bg-white border-y border-black/10 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Trust layer" title={sa.trustTitle} subtitle={sa.trustBody} />
           <FeatureGrid
@@ -322,7 +340,7 @@ export default function ConnectPage() {
 
       <section
         id="connect-deck"
-        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-28"
       >
         <ConnectStrategyDeck />
       </section>

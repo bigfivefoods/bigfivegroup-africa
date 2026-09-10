@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { SectionHeading, FinalCta } from "../components/PageSections";
+import PageJumpNav from "../components/PageJumpNav";
 import { pageBrand } from "../lib/pageBrand";
 import { SOFI, SOFI_DECK_STATS } from "../lib/sofi";
 import { getPillarAlignment, GROUP_VMV } from "../lib/pillarAlignment";
@@ -23,6 +24,14 @@ import { FOODS_ECONOMICS } from "../lib/foodsEconomics";
 import { NSNP } from "../lib/nsnp";
 
 const brand = pageBrand.foodSecurity;
+
+const FOOD_SECURITY_JUMP_NAV = [
+  { href: "#sofi", label: "SOFI", desc: "UN food-security baseline", icon: "alert" },
+  { href: "#wfp", label: "WFP", desc: "World Food Programme context", icon: "globe-2" },
+  { href: "#sdgs", label: "SDGs", desc: "UN Sustainable Development Goals", icon: "check" },
+  { href: "#opportunities", label: "Opportunities", desc: "Where systems can win", icon: "package" },
+  { href: "#response", label: "Response", desc: "How Big Five answers", icon: "shield" },
+] as const;
 
 const SDGS = [
   {
@@ -202,6 +211,13 @@ export default function FoodSecurityPage() {
           { href: "/contact", label: "Partner with us" },
         ]}
         overlayClassName={brand.overlay}
+      />
+
+      <PageJumpNav
+        ariaLabel="Food Security page sections"
+        accentDark={brand.accentDark}
+        accentSoft={brand.accentSoft}
+        items={FOOD_SECURITY_JUMP_NAV}
       />
 
       {/* Honesty banner */}

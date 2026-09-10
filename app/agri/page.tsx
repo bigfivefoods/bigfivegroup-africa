@@ -21,9 +21,20 @@ import {
 } from "lucide-react";
 import AgriStrategyDeck from "../components/AgriStrategyDeck";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
+import PageJumpNav from "../components/PageJumpNav";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#10b981";
+const ACCENT_DARK = "#047857";
+const ACCENT_SOFT = "#ecfdf5";
+
+const AGRI_JUMP_NAV = [
+  { href: "#rural-farmers", label: "Farmers", desc: "Rural farmers first", icon: "users" },
+  { href: "#ambition", label: "Ambition", desc: "Continental opportunity", icon: "chart" },
+  { href: "#how", label: "How", desc: "Soil to verified markets", icon: "tractor" },
+  { href: "#promise", label: "Promise", desc: "Our commitment", icon: "handshake" },
+  { href: "#agri-deck", label: "Deck", desc: "Agri strategy deck", icon: "leaf" },
+] as const;
 
 export default function AgriPage() {
   return (
@@ -47,11 +58,18 @@ export default function AgriPage() {
         overlayClassName={pageBrand.agri.overlay}
       />
 
+      <PageJumpNav
+        ariaLabel="Agri page sections"
+        accentDark={ACCENT_DARK}
+        accentSoft={ACCENT_SOFT}
+        items={AGRI_JUMP_NAV}
+      />
+
       <SupplierTrust entityName="Big Five Agri" compact />
 
       <PillarAlignmentBand slug="agri" accent={ACCENT} accentSoft="#ecfdf5" />
 
-      <section id="rural-farmers" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section id="rural-farmers" className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="RURAL FARMERS FIRST"
           title="Working hand-in-hand with rural farmers"
@@ -87,7 +105,7 @@ export default function AgriPage() {
         </div>
       </section>
 
-      <section className="bg-white border-y border-black/10 py-20 sm:py-24">
+      <section id="ambition" className="scroll-mt-28 bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="CONTINENTAL REACH · OUR PLAN & AMBITION"
@@ -129,7 +147,7 @@ export default function AgriPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section id="how" className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="HOW AGRI WORKS"
           title="From soil health to verified markets"
@@ -197,7 +215,7 @@ export default function AgriPage() {
         </div>
       </section>
 
-      <section className="bg-[#047857] py-20 sm:py-24 text-white">
+      <section id="promise" className="scroll-mt-28 bg-[#047857] py-20 sm:py-24 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Users className="w-14 h-14 mx-auto text-[#6ee7b7] mb-6" />
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter mb-6">
@@ -225,7 +243,7 @@ export default function AgriPage() {
 
       <section
         id="agri-deck"
-        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-28"
       >
         <AgriStrategyDeck />
       </section>

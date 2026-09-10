@@ -27,6 +27,7 @@ import {
 import { SA_ONBOARDING } from "../lib/saCopy";
 import DirectStrategyDeck from "../components/DirectStrategyDeck";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
+import PageJumpNav from "../components/PageJumpNav";
 import { pageBrand } from "../lib/pageBrand";
 import {
   SANTACO,
@@ -35,6 +36,15 @@ import {
 } from "../lib/santaco";
 
 const ACCENT = "#f97316";
+const ACCENT_DARK = "#c2410c";
+const ACCENT_SOFT = "#fff7ed";
+
+const DIRECT_JUMP_NAV = [
+  { href: "#santaco", label: "SANTACO", desc: "Taxi-rank partnership", icon: "network" },
+  { href: "#network", label: "Network", desc: "Live container map", icon: "pin" },
+  { href: "#model", label: "Model", desc: "How Direct works", icon: "package" },
+  { href: "#direct-deck", label: "Deck", desc: "Direct strategy deck", icon: "bar-chart" },
+] as const;
 
 export default function DirectPage() {
   return (
@@ -61,6 +71,13 @@ export default function DirectPage() {
           },
         ]}
         overlayClassName={pageBrand.direct.overlay}
+      />
+
+      <PageJumpNav
+        ariaLabel="Direct page sections"
+        accentDark={ACCENT_DARK}
+        accentSoft={ACCENT_SOFT}
+        items={DIRECT_JUMP_NAV}
       />
 
       <SupplierTrust entityName="Big Five Direct · Foods distribution" compact />
@@ -184,7 +201,7 @@ export default function DirectPage() {
       </section>
 
       {/* Foods × SA network — impact + live map */}
-      <section id="network" className="py-16 sm:py-20 md:py-24">
+      <section id="network" className="scroll-mt-28 py-16 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 text-center">
           <div className="text-xs tracking-[3px] text-[#c2410c] mb-3 font-medium">
             DIRECT × FOODS × SUPPLIERADVISOR®
@@ -229,7 +246,7 @@ export default function DirectPage() {
         </p>
       </section>
 
-      <section id="model" className="bg-white border-y border-black/10 py-20 sm:py-24">
+      <section id="model" className="scroll-mt-28 bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="INFRASTRUCTURE" title="Micro-hubs that move markets" />
           <FeatureGrid
@@ -324,7 +341,7 @@ export default function DirectPage() {
 
       <section
         id="direct-deck"
-        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-28"
       >
         <DirectStrategyDeck />
       </section>

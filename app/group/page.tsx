@@ -21,9 +21,16 @@ import { SectionHeading, FinalCta } from "../components/PageSections";
 import IntelligenceNarrative from "../components/IntelligenceNarrative";
 import StrategyDeck from "../components/StrategyDeck";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
+import PageJumpNav from "../components/PageJumpNav";
 import { companies } from "../lib/companies";
 import { CompanyIcon } from "../lib/icons";
 import { pageBrand } from "../lib/pageBrand";
+
+const GROUP_JUMP_NAV = [
+  { href: "#vision", label: "Vision", desc: "Vision · mission · values", icon: "compass" },
+  { href: "#pillars", label: "Pillars", desc: "Nine pillars", icon: "network" },
+  { href: "#strategy-deck", label: "Deck", desc: "Group strategy deck", icon: "target" },
+] as const;
 
 /** How each pillar serves vision · mission · values */
 const pillarSupport: Record<
@@ -132,6 +139,13 @@ export default function GroupPage() {
         overlayClassName={pageBrand.group.overlay}
       />
 
+      <PageJumpNav
+        ariaLabel="Group page sections"
+        accentDark={pageBrand.group.accentDark}
+        accentSoft={pageBrand.group.accentSoft}
+        items={GROUP_JUMP_NAV}
+      />
+
       {/* Ecosystem intro — short; deck carries full narrative */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
         <SectionHeading
@@ -174,7 +188,7 @@ export default function GroupPage() {
       <IntelligenceNarrative variant="compact" />
 
       {/* Vision · Mission · Values — full web detail; deck has the brief version */}
-      <section id="vision" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
+      <section id="vision" className="scroll-mt-28 bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="NORTH STAR"
@@ -335,7 +349,7 @@ export default function GroupPage() {
       </section>
 
       {/* All 9 pillars */}
-      <section id="pillars" className="bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
+      <section id="pillars" className="scroll-mt-28 bg-white border-y border-black/10 py-16 sm:py-20 md:py-24">
         <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="THE NINE PILLARS"
@@ -514,7 +528,7 @@ export default function GroupPage() {
 
       <section
         id="strategy-deck"
-        className="bg-[#fafafa] border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+        className="bg-[#fafafa] border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-28"
       >
         <StrategyDeck />
       </section>

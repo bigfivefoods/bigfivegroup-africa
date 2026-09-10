@@ -22,10 +22,20 @@ import {
 
 import AccessStrategyDeck from "../components/AccessStrategyDeck";
 import PillarAlignmentBand from "../components/PillarAlignmentBand";
+import PageJumpNav from "../components/PageJumpNav";
 import { NSNP, NSNP_CASE } from "../lib/nsnp";
 import { pageBrand } from "../lib/pageBrand";
 
 const ACCENT = "#3b82f6";
+const ACCENT_DARK = "#1d4ed8";
+const ACCENT_SOFT = "#eff6ff";
+
+const ACCESS_JUMP_NAV = [
+  { href: "#ambition", label: "Ambition", desc: "School nutrition pathway", icon: "users" },
+  { href: "#deliver", label: "Deliver", desc: "What Access unlocks", icon: "landmark" },
+  { href: "#how", label: "How", desc: "How Access works", icon: "file" },
+  { href: "#access-deck", label: "Deck", desc: "Access strategy deck", icon: "shield" },
+] as const;
 
 export default function AccessPage() {
   return (
@@ -49,11 +59,18 @@ export default function AccessPage() {
         overlayClassName={pageBrand.access.overlay}
       />
 
+      <PageJumpNav
+        ariaLabel="Access page sections"
+        accentDark={ACCENT_DARK}
+        accentSoft={ACCENT_SOFT}
+        items={ACCESS_JUMP_NAV}
+      />
+
       <SupplierTrust entityName="Access programme suppliers and SMEs" compact />
 
       <PillarAlignmentBand slug="access" accent={ACCENT} accentSoft="#eff6ff" />
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section id="ambition" className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading
           eyebrow="SCHOOL NUTRITION AMBITION"
           title="Policy becomes projects. Projects become outcomes."
@@ -91,7 +108,7 @@ export default function AccessPage() {
         </p>
       </section>
 
-      <section className="bg-white border-y border-black/10 py-20 sm:py-24">
+      <section id="deliver" className="scroll-mt-28 bg-white border-y border-black/10 py-20 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="WHAT WE DELIVER" title="Sovereign capital, cleanly unlocked" />
           <FeatureGrid
@@ -132,7 +149,7 @@ export default function AccessPage() {
         </div>
       </section>
 
-      <section id="how" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section id="how" className="scroll-mt-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <SectionHeading eyebrow="PROCESS" title="How Access works" />
         <ProcessSteps
           accent={ACCENT}
@@ -186,7 +203,7 @@ export default function AccessPage() {
 
       <section
         id="access-deck"
-        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-24"
+        className="bg-white border-y border-black/10 py-14 sm:py-20 md:py-24 scroll-mt-28"
       >
         <AccessStrategyDeck />
       </section>
