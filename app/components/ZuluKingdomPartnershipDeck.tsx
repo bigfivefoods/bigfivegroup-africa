@@ -87,22 +87,13 @@ function LeopardWatermark() {
 
 function CoBrandRow({ light }: { light?: boolean }) {
   return (
-    <div className="flex flex-nowrap items-center gap-2.5 sm:gap-4 mb-3 sm:mb-5 max-w-full">
+    <div className="flex flex-nowrap items-center gap-2.5 sm:gap-4 mb-3 sm:mb-5 max-w-full shrink-0">
       <div
-        className={`relative h-11 sm:h-14 w-[9.5rem] sm:w-52 shrink-0 bg-white rounded-xl px-2.5 py-1 border-2 shadow-sm overflow-hidden flex items-center justify-center ${
+        className={`relative h-11 sm:h-14 min-h-11 sm:min-h-14 w-[9.5rem] sm:w-52 shrink-0 bg-white rounded-xl border-2 shadow-sm overflow-hidden ${
           light ? "border-white/50" : "border-[#e0b000]/40"
         }`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={P.logoSrc}
-          alt="The Zulu Kingdom"
-          data-deck-src={P.logoSrc}
-          data-deck-fit="contain"
-          className="max-h-full max-w-full w-auto h-auto object-contain p-0.5"
-          width={208}
-          height={80}
-        />
+        <DeckPrintImage src={P.logoSrc} alt="The Zulu Kingdom" fit="contain" paddingClass="p-1" />
       </div>
       <span
         className={`shrink-0 text-base sm:text-xl font-light leading-none ${
@@ -113,19 +104,15 @@ function CoBrandRow({ light }: { light?: boolean }) {
         ×
       </span>
       <div
-        className={`relative h-11 w-11 sm:h-14 sm:w-14 shrink-0 overflow-hidden rounded-xl bg-white border-2 shadow-sm flex items-center justify-center ${
+        className={`relative h-11 w-11 sm:h-14 sm:w-14 min-h-11 sm:min-h-14 shrink-0 overflow-hidden rounded-xl bg-white border-2 shadow-sm ${
           light ? "border-white/50" : "border-black/10"
         }`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/bigfivefoods-logo.png"
-          alt="Big Five Foods"
-          data-deck-src="/bigfivefoods-logo.png"
-          data-deck-fit="contain"
-          className="max-h-full max-w-full w-auto h-auto object-contain p-0.5"
-          width={56}
-          height={56}
+        <DeckPrintImage
+          src="/bigfivegroup-logo.jpg"
+          alt="Big Five Group"
+          fit="contain"
+          paddingClass="p-0.5"
         />
       </div>
     </div>

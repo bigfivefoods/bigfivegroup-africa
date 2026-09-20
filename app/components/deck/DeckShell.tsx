@@ -470,7 +470,6 @@ export function DeckSlideShell({
   theme: DeckTheme;
 }) {
   const forPrint = useDeckPrintMode();
-  const pdf = useDeckPdfExport();
   const zeroPad = /\b!?p-0\b/.test(className);
   // Only compact densify mode hard-clips. PDF keeps website overflow so the
   // clone matches the embedded (non-fullscreen) presentation on the page.
@@ -647,12 +646,13 @@ export function DeckPrintImage({
   paddingClass?: string;
   fill?: boolean;
 }) {
-  const pdf = useDeckPdfExport();
   return (
     // eslint-disable-next-line @next/next/no-img-element -- print PDF must use native img for reliable paint
     <img
       src={src}
       alt={alt}
+      width={fill ? 16 : undefined}
+      height={fill ? 16 : undefined}
       data-deck-src={src}
       data-deck-fit={fit}
       className={[
@@ -661,9 +661,18 @@ export function DeckPrintImage({
         paddingClass,
         className,
       ].join(" ")}
-      loading={pdf ? "eager" : "lazy"}
-      decoding={pdf ? "sync" : "async"}
-      {...(pdf ? { fetchPriority: "high" as const } : {})}
+      style={{
+        // Inline geometry beats `img { height: auto }` in globals.css and keeps
+        // html-to-image from painting a 0-height clone. content-visibility must
+        // stay visible or off-screen PDF clones drop the bitmap.
+        ...(fill
+          ? { position: "absolute", inset: 0, width: "100%", height: "100%" }
+          : {}),
+        contentVisibility: "visible",
+      }}
+      loading="eager"
+      decoding="async"
+      fetchPriority="high"
     />
   );
 }
@@ -780,6 +789,59 @@ export default function DeckShell({
       );
     };
 
+    const blobToDataUrl = (blob: Blob) =>
+      new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result));
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(blob);
+      });
+
+    const rawSrc = (img: HTMLImageElement): string | null => {
+      const marked = img.getAttribute("data-deck-src");
+      if (marked) return marked;
+      try {
+        const u = new URL(img.currentSrc || img.src, window.location.origin);
+        const nested = u.searchParams.get("url");
+        if (u.pathname.includes("/_next/image") && nested) {
+          return nested.startsWith("http") || nested.startsWith("/") ? nested : `/${nested}`;
+        }
+      } catch {
+        /* ignore */
+      }
+      const src = img.getAttribute("src");
+      return src && !src.startsWith("data:") ? src : null;
+    };
+
+    const inlineImages = async (root: ParentNode) => {
+      const restored: Array<{ img: HTMLImageElement; src: string; srcset: string }> = [];
+      const imgs = Array.from(root.querySelectorAll("img")) as HTMLImageElement[];
+      await Promise.all(
+        imgs.map(async (img) => {
+          const raw = rawSrc(img);
+          if (!raw) return;
+          restored.push({
+            img,
+            src: img.getAttribute("src") || "",
+            srcset: img.getAttribute("srcset") || "",
+          });
+          try {
+            const href = new URL(raw, window.location.origin).href;
+            const res = await fetch(href, { cache: "force-cache" });
+            if (!res.ok) throw new Error(String(res.status));
+            const dataUrl = await blobToDataUrl(await res.blob());
+            img.removeAttribute("srcset");
+            img.src = dataUrl;
+          } catch {
+            img.removeAttribute("srcset");
+            img.src = raw;
+          }
+        })
+      );
+      await waitForImages(root);
+      return restored;
+    };
+
     const finish = () => {
       if (cancelled) return;
       rootEl.removeAttribute("data-deck-print");
@@ -815,41 +877,15 @@ export default function DeckShell({
         await new Promise((r) => window.setTimeout(r, 180));
         if (cancelled) return;
 
-        // Rewrite Next optimizer URLs → original assets so logos/photos paint in the PNG
-        const restored: Array<{ img: HTMLImageElement; src: string; srcset: string }> = [];
-        viewport.querySelectorAll("img").forEach((node) => {
-          const img = node as HTMLImageElement;
-          const prevSrc = img.getAttribute("src") || "";
-          const prevSrcset = img.getAttribute("srcset") || "";
-          const raw =
-            img.getAttribute("data-deck-src") ||
-            (() => {
-              try {
-                const u = new URL(img.currentSrc || img.src, window.location.origin);
-                const nested = u.searchParams.get("url");
-                if (u.pathname.includes("/_next/image") && nested) {
-                  return nested.startsWith("http") || nested.startsWith("/")
-                    ? nested
-                    : `/${nested}`;
-                }
-              } catch {
-                /* ignore */
-              }
-              return null;
-            })();
-          if (!raw) return;
-          restored.push({ img, src: prevSrc, srcset: prevSrcset });
-          img.removeAttribute("srcset");
-          img.src = raw;
-        });
-        await waitForImages(viewport);
+        // Inline logos/photos as data URLs so html-to-image does not drop them on later slides
+        const restored = await inlineImages(viewport);
         await new Promise((r) => window.setTimeout(r, 60));
 
         // Pixel-perfect capture of the on-page slide (exactly as the website)
         let dataUrl: string;
         try {
           dataUrl = await toPng(viewport, {
-            cacheBust: true,
+            cacheBust: false,
             pixelRatio: Math.min(2, window.devicePixelRatio || 2),
             backgroundColor: "#ffffff",
             filter: (node) => {
@@ -858,7 +894,6 @@ export default function DeckShell({
             },
           });
         } finally {
-          // Restore original srcs so the live deck stays untouched
           restored.forEach(({ img, src, srcset }) => {
             if (src) img.setAttribute("src", src);
             if (srcset) img.setAttribute("srcset", srcset);
@@ -1146,7 +1181,7 @@ export default function DeckShell({
   return (
     <PrintModeContext.Provider
       value={{
-        active: printMode,
+        active: printMode || preparingPdf,
         orientation: printOrientation,
         // Keep website typography/spacing — PDF must match the embedded deck
         compact: false,

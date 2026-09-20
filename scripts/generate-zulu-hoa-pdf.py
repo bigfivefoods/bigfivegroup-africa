@@ -16,7 +16,7 @@ from pathlib import Path
 
 from PIL import Image as PILImage
 from PIL import ImageEnhance
-from reportlab.lib.colors import HexColor, white
+from reportlab.lib.colors import Color, HexColor, white
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.utils import ImageReader
@@ -45,11 +45,13 @@ CREAM_CARD = HexColor("#FFFCF7")
 CHAR = HexColor("#14110C")
 RULE = HexColor("#E4D4A4")
 
+FRAME = 6.8 * mm
 M = 11 * mm
 INNER = 16 * mm
 CONTENT_W = PAGE_W - 2 * INNER
-FOOTER_H = 11 * mm
-BODY_BOTTOM = FOOTER_H + M + 3.2 * mm
+SLIM_H = 34 * mm
+FOOTER_H = 16 * mm
+BODY_BOTTOM = FRAME + FOOTER_H + 4.2 * mm
 TOTAL_PAGES = 3
 
 
@@ -97,47 +99,49 @@ def to_reader(im: PILImage.Image, quality: int = 92) -> ImageReader:
 
 def make_leopard_assets() -> dict[str, ImageReader]:
     src = PILImage.open(LEOPARD).convert("RGB")
-    src = ImageEnhance.Color(src).enhance(1.04)
+    src = ImageEnhance.Contrast(src).enhance(1.22)
+    src = ImageEnhance.Color(src).enhance(1.06)
 
-    dpi = 160
+    dpi = 170
     pw, ph = int(PAGE_W / 72 * dpi), int(PAGE_H / 72 * dpi)
     full = cover_resize(src, pw, ph)
 
-    cream = PILImage.new("RGB", (pw, ph), (251, 247, 238))
+    # Whisper of print on cream — spots readable, type stays clear
+    cream = PILImage.new("RGB", (pw, ph), (252, 248, 239))
     wash = PILImage.blend(cream, full, 0.11)
 
-    header_h = int(92 * mm / 72 * dpi)
+    header_h = int(94 * mm / 72 * dpi)
     hero = cover_resize(src, pw, header_h)
-    dark = PILImage.new("RGB", hero.size, (16, 12, 8))
-    grad = PILImage.linear_gradient("L").resize(hero.size)
-    alpha = grad.point(lambda p: int(88 + p * (172 - 88) / 255))
-    hero_dark = PILImage.composite(dark, hero, alpha)
+    # Keep the print vivid; a light dusk only so gold/white type can sit on it
+    dusk = PILImage.new("RGB", hero.size, (28, 18, 8))
+    hero = PILImage.blend(hero, dusk, 0.16)
 
-    slim_h = int(28 * mm / 72 * dpi)
+    slim_h = int(SLIM_H / 72 * dpi)
     slim = cover_resize(src, pw, slim_h)
-    slim = PILImage.blend(slim, PILImage.new("RGB", slim.size, (18, 13, 8)), 0.42)
+    slim = PILImage.blend(slim, PILImage.new("RGB", slim.size, (22, 14, 6)), 0.18)
 
     foot_h = int(FOOTER_H / 72 * dpi)
-    foot = cover_resize(src, pw, max(foot_h, 40)).crop((0, 0, pw, foot_h))
-    foot = PILImage.blend(foot, PILImage.new("RGB", foot.size, (18, 13, 8)), 0.38)
+    foot = cover_resize(src, pw, max(foot_h, 48)).crop((0, 0, pw, foot_h))
+    foot = PILImage.blend(foot, PILImage.new("RGB", foot.size, (22, 14, 6)), 0.20)
 
     return {
-        "wash": to_reader(wash, 88),
-        "hero": to_reader(hero_dark, 92),
-        "slim": to_reader(slim, 90),
-        "foot": to_reader(foot, 86),
+        "wash": to_reader(wash, 90),
+        "hero": to_reader(hero, 93),
+        "slim": to_reader(slim, 92),
+        "foot": to_reader(foot, 90),
     }
 
 
 def plate_logo(path: Path, box_w: int, box_h: int, pad: int = 12) -> ImageReader:
+    """Opaque white plate (JPEG) so PDF viewers do not drop logos behind a soft mask."""
     im = PILImage.open(path).convert("RGBA")
-    plate = PILImage.new("RGBA", (box_w, box_h), (255, 255, 255, 255))
+    plate = PILImage.new("RGB", (box_w, box_h), (255, 255, 255))
     avail_w, avail_h = box_w - 2 * pad, box_h - 2 * pad
     scale = min(avail_w / im.width, avail_h / im.height)
     nw, nh = max(1, int(im.width * scale)), max(1, int(im.height * scale))
     im = im.resize((nw, nh), PILImage.Resampling.LANCZOS)
     plate.paste(im, ((box_w - nw) // 2, (box_h - nh) // 2), im)
-    return to_reader(plate)
+    return to_reader(plate, quality=94)
 
 
 def rrect(c, x, y, w, h, r, fill=None, stroke=None, sw=0.5):
@@ -213,6 +217,41 @@ def hairline(c, x, y, w, color=GOLD, sw=0.55):
     c.line(x, y, x + w, y)
 
 
+def gold_pair(c, x, y, w):
+    """Double gold rule used at header/footer edges."""
+    c.setStrokeColor(GOLD)
+    c.setLineWidth(1.15)
+    c.line(x, y, x + w, y)
+    c.setStrokeColor(GOLD_LT)
+    c.setLineWidth(0.35)
+    c.line(x, y - 2.2, x + w, y - 2.2)
+
+
+def veil(c, x, y, w, h, alpha=0.28):
+    """Translucent dusk so leopard print stays visible under type."""
+    c.saveState()
+    c.setFillColor(Color(0.07, 0.04, 0.02, alpha=alpha))
+    c.rect(x, y, w, h, fill=1, stroke=0)
+    c.restoreState()
+
+
+def gold_corners(c, x, y, w, h, arm=7.5 * mm):
+    c.setStrokeColor(GOLD)
+    c.setLineWidth(0.9)
+    # bottom-left
+    c.line(x, y, x + arm, y)
+    c.line(x, y, x, y + arm)
+    # bottom-right
+    c.line(x + w, y, x + w - arm, y)
+    c.line(x + w, y, x + w, y + arm)
+    # top-left
+    c.line(x, y + h, x + arm, y + h)
+    c.line(x, y + h, x, y + h - arm)
+    # top-right
+    c.line(x + w, y + h, x + w - arm, y + h)
+    c.line(x + w, y + h, x + w, y + h - arm)
+
+
 def section_label(c, eyebrow, x, y):
     draw_tracked(c, eyebrow.upper(), x, y, FONTS["sansBold"], 6.2, 0.9, GOLD_DK)
     hairline(c, x, y - 3.0, 16, GOLD_LT, 0.9)
@@ -247,28 +286,35 @@ def draw_page_ground(c):
     c.setFillColor(CREAM)
     c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
     c.drawImage(ASSETS["wash"], 0, 0, width=PAGE_W, height=PAGE_H, mask="auto")
+    # Outer gold frame
     c.setStrokeColor(GOLD)
-    c.setLineWidth(0.7)
-    inset = 7.2 * mm
-    c.rect(inset, inset, PAGE_W - 2 * inset, PAGE_H - 2 * inset, fill=0, stroke=1)
+    c.setLineWidth(1.05)
+    c.rect(FRAME, FRAME, PAGE_W - 2 * FRAME, PAGE_H - 2 * FRAME, fill=0, stroke=1)
+    c.setStrokeColor(GOLD_LT)
+    c.setLineWidth(0.35)
+    inner = FRAME + 1.8
+    c.rect(inner, inner, PAGE_W - 2 * inner, PAGE_H - 2 * inner, fill=0, stroke=1)
+    gold_corners(c, FRAME + 3.2, FRAME + 3.2, PAGE_W - 2 * FRAME - 6.4, PAGE_H - 2 * FRAME - 6.4, arm=6.2 * mm)
 
 
 def draw_footer(c, page_num: int):
-    y = M
-    w = PAGE_W - 2 * M
-    x = M
+    x = FRAME
+    y = FRAME
+    w = PAGE_W - 2 * FRAME
     h = FOOTER_H
-    clip_image(c, ASSETS["foot"], x, y, w, h, r=0)
-    hairline(c, INNER, y + h, CONTENT_W, GOLD, 0.7)
-    ty = y + 4.2
+    clip_image(c, ASSETS["foot"], x, y, w, h)
+    veil(c, x, y, w, h, alpha=0.30)
+    gold_pair(c, INNER, y + h + 0.4, CONTENT_W)
+    ty = y + h / 2 - 2.4
     c.setFillColor(GOLD_SOFT)
-    c.setFont(FONTS["sans"], 6.0)
+    c.setFont(FONTS["sans"], 6.15)
     c.drawString(INNER, ty, "BF/RH/HOA/FINAL-V5")
     c.setFillColor(GOLD)
-    c.setFont(FONTS["sans"], 6.0)
-    c.drawCentredString(PAGE_W / 2, ty, "Principal terms  ·  subject to signature")
-    c.setFont(FONTS["sansBold"], 6.1)
-    c.drawRightString(PAGE_W - INNER, ty, f"{page_num}  /  {TOTAL_PAGES}")
+    c.setFont(FONTS["sans"], 6.15)
+    c.drawCentredString(PAGE_W / 2, ty, "The Zulu Kingdom  ×  Big Five Group  ·  principal terms")
+    c.setFont(FONTS["sansBold"], 6.3)
+    c.setFillColor(GOLD_SOFT)
+    c.drawRightString(PAGE_W - INNER, ty, f"{page_num}   /   {TOTAL_PAGES}")
 
 
 def draw_cobrand(c, x, y, zk_w=46 * mm, zk_h=15.2 * mm, bfg=15.2 * mm):
@@ -279,7 +325,6 @@ def draw_cobrand(c, x, y, zk_w=46 * mm, zk_h=15.2 * mm, bfg=15.2 * mm):
         y + 1.0,
         width=zk_w - 3.2,
         height=zk_h - 2.0,
-        mask="auto",
         preserveAspectRatio=True,
         anchor="c",
     )
@@ -295,7 +340,6 @@ def draw_cobrand(c, x, y, zk_w=46 * mm, zk_h=15.2 * mm, bfg=15.2 * mm):
         y + 1.2,
         width=bfg - 2.4,
         height=bfg - 2.4,
-        mask="auto",
         preserveAspectRatio=True,
         anchor="c",
     )
@@ -303,17 +347,19 @@ def draw_cobrand(c, x, y, zk_w=46 * mm, zk_h=15.2 * mm, bfg=15.2 * mm):
 
 
 def draw_slim_header(c, running: str) -> float:
-    h = 26.5 * mm
-    y = PAGE_H - M - h
-    clip_image(c, ASSETS["slim"], M, y, PAGE_W - 2 * M, h)
-    draw_cobrand(c, INNER, y + 5.6)
+    h = SLIM_H
+    y = PAGE_H - FRAME - h
+    w = PAGE_W - 2 * FRAME
+    clip_image(c, ASSETS["slim"], FRAME, y, w, h)
+    veil(c, FRAME, y, w, h, alpha=0.26)
+    gold_pair(c, INNER, y + 2.4, CONTENT_W)
+    draw_cobrand(c, INNER, y + 9.2)
     c.setFillColor(GOLD)
-    c.setFont(FONTS["sansBold"], 6.0)
-    c.drawRightString(PAGE_W - INNER, y + 16.6, "HEADS OF AGREEMENT")
+    c.setFont(FONTS["sansBold"], 6.2)
+    c.drawRightString(PAGE_W - INNER, y + 21.8, "HEADS OF AGREEMENT")
     c.setFillColor(GOLD_SOFT)
-    c.setFont(FONTS["serifItalic"], 7.6)
-    c.drawRightString(PAGE_W - INNER, y + 8.2, running)
-    hairline(c, INNER, y + 0.6, CONTENT_W, GOLD, 0.65)
+    c.setFont(FONTS["serifItalic"], 8.0)
+    c.drawRightString(PAGE_W - INNER, y + 12.4, running)
     return y
 
 
@@ -337,15 +383,20 @@ def paint_table_head(c, x, y, w, head_h, labels, cols):
 def page_1(c):
     draw_page_ground(c)
 
-    header_h = 88 * mm
-    hy = PAGE_H - M - header_h
-    clip_image(c, ASSETS["hero"], M, hy, PAGE_W - 2 * M, header_h)
+    header_h = 90 * mm
+    hy = PAGE_H - FRAME - header_h
+    hw = PAGE_W - 2 * FRAME
+    clip_image(c, ASSETS["hero"], FRAME, hy, hw, header_h)
+    # Soft dusk over the print so spots remain, type reads
+    veil(c, FRAME, hy, hw, header_h, alpha=0.18)
+    veil(c, FRAME, hy, hw, 18 * mm, alpha=0.34)
+    gold_pair(c, INNER, PAGE_H - FRAME - 3.2, CONTENT_W)
 
     draw_tracked(
         c,
         "THE ZULU KINGDOM  ×  BIG FIVE GROUP",
         INNER,
-        PAGE_H - M - 8.6,
+        PAGE_H - FRAME - 9.4,
         FONTS["sansBold"],
         5.9,
         0.72,
@@ -356,16 +407,16 @@ def page_1(c):
         c,
         "CONFIDENTIAL PARTNER BRIEFING",
         PAGE_W - INNER - tw,
-        PAGE_H - M - 8.6,
+        PAGE_H - FRAME - 9.4,
         FONTS["sansBold"],
         5.9,
         0.95,
         GOLD_SOFT,
     )
 
-    draw_cobrand(c, INNER, PAGE_H - M - 27.4 * mm)
+    draw_cobrand(c, INNER, PAGE_H - FRAME - 28.2 * mm)
 
-    ty = PAGE_H - M - 36.4 * mm
+    ty = PAGE_H - FRAME - 37.2 * mm
     draw_tracked(c, "HEADS OF AGREEMENT  ·  ROYAL HOUSEHOLD", INNER, ty, FONTS["sansBold"], 6.3, 0.92, GOLD)
 
     c.setFillColor(white)
@@ -390,7 +441,7 @@ def page_1(c):
         "Principal terms · subject to signature",
         INNER,
         ty - 86.0,
-        fill=HexColor("#0E0B08"),
+        fill=HexColor("#1A1208"),
         stroke=GOLD,
         text_color=GOLD,
         size=6.1,
@@ -402,7 +453,7 @@ def page_1(c):
         "Company established · awaiting Royal approval",
         INNER + w1 + 6,
         ty - 86.0,
-        fill=HexColor("#0E0B08"),
+        fill=HexColor("#1A1208"),
         stroke=GOLD,
         text_color=GOLD_SOFT,
         size=6.1,
@@ -410,22 +461,19 @@ def page_1(c):
         pad=5.6,
     )
 
-    # Signing strip — thin, not a heavy plate
-    c.setFillColor(HexColor("#0E0B08"))
-    c.rect(M, hy, PAGE_W - 2 * M, 11.6 * mm, fill=1, stroke=0)
-    hairline(c, INNER, hy + 11.6 * mm, CONTENT_W, GOLD, 0.55)
+    gold_pair(c, INNER, hy + 13.4 * mm, CONTENT_W)
     c.setFillColor(GOLD)
     c.setFont(FONTS["sansBold"], 5.9)
-    c.drawString(INNER, hy + 4.6, "PROPOSED SIGNING")
+    c.drawString(INNER, hy + 5.2, "PROPOSED SIGNING")
     c.setFillColor(GOLD_SOFT)
     c.setFont(FONTS["sans"], 7.2)
     c.drawString(
         INNER + 32 * mm,
-        hy + 4.6,
+        hy + 5.2,
         "23 September 2026   ·   Zimbali Lakes Resort   ·   2nd Annual Amazulu Queens' High Tea",
     )
 
-    y = hy - 8.4 * mm
+    y = hy - 8.6 * mm
 
     section_label(c, "1  ·  Parties & purpose", INNER, y)
     y -= 8.0 * mm
@@ -837,7 +885,7 @@ def page_3(c):
     ]
     tg = 3.4 * mm
     tw = (CONTENT_W - tg) / 2
-    th = 22.8 * mm
+    th = 21.2 * mm
     for i, (lab, body, note) in enumerate(tiles):
         col = i % 2
         row = i // 2
@@ -860,9 +908,9 @@ def page_3(c):
             c.setFont(FONTS["sansItalic"], 6.2)
             c.drawString(x + 8, ty - 17.6 - used_b - 3.2, note)
 
-    y -= 2 * (th + 2.6 * mm) + 2.6 * mm
+    y -= 2 * (th + 2.2 * mm) + 2.0 * mm
 
-    prod_h = 14.4 * mm
+    prod_h = 13.6 * mm
     rrect(c, INNER, y - prod_h, CONTENT_W, prod_h, 2.4, fill=CREAM_CARD, stroke=GOLD, sw=0.45)
     c.setFillColor(GOLD_DK)
     c.setFont(FONTS["sansBold"], 5.7)
@@ -872,10 +920,10 @@ def page_3(c):
         "NSNP / institutional 5 kg formats where school- or clinic-linked"
     )
     draw_para(c, products, INNER + 8, y - 16.4, FONTS["sans"], 7.15, 9.3, CONTENT_W - 16, INK_SOFT)
-    y -= prod_h + 5.6 * mm
+    y -= prod_h + 4.2 * mm
 
     section_label(c, "9  ·  Honesty — what this is not", INNER, y)
-    y -= 6.8 * mm
+    y -= 5.6 * mm
 
     notes = [
         "This document is a Big Five Group partner briefing of HOA principal terms — not an official Palace publication and not a record of executed statutory documents.",
@@ -886,23 +934,23 @@ def page_3(c):
         "Funding stack names are proposed channels — not closed sponsor awards. Named corporates are illustrative CSI channels.",
         "No Royal Rate rand figure is published here. Heritage language remains anchored to zulukingdom.co.za. This briefing does not speak for the Palace.",
     ]
-    notes_h = 7.4 * mm
+    notes_h = 6.6 * mm
     for n in notes:
-        nlines = wrap_text(c, n, FONTS["sans"], 6.55, CONTENT_W - 24)
-        notes_h += len(nlines) * 8.4 + 1.7
-    hon_h = min(notes_h, y - (BODY_BOTTOM + 0.6 * mm))
+        nlines = wrap_text(c, n, FONTS["sans"], 6.4, CONTENT_W - 24)
+        notes_h += len(nlines) * 8.15 + 1.45
+    hon_h = min(notes_h, y - (BODY_BOTTOM + 0.4 * mm))
     rrect(c, INNER, y - hon_h, CONTENT_W, hon_h, 2.4, fill=CHAR, stroke=GOLD, sw=0.6)
     c.setFillColor(GOLD)
     c.rect(INNER, y - hon_h, 1.7, hon_h, fill=1, stroke=0)
 
-    yy = y - 5.2 * mm
-    floor = y - hon_h + 3.0 * mm
+    yy = y - 4.8 * mm
+    floor = y - hon_h + 2.6 * mm
     for n in notes:
-        if yy < floor + 7:
+        if yy < floor + 6.5:
             break
         gold_dot(c, INNER + 8, yy)
-        used_n = draw_para(c, n, INNER + 16, yy, FONTS["sans"], 6.55, 8.4, CONTENT_W - 24, GOLD_SOFT)
-        yy -= used_n + 1.7
+        used_n = draw_para(c, n, INNER + 16, yy, FONTS["sans"], 6.4, 8.15, CONTENT_W - 24, GOLD_SOFT)
+        yy -= used_n + 1.45
 
     draw_footer(c, 3)
     c.showPage()
