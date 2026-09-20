@@ -64,6 +64,65 @@ function StatusBadge({ light }: { light?: boolean }) {
   );
 }
 
+function EntityStatusBadge() {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-700/30 bg-emerald-50 px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-900">
+      <BadgeCheck className="w-3.5 h-3.5" aria-hidden />
+      {hoa.entityStatusLabel}
+    </span>
+  );
+}
+
+function LeopardWash({ dark }: { dark?: boolean }) {
+  return (
+    <>
+      <Image
+        src={P.leopardHero}
+        alt=""
+        fill
+        className={`object-cover object-center ${dark ? "" : "opacity-[0.14]"}`}
+        sizes="100vw"
+      />
+      {dark ? (
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(115deg, rgba(10,8,4,0.92) 0%, rgba(20,14,6,0.84) 50%, rgba(10,8,4,0.90) 100%)",
+          }}
+          aria-hidden
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-b from-[#faf6eb]/90 via-white/85 to-[#faf6eb]/95" aria-hidden />
+      )}
+    </>
+  );
+}
+
+function CoBrandStrip({ light }: { light?: boolean }) {
+  return (
+    <div className="flex flex-wrap items-center gap-3 mb-5">
+      <div
+        className={`relative h-12 w-36 sm:h-14 sm:w-44 rounded-xl overflow-hidden border-2 bg-white shadow-sm ${
+          light ? "border-white/50" : "border-[#e0b000]/35"
+        }`}
+      >
+        <Image src={P.logoSrc} alt="The Zulu Kingdom" fill className="object-contain p-1.5" sizes="176px" />
+      </div>
+      <span className={`text-lg font-light ${light ? "text-white/40" : "text-black/25"}`} aria-hidden>
+        ×
+      </span>
+      <div
+        className={`relative h-12 w-12 sm:h-14 sm:w-14 rounded-xl overflow-hidden border-2 bg-white shadow-sm ${
+          light ? "border-white/50" : "border-black/10"
+        }`}
+      >
+        <Image src="/bigfivefoods-logo.png" alt="Big Five Foods" fill className="object-contain p-1" sizes="56px" />
+      </div>
+    </div>
+  );
+}
+
 const ACTIVATION_ICONS = {
   izintombi: Sparkles,
   amabutho: Shield,
@@ -84,42 +143,9 @@ export default function ZuluKingdomHoaSections() {
         id="isidlo-sesilo"
         className="scroll-mt-28 border-b border-black/10 relative overflow-hidden text-white py-12 sm:py-16"
       >
-        <Image
-          src={P.leopardHero}
-          alt=""
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(115deg, rgba(10,8,4,0.92) 0%, rgba(20,14,6,0.84) 50%, rgba(10,8,4,0.90) 100%)",
-          }}
-          aria-hidden
-        />
+        <LeopardWash dark />
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-4 mb-6">
-            <div className="relative h-12 w-[9.5rem] sm:h-14 sm:w-44 rounded-xl overflow-hidden bg-white p-1.5 border border-[#e0b000]/30">
-              <Image
-                src={P.logoSrc}
-                alt="The Zulu Kingdom"
-                fill
-                className="object-contain"
-                sizes="176px"
-              />
-            </div>
-            <div className="relative h-12 w-28 sm:h-14 sm:w-32 rounded-xl overflow-hidden bg-white p-1.5 border border-[#e0b000]/30">
-              <Image
-                src="/bigfivefoods-logo.png"
-                alt="Big Five Foods"
-                fill
-                className="object-contain"
-                sizes="128px"
-              />
-            </div>
-          </div>
+          <CoBrandStrip light />
           <SectionEyebrow light>{hoa.eyebrow}</SectionEyebrow>
           <div className="flex flex-wrap items-center gap-3 mb-3">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-balance max-w-3xl">
@@ -199,36 +225,39 @@ export default function ZuluKingdomHoaSections() {
       {/* Big Five Royal Foods entity */}
       <section
         id="royal-foods-entity"
-        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 relative overflow-hidden py-12 sm:py-16"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionEyebrow>OPERATING COMPANY · HOA-PROPOSED</SectionEyebrow>
+        <LeopardWash />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <CoBrandStrip />
+          <SectionEyebrow>OPERATING COMPANY · ESTABLISHED</SectionEyebrow>
           <div className="flex flex-wrap items-center gap-3 mb-3">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance max-w-3xl">
               {hoa.entityName}
             </h2>
+            <EntityStatusBadge />
             <StatusBadge />
           </div>
-          <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-8">
-            The HOA proposes constituting {hoa.entityName} as {hoa.entityRole} — a Big Five Group
-            operating company, not a Palace entity, and not yet incorporated under an executed SHA
-            or MOI.
+          <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-8">
+            {hoa.entityStatusDetail} The HOA sets principal terms for designation as {hoa.entityRole}{" "}
+            under Isidlo seSilo — not a Palace entity, and not yet an executed Official Meal Partner
+            appointment.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-6">
-            <article className="rounded-2xl border border-[#e0b000]/30 bg-[#faf6eb] p-5 sm:p-6">
+            <article className="rounded-2xl border border-[#e0b000]/35 bg-white/90 backdrop-blur-sm p-5 sm:p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-3">
                 <UtensilsCrossed className="w-5 h-5 text-[#a67c00]" aria-hidden />
                 <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00]">
-                  OFFICIAL MEAL PARTNER
+                  OFFICIAL MEAL PARTNER · AWAITING ROYAL APPROVAL
                 </div>
               </div>
               <h3 className="text-lg font-semibold text-black mb-2">{hoa.entityRole}</h3>
               <p className="text-sm text-[#404040] leading-relaxed">
-                Proposed designation under {hoa.ref} for Isidlo seSilo — the Official Nutrition
-                Programme of the Kingdom. Status: {hoa.statusLabel.toLowerCase()}.
+                Designation under {hoa.ref} for Isidlo seSilo — the Official Nutrition Programme of
+                the Kingdom. Company established; Royal approval and HOA signature pending.
               </p>
             </article>
-            <article className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 sm:p-6">
+            <article className="rounded-2xl border border-black/10 bg-white/90 backdrop-blur-sm p-5 sm:p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-3">
                 <BadgeCheck className="w-5 h-5 text-[#a67c00]" aria-hidden />
                 <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00]">
@@ -239,11 +268,11 @@ export default function ZuluKingdomHoaSections() {
               <p className="text-sm text-[#404040] leading-relaxed">{hoa.exclusiveTerm}</p>
               <p className="text-xs text-[#737373] mt-3 leading-relaxed">
                 Exclusivity is a principal commercial term only — not a gazetted royal appointment
-                and not in force until the HOA is executed.
+                and not in force until the HOA is executed and Royal approval is granted.
               </p>
             </article>
           </div>
-          <div className="rounded-2xl border border-[#e0b000]/25 bg-white p-5 sm:p-6 flex flex-wrap items-center gap-4">
+          <div className="rounded-2xl border border-[#e0b000]/30 bg-white/95 p-5 sm:p-6 flex flex-wrap items-center gap-4 shadow-sm">
             <div className="relative h-14 w-32 shrink-0 rounded-xl overflow-hidden bg-white border border-black/10 p-1.5">
               <Image
                 src="/bigfivefoods-logo.png"
@@ -255,8 +284,8 @@ export default function ZuluKingdomHoaSections() {
             </div>
             <p className="text-sm text-[#525252] leading-relaxed min-w-0 flex-1">
               Manufacturing remains Big Five Foods™ — fortified porridges, one-pots, soya and soups
-              placed through the proposed Royal Foods vehicle for household, ceremonial and
-              programme tables.
+              placed through Big Five Royal Foods (Pty) Ltd for household, ceremonial and programme
+              tables once Royal approval is confirmed.
             </p>
           </div>
           <HonestyFooter />
@@ -266,9 +295,11 @@ export default function ZuluKingdomHoaSections() {
       {/* Governance */}
       <section
         id="governance"
-        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 relative overflow-hidden py-12 sm:py-16"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <LeopardWash />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <CoBrandStrip />
           <SectionEyebrow>GOVERNANCE · BOARD &amp; PATRONS</SectionEyebrow>
           <div className="flex items-center gap-2 mb-3">
             <Building2 className="w-6 h-6 text-[#a67c00]" aria-hidden />
@@ -346,8 +377,9 @@ export default function ZuluKingdomHoaSections() {
       </section>
 
       {/* Roles */}
-      <section id="roles" className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="roles" className="scroll-mt-28 border-b border-black/10 relative overflow-hidden py-12 sm:py-16">
+        <LeopardWash />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>ROLES · EXECUTION &amp; LIAISON</SectionEyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance mb-3 max-w-3xl">
             Who stewards the proposed company
@@ -460,9 +492,11 @@ export default function ZuluKingdomHoaSections() {
       {/* Royal commercial */}
       <section
         id="royal-commercial"
-        className="scroll-mt-28 border-b border-black/10 bg-[#faf6eb] py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 relative overflow-hidden py-12 sm:py-16"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <LeopardWash />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <CoBrandStrip />
           <SectionEyebrow>COMMERCIAL TERM · HOA-PROPOSED</SectionEyebrow>
           <div className="flex items-center gap-2 mb-3">
             <FileText className="w-6 h-6 text-[#a67c00]" aria-hidden />

@@ -409,6 +409,10 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     programmeMeaning: "Official Nutrition Programme of the Kingdom",
     entityName: "Big Five Royal Foods (Pty) Ltd",
     entityRole: "Official Meal Partner of the Royal Household",
+    entityStatus: "established" as const,
+    entityStatusLabel: "Company established · awaiting Royal approval",
+    entityStatusDetail:
+      "Big Five Royal Foods (Pty) Ltd has been established and is awaiting Royal Household approval of the Heads of Agreement and Official Meal Partner designation. Incorporation is complete; royal endorsement and HOA signature remain outstanding.",
     exclusiveTerm:
       "Exclusive Official Fortified Meal Provider for listed royal activations (HOA-proposed commercial term)",
     signing: {
@@ -429,7 +433,7 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
       },
     },
     purpose:
-      "Principal terms for a strategic partnership to establish Isidlo seSilo — the Official Nutrition Programme of the Kingdom — and to constitute Big Five Royal Foods (Pty) Ltd as Official Meal Partner of the Royal Household.",
+      "Principal terms for a strategic partnership to establish Isidlo seSilo — the Official Nutrition Programme of the Kingdom — and for Big Five Royal Foods (Pty) Ltd (now established) to be designated Official Meal Partner of the Royal Household, subject to Royal approval and HOA signature.",
     vision: [
       "Creates sustainable jobs on Ingonyama Trust land",
       "Provides fortified nutrition for His Majesty’s people",
@@ -438,7 +442,7 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     ],
     board: [
       {
-        person: "Dr. Craig R. Muller (Dr. Miller)",
+        person: "Dr. Craig Ross Muller",
         seat: "Executive Director / CEO",
         tbc: false,
       },
@@ -474,7 +478,7 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
       "Approve meal standards worthy of His Majesty’s people, and lead all women-centric and community distribution programmes.",
     roles: [
       {
-        person: "Dr. Craig R. Muller",
+        person: "Dr. Craig Ross Muller",
         title: "Chief Executive Officer",
         bullets: [
           "Overall strategic leadership and execution",

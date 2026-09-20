@@ -358,7 +358,8 @@ export const PARTNERS: PartnerProfile[] = [
     notes: [
       "HOA BF/RH/HOA/FINAL-V5 — principal terms for Big Five Royal Foods (Pty) Ltd as Official Meal Partner of the Royal Household and for Isidlo seSilo, prepared for signature 23 Sep 2026 at Zimbali Lakes Resort (2nd Annual Amazulu Queens' High Tea).",
       "Parties: Big Five Group (Pty) Ltd and the Royal Household Partnership (Prince Ntokozo and the Queens), in the presence of HRH Ndlunkulu laMakhubo and HRH Ndlunkulu kaMayisela.",
-      "Board as tabled: Dr. Miller — Executive Director / CEO; Prince Ntokozo — NED / Royal Liaison; Dr. Joy (Natalie) — Strategic Advisor, role TBC; Independent Chair — mutual agreement.",
+      "Board as tabled: Dr. Craig Ross Muller — Executive Director / CEO; Prince Ntokozo — NED / Royal Liaison; Dr. Joy (Natalie) — Strategic Advisor, role TBC; Independent Chair — mutual agreement.",
+      "Big Five Royal Foods (Pty) Ltd has been established and is awaiting Royal Household approval of the HOA and Official Meal Partner designation.",
       "Patrons: Ndlunkulu laMakhubo (Izintombi Zesilo & Umkhosi woMhlanga; Queens' High Tea) and Ndlunkulu kaMayisela (Amabutho catering, household welfare, maternal & family nutrition).",
       "Activations (exclusive fortified-meal provider under HOA): Reed Dance eNyokeni 15k–30k maidens + 2-week camps; Amabutho 500–3,000 per activation; core royal calendar; Amakhosi/Izinduna & Ingonyama imbizo; royal schools, clinics, orphan care, disaster relief meal.",
       "Commercial (HOA): 21-day advance headcount; invoice at pre-agreed Royal Rate; proposed funding via Ingonyama Trust CSI, KZN Provincial Government, corporate CSI (MTN, Lesaka, Edison Power etc.) and Big Five CSI; planned monthly offtake 50,000–200,000 meals.",

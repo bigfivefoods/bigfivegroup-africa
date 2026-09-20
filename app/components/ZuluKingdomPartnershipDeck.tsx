@@ -191,7 +191,7 @@ function Slide({ index }: { index: number }) {
                   BIG FIVE GROUP
                 </div>
                 <p className="text-sm text-[#404040] leading-relaxed mb-3">
-                  Dr. Craig R. Muller founded Big Five Group to{" "}
+                  Dr. Craig Ross Muller founded Big Five Group to{" "}
                   <strong className="text-black">Feed</strong> (Big Five Foods™),{" "}
                   <strong className="text-black">Educate</strong> (Super-Cube®) and{" "}
                   <strong className="text-black">Empower</strong> (SupplierAdvisor®) — so people eat
@@ -1127,7 +1127,7 @@ function Slide({ index }: { index: number }) {
                 },
                 {
                   t: "Not an MOI",
-                  d: "Does not incorporate Big Five Royal Foods (Pty) Ltd or amend any memorandum of incorporation.",
+                  d: "Does not, by itself, confer Official Meal Partner status — Big Five Royal Foods (Pty) Ltd is established and awaits Royal approval and HOA signature.",
                 },
                 {
                   t: "Not a tender award",
