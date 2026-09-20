@@ -364,6 +364,11 @@ export const PARTNERS: PartnerProfile[] = [
     ],
     resources: [
       {
+        href: "#zulu-partnership-deck",
+        label: "Strategic partnership deck",
+        desc: "16-slide briefing — 50:50 Feed · Educate · Empower with leopard-print branding.",
+      },
+      {
         href: "#royal-house",
         label: "Royal house alignment",
         desc: "How service to the Zulu royal family and Big Five Group goals meet.",

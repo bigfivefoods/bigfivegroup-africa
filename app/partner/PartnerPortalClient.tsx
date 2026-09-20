@@ -71,6 +71,13 @@ const BlessmanPartnershipDeck = dynamic(() => import("../components/BlessmanPart
   ssr: true,
   loading: () => <DeckLoading label="Blessman deck" />,
 });
+const ZuluKingdomPartnershipDeck = dynamic(
+  () => import("../components/ZuluKingdomPartnershipDeck"),
+  {
+    ssr: true,
+    loading: () => <DeckLoading label="Zulu Kingdom deck" />,
+  }
+);
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
   loading: () => <DeckLoading label="SWT-AG deck" />,
@@ -929,7 +936,10 @@ export default function PartnerPortalClient({
                 ? [{ href: "#kingdom", label: "Kingdom" }]
                 : []),
               ...(partner.slug === "zulu-kingdom"
-                ? [{ href: "#royal-house", label: "Royal house" }]
+                ? [
+                    { href: "#royal-house", label: "Royal house" },
+                    { href: "#zulu-partnership-deck", label: "Partnership deck" },
+                  ]
                 : []),
               ...((partner.programmes?.length ?? 0) > 0
                 ? [{ href: "#programmes", label: "Programmes" }]
@@ -1200,6 +1210,12 @@ export default function PartnerPortalClient({
       {partner.slug === "blessman-international" && (
         <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
           <BlessmanPartnershipDeck />
+        </section>
+      )}
+
+      {partner.slug === "zulu-kingdom" && (
+        <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+          <ZuluKingdomPartnershipDeck />
         </section>
       )}
 

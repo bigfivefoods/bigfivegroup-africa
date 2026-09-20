@@ -179,6 +179,22 @@ export const DECK_THEMES = {
     softBg: "bg-red-50",
     softText: "text-red-950",
   },
+  /** Zulu Kingdom — royal gold / black (from official Private Office mark) */
+  zulu: {
+    name: "zulu",
+    accent: "#e0b000",
+    accentDark: "#a67c00",
+    gradientFrom: "#e0b000",
+    gradientTo: "#8a6400",
+    frameFrom: "#faf6eb",
+    frameTo: "#f3f4f6",
+    darkBg: "#0a0804",
+    eyebrowLight: "text-amber-200",
+    eyebrow: "text-amber-900",
+    softBorder: "border-amber-200",
+    softBg: "bg-amber-50",
+    softText: "text-amber-950",
+  },
   /** Ford / CMH Ford — Ford blue (#003478 family) */
   ford: {
     name: "ford",
