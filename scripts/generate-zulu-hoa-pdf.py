@@ -14,8 +14,8 @@ from io import BytesIO
 from pathlib import Path
 
 from PIL import Image as PILImage
-from PIL import ImageEnhance, ImageFilter
-from reportlab.lib.colors import Color, HexColor, white
+from PIL import ImageEnhance
+from reportlab.lib.colors import HexColor, white
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.utils import ImageReader
@@ -29,9 +29,8 @@ LEOPARD = ROOT / "public" / "partners" / "zulu-kingdom-leopard-hero.jpg"
 ZK_LOGO = ROOT / "public" / "partners" / "zulu-kingdom-logo.png"
 BFF_LOGO = ROOT / "public" / "bigfivefoods-logo.png"
 
-PAGE_W, PAGE_H = A4  # 595.27 × 841.89
+PAGE_W, PAGE_H = A4
 
-# Brand
 GOLD = HexColor("#E0B000")
 GOLD_DK = HexColor("#A67C00")
 GOLD_LT = HexColor("#F3D56B")
@@ -39,12 +38,10 @@ GOLD_SOFT = HexColor("#F3E6B0")
 INK = HexColor("#0A0804")
 INK_SOFT = HexColor("#2C261C")
 MUTED = HexColor("#5C5346")
-MUTED_LT = HexColor("#7A7164")
 CREAM = HexColor("#FAF6EB")
 CREAM_DEEP = HexColor("#F3EAD3")
 CREAM_CARD = HexColor("#FFFCF6")
 CHAR = HexColor("#120E0A")
-CHAR_MID = HexColor("#1C1610")
 EMERALD = HexColor("#14532D")
 EMERALD_BG = HexColor("#ECFDF5")
 EMERALD_BD = HexColor("#6EE7B7")
@@ -53,13 +50,13 @@ AMBER_BD = HexColor("#F5D76E")
 AMBER_TX = HexColor("#92400E")
 RULE_SOFT = HexColor("#E8D9A8")
 
-# Geometry
 M = 8 * mm
 RAIL = 4.2 * mm
 INNER = M + RAIL + 5.5 * mm
 CONTENT_W = PAGE_W - 2 * INNER
-FOOTER_H = 13.5 * mm
-BODY_BOTTOM = FOOTER_H + 5 * mm
+FOOTER_H = 12.8 * mm
+BODY_BOTTOM = FOOTER_H + 4.6 * mm
+TOTAL_PAGES = 3
 
 
 def register_fonts() -> dict[str, str]:
@@ -67,11 +64,9 @@ def register_fonts() -> dict[str, str]:
         "sans": "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
         "sansBold": "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
         "sansItalic": "/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf",
-        "sansBoldItalic": "/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf",
         "serif": "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
         "serifBold": "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
         "serifItalic": "/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf",
-        "serifBoldItalic": "/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf",
     }
     names: dict[str, str] = {}
     for key, path in candidates.items():
@@ -108,45 +103,40 @@ def to_reader(im: PILImage.Image, quality: int = 92) -> ImageReader:
 
 def make_leopard_assets() -> dict[str, ImageReader]:
     src = PILImage.open(LEOPARD).convert("RGB")
-    src = ImageEnhance.Contrast(src).enhance(1.08)
-    src = ImageEnhance.Color(src).enhance(1.06)
+    src = ImageEnhance.Contrast(src).enhance(1.12)
+    src = ImageEnhance.Color(src).enhance(1.08)
 
-    # High-res composites at ~160 dpi
-    dpi = 160
+    dpi = 170
     pw, ph = int(PAGE_W / 72 * dpi), int(PAGE_H / 72 * dpi)
-
     full = cover_resize(src, pw, ph)
 
     cream = PILImage.new("RGB", (pw, ph), (250, 246, 235))
-    wash = PILImage.blend(cream, full, 0.16)
-    wash = ImageEnhance.Brightness(wash).enhance(1.04)
+    wash = PILImage.blend(cream, full, 0.20)
+    wash = ImageEnhance.Brightness(wash).enhance(1.03)
 
-    # Hero header: darker gradient so cream/gold type holds
-    header_h = int(112 * mm / 72 * dpi)
+    header_h = int(100 * mm / 72 * dpi)
     hero = cover_resize(src, pw, header_h)
-    dark = PILImage.new("RGB", hero.size, (14, 10, 6))
+    dark = PILImage.new("RGB", hero.size, (18, 12, 8))
     grad = PILImage.linear_gradient("L").resize(hero.size)
-    alpha = grad.point(lambda p: int(118 + p * (210 - 118) / 255))
+    # Keep leopard vivid at the top; deepen only toward the baseline
+    alpha = grad.point(lambda p: int(55 + p * (150 - 55) / 255))
     hero_dark = PILImage.composite(dark, hero, alpha)
 
-    slim_h = int(38 * mm / 72 * dpi)
+    slim_h = int(34 * mm / 72 * dpi)
     slim = cover_resize(src, pw, slim_h)
-    slim_dark = PILImage.new("RGB", slim.size, (16, 12, 7))
-    slim = PILImage.blend(slim, slim_dark, 0.62)
+    slim = PILImage.blend(slim, PILImage.new("RGB", slim.size, (16, 11, 7)), 0.48)
 
     foot_h = int(FOOTER_H / 72 * dpi)
-    foot = cover_resize(src, pw, max(foot_h, 40))
+    foot = cover_resize(src, pw, max(foot_h, 48))
     foot = foot.crop((0, 0, pw, foot_h))
-    foot_dark = PILImage.new("RGB", foot.size, (18, 13, 8))
-    foot = PILImage.blend(foot, foot_dark, 0.55)
+    foot = PILImage.blend(foot, PILImage.new("RGB", foot.size, (16, 11, 7)), 0.30)
 
     rail_w = int(RAIL / 72 * dpi)
-    rail = cover_resize(src, max(rail_w, 20), ph)
-    rail = rail.crop((0, 0, rail_w, ph))
+    rail = cover_resize(src, max(rail_w, 24), ph).crop((0, 0, rail_w, ph))
 
     return {
-        "wash": to_reader(wash, 88),
-        "hero": to_reader(hero_dark, 90),
+        "wash": to_reader(wash, 90),
+        "hero": to_reader(hero_dark, 92),
         "slim": to_reader(slim, 90),
         "foot": to_reader(foot, 88),
         "rail": to_reader(rail, 88),
@@ -160,9 +150,7 @@ def plate_logo(path: Path, box_w: int, box_h: int, pad: int = 10) -> ImageReader
     scale = min(avail_w / im.width, avail_h / im.height)
     nw, nh = max(1, int(im.width * scale)), max(1, int(im.height * scale))
     im = im.resize((nw, nh), PILImage.Resampling.LANCZOS)
-    x = (box_w - nw) // 2
-    y = (box_h - nh) // 2
-    plate.paste(im, (x, y), im)
+    plate.paste(im, ((box_w - nw) // 2, (box_h - nh) // 2), im)
     return to_reader(plate)
 
 
@@ -202,24 +190,18 @@ def wrap_text(c, text: str, font: str, size: float, max_w: float) -> list[str]:
     return lines
 
 
-def draw_lines(c, lines, x, y, font, size, leading, color, align="left") -> float:
+def draw_lines(c, lines, x, y, font, size, leading, color) -> float:
     c.setFillColor(color)
     c.setFont(font, size)
     yy = y
     for line in lines:
-        if align == "center":
-            c.drawCentredString(x, yy, line)
-        elif align == "right":
-            c.drawRightString(x, yy, line)
-        else:
-            c.drawString(x, yy, line)
+        c.drawString(x, yy, line)
         yy -= leading
     return y - yy
 
 
-def draw_para(c, text, x, y, font, size, leading, max_w, color, align="left") -> float:
-    lines = wrap_text(c, text, font, size, max_w)
-    return draw_lines(c, lines, x, y, font, size, leading, color, align)
+def draw_para(c, text, x, y, font, size, leading, max_w, color) -> float:
+    return draw_lines(c, wrap_text(c, text, font, size, max_w), x, y, font, size, leading, color)
 
 
 def draw_tracked(c, text, x, y, font, size, tracking, color) -> float:
@@ -235,44 +217,44 @@ def draw_tracked(c, text, x, y, font, size, tracking, color) -> float:
 def tracked_width(c, text, font, size, tracking) -> float:
     c.setFont(font, size)
     if not text:
-        return 0
+        return 0.0
     return c.stringWidth(text, font, size) + tracking * (len(text) - 1)
 
 
-def badge(c, text, x, y, *, fill, stroke, text_color, font=None, size=6.6, h=11.2, pad=5.2) -> float:
-    font = font or FONTS["sansBold"]
+def badge(c, text, x, y, *, fill, stroke, text_color, size=6.5, h=11.4, pad=5.4) -> float:
+    font = FONTS["sansBold"]
     c.setFont(font, size)
     w = c.stringWidth(text, font, size) + pad * 2
-    rrect(c, x, y, w, h, h / 2, fill=fill, stroke=stroke, sw=0.7)
+    rrect(c, x, y, w, h, h / 2, fill=fill, stroke=stroke, sw=0.75)
     c.setFillColor(text_color)
-    c.drawString(x + pad, y + 3.15, text)
+    c.drawString(x + pad, y + 3.2, text)
     return w
 
 
 def gold_double_rule(c, x, y, w):
     c.setStrokeColor(GOLD)
-    c.setLineWidth(1.15)
+    c.setLineWidth(1.2)
     c.line(x, y, x + w, y)
     c.setLineWidth(0.35)
-    c.line(x, y - 2.1, x + w, y - 2.1)
+    c.setStrokeColor(GOLD_LT)
+    c.line(x, y - 2.15, x + w, y - 2.15)
 
 
-def section_label(c, eyebrow, x, y) -> float:
-    draw_tracked(c, eyebrow.upper(), x, y, FONTS["sansBold"], 6.4, 0.85, GOLD_DK)
+def section_label(c, eyebrow, x, y):
+    draw_tracked(c, eyebrow.upper(), x, y, FONTS["sansBold"], 6.35, 0.82, GOLD_DK)
     c.setStrokeColor(GOLD)
-    c.setLineWidth(1.4)
-    c.line(x, y - 3.4, x + 22, y - 3.4)
-    return 12
+    c.setLineWidth(1.45)
+    c.line(x, y - 3.3, x + 20, y - 3.3)
 
 
-def check_item(c, text, x, y, max_w, font=None, size=7.7, leading=10.0, color=None) -> float:
-    font = font or FONTS["sans"]
-    color = color or INK_SOFT
-    c.setFillColor(GOLD_DK)
-    c.setFont(FONTS["sansBold"], 8)
-    c.drawString(x, y, "▸")
-    used = draw_para(c, text, x + 9, y, font, size, leading, max_w - 9, color)
-    return max(used, leading)
+def gold_dot(c, x, y):
+    c.setFillColor(GOLD)
+    c.circle(x + 2.0, y + 2.4, 1.55, fill=1, stroke=0)
+
+
+def check_item(c, text, x, y, max_w, size=7.0, leading=9.2, color=INK_SOFT) -> float:
+    gold_dot(c, x, y)
+    return max(draw_para(c, text, x + 9.5, y, FONTS["sans"], size, leading, max_w - 9.5, color), leading)
 
 
 # ---------------------------------------------------------------------------
@@ -284,321 +266,350 @@ ZK_PLATE: ImageReader | None = None
 BFF_PLATE: ImageReader | None = None
 
 
-def draw_page_frame(c, page_num: int, total: int = 3, hero: bool = False):
-    """Leopard wash, side rails, gold frame, footer — every page."""
+def draw_page_ground(c):
     c.setFillColor(CREAM)
     c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
-
     c.drawImage(ASSETS["wash"], 0, 0, width=PAGE_W, height=PAGE_H, mask="auto")
-
-    # Side leopard rails
     c.drawImage(ASSETS["rail"], M, 0, width=RAIL, height=PAGE_H, mask="auto")
     c.drawImage(ASSETS["rail"], PAGE_W - M - RAIL, 0, width=RAIL, height=PAGE_H, mask="auto")
-
-    # Gold outer frame
     c.setStrokeColor(GOLD)
-    c.setLineWidth(1.35)
-    c.rect(M - 1.2, M - 1.2, PAGE_W - 2 * (M - 1.2), PAGE_H - 2 * (M - 1.2), fill=0, stroke=1)
+    c.setLineWidth(1.4)
+    c.rect(M - 1.1, M - 1.1, PAGE_W - 2 * (M - 1.1), PAGE_H - 2 * (M - 1.1), fill=0, stroke=1)
     c.setLineWidth(0.35)
     c.setStrokeColor(GOLD_LT)
-    c.rect(M + 1.6, M + 1.6, PAGE_W - 2 * (M + 1.6), PAGE_H - 2 * (M + 1.6), fill=0, stroke=1)
+    c.rect(M + 1.7, M + 1.7, PAGE_W - 2 * (M + 1.7), PAGE_H - 2 * (M + 1.7), fill=0, stroke=1)
 
-    # Footer leopard band
-    foot_y = M + 0.4
-    clip_image(c, ASSETS["foot"], M + 2.2, foot_y, PAGE_W - 2 * M - 4.4, FOOTER_H - 1.2, r=2)
-    c.setFillColor(Color(0.06, 0.04, 0.02, alpha=0.28))
-    c.rect(M + 2.2, foot_y, PAGE_W - 2 * M - 4.4, FOOTER_H - 1.2, fill=1, stroke=0)
 
+def draw_footer(c, page_num: int):
+    """Always painted last so the leopard footer is never covered."""
+    y = M + 0.6
+    w = PAGE_W - 2 * M - 4.2
+    x = M + 2.1
+    h = FOOTER_H - 1.4
+    clip_image(c, ASSETS["foot"], x, y, w, h, r=2.2)
     c.setStrokeColor(GOLD)
-    c.setLineWidth(0.9)
-    c.line(INNER, FOOTER_H + M - 0.4, PAGE_W - INNER, FOOTER_H + M - 0.4)
-
+    c.setLineWidth(1.05)
+    c.line(INNER, y + h - 0.4, PAGE_W - INNER, y + h - 0.4)
+    ty = y + 4.6
     c.setFillColor(GOLD_SOFT)
     c.setFont(FONTS["sans"], 6.2)
-    c.drawString(INNER, M + 5.6, "BF/RH/HOA/FINAL-V5  ·  Principal terms · subject to signature")
-    c.setFont(FONTS["sans"], 6.0)
-    c.drawCentredString(PAGE_W / 2, M + 5.6, "Confidential partner briefing  ·  not a Palace publication")
-    c.setFont(FONTS["sansBold"], 6.2)
-    c.drawRightString(PAGE_W - INNER, M + 5.6, f"Page {page_num} of {total}")
-
-
-def draw_cobrand(c, x, y, zk_w=46 * mm, zk_h=16.5 * mm, bff=16.5 * mm):
-    """White logo plates with gold rims."""
-    rrect(c, x, y, zk_w, zk_h, 3.2, fill=white, stroke=GOLD, sw=1.05)
-    c.drawImage(ZK_PLATE, x + 2.2, y + 1.4, width=zk_w - 4.4, height=zk_h - 2.8, mask="auto", preserveAspectRatio=True, anchor="c")
-
-    gap = 7.5 * mm
-    cx = x + zk_w + gap / 2 + 1
+    c.drawString(INNER, ty, "BF/RH/HOA/FINAL-V5")
     c.setFillColor(GOLD)
-    c.setFont(FONTS["serif"], 13)
-    c.drawCentredString(cx, y + zk_h / 2 - 3.5, "×")
+    c.setFont(FONTS["sans"], 6.15)
+    c.drawCentredString(PAGE_W / 2, ty, "Principal terms · subject to signature")
+    c.setFont(FONTS["sansBold"], 6.3)
+    c.drawRightString(PAGE_W - INNER, ty, f"Page {page_num} of {TOTAL_PAGES}")
 
+
+def draw_cobrand(c, x, y, zk_w=44 * mm, zk_h=15.6 * mm, bff=15.6 * mm):
+    rrect(c, x, y, zk_w, zk_h, 3.0, fill=white, stroke=GOLD, sw=1.1)
+    c.drawImage(
+        ZK_PLATE,
+        x + 2.0,
+        y + 1.2,
+        width=zk_w - 4.0,
+        height=zk_h - 2.4,
+        mask="auto",
+        preserveAspectRatio=True,
+        anchor="c",
+    )
+    gap = 7.2 * mm
+    c.setFillColor(GOLD)
+    c.setFont(FONTS["serif"], 12)
+    c.drawCentredString(x + zk_w + gap / 2 + 0.6, y + zk_h / 2 - 3.4, "×")
     bx = x + zk_w + gap
-    rrect(c, bx, y, bff, bff, 3.2, fill=white, stroke=GOLD, sw=1.05)
-    c.drawImage(BFF_PLATE, bx + 1.6, y + 1.6, width=bff - 3.2, height=bff - 3.2, mask="auto", preserveAspectRatio=True, anchor="c")
+    rrect(c, bx, y, bff, bff, 3.0, fill=white, stroke=GOLD, sw=1.1)
+    c.drawImage(
+        BFF_PLATE,
+        bx + 1.5,
+        y + 1.5,
+        width=bff - 3.0,
+        height=bff - 3.0,
+        mask="auto",
+        preserveAspectRatio=True,
+        anchor="c",
+    )
     return bx + bff
 
 
-def draw_slim_header(c, running: str):
-    h = 32 * mm
+def draw_slim_header(c, running: str) -> float:
+    h = 29.5 * mm
     y = PAGE_H - M - h
-    clip_image(c, ASSETS["slim"], M + 2.0, y, PAGE_W - 2 * M - 4.0, h, r=0)
-    gold_double_rule(c, INNER, PAGE_H - M - 3.2, CONTENT_W)
-    draw_cobrand(c, INNER, y + 8.2)
+    clip_image(c, ASSETS["slim"], M + 2.0, y, PAGE_W - 2 * M - 4.0, h)
+    gold_double_rule(c, INNER, PAGE_H - M - 3.0, CONTENT_W)
+    draw_cobrand(c, INNER, y + 7.2)
+    c.setFillColor(GOLD)
+    c.setFont(FONTS["sansBold"], 6.2)
+    c.drawRightString(PAGE_W - INNER, y + 18.4, "HEADS OF AGREEMENT")
     c.setFillColor(GOLD_SOFT)
-    c.setFont(FONTS["sansBold"], 6.3)
-    c.drawRightString(PAGE_W - INNER, y + 19.5, "HEADS OF AGREEMENT")
-    c.setFillColor(white)
-    c.setFont(FONTS["serifItalic"], 8.2)
-    c.drawRightString(PAGE_W - INNER, y + 10.5, running)
+    c.setFont(FONTS["serifItalic"], 8.0)
+    c.drawRightString(PAGE_W - INNER, y + 9.6, running)
     c.setStrokeColor(GOLD)
     c.setLineWidth(1.0)
-    c.line(INNER, y + 1.5, PAGE_W - INNER, y + 1.5)
+    c.line(INNER, y + 1.2, PAGE_W - INNER, y + 1.2)
     return y
 
 
+def paint_table_head(c, x, y, w, head_h, labels, cols):
+    """Charcoal header with gold labels; square bottom, rounded top via clip."""
+    c.saveState()
+    p = c.beginPath()
+    p.roundRect(x, y - head_h, w, head_h, 3.6)
+    c.clipPath(p, stroke=0, fill=0)
+    c.setFillColor(CHAR)
+    c.rect(x, y - head_h, w, head_h + 4, fill=1, stroke=0)
+    c.restoreState()
+    c.setFillColor(CHAR)
+    c.rect(x, y - head_h, w, 4, fill=1, stroke=0)
+    c.setFillColor(GOLD)
+    c.setFont(FONTS["sansBold"], 6.05)
+    cx = x + 6.5
+    for lab, cw in zip(labels, cols):
+        c.drawString(cx, y - 5.15, lab)
+        cx += cw
+
+
 # ---------------------------------------------------------------------------
-# Page 1 — programme, parties, vision, entity
+# Page 1
 # ---------------------------------------------------------------------------
 
 def page_1(c):
-    draw_page_frame(c, 1, hero=True)
+    draw_page_ground(c)
 
-    header_h = 104 * mm
+    header_h = 90 * mm
     hy = PAGE_H - M - header_h
     clip_image(c, ASSETS["hero"], M + 2.0, hy, PAGE_W - 2 * M - 4.0, header_h)
 
-    # Top confidential strip
-    gold_double_rule(c, INNER, PAGE_H - M - 3.4, CONTENT_W)
-    c.setFillColor(GOLD_SOFT)
-    tw = tracked_width(c, "CONFIDENTIAL PARTNER BRIEFING", FONTS["sansBold"], 6.0, 1.05)
+    gold_double_rule(c, INNER, PAGE_H - M - 3.2, CONTENT_W)
+    draw_tracked(
+        c,
+        "THE ZULU KINGDOM  ×  BIG FIVE GROUP",
+        INNER,
+        PAGE_H - M - 10.0,
+        FONTS["sansBold"],
+        6.0,
+        0.68,
+        GOLD_SOFT,
+    )
+    tw = tracked_width(c, "CONFIDENTIAL PARTNER BRIEFING", FONTS["sansBold"], 6.0, 1.0)
     draw_tracked(
         c,
         "CONFIDENTIAL PARTNER BRIEFING",
         PAGE_W - INNER - tw,
-        PAGE_H - M - 10.2,
+        PAGE_H - M - 10.0,
         FONTS["sansBold"],
         6.0,
-        1.05,
+        1.0,
         GOLD_SOFT,
     )
-    draw_tracked(c, "THE ZULU KINGDOM  ×  BIG FIVE GROUP", INNER, PAGE_H - M - 10.2, FONTS["sansBold"], 6.0, 0.7, GOLD_SOFT)
 
-    draw_cobrand(c, INNER, PAGE_H - M - 30.5 * mm)
+    draw_cobrand(c, INNER, PAGE_H - M - 28.8 * mm)
 
-    # Title block
-    ty = PAGE_H - M - 40 * mm
-    draw_tracked(c, "HEADS OF AGREEMENT  ·  ROYAL HOUSEHOLD", INNER, ty, FONTS["sansBold"], 6.6, 0.9, GOLD)
+    ty = PAGE_H - M - 37.2 * mm
+    draw_tracked(c, "HEADS OF AGREEMENT  ·  ROYAL HOUSEHOLD", INNER, ty, FONTS["sansBold"], 6.5, 0.88, GOLD)
 
     c.setFillColor(white)
-    c.setFont(FONTS["serifBold"], 26)
-    c.drawString(INNER, ty - 24, "Isidlo seSilo")
+    c.setFont(FONTS["serifBold"], 25)
+    c.drawString(INNER, ty - 22.5, "Isidlo seSilo")
 
     c.setFillColor(GOLD)
-    c.setFont(FONTS["serifItalic"], 11)
-    c.drawString(INNER, ty - 38, "Official Nutrition Programme of the Kingdom")
+    c.setFont(FONTS["serifItalic"], 10.6)
+    c.drawString(INNER, ty - 36.2, "Official Nutrition Programme of the Kingdom")
 
     c.setStrokeColor(GOLD)
-    c.setLineWidth(0.6)
-    c.line(INNER, ty - 44.5, INNER + 62 * mm, ty - 44.5)
+    c.setLineWidth(0.65)
+    c.line(INNER, ty - 42.0, INNER + 58 * mm, ty - 42.0)
 
     c.setFillColor(GOLD_SOFT)
-    c.setFont(FONTS["serifBold"], 12.5)
-    c.drawString(INNER, ty - 58, "Big Five Royal Foods (Pty) Ltd")
-    c.setFillColor(Color(1, 1, 1, alpha=0.82))
-    c.setFont(FONTS["sans"], 8.4)
-    c.drawString(INNER, ty - 70, "Official Meal Partner of the Royal Household  —  awaiting Royal approval")
+    c.setFont(FONTS["serifBold"], 12.2)
+    c.drawString(INNER, ty - 54.8, "Big Five Royal Foods (Pty) Ltd")
+    c.setFillColor(GOLD_SOFT)
+    c.setFont(FONTS["sans"], 8.1)
+    c.drawString(INNER, ty - 66.2, "Official Meal Partner of the Royal Household  —  awaiting Royal approval")
 
-    # Status badges
-    by = hy + 14.5 * mm
+    # Contrast plate for badges + signing
+    band_h = 20.8 * mm
+    rrect(c, INNER - 2.5, hy + 3.2 * mm, CONTENT_W + 5, band_h, 3.4, fill=CHAR, stroke=GOLD, sw=0.85)
+
+    by = hy + 13.4 * mm
     w1 = badge(
         c,
         "Principal terms · subject to signature",
-        INNER,
+        INNER + 5,
         by,
-        fill=HexColor("#1A140C"),
+        fill=CHAR,
         stroke=GOLD,
         text_color=GOLD,
-        size=6.5,
-        h=12.2,
-        pad=6.4,
+        size=6.45,
+        h=12.0,
+        pad=6.2,
     )
     badge(
         c,
         "Company established · awaiting Royal approval",
-        INNER + w1 + 6,
+        INNER + 5 + w1 + 6,
         by,
-        fill=HexColor("#0F2418"),
+        fill=HexColor("#102418"),
         stroke=EMERALD_BD,
         text_color=HexColor("#BBF7D0"),
-        size=6.5,
-        h=12.2,
-        pad=6.4,
+        size=6.45,
+        h=12.0,
+        pad=6.2,
     )
 
-    # Signing meta on the header
-    c.setFillColor(GOLD_SOFT)
-    c.setFont(FONTS["sansBold"], 6.3)
-    c.drawString(INNER, hy + 6.8 * mm, "PROPOSED SIGNING")
-    c.setFillColor(white)
-    c.setFont(FONTS["sans"], 7.4)
-    c.drawString(
-        INNER + 28 * mm,
-        hy + 6.8 * mm,
-        "23 September 2026  ·  Zimbali Lakes Resort  ·  2nd Annual Amazulu Queens' High Tea",
-    )
-
-    # Body starts
-    y = hy - 8 * mm
-
-    # --- Parties + purpose row ---
-    section_label(c, "1  ·  Parties & purpose", INNER, y)
-    y -= 8 * mm
-
-    col_g = 4.2 * mm
-    col_w = (CONTENT_W - col_g) / 2
-    card_h = 46 * mm
-
-    # Party cards
-    for i, (name, body) in enumerate(
-        [
-            (
-                "Big Five Group (Pty) Ltd",
-                "KZN-based food manufacturing group specialising in fortified porridge and one-pot meals (Big Five Foods™), with Agri offtake, Direct distribution, Leadership (Super-Cube®), Connect (SupplierAdvisor®), Foundation and Impact.",
-            ),
-            (
-                "The Royal Household Partnership",
-                "Represented by Prince Ntokozo and the Queens, in the presence of HRH Ndlunkulu laMakhubo and HRH Ndlunkulu kaMayisela.",
-            ),
-        ]
-    ):
-        x = INNER + i * (col_w + col_g)
-        rrect(c, x, y - card_h, col_w, card_h, 4.5, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
-        c.setFillColor(GOLD_DK)
-        c.setFont(FONTS["sansBold"], 6.0)
-        c.drawString(x + 7, y - 9, "PARTY" if i == 0 else "PARTY")
-        c.setFillColor(INK)
-        c.setFont(FONTS["serifBold"], 10.2)
-        c.drawString(x + 7, y - 21, name)
-        draw_para(c, body, x + 7, y - 34, FONTS["sans"], 7.45, 10.0, col_w - 14, MUTED)
-
-    y -= card_h + 4.2 * mm
-
-    # Purpose band
-    pur_h = 28.5 * mm
-    rrect(c, INNER, y - pur_h, CONTENT_W, pur_h, 4.5, fill=CHAR, stroke=GOLD, sw=0.9)
     c.setFillColor(GOLD)
-    c.setFont(FONTS["sansBold"], 6.2)
-    c.drawString(INNER + 8, y - 9.5, "PURPOSE")
+    c.setFont(FONTS["sansBold"], 6.15)
+    c.drawString(INNER + 5, hy + 6.4 * mm, "PROPOSED SIGNING")
+    c.setFillColor(GOLD_SOFT)
+    c.setFont(FONTS["sans"], 7.25)
+    c.drawString(
+        INNER + 33 * mm,
+        hy + 6.4 * mm,
+        "23 September 2026   ·   Zimbali Lakes Resort   ·   2nd Annual Amazulu Queens' High Tea",
+    )
+
+    y = hy - 7.2 * mm
+
+    # Parties
+    section_label(c, "1  ·  Parties & purpose", INNER, y)
+    y -= 7.4 * mm
+    col_g = 3.8 * mm
+    col_w = (CONTENT_W - col_g) / 2
+    card_h = 34.0 * mm
+    parties = [
+        (
+            "Big Five Group (Pty) Ltd",
+            "KZN-based food manufacturing group specialising in fortified porridge and one-pot meals (Big Five Foods™), with Agri offtake, Direct distribution, Leadership (Super-Cube®), Connect (SupplierAdvisor®), Foundation and Impact.",
+        ),
+        (
+            "The Royal Household Partnership",
+            "Represented by Prince Ntokozo and the Queens, in the presence of HRH Ndlunkulu laMakhubo and HRH Ndlunkulu kaMayisela.",
+        ),
+    ]
+    for i, (name, body) in enumerate(parties):
+        x = INNER + i * (col_w + col_g)
+        rrect(c, x, y - card_h, col_w, card_h, 4.2, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
+        c.setFillColor(GOLD)
+        c.rect(x, y - card_h, 2.15, card_h, fill=1, stroke=0)
+        c.setFillColor(GOLD_DK)
+        c.setFont(FONTS["sansBold"], 5.9)
+        c.drawString(x + 8, y - 8.6, "PARTY")
+        c.setFillColor(INK)
+        c.setFont(FONTS["serifBold"], 10.0)
+        c.drawString(x + 8, y - 20.2, name)
+        draw_para(c, body, x + 8, y - 32.2, FONTS["sans"], 7.25, 9.6, col_w - 16, MUTED)
+
+    y -= card_h + 3.6 * mm
+
+    pur_h = 22.8 * mm
+    rrect(c, INNER, y - pur_h, CONTENT_W, pur_h, 4.2, fill=CHAR, stroke=GOLD, sw=0.9)
+    c.setFillColor(GOLD)
+    c.setFont(FONTS["sansBold"], 6.05)
+    c.drawString(INNER + 8, y - 8.4, "PURPOSE")
     purpose = (
         "Principal terms for a strategic partnership to establish Isidlo seSilo — the Official Nutrition Programme of the Kingdom — "
         "and for Big Five Royal Foods (Pty) Ltd (now established) to be designated Official Meal Partner of the Royal Household, "
         "subject to Royal approval and HOA signature."
     )
-    draw_para(c, purpose, INNER + 8, y - 21, FONTS["sans"], 7.7, 10.3, CONTENT_W - 16, GOLD_SOFT)
-    y -= pur_h + 6.2 * mm
+    draw_para(c, purpose, INNER + 8, y - 18.8, FONTS["sans"], 7.35, 9.7, CONTENT_W - 16, GOLD_SOFT)
+    y -= pur_h + 5.4 * mm
 
-    # --- Vision ---
     section_label(c, "2  ·  Vision", INNER, y)
-    y -= 7.2 * mm
+    y -= 6.6 * mm
     tiles = [
         "Creates sustainable jobs on Ingonyama Trust land",
         "Provides fortified nutrition for His Majesty’s people",
         "Operates under Ubuntu, Dignity, and Heritage",
         "Generates commercial returns for all stakeholders",
     ]
-    tw = (CONTENT_W - 3 * 3.2 * mm) / 4
-    th = 28.5 * mm
+    tw = (CONTENT_W - 3 * 3.0 * mm) / 4
+    th = 25.2 * mm
     for i, t in enumerate(tiles):
-        x = INNER + i * (tw + 3.2 * mm)
-        rrect(c, x, y - th, tw, th, 4, fill=CREAM_CARD, stroke=GOLD, sw=0.75)
+        x = INNER + i * (tw + 3.0 * mm)
+        rrect(c, x, y - th, tw, th, 3.8, fill=CREAM_CARD, stroke=GOLD, sw=0.75)
         c.setFillColor(GOLD)
-        c.setFont(FONTS["serifBold"], 13)
-        c.drawString(x + 6, y - 13, f"0{i + 1}")
-        draw_para(c, t, x + 6, y - 25, FONTS["sans"], 7.15, 9.4, tw - 12, INK_SOFT)
-    y -= th + 6.4 * mm
+        c.setFont(FONTS["serifBold"], 12)
+        c.drawString(x + 6, y - 11.5, f"0{i + 1}")
+        draw_para(c, t, x + 6, y - 22.5, FONTS["sans"], 7.05, 9.2, tw - 12, INK_SOFT)
+    y -= th + 5.6 * mm
 
-    # --- Entity ---
     section_label(c, "3  ·  Operating company", INNER, y)
-    y -= 7.2 * mm
-    ent_h = 36.5 * mm
-    rrect(c, INNER, y - ent_h, CONTENT_W, ent_h, 4.5, fill=CREAM_CARD, stroke=GOLD, sw=0.9)
-
-    # Left gold accent
+    y -= 6.6 * mm
+    ent_h = 25.6 * mm
+    rrect(c, INNER, y - ent_h, CONTENT_W, ent_h, 4.2, fill=CREAM_CARD, stroke=GOLD, sw=0.9)
     c.setFillColor(GOLD)
-    c.rect(INNER, y - ent_h, 2.4, ent_h, fill=1, stroke=0)
-
+    c.rect(INNER, y - ent_h, 2.3, ent_h, fill=1, stroke=0)
     c.setFillColor(GOLD_DK)
-    c.setFont(FONTS["sansBold"], 6.2)
-    c.drawString(INNER + 10, y - 10, "BIG FIVE ROYAL FOODS (PTY) LTD")
-    c.setFillColor(INK)
-    c.setFont(FONTS["serifBold"], 12)
-    c.drawString(INNER + 10, y - 23, "Company established  ·  awaiting Royal approval")
-
-    detail = (
-        "Big Five Royal Foods (Pty) Ltd has been established and is awaiting Royal Household approval of the Heads of Agreement "
-        "and Official Meal Partner designation. Incorporation is complete; royal endorsement and HOA signature remain outstanding. "
-        "Exclusive Official Fortified Meal Provider for listed royal activations is an HOA-proposed commercial term — not in force until signature."
-    )
-    draw_para(c, detail, INNER + 10, y - 36, FONTS["sans"], 7.45, 9.9, CONTENT_W - 20, MUTED)
-
-    # Right-side mini badges inside the card
+    c.setFont(FONTS["sansBold"], 6.0)
+    c.drawString(INNER + 10, y - 8.8, "BIG FIVE ROYAL FOODS (PTY) LTD")
     badge(
         c,
         "Incorporation complete",
-        INNER + CONTENT_W - 38 * mm,
-        y - 14.5,
+        INNER + CONTENT_W - 39 * mm,
+        y - 12.2,
         fill=EMERALD_BG,
         stroke=EMERALD_BD,
         text_color=EMERALD,
-        size=6.1,
-        h=10.6,
-        pad=5,
+        size=6.0,
+        h=10.4,
+        pad=4.8,
     )
-
-    y -= ent_h + 6.2 * mm
-
-    # Witnesses strip
-    wh = 16.5 * mm
-    rrect(c, INNER, y - wh, CONTENT_W, wh, 4, fill=CREAM_DEEP, stroke=GOLD, sw=0.7)
-    c.setFillColor(GOLD_DK)
-    c.setFont(FONTS["sansBold"], 6.1)
-    c.drawString(INNER + 8, y - 7.2, "WITNESSES NAMED IN THE HOA")
     c.setFillColor(INK)
-    c.setFont(FONTS["serifBold"], 9.4)
-    c.drawString(INNER + 8, y - 18.5, "HRH Ndlunkulu laMakhubo")
+    c.setFont(FONTS["serifBold"], 11.2)
+    c.drawString(INNER + 10, y - 20.6, "Company established  ·  awaiting Royal approval")
+    detail = (
+        "Big Five Royal Foods (Pty) Ltd has been established and is awaiting Royal Household approval of the Heads of Agreement "
+        "and Official Meal Partner designation. Incorporation is complete; royal endorsement and HOA signature remain outstanding. "
+        "Exclusive Official Fortified Meal Provider for listed royal activations is an HOA-proposed commercial term."
+    )
+    draw_para(c, detail, INNER + 10, y - 32.4, FONTS["sans"], 7.15, 9.4, CONTENT_W - 20, MUTED)
+    y -= ent_h + 3.8 * mm
+
+    wh = 14.8 * mm
+    rrect(c, INNER, y - wh, CONTENT_W, wh, 3.8, fill=CREAM_DEEP, stroke=GOLD, sw=0.75)
+    c.setFillColor(GOLD_DK)
+    c.setFont(FONTS["sansBold"], 5.95)
+    c.drawString(INNER + 8, y - 6.6, "WITNESSES NAMED IN THE HOA")
+    c.setFillColor(INK)
+    c.setFont(FONTS["serifBold"], 9.2)
+    c.drawString(INNER + 8, y - 17.0, "HRH Ndlunkulu laMakhubo")
     c.setFillColor(GOLD_DK)
     c.setFont(FONTS["serif"], 9)
-    c.drawString(INNER + 68 * mm, y - 18.5, "·")
+    c.drawString(INNER + 66 * mm, y - 17.0, "·")
     c.setFillColor(INK)
-    c.setFont(FONTS["serifBold"], 9.4)
-    c.drawString(INNER + 74 * mm, y - 18.5, "HRH Ndlunkulu kaMayisela")
+    c.setFont(FONTS["serifBold"], 9.2)
+    c.drawString(INNER + 72 * mm, y - 17.0, "HRH Ndlunkulu kaMayisela")
     c.setFillColor(MUTED)
-    c.setFont(FONTS["sansItalic"], 6.6)
-    c.drawRightString(PAGE_W - INNER - 8, y - 18.5, "Ref  BF/RH/HOA/FINAL-V5")
+    c.setFont(FONTS["sansItalic"], 6.4)
+    c.drawRightString(PAGE_W - INNER - 8, y - 17.0, "Ref  BF/RH/HOA/FINAL-V5")
 
+    draw_footer(c, 1)
     c.showPage()
 
 
 # ---------------------------------------------------------------------------
-# Page 2 — board, patrons, roles
+# Page 2
 # ---------------------------------------------------------------------------
 
 def page_2(c):
-    draw_page_frame(c, 2)
+    draw_page_ground(c)
     slim_y = draw_slim_header(c, "Isidlo seSilo  ·  governance, patrons & roles")
-    y = slim_y - 8 * mm
+    y = slim_y - 7.0 * mm
 
     section_label(c, "4  ·  Board of directors (HOA)", INNER, y)
-    y -= 7.5 * mm
-
-    c.setFillColor(MUTED)
-    c.setFont(FONTS["sansItalic"], 7.3)
-    intro = (
-        "Seats below are principal terms only. TBC designations remain open until the Royal Household and Big Five Group confirm them — they are not appointments."
+    y -= 6.6 * mm
+    used = draw_para(
+        c,
+        "Seats below are principal terms only. TBC designations remain open until the Royal Household and Big Five Group confirm them — they are not appointments.",
+        INNER,
+        y,
+        FONTS["sansItalic"],
+        7.15,
+        9.4,
+        CONTENT_W,
+        MUTED,
     )
-    used = draw_para(c, intro, INNER, y, FONTS["sansItalic"], 7.3, 9.6, CONTENT_W, MUTED)
-    y -= used + 3.5 * mm
+    y -= used + 3.0 * mm
 
     board = [
         ("Dr. Craig Ross Muller", "Executive Director / CEO", False),
@@ -610,62 +621,39 @@ def page_2(c):
         ),
         ("Independent Chair", "To be appointed by mutual agreement", True),
     ]
-
-    # Table header
-    row_h = 13.6 * mm
-    head_h = 8.2 * mm
-    cols = [52 * mm, CONTENT_W - 52 * mm - 24 * mm, 24 * mm]
+    row_h = 11.2 * mm
+    head_h = 7.6 * mm
+    cols = [50 * mm, CONTENT_W - 50 * mm - 22 * mm, 22 * mm]
     table_h = head_h + row_h * len(board)
-    rrect(c, INNER, y - table_h, CONTENT_W, table_h, 4, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
-
-    # header bar
-    c.saveState()
-    p = c.beginPath()
-    p.roundRect(INNER, y - head_h, CONTENT_W, head_h, 4)
-    c.clipPath(p, stroke=0, fill=0)
-    c.setFillColor(CHAR)
-    c.rect(INNER, y - head_h, CONTENT_W, head_h, fill=1, stroke=0)
-    c.restoreState()
-    c.setFillColor(CHAR)
-    c.rect(INNER, y - head_h, CONTENT_W, 4, fill=1, stroke=0)
-
-    c.setFillColor(GOLD)
-    c.setFont(FONTS["sansBold"], 6.2)
-    labels = ["PERSON", "PROPOSED SEAT", "STATUS"]
-    cx = INNER + 7
-    for lab, cw in zip(labels, cols):
-        c.drawString(cx, y - 5.6, lab)
-        cx += cw
+    rrect(c, INNER, y - table_h, CONTENT_W, table_h, 3.8, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
+    paint_table_head(c, INNER, y, CONTENT_W, head_h, ["PERSON", "PROPOSED SEAT", "STATUS"], cols)
 
     yy = y - head_h
     for i, (person, seat, tbc) in enumerate(board):
         if i % 2 == 1:
             c.setFillColor(CREAM_DEEP)
-            c.rect(INNER + 0.6, yy - row_h, CONTENT_W - 1.2, row_h, fill=1, stroke=0)
+            c.rect(INNER + 0.55, yy - row_h, CONTENT_W - 1.1, row_h, fill=1, stroke=0)
         c.setStrokeColor(RULE_SOFT)
         c.setLineWidth(0.4)
         c.line(INNER + 4, yy, INNER + CONTENT_W - 4, yy)
-
         c.setFillColor(INK)
-        c.setFont(FONTS["serifBold"], 9.0)
-        c.drawString(INNER + 7, yy - 10.8, person)
+        c.setFont(FONTS["serifBold"], 8.8)
+        c.drawString(INNER + 7, yy - 9.6, person)
         c.setFillColor(INK_SOFT)
-        c.setFont(FONTS["sans"], 7.6)
-        seat_lines = wrap_text(c, seat, FONTS["sans"], 7.6, cols[1] - 8)
-        draw_lines(c, seat_lines, INNER + 7 + cols[0], yy - 10.8, FONTS["sans"], 7.6, 9.6, INK_SOFT)
-
-        bx = INNER + cols[0] + cols[1] + 3
+        c.setFont(FONTS["sans"], 7.35)
+        seat_lines = wrap_text(c, seat, FONTS["sans"], 7.35, cols[1] - 8)
+        draw_lines(c, seat_lines, INNER + 7 + cols[0], yy - 9.6, FONTS["sans"], 7.35, 9.2, INK_SOFT)
+        bx = INNER + cols[0] + cols[1] + 2.5
         if tbc:
-            badge(c, "TBC", bx, yy - 12.4, fill=AMBER_BG, stroke=AMBER_BD, text_color=AMBER_TX, size=6.2, h=10.4, pad=5.5)
+            badge(c, "TBC", bx, yy - 11.0, fill=AMBER_BG, stroke=AMBER_BD, text_color=AMBER_TX, size=6.05, h=10.0, pad=5.2)
         else:
-            badge(c, "Tabled", bx, yy - 12.4, fill=CREAM_DEEP, stroke=GOLD, text_color=GOLD_DK, size=6.2, h=10.4, pad=5.5)
+            badge(c, "Tabled", bx, yy - 11.0, fill=CREAM_DEEP, stroke=GOLD, text_color=GOLD_DK, size=6.05, h=10.0, pad=5.2)
         yy -= row_h
 
-    y -= table_h + 7.2 * mm
+    y -= table_h + 6.2 * mm
 
-    # --- Patrons ---
     section_label(c, "5  ·  Royal patrons", INNER, y)
-    y -= 7.2 * mm
+    y -= 6.4 * mm
     patrons = [
         (
             "HRH Ndlunkulu laMakhubo",
@@ -678,41 +666,36 @@ def page_2(c):
             "Lead Patron for Amabutho catering, household welfare & royal ceremonies; champion for maternal health, family nutrition, and community outreach",
         ),
     ]
-    pg = 3.6 * mm
+    pg = 3.4 * mm
     pw = (CONTENT_W - pg) / 2
-    ph = 34 * mm
+    ph = 30.5 * mm
     for i, (person, role, lead) in enumerate(patrons):
         x = INNER + i * (pw + pg)
-        rrect(c, x, y - ph, pw, ph, 4.5, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
+        rrect(c, x, y - ph, pw, ph, 4.0, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
         c.setFillColor(GOLD)
-        c.rect(x, y - ph, 2.3, ph, fill=1, stroke=0)
+        c.rect(x, y - ph, 2.15, ph, fill=1, stroke=0)
         c.setFillColor(GOLD_DK)
-        c.setFont(FONTS["sansBold"], 6.0)
-        c.drawString(x + 9, y - 9.5, role.upper())
+        c.setFont(FONTS["sansBold"], 5.9)
+        c.drawString(x + 9, y - 8.6, role.upper())
         c.setFillColor(INK)
-        c.setFont(FONTS["serifBold"], 10.4)
-        c.drawString(x + 9, y - 21.5, person)
-        draw_para(c, lead, x + 9, y - 34, FONTS["sans"], 7.3, 9.6, pw - 16, MUTED)
-    y -= ph + 6.4 * mm
+        c.setFont(FONTS["serifBold"], 10.0)
+        c.drawString(x + 9, y - 19.8, person)
+        draw_para(c, lead, x + 9, y - 31.0, FONTS["sans"], 7.15, 9.4, pw - 16, MUTED)
+    y -= ph + 4.4 * mm
 
-    # Queens mandate
-    qh = 18.5 * mm
-    rrect(c, INNER, y - qh, CONTENT_W, qh, 4, fill=HexColor("#1A140C"), stroke=GOLD, sw=0.9)
+    qh = 16.2 * mm
+    rrect(c, INNER, y - qh, CONTENT_W, qh, 3.8, fill=CHAR, stroke=GOLD, sw=0.9)
     c.setFillColor(GOLD)
-    c.setFont(FONTS["sansBold"], 6.1)
-    c.drawString(INNER + 8, y - 7.6, "QUEENS  ·  JOINT MANDATE")
+    c.setFont(FONTS["sansBold"], 6.0)
+    c.drawString(INNER + 8, y - 6.8, "QUEENS  ·  JOINT MANDATE")
     c.setFillColor(GOLD_SOFT)
-    c.setFont(FONTS["serifItalic"], 8.6)
-    c.drawString(
-        INNER + 8,
-        y - 19.5,
-        "Approve meal standards worthy of His Majesty’s people, and lead all women-centric and community distribution programmes.",
-    )
-    y -= qh + 6.6 * mm
+    c.setFont(FONTS["serifItalic"], 8.15)
+    mandate = "Approve meal standards worthy of His Majesty’s people, and lead all women-centric and community distribution programmes."
+    draw_para(c, mandate, INNER + 8, y - 17.4, FONTS["serifItalic"], 8.15, 10.2, CONTENT_W - 16, GOLD_SOFT)
+    y -= qh + 5.8 * mm
 
-    # --- Roles ---
     section_label(c, "6  ·  Roles and responsibilities", INNER, y)
-    y -= 7.4 * mm
+    y -= 6.6 * mm
 
     roles = [
         (
@@ -748,56 +731,72 @@ def page_2(c):
             ],
         ),
     ]
-    rg = 3.4 * mm
+    rg = 3.2 * mm
     rw = (CONTENT_W - 2 * rg) / 3
-    rh = 78 * mm
+    rh = 54 * mm
     for i, (person, title, tbc, bullets) in enumerate(roles):
         x = INNER + i * (rw + rg)
         fill = AMBER_BG if tbc else CREAM_CARD
-        rrect(c, x, y - rh, rw, rh, 4.5, fill=fill, stroke=GOLD if not tbc else AMBER_BD, sw=0.9)
+        stroke = AMBER_BD if tbc else GOLD
+        rrect(c, x, y - rh, rw, rh, 4.0, fill=fill, stroke=stroke, sw=0.9)
         if tbc:
-            badge(c, "ROLE TBC", x + 6, y - 12.2, fill=AMBER_BG, stroke=AMBER_BD, text_color=AMBER_TX, size=5.9, h=10, pad=4.6)
+            badge(c, "ROLE TBC", x + 6, y - 11.4, fill=AMBER_BG, stroke=AMBER_BD, text_color=AMBER_TX, size=5.8, h=9.6, pad=4.4)
         else:
-            badge(c, "TABLED ROLE", x + 6, y - 12.2, fill=CHAR, stroke=GOLD, text_color=GOLD, size=5.9, h=10, pad=4.6)
+            badge(c, "TABLED ROLE", x + 6, y - 11.4, fill=CHAR, stroke=GOLD, text_color=GOLD, size=5.8, h=9.6, pad=4.4)
         c.setFillColor(INK)
-        c.setFont(FONTS["serifBold"], 9.3)
-        name_lines = wrap_text(c, person, FONTS["serifBold"], 9.3, rw - 14)
-        ny = y - 24
-        draw_lines(c, name_lines, x + 7, ny, FONTS["serifBold"], 9.3, 11.2, INK)
-        ny = ny - 11.2 * len(name_lines) - 2
-        title_used = draw_para(c, title, x + 7, ny, FONTS["sansItalic"], 6.7, 8.7, rw - 14, GOLD_DK)
-        byy = ny - title_used - 4
+        c.setFont(FONTS["serifBold"], 9.0)
+        name_lines = wrap_text(c, person, FONTS["serifBold"], 9.0, rw - 13)
+        ny = y - 22.4
+        draw_lines(c, name_lines, x + 6.5, ny, FONTS["serifBold"], 9.0, 10.8, INK)
+        ny = ny - 10.8 * len(name_lines) - 1.6
+        title_used = draw_para(c, title, x + 6.5, ny, FONTS["sansItalic"], 6.45, 8.4, rw - 13, GOLD_DK)
+        byy = ny - title_used - 3.6
         for b in bullets:
-            used = check_item(c, b, x + 6, byy, rw - 14, size=6.85, leading=8.9)
-            byy -= used + 2.4
+            used_b = check_item(c, b, x + 5.5, byy, rw - 13, size=6.7, leading=8.6)
+            byy -= used_b + 2.1
 
+    # Closing status band in remaining space — keeps the page from looking unfinished
+    band_y = y - rh - 4.6 * mm
+    band_h = 13.4 * mm
+    rrect(c, INNER, band_y - band_h, CONTENT_W, band_h, 3.8, fill=CHAR, stroke=GOLD, sw=0.9)
+    c.setFillColor(GOLD)
+    c.setFont(FONTS["sansBold"], 5.9)
+    c.drawString(INNER + 8, band_y - 5.8, "STATUS")
+    c.setFillColor(GOLD_SOFT)
+    c.setFont(FONTS["serifItalic"], 7.85)
+    c.drawString(
+        INNER + 8,
+        band_y - 15.4,
+        "Big Five Royal Foods (Pty) Ltd is established and awaits Royal approval of the HOA and Official Meal Partner designation.",
+    )
+
+    draw_footer(c, 2)
     c.showPage()
 
 
 # ---------------------------------------------------------------------------
-# Page 3 — activations, commercial, honesty
+# Page 3
 # ---------------------------------------------------------------------------
 
 def page_3(c):
-    draw_page_frame(c, 3)
+    draw_page_ground(c)
     slim_y = draw_slim_header(c, "Isidlo seSilo  ·  activations, commercial & honesty")
-    y = slim_y - 8 * mm
+    y = slim_y - 6.8 * mm
 
     section_label(c, "7  ·  Official royal activations (HOA-proposed)", INNER, y)
-    y -= 6.6 * mm
-    c.setFillColor(MUTED)
+    y -= 6.2 * mm
     used = draw_para(
         c,
         "Exclusive Official Fortified Meal Provider for listed royal activations is an HOA-proposed commercial term — not a live award. Headcounts as tabled in BF/RH/HOA/FINAL-V5.",
         INNER,
         y,
         FONTS["sansItalic"],
-        7.2,
-        9.4,
+        7.05,
+        9.2,
         CONTENT_W,
         MUTED,
     )
-    y -= used + 3.2 * mm
+    y -= used + 2.8 * mm
 
     activations = [
         (
@@ -826,38 +825,20 @@ def page_3(c):
             "Programme calendars — HOA planned volumes",
         ),
     ]
-
-    # Table
-    col_a, col_b = 46 * mm, 78 * mm
+    col_a, col_b = 44 * mm, 76 * mm
     col_c = CONTENT_W - col_a - col_b
-    head_h = 7.6 * mm
-    # Variable row heights
+    head_h = 7.2 * mm
     row_heights = []
     for t, detail, headcount in activations:
-        d_lines = wrap_text(c, detail, FONTS["sans"], 6.9, col_b - 10)
-        h_lines = wrap_text(c, headcount, FONTS["sans"], 6.7, col_c - 10)
-        t_lines = wrap_text(c, t, FONTS["serifBold"], 8.0, col_a - 10)
-        rh = max(len(d_lines) * 9.0, len(h_lines) * 8.8, len(t_lines) * 10.2) + 10
-        row_heights.append(max(rh, 16.5 * mm))
+        d_lines = wrap_text(c, detail, FONTS["sans"], 6.7, col_b - 9)
+        h_lines = wrap_text(c, headcount, FONTS["sans"], 6.5, col_c - 9)
+        t_lines = wrap_text(c, t, FONTS["serifBold"], 7.7, col_a - 9)
+        rh = max(len(d_lines) * 8.7, len(h_lines) * 8.5, len(t_lines) * 9.8) + 8.5
+        row_heights.append(max(rh, 14.2 * mm))
 
     table_h = head_h + sum(row_heights)
-    rrect(c, INNER, y - table_h, CONTENT_W, table_h, 4, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
-
-    c.saveState()
-    p = c.beginPath()
-    p.roundRect(INNER, y - head_h, CONTENT_W, head_h, 4)
-    c.clipPath(p, stroke=0, fill=0)
-    c.setFillColor(CHAR)
-    c.rect(INNER, y - head_h, CONTENT_W, head_h, fill=1, stroke=0)
-    c.restoreState()
-    c.setFillColor(CHAR)
-    c.rect(INNER, y - head_h, CONTENT_W, 3.5, fill=1, stroke=0)
-
-    c.setFillColor(GOLD)
-    c.setFont(FONTS["sansBold"], 6.1)
-    c.drawString(INNER + 6, y - 5.2, "ACTIVATION")
-    c.drawString(INNER + col_a + 4, y - 5.2, "DETAIL")
-    c.drawString(INNER + col_a + col_b + 4, y - 5.2, "HEADCOUNT (HOA)")
+    rrect(c, INNER, y - table_h, CONTENT_W, table_h, 3.8, fill=CREAM_CARD, stroke=GOLD, sw=0.85)
+    paint_table_head(c, INNER, y, CONTENT_W, head_h, ["ACTIVATION", "DETAIL", "HEADCOUNT (HOA)"], [col_a, col_b, col_c])
 
     yy = y - head_h
     for i, ((t, detail, headcount), rh) in enumerate(zip(activations, row_heights)):
@@ -867,21 +848,19 @@ def page_3(c):
         c.setStrokeColor(RULE_SOFT)
         c.setLineWidth(0.4)
         c.line(INNER + 3, yy, INNER + CONTENT_W - 3, yy)
-
-        t_lines = wrap_text(c, t, FONTS["serifBold"], 8.0, col_a - 10)
-        d_lines = wrap_text(c, detail, FONTS["sans"], 6.9, col_b - 10)
-        h_lines = wrap_text(c, headcount, FONTS["sans"], 6.7, col_c - 10)
-        text_y = yy - 11
-        draw_lines(c, t_lines, INNER + 6, text_y, FONTS["serifBold"], 8.0, 10.0, INK)
-        draw_lines(c, d_lines, INNER + col_a + 4, text_y, FONTS["sans"], 6.9, 9.0, INK_SOFT)
-        draw_lines(c, h_lines, INNER + col_a + col_b + 4, text_y, FONTS["sans"], 6.7, 8.8, GOLD_DK)
+        t_lines = wrap_text(c, t, FONTS["serifBold"], 7.7, col_a - 9)
+        d_lines = wrap_text(c, detail, FONTS["sans"], 6.7, col_b - 9)
+        h_lines = wrap_text(c, headcount, FONTS["sans"], 6.5, col_c - 9)
+        text_y = yy - 10.0
+        draw_lines(c, t_lines, INNER + 6, text_y, FONTS["serifBold"], 7.7, 9.6, INK)
+        draw_lines(c, d_lines, INNER + col_a + 3, text_y, FONTS["sans"], 6.7, 8.7, INK_SOFT)
+        draw_lines(c, h_lines, INNER + col_a + col_b + 3, text_y, FONTS["sans"], 6.5, 8.4, GOLD_DK)
         yy -= rh
 
-    y -= table_h + 6.8 * mm
+    y -= table_h + 5.6 * mm
 
-    # --- Commercial ---
     section_label(c, "8  ·  Commercial term (HOA-proposed)", INNER, y)
-    y -= 7.0 * mm
+    y -= 6.4 * mm
 
     tiles = [
         ("ADVANCE HEADCOUNT", "21-day advance headcount for each activation", "Operating rule"),
@@ -901,51 +880,47 @@ def page_3(c):
             "Proposed channels — not closed awards",
         ),
     ]
-    tg = 3.2 * mm
+    tg = 3.0 * mm
     tw = (CONTENT_W - tg) / 2
-    th = 27.2 * mm
+    th = 22.4 * mm
     for i, (lab, body, note) in enumerate(tiles):
         col = i % 2
         row = i // 2
         x = INNER + col * (tw + tg)
-        ty = y - row * (th + 3.0 * mm)
-        rrect(c, x, ty - th, tw, th, 4, fill=CREAM_CARD, stroke=GOLD, sw=0.8)
+        ty = y - row * (th + 2.5 * mm)
+        rrect(c, x, ty - th, tw, th, 3.8, fill=CREAM_CARD, stroke=GOLD, sw=0.8)
         c.setFillColor(GOLD_DK)
-        c.setFont(FONTS["sansBold"], 5.9)
-        c.drawString(x + 7, ty - 8.6, lab)
+        c.setFont(FONTS["sansBold"], 5.8)
+        c.drawString(x + 7, ty - 7.6, lab)
         if lab == "PLANNED MONTHLY OFFTAKE":
             c.setFillColor(INK)
-            c.setFont(FONTS["serifBold"], 12.2)
-            c.drawString(x + 7, ty - 21.5, "50,000–200,000")
-            c.setFont(FONTS["sans"], 7.2)
+            c.setFont(FONTS["serifBold"], 12.8)
+            c.drawString(x + 7, ty - 19.6, "50,000–200,000")
             c.setFillColor(MUTED)
-            c.drawString(x + 7, ty - 32, "meals monthly  ·  HOA planned range, not a contracted volume")
+            c.setFont(FONTS["sans"], 6.8)
+            c.drawString(x + 7, ty - 29.6, "meals monthly  ·  HOA planned range, not a contracted volume")
         else:
-            draw_para(c, body, x + 7, ty - 19.5, FONTS["sans"], 7.35, 9.6, tw - 14, INK_SOFT)
+            used_b = draw_para(c, body, x + 7, ty - 17.4, FONTS["sans"], 7.15, 9.3, tw - 14, INK_SOFT)
             c.setFillColor(GOLD_DK)
-            c.setFont(FONTS["sansItalic"], 6.4)
-            c.drawString(x + 7, ty - th + 6.5, note)
+            c.setFont(FONTS["sansItalic"], 6.25)
+            c.drawString(x + 7, ty - 17.4 - used_b - 3.2, note)
 
-    y -= 2 * (th + 3.0 * mm) + 3.2 * mm
+    y -= 2 * (th + 2.6 * mm) + 2.4 * mm
 
-    # Products
-    prod_h = 18.8 * mm
-    rrect(c, INNER, y - prod_h, CONTENT_W, prod_h, 4, fill=CREAM_CARD, stroke=GOLD, sw=0.75)
+    prod_h = 14.2 * mm
+    rrect(c, INNER, y - prod_h, CONTENT_W, prod_h, 3.8, fill=CREAM_CARD, stroke=GOLD, sw=0.75)
     c.setFillColor(GOLD_DK)
-    c.setFont(FONTS["sansBold"], 6.0)
-    c.drawString(INNER + 8, y - 8.2, "PRODUCTS IN SCOPE  ·  GROUP CATALOGUE")
-    c.setFillColor(INK_SOFT)
-    c.setFont(FONTS["sans"], 7.4)
-    c.drawString(
-        INNER + 8,
-        y - 19.4,
-        "Fortified porridges   ·   One-pot meals   ·   Soya mince / institutional proteins   ·   Soups   ·   NSNP / institutional 5 kg formats where school- or clinic-linked",
+    c.setFont(FONTS["sansBold"], 5.9)
+    c.drawString(INNER + 8, y - 6.6, "PRODUCTS IN SCOPE  ·  GROUP CATALOGUE")
+    products = (
+        "Fortified porridges  ·  One-pot meals  ·  Soya mince / institutional proteins  ·  Soups  ·  "
+        "NSNP / institutional 5 kg formats where school- or clinic-linked"
     )
-    y -= prod_h + 6.2 * mm
+    draw_para(c, products, INNER + 8, y - 16.2, FONTS["sans"], 7.15, 9.3, CONTENT_W - 16, INK_SOFT)
+    y -= prod_h + 5.2 * mm
 
-    # Honesty
     section_label(c, "9  ·  Honesty — what this is not", INNER, y)
-    y -= 6.8 * mm
+    y -= 6.2 * mm
 
     notes = [
         "This document is a Big Five Group partner briefing of HOA principal terms — not an official Palace publication and not a record of executed statutory documents.",
@@ -956,21 +931,25 @@ def page_3(c):
         "Funding stack names are proposed channels — not closed sponsor awards. Named corporates are illustrative CSI channels.",
         "No Royal Rate rand figure is published here. Heritage language remains anchored to zulukingdom.co.za. This briefing does not speak for the Palace.",
     ]
-    hon_top = y
-    # Estimate box
-    hon_h = y - (BODY_BOTTOM + 2 * mm)
-    rrect(c, INNER, BODY_BOTTOM + 2 * mm, CONTENT_W, hon_h, 4.5, fill=HexColor("#1A140C"), stroke=GOLD, sw=0.95)
-    c.setFillColor(GOLD)
-    c.rect(INNER, BODY_BOTTOM + 2 * mm, 2.4, hon_h, fill=1, stroke=0)
-
-    yy = y - 5.5 * mm
+    notes_h = 8.0 * mm
     for n in notes:
-        c.setFillColor(GOLD)
-        c.setFont(FONTS["sansBold"], 7.4)
-        c.drawString(INNER + 9, yy, "·")
-        used = draw_para(c, n, INNER + 15, yy, FONTS["sans"], 6.85, 8.9, CONTENT_W - 24, GOLD_SOFT)
-        yy -= used + 2.15
+        nlines = wrap_text(c, n, FONTS["sans"], 6.55, CONTENT_W - 26)
+        notes_h += len(nlines) * 8.45 + 1.85
+    hon_h = min(notes_h, y - (BODY_BOTTOM + 0.4 * mm))
+    rrect(c, INNER, y - hon_h, CONTENT_W, hon_h, 4.0, fill=CHAR, stroke=GOLD, sw=0.95)
+    c.setFillColor(GOLD)
+    c.rect(INNER, y - hon_h, 2.3, hon_h, fill=1, stroke=0)
 
+    yy = y - 5.0 * mm
+    floor = y - hon_h + 3.0 * mm
+    for n in notes:
+        if yy < floor + 7:
+            break
+        gold_dot(c, INNER + 8, yy)
+        used_n = draw_para(c, n, INNER + 16, yy, FONTS["sans"], 6.55, 8.45, CONTENT_W - 26, GOLD_SOFT)
+        yy -= used_n + 1.85
+
+    draw_footer(c, 3)
     c.showPage()
 
 
