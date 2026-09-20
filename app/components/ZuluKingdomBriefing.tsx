@@ -68,26 +68,33 @@ export default function ZuluKingdomBriefing() {
             HOW TO READ THIS PARTNERSHIP BRIEFING
           </h2>
           <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-5">
-            Jump links follow the strategic narrative: Royal House, equal partnership, Feed · Educate
-            · Empower, the Agri → Foods → Big Five Royal value chain, products, leadership,
-            empowerment, pathways, honesty — then the shareable slide deck.
+            Start with Isidlo seSilo HOA principal terms (proposed / subject to signature), then the
+            strategic narrative: Royal House, equal partnership, Feed · Educate · Empower, the Agri →
+            Foods → Big Five Royal value chain, products, leadership, empowerment, pathways, honesty —
+            then the shareable slide deck.
           </p>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
-              { n: "01", href: "#royal-house", label: "Royal House", why: "His Majesty and shared service" },
-              { n: "02", href: "#partnership-50-50", label: "50:50 model", why: "Equal gifts each side brings" },
-              { n: "03", href: "#pillars", label: "Three pillars", why: "Feed · Educate · Empower" },
-              { n: "04", href: "#value-chain", label: "Value chain", why: "Agri → Foods → Royal → Direct" },
-              { n: "05", href: "#agri", label: "Big Five Agri", why: "Train Nation farmers & crop offtake" },
-              { n: "06", href: "#foods-products", label: "Big Five Foods", why: "Products for the Nation’s tables" },
-              { n: "07", href: "#royal-departments", label: "Royal · departments", why: "Sports/Arts & Culture, Health, Agriculture, COGTA" },
-              { n: "08", href: "#direct-containers", label: "Direct containers", why: "Community enterprise selling Foods" },
-              { n: "09", href: "#acceleration", label: "Connect + Super-Cube", why: "Accelerators on every channel" },
-              { n: "10", href: "#leadership", label: "Leadership", why: "Super-Cube® for stewards" },
-              { n: "11", href: "#empower", label: "Empower", why: "Connect, Direct, Foundation, Impact" },
-              { n: "12", href: "#pathways", label: "Pathways", why: "How we begin together" },
-              { n: "13", href: "#honesty", label: "Honesty", why: "What this briefing is and is not" },
-              { n: "14", href: "#zulu-partnership-deck", label: "Slide deck", why: "Slide presentation + PDF" },
+              { n: "01", href: "#isidlo-sesilo", label: "Isidlo seSilo", why: "Official Nutrition Programme — HOA principal terms" },
+              { n: "02", href: "#royal-foods-entity", label: "Big Five Royal Foods", why: "Official Meal Partner (HOA-proposed)" },
+              { n: "03", href: "#governance", label: "Governance & board", why: "CEO, Prince Ntokozo, patrons, TBC seats" },
+              { n: "04", href: "#roles", label: "Roles & mandate", why: "Dr Muller, Dr Joy TBC, Queens joint mandate" },
+              { n: "05", href: "#activations", label: "Royal activations", why: "Izintombi, Amabutho, calendar, year-round" },
+              { n: "06", href: "#royal-commercial", label: "Royal commercial", why: "21-day headcount · Royal Rate · planned offtake" },
+              { n: "07", href: "#royal-house", label: "Royal House", why: "His Majesty and shared service" },
+              { n: "08", href: "#partnership-50-50", label: "50:50 model", why: "Equal gifts each side brings" },
+              { n: "09", href: "#pillars", label: "Three pillars", why: "Feed · Educate · Empower" },
+              { n: "10", href: "#value-chain", label: "Value chain", why: "Agri → Foods → Royal → Direct" },
+              { n: "11", href: "#agri", label: "Big Five Agri", why: "Train Nation farmers & crop offtake" },
+              { n: "12", href: "#foods-products", label: "Big Five Foods", why: "Products for the Nation’s tables" },
+              { n: "13", href: "#royal-departments", label: "Royal · departments", why: "Sports/Arts & Culture, Health, Agriculture, COGTA" },
+              { n: "14", href: "#direct-containers", label: "Direct containers", why: "Community enterprise selling Foods" },
+              { n: "15", href: "#acceleration", label: "Connect + Super-Cube", why: "Accelerators on every channel" },
+              { n: "16", href: "#leadership", label: "Leadership", why: "Super-Cube® for stewards" },
+              { n: "17", href: "#empower", label: "Empower", why: "Connect, Direct, Foundation, Impact" },
+              { n: "18", href: "#pathways", label: "Pathways", why: "How we begin together" },
+              { n: "19", href: "#honesty", label: "Honesty", why: "What this briefing is and is not" },
+              { n: "20", href: "#zulu-partnership-deck", label: "Slide deck", why: "Slide presentation + PDF" },
             ].map((item) => (
               <a
                 key={item.href}

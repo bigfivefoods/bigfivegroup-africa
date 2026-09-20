@@ -390,6 +390,178 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     "Big Five Royal is the proposed channel brand for placing Foods into national and provincial departments (including Sports, Arts & Culture; Health; Agriculture; and COGTA) — scope, mandates and procurement rules require formal confirmation with competent authorities.",
     "Big Five Agri farmer training and crop offtake into Foods manufacturing are partnership ambitions — volumes, crop specs, pricing and land/tenure arrangements must be agreed with authorised Nation representatives and farmer organisations.",
     "Big Five Direct community containers (local operators selling and distributing Foods) follow Direct programme plans — phased rollout with the Nation, not a claim that every node is already live.",
+    "Heads of Agreement BF/RH/HOA/FINAL-V5 sets principal terms only — not an executed SHA, MOI, supply contract, gazetted royal appointment, or funded government award. Until signature is confirmed, treat exclusivity, offtake ranges and sponsor names as HOA-proposed.",
     `Foods meal maths (${PACK.inline} 1kg → ~20 × 200g meals → ${MEAL.inline}/meal) are management / partner-briefing figures — confirm SKU list, preparation and VAT on order. ${BLESSMAN_FX.note}`,
   ],
+
+  /**
+   * Heads of Agreement BF/RH/HOA/FINAL-V5 — principal terms for Isidlo seSilo
+   * and Big Five Royal Foods (Pty) Ltd. Status: proposed / subject to signature
+   * (Amazulu Queens' High Tea, 23 Sep 2026). Not an executed statutory document.
+   */
+  hoa: {
+    ref: "BF/RH/HOA/FINAL-V5",
+    status: "hoa-proposed" as const,
+    statusLabel: "Principal terms · subject to signature",
+    title: "Isidlo seSilo · Heads of Agreement",
+    eyebrow: "HEADS OF AGREEMENT · ROYAL HOUSEHOLD",
+    programmeName: "Isidlo seSilo",
+    programmeMeaning: "Official Nutrition Programme of the Kingdom",
+    entityName: "Big Five Royal Foods (Pty) Ltd",
+    entityRole: "Official Meal Partner of the Royal Household",
+    exclusiveTerm:
+      "Exclusive Official Fortified Meal Provider for listed royal activations (HOA-proposed commercial term)",
+    signing: {
+      date: "23 September 2026",
+      venue: "Zimbali Lakes Resort",
+      event: "2nd Annual Amazulu Queens' High Tea",
+    },
+    witnesses: ["HRH Ndlunkulu laMakhubo", "HRH Ndlunkulu kaMayisela"],
+    parties: {
+      bigFive: {
+        name: "Big Five Group (Pty) Ltd",
+        d: "KZN-based food manufacturing group specialising in fortified porridge and one-pot meals (Big Five Foods™), with Agri offtake, Direct distribution, Leadership (Super-Cube®), Connect (SupplierAdvisor®), Foundation and Impact.",
+      },
+      household: {
+        name: "The Royal Household Partnership",
+        representedBy: "Prince Ntokozo and the Queens",
+        d: "Represented by Prince Ntokozo and the Queens, in the presence of HRH Ndlunkulu laMakhubo and HRH Ndlunkulu kaMayisela.",
+      },
+    },
+    purpose:
+      "Principal terms for a strategic partnership to establish Isidlo seSilo — the Official Nutrition Programme of the Kingdom — and to constitute Big Five Royal Foods (Pty) Ltd as Official Meal Partner of the Royal Household.",
+    vision: [
+      "Creates sustainable jobs on Ingonyama Trust land",
+      "Provides fortified nutrition for His Majesty’s people",
+      "Operates under Ubuntu, Dignity, and Heritage",
+      "Generates commercial returns for all stakeholders",
+    ],
+    board: [
+      {
+        person: "Dr. Craig R. Muller (Dr. Miller)",
+        seat: "Executive Director / CEO",
+        tbc: false,
+      },
+      {
+        person: "Prince Ntokozo",
+        seat: "Non-Executive Director / Royal Liaison",
+        tbc: false,
+      },
+      {
+        person: "Dr. Joy (Natalie)",
+        seat: "Strategic Advisor — role TBC; invitee to Board pending final designation",
+        tbc: true,
+      },
+      {
+        person: "Independent Chair",
+        seat: "To be appointed by mutual agreement",
+        tbc: true,
+      },
+    ],
+    patrons: [
+      {
+        person: "HRH Ndlunkulu laMakhubo",
+        role: "Senior Royal Patron",
+        lead: "Lead Patron for Izintombi Zesilo & Umkhosi woMhlanga (Reed Dance); champion for young women’s empowerment; host of Queens' High Tea",
+      },
+      {
+        person: "HRH Ndlunkulu kaMayisela",
+        role: "Royal Patron",
+        lead: "Lead Patron for Amabutho catering, household welfare & royal ceremonies; champion for maternal health, family nutrition, and community outreach",
+      },
+    ],
+    queensMandate:
+      "Approve meal standards worthy of His Majesty’s people, and lead all women-centric and community distribution programmes.",
+    roles: [
+      {
+        person: "Dr. Craig R. Muller",
+        title: "Chief Executive Officer",
+        bullets: [
+          "Overall strategic leadership and execution",
+          "Investor relations, finance, and capital raising",
+          "Government and corporate partnerships: DTIC, DSD, KZN Provincial, Ingonyama Trust",
+          "Commercial agreements, expansion, and profitability",
+        ],
+      },
+      {
+        person: "Dr. Joy (Natalie)",
+        title: "Strategic Advisor — Wellness, Product Integrity & Community Health (role TBC)",
+        bullets: [
+          "Expertise in nutrition, wellness, and fortified formulation",
+          "Oversees product quality and health standards",
+          "Final title after consultation with the Royal Household",
+        ],
+      },
+      {
+        person: "Prince Ntokozo",
+        title: "Board Member, Royal & Strategic Affairs",
+        bullets: [
+          "Official liaison between the Company and the Royal Household",
+          "Custodian of the Royal Calendar and cultural protocol",
+          "Facilitates engagement with Amakhosi, Izinduna, and Ingonyama Trust Board",
+          "Governance oversight and protection of royal reputation",
+        ],
+      },
+    ],
+    activations: [
+      {
+        id: "izintombi",
+        t: "Izintombi Zesilo (Maidens)",
+        detail: "Umkhosi woMhlanga (Reed Dance), eNyokeni",
+        headcount: "15,000–30,000 maidens · preparatory camps (2 weeks feeding) · quarterly cultural workshops",
+      },
+      {
+        id: "amabutho",
+        t: "Amabutho (King’s Regiments)",
+        detail: "Umkhosi weLembe, Amabutho gatherings, royal guard duties, training camps",
+        headcount: "500–3,000 men per activation",
+      },
+      {
+        id: "calendar",
+        t: "Core Royal Calendar",
+        detail:
+          "Umkhosi woMhlanga · Umkhosi woMama (First Fruits) · King Shaka Day · Royal Weddings · Coronations · Memorial Services · Amazulu Kings Golf Cup · Queens' High Tea",
+        headcount: "Per event — 21-day advance headcount",
+      },
+      {
+        id: "traditional",
+        t: "Traditional leadership",
+        detail:
+          "Monthly Amakhosi & Izinduna Council Meetings · Ingonyama Trust Community Imbizos · Rural outreach & food-relief drives led by the Queens",
+        headcount: "Per gathering — advance headcount",
+      },
+      {
+        id: "yearround",
+        t: "Year-round programmes",
+        detail:
+          "Royal Schools Nutrition Programme · Clinics & Orphan Care Centres · Official Disaster Relief Meal of the Kingdom",
+        headcount: "Programme calendars — HOA planned volumes",
+      },
+    ],
+    commercial: {
+      headcountRule: "21-day advance headcount for each activation",
+      price: "Invoicing at pre-agreed Royal Rate (schedule to SHA / rate card — rand figure not published here)",
+      fundingMix: [
+        "Ingonyama Trust CSI",
+        "KZN Provincial Government",
+        "Corporate CSI (MTN, Lesaka, Edison Power, etc.)",
+        "Big Five CSI",
+      ],
+      fundingStatus: "hoa-proposed" as const,
+      offtakeRange: "50,000–200,000 meals monthly",
+      offtakeStatus: "hoa-proposed" as const,
+      offtakeLabel: "HOA planned monthly offtake range",
+      productsInScope: [
+        "Fortified porridges",
+        "One-pot meals",
+        "Soya mince / institutional proteins",
+        "Soups",
+        "NSNP / institutional 5 kg formats where school- or clinic-linked",
+      ],
+    },
+    downloadHref: "/partners/zulu-kingdom-hoa-isidlo-sesilo.pdf",
+    downloadLabel: "Download HOA briefing (A4 portrait PDF)",
+    honestyFooter:
+      "This page reflects Heads of Agreement principal terms (BF/RH/HOA/FINAL-V5) prepared for the Amazulu Queens' High Tea. It is a Big Five Group partner briefing — not an official Palace publication and not a record of executed statutory documents. Until the HOA is executed, treat exclusivity, offtake ranges and sponsor names as proposed.",
+  },
 } as const;

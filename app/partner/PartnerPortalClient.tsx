@@ -82,6 +82,10 @@ const ZuluKingdomBriefing = dynamic(() => import("../components/ZuluKingdomBrief
   ssr: true,
   loading: () => <DeckLoading label="Zulu Kingdom briefing" />,
 });
+const ZuluKingdomHoaSections = dynamic(() => import("../components/ZuluKingdomHoaSections"), {
+  ssr: true,
+  loading: () => <DeckLoading label="Isidlo seSilo HOA" />,
+});
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
   loading: () => <DeckLoading label="SWT-AG deck" />,
@@ -777,6 +781,12 @@ export default function PartnerPortalClient({
               ...(partner.slug === "zulu-kingdom"
                 ? [
                     { href: "#briefing-map", label: "Briefing map" },
+                    { href: "#isidlo-sesilo", label: "Isidlo seSilo" },
+                    { href: "#royal-foods-entity", label: "Royal Foods" },
+                    { href: "#governance", label: "Governance" },
+                    { href: "#roles", label: "Roles" },
+                    { href: "#activations", label: "Activations" },
+                    { href: "#royal-commercial", label: "Royal commercial" },
                     { href: "#royal-house", label: "Royal house" },
                     { href: "#partnership-50-50", label: "50:50" },
                     { href: "#pillars", label: "Pillars" },
@@ -974,7 +984,12 @@ export default function PartnerPortalClient({
       </section>
 
       {partner.slug === "blessman-international" && <BlessmanKingdomSection />}
-      {partner.slug === "zulu-kingdom" && <ZuluKingdomBriefing />}
+      {partner.slug === "zulu-kingdom" && (
+        <>
+          <ZuluKingdomBriefing />
+          <ZuluKingdomHoaSections />
+        </>
+      )}
 
       {(partner.programmes?.length ?? 0) > 0 && partner.slug !== "zulu-kingdom" && (
         <section

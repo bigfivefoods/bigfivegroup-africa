@@ -5,13 +5,17 @@ import type { ReactNode } from "react";
 import {
   ArrowRight,
   Building2,
+  CalendarDays,
   Check,
   Crown,
   GraduationCap,
   Handshake,
+  HeartHandshake,
+  Landmark,
   Leaf,
   Package,
   Scale,
+  Shield,
   ShieldCheck,
   Sparkles,
   Store,
@@ -31,7 +35,7 @@ import DeckShell, {
 import { ZULU_KINGDOM_PARTNERSHIP } from "../lib/zuluKingdomPartnership";
 
 const theme = DECK_THEMES.zulu;
-const TOTAL = 20;
+const TOTAL = 25;
 const P = ZULU_KINGDOM_PARTNERSHIP;
 const MEAL_ZAR = P.nutrition.mealInline.replace(/\s*\([^)]*\)/, "");
 const MEAL_USD = P.nutrition.mealInline.match(/\([^)]+\)/)?.[0] ?? "";
@@ -869,6 +873,289 @@ function Slide({ index }: { index: number }) {
 
     case 17:
       return (
+        <DeckSlideShell dark theme={theme} className="!p-0">
+          <LeopardDarkField>
+            <div className="flex flex-col h-full min-h-0 p-5 sm:p-8 md:p-10">
+              <DeckEyebrow light theme={theme}>
+                {P.hoa.eyebrow}
+              </DeckEyebrow>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <span className="inline-flex items-center rounded-full border border-[#e0b000]/40 bg-black/40 px-2.5 py-0.5 text-[10px] font-semibold tracking-wide text-[#e0b000]">
+                  {P.hoa.statusLabel}
+                </span>
+                <span className="text-[10px] text-white/45 tabular-nums">{P.hoa.ref}</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-white text-balance">
+                {P.hoa.programmeName}
+              </h2>
+              <p className="text-sm text-[#e0b000]/90 mt-1 mb-2">{P.hoa.programmeMeaning}</p>
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-3xl mb-3">
+                {P.hoa.purpose}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 flex-1 min-h-0 content-start">
+                <div className="rounded-xl border border-[#e0b000]/30 bg-black/35 px-3.5 py-3">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <UtensilsCrossed className="w-4 h-4 text-[#e0b000]" aria-hidden />
+                    <div className="text-[10px] tracking-[2px] font-semibold text-[#e0b000]">
+                      OFFICIAL MEAL PARTNER · PROPOSED
+                    </div>
+                  </div>
+                  <div className="text-sm font-semibold text-white mb-1">{P.hoa.entityName}</div>
+                  <p className="text-xs text-white/60 leading-relaxed">
+                    {P.hoa.entityRole} — HOA-proposed designation, not a gazetted royal appointment.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-black/35 px-3.5 py-3">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <CalendarDays className="w-4 h-4 text-[#e0b000]" aria-hidden />
+                    <div className="text-[10px] tracking-[2px] font-semibold text-[#e0b000]">
+                      PROPOSED SIGNING
+                    </div>
+                  </div>
+                  <div className="text-sm font-semibold text-white mb-1">{P.hoa.signing.date}</div>
+                  <p className="text-xs text-white/60 leading-relaxed">
+                    {P.hoa.signing.venue} · {P.hoa.signing.event}
+                  </p>
+                  <p className="text-[10px] text-white/45 mt-2">Subject to signature — not executed.</p>
+                </div>
+              </div>
+              <p className="mt-3 text-[10px] text-white/45 leading-relaxed max-w-3xl">
+                {P.hoa.exclusiveTerm}. Sits alongside the 50:50 Agri → Foods → Royal → Direct
+                narrative.
+              </p>
+            </div>
+          </LeopardDarkField>
+        </DeckSlideShell>
+      );
+
+    case 18:
+      return (
+        <DeckSlideShell theme={theme}>
+          <LeopardWatermark />
+          <div className="relative z-10 flex flex-col h-full min-h-0">
+            <DeckEyebrow theme={theme}>GOVERNANCE · BOARD &amp; PATRONS</DeckEyebrow>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-1">
+              Board as tabled in the HOA
+            </h2>
+            <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+              Seats below are principal terms only. TBC designations remain open — they are not
+              appointments.
+            </p>
+            <div className="overflow-hidden rounded-2xl border border-[#e0b000]/25 bg-white mb-3">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead>
+                  <tr className="border-b border-[#e0b000]/25 bg-[#faf6eb]">
+                    <th className="px-3 py-2 font-semibold text-[#a67c00]">Person</th>
+                    <th className="px-3 py-2 font-semibold text-[#a67c00]">Seat</th>
+                    <th className="px-3 py-2 font-semibold text-[#a67c00]">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {P.hoa.board.map((row) => (
+                    <tr key={row.person} className="border-b border-black/[0.06] last:border-0">
+                      <td className="px-3 py-2 font-medium text-black align-top">{row.person}</td>
+                      <td className="px-3 py-2 text-[#404040] align-top">{row.seat}</td>
+                      <td className="px-3 py-2 align-top">
+                        {row.tbc ? (
+                          <span className="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
+                            TBC
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center rounded-full border border-[#e0b000]/35 bg-[#faf6eb] px-2 py-0.5 text-[10px] font-semibold text-[#a67c00]">
+                            Tabled
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 flex-1 min-h-0 content-start">
+              {P.hoa.patrons.map((p) => (
+                <div
+                  key={p.person}
+                  className="rounded-xl border border-[#e0b000]/25 bg-white px-3.5 py-3 shadow-sm"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <Crown className="w-3.5 h-3.5 text-[#a67c00]" aria-hidden />
+                    <div className="text-[10px] tracking-[1.5px] font-semibold text-[#a67c00]">
+                      {p.role.toUpperCase()}
+                    </div>
+                  </div>
+                  <div className="text-sm font-semibold text-black mb-1">{p.person}</div>
+                  <p className="text-[11px] sm:text-xs text-[#525252] leading-relaxed">{p.lead}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 19:
+      return (
+        <DeckSlideShell dark theme={theme} className="!p-0">
+          <LeopardDarkField>
+            <div className="flex flex-col h-full min-h-0 p-5 sm:p-8 md:p-10">
+              <DeckEyebrow light theme={theme}>
+                ROYAL ACTIVATIONS · HOA-PROPOSED SCOPE
+              </DeckEyebrow>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-white text-balance mb-2">
+                Where Isidlo seSilo would serve
+              </h2>
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-3xl mb-3">
+                Exclusive fortified-meal provision for listed activations is an HOA-proposed
+                commercial term — not a live award. Headcounts as tabled in {P.hoa.ref}.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 flex-1 min-h-0 content-start">
+                {P.hoa.activations.map((a) => {
+                  const Icon =
+                    a.id === "izintombi"
+                      ? Sparkles
+                      : a.id === "amabutho"
+                        ? Shield
+                        : a.id === "calendar"
+                          ? CalendarDays
+                          : a.id === "traditional"
+                            ? Landmark
+                            : HeartHandshake;
+                  return (
+                    <div
+                      key={a.id}
+                      className="rounded-xl border border-[#e0b000]/25 bg-black/35 px-3.5 py-3 flex flex-col"
+                    >
+                      <Icon className="w-4 h-4 text-[#e0b000] mb-1.5" aria-hidden />
+                      <div className="text-sm font-semibold text-white mb-1">{a.t}</div>
+                      <p className="text-[11px] text-white/60 leading-relaxed mb-2 flex-1">{a.detail}</p>
+                      <p className="text-[10px] font-semibold text-[#e0b000] leading-snug border-t border-[#e0b000]/20 pt-1.5">
+                        {a.headcount}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </LeopardDarkField>
+        </DeckSlideShell>
+      );
+
+    case 20:
+      return (
+        <DeckSlideShell theme={theme}>
+          <LeopardWatermark />
+          <div className="relative z-10 flex flex-col h-full min-h-0">
+            <DeckEyebrow theme={theme}>COMMERCIAL TERM · HOA-PROPOSED</DeckEyebrow>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2">
+              How offtake and invoicing would work
+            </h2>
+            <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+              Principal terms only. No Royal Rate rand amount is published here; offtake is a planned
+              monthly range, not a contracted volume.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-2.5">
+              <div className="rounded-xl border border-[#e0b000]/25 bg-white px-3.5 py-3">
+                <CalendarDays className="w-4 h-4 text-[#a67c00] mb-1.5" aria-hidden />
+                <div className="text-sm font-semibold text-black mb-1">Advance headcount</div>
+                <p className="text-xs text-[#404040] leading-relaxed">{P.hoa.commercial.headcountRule}</p>
+              </div>
+              <div className="rounded-xl border border-[#e0b000]/25 bg-white px-3.5 py-3">
+                <Scale className="w-4 h-4 text-[#a67c00] mb-1.5" aria-hidden />
+                <div className="text-sm font-semibold text-black mb-1">Royal Rate</div>
+                <p className="text-xs text-[#404040] leading-relaxed">{P.hoa.commercial.price}</p>
+              </div>
+            </div>
+            <div className="rounded-2xl border-2 border-[#e0b000]/40 bg-[#faf6eb] px-4 py-3 mb-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00]">
+                  {P.hoa.commercial.offtakeLabel.toUpperCase()}
+                </div>
+                <span className="inline-flex items-center rounded-full border border-[#e0b000]/40 bg-white px-2 py-0.5 text-[10px] font-semibold text-[#a67c00]">
+                  HOA-proposed
+                </span>
+              </div>
+              <div className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black tabular-nums">
+                {P.hoa.commercial.offtakeRange}
+              </div>
+              <p className="text-[11px] text-[#737373] mt-1">
+                Planned monthly range — not a contracted offtake, not a live order book.
+              </p>
+            </div>
+            <div className="rounded-xl border border-black/10 bg-white px-3.5 py-3 flex-1 min-h-0">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00]">
+                  FUNDING MIX · PROPOSED CHANNELS
+                </div>
+                <span className="inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
+                  Proposed
+                </span>
+              </div>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                {P.hoa.commercial.fundingMix.map((ch) => (
+                  <li key={ch} className="flex gap-2 text-xs text-[#404040]">
+                    <Check className="w-3.5 h-3.5 text-[#a67c00] shrink-0 mt-0.5" />
+                    <span>{ch}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-[10px] text-[#737373] mt-2 leading-relaxed">
+                Named corporates are illustrative CSI channels in the HOA — not confirmed sponsor
+                awards.
+              </p>
+            </div>
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 21:
+      return (
+        <DeckSlideShell theme={theme}>
+          <LeopardWatermark />
+          <div className="relative z-10 flex flex-col h-full min-h-0">
+            <DeckEyebrow theme={theme}>HOA HONESTY · {P.hoa.ref}</DeckEyebrow>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2">
+              What this Heads of Agreement is not
+            </h2>
+            <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+              {P.hoa.statusLabel}. Principal terms only — until signature is confirmed, treat
+              exclusivity, offtake ranges and sponsor names as HOA-proposed.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 flex-1 min-h-0 content-start">
+              {[
+                {
+                  t: "Not a SHA",
+                  d: "Does not constitute a shareholders’ agreement, share issue, or executed equity structure.",
+                },
+                {
+                  t: "Not an MOI",
+                  d: "Does not incorporate Big Five Royal Foods (Pty) Ltd or amend any memorandum of incorporation.",
+                },
+                {
+                  t: "Not a tender award",
+                  d: "Not a funded government award, procurement win, or live departmental contract.",
+                },
+                {
+                  t: "Not a gazetted appointment",
+                  d: "Official Meal Partner and exclusivity are HOA-proposed commercial terms — not a Palace gazette.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.t}
+                  className="rounded-xl border border-black/10 bg-[#fafafa] px-3.5 py-3"
+                >
+                  <div className="text-sm font-semibold text-black mb-1">{item.t}</div>
+                  <p className="text-xs text-[#525252] leading-relaxed">{item.d}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-[10px] text-[#737373] leading-relaxed max-w-3xl">
+              {P.hoa.honestyFooter}
+            </p>
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 22:
+      return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
           <div className="relative z-10 flex flex-col h-full min-h-0">
@@ -890,7 +1177,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 18:
+    case 23:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -935,7 +1222,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 19:
+    case 24:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <LeopardDarkField>
