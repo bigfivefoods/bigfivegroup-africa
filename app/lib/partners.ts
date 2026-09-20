@@ -366,7 +366,7 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#zulu-partnership-deck",
         label: "Strategic partnership deck",
-        desc: "16-slide briefing — 50:50 Feed · Educate · Empower with leopard-print branding.",
+        desc: "18-slide briefing — 50:50 Feed · Educate · Empower, Agri→Foods→Royal value chain, leopard-print branding.",
       },
       {
         href: "#royal-house",

@@ -8,6 +8,7 @@ import {
   Crown,
   GraduationCap,
   Handshake,
+  Leaf,
   Package,
   Scale,
   ShieldCheck,
@@ -27,7 +28,7 @@ import DeckShell, {
 import { ZULU_KINGDOM_PARTNERSHIP } from "../lib/zuluKingdomPartnership";
 
 const theme = DECK_THEMES.zulu;
-const TOTAL = 16;
+const TOTAL = 18;
 const P = ZULU_KINGDOM_PARTNERSHIP;
 const MEAL_ZAR = P.nutrition.mealInline.replace(/\s*\([^)]*\)/, "");
 const MEAL_USD = P.nutrition.mealInline.match(/\([^)]+\)/)?.[0] ?? "";
@@ -319,6 +320,93 @@ function Slide({ index }: { index: number }) {
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
           <div className="relative z-10 flex flex-col h-full min-h-0">
+            <DeckEyebrow theme={theme}>{P.valueChain.eyebrow}</DeckEyebrow>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance mb-2">
+              {P.valueChain.title}
+            </h2>
+            <p className="text-xs sm:text-sm text-[#525252] leading-relaxed max-w-3xl mb-3">
+              {P.valueChain.intro}
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-3 flex-1 min-h-0">
+              {P.valueChain.stages.map((s) => {
+                const Icon = s.id === "agri" ? Leaf : s.id === "foods" ? Package : Crown;
+                return (
+                  <div
+                    key={s.id}
+                    className="rounded-2xl border border-black/10 bg-white p-3.5 sm:p-4 flex flex-col shadow-sm min-w-0"
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <div className="text-2xl font-semibold tracking-tighter text-[#e0b000] tabular-nums">
+                        {s.n}
+                      </div>
+                      <Icon className="w-5 h-5 text-[#a67c00] shrink-0" aria-hidden />
+                    </div>
+                    <div className="text-[10px] tracking-[1.5px] font-semibold text-[#a67c00] mb-1">
+                      {s.brand.toUpperCase()}
+                    </div>
+                    <div className="text-sm font-semibold text-black mb-1.5 leading-snug">{s.t}</div>
+                    <p className="text-[11px] sm:text-xs text-[#525252] leading-relaxed mb-3 flex-1">
+                      {s.d}
+                    </p>
+                    <ul className="space-y-1 mt-auto">
+                      {s.outcomes.map((o) => (
+                        <li key={o} className="flex gap-1.5 text-[10px] sm:text-[11px] text-[#404040]">
+                          <Check className="w-3 h-3 text-[#a67c00] shrink-0 mt-0.5" />
+                          <span>{o}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="mt-3 text-[10px] sm:text-[11px] text-[#737373] leading-relaxed">
+              {P.valueChain.loopNote}
+            </p>
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 6:
+      return (
+        <DeckSlideShell dark theme={theme} className="!p-0">
+          <LeopardDarkField>
+            <div className="flex flex-col h-full min-h-0 p-5 sm:p-8 md:p-10">
+              <DeckEyebrow light theme={theme}>
+                {P.agri.eyebrow}
+              </DeckEyebrow>
+              <div className="flex items-center gap-2 mb-2">
+                <Leaf className="w-5 h-5 text-[#e0b000]" aria-hidden />
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-white text-balance">
+                  {P.agri.title}
+                </h2>
+              </div>
+              <p className="text-sm text-white/75 leading-relaxed max-w-3xl mb-4">{P.agri.intro}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 flex-1 min-h-0 content-start">
+                {P.agri.points.map((p) => (
+                  <div
+                    key={p.t}
+                    className="rounded-xl border border-white/10 bg-black/35 px-3.5 py-3"
+                  >
+                    <div className="text-sm font-semibold text-white mb-1">{p.t}</div>
+                    <p className="text-xs text-white/60 leading-relaxed">{p.d}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-[10px] text-white/45 leading-relaxed max-w-3xl">
+                Next in the chain: Big Five Foods manufactures from those crops — then Big Five Royal
+                places finished foods into national departments for the people of the Nation.
+              </p>
+            </div>
+          </LeopardDarkField>
+        </DeckSlideShell>
+      );
+
+    case 7:
+      return (
+        <DeckSlideShell theme={theme}>
+          <LeopardWatermark />
+          <div className="relative z-10 flex flex-col h-full min-h-0">
             <DeckEyebrow theme={theme}>FEED · BIG FIVE FOODS™</DeckEyebrow>
             <div className="flex items-center gap-2 mb-2">
               <Package className="w-5 h-5 text-[#a67c00]" aria-hidden />
@@ -327,8 +415,9 @@ function Slide({ index }: { index: number }) {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#525252] mb-3 max-w-3xl leading-relaxed">
-              Fortified African food — delicious, nutritious, affordable — for royal hospitality,
-              household kitchens and community programmes across KZN.
+              Manufactured by Big Five Foods from crops grown by Nation farmers trained with Big Five
+              Agri — then placed by Big Five Royal into departments and programmes so people eat with
+              dignity.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
               {P.products.map((f) => (
@@ -360,7 +449,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 6:
+    case 8:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -405,7 +494,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 7:
+    case 9:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -438,7 +527,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 8:
+    case 10:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <LeopardDarkField>
@@ -482,7 +571,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 9:
+    case 11:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -514,7 +603,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 10:
+    case 12:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -555,11 +644,11 @@ function Slide({ index }: { index: number }) {
                 </div>
                 <ul className="space-y-2 flex-1">
                   {[
-                    "Fortified food manufacturing and institutional formats",
-                    "Super-Cube® leadership formation",
-                    "SupplierAdvisor® verified trade rails",
-                    "Foundation design and Impact PMO assurance",
-                    "Commercial excellence with ethical, Ubuntu-rooted values",
+                    "Big Five Agri — train Nation farmers & secure crop offtake",
+                    "Big Five Foods — manufacture fortified African staples",
+                    "Big Five Royal — place foods into national departments",
+                    "Super-Cube® leadership formation for stewards",
+                    "SupplierAdvisor® · Foundation · Impact PMO assurance",
                   ].map((line) => (
                     <li key={line} className="flex gap-2 text-sm text-[#404040]">
                       <Check className="w-3.5 h-3.5 text-[#a67c00] shrink-0 mt-0.5" />
@@ -573,7 +662,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 11:
+    case 13:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -602,7 +691,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 12:
+    case 14:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -625,9 +714,19 @@ function Slide({ index }: { index: number }) {
                 <tbody>
                   {[
                     {
-                      need: "Daily nutrition",
-                      sol: "Fortified porridges, soya, one-pots, soups",
-                      for: "Households, ECD, community kitchens",
+                      need: "Local farmer livelihoods",
+                      sol: "Big Five Agri training & offtake",
+                      for: "Zulu Nation farmers supply Foods",
+                    },
+                    {
+                      need: "Fortified manufacturing",
+                      sol: "Big Five Foods™ staples",
+                      for: "Crops → porridge, soya, one-pots, soups",
+                    },
+                    {
+                      need: "Reach the people",
+                      sol: "Big Five Royal · departments",
+                      for: "National/provincial programme placement",
                     },
                     {
                       need: "Leadership depth",
@@ -638,11 +737,6 @@ function Slide({ index }: { index: number }) {
                       need: "Trusted commerce",
                       sol: "SupplierAdvisor® verification rails",
                       for: "Ethical trade linked to economic dignity",
-                    },
-                    {
-                      need: "Transparent giving",
-                      sol: "Foundation + Impact PMO",
-                      for: "Community programmes with proof",
                     },
                     {
                       need: "Shared governance",
@@ -665,7 +759,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 13:
+    case 15:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -688,7 +782,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 14:
+    case 16:
       return (
         <DeckSlideShell theme={theme}>
           <LeopardWatermark />
@@ -706,18 +800,18 @@ function Slide({ index }: { index: number }) {
                 },
                 {
                   n: "02",
-                  t: "Nutrition pilot design",
-                  d: "Select first kitchens / programmes in KZN for fortified Foods tasting and menu fit.",
+                  t: "Agri farmer pilot",
+                  d: "Select first Zulu Nation farmer cohorts for Big Five Agri training and crop offtake into Foods.",
                 },
                 {
                   n: "03",
-                  t: "Leadership cohort",
-                  d: "Nominate stewards for an inaugural Super-Cube® formation aligned to royal service.",
+                  t: "Foods + Royal placement",
+                  d: "Manufacture from Nation crops; agree Big Five Royal pathways into departments and community kitchens.",
                 },
                 {
                   n: "04",
                   t: "Term sheet principles",
-                  d: "Equity, governance, community benefit and public language — drafted for legal review.",
+                  d: "50:50 equity, governance, community benefit and public language — drafted for legal review.",
                 },
               ].map((s) => (
                 <div key={s.n} className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
@@ -733,7 +827,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 17:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <LeopardDarkField>
@@ -749,8 +843,9 @@ function Slide({ index }: { index: number }) {
                   <span style={{ color: "#e0b000" }}>His Majesty&apos;s people — together.</span>
                 </h2>
                 <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed mb-4">
-                  50:50 partnership · Big Five Foods · Super-Cube® · SupplierAdvisor® · Foundation &amp;
-                  Impact — in service of the Zulu Nation.
+                  50:50 partnership · Big Five Agri (farmers) → Big Five Foods (manufacture) → Big Five
+                  Royal (departments &amp; the people) · Super-Cube® · SupplierAdvisor® — in service of
+                  the Zulu Nation.
                 </p>
               </div>
               <div className="space-y-3">
