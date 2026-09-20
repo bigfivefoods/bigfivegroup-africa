@@ -26,9 +26,9 @@ import { ZULU_KINGDOM_PARTNERSHIP as P } from "../lib/zuluKingdomPartnership";
 const hoa = P.hoa;
 
 const creamCard =
-  "rounded-2xl border border-[#e0b000]/28 bg-[#fffdf6]/93 backdrop-blur-sm p-5 sm:p-6 shadow-[inset_3px_0_0_0_#e0b000,0_14px_40px_rgba(166,124,0,0.09)]";
+  "rounded-2xl border border-[#e0b000]/22 bg-white/82 backdrop-blur-[1px] p-5 sm:p-6";
 const darkCard =
-  "rounded-2xl border border-[#e0b000]/32 bg-black/42 backdrop-blur-[3px] p-5 sm:p-6 shadow-[inset_3px_0_0_0_#e0b000,0_18px_44px_rgba(0,0,0,0.38)]";
+  "rounded-2xl border border-[#e0b000]/22 bg-black/28 backdrop-blur-[2px] p-5 sm:p-6";
 
 function GoldOrnament({ light, className }: { light?: boolean; className?: string }) {
   const line = light
@@ -63,10 +63,10 @@ function GoldCorners({ light }: { light?: boolean }) {
   const edge = light ? "border-[#e0b000]/75" : "border-[#a67c00]/70";
   return (
     <>
-      <span className={`pointer-events-none absolute top-5 left-5 sm:top-7 sm:left-7 h-10 w-10 border-t-2 border-l-2 ${edge}`} aria-hidden />
-      <span className={`pointer-events-none absolute top-5 right-5 sm:top-7 sm:right-7 h-10 w-10 border-t-2 border-r-2 ${edge}`} aria-hidden />
-      <span className={`pointer-events-none absolute bottom-5 left-5 sm:bottom-7 sm:left-7 h-10 w-10 border-b-2 border-l-2 ${edge}`} aria-hidden />
-      <span className={`pointer-events-none absolute bottom-5 right-5 sm:bottom-7 sm:right-7 h-10 w-10 border-b-2 border-r-2 ${edge}`} aria-hidden />
+      <span className={`pointer-events-none absolute top-6 left-6 sm:top-8 sm:left-8 h-8 w-8 border-t border-l ${edge}`} aria-hidden />
+      <span className={`pointer-events-none absolute top-6 right-6 sm:top-8 sm:right-8 h-8 w-8 border-t border-r ${edge}`} aria-hidden />
+      <span className={`pointer-events-none absolute bottom-6 left-6 sm:bottom-8 sm:left-8 h-8 w-8 border-b border-l ${edge}`} aria-hidden />
+      <span className={`pointer-events-none absolute bottom-6 right-6 sm:bottom-8 sm:right-8 h-8 w-8 border-b border-r ${edge}`} aria-hidden />
     </>
   );
 }
@@ -139,7 +139,7 @@ function EntityStatusBadge() {
 
 function TbcPill() {
   return (
-    <span className="inline-flex items-center rounded-full border border-[#c9a227] bg-gradient-to-b from-[#fff8e7] to-[#f3e2b0] px-2.5 py-0.5 text-[10px] font-semibold tracking-[1.5px] text-[#8a6400] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+    <span className="inline-flex items-center rounded-full border border-[#e0b000]/50 bg-white px-2.5 py-0.5 text-[10px] font-semibold tracking-[1.5px] text-[#8a6400]">
       TBC
     </span>
   );
@@ -147,7 +147,7 @@ function TbcPill() {
 
 function TabledPill() {
   return (
-    <span className="inline-flex items-center rounded-full border border-[#a67c00]/40 bg-[#a67c00] px-2.5 py-0.5 text-[10px] font-semibold tracking-[1.5px] text-[#fff8e7]">
+    <span className="inline-flex items-center rounded-full border border-[#e0b000]/40 bg-[#faf6eb] px-2.5 py-0.5 text-[10px] font-semibold tracking-[1.5px] text-[#8a6400]">
       Tabled
     </span>
   );
@@ -215,7 +215,7 @@ function LeopardWash({ dark }: { dark?: boolean }) {
       ) : (
         <>
           <div
-            className="absolute inset-0 bg-gradient-to-b from-[#faf6eb]/88 via-[#fffdf6]/82 to-[#faf6eb]/94"
+            className="absolute inset-0 bg-gradient-to-b from-[#faf6eb]/92 via-[#fffdf8]/90 to-[#faf6eb]/96"
             aria-hidden
           />
           <div
@@ -229,30 +229,45 @@ function LeopardWash({ dark }: { dark?: boolean }) {
 }
 
 function CoBrandStrip({ light }: { light?: boolean }) {
-  const frame = light ? "border-[#e0b000]/70" : "border-[#e0b000]/45";
+  const frame = light ? "border-[#e0b000]/55" : "border-[#e0b000]/35";
   return (
-    <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6">
+    <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-7">
       <div
-        className={`relative h-16 w-44 sm:h-[4.75rem] sm:w-56 rounded-2xl overflow-hidden border-2 bg-white shadow-[0_10px_28px_rgba(0,0,0,0.14)] ${frame}`}
+        className={`relative h-14 w-40 sm:h-16 sm:w-52 rounded-xl overflow-hidden border bg-white ${frame}`}
       >
-        <Image src={P.logoSrc} alt="The Zulu Kingdom" fill className="object-contain p-2" sizes="224px" />
+        <Image
+          src={P.logoSrc}
+          alt="The Zulu Kingdom"
+          fill
+          className="object-contain p-2"
+          sizes="208px"
+          priority={light}
+        />
       </div>
-      <div className="flex items-center gap-2 px-0.5" aria-hidden>
-        <span className={`w-5 sm:w-7 h-px ${light ? "bg-[#e0b000]/80" : "bg-[#a67c00]/70"}`} />
-        <span className={`w-2 h-2 rotate-45 border ${light ? "border-[#e0b000]" : "border-[#a67c00]"}`} />
-        <span className={`w-5 sm:w-7 h-px ${light ? "bg-[#e0b000]/80" : "bg-[#a67c00]/70"}`} />
-      </div>
+      <span
+        className={`text-lg sm:text-xl font-light leading-none ${light ? "text-[#e0b000]/70" : "text-[#a67c00]/70"}`}
+        aria-hidden
+      >
+        ×
+      </span>
       <div
-        className={`relative h-16 w-16 sm:h-[4.75rem] sm:w-[4.75rem] rounded-2xl overflow-hidden border-2 bg-white shadow-[0_10px_28px_rgba(0,0,0,0.14)] ${frame}`}
+        className={`relative h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden border bg-white ${frame}`}
       >
-        <Image src="/bigfivefoods-logo.png" alt="Big Five Foods" fill className="object-contain p-1.5" sizes="76px" />
+        <Image
+          src="/bigfivegroup-logo.jpg"
+          alt="Big Five Group"
+          fill
+          className="object-contain p-1"
+          sizes="64px"
+          priority={light}
+        />
       </div>
       <p
-        className={`text-[10px] sm:text-[11px] tracking-[2px] sm:tracking-[2.5px] font-semibold uppercase ${
-          light ? "text-[#e0b000]/90" : "text-[#a67c00]"
+        className={`text-[10px] sm:text-[11px] tracking-[2px] font-semibold uppercase ${
+          light ? "text-[#e0b000]/85" : "text-[#a67c00]"
         }`}
       >
-        Zulu Kingdom × Big Five Foods
+        Zulu Kingdom × Big Five Group
       </p>
     </div>
   );
@@ -354,7 +369,6 @@ export default function ZuluKingdomHoaSections() {
       >
         <LeopardWash />
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CoBrandStrip />
           <SectionEyebrow>OPERATING COMPANY · ESTABLISHED</SectionEyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance max-w-3xl leading-tight">
             {hoa.entityName}
@@ -420,7 +434,6 @@ export default function ZuluKingdomHoaSections() {
               tables once Royal approval is confirmed.
             </p>
           </div>
-          <HonestyFooter />
         </div>
       </section>
 
@@ -431,7 +444,6 @@ export default function ZuluKingdomHoaSections() {
       >
         <LeopardWash />
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CoBrandStrip />
           <SectionEyebrow>GOVERNANCE · BOARD &amp; PATRONS</SectionEyebrow>
           <div className="flex items-center gap-3 mb-3">
             <GoldIconCircle>
@@ -448,18 +460,18 @@ export default function ZuluKingdomHoaSections() {
             Seats below are principal terms only. TBC designations remain open until the Royal
             Household and Big Five Group confirm them — they are not appointments.
           </p>
-          <div className="overflow-x-auto rounded-2xl border border-[#e0b000]/35 mb-10 shadow-[0_14px_40px_rgba(166,124,0,0.10)]">
+          <div className="overflow-x-auto rounded-2xl border border-[#e0b000]/25 mb-10 bg-white/80">
             <table className="w-full min-w-[36rem] text-left">
               <caption className="sr-only">Proposed board of {hoa.entityName}</caption>
               <thead>
-                <tr className="bg-gradient-to-r from-[#8a6400] via-[#a67c00] to-[#c4a035]">
-                  <th className="px-4 sm:px-5 py-3.5 text-[10px] tracking-[2.5px] font-semibold text-[#fff8e7]">
+                <tr className="border-b border-[#e0b000]/30 bg-[#faf6eb]">
+                  <th className="px-4 sm:px-5 py-3.5 text-[10px] tracking-[2.5px] font-semibold text-[#8a6400]">
                     PERSON
                   </th>
-                  <th className="px-4 sm:px-5 py-3.5 text-[10px] tracking-[2.5px] font-semibold text-[#fff8e7]">
+                  <th className="px-4 sm:px-5 py-3.5 text-[10px] tracking-[2.5px] font-semibold text-[#8a6400]">
                     SEAT
                   </th>
-                  <th className="px-4 sm:px-5 py-3.5 text-[10px] tracking-[2.5px] font-semibold text-[#fff8e7]">
+                  <th className="px-4 sm:px-5 py-3.5 text-[10px] tracking-[2.5px] font-semibold text-[#8a6400]">
                     STATUS
                   </th>
                 </tr>
@@ -468,8 +480,8 @@ export default function ZuluKingdomHoaSections() {
                 {hoa.board.map((row, i) => (
                   <tr
                     key={row.person}
-                    className={`border-b border-[#e0b000]/12 last:border-0 ${
-                      i % 2 === 0 ? "bg-[#fffdf6]" : "bg-[#f6e9c8]/55"
+                    className={`border-b border-[#e0b000]/10 last:border-0 ${
+                      i % 2 === 0 ? "bg-white/70" : "bg-[#faf6eb]/70"
                     }`}
                   >
                     <td className="px-4 sm:px-5 py-4 text-sm font-semibold text-black align-top">
@@ -508,7 +520,6 @@ export default function ZuluKingdomHoaSections() {
               </article>
             ))}
           </div>
-          <HonestyFooter />
         </div>
       </section>
 
@@ -516,7 +527,6 @@ export default function ZuluKingdomHoaSections() {
       <section id="roles" className="scroll-mt-28 border-b border-[#e0b000]/20 relative overflow-hidden py-14 sm:py-18 md:py-20">
         <LeopardWash />
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CoBrandStrip />
           <SectionEyebrow>ROLES · EXECUTION &amp; LIAISON</SectionEyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance mb-3 max-w-3xl leading-tight">
             Who stewards the proposed company
@@ -570,7 +580,6 @@ export default function ZuluKingdomHoaSections() {
             </h3>
             <p className="text-sm text-[#404040] leading-relaxed">{hoa.queensMandate}</p>
           </aside>
-          <HonestyFooter />
         </div>
       </section>
 
@@ -581,7 +590,6 @@ export default function ZuluKingdomHoaSections() {
       >
         <LeopardWash dark />
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CoBrandStrip light />
           <SectionEyebrow light>ROYAL ACTIVATIONS · HOA-PROPOSED SCOPE</SectionEyebrow>
           <div className="flex items-center gap-3 mb-3">
             <GoldIconCircle light>
@@ -619,7 +627,6 @@ export default function ZuluKingdomHoaSections() {
               );
             })}
           </div>
-          <HonestyFooter light />
         </div>
       </section>
 
@@ -630,7 +637,6 @@ export default function ZuluKingdomHoaSections() {
       >
         <LeopardWash />
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CoBrandStrip />
           <SectionEyebrow>COMMERCIAL TERM · HOA-PROPOSED</SectionEyebrow>
           <div className="flex items-center gap-3 mb-3">
             <GoldIconCircle>

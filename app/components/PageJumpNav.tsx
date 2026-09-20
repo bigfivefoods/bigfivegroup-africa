@@ -12,6 +12,7 @@ import {
   Building2,
   Check,
   Compass,
+  Crown,
   FileCheck,
   Globe,
   Globe2,
@@ -46,6 +47,7 @@ const JUMP_ICONS = {
   building: Building2,
   check: Check,
   compass: Compass,
+  crown: Crown,
   file: FileCheck,
   globe: Globe,
   "globe-2": Globe2,
@@ -84,10 +86,17 @@ type PageJumpNavProps = {
   ariaLabel: string;
   accentDark?: string;
   accentSoft?: string;
+  /**
+   * overlay — sit in the site-nav center slot (best at ≤7 items).
+   * scroll — one-row chips at every breakpoint (long pages).
+   * auto — overlay when it fits, otherwise scroll.
+   */
+  layout?: "auto" | "overlay" | "scroll";
 };
 
 const TOP_NAV_MISSIONS = ["Feed", "Educate", "Empower"] as const;
 const TOP_NAV_SIMPLE = ["Food Security", "Group", "About", "Contact"] as const;
+const OVERLAY_SLOT_COUNT = TOP_NAV_MISSIONS.length + TOP_NAV_SIMPLE.length;
 
 function sectionId(href: string) {
   return href.startsWith("#") ? href.slice(1) : href;
@@ -112,23 +121,34 @@ export default function PageJumpNav({
   ariaLabel,
   accentDark = "#171717",
   accentSoft = "#f5f5f5",
+  layout = "auto",
 }: PageJumpNavProps) {
   const navDomId = useId();
   const [activeHref, setActiveHref] = useState<string>(items[0]?.href ?? "");
+  const useOverlay =
+    layout === "overlay" || (layout === "auto" && items.length <= OVERLAY_SLOT_COUNT);
 
   useEffect(() => {
     if (items.length === 0) return;
 
     const hrefs = items.map((item) => item.href);
     const hrefSet = new Set<string>(hrefs);
-    const elements = items
-      .map((item) => document.getElementById(sectionId(item.href)))
-      .filter((el): el is HTMLElement => Boolean(el));
-
-    if (elements.length === 0) return;
-
     const visible = new Map<string, number>();
     let lockedUntil = 0;
+    let observer: IntersectionObserver | null = null;
+    let retryTimer: number | null = null;
+    let observedIds = "";
+    let didInitialHashScroll = false;
+
+    const collectElements = () =>
+      items
+        .map((item) => document.getElementById(sectionId(item.href)))
+        .filter((el): el is HTMLElement => Boolean(el));
+
+    const lockTo = (href: string) => {
+      lockedUntil = Date.now() + 2500;
+      setActiveHref(href);
+    };
 
     const pickActive = () => {
       if (Date.now() < lockedUntil) return;
@@ -156,32 +176,45 @@ export default function PageJumpNav({
       setActiveHref((prev) => (prev === bestHref ? prev : bestHref));
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const href = `#${entry.target.id}`;
-          if (!hrefSet.has(href)) continue;
-          if (entry.isIntersecting && entry.intersectionRatio > 0) {
-            visible.set(href, entry.intersectionRatio);
-          } else {
-            visible.delete(href);
+    const observe = () => {
+      const elements = collectElements();
+      const nextIds = elements.map((el) => el.id).join(",");
+      if (nextIds === observedIds) return;
+      observedIds = nextIds;
+      observer?.disconnect();
+      visible.clear();
+      if (elements.length === 0) return;
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            const href = `#${entry.target.id}`;
+            if (!hrefSet.has(href)) continue;
+            if (entry.isIntersecting && entry.intersectionRatio > 0) {
+              visible.set(href, entry.intersectionRatio);
+            } else {
+              visible.delete(href);
+            }
           }
+          pickActive();
+        },
+        {
+          // Keep a band in the upper viewport as the "active" reading zone
+          root: null,
+          rootMargin: "-20% 0px -60% 0px",
+          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
         }
-        pickActive();
-      },
-      {
-        // Keep a band in the upper viewport as the "active" reading zone
-        root: null,
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      );
+      for (const el of elements) observer.observe(el);
+      const hash = window.location.hash;
+      if (!didInitialHashScroll && hash && hrefSet.has(hash)) {
+        const target = document.getElementById(sectionId(hash));
+        if (target) {
+          didInitialHashScroll = true;
+          target.scrollIntoView();
+          lockTo(hash);
+        }
       }
-    );
-
-    for (const el of elements) observer.observe(el);
-
-    const lockTo = (href: string) => {
-      lockedUntil = Date.now() + 1200;
-      setActiveHref(href);
+      pickActive();
     };
 
     const onHashChange = () => {
@@ -198,13 +231,36 @@ export default function PageJumpNav({
       if (href && hrefSet.has(href)) lockTo(href);
     };
 
+    observe();
+    // Partner decks/briefings lazy-mount; keep scanning until every target exists.
+    let tries = 0;
+    const retry = () => {
+      observe();
+      if (collectElements().length >= items.length || tries++ >= 24) return;
+      retryTimer = window.setTimeout(retry, 200);
+    };
+    retryTimer = window.setTimeout(retry, 200);
+
+    let scrollRaf = 0;
+    const onScroll = () => {
+      if (scrollRaf) return;
+      scrollRaf = window.requestAnimationFrame(() => {
+        scrollRaf = 0;
+        pickActive();
+      });
+    };
+
     window.addEventListener("hashchange", onHashChange);
+    window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onJumpClick, true);
     onHashChange();
 
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
+      if (retryTimer != null) window.clearTimeout(retryTimer);
+      if (scrollRaf) window.cancelAnimationFrame(scrollRaf);
       window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onJumpClick, true);
     };
   }, [items, navDomId]);
@@ -228,8 +284,12 @@ export default function PageJumpNav({
       className="sticky top-[var(--navbar-height)] z-20 border-b border-black/10 bg-white/95 backdrop-blur-md"
     >
       <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-1.5">
-        {/* Mobile / tablet */}
-        <div className="flex items-center gap-1.5 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden xl:hidden">
+        {/* Mobile / tablet — and desktop when the overlay slot cannot fit the items */}
+        <div
+          className={`flex items-center gap-1.5 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+            useOverlay ? "xl:hidden" : ""
+          }`}
+        >
           {items.map((item) => {
             const active = item.href === activeHref;
             return (
@@ -259,7 +319,11 @@ export default function PageJumpNav({
         </div>
 
         {/* Desktop: navbar shell; links span Feed…Contact */}
-        <div className="hidden xl:flex w-full items-center justify-between gap-2 sm:gap-3 min-w-0">
+        <div
+          className={`${
+            useOverlay ? "hidden xl:flex" : "hidden"
+          } w-full items-center justify-between gap-2 sm:gap-3 min-w-0`}
+        >
           <div
             className="shrink min-w-0 invisible pointer-events-none select-none"
             aria-hidden
@@ -302,6 +366,7 @@ export default function PageJumpNav({
                   <a
                     key={item.href}
                     href={item.href}
+                    data-jump-desktop
                     title={item.desc}
                     aria-current={active ? "location" : undefined}
                     onClick={() => setActiveHref(item.href)}

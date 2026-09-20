@@ -25,6 +25,162 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 import { ZULU_KINGDOM_PARTNERSHIP as P } from "../lib/zuluKingdomPartnership";
+import ZuluKingdomHoaSections from "./ZuluKingdomHoaSections";
+
+const BRIEFING_CHAPTERS = [
+  {
+    n: "01",
+    kicker: "Isidlo seSilo · HOA",
+    title: "Principal terms first",
+    href: "#isidlo-sesilo" as const,
+    items: [
+      {
+        n: "01",
+        href: "#isidlo-sesilo",
+        label: "Isidlo seSilo",
+        why: "Official Nutrition Programme — HOA principal terms",
+      },
+      {
+        n: "02",
+        href: "#royal-foods-entity",
+        label: "Big Five Royal Foods",
+        why: "Official Meal Partner (HOA-proposed)",
+      },
+      {
+        n: "03",
+        href: "#governance",
+        label: "Governance & board",
+        why: "CEO, Prince Ntokozo, patrons, TBC seats",
+      },
+      {
+        n: "04",
+        href: "#roles",
+        label: "Roles & mandate",
+        why: "Dr Muller, Dr Joy TBC, Queens joint mandate",
+      },
+      {
+        n: "05",
+        href: "#activations",
+        label: "Royal activations",
+        why: "Izintombi, Amabutho, calendar, year-round",
+      },
+      {
+        n: "06",
+        href: "#royal-commercial",
+        label: "Royal commercial",
+        why: "21-day headcount · Royal Rate · planned offtake",
+      },
+    ],
+  },
+  {
+    n: "02",
+    kicker: "Royal house · 50:50",
+    title: "Equal partnership",
+    href: "#royal-house" as const,
+    items: [
+      {
+        n: "07",
+        href: "#royal-house",
+        label: "Royal House",
+        why: "His Majesty and shared service",
+      },
+      {
+        n: "08",
+        href: "#partnership-50-50",
+        label: "50:50 model",
+        why: "Equal gifts each side brings",
+      },
+      {
+        n: "09",
+        href: "#pillars",
+        label: "Three pillars",
+        why: "Feed · Educate · Empower",
+      },
+    ],
+  },
+  {
+    n: "03",
+    kicker: "Feed · Educate · Empower",
+    title: "The value chain",
+    href: "#value-chain" as const,
+    items: [
+      {
+        n: "10",
+        href: "#value-chain",
+        label: "Value chain",
+        why: "Agri → Foods → Royal → Direct",
+      },
+      {
+        n: "11",
+        href: "#agri",
+        label: "Big Five Agri",
+        why: "Train Nation farmers & crop offtake",
+      },
+      {
+        n: "12",
+        href: "#foods-products",
+        label: "Big Five Foods",
+        why: "Products for the Nation’s tables",
+      },
+      {
+        n: "13",
+        href: "#royal-departments",
+        label: "Royal · departments",
+        why: "Sports/Arts & Culture, Health, Agriculture, COGTA",
+      },
+      {
+        n: "14",
+        href: "#direct-containers",
+        label: "Direct containers",
+        why: "Community enterprise selling Foods",
+      },
+      {
+        n: "15",
+        href: "#acceleration",
+        label: "Connect + Super-Cube",
+        why: "Accelerators on every channel",
+      },
+      {
+        n: "16",
+        href: "#leadership",
+        label: "Leadership",
+        why: "Super-Cube® for stewards",
+      },
+      {
+        n: "17",
+        href: "#empower",
+        label: "Empower",
+        why: "Connect, Direct, Foundation, Impact",
+      },
+    ],
+  },
+  {
+    n: "04",
+    kicker: "Briefing pack",
+    title: "Pathways, honesty & slides",
+    href: "#zulu-partnership-deck" as const,
+    items: [
+      {
+        n: "18",
+        href: "#pathways",
+        label: "Pathways",
+        why: "How we begin together",
+      },
+      {
+        n: "19",
+        href: "#honesty",
+        label: "Honesty",
+        why: "What this briefing is and is not",
+      },
+      {
+        n: "20",
+        href: "#zulu-partnership-deck",
+        label: "Slide deck",
+        why: "Slide presentation + PDF",
+      },
+    ],
+  },
+] as const;
 
 function SectionEyebrow({ children, light }: { children: ReactNode; light?: boolean }) {
   return (
@@ -54,68 +210,77 @@ function CheckRow({ children }: { children: ReactNode }) {
 export default function ZuluKingdomBriefing() {
   return (
     <div id="zulu-briefing" className="w-full">
-      {/* Section map */}
+      {/* Section map — grouped to match the page navbar chapters */}
       <section
         id="briefing-map"
         className="scroll-mt-28 border-b border-black/10 bg-[#faf6eb]"
         aria-labelledby="briefing-map-heading"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 md:py-16">
+          <SectionEyebrow>HOW TO READ THIS PARTNERSHIP BRIEFING</SectionEyebrow>
           <h2
             id="briefing-map-heading"
-            className="text-[10px] sm:text-xs tracking-[2px] font-semibold text-[#a67c00] mb-2"
+            className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance mb-3 max-w-3xl"
           >
-            HOW TO READ THIS PARTNERSHIP BRIEFING
+            Four chapters — then the slide deck
           </h2>
-          <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-5">
+          <p className="text-sm sm:text-base text-[#404040] leading-relaxed max-w-3xl mb-8 sm:mb-10">
             Start with Isidlo seSilo HOA principal terms (proposed / subject to signature), then the
             strategic narrative: Royal House, equal partnership, Feed · Educate · Empower, the Agri →
-            Foods → Big Five Royal value chain, products, leadership, empowerment, pathways, honesty —
-            then the shareable slide deck.
+            Foods → Big Five Royal value chain — then the shareable slide deck. Use the page navbar
+            above to jump between chapters.
           </p>
-          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {[
-              { n: "01", href: "#isidlo-sesilo", label: "Isidlo seSilo", why: "Official Nutrition Programme — HOA principal terms" },
-              { n: "02", href: "#royal-foods-entity", label: "Big Five Royal Foods", why: "Official Meal Partner (HOA-proposed)" },
-              { n: "03", href: "#governance", label: "Governance & board", why: "CEO, Prince Ntokozo, patrons, TBC seats" },
-              { n: "04", href: "#roles", label: "Roles & mandate", why: "Dr Muller, Dr Joy TBC, Queens joint mandate" },
-              { n: "05", href: "#activations", label: "Royal activations", why: "Izintombi, Amabutho, calendar, year-round" },
-              { n: "06", href: "#royal-commercial", label: "Royal commercial", why: "21-day headcount · Royal Rate · planned offtake" },
-              { n: "07", href: "#royal-house", label: "Royal House", why: "His Majesty and shared service" },
-              { n: "08", href: "#partnership-50-50", label: "50:50 model", why: "Equal gifts each side brings" },
-              { n: "09", href: "#pillars", label: "Three pillars", why: "Feed · Educate · Empower" },
-              { n: "10", href: "#value-chain", label: "Value chain", why: "Agri → Foods → Royal → Direct" },
-              { n: "11", href: "#agri", label: "Big Five Agri", why: "Train Nation farmers & crop offtake" },
-              { n: "12", href: "#foods-products", label: "Big Five Foods", why: "Products for the Nation’s tables" },
-              { n: "13", href: "#royal-departments", label: "Royal · departments", why: "Sports/Arts & Culture, Health, Agriculture, COGTA" },
-              { n: "14", href: "#direct-containers", label: "Direct containers", why: "Community enterprise selling Foods" },
-              { n: "15", href: "#acceleration", label: "Connect + Super-Cube", why: "Accelerators on every channel" },
-              { n: "16", href: "#leadership", label: "Leadership", why: "Super-Cube® for stewards" },
-              { n: "17", href: "#empower", label: "Empower", why: "Connect, Direct, Foundation, Impact" },
-              { n: "18", href: "#pathways", label: "Pathways", why: "How we begin together" },
-              { n: "19", href: "#honesty", label: "Honesty", why: "What this briefing is and is not" },
-              { n: "20", href: "#zulu-partnership-deck", label: "Slide deck", why: "Slide presentation + PDF" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="rounded-xl border border-[#e0b000]/25 bg-white px-4 py-3 hover:border-[#e0b000]/60 transition-colors min-w-0"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+            {BRIEFING_CHAPTERS.map((chapter) => (
+              <article
+                key={chapter.href}
+                className="rounded-2xl border border-[#e0b000]/30 bg-white p-5 sm:p-6 min-w-0 shadow-[0_14px_40px_rgba(166,124,0,0.06)]"
               >
-                <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00] mb-1">
-                  {item.n}
+                <div className="flex items-start justify-between gap-3 mb-4">
+                  <div className="min-w-0">
+                    <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00] mb-1">
+                      {chapter.n} · {chapter.kicker.toUpperCase()}
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-black">
+                      {chapter.title}
+                    </h3>
+                  </div>
+                  <a
+                    href={chapter.href}
+                    className="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-[#a67c00] hover:text-black"
+                  >
+                    Open
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
                 </div>
-                <div className="text-sm font-semibold text-black mb-0.5">{item.label}</div>
-                <p className="text-xs text-[#737373] leading-relaxed">{item.why}</p>
-              </a>
+                <ol className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {chapter.items.map((item) => (
+                    <li key={item.href}>
+                      <a
+                        href={item.href}
+                        className="block rounded-xl border border-[#e0b000]/20 bg-[#fffdf6] px-3.5 py-3 hover:border-[#e0b000]/55 hover:bg-white transition-colors min-w-0 h-full"
+                      >
+                        <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00] mb-1">
+                          {item.n}
+                        </div>
+                        <div className="text-sm font-semibold text-black mb-0.5">{item.label}</div>
+                        <p className="text-xs text-[#737373] leading-relaxed">{item.why}</p>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </article>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
+
+      <ZuluKingdomHoaSections />
 
       {/* Royal house — leopard dark */}
       <section
         id="royal-house"
-        className="scroll-mt-28 border-b border-black/10 relative overflow-hidden text-white py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 relative overflow-hidden text-white py-14 sm:py-16 md:py-20"
       >
         <Image
           src={P.leopardHero}
@@ -234,7 +399,7 @@ export default function ZuluKingdomBriefing() {
       {/* 50:50 */}
       <section
         id="partnership-50-50"
-        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16 md:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>50 : 50 PARTNERSHIP MODEL</SectionEyebrow>
@@ -299,7 +464,7 @@ export default function ZuluKingdomBriefing() {
       </section>
 
       {/* Pillars */}
-      <section id="pillars" className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16">
+      <section id="pillars" className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-14 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>FEED · EDUCATE · EMPOWER</SectionEyebrow>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance mb-3 max-w-3xl">
@@ -334,7 +499,7 @@ export default function ZuluKingdomBriefing() {
       {/* Value chain */}
       <section
         id="value-chain"
-        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16 md:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>{P.valueChain.eyebrow}</SectionEyebrow>
@@ -388,7 +553,7 @@ export default function ZuluKingdomBriefing() {
       </section>
 
       {/* Agri deep dive */}
-      <section id="agri" className="scroll-mt-28 border-b border-black/10 bg-[#0a0804] text-white py-12 sm:py-16 relative overflow-hidden">
+      <section id="agri" className="scroll-mt-28 border-b border-black/10 bg-[#0a0804] text-white py-14 sm:py-16 md:py-20 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.12]"
           style={{
@@ -430,7 +595,7 @@ export default function ZuluKingdomBriefing() {
       {/* Foods products */}
       <section
         id="foods-products"
-        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16 md:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>BIG FIVE FOODS™</SectionEyebrow>
@@ -511,7 +676,7 @@ export default function ZuluKingdomBriefing() {
       {/* Big Five Royal · departments */}
       <section
         id="royal-departments"
-        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-14 sm:py-16 md:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>{P.royalDepartments.eyebrow}</SectionEyebrow>
@@ -575,7 +740,7 @@ export default function ZuluKingdomBriefing() {
       {/* Direct containers */}
       <section
         id="direct-containers"
-        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16 md:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>{P.directContainers.eyebrow}</SectionEyebrow>
@@ -620,7 +785,7 @@ export default function ZuluKingdomBriefing() {
       {/* Connect + Super-Cube accelerators */}
       <section
         id="acceleration"
-        className="scroll-mt-28 border-b border-black/10 bg-[#0a0804] text-white py-12 sm:py-16 relative overflow-hidden"
+        className="scroll-mt-28 border-b border-black/10 bg-[#0a0804] text-white py-14 sm:py-16 md:py-20 relative overflow-hidden"
       >
         <div
           className="absolute inset-0 opacity-[0.1]"
@@ -699,7 +864,7 @@ export default function ZuluKingdomBriefing() {
       {/* Leadership */}
       <section
         id="leadership"
-        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-14 sm:py-16 md:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>EDUCATE · SUPER-CUBE®</SectionEyebrow>
@@ -762,7 +927,7 @@ export default function ZuluKingdomBriefing() {
       </section>
 
       {/* Empower */}
-      <section id="empower" className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+      <section id="empower" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>EMPOWER</SectionEyebrow>
           <div className="flex items-center gap-2 mb-3">
@@ -790,7 +955,7 @@ export default function ZuluKingdomBriefing() {
       {/* Pathways + next steps */}
       <section
         id="pathways"
-        className="scroll-mt-28 border-b border-black/10 bg-[#faf6eb] py-12 sm:py-16"
+        className="scroll-mt-28 border-b border-black/10 bg-[#faf6eb] py-14 sm:py-16 md:py-20"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>PATHWAYS · HOW WE BEGIN</SectionEyebrow>
@@ -858,7 +1023,7 @@ export default function ZuluKingdomBriefing() {
       </section>
 
       {/* Honesty */}
-      <section id="honesty" className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+      <section id="honesty" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionEyebrow>HONEST LANGUAGE</SectionEyebrow>
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black text-balance mb-6 max-w-3xl">

@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import PageJumpNav, { type PageJumpNavItem } from "../components/PageJumpNav";
 import {
   ArrowRight,
   Building2,
@@ -81,10 +82,6 @@ const ZuluKingdomPartnershipDeck = dynamic(
 const ZuluKingdomBriefing = dynamic(() => import("../components/ZuluKingdomBriefing"), {
   ssr: true,
   loading: () => <DeckLoading label="Zulu Kingdom briefing" />,
-});
-const ZuluKingdomHoaSections = dynamic(() => import("../components/ZuluKingdomHoaSections"), {
-  ssr: true,
-  loading: () => <DeckLoading label="Isidlo seSilo HOA" />,
 });
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
@@ -192,6 +189,209 @@ function heroTilesForPartner(partner: ClientPartnerProfile): HeroTile[] {
     d: "Private organisation workspace — your materials only",
   });
   return tiles.slice(0, 3);
+}
+
+/** Chapter-level in-page nav. Zulu is capped at 7 so it sits in the site-nav overlay. */
+function partnerJumpNavItems({
+  partner,
+  canInvite,
+  isAdmin,
+}: {
+  partner: ClientPartnerProfile;
+  canInvite?: boolean;
+  isAdmin?: boolean;
+}): PageJumpNavItem[] {
+  if (partner.slug === "zulu-kingdom") {
+    return [
+      {
+        href: "#for-you",
+        label: "Workspace",
+        desc: "Your partnership workspace",
+        icon: "handshake",
+      },
+      {
+        href: "#isidlo-sesilo",
+        label: "Isidlo seSilo",
+        desc: "Official Nutrition Programme — HOA principal terms",
+        icon: "heart",
+      },
+      {
+        href: "#royal-house",
+        label: "Royal house",
+        desc: "His Majesty and shared service",
+        icon: "crown",
+      },
+      {
+        href: "#value-chain",
+        label: "Value chain",
+        desc: "Agri → Foods → Royal → Direct",
+        icon: "network",
+      },
+      {
+        href: "#zulu-partnership-deck",
+        label: "Slide deck",
+        desc: "25-slide partnership briefing",
+        icon: "book",
+      },
+      {
+        href: "#resources",
+        label: "Resources",
+        desc: "HOA PDF and workspace materials",
+        icon: "file",
+      },
+      {
+        href: "#contact",
+        label: "Contact",
+        desc: "Follow up with Big Five",
+        icon: "users",
+      },
+    ];
+  }
+
+  const items: PageJumpNavItem[] = [
+    { href: "#for-you", label: "For you", desc: "Workspace notes", icon: "handshake" },
+  ];
+  if (partner.slug === "blessman-international") {
+    items.push({
+      href: "#kingdom",
+      label: "Kingdom",
+      desc: "Shared calling",
+      icon: "heart",
+    });
+  }
+  if ((partner.programmes?.length ?? 0) > 0) {
+    items.push({
+      href: "#programmes",
+      label: "Programmes",
+      desc: "Pathways for this partnership",
+      icon: "package",
+    });
+  }
+  if (partner.slug === "spar") {
+    items.push(
+      {
+        href: "#spar-partnership-deck-condensed",
+        label: "SPAR condensed",
+        desc: "Short SPAR briefing",
+        icon: "book",
+      },
+      {
+        href: "#spar-partnership-deck",
+        label: "SPAR full deck",
+        desc: "Full SPAR partnership deck",
+        icon: "file",
+      }
+    );
+  }
+  if (partner.slug === "checkers") {
+    items.push(
+      {
+        href: "#checkers-partnership-deck-condensed",
+        label: "Checkers condensed",
+        desc: "Short Checkers briefing",
+        icon: "book",
+      },
+      {
+        href: "#checkers-partnership-deck",
+        label: "Checkers full deck",
+        desc: "Full Checkers partnership deck",
+        icon: "file",
+      }
+    );
+  }
+  if (partner.slug === "pick-n-pay") {
+    items.push(
+      {
+        href: "#pick-n-pay-partnership-deck-condensed",
+        label: "PnP condensed",
+        desc: "Short Pick n Pay briefing",
+        icon: "book",
+      },
+      {
+        href: "#pick-n-pay-partnership-deck",
+        label: "PnP full deck",
+        desc: "Full Pick n Pay partnership deck",
+        icon: "file",
+      }
+    );
+  }
+  if (partner.slug === "cmh-ford-ballito") {
+    items.push({
+      href: "#cmh-ford-partnership-deck",
+      label: "Feeding deck",
+      desc: "CMH Ford feeding scheme deck",
+      icon: "book",
+    });
+  }
+  if (partner.slug === "blessman-international") {
+    items.push({
+      href: "#blessman-partnership-deck",
+      label: "Deck",
+      desc: "Partnership slide deck",
+      icon: "book",
+    });
+  }
+  if (partner.slug === "swt-ag") {
+    items.push({
+      href: "#bff-swt-deck",
+      label: "Funding deck",
+      desc: "BFF × SWT-AG funding deck",
+      icon: "book",
+    });
+  }
+  if (partner.slug === "big-five-group") {
+    items.push({
+      href: "#bfg-partner-deck",
+      label: "Partner deck",
+      desc: "Group partner deck",
+      icon: "book",
+    });
+  }
+  if (partner.showPublicPillars) {
+    items.push({
+      href: "#pillars",
+      label: "Pillars",
+      desc: "Public pillar pages",
+      icon: "network",
+    });
+  }
+  items.push({
+    href: "#resources",
+    label: "Resources",
+    desc: "Workspace materials",
+    icon: "file",
+  });
+  if (canInvite && partner.slug !== "big-five-group" && partner.slug !== "general") {
+    items.push({
+      href: "#invite-partners",
+      label: "Invite",
+      desc: "Invite colleagues to this workspace",
+      icon: "users",
+    });
+  }
+  if (isAdmin && partner.slug === "big-five-group") {
+    items.push(
+      {
+        href: "#directory",
+        label: "Partners",
+        desc: "All partner workspaces",
+        icon: "building",
+      },
+      {
+        href: "#access-log",
+        label: "Access log",
+        desc: "Who has signed in",
+        icon: "activity",
+      }
+    );
+  }
+  items.push({
+    href: "#contact",
+    label: "Contact",
+    desc: "Follow up with Big Five",
+    icon: "users",
+  });
+  return items;
 }
 
 function BlessmanKingdomSection() {
@@ -673,6 +873,10 @@ export default function PartnerPortalClient({
 
   const heroBg = partner.brandColor ?? "#052e1c";
   const zuluHero = partner.slug === "zulu-kingdom";
+  const jumpItems = useMemo(
+    () => partnerJumpNavItems({ partner, canInvite, isAdmin }),
+    [partner, canInvite, isAdmin]
+  );
 
   return (
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
@@ -770,124 +974,12 @@ export default function PartnerPortalClient({
         </div>
       </section>
 
-      <nav className="sticky top-[var(--navbar-height)] z-30 bg-white/95 backdrop-blur border-b border-black/10">
-        <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5">
-          {(() => {
-            const navLinks = [
-              { href: "#for-you", label: "For you" },
-              ...(partner.slug === "blessman-international"
-                ? [{ href: "#kingdom", label: "Kingdom" }]
-                : []),
-              ...(partner.slug === "zulu-kingdom"
-                ? [
-                    { href: "#briefing-map", label: "Briefing map" },
-                    { href: "#isidlo-sesilo", label: "Isidlo seSilo" },
-                    { href: "#royal-foods-entity", label: "Royal Foods" },
-                    { href: "#governance", label: "Governance" },
-                    { href: "#roles", label: "Roles" },
-                    { href: "#activations", label: "Activations" },
-                    { href: "#royal-commercial", label: "Royal commercial" },
-                    { href: "#royal-house", label: "Royal house" },
-                    { href: "#partnership-50-50", label: "50:50" },
-                    { href: "#pillars", label: "Pillars" },
-                    { href: "#value-chain", label: "Value chain" },
-                    { href: "#agri", label: "Agri" },
-                    { href: "#foods-products", label: "Foods" },
-                    { href: "#royal-departments", label: "Departments" },
-                    { href: "#direct-containers", label: "Direct" },
-                    { href: "#acceleration", label: "Connect + Super-Cube" },
-                    { href: "#leadership", label: "Leadership" },
-                    { href: "#empower", label: "Empower" },
-                    { href: "#pathways", label: "Pathways" },
-                    { href: "#honesty", label: "Honesty" },
-                    { href: "#zulu-partnership-deck", label: "Slide deck" },
-                  ]
-                : []),
-              ...((partner.programmes?.length ?? 0) > 0 && partner.slug !== "zulu-kingdom"
-                ? [{ href: "#programmes", label: "Programmes" }]
-                : []),
-              ...(partner.slug === "spar"
-                ? [
-                    { href: "#spar-partnership-deck-condensed", label: "SPAR condensed" },
-                    { href: "#spar-partnership-deck", label: "SPAR full deck" },
-                  ]
-                : []),
-              ...(partner.slug === "checkers"
-                ? [
-                    { href: "#checkers-partnership-deck-condensed", label: "Checkers condensed" },
-                    { href: "#checkers-partnership-deck", label: "Checkers full deck" },
-                  ]
-                : []),
-              ...(partner.slug === "pick-n-pay"
-                ? [
-                    {
-                      href: "#pick-n-pay-partnership-deck-condensed",
-                      label: "Pick n Pay condensed",
-                    },
-                    { href: "#pick-n-pay-partnership-deck", label: "Pick n Pay full deck" },
-                  ]
-                : []),
-              ...(partner.slug === "cmh-ford-ballito"
-                ? [{ href: "#cmh-ford-partnership-deck", label: "Feeding scheme deck" }]
-                : []),
-              ...(partner.slug === "blessman-international"
-                ? [{ href: "#blessman-partnership-deck", label: "Partnership deck" }]
-                : []),
-              ...(partner.slug === "swt-ag"
-                ? [{ href: "#bff-swt-deck", label: "BFF × SWT-AG funding deck" }]
-                : []),
-              ...(partner.slug === "big-five-group"
-                ? [{ href: "#bfg-partner-deck", label: "Partner deck" }]
-                : []),
-              ...(partner.showPublicPillars
-                ? [{ href: "#pillars", label: "Pillars" }]
-                : []),
-              { href: "#resources", label: "Resources" },
-              // Invites only on each partner workspace page — never from the Group hub
-              ...(canInvite && partner.slug !== "big-five-group" && partner.slug !== "general"
-                ? [{ href: "#invite-partners", label: "Invite partners" }]
-                : []),
-              ...(isAdmin && partner.slug === "big-five-group"
-                ? [
-                    { href: "#directory", label: "All partners" },
-                    { href: "#access-log", label: "Access log" },
-                  ]
-                : []),
-              { href: "#contact", label: "Contact" },
-            ];
-            const wrapNav = partner.slug === "zulu-kingdom";
-            return (
-              <div
-                className={
-                  wrapNav
-                    ? "flex flex-wrap justify-start gap-1 sm:gap-1.5 text-[10px] sm:text-xs md:text-sm font-medium"
-                    : "grid w-full items-center gap-1 text-[10px] sm:text-xs md:text-sm font-medium"
-                }
-                style={
-                  wrapNav
-                    ? undefined
-                    : { gridTemplateColumns: `repeat(${navLinks.length}, minmax(0, 1fr))` }
-                }
-              >
-                {navLinks.map((l) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    className={
-                      wrapNav
-                        ? "shrink-0 rounded-full px-2 sm:px-2.5 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black border border-transparent hover:border-black/10 transition-colors"
-                        : "min-w-0 w-full text-center rounded-full px-0.5 sm:px-2 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black truncate"
-                    }
-                    title={l.label}
-                  >
-                    {l.label}
-                  </a>
-                ))}
-              </div>
-            );
-          })()}
-        </div>
-      </nav>
+      <PageJumpNav
+        ariaLabel={`${partner.name} page sections`}
+        items={jumpItems}
+        accentDark={zuluHero ? "#a67c00" : "#171717"}
+        accentSoft={zuluHero ? "#faf6eb" : "#f5f5f5"}
+      />
 
       {/* Partner-specific notes */}
       <section
@@ -913,9 +1005,15 @@ export default function PartnerPortalClient({
               {partner.notes.map((n) => (
                 <li
                   key={n}
-                  className="flex gap-2 text-sm text-[#404040] leading-relaxed rounded-xl border border-emerald-100 bg-emerald-50/40 px-4 py-3"
+                  className={`flex gap-2 text-sm text-[#404040] leading-relaxed rounded-xl px-4 py-3 ${
+                    zuluHero
+                      ? "border border-[#e0b000]/25 bg-[#faf6eb]"
+                      : "border border-emerald-100 bg-emerald-50/40"
+                  }`}
                 >
-                  <span className="text-emerald-700 shrink-0">•</span>
+                  <span className={`shrink-0 ${zuluHero ? "text-[#a67c00]" : "text-emerald-700"}`}>
+                    •
+                  </span>
                   <span>{n}</span>
                 </li>
               ))}
@@ -945,34 +1043,61 @@ export default function PartnerPortalClient({
                     d: "Foundation and Impact rails so generosity and delivery stay transparent and honest.",
                   },
                 ]
-              : [
-                  {
-                    n: "01",
-                    t: "Define the outcome",
-                    d: "Nutrition, markets, leadership, capital access or multi-pillar programmes.",
-                  },
-                  {
-                    n: "02",
-                    t: "Attach the rails",
-                    d: "Foods, Direct, Connect, Impact and others as the work requires.",
-                  },
-                  {
-                    n: "03",
-                    t: "Deliver with gates",
-                    d: "Impact PMO, verification where commerce runs on SupplierAdvisor®.",
-                  },
-                  {
-                    n: "04",
-                    t: "Report honestly",
-                    d: "Ambition vs programme-reported vs internal analysis — see Methodology.",
-                  },
-                ]
+              : partner.slug === "zulu-kingdom"
+                ? [
+                    {
+                      n: "01",
+                      t: "Read Isidlo seSilo first",
+                      d: "HOA principal terms for the Official Nutrition Programme — proposed, subject to signature.",
+                    },
+                    {
+                      n: "02",
+                      t: "See Big Five Royal Foods",
+                      d: "The proposed Official Meal Partner entity, board, patrons, activations and commercial term.",
+                    },
+                    {
+                      n: "03",
+                      t: "Follow Agri → Foods → Royal",
+                      d: "Nation farmers, fortified foods, departmental placement and Direct community enterprise.",
+                    },
+                    {
+                      n: "04",
+                      t: "Brief with the slide deck",
+                      d: "25 slides for Household and Private Office conversations — then resources and contact.",
+                    },
+                  ]
+                : [
+                    {
+                      n: "01",
+                      t: "Define the outcome",
+                      d: "Nutrition, markets, leadership, capital access or multi-pillar programmes.",
+                    },
+                    {
+                      n: "02",
+                      t: "Attach the rails",
+                      d: "Foods, Direct, Connect, Impact and others as the work requires.",
+                    },
+                    {
+                      n: "03",
+                      t: "Deliver with gates",
+                      d: "Impact PMO, verification where commerce runs on SupplierAdvisor®.",
+                    },
+                    {
+                      n: "04",
+                      t: "Report honestly",
+                      d: "Ambition vs programme-reported vs internal analysis — see Methodology.",
+                    },
+                  ]
             ).map((s) => (
               <div
                 key={s.n}
                 className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 min-w-0"
               >
-                <div className="text-[10px] tracking-[2px] font-semibold text-emerald-800 mb-2">
+                <div
+                  className={`text-[10px] tracking-[2px] font-semibold mb-2 ${
+                    zuluHero ? "text-[#a67c00]" : "text-emerald-800"
+                  }`}
+                >
                   {s.n}
                 </div>
                 <div className="text-sm font-semibold text-black mb-1">{s.t}</div>
@@ -984,12 +1109,7 @@ export default function PartnerPortalClient({
       </section>
 
       {partner.slug === "blessman-international" && <BlessmanKingdomSection />}
-      {partner.slug === "zulu-kingdom" && (
-        <>
-          <ZuluKingdomBriefing />
-          <ZuluKingdomHoaSections />
-        </>
-      )}
+      {partner.slug === "zulu-kingdom" && <ZuluKingdomBriefing />}
 
       {(partner.programmes?.length ?? 0) > 0 && partner.slug !== "zulu-kingdom" && (
         <section
