@@ -5,16 +5,22 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import {
   ArrowRight,
+  Building2,
   Check,
   Crown,
   ExternalLink,
   GraduationCap,
   Handshake,
+  HeartPulse,
+  LandPlot,
   Leaf,
   Package,
   Scale,
   ShieldCheck,
   Sparkles,
+  Store,
+  Tractor,
+  Truck,
   Users,
   UtensilsCrossed,
 } from "lucide-react";
@@ -71,14 +77,16 @@ export default function ZuluKingdomBriefing() {
               { n: "01", href: "#royal-house", label: "Royal House", why: "His Majesty and shared service" },
               { n: "02", href: "#partnership-50-50", label: "50:50 model", why: "Equal gifts each side brings" },
               { n: "03", href: "#pillars", label: "Three pillars", why: "Feed · Educate · Empower" },
-              { n: "04", href: "#value-chain", label: "Value chain", why: "Agri → Foods → Big Five Royal" },
+              { n: "04", href: "#value-chain", label: "Value chain", why: "Agri → Foods → Royal → Direct" },
               { n: "05", href: "#agri", label: "Big Five Agri", why: "Train Nation farmers & crop offtake" },
               { n: "06", href: "#foods-products", label: "Big Five Foods", why: "Products for the Nation’s tables" },
-              { n: "07", href: "#leadership", label: "Leadership", why: "Super-Cube® for stewards" },
-              { n: "08", href: "#empower", label: "Empower", why: "Trade, Foundation, Impact" },
-              { n: "09", href: "#pathways", label: "Pathways", why: "How we begin together" },
-              { n: "10", href: "#honesty", label: "Honesty", why: "What this briefing is and is not" },
-              { n: "11", href: "#zulu-partnership-deck", label: "Slide deck", why: "18-slide presentation + PDF" },
+              { n: "07", href: "#royal-departments", label: "Royal · departments", why: "Sports/Arts & Culture, Health, Agriculture, COGTA" },
+              { n: "08", href: "#direct-containers", label: "Direct containers", why: "Community enterprise selling Foods" },
+              { n: "09", href: "#leadership", label: "Leadership", why: "Super-Cube® for stewards" },
+              { n: "10", href: "#empower", label: "Empower", why: "Trade, Foundation, Impact" },
+              { n: "11", href: "#pathways", label: "Pathways", why: "How we begin together" },
+              { n: "12", href: "#honesty", label: "Honesty", why: "What this briefing is and is not" },
+              { n: "13", href: "#zulu-partnership-deck", label: "Slide deck", why: "Slide presentation + PDF" },
             ].map((item) => (
               <a
                 key={item.href}
@@ -328,9 +336,10 @@ export default function ZuluKingdomBriefing() {
           <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-8">
             {P.valueChain.intro}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-6">
             {P.valueChain.stages.map((s) => {
-              const Icon = s.id === "agri" ? Leaf : s.id === "foods" ? Package : Crown;
+              const Icon =
+                s.id === "agri" ? Leaf : s.id === "foods" ? Package : s.id === "royal" ? Crown : Truck;
               return (
                 <article
                   key={s.id}
@@ -468,6 +477,109 @@ export default function ZuluKingdomBriefing() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Big Five Royal · departments */}
+      <section
+        id="royal-departments"
+        className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{P.royalDepartments.eyebrow}</SectionEyebrow>
+          <div className="flex items-center gap-2 mb-3">
+            <Building2 className="w-6 h-6 text-[#a67c00]" aria-hidden />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance max-w-3xl">
+              {P.royalDepartments.title}
+            </h2>
+          </div>
+          <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-8">
+            {P.royalDepartments.intro}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
+            {P.royalDepartments.departments.map((d) => {
+              const Icon =
+                d.id === "dsac"
+                  ? LandPlot
+                  : d.id === "doh"
+                    ? HeartPulse
+                    : d.id === "doa"
+                      ? Tractor
+                      : Building2;
+              return (
+                <article
+                  key={d.id}
+                  className="rounded-2xl border border-[#e0b000]/25 bg-white p-5 sm:p-6 shadow-sm"
+                >
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="rounded-xl border border-[#e0b000]/30 bg-[#faf6eb] p-2.5 shrink-0">
+                      <Icon className="w-5 h-5 text-[#a67c00]" aria-hidden />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[10px] tracking-[2px] font-semibold text-[#a67c00] mb-1">
+                        BIG FIVE ROYAL · UNLOCK
+                      </div>
+                      <h3 className="text-base sm:text-lg font-semibold text-black leading-snug">
+                        {d.name}
+                      </h3>
+                      {"fullName" in d && d.fullName ? (
+                        <p className="text-xs text-[#737373] mt-0.5">{d.fullName}</p>
+                      ) : null}
+                    </div>
+                  </div>
+                  <p className="text-sm text-[#525252] leading-relaxed">{d.d}</p>
+                </article>
+              );
+            })}
+          </div>
+          <p className="text-xs sm:text-sm text-[#737373] leading-relaxed max-w-3xl border-l-2 border-[#e0b000]/40 pl-4">
+            {P.royalDepartments.note}
+          </p>
+        </div>
+      </section>
+
+      {/* Direct containers */}
+      <section
+        id="direct-containers"
+        className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{P.directContainers.eyebrow}</SectionEyebrow>
+          <div className="flex items-center gap-2 mb-3">
+            <Store className="w-6 h-6 text-[#a67c00]" aria-hidden />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black text-balance max-w-3xl">
+              {P.directContainers.title}
+            </h2>
+          </div>
+          <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-8">
+            {P.directContainers.intro}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
+            {P.directContainers.points.map((p) => (
+              <article
+                key={p.t}
+                className="rounded-2xl border border-black/10 bg-[#fafafa] p-5 sm:p-6"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Truck className="w-4 h-4 text-[#a67c00]" aria-hidden />
+                  <h3 className="text-base font-semibold text-black">{p.t}</h3>
+                </div>
+                <p className="text-sm text-[#525252] leading-relaxed">{p.d}</p>
+              </article>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/direct"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#a67c00] hover:text-black"
+            >
+              Explore Big Five Direct
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <p className="text-xs text-[#737373] leading-relaxed max-w-2xl">
+              {P.directContainers.note}
+            </p>
           </div>
         </div>
       </section>
@@ -614,7 +726,8 @@ export default function ZuluKingdomBriefing() {
                 Let us feed, educate and empower His Majesty&apos;s people — together.
               </h3>
               <p className="text-sm text-white/65 leading-relaxed max-w-2xl mb-5">
-                50:50 partnership · Agri → Foods → Big Five Royal · Super-Cube® · SupplierAdvisor®
+                50:50 · Agri → Foods → Big Five Royal (Sports/Arts &amp; Culture, Health, Agriculture,
+                COGTA) → Direct community containers · Super-Cube®
               </p>
               <a
                 href={`mailto:${P.contactEmail}?subject=${encodeURIComponent(

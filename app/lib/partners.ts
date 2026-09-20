@@ -371,12 +371,22 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#zulu-partnership-deck",
         label: "Strategic partnership deck",
-        desc: "18-slide briefing — 50:50 Feed · Educate · Empower, Agri→Foods→Royal value chain, leopard-print branding.",
+        desc: "20-slide briefing — 50:50 Feed · Educate · Empower, Agri→Foods→Royal→Direct, leopard-print branding.",
       },
       {
         href: "#value-chain",
-        label: "Agri → Foods → Big Five Royal",
-        desc: "Value chain from Nation farmers to departmental meals.",
+        label: "Agri → Foods → Big Five Royal → Direct",
+        desc: "Value chain from Nation farmers to departments and community containers.",
+      },
+      {
+        href: "#royal-departments",
+        label: "Departmental unlock",
+        desc: "Sports, Arts & Culture · Health · Agriculture · COGTA.",
+      },
+      {
+        href: "#direct-containers",
+        label: "Direct community containers",
+        desc: "Local operators sell and distribute Big Five Foods.",
       },
       {
         href: "#royal-house",

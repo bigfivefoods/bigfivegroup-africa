@@ -29,9 +29,9 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     detail:
       "Big Five Group proposes a 50:50 strategic partnership with the Zulu Nation / Private Office structures — shared ownership of vision, shared responsibility for delivery, and shared benefit for the people His Majesty serves.",
     bigFive:
-      "Big Five Agri (farmer training & offtake), Big Five Foods manufacturing, Big Five Royal departmental placement, Super-Cube® leadership formation, SupplierAdvisor® trade rails, Foundation design and Impact PMO assurance.",
+      "Big Five Agri (farmer training & offtake), Big Five Foods manufacturing, Big Five Royal departmental unlock (Sports/Arts & Culture, Health, Agriculture, COGTA), Big Five Direct community containers, Super-Cube® leadership, SupplierAdvisor®, Foundation and Impact PMO.",
     nation:
-      "Royal legitimacy, cultural authority, community reach across KwaZulu-Natal, farmer networks, ceremonial and household pathways, and stewardship of heritage that must never be diluted.",
+      "Royal legitimacy, cultural authority, community reach across KwaZulu-Natal, farmer networks, traditional governance interfaces, ceremonial and household pathways, and stewardship of heritage that must never be diluted.",
   },
 
   majesty: {
@@ -103,18 +103,98 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
         id: "royal",
         n: "03",
         brand: "Big Five Royal",
-        t: "Reach national departments & the people",
-        d: "Big Five Royal channels finished Foods into relevant national and provincial departments and programme pathways — so delicious, nutritious, affordable food reaches the Zulu Nation’s people at scale.",
+        t: "Unlock national departments for the people",
+        d: "Big Five Royal channels finished Foods into priority national and provincial departments — so delicious, nutritious, affordable food reaches the Zulu Nation’s people through formal programme pathways.",
         outcomes: [
+          "Sports, Arts & Culture · Health · Agriculture · COGTA",
           "Departmental & programme placement",
-          "Ceremonial & community tables",
           "Meals with dignity for the Nation",
         ],
         href: "/access",
       },
+      {
+        id: "direct",
+        n: "04",
+        brand: "Big Five Direct",
+        t: "Community containers · local enterprise",
+        d: "Multi-use Direct containers — run by local community people — to sell and distribute Big Five Foods, creating economic empowerment at taxi ranks, rural hubs and community nodes across the Nation.",
+        outcomes: [
+          "Local operators run the containers",
+          "Sell & distribute Big Five Foods",
+          "Jobs, offtake and last-mile dignity",
+        ],
+        href: "/direct",
+      },
     ],
     loopNote:
-      "Farmers of the Nation → crops into Big Five Foods → Big Five Royal into departments → plates for the people — with 50:50 stewardship at every gate.",
+      "Farmers of the Nation → crops into Big Five Foods → Big Five Royal into departments → Big Five Direct containers for community enterprise — plates and livelihoods for the people, with 50:50 stewardship at every gate.",
+  },
+
+  /**
+   * Departments Big Five Royal aims to help unlock for Nation nutrition programmes.
+   */
+  royalDepartments: {
+    eyebrow: "BIG FIVE ROYAL · DEPARTMENTAL UNLOCK",
+    title: "Departments that can put food on the Nation’s tables",
+    intro:
+      "Big Five Royal is proposed as the channel to align fortified Foods with national and provincial mandates — so delicious, nutritious, affordable meals reach His Majesty’s people through departments that already touch sport, health, agriculture and traditional governance.",
+    departments: [
+      {
+        id: "dsac",
+        name: "Department of Sports, Arts & Culture",
+        short: "Sports, Arts & Culture",
+        d: "Align nutrition with sport development, cultural events and arts programmes — fuel for athletes, festivals and heritage gatherings of the Nation.",
+      },
+      {
+        id: "doh",
+        name: "Department of Health",
+        short: "Health",
+        d: "Support community health and nutrition pathways — fortified staples that help close micronutrient gaps where clinics and care programmes already serve families.",
+      },
+      {
+        id: "doa",
+        name: "Department of Agriculture",
+        short: "Agriculture",
+        d: "Close the loop with Big Five Agri — farmer development, offtake and food security programmes that turn Nation crops into Nation meals.",
+      },
+      {
+        id: "cogta",
+        name: "COGTA",
+        short: "COGTA",
+        fullName: "Cooperative Governance and Traditional Affairs",
+        d: "Work with traditional governance and municipal interfaces — so traditional councils and local government pathways can steward community feeding with dignity.",
+      },
+    ],
+    note: "Departmental engagement is a partnership ambition — mandates, tenders and programme rules remain with the competent authorities; Big Five Royal proposes delivery partnership, not to replace government.",
+  },
+
+  /**
+   * Big Five Direct containers as community economic empowerment for the Nation.
+   */
+  directContainers: {
+    eyebrow: "BIG FIVE DIRECT · COMMUNITY ENTERPRISE",
+    title: "Containers that local people run — selling Big Five Foods",
+    intro:
+      "Beyond departmental placement, Big Five Direct multi-use containers can create economic empowerment in the Nation: local community operators run the nodes to sell and distribute Big Five Foods — turning last-mile logistics into livelihoods.",
+    points: [
+      {
+        t: "Local operators",
+        d: "Community people — not distant middlemen — run the containers as micro-enterprises with training and fair commercial terms.",
+      },
+      {
+        t: "Sell & distribute Foods",
+        d: "Shelf-stable fortified porridges, soya, one-pots and soups stocked for daily offtake where people already gather.",
+      },
+      {
+        t: "Ranks, hubs & rural nodes",
+        d: "Taxi ranks, rural communities and local hubs — the same Direct model that concentrates mobility into recurring food commerce.",
+      },
+      {
+        t: "Empowerment with proof",
+        d: "Jobs, stock transparency and offtake data — so economic dignity is measurable, not only promised.",
+      },
+    ],
+    note: "Container rollout scale follows Big Five Direct programme plans (including SANTACO-linked pathways nationally) — phased deployment with the Nation, not overnight saturation.",
   },
 
   agri: {
@@ -202,6 +282,10 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
   empower: {
     points: [
       {
+        t: "Big Five Direct containers",
+        d: "Local community people run multi-use containers to sell and distribute Big Five Foods — economic empowerment at ranks, hubs and rural nodes.",
+      },
+      {
         t: "SupplierAdvisor®",
         d: "Verified suppliers, provenance and ethical trade rails for B2B, B2G and community commerce linked to the Nation’s economic dignity.",
       },
@@ -227,11 +311,11 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     },
     {
       t: "Foods + Big Five Royal pilots",
-      d: "Manufacture fortified staples from Nation-sourced crops; place meals via Big Five Royal into agreed national/provincial departments and community kitchens.",
+      d: "Manufacture fortified staples from Nation-sourced crops; unlock Sports/Arts & Culture, Health, Agriculture and COGTA pathways for departmental placement.",
     },
     {
-      t: "Leadership + transparent scale",
-      d: "Super-Cube® cohorts for stewards; Impact PMO and Foundation rails so every expansion step is gated and worthy of the Nation’s trust.",
+      t: "Direct containers + leadership",
+      d: "Pilot community-run Direct containers selling Big Five Foods; Super-Cube® cohorts and Impact PMO so scale stays transparent and worthy of trust.",
     },
   ],
 
@@ -239,8 +323,9 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     "This deck is a private partner briefing — not an official Palace publication and not a claim to speak for His Majesty beyond a proposed partnership relationship.",
     "Heritage language is drawn from the public Private Office site (zulukingdom.co.za). Succession and constitutional matters remain exclusively with the Royal House and competent authorities.",
     "50:50 equity / joint-venture framing is a strategic intent for discussion — legal structure, entities, VAT, licences and community benefit rules must be confirmed on a term sheet with authorised representatives.",
-    "Big Five Royal is the proposed channel brand for placing Foods into national and provincial departments / programme pathways for the Zulu Nation — scope, mandates and procurement rules require formal confirmation with competent authorities.",
+    "Big Five Royal is the proposed channel brand for placing Foods into national and provincial departments (including Sports, Arts & Culture; Health; Agriculture; and COGTA) — scope, mandates and procurement rules require formal confirmation with competent authorities.",
     "Big Five Agri farmer training and crop offtake into Foods manufacturing are partnership ambitions — volumes, crop specs, pricing and land/tenure arrangements must be agreed with authorised Nation representatives and farmer organisations.",
+    "Big Five Direct community containers (local operators selling and distributing Foods) follow Direct programme plans — phased rollout with the Nation, not a claim that every node is already live.",
     `Foods meal maths (${PACK.inline} 1kg → ~20 × 200g meals → ${MEAL.inline}/meal) are management / partner-briefing figures — confirm SKU list, preparation and VAT on order. ${BLESSMAN_FX.note}`,
   ],
 } as const;
