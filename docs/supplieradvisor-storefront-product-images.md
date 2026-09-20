@@ -76,5 +76,4 @@ aspect-ratio: 1 / 1 with cover; /* crops */
 ## Start prompt for Grok Build
 
 ```
-On the public storefront (/store/[slug] product cards and product detail), change product images to object-fit: contain on a light plate so the full pack is visible, and make the image area slightly smaller (~100–120px height, max-width ~7rem on the img). Do not use object-fit: cover. Apply to Big Five Foods store and any shared store product card component.
-```
+On the public storefront (/store/[slug] product cards and product detail), change product images to object-fit: contain on a light plate so the full pack is visible, and make the image area slightly smaller (~100–120px height, max-width ~7rem on the img). Do not use object-fit: cover. Apply to Big Five Foods store and any shared store product card componen
