@@ -435,26 +435,45 @@ export default function ZuluKingdomBriefing() {
             nutritious, affordable fortified staples for departments, households and community
             programmes.
           </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-10">
             {P.products.map((f) => (
               <article
                 key={f.title}
-                className="rounded-2xl border border-black/10 bg-[#fafafa] overflow-hidden shadow-sm flex flex-col"
+                className="rounded-2xl border border-black/10 bg-[#fafafa] overflow-hidden shadow-sm flex flex-col sm:flex-row"
               >
-                <div className="flex h-36 sm:h-44 items-center justify-center bg-white p-3">
+                <div className="flex h-40 sm:h-auto sm:w-36 shrink-0 items-center justify-center bg-white p-3 border-b sm:border-b-0 sm:border-r border-black/5">
                   <Image
                     src={f.src}
                     alt={f.title}
-                    width={160}
-                    height={220}
-                    className="max-h-full w-auto object-contain"
+                    width={140}
+                    height={190}
+                    className="max-h-36 w-auto object-contain"
                   />
                 </div>
-                <div className="p-3 sm:p-4 border-t border-black/5 flex-1 flex flex-col">
-                  <h3 className="text-sm font-semibold text-black mb-1">{f.title}</h3>
-                  <p className="text-xs text-[#737373] leading-relaxed mb-2 flex-1">{f.blurb}</p>
-                  <p className="text-[10px] font-semibold text-[#a67c00]">{f.stats}</p>
-                  <p className="text-[10px] text-[#a3a3a3] mt-1">{f.serve}</p>
+                <div className="p-4 sm:p-5 flex-1 flex flex-col min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold text-black mb-1">{f.title}</h3>
+                  <p className="text-sm text-[#525252] leading-relaxed mb-2">{f.blurb}</p>
+                  <p className="text-xs text-[#737373] leading-relaxed mb-3">{f.detail}</p>
+                  <p className="text-[11px] font-semibold text-[#a67c00] mb-1">{f.stats}</p>
+                  <p className="text-[11px] text-[#a3a3a3] mb-3">{f.pack}</p>
+                  <div className="mt-auto">
+                    <div className="text-[10px] tracking-[1.5px] font-semibold text-[#a67c00] uppercase mb-1.5">
+                      Flavours
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {f.flavours.map((fl) => (
+                        <span
+                          key={fl}
+                          className="text-[11px] font-medium px-2.5 py-1 rounded-full border border-[#e0b000]/35 bg-white text-[#404040]"
+                        >
+                          {fl}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-[11px] text-[#737373] mt-3">
+                      <strong className="text-black">Serve:</strong> {f.serve}
+                    </p>
+                  </div>
                 </div>
               </article>
             ))}

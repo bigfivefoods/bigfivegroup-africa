@@ -411,39 +411,61 @@ function Slide({ index }: { index: number }) {
           <LeopardWatermark />
           <div className="relative z-10 flex flex-col h-full min-h-0">
             <DeckEyebrow theme={theme}>FEED · BIG FIVE FOODS™</DeckEyebrow>
-            <div className="flex items-center gap-2 mb-2">
-              <Package className="w-5 h-5 text-[#a67c00]" aria-hidden />
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black text-balance">
+            <div className="flex items-center gap-2 mb-1.5">
+              <Package className="w-5 h-5 text-[#a67c00] shrink-0" aria-hidden />
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tighter text-black text-balance">
                 Products for the Nation&apos;s tables
               </h2>
             </div>
-            <p className="text-xs sm:text-sm text-[#525252] mb-3 max-w-3xl leading-relaxed">
-              Manufactured by Big Five Foods from crops grown by Nation farmers trained with Big Five
-              Agri — then placed by Big Five Royal into departments and programmes so people eat with
-              dignity.
+            <p className="text-[11px] sm:text-xs text-[#525252] mb-2.5 max-w-3xl leading-relaxed">
+              Manufactured by Big Five Foods from Nation-farmer crops — delicious, nutritious,
+              affordable staples with full flavour ranges for Royal, departmental and community
+              kitchens.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 flex-1 min-h-0 content-start">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2.5 flex-1 min-h-0 content-start">
               {P.products.map((f) => (
                 <div
                   key={f.title}
-                  className="rounded-2xl border border-black/10 bg-white overflow-hidden shadow-sm flex flex-col"
+                  className="rounded-xl sm:rounded-2xl border border-black/10 bg-white overflow-hidden shadow-sm flex flex-col min-w-0"
                 >
-                  <div className="flex h-28 sm:h-36 w-full shrink-0 items-center justify-center bg-[#fafafa] p-2">
+                  <div className="flex h-20 sm:h-28 w-full shrink-0 items-center justify-center bg-[#fafafa] p-1.5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={f.src}
                       alt={f.title}
-                      width={180}
-                      height={240}
+                      width={160}
+                      height={210}
                       data-deck-src={f.src}
                       data-deck-fit="contain"
                       className="max-h-full max-w-full w-auto h-auto object-contain"
                       loading={pdf ? "eager" : "lazy"}
                     />
                   </div>
-                  <div className="p-2 sm:p-2.5 border-t border-black/5">
-                    <div className="text-xs sm:text-sm font-semibold text-black mb-0.5">{f.title}</div>
-                    <p className="text-[10px] text-[#737373] leading-snug line-clamp-2">{f.blurb}</p>
+                  <div className="p-2 sm:p-2.5 border-t border-black/5 flex flex-col flex-1 min-h-0">
+                    <div className="text-[11px] sm:text-xs font-semibold text-black mb-0.5 leading-snug">
+                      {f.title}
+                    </div>
+                    <p className="text-[9px] sm:text-[10px] text-[#737373] leading-snug mb-1.5 line-clamp-2">
+                      {f.blurb}
+                    </p>
+                    <div className="text-[8px] sm:text-[9px] font-semibold text-[#a67c00] mb-1">
+                      {f.stats}
+                    </div>
+                    <div className="mt-auto">
+                      <div className="text-[8px] tracking-[1px] font-semibold text-[#a3a3a3] uppercase mb-1">
+                        Flavours
+                      </div>
+                      <div className="flex flex-wrap gap-0.5 sm:gap-1">
+                        {f.flavours.map((fl) => (
+                          <span
+                            key={fl}
+                            className="text-[8px] sm:text-[9px] font-medium px-1.5 py-0.5 rounded-full border border-[#e0b000]/30 bg-[#faf6eb] text-[#404040]"
+                          >
+                            {fl}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}

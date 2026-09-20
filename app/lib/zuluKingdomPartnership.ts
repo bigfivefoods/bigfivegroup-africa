@@ -272,31 +272,48 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
   products: [
     {
       title: "Fortified porridges",
-      blurb: "Breakfast that builds — local maize where formulation allows; familiar flavours.",
+      blurb:
+        "Instant, vitamin-enriched porridges on local maize where formulation allows — breakfast that builds, not empty cereal calories.",
       stats: "74% more nutrition by design · 185% more fortification",
+      detail:
+        "Essential minerals, B-vitamins, fibre, calcium, magnesium, phosphorus and iron — micronutrient density aimed at hidden hunger. Shelf-stable; no cold chain.",
+      pack: "Retail / catering packs · NSNP 5kg institutional available",
       src: "/foods/porridge-banana.jpg",
       serve: "Household · ECD · community kitchens · ceremonial hospitality",
+      flavours: ["Original", "Chocolate", "Banana", "Strawberry"],
     },
     {
       title: "Soya mince",
-      blurb: "Affordable plant protein that stretches every pot — pairs with pap and stews.",
-      stats: `From ~R1.30 / meal · high protein · long shelf life`,
+      blurb: "Plant-based protein mince that stretches every pot — pairs with pap, stews and school menus.",
+      stats: "From ~R1.30 / meal · high protein · long shelf life",
+      detail:
+        "Affordable protein for royal household kitchens, feeding schemes and family pots — familiar SA flavour profiles people already cook with.",
+      pack: "Retail / catering packs · NSNP 5kg institutional available",
       src: "/foods/soya-beef.jpg",
       serve: "Family meals · feeding schemes · royal household kitchens",
+      flavours: ["Rich Beef", "Chilli Beef", "Beef & Onion", "Mutton"],
     },
     {
       title: "One-pot meals",
-      blurb: "Complete fortified plates — authentic African flavours, ~20 minutes cook.",
-      stats: `${MEAL.inline}/meal framing · institutional ready`,
+      blurb: "Complete fortified plates — authentic African flavours, about 20 minutes cook.",
+      stats: `${MEAL.inline}/meal framing · 1kg → ~4kg prepared`,
+      detail:
+        "Balanced, fortified convenience for lunch, dinner, events and departmental programmes — one pack, one complete meal format.",
+      pack: "1kg retail / catering · NSNP 5kg institutional available",
       src: "/foods/onepot-chicken.jpg",
       serve: "Lunch · dinner · events · community programmes",
+      flavours: ["Chicken", "Beef", "Chilli Beef", "Chakalaka"],
     },
     {
       title: "Soups",
-      blurb: "Lowest-cost micronutrient pathway — vitamins A & C, iron, calcium.",
-      stats: "From ~R1.10 / meal",
+      blurb: "Lowest-cost micronutrient pathway — vitamins A & C, iron and calcium in familiar bowls.",
+      stats: "From ~R1.10 / meal · instant soup thickeners",
+      detail:
+        "Warm, fortified soup thickeners for light evening meals, clinics and care points — nutrient density at the lowest cost rung.",
+      pack: "Instant soup thickener packs",
       src: "/foods/soup-chicken.jpg",
       serve: "Light evening meals · clinics · care points",
+      flavours: ["Chicken", "Brown Onion", "Oxtail", "Minestrone"],
     },
   ],
 
