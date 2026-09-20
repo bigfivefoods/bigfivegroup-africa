@@ -39,6 +39,12 @@ export const HOME_PARTNERS: HomePartner[] = [
     wide: true,
   },
   {
+    name: "The Zulu Kingdom",
+    logo: "/partners/zulu-kingdom-logo.png",
+    href: "https://www.zulukingdom.co.za/",
+    wide: true,
+  },
+  {
     name: "A Heart To Help",
     logo: "/partners/a-heart-to-help-logo.png",
     href: "https://ahearttohelp.co.za/",
