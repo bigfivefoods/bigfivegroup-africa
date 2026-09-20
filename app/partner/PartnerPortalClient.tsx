@@ -822,11 +822,37 @@ export default function PartnerPortalClient({
   const resources = mergePartnerResources(partner);
 
   const heroBg = partner.brandColor ?? "#052e1c";
+  const zuluHero = partner.slug === "zulu-kingdom";
 
   return (
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
-      <section className="text-white" style={{ backgroundColor: heroBg }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
+      <section
+        className="text-white relative overflow-hidden"
+        style={zuluHero ? undefined : { backgroundColor: heroBg }}
+      >
+        {zuluHero && (
+          <>
+            <Image
+              src="/partners/zulu-kingdom-leopard-hero.jpg"
+              alt=""
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            {/* Darken leopard print so white hero copy stays readable */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(115deg, rgba(10,8,4,0.88) 0%, rgba(20,14,6,0.78) 45%, rgba(10,8,4,0.82) 100%)",
+              }}
+              aria-hidden
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/25" aria-hidden />
+          </>
+        )}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-8">
             <div className="min-w-0 max-w-2xl">
               <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] text-white/70 mb-4">
@@ -879,9 +905,13 @@ export default function PartnerPortalClient({
             {heroTilesForPartner(partner).map((c) => (
               <div
                 key={c.t}
-                className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 min-w-0"
+                className={`rounded-2xl border border-white/10 p-5 min-w-0 ${
+                  zuluHero ? "bg-black/35 backdrop-blur-[2px]" : "bg-white/[0.06]"
+                }`}
               >
-                <c.icon className="w-5 h-5 text-emerald-300 mb-3" />
+                <c.icon
+                  className={`w-5 h-5 mb-3 ${zuluHero ? "text-[#e0b000]" : "text-emerald-300"}`}
+                />
                 <div className="text-sm font-semibold text-white mb-1">{c.t}</div>
                 <p className="text-xs text-white/55 leading-relaxed">{c.d}</p>
               </div>
