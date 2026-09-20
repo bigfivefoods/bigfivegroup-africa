@@ -45,22 +45,58 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     {
       id: "feed",
       t: "Feed",
-      vehicle: "Big Five Agri → Foods → Royal",
-      d: "From Zulu Nation farmers trained with Big Five Agri, through Big Five Foods manufacturing, to Big Five Royal placing meals in national departments for the people.",
+      vehicle: "Agri → Foods → Royal → Direct",
+      d: "From Zulu Nation farmers trained with Big Five Agri, through Big Five Foods manufacturing, to Big Five Royal departments and Direct community containers for the people.",
     },
     {
       id: "educate",
       t: "Educate",
-      vehicle: "Super-Cube®",
-      d: "Whole-person leadership formation so those who serve the House and the Nation can hold complexity with Ubuntu, ethics and deliberate practice.",
+      vehicle: "Big Five Leadership · Super-Cube®",
+      d: "Whole-person leadership formation that accelerates stewards across Agri, Foods, Royal channels and Direct operators — Ubuntu, ethics and deliberate practice.",
     },
     {
       id: "empower",
       t: "Empower",
-      vehicle: "SupplierAdvisor® · Foundation · Impact",
-      d: "Verified trade, NPO pathways and transparent delivery gates — so communities rise under their own power with proof, not theatre.",
+      vehicle: "Big Five Connect · SupplierAdvisor®",
+      d: "Verified trade on supplieradvisor.com — plus Foundation and Impact rails — so farmers, factories, departments and container operators rise with proof, not theatre.",
     },
   ],
+
+  /**
+   * Cross-cutting accelerators on every Royal / Direct channel.
+   */
+  acceleration: {
+    eyebrow: "ACCELERATORS · EVERY CHANNEL",
+    title: "Connect + Super-Cube® run through the whole offer",
+    intro:
+      "Big Five Royal is not only food placement. Every customer channel — Sports/Arts & Culture, Health, Agriculture, COGTA, and Direct community containers — is accelerated by Big Five Connect (SupplierAdvisor® at supplieradvisor.com) and Big Five Leadership (Super-Cube®), so programmes scale with verified partners and formed people.",
+    connect: {
+      brand: "Big Five Connect",
+      product: "SupplierAdvisor®",
+      url: "https://www.supplieradvisor.com/",
+      urlLabel: "supplieradvisor.com",
+      d: "Verified suppliers, provenance and ethical trade rails — so Nation farmers, Foods manufacturing, departmental programmes and container operators share one trustworthy commercial operating system.",
+      uses: [
+        "Verify farmer offtake and supplier integrity into Foods",
+        "Give departmental programmes a clean supplier trail",
+        "List and assure Direct container operators and stock provenance",
+        "Open B2B / B2G pathways without opaque middle layers",
+      ],
+    },
+    leadership: {
+      brand: "Big Five Leadership",
+      product: "Super-Cube®",
+      url: "/leadership",
+      urlLabel: "bigfivegroup.africa/leadership",
+      d: "Whole-person leadership formation for royal stewards, departmental counterparts, Agri lead farmers and Direct container operators — so delivery holds under pressure with Ubuntu and integrity.",
+      uses: [
+        "Form departmental and programme leads who steward Nation nutrition",
+        "Develop Agri farmer leaders and cooperative stewards",
+        "Train Direct container operators as micro-enterprise leaders",
+        "Build a shared leadership language across the 50:50 partnership",
+      ],
+    },
+  },
 
   /**
    * Closed-loop value chain for the Zulu Nation partnership.
@@ -104,11 +140,11 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
         n: "03",
         brand: "Big Five Royal",
         t: "Unlock national departments for the people",
-        d: "Big Five Royal channels finished Foods into priority national and provincial departments — so delicious, nutritious, affordable food reaches the Zulu Nation’s people through formal programme pathways.",
+        d: "Big Five Royal channels Foods into Sports/Arts & Culture, Health, Agriculture and COGTA — with Super-Cube® leadership and SupplierAdvisor® verification as part of every departmental offer.",
         outcomes: [
           "Sports, Arts & Culture · Health · Agriculture · COGTA",
-          "Departmental & programme placement",
-          "Meals with dignity for the Nation",
+          "Super-Cube® for programme stewards",
+          "SupplierAdvisor®-verified supply trails",
         ],
         href: "/access",
       },
@@ -117,45 +153,54 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
         n: "04",
         brand: "Big Five Direct",
         t: "Community containers · local enterprise",
-        d: "Multi-use Direct containers — run by local community people — to sell and distribute Big Five Foods, creating economic empowerment at taxi ranks, rural hubs and community nodes across the Nation.",
+        d: "Local people run containers to sell and distribute Foods — formed as leaders through Super-Cube® and listed/assured on SupplierAdvisor® so empowerment is commercial and credible.",
         outcomes: [
           "Local operators run the containers",
-          "Sell & distribute Big Five Foods",
-          "Jobs, offtake and last-mile dignity",
+          "Super-Cube® micro-enterprise leadership",
+          "Connect-verified stock & offtake",
         ],
         href: "/direct",
       },
     ],
     loopNote:
-      "Farmers of the Nation → crops into Big Five Foods → Big Five Royal into departments → Big Five Direct containers for community enterprise — plates and livelihoods for the people, with 50:50 stewardship at every gate.",
+      "Farmers → Foods → Big Five Royal (departments) → Direct containers — accelerated at every gate by Connect (supplieradvisor.com) and Leadership (Super-Cube®), with 50:50 stewardship.",
   },
 
   /**
    * Departments Big Five Royal aims to help unlock for Nation nutrition programmes.
+   * Each channel includes Connect + Super-Cube as core enablers.
    */
   royalDepartments: {
     eyebrow: "BIG FIVE ROYAL · DEPARTMENTAL UNLOCK",
     title: "Departments that can put food on the Nation’s tables",
     intro:
-      "Big Five Royal is proposed as the channel to align fortified Foods with national and provincial mandates — so delicious, nutritious, affordable meals reach His Majesty’s people through departments that already touch sport, health, agriculture and traditional governance.",
+      "Big Five Royal aligns fortified Foods with national and provincial mandates — and brings Big Five Connect (SupplierAdvisor®) plus Big Five Leadership (Super-Cube®) into each channel so programmes are verified and people are formed, not only fed.",
+    stackNote:
+      "Royal channel stack: Foods placement + Super-Cube® leadership for stewards + SupplierAdvisor® (supplieradvisor.com) for trusted supply.",
     departments: [
       {
         id: "dsac",
         name: "Department of Sports, Arts & Culture",
         short: "Sports, Arts & Culture",
         d: "Align nutrition with sport development, cultural events and arts programmes — fuel for athletes, festivals and heritage gatherings of the Nation.",
+        enable:
+          "Super-Cube® for sport/culture programme leads · SupplierAdvisor® for event and facility food supply trails.",
       },
       {
         id: "doh",
         name: "Department of Health",
         short: "Health",
         d: "Support community health and nutrition pathways — fortified staples that help close micronutrient gaps where clinics and care programmes already serve families.",
+        enable:
+          "Super-Cube® for health-programme stewards · SupplierAdvisor® for clinic/care nutrition suppliers.",
       },
       {
         id: "doa",
         name: "Department of Agriculture",
         short: "Agriculture",
         d: "Close the loop with Big Five Agri — farmer development, offtake and food security programmes that turn Nation crops into Nation meals.",
+        enable:
+          "Super-Cube® for Agri farmer leaders · SupplierAdvisor® to verify offtake from Nation producers into Foods.",
       },
       {
         id: "cogta",
@@ -163,9 +208,11 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
         short: "COGTA",
         fullName: "Cooperative Governance and Traditional Affairs",
         d: "Work with traditional governance and municipal interfaces — so traditional councils and local government pathways can steward community feeding with dignity.",
+        enable:
+          "Super-Cube® for traditional/municipal stewards · SupplierAdvisor® for community feeding suppliers and Direct nodes.",
       },
     ],
-    note: "Departmental engagement is a partnership ambition — mandates, tenders and programme rules remain with the competent authorities; Big Five Royal proposes delivery partnership, not to replace government.",
+    note: "Departmental engagement is a partnership ambition — mandates, tenders and programme rules remain with the competent authorities; Big Five Royal proposes delivery partnership (food + leadership + verified trade), not to replace government.",
   },
 
   /**
@@ -175,23 +222,23 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     eyebrow: "BIG FIVE DIRECT · COMMUNITY ENTERPRISE",
     title: "Containers that local people run — selling Big Five Foods",
     intro:
-      "Beyond departmental placement, Big Five Direct multi-use containers can create economic empowerment in the Nation: local community operators run the nodes to sell and distribute Big Five Foods — turning last-mile logistics into livelihoods.",
+      "Beyond departmental placement, Big Five Direct multi-use containers create economic empowerment: local operators sell and distribute Foods — accelerated by Super-Cube® leadership formation and SupplierAdvisor® verification on supplieradvisor.com.",
     points: [
       {
         t: "Local operators",
-        d: "Community people — not distant middlemen — run the containers as micro-enterprises with training and fair commercial terms.",
+        d: "Community people run containers as micro-enterprises — with Super-Cube® formation so they lead stock, customers and cash with integrity.",
       },
       {
         t: "Sell & distribute Foods",
         d: "Shelf-stable fortified porridges, soya, one-pots and soups stocked for daily offtake where people already gather.",
       },
       {
-        t: "Ranks, hubs & rural nodes",
-        d: "Taxi ranks, rural communities and local hubs — the same Direct model that concentrates mobility into recurring food commerce.",
+        t: "Connect-verified commerce",
+        d: "Operators and supply trails listed/assured via Big Five Connect (SupplierAdvisor®) — provenance and fair terms, not opaque middle layers.",
       },
       {
-        t: "Empowerment with proof",
-        d: "Jobs, stock transparency and offtake data — so economic dignity is measurable, not only promised.",
+        t: "Ranks, hubs & rural nodes",
+        d: "Taxi ranks, rural communities and local hubs — Direct mobility turned into recurring food commerce and livelihoods for the Nation.",
       },
     ],
     note: "Container rollout scale follows Big Five Direct programme plans (including SANTACO-linked pathways nationally) — phased deployment with the Nation, not overnight saturation.",
@@ -265,16 +312,16 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     headline: "Advance the leadership of the Nation",
     points: [
       {
-        t: "Super-Cube® for royal and community stewards",
-        d: "Six-construct whole-person formation — including Spiritual intelligence — for executives, public servants, youth and those who serve the House.",
+        t: "Super-Cube® across every Royal channel",
+        d: "Whole-person formation for departmental stewards (Sports/Arts & Culture, Health, Agriculture, COGTA), Agri farmer leaders and Direct operators — including Spiritual intelligence.",
       },
       {
         t: "Ubuntu in practice",
         d: "Humanity, integrity and compassionate empowerment — leadership that honours Zulu identity while navigating modern multi-stakeholder complexity.",
       },
       {
-        t: "Deliberate practice for delivery teams",
-        d: "Programme managers, kitchen leads and field teams formed so Feed · Educate · Empower holds under pressure — not only on paper.",
+        t: "Connect + Leadership together",
+        d: "Super-Cube® forms the people; SupplierAdvisor® (supplieradvisor.com) verifies the trade — so acceleration is both human and commercial throughout the process.",
       },
     ],
   },
@@ -283,11 +330,11 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
     points: [
       {
         t: "Big Five Direct containers",
-        d: "Local community people run multi-use containers to sell and distribute Big Five Foods — economic empowerment at ranks, hubs and rural nodes.",
+        d: "Local community people run multi-use containers to sell and distribute Foods — with Super-Cube® operator leadership and Connect-verified stock trails.",
       },
       {
-        t: "SupplierAdvisor®",
-        d: "Verified suppliers, provenance and ethical trade rails for B2B, B2G and community commerce linked to the Nation’s economic dignity.",
+        t: "Big Five Connect · SupplierAdvisor®",
+        d: "Verified suppliers and provenance on supplieradvisor.com — for Agri offtake, Foods supply, Royal departmental programmes and Direct nodes.",
       },
       {
         t: "Foundation pathways",
@@ -306,16 +353,16 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
       d: "50:50 governance — Private Office and Big Five Group co-chair vision, priorities and public language.",
     },
     {
-      t: "Agri farmer cohorts",
-      d: "Launch Big Five Agri training and offtake with selected Zulu Nation farmers — crops destined for Foods manufacturing.",
+      t: "Agri + Connect offtake",
+      d: "Train Nation farmers; list and assure offtake on SupplierAdvisor® so crops flow cleanly into Foods manufacturing.",
     },
     {
-      t: "Foods + Big Five Royal pilots",
-      d: "Manufacture fortified staples from Nation-sourced crops; unlock Sports/Arts & Culture, Health, Agriculture and COGTA pathways for departmental placement.",
+      t: "Royal channels + Super-Cube®",
+      d: "Place Foods into Sports/Arts & Culture, Health, Agriculture and COGTA — with Super-Cube® cohorts for programme stewards on each channel.",
     },
     {
-      t: "Direct containers + leadership",
-      d: "Pilot community-run Direct containers selling Big Five Foods; Super-Cube® cohorts and Impact PMO so scale stays transparent and worthy of trust.",
+      t: "Direct containers + Connect",
+      d: "Pilot community-run containers selling Foods; form operators with Super-Cube® and verify commerce on supplieradvisor.com.",
     },
   ],
 

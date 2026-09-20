@@ -82,11 +82,12 @@ export default function ZuluKingdomBriefing() {
               { n: "06", href: "#foods-products", label: "Big Five Foods", why: "Products for the Nation’s tables" },
               { n: "07", href: "#royal-departments", label: "Royal · departments", why: "Sports/Arts & Culture, Health, Agriculture, COGTA" },
               { n: "08", href: "#direct-containers", label: "Direct containers", why: "Community enterprise selling Foods" },
-              { n: "09", href: "#leadership", label: "Leadership", why: "Super-Cube® for stewards" },
-              { n: "10", href: "#empower", label: "Empower", why: "Trade, Foundation, Impact" },
-              { n: "11", href: "#pathways", label: "Pathways", why: "How we begin together" },
-              { n: "12", href: "#honesty", label: "Honesty", why: "What this briefing is and is not" },
-              { n: "13", href: "#zulu-partnership-deck", label: "Slide deck", why: "Slide presentation + PDF" },
+              { n: "09", href: "#acceleration", label: "Connect + Super-Cube", why: "Accelerators on every channel" },
+              { n: "10", href: "#leadership", label: "Leadership", why: "Super-Cube® for stewards" },
+              { n: "11", href: "#empower", label: "Empower", why: "Connect, Direct, Foundation, Impact" },
+              { n: "12", href: "#pathways", label: "Pathways", why: "How we begin together" },
+              { n: "13", href: "#honesty", label: "Honesty", why: "What this briefing is and is not" },
+              { n: "14", href: "#zulu-partnership-deck", label: "Slide deck", why: "Slide presentation + PDF" },
             ].map((item) => (
               <a
                 key={item.href}
@@ -528,11 +529,17 @@ export default function ZuluKingdomBriefing() {
                       ) : null}
                     </div>
                   </div>
-                  <p className="text-sm text-[#525252] leading-relaxed">{d.d}</p>
+                  <p className="text-sm text-[#525252] leading-relaxed mb-3">{d.d}</p>
+                  <p className="text-xs text-[#a67c00] leading-relaxed border-t border-[#e0b000]/20 pt-2.5">
+                    <strong className="font-semibold">Royal stack:</strong> {d.enable}
+                  </p>
                 </article>
               );
             })}
           </div>
+          <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-3 rounded-xl border border-[#e0b000]/25 bg-[#faf6eb] px-4 py-3">
+            {P.royalDepartments.stackNote}
+          </p>
           <p className="text-xs sm:text-sm text-[#737373] leading-relaxed max-w-3xl border-l-2 border-[#e0b000]/40 pl-4">
             {P.royalDepartments.note}
           </p>
@@ -584,6 +591,85 @@ export default function ZuluKingdomBriefing() {
         </div>
       </section>
 
+      {/* Connect + Super-Cube accelerators */}
+      <section
+        id="acceleration"
+        className="scroll-mt-28 border-b border-black/10 bg-[#0a0804] text-white py-12 sm:py-16 relative overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 opacity-[0.1]"
+          style={{
+            backgroundImage: `url(${P.leopardHero})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          aria-hidden
+        />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow light>{P.acceleration.eyebrow}</SectionEyebrow>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-balance mb-3 max-w-3xl">
+            {P.acceleration.title}
+          </h2>
+          <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-3xl mb-8">
+            {P.acceleration.intro}
+          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
+            <article className="rounded-2xl border border-[#e0b000]/30 bg-black/40 p-5 sm:p-6">
+              <div className="text-[10px] tracking-[2px] font-semibold text-[#e0b000] mb-1">
+                {P.acceleration.connect.brand.toUpperCase()}
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                {P.acceleration.connect.product}
+              </h3>
+              <p className="text-sm text-white/65 leading-relaxed mb-4">{P.acceleration.connect.d}</p>
+              <ul className="space-y-2 mb-5">
+                {P.acceleration.connect.uses.map((u) => (
+                  <li key={u} className="flex gap-2 text-sm text-white/80">
+                    <Check className="w-4 h-4 text-[#e0b000] shrink-0 mt-0.5" aria-hidden />
+                    <span>{u}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={P.acceleration.connect.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2 hover:text-[#e0b000]"
+              >
+                {P.acceleration.connect.urlLabel}
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </article>
+            <article className="rounded-2xl border border-white/15 bg-black/40 p-5 sm:p-6">
+              <div className="text-[10px] tracking-[2px] font-semibold text-[#e0b000] mb-1">
+                {P.acceleration.leadership.brand.toUpperCase()}
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                {P.acceleration.leadership.product}
+              </h3>
+              <p className="text-sm text-white/65 leading-relaxed mb-4">
+                {P.acceleration.leadership.d}
+              </p>
+              <ul className="space-y-2 mb-5">
+                {P.acceleration.leadership.uses.map((u) => (
+                  <li key={u} className="flex gap-2 text-sm text-white/80">
+                    <Check className="w-4 h-4 text-[#e0b000] shrink-0 mt-0.5" aria-hidden />
+                    <span>{u}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={P.acceleration.leadership.url}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2 hover:text-[#e0b000]"
+              >
+                {P.acceleration.leadership.urlLabel}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* Leadership */}
       <section
         id="leadership"
@@ -598,9 +684,9 @@ export default function ZuluKingdomBriefing() {
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-8">
-            Leadership is how a Nation multiplies dignity. Super-Cube® forms whole people — so those
-            who serve the House and community programmes can hold complexity with Ubuntu and
-            integrity.
+            Leadership is how a Nation multiplies dignity. Super-Cube® forms whole people across Agri,
+            Royal departmental channels and Direct operators — so delivery holds with Ubuntu and
+            integrity, accelerated alongside Connect on supplieradvisor.com.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-8">
             {P.leadership.points.map((p) => (
@@ -726,8 +812,8 @@ export default function ZuluKingdomBriefing() {
                 Let us feed, educate and empower His Majesty&apos;s people — together.
               </h3>
               <p className="text-sm text-white/65 leading-relaxed max-w-2xl mb-5">
-                50:50 · Agri → Foods → Big Five Royal (Sports/Arts &amp; Culture, Health, Agriculture,
-                COGTA) → Direct community containers · Super-Cube®
+                50:50 · Agri → Foods → Big Five Royal (departments) → Direct containers — accelerated
+                by Connect (supplieradvisor.com) and Leadership (Super-Cube®) on every channel
               </p>
               <a
                 href={`mailto:${P.contactEmail}?subject=${encodeURIComponent(

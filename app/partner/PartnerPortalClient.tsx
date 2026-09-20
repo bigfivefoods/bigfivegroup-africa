@@ -785,6 +785,7 @@ export default function PartnerPortalClient({
                     { href: "#foods-products", label: "Foods" },
                     { href: "#royal-departments", label: "Departments" },
                     { href: "#direct-containers", label: "Direct" },
+                    { href: "#acceleration", label: "Connect + Super-Cube" },
                     { href: "#leadership", label: "Leadership" },
                     { href: "#empower", label: "Empower" },
                     { href: "#pathways", label: "Pathways" },

@@ -516,17 +516,23 @@ function Slide({ index }: { index: number }) {
               {P.royalDepartments.departments.map((d) => (
                 <div
                   key={d.id}
-                  className="rounded-xl border border-[#e0b000]/25 bg-white px-3 py-2.5 sm:px-3.5 sm:py-3 shadow-sm"
+                  className="rounded-xl border border-[#e0b000]/25 bg-white px-3 py-2.5 sm:px-3.5 sm:py-3 shadow-sm flex flex-col"
                 >
                   <div className="text-[10px] tracking-[1.5px] font-semibold text-[#a67c00] mb-0.5">
                     {d.short.toUpperCase()}
                   </div>
                   <div className="text-sm font-semibold text-black mb-1 leading-snug">{d.name}</div>
-                  <p className="text-[11px] sm:text-xs text-[#525252] leading-relaxed">{d.d}</p>
+                  <p className="text-[11px] sm:text-xs text-[#525252] leading-relaxed mb-2 flex-1">{d.d}</p>
+                  <p className="text-[10px] text-[#a67c00] leading-snug border-t border-[#e0b000]/20 pt-1.5">
+                    {d.enable}
+                  </p>
                 </div>
               ))}
             </div>
-            <p className="mt-2 text-[10px] text-[#737373] leading-relaxed line-clamp-2">
+            <p className="mt-2 text-[10px] font-medium text-[#a67c00] leading-relaxed">
+              {P.royalDepartments.stackNote}
+            </p>
+            <p className="mt-1 text-[10px] text-[#737373] leading-relaxed line-clamp-2">
               {P.royalDepartments.note}
             </p>
           </div>
@@ -582,9 +588,9 @@ function Slide({ index }: { index: number }) {
               </h2>
             </div>
             <p className="text-sm text-[#525252] leading-relaxed max-w-3xl mb-4">
-              Leadership is how a Nation multiplies dignity. Super-Cube® forms whole people — so
-              those who serve the House and community programmes can hold complexity with Ubuntu and
-              integrity.
+              Leadership is how a Nation multiplies dignity. Super-Cube® forms stewards across Royal
+              departmental channels, Agri farmer leaders and Direct operators — alongside Connect
+              (supplieradvisor.com) so people and trade accelerate together.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 flex-1 min-h-0">
               {P.leadership.points.map((p) => (
@@ -810,13 +816,13 @@ function Slide({ index }: { index: number }) {
                     },
                     {
                       need: "Leadership depth",
-                      sol: "Super-Cube® whole-person formation",
-                      for: "Stewards of the House and programmes",
+                      sol: "Big Five Leadership · Super-Cube®",
+                      for: "Royal channels · Agri · Direct operators",
                     },
                     {
-                      need: "Trusted commerce",
-                      sol: "SupplierAdvisor® verification rails",
-                      for: "Ethical trade linked to economic dignity",
+                      need: "Verified trade",
+                      sol: "Big Five Connect · SupplierAdvisor®",
+                      for: "supplieradvisor.com across every channel",
                     },
                     {
                       need: "Shared governance",
@@ -923,8 +929,8 @@ function Slide({ index }: { index: number }) {
                   <span style={{ color: "#e0b000" }}>His Majesty&apos;s people — together.</span>
                 </h2>
                 <p className="text-white/75 max-w-xl mt-3 sm:mt-4 text-xs sm:text-sm leading-relaxed mb-4">
-                  50:50 · Agri → Foods → Big Five Royal (Sports/Arts &amp; Culture, Health, Agriculture, COGTA)
-                  → Direct community containers · Super-Cube® — in service of the Zulu Nation.
+                  50:50 · Agri → Foods → Royal (departments) → Direct — accelerated by Connect
+                  (supplieradvisor.com) and Leadership (Super-Cube®) on every channel.
                 </p>
               </div>
               <div className="space-y-3">

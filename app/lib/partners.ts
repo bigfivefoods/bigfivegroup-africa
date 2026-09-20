@@ -381,12 +381,22 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#royal-departments",
         label: "Departmental unlock",
-        desc: "Sports, Arts & Culture · Health · Agriculture · COGTA.",
+        desc: "Sports, Arts & Culture · Health · Agriculture · COGTA — with Super-Cube® + Connect.",
       },
       {
         href: "#direct-containers",
         label: "Direct community containers",
-        desc: "Local operators sell and distribute Big Five Foods.",
+        desc: "Local operators sell Foods — Super-Cube® leadership + SupplierAdvisor®.",
+      },
+      {
+        href: "#acceleration",
+        label: "Connect + Super-Cube®",
+        desc: "supplieradvisor.com and Leadership accelerate every Royal channel.",
+      },
+      {
+        href: "https://www.supplieradvisor.com/",
+        label: "SupplierAdvisor®",
+        desc: "Big Five Connect — verified trade OS (supplieradvisor.com).",
       },
       {
         href: "#royal-house",
