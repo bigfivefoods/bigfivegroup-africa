@@ -78,6 +78,10 @@ const ZuluKingdomPartnershipDeck = dynamic(
     loading: () => <DeckLoading label="Zulu Kingdom deck" />,
   }
 );
+const ZuluKingdomBriefing = dynamic(() => import("../components/ZuluKingdomBriefing"), {
+  ssr: true,
+  loading: () => <DeckLoading label="Zulu Kingdom briefing" />,
+});
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
   loading: () => <DeckLoading label="SWT-AG deck" />,
@@ -337,171 +341,6 @@ function BlessmanKingdomSection() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ZuluKingdomRoyalSection() {
-  const pillars = [
-    {
-      t: "Honour the Royal House",
-      d: "Service that respects His Majesty, the royal household and the dignity of the Zulu Nation — never spectacle for its own sake.",
-    },
-    {
-      t: "Feed with African food",
-      d: "Big Five Foods fortified staples for royal, ceremonial and community kitchens — nutrition that matches cultural pride.",
-    },
-    {
-      t: "Form people who serve",
-      d: "Super-Cube® whole-person leadership for those who steward programmes, households and community trust under the House.",
-    },
-    {
-      t: "Prove progress with honesty",
-      d: "Foundation and Impact rails — clear gates, KPIs and field assurance so community initiatives remain transparent and worthy of the Nation.",
-    },
-  ];
-
-  return (
-    <section
-      id="royal-house"
-      className="scroll-mt-28 border-b border-black/10 bg-[#0a0a0a] text-white py-12 sm:py-16"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-[10px] sm:text-xs tracking-[2px] text-[#e0b000] font-semibold mb-2">
-          ROYAL HOUSE · SHARED SERVICE
-        </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-balance mb-3 max-w-3xl">
-          Where the Zulu Kingdom and Big Five Group meet
-        </h2>
-        <p className="text-white/65 text-sm sm:text-base leading-relaxed max-w-3xl mb-8 sm:mb-10">
-          This partnership is framed first as{" "}
-          <strong className="text-white">service to the Royal House and the Zulu Nation</strong> —
-          heritage, unity and community progress — then as practical rails (Foods, Leadership,
-          Foundation, Impact) that help that calling scale with dignity and integrity.
-        </p>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 mb-8 sm:mb-10">
-          <article className="rounded-2xl border border-[#e0b000]/25 bg-white/[0.04] p-5 sm:p-6 min-w-0">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative h-14 w-14 sm:h-16 sm:w-16 shrink-0 rounded-xl overflow-hidden border border-[#e0b000]/30 bg-black/40 p-1.5">
-                <Image
-                  src="/partners/zulu-kingdom-shield.png"
-                  alt=""
-                  fill
-                  className="object-contain p-1"
-                  sizes="64px"
-                />
-              </div>
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 text-[10px] tracking-[2px] font-semibold text-[#e0b000] mb-1">
-                  <Crown className="w-3.5 h-3.5" aria-hidden />
-                  THE ZULU KINGDOM
-                </div>
-                <h3 className="text-lg sm:text-xl font-semibold tracking-tight">
-                  His Majesty King Misuzulu kaZwelithini
-                </h3>
-              </div>
-            </div>
-            <p className="text-sm text-white/70 leading-relaxed mb-4">
-              Misuzulu Sinqobile kaZwelithini is the reigning King of the Zulu Nation and Monarch of
-              KwaZulu-Natal — carrying forward the legacy of King Goodwill Zwelithini kaBhekuzulu and
-              Queen Mantfombi Dlamini Zulu. The Private Office advances the King&apos;s vision for the
-              royal family, cultural heritage, community unity and progress.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://www.zulukingdom.co.za/about-his-majesty/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2 hover:text-[#e0b000]"
-              >
-                About His Majesty
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://www.zulukingdom.co.za/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2 hover:text-[#e0b000]"
-              >
-                zulukingdom.co.za
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </article>
-
-          <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 min-w-0">
-            <div className="text-[10px] tracking-[2px] font-semibold text-[#e0b000] mb-3">
-              BIG FIVE GROUP · FOUNDER
-            </div>
-            <div className="flex gap-4 mb-4">
-              <div className="relative h-16 w-12 sm:h-20 sm:w-14 shrink-0 rounded-xl overflow-hidden border border-white/15 bg-white/5">
-                <Image
-                  src="/craig-muller.png"
-                  alt="Dr. Craig R. Muller, Founder & CEO of Big Five Group"
-                  fill
-                  className="object-cover object-top"
-                  sizes="56px"
-                />
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-1">
-                  Dr. Craig R. Muller
-                </h3>
-                <p className="text-xs sm:text-sm text-white/55 leading-snug">
-                  Founder &amp; CEO · Feed · Educate · Empower — Ubuntu in practice
-                </p>
-              </div>
-            </div>
-            <p className="text-sm text-white/70 leading-relaxed mb-4">
-              Big Five Group exists so people can{" "}
-              <strong className="text-white">eat with dignity</strong> (Big Five Foods™),{" "}
-              <strong className="text-white">lead with integrity</strong> (Super-Cube®) and{" "}
-              <strong className="text-white">build economies they own</strong> (SupplierAdvisor®) —
-              commercial excellence joined to ethical impact. In partnership with the Royal House,
-              those rails can strengthen household, ceremonial and community tables across KZN.
-            </p>
-            <Link
-              href="/about#founder"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-white underline underline-offset-2 hover:text-[#e0b000]"
-            >
-              Read the founder story on About
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </article>
-        </div>
-
-        <div className="rounded-2xl border border-[#e0b000]/30 bg-gradient-to-br from-[#e0b000]/10 via-transparent to-white/[0.03] p-5 sm:p-6 md:p-7">
-          <div className="text-[10px] sm:text-xs tracking-[2px] font-semibold text-[#e0b000] mb-2">
-            ALIGNED GOALS · ROYAL STEWARDSHIP
-          </div>
-          <h3 className="text-xl sm:text-2xl font-semibold tracking-tight mb-2 text-balance">
-            One table of honour
-          </h3>
-          <p className="text-sm text-white/65 leading-relaxed max-w-3xl mb-6">
-            The Kingdom carries heritage, identity and national cohesion. Big Five brings systems —
-            fortified food, leadership formation and transparent delivery — so service to the Royal
-            House and the Nation can scale without losing dignity or honesty.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {pillars.map((item) => (
-              <div
-                key={item.t}
-                className="rounded-xl border border-white/10 bg-black/20 px-4 py-3.5 min-w-0"
-              >
-                <div className="text-sm font-semibold text-white mb-1">{item.t}</div>
-                <p className="text-xs text-white/60 leading-relaxed">{item.d}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-5 text-[11px] text-white/45 leading-relaxed max-w-3xl">
-            This portal is a Big Five Group briefing workspace for authorised partners — not an
-            official Palace publication and not a claim to speak for His Majesty beyond the
-            partnership relationship described here. Heritage language is drawn from the public
-            Private Office site at zulukingdom.co.za.
-          </p>
         </div>
       </div>
     </section>
@@ -937,11 +776,21 @@ export default function PartnerPortalClient({
                 : []),
               ...(partner.slug === "zulu-kingdom"
                 ? [
+                    { href: "#briefing-map", label: "Briefing map" },
                     { href: "#royal-house", label: "Royal house" },
-                    { href: "#zulu-partnership-deck", label: "Partnership deck" },
+                    { href: "#partnership-50-50", label: "50:50" },
+                    { href: "#pillars", label: "Pillars" },
+                    { href: "#value-chain", label: "Value chain" },
+                    { href: "#agri", label: "Agri" },
+                    { href: "#foods-products", label: "Foods" },
+                    { href: "#leadership", label: "Leadership" },
+                    { href: "#empower", label: "Empower" },
+                    { href: "#pathways", label: "Pathways" },
+                    { href: "#honesty", label: "Honesty" },
+                    { href: "#zulu-partnership-deck", label: "Slide deck" },
                   ]
                 : []),
-              ...((partner.programmes?.length ?? 0) > 0
+              ...((partner.programmes?.length ?? 0) > 0 && partner.slug !== "zulu-kingdom"
                 ? [{ href: "#programmes", label: "Programmes" }]
                 : []),
               ...(partner.slug === "spar"
@@ -993,18 +842,29 @@ export default function PartnerPortalClient({
                 : []),
               { href: "#contact", label: "Contact" },
             ];
+            const wrapNav = partner.slug === "zulu-kingdom";
             return (
               <div
-                className="grid w-full items-center gap-1 text-[10px] sm:text-xs md:text-sm font-medium"
-                style={{
-                  gridTemplateColumns: `repeat(${navLinks.length}, minmax(0, 1fr))`,
-                }}
+                className={
+                  wrapNav
+                    ? "flex flex-wrap justify-start gap-1 sm:gap-1.5 text-[10px] sm:text-xs md:text-sm font-medium"
+                    : "grid w-full items-center gap-1 text-[10px] sm:text-xs md:text-sm font-medium"
+                }
+                style={
+                  wrapNav
+                    ? undefined
+                    : { gridTemplateColumns: `repeat(${navLinks.length}, minmax(0, 1fr))` }
+                }
               >
                 {navLinks.map((l) => (
                   <a
                     key={l.href}
                     href={l.href}
-                    className="min-w-0 w-full text-center rounded-full px-0.5 sm:px-2 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black truncate"
+                    className={
+                      wrapNav
+                        ? "shrink-0 rounded-full px-2 sm:px-2.5 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black border border-transparent hover:border-black/10 transition-colors"
+                        : "min-w-0 w-full text-center rounded-full px-0.5 sm:px-2 py-1.5 text-[#404040] hover:bg-black/5 hover:text-black truncate"
+                    }
                     title={l.label}
                   >
                     {l.label}
@@ -1111,9 +971,9 @@ export default function PartnerPortalClient({
       </section>
 
       {partner.slug === "blessman-international" && <BlessmanKingdomSection />}
-      {partner.slug === "zulu-kingdom" && <ZuluKingdomRoyalSection />}
+      {partner.slug === "zulu-kingdom" && <ZuluKingdomBriefing />}
 
-      {(partner.programmes?.length ?? 0) > 0 && (
+      {(partner.programmes?.length ?? 0) > 0 && partner.slug !== "zulu-kingdom" && (
         <section
           id="programmes"
           className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"

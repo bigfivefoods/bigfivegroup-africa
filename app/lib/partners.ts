@@ -364,9 +364,19 @@ export const PARTNERS: PartnerProfile[] = [
     ],
     resources: [
       {
+        href: "#briefing-map",
+        label: "Full partnership briefing",
+        desc: "Readable long-form portal — every presentation point with jump navigation.",
+      },
+      {
         href: "#zulu-partnership-deck",
         label: "Strategic partnership deck",
         desc: "18-slide briefing — 50:50 Feed · Educate · Empower, Agri→Foods→Royal value chain, leopard-print branding.",
+      },
+      {
+        href: "#value-chain",
+        label: "Agri → Foods → Big Five Royal",
+        desc: "Value chain from Nation farmers to departmental meals.",
       },
       {
         href: "#royal-house",
