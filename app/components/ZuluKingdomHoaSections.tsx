@@ -535,8 +535,9 @@ export default function ZuluKingdomHoaSections() {
             <GoldOrnament className="my-0" />
           </div>
           <p className="text-sm sm:text-base text-[#525252] leading-relaxed max-w-3xl mb-8">
-            Operating roles as tabled. Dr. Joy&apos;s designation remains TBC; the Queens hold a
-            joint mandate on meal standards and women-centric programmes.
+            Operating roles as tabled. Dr. Joy leads Royal Household wellness, strategy and
+            stakeholder relations; the Queens hold a joint mandate on meal standards and
+            women-centric programmes.
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 mb-6">
             {hoa.roles.map((r) => {

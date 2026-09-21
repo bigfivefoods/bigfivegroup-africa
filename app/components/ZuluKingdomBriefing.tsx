@@ -56,7 +56,7 @@ const BRIEFING_CHAPTERS = [
         n: "04",
         href: "#roles",
         label: "Roles & mandate",
-        why: "Dr Muller, Dr Joy TBC, Queens joint mandate",
+        why: "Dr Muller, Dr Joy, Queens joint mandate",
       },
       {
         n: "05",

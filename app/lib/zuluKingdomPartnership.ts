@@ -453,8 +453,8 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
       },
       {
         person: "Dr. Joy (Natalie)",
-        seat: "Strategic Advisor — role TBC; invitee to Board pending final designation",
-        tbc: true,
+        seat: "Business Development Executive — Royal Household Wellness, Strategy & Stakeholder Relations",
+        tbc: false,
       },
       {
         person: "Independent Chair",
@@ -489,11 +489,14 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
       },
       {
         person: "Dr. Joy (Natalie)",
-        title: "Strategic Advisor — Wellness, Product Integrity & Community Health (role TBC)",
+        title: "Business Development Executive — Royal Household Wellness, Strategy & Stakeholder Relations",
         bullets: [
-          "Expertise in nutrition, wellness, and fortified formulation",
-          "Oversees product quality and health standards",
-          "Final title after consultation with the Royal Household",
+          "Develop and oversee the Royal Household wellness strategy",
+          "Serve as strategic liaison between the Big Five CEO, the Royal Household and key stakeholders",
+          "Build and maintain high-level relationships with government, corporate partners and community structures",
+          "Provide strategic advice to the CEO on stakeholder dynamics, opportunities, risks and relationship management",
+          "Represent Big Five at selected high-level engagements, forums and stakeholder meetings",
+          "Ensure initiatives are culturally respectful, professionally governed and aligned with agreed strategic objectives",
         ],
       },
       {
