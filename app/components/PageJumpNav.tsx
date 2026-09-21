@@ -133,7 +133,6 @@ export default function PageJumpNav({
 
     const hrefs = items.map((item) => item.href);
     const hrefSet = new Set<string>(hrefs);
-    const visible = new Map<string, number>();
     let lockedUntil = 0;
     let observer: IntersectionObserver | null = null;
     let retryTimer: number | null = null;
@@ -153,25 +152,23 @@ export default function PageJumpNav({
     const pickActive = () => {
       if (Date.now() < lockedUntil) return;
 
-      // Prefer the section with the strongest intersection in the upper viewport band
+      // Document-order spy: highlight the last chapter whose top has crossed
+      // the sticky nav. Avoids bouncing when a tall later section (a deck)
+      // intersects the viewport while an earlier chapter is still the read.
+      const navEl = document.getElementById(navDomId);
+      const marker = (navEl?.getBoundingClientRect().bottom ?? 120) + 24;
       let bestHref: string = hrefs[0] ?? "";
-      let bestScore = -1;
-      for (const [href, ratio] of visible) {
-        if (ratio >= bestScore) {
-          bestScore = ratio;
-          bestHref = href;
+      for (const item of items) {
+        const el = document.getElementById(sectionId(item.href));
+        if (el && el.getBoundingClientRect().top <= marker) {
+          bestHref = item.href;
         }
       }
-      if (bestScore < 0) {
-        // Fallback: last section whose top has crossed the sticky offset
-        const navEl = document.getElementById(navDomId);
-        const marker = (navEl?.getBoundingClientRect().bottom ?? 120) + 8;
-        for (const item of items) {
-          const el = document.getElementById(sectionId(item.href));
-          if (el && el.getBoundingClientRect().top <= marker) {
-            bestHref = item.href;
-          }
-        }
+      const last = items[items.length - 1];
+      if (last) {
+        const scrolled = window.scrollY + window.innerHeight;
+        const max = document.documentElement.scrollHeight;
+        if (scrolled >= max - 8) bestHref = last.href;
       }
       setActiveHref((prev) => (prev === bestHref ? prev : bestHref));
     };
@@ -182,19 +179,9 @@ export default function PageJumpNav({
       if (nextIds === observedIds) return;
       observedIds = nextIds;
       observer?.disconnect();
-      visible.clear();
       if (elements.length === 0) return;
       observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            const href = `#${entry.target.id}`;
-            if (!hrefSet.has(href)) continue;
-            if (entry.isIntersecting && entry.intersectionRatio > 0) {
-              visible.set(href, entry.intersectionRatio);
-            } else {
-              visible.delete(href);
-            }
-          }
+        () => {
           pickActive();
         },
         {

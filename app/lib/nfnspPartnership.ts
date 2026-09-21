@@ -908,6 +908,7 @@ export const NFNSP_PROPOSAL_NAV = [
   { href: "#demonstration", n: "13", label: "Demonstration design" },
   { href: "#commercial", n: "14", label: "Commercial model" },
   { href: "#governance", n: "15", label: "Governance and risk" },
-  { href: "#ask", n: "16", label: "90-day ask" },
-  { href: "#conclusion", n: "17", label: "Conclusion" },
+  { href: "#nfnsp-partnership-deck", n: "16", label: "Proposal deck" },
+  { href: "#ask", n: "17", label: "90-day ask" },
+  { href: "#conclusion", n: "18", label: "Conclusion" },
 ] as const;

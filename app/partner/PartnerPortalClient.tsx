@@ -87,10 +87,6 @@ const NfnspBriefing = dynamic(() => import("../components/NfnspBriefing"), {
   ssr: true,
   loading: () => <DeckLoading label="NFNSP-2 briefing" />,
 });
-const NfnspPartnershipDeck = dynamic(() => import("../components/NfnspPartnershipDeck"), {
-  ssr: true,
-  loading: () => <DeckLoading label="NFNSP-2 proposal deck" />,
-});
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
   loading: () => <DeckLoading label="SWT-AG deck" />,
@@ -255,16 +251,16 @@ function partnerJumpNavItems({
         icon: "target",
       },
       {
-        href: "#nfnsp-partnership-deck",
-        label: "Slide deck",
-        desc: "Downloadable proposal presentation",
-        icon: "book",
-      },
-      {
         href: "#os",
         label: "OS",
         desc: "SupplierAdvisor® farm-to-fork",
         icon: "compass",
+      },
+      {
+        href: "#nfnsp-partnership-deck",
+        label: "Slide deck",
+        desc: "Downloadable proposal presentation",
+        icon: "book",
       },
       {
         href: "#ask",
@@ -1145,12 +1141,12 @@ export default function PartnerPortalClient({
                     },
                     {
                       n: "03",
-                      t: "See nine pillars as one circuit",
-                      d: "Agri → Connect → Foods → Direct. SupplierAdvisor® does not replace BAS or LOGIS.",
+                      t: "See the circuit, then the deck",
+                      d: "Nine pillars as one farm-to-fork OS — then the downloadable proposal presentation.",
                     },
                     {
                       n: "04",
-                      t: "Use the 90-day ask",
+                      t: "Close on the 90-day ask",
                       d: "Five asks, what we return, and a briefing form to craig@bigfivegroup.africa.",
                     },
                   ]
@@ -1332,12 +1328,6 @@ export default function PartnerPortalClient({
       {partner.slug === "zulu-kingdom" && (
         <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
           <ZuluKingdomPartnershipDeck />
-        </section>
-      )}
-
-      {partner.slug === "department-of-agriculture" && (
-        <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
-          <NfnspPartnershipDeck />
         </section>
       )}
 

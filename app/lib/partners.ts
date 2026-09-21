@@ -377,14 +377,14 @@ export const PARTNERS: PartnerProfile[] = [
         desc: "SupplierAdvisor® as trade and quality layer — not BAS/LOGIS.",
       },
       {
-        href: "#ask",
-        label: "90-day ask",
-        desc: "Five asks and briefing request.",
-      },
-      {
         href: "#nfnsp-partnership-deck",
         label: "Proposal deck",
         desc: "18-slide downloadable presentation — Landscape or Portrait, then Save as PDF.",
+      },
+      {
+        href: "#ask",
+        label: "90-day ask",
+        desc: "Five asks and briefing request.",
       },
       {
         href: "/api/partner/nfnsp-proposal",

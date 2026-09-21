@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -21,6 +22,15 @@ import {
 } from "lucide-react";
 import { NFNSP, NFNSP_PROPOSAL_NAV } from "../lib/nfnspPartnership";
 import NfnspAskForm from "./NfnspAskForm";
+
+const NfnspPartnershipDeck = dynamic(() => import("./NfnspPartnershipDeck"), {
+  ssr: true,
+  loading: () => (
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-[#737373]">
+      Loading proposal deck…
+    </div>
+  ),
+});
 
 const GOLD = "#C4923A";
 const FOREST = "#0F3D38";
@@ -166,8 +176,8 @@ export default function NfnspBriefing() {
           </h2>
           <p className="text-sm text-[#525252] max-w-3xl mb-8 leading-relaxed">
             Confidential partner briefing. Official statistics carry a source. Group figures carry a
-            plan / programme-reported / product specification / internal comparison label. Fifteen
-            sections — executive summary through conclusion.
+            plan / programme-reported / product specification / internal comparison label. Eighteen
+            sections — executive summary through the proposal deck, 90-day ask and conclusion.
           </p>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-10">
             {NFNSP_PROPOSAL_NAV.map((item) => (
@@ -915,9 +925,13 @@ export default function NfnspBriefing() {
         </div>
       </section>
 
+      <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+        <NfnspPartnershipDeck />
+      </section>
+
       <section id="ask" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>16 · 90-DAY ASK</Eyebrow>
+          <Eyebrow>17 · 90-DAY ASK</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">
             Five asks — and what we return
@@ -959,7 +973,7 @@ export default function NfnspBriefing() {
 
       <section id="conclusion" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: FOREST }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>17 · CONCLUSION</Eyebrow>
+          <Eyebrow>18 · CONCLUSION</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-white mb-6">
             Targets, plates, a closed circuit
