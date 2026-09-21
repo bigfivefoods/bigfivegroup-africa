@@ -17,6 +17,12 @@ export type HomePartner = {
  */
 export const HOME_PARTNERS: HomePartner[] = [
   {
+    name: "Department of Agriculture",
+    logo: "/partners/department-of-agriculture-logo.png",
+    href: "https://www.nda.gov.za/",
+    wide: true,
+  },
+  {
     name: "Department of Basic Education",
     logo: "/partners/department-of-basic-education-logo.webp",
     href: "https://www.education.gov.za/",

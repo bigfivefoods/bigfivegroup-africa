@@ -83,6 +83,10 @@ const ZuluKingdomBriefing = dynamic(() => import("../components/ZuluKingdomBrief
   ssr: true,
   loading: () => <DeckLoading label="Zulu Kingdom briefing" />,
 });
+const NfnspBriefing = dynamic(() => import("../components/NfnspBriefing"), {
+  ssr: true,
+  loading: () => <DeckLoading label="NFNSP-2 briefing" />,
+});
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
   loading: () => <DeckLoading label="SWT-AG deck" />,
@@ -124,6 +128,25 @@ function heroTilesForPartner(partner: ClientPartnerProfile): HeroTile[] {
         icon: Users,
         t: "Form people who serve",
         d: "Super-Cube® whole-person leadership, including Spiritual intelligence",
+      },
+    ];
+  }
+  if (partner.slug === "department-of-agriculture") {
+    return [
+      {
+        icon: Package,
+        t: "Plate · Foods",
+        d: "Fortified ambient meals for NSNP, ECD, CNDC — 5 kg institutional packs",
+      },
+      {
+        icon: Users,
+        t: "Chain · SupplierAdvisor®",
+        d: "Farm-to-fork OS — lots, invoices, HACCP. Does not replace BAS or LOGIS",
+      },
+      {
+        icon: Building2,
+        t: "Mandate · KZN demo",
+        d: "24-month closed circuit before any national scale claim",
       },
     ];
   }
@@ -201,6 +224,52 @@ function partnerJumpNavItems({
   canInvite?: boolean;
   isAdmin?: boolean;
 }): PageJumpNavItem[] {
+  if (partner.slug === "department-of-agriculture") {
+    return [
+      {
+        href: "#for-you",
+        label: "Workspace",
+        desc: "Your partnership workspace",
+        icon: "handshake",
+      },
+      {
+        href: "#nfnsp-hub",
+        label: "NFNSP-2",
+        desc: "Implementation partnership hub",
+        icon: "landmark",
+      },
+      {
+        href: "#proposal",
+        label: "Proposal",
+        desc: "Sectioned long-read",
+        icon: "book",
+      },
+      {
+        href: "#os",
+        label: "OS",
+        desc: "SupplierAdvisor® farm-to-fork",
+        icon: "network",
+      },
+      {
+        href: "#ask",
+        label: "90-day ask",
+        desc: "Five asks and briefing form",
+        icon: "target",
+      },
+      {
+        href: "#resources",
+        label: "Resources",
+        desc: "PDF and workspace materials",
+        icon: "file",
+      },
+      {
+        href: "#contact",
+        label: "Contact",
+        desc: "Follow up with Big Five",
+        icon: "users",
+      },
+    ];
+  }
   if (partner.slug === "zulu-kingdom") {
     return [
       {
@@ -641,6 +710,7 @@ function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
     partner.slug === "restore-africa-foundation" ||
     partner.slug === "department-of-basic-education" ||
     partner.slug === "department-of-health";
+  const wideLockup = partner.slug === "department-of-agriculture";
 
   return (
     <div className="mb-6 sm:mb-8">
@@ -651,7 +721,9 @@ function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
               className={`relative bg-white rounded-xl border border-white/25 shadow-sm ${
                 tallCrest
                   ? "h-20 sm:h-24 w-20 sm:w-24 p-2"
-                  : "h-14 sm:h-16 w-[min(100%,12rem)] sm:w-56 px-3 py-2"
+                  : wideLockup
+                    ? "h-16 sm:h-[4.5rem] w-[min(100%,18rem)] sm:w-72 px-3 py-2"
+                    : "h-14 sm:h-16 w-[min(100%,12rem)] sm:w-56 px-3 py-2"
               }`}
             >
               <Image
@@ -659,7 +731,7 @@ function CoBrandHeader({ partner }: { partner: ClientPartnerProfile }) {
                 alt={partner.organisation}
                 fill
                 className="object-contain p-1.5"
-                sizes={tallCrest ? "96px" : "224px"}
+                sizes={tallCrest ? "96px" : wideLockup ? "288px" : "224px"}
                 priority
               />
             </div>
@@ -873,6 +945,8 @@ export default function PartnerPortalClient({
 
   const heroBg = partner.brandColor ?? "#052e1c";
   const zuluHero = partner.slug === "zulu-kingdom";
+  const nfnspHero = partner.slug === "department-of-agriculture";
+  const photoHero = zuluHero || nfnspHero;
   const jumpItems = useMemo(
     () => partnerJumpNavItems({ partner, canInvite, isAdmin }),
     [partner, canInvite, isAdmin]
@@ -882,12 +956,14 @@ export default function PartnerPortalClient({
     <div className="page-shell overflow-x-clip bg-[#fafafa]">
       <section
         className="text-white relative overflow-hidden"
-        style={zuluHero ? undefined : { backgroundColor: heroBg }}
+        style={photoHero ? undefined : { backgroundColor: heroBg }}
       >
-        {zuluHero && (
+        {photoHero && (
           <>
             <Image
-              src="/partners/zulu-kingdom-leopard-hero.jpg"
+              src={
+                zuluHero ? "/partners/zulu-kingdom-leopard-hero.jpg" : "/og/home.jpg"
+              }
               alt=""
               fill
               priority
@@ -960,11 +1036,13 @@ export default function PartnerPortalClient({
               <div
                 key={c.t}
                 className={`rounded-2xl border border-white/10 p-5 min-w-0 ${
-                  zuluHero ? "bg-black/35 backdrop-blur-[2px]" : "bg-white/[0.06]"
+                  photoHero ? "bg-black/35 backdrop-blur-[2px]" : "bg-white/[0.06]"
                 }`}
               >
                 <c.icon
-                  className={`w-5 h-5 mb-3 ${zuluHero ? "text-[#e0b000]" : "text-emerald-300"}`}
+                  className={`w-5 h-5 mb-3 ${
+                    zuluHero ? "text-[#e0b000]" : nfnspHero ? "text-[#E8C07A]" : "text-emerald-300"
+                  }`}
                 />
                 <div className="text-sm font-semibold text-white mb-1">{c.t}</div>
                 <p className="text-xs text-white/55 leading-relaxed">{c.d}</p>
@@ -977,8 +1055,8 @@ export default function PartnerPortalClient({
       <PageJumpNav
         ariaLabel={`${partner.name} page sections`}
         items={jumpItems}
-        accentDark={zuluHero ? "#a67c00" : "#171717"}
-        accentSoft={zuluHero ? "#faf6eb" : "#f5f5f5"}
+        accentDark={zuluHero ? "#a67c00" : nfnspHero ? "#0F3D38" : "#171717"}
+        accentSoft={zuluHero ? "#faf6eb" : nfnspHero ? "#F7F1E6" : "#f5f5f5"}
       />
 
       {/* Partner-specific notes */}
@@ -1008,10 +1086,16 @@ export default function PartnerPortalClient({
                   className={`flex gap-2 text-sm text-[#404040] leading-relaxed rounded-xl px-4 py-3 ${
                     zuluHero
                       ? "border border-[#e0b000]/25 bg-[#faf6eb]"
-                      : "border border-emerald-100 bg-emerald-50/40"
+                      : nfnspHero
+                        ? "border border-[#C4923A]/30 bg-[#F7F1E6]"
+                        : "border border-emerald-100 bg-emerald-50/40"
                   }`}
                 >
-                  <span className={`shrink-0 ${zuluHero ? "text-[#a67c00]" : "text-emerald-700"}`}>
+                  <span
+                    className={`shrink-0 ${
+                      zuluHero ? "text-[#a67c00]" : nfnspHero ? "text-[#C4923A]" : "text-emerald-700"
+                    }`}
+                  >
                     •
                   </span>
                   <span>{n}</span>
@@ -1043,7 +1127,30 @@ export default function PartnerPortalClient({
                     d: "Foundation and Impact rails so generosity and delivery stay transparent and honest.",
                   },
                 ]
-              : partner.slug === "zulu-kingdom"
+              : partner.slug === "department-of-agriculture"
+                ? [
+                    {
+                      n: "01",
+                      t: "Read the hub figures first",
+                      d: "GHS, NFNSS and Poverty Trends — sourced. Then the four offers: Plate, Chain, Node, Mandate.",
+                    },
+                    {
+                      n: "02",
+                      t: "Walk the proposal",
+                      d: "Thirteen sections from executive summary to conclusion. Every Group figure is labelled.",
+                    },
+                    {
+                      n: "03",
+                      t: "See the farm-to-fork OS",
+                      d: "SupplierAdvisor® is the trade and quality layer. It does not replace BAS or LOGIS.",
+                    },
+                    {
+                      n: "04",
+                      t: "Use the 90-day ask",
+                      d: "Five asks, what we return, and a briefing form to craig@bigfivegroup.africa.",
+                    },
+                  ]
+                : partner.slug === "zulu-kingdom"
                 ? [
                     {
                       n: "01",
@@ -1095,7 +1202,11 @@ export default function PartnerPortalClient({
               >
                 <div
                   className={`text-[10px] tracking-[2px] font-semibold mb-2 ${
-                    zuluHero ? "text-[#a67c00]" : "text-emerald-800"
+                    zuluHero
+                      ? "text-[#a67c00]"
+                      : nfnspHero
+                        ? "text-[#0F3D38]"
+                        : "text-emerald-800"
                   }`}
                 >
                   {s.n}
@@ -1110,8 +1221,11 @@ export default function PartnerPortalClient({
 
       {partner.slug === "blessman-international" && <BlessmanKingdomSection />}
       {partner.slug === "zulu-kingdom" && <ZuluKingdomBriefing />}
+      {partner.slug === "department-of-agriculture" && <NfnspBriefing />}
 
-      {(partner.programmes?.length ?? 0) > 0 && partner.slug !== "zulu-kingdom" && (
+      {(partner.programmes?.length ?? 0) > 0 &&
+        partner.slug !== "zulu-kingdom" &&
+        partner.slug !== "department-of-agriculture" && (
         <section
           id="programmes"
           className="scroll-mt-28 border-b border-black/10 bg-[#fafafa] py-12 sm:py-16"

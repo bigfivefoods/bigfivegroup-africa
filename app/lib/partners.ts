@@ -330,6 +330,72 @@ export const PARTNERS: PartnerProfile[] = [
       "Primary Group contact: craig@bigfivegroup.africa (Dr. Craig R. Muller) · Blessman International: blessmaninternational.org/contact",
   },
   {
+    slug: "department-of-agriculture",
+    name: "Department of Agriculture",
+    organisation: "NFNSP Technical Working Group / Department of Agriculture",
+    emails: [],
+    role: "National department · NFNSP-2 implementation partnership",
+    headline: "Implementation partnership · NFNSP-2",
+    summary:
+      "Private workspace for the NFNSP Technical Working Group / Department of Agriculture (nda.gov.za) — operationalising the National Food and Nutrition Security Plan 2027–2037 with Big Five Foods plates, SupplierAdvisor® as farm-to-fork OS, and a 24-month KwaZulu-Natal demonstration. Confidential partner briefing. Not a government publication and not an awarded tender.",
+    focus: [
+      "NFNSP-2",
+      "Foods",
+      "SupplierAdvisor®",
+      "NSNP",
+      "Smallholders",
+      "KZN",
+      "PFMA",
+    ],
+    programmes: ["nsnp", "connect", "impact"],
+    logoSrc: "/partners/department-of-agriculture-logo.png",
+    brandColor: "#0F3D38",
+    website: "https://www.nda.gov.za/",
+    websiteLabel: "nda.gov.za",
+    notes: [
+      "Official Department of Agriculture website: https://www.nda.gov.za/",
+      "This workspace is the NFNSP-2 implementation partnership briefing — not a government site and not an awarded tender.",
+      "Official figures are sourced to GHS 2024, NFNSS 2023, Poverty Trends 2025 and NFNSP-2 Draft 2.2 / Results Framework 27 August 2026.",
+      "Group figures are labelled plan, programme-reported, product specification, or internal comparison. 2.5 million children per day is a DBE-pathway plan, not current headcount.",
+      "SupplierAdvisor® does not replace BAS or LOGIS.",
+      "PDF download is session-gated. Add authorised DoA / TWG / provincial emails when portal logins are ready.",
+    ],
+    resources: [
+      {
+        href: "#nfnsp-hub",
+        label: "NFNSP-2 hub",
+        desc: "Sourced national figures, four offers, honesty line.",
+      },
+      {
+        href: "#proposal",
+        label: "Full proposal",
+        desc: "Sectioned long-read — summary through 90-day ask.",
+      },
+      {
+        href: "#os",
+        label: "Farm-to-fork OS",
+        desc: "SupplierAdvisor® as trade and quality layer — not BAS/LOGIS.",
+      },
+      {
+        href: "#ask",
+        label: "90-day ask",
+        desc: "Five asks and briefing request.",
+      },
+      {
+        href: "/api/partner/nfnsp-proposal",
+        label: "Download proposal (PDF) · September 2026 · v1.0",
+        desc: "Session-gated A4 briefing.",
+      },
+      {
+        href: "https://www.nda.gov.za/",
+        label: "Department of Agriculture",
+        desc: "Official NDA website — nda.gov.za",
+      },
+    ],
+    contactNote:
+      "Primary Group contact: craig@bigfivegroup.africa (Dr. Craig R. Muller) · +27 (0) 82 581 4215. This portal does not speak for the Department.",
+  },
+  {
     slug: "zulu-kingdom",
     name: "The Zulu Kingdom",
     organisation: "Private Office of His Majesty King Misuzulu kaZwelithini",
