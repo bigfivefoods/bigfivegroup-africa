@@ -382,6 +382,11 @@ export const PARTNERS: PartnerProfile[] = [
         desc: "Five asks and briefing request.",
       },
       {
+        href: "#nfnsp-partnership-deck",
+        label: "Proposal deck",
+        desc: "18-slide downloadable presentation — Landscape or Portrait, then Save as PDF.",
+      },
+      {
         href: "/api/partner/nfnsp-proposal",
         label: "Download proposal (PDF) · September 2026 · v3.1",
         desc: "Session-gated A4 briefing — official Goals, Game Changers and Enablers.",

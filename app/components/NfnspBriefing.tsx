@@ -137,6 +137,13 @@ export default function NfnspBriefing() {
               Read the proposal
               <ArrowRight className="w-4 h-4" />
             </a>
+            <a
+              href="#nfnsp-partnership-deck"
+              className="inline-flex items-center gap-2 rounded-full border border-white/30 text-white font-semibold px-5 py-3 text-sm hover:bg-white/10"
+            >
+              Open the proposal deck
+              <ArrowRight className="w-4 h-4" />
+            </a>
             <DownloadBtn light />
             <a
               href="#ask"
@@ -178,7 +185,17 @@ export default function NfnspBriefing() {
               </li>
             ))}
           </ol>
-          <DownloadBtn />
+          <div className="flex flex-wrap gap-3">
+            <DownloadBtn />
+            <a
+              href="#nfnsp-partnership-deck"
+              className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold"
+              style={{ border: "1px solid rgba(196,146,58,0.45)", color: FOREST }}
+            >
+              Open the proposal deck
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 

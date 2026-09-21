@@ -195,6 +195,22 @@ export const DECK_THEMES = {
     softBg: "bg-amber-50",
     softText: "text-amber-950",
   },
+  /** NFNSP-2 / Department of Agriculture — forest and gold */
+  nfnsp: {
+    name: "nfnsp",
+    accent: "#C4923A",
+    accentDark: "#0F3D38",
+    gradientFrom: "#E8C07A",
+    gradientTo: "#C4923A",
+    frameFrom: "#F7F1E6",
+    frameTo: "#f3f4f6",
+    darkBg: "#0B1C22",
+    eyebrowLight: "text-amber-200",
+    eyebrow: "text-amber-800",
+    softBorder: "border-amber-200",
+    softBg: "bg-amber-50",
+    softText: "text-emerald-950",
+  },
   /** Ford / CMH Ford — Ford blue (#003478 family) */
   ford: {
     name: "ford",

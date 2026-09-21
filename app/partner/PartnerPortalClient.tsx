@@ -87,6 +87,10 @@ const NfnspBriefing = dynamic(() => import("../components/NfnspBriefing"), {
   ssr: true,
   loading: () => <DeckLoading label="NFNSP-2 briefing" />,
 });
+const NfnspPartnershipDeck = dynamic(() => import("../components/NfnspPartnershipDeck"), {
+  ssr: true,
+  loading: () => <DeckLoading label="NFNSP-2 proposal deck" />,
+});
 const BffSwtAgPartnershipDeck = dynamic(() => import("../components/BffSwtAgPartnershipDeck"), {
   ssr: false,
   loading: () => <DeckLoading label="SWT-AG deck" />,
@@ -251,10 +255,10 @@ function partnerJumpNavItems({
         icon: "target",
       },
       {
-        href: "#pillars",
-        label: "Pillars",
-        desc: "Nine pillars as one circuit",
-        icon: "network",
+        href: "#nfnsp-partnership-deck",
+        label: "Slide deck",
+        desc: "Downloadable proposal presentation",
+        icon: "book",
       },
       {
         href: "#os",
@@ -1328,6 +1332,12 @@ export default function PartnerPortalClient({
       {partner.slug === "zulu-kingdom" && (
         <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
           <ZuluKingdomPartnershipDeck />
+        </section>
+      )}
+
+      {partner.slug === "department-of-agriculture" && (
+        <section className="scroll-mt-28 border-b border-black/10 bg-white py-12 sm:py-16">
+          <NfnspPartnershipDeck />
         </section>
       )}
 
