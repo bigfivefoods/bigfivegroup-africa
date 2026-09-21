@@ -50,7 +50,7 @@ export const NFNSP = {
       id: "plate",
       kicker: "01 · PLATE",
       title: "Big Five Foods™",
-      desc: "Fortified ambient meals — porridge, soya, OnePot, soups — one SKU family for NSNP, ECD, CNDC and holiday packs. 5 kg institutional formats.",
+      desc: "Instant fortified porridge (water or milk, ready in under a minute), soya, OnePot and soups — one SKU family for NSNP, ECD, CNDC and holiday packs. 5 kg institutional formats.",
     },
     {
       id: "chain",
@@ -76,7 +76,7 @@ export const NFNSP = {
   execSummary: [
     "The National Food and Nutrition Security Plan (NFNSP-2 Draft 2, July 2026, for internal discussion) and the Results Framework of 27 August 2026 are the source documents. Operational period: 2027–2037. Official Goal titles, used in full in this briefing, are: Goal 1 — Transformation of the local agri-food system to be sustainable, diversified, and inclusive; Goal 2 — Equitable and dignified individual, household and community access to nutritious, safe, affordable, and healthy food; Goal 3 — Mitigate risks to the most vulnerable through social, livelihood, and nutrition protection. Enablers: A — integrated multi-actor food-system governance; B — adequate and effective resourcing; C — increased capacity, innovation and technological support (including data and MELIA).",
     "The Plan’s own numbers are the case for urgency. GHS 2024: 22.2% of households have inadequate or severely inadequate food access (Northern Cape 34.3%, Eastern Cape 31.2%, North West 30%). NFNSS 2023: about 29% of children under five stunted; 15% severely (Framework working baseline 27%). Poverty Trends 2025: 17.6% below the food poverty line of R777 pp/pm (2023 prices); 71% of the poor in 2023 were under 35. Framework targets include 10% / 20% / 30% of the government food-procurement budget from smallholder producers by 2029 / 2033 / 2037; complementary feeding in 50% then 100% of high-risk areas; and 1 / 3 / 5 new agri-hubs and produce markets per local or metro municipality.",
-    "Big Five Group (Pty) Ltd answers to one north star: a prosperous Africa for everyone on it, through Feed · Educate · Empower. We propose to operationalise the Game Changers the Plan can actually use a private partner for — as one circuit, not nine vendors. Agri verifies household and smallholder producers. Foods mills lots into fortified ambient plates for NSNP, ECD, CNDC and holiday packs. Direct specifies last-mile nodes, rank markets and trader infrastructure for an IDP / DDM One Plan. Connect (SupplierAdvisor®) is the farm-to-fork operating system: identity, lots, invoices, HACCP holds, GL. Leadership (Super-Cube®) forms the people who run kitchens, hubs and municipal SLAs. Access opens capital. Impact is the PMO. Foundation channels 10% of group profits with proof. Global holds standards when a closed circuit is ready to travel.",
+    "Big Five Group (Pty) Ltd answers to one north star: a prosperous Africa for everyone on it, through Feed · Educate · Empower. We propose to operationalise the Game Changers the Plan can actually use a private partner for — as one circuit, not nine vendors. Agri verifies household and smallholder producers. Foods mills lots into plates: instant fortified porridge (add water or milk; ready in under a minute) plus soya, OnePot and soups for NSNP, ECD, CNDC, holiday packs and complementary feeding. Direct specifies last-mile nodes, rank markets and trader infrastructure for an IDP / DDM One Plan. Connect (SupplierAdvisor®) is the farm-to-fork operating system: identity, lots, invoices, HACCP holds, GL. Leadership (Super-Cube®) forms the people who run kitchens, hubs and municipal SLAs. Access opens capital. Impact is the PMO. Foundation channels 10% of group profits with proof. Global holds standards when a closed circuit is ready to travel.",
     "This briefing is honest about mandate. Treasury leads VAT, price-stabilisation and a possible national food reserve. DoH leads front-of-pack labelling and advertising rules. DSD and SASSA lead social grants and nutrition vouchers. COGTA / SALGA lead the local-government mandate. Big Five does not gazette those instruments. We put a verified lot, a lawful plate and a MELIA-ready extract on the table so those instruments have something real to buy, train and measure.",
     "SupplierAdvisor® does not replace BAS or LOGIS. Extracts sit inside MELIA, not beside it. No learner names. No beneficiary databases on this portal.",
     "We ask for 90 days: a closed technical briefing; KwaZulu-Natal named as joint demonstration province (two local municipalities + one metro cluster); a time-boxed PFMA/MFMA workstream against Game Changer 1.2; a MELIA data protocol; and a seat at the private-sector round tables the 27 August 2026 Framework is already written for. Scale only after a closed circuit holds.",
@@ -160,7 +160,7 @@ export const NFNSP = {
             "Direct: SANTACO-rank and rural node spec so traders already at transport nodes have storage, water and energy. 15 000 containers is pathway design, not a live national fleet.",
             "Foods: ambient SKUs that a spaza can hold without a cold chain. 24-month shelf life (product specification).",
             "Connect: HACCP holds and food-safety gates so a trader who is not ready does not receive the next lot.",
-            "Leadership: Super-Cube® and practical kitchen/trader protocol — 5-minute porridge / 20-minute OnePot.",
+            "Leadership: Super-Cube® and a practical protocol — instant fortified porridge (water or milk, under a minute) and ~20-minute OnePot.",
           ],
           limit:
             "SALGA / COGTA lead by-laws and trading space. DoH leads health-and-safety norms. We specify a node and a plate those norms can use.",
@@ -224,7 +224,7 @@ export const NFNSP = {
             "Framework: focused campaigns (sodas, fast food, salt); SBCC on public radio evaluated; curriculum integrated; % of systemic local-food-environment challenges resolved (XX).",
           weDeliver: [
             "Leadership (Super-Cube®): whole-person agency for kitchen teams, municipal officers and implementers — the people the Plan says must run the protocol.",
-            "Foods: 5-minute porridge / 20-minute OnePot so home and institutional preparation is possible under energy constraints the Plan names under utilisation.",
+            "Foods: instant fortified porridge — add water or milk; ready in under a minute — so home and institutional preparation is possible under the energy constraints the Plan names under utilisation. OnePot remains a ~20-minute complete plate.",
             "Indigenous and traditional recipes as SKU and recipe work — formulation, not a national radio campaign.",
             "Foundation: 10% of group profits (standing policy) as a complementary CSI rail for education-linked plates — not a substitute for GCIS or DBE curriculum.",
           ],
@@ -254,7 +254,7 @@ export const NFNSP = {
             "Framework (illustrative in the source): 40% / 50% / 80% of individuals or households on social-security grants that are food-secure by 2029 / 2033 / 2037; 1% / 3% / 5% reduction in grant recipients via better-livelihoods pathways.",
           weDeliver: [
             "Agri + Connect: offtake so a grant household can become a supplier, not only a beneficiary — the Plan’s ‘graduate out of the grant system’ pathway, labelled as design intent until measured.",
-            "Foods: CNDC and holiday packs so periodic gaps the Plan names (school holidays, weekends) have a plate.",
+            "Foods: CNDC and holiday packs — instant fortified porridge (water or milk, under a minute) so periodic gaps the Plan names (school holidays, weekends) have a plate.",
             "Foundation: 10% of group profits as complementary CSI — not a substitute for SASSA.",
           ],
           limit:
@@ -270,7 +270,7 @@ export const NFNSP = {
           targets:
             "Framework: 3% / 5% / 10% reduction in stunting by 2029 / 2033 / 2037 (from a 27% working baseline); 60% / 75% / 90% improved education outcomes among NSNP learners (reinserted); 40% / 60% / 80% of ECD centres receiving nutrition support; fortification regulations reviewed then promulgated.",
           weDeliver: [
-            "Foods: one SKU family across NSNP, ECD, CNDC and holiday packs. 5 kg institutional formats. 74% more nutrition / 185% more fortification are formulation/design claims — lab pack in the first 90 days.",
+            "Foods: instant fortified porridge is the malnutrition plate — add water or milk; ready in under a minute. No stove cycle, no cold chain, no trained cook required. One SKU family across NSNP, ECD, CNDC and holiday packs, including 5 kg institutional formats. 74% more nutrition / 185% more fortification are formulation/design claims — lab pack in the first 90 days.",
             "Connect / SchoolAdvisor: lot-and-kitchen proof; referral-period holds so a kitchen that is not ready does not receive the next lot. No learner names.",
             "Direct: last-mile so a CNDC and a holiday pack actually arrive.",
             "Impact: programme-reported until audited — 355 000 meals on the Group site is programme-reported, not an NSNP headcount.",
@@ -288,7 +288,7 @@ export const NFNSP = {
           targets:
             "Framework: new preventative supplemental feeding for 6–23 months in 50% of high-risk areas by 2029 and 100% by 2033; revised maternal-care support policy. Stunting, low birth-weight and MAM/SAM % to be filled from DoH baselines.",
           weDeliver: [
-            "Foods: complementary-feeding SKU work for the 6–23 month window, labelled formulation/design until the 90-day lab pack.",
+            "Foods: instant fortified porridge (water or milk, under a minute) as the practical complementary-feeding SKU for the 6–23 month window, labelled formulation/design until the 90-day lab pack.",
             "Leadership: Super-Cube® for implementers and community nutrition officers.",
             "Foundation: complementary CSI rail — not a voucher scheme.",
           ],
@@ -408,7 +408,7 @@ export const NFNSP = {
           weDeliver: [
             "Leadership (Super-Cube®): whole-person leadership for public servants, kitchen teams and implementers.",
             "Agri: producer onboarding and practice — learning sites as offtake into Foods, not a replacement for provincial extension.",
-            "Foods: preparation protocol (5-minute / 20-minute) as a practical pack kitchens can run.",
+            "Foods: preparation protocol kitchens can run — instant fortified porridge in under a minute with water or milk; OnePot ~20 minutes.",
           ],
           limit:
             "We do not fill unfilled government posts or set ARC seed prices. We train the people who will run a closed KZN circuit.",
@@ -480,7 +480,7 @@ export const NFNSP = {
       {
         n: "03",
         t: "Foods",
-        d: "The mill turns the lot into a fortified ambient plate — porridge, soya, OnePot, soup.",
+        d: "The mill turns the lot into a plate — instant fortified porridge (water or milk, under a minute), soya, OnePot, soup.",
       },
       {
         n: "04",
@@ -509,7 +509,7 @@ export const NFNSP = {
       name: "Foods",
       serves:
         "Fortified ambient meals at institutional cost points for NSNP, ECD, CNDC and holiday packs.",
-      nda: "Goals 1, 2 and 3 — the plate. Certifications as published on bigfivegroup.africa/foods.",
+      nda: "Goals 1, 2 and 3 — the plate. Instant fortified porridge: water or milk, under a minute. Certifications as published on bigfivegroup.africa/foods.",
     },
     {
       slug: "leadership",
@@ -644,7 +644,7 @@ export const NFNSP = {
       title: "Feed",
       pillars: ["Agri", "Foods"],
       blurb: "Regenerative production and fortified nutrition — farm gate to school kitchen.",
-      nda: "Goal 1 (hubs, markets, smallholder lots, traders) and Goals 2–3 (affordable plates, NSNP, ECD, CNDC, complementary feeding). Agri opens the lot. Foods mills the plate.",
+      nda: "Goal 1 (hubs, markets, smallholder lots, traders) and Goals 2–3 (malnutrition plates: instant fortified porridge with water or milk in under a minute; NSNP, ECD, CNDC, complementary feeding). Agri opens the lot. Foods mills the plate.",
     },
     {
       id: "educate",
@@ -676,8 +676,18 @@ export const NFNSP = {
   ],
   foods: {
     intro:
-      "One SKU family across NSNP, ECD, CNDC and holiday packs — the plate Goals 2 and 3 can actually put in a kitchen. Ambient, fortified, institutional 5 kg formats where school- or clinic-linked.",
+      "One SKU family across NSNP, ECD, CNDC and holiday packs — the plate Goals 2 and 3 can actually put in a kitchen. Instant fortified porridge is the malnutrition SKU: add water or milk; ready in under a minute. Ambient, fortified, institutional 5 kg formats where school- or clinic-linked.",
+    instantPorridge: {
+      title: "Instant fortified porridge",
+      prep: "Add water or milk. Ready in under a minute.",
+      why: "The malnutrition plate that does not need a stove cycle, a cold chain, or a trained cook — NSNP breakfast, ECD, CNDC, holiday packs and complementary feeding in the first 1 000 days.",
+      label: "Product specification — Big Five Foods™",
+    },
     points: [
+      {
+        t: "Instant fortified porridge — water or milk, under a minute",
+        label: "Product specification — Goal 3 malnutrition plate",
+      },
       {
         t: "~R1.10 soup / ~R1.30 soya / ~R2.50 OnePot per meal",
         label: "Institutional cost points, approximate — Goal 2.1 evidence, not a price policy",
@@ -755,7 +765,7 @@ export const NFNSP = {
     {
       id: "A",
       title: "Plates",
-      d: "One SKU family across NSNP, ECD, CNDC and holiday packs. 5 kg institutional packs. Goals 2 and 3.",
+      d: "Instant fortified porridge (water or milk, under a minute) plus soya, OnePot and soups. 5 kg institutional packs. Goals 2 and 3.",
     },
     {
       id: "B",
@@ -770,7 +780,7 @@ export const NFNSP = {
     {
       id: "D",
       title: "Agency and protection",
-      d: "5-minute porridge / 20-minute OnePot; school-environment support; 6–23 month complementary feeding. Super-Cube®. Goals 2.3 and 3.3.",
+      d: "Instant fortified porridge (water or milk, under a minute); ~20-minute OnePot; school-environment support; 6–23 month complementary feeding. Super-Cube®. Goals 2.3 and 3.3.",
     },
     {
       id: "E",

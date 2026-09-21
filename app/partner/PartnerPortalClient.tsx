@@ -136,7 +136,7 @@ function heroTilesForPartner(partner: ClientPartnerProfile): HeroTile[] {
       {
         icon: Package,
         t: "Plate · Foods",
-        d: "Fortified ambient meals for NSNP, ECD, CNDC — 5 kg institutional packs",
+        d: "Instant fortified porridge — water or milk, ready in under a minute — plus soya and OnePot for NSNP, ECD, CNDC",
       },
       {
         icon: Users,

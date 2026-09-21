@@ -718,7 +718,7 @@ def page_g2(c):
         c, y, "2.2–2.3",
         "Regulate the food environment and shift behaviour toward healthy diets",
         "Front-of-pack labelling, advertising rules, school-ground norms; a costed SBCC and nutrition in the Grade 1–12 curriculum.",
-        "SchoolAdvisor gates kitchens and vendors (no learner names). Super-Cube® forms implementers. 5-minute porridge / 20-minute OnePot. Foundation CSI is complementary, not a curriculum.",
+        "SchoolAdvisor gates kitchens and vendors (no learner names). Super-Cube® forms implementers. Instant fortified porridge: water or milk, under a minute. OnePot ~20 minutes. Foundation CSI is complementary, not a curriculum.",
         "Limit: DoH gazettes FoP. DBE and GCIS lead school norms and SBCC. We run the gate and the plate.",
     )
     c.showPage()
@@ -738,7 +738,7 @@ def page_g3(c):
         y,
         [
             ("~29%", "Children under five stunted", "NFNSS 2023"),
-            ("50%", "High-risk areas, complementary feeding 2029", "Framework"),
+            ("< 1 min", "Instant fortified porridge — water or milk", "Product specification"),
             ("355 000", "Meals, programme-reported", "Group site"),
         ],
     )
@@ -753,7 +753,7 @@ def page_g3(c):
         c, y, "3.2–3.3",
         "High-impact nutrition and the first 1 000 days",
         "NSNP, ECD, CNDC, fortification, holiday referrals. Complementary feeding 6–23 months in 50% then 100% of high-risk areas. Any voucher instrument is DSD lead.",
-        "One SKU family across NSNP, ECD, CNDC and holiday packs. Formulation claims go to a 90-day lab pack. SchoolAdvisor: lot-and-kitchen proof. No learner names.",
+        "Instant fortified porridge is the malnutrition plate: add water or milk; ready in under a minute. No stove cycle, no cold chain, no trained cook. One SKU family across NSNP, ECD, CNDC and holiday packs. SchoolAdvisor: lot-and-kitchen proof. No learner names.",
         "Limit: 2.5 million children per day is a DBE-pathway plan, not current headcount. We do not issue nutrition vouchers.",
     )
     c.showPage()
@@ -981,7 +981,7 @@ def page_foods(c):
     y -= 8 * mm
     para(
         c,
-        "One SKU family across NSNP, ECD, CNDC and holiday packs. Ambient, fortified, institutional 5 kg formats where school- or clinic-linked.",
+        "One SKU family across NSNP, ECD, CNDC and holiday packs. Instant fortified porridge is the malnutrition plate: add water or milk; ready in under a minute. Ambient, fortified, institutional 5 kg formats where school- or clinic-linked.",
         INNER,
         y,
         F["sans"],
@@ -995,8 +995,8 @@ def page_foods(c):
         c,
         y,
         [
+            ("< 1 min", "Instant fortified porridge — water or milk", "Product specification"),
             ("~R1.10–2.50", "Institutional meal cost points", "Approximate"),
-            ("~50%", "Below wholesale / retail", "Internal comparison"),
             ("24 mo", "Ambient shelf life", "Product specification"),
             ("74% / 185%", "Nutrition / fortification", "Formulation; lab pack 90 days"),
         ],
@@ -1013,10 +1013,10 @@ def page_foods(c):
     kicker(c, "Five workstreams A–E", INNER, y)
     y -= 8 * mm
     ws = [
-        ("A", "Plates", "One SKU family across NSNP, ECD, CNDC and holiday packs. 5 kg institutional packs."),
+        ("A", "Plates", "Instant fortified porridge (water or milk, under a minute) plus soya, OnePot, soups. 5 kg institutional packs."),
         ("B", "Markets", "Costed container / micro-hub spec for an IDP / DDM One Plan. SANTACO rank + rural nodes."),
         ("C", "Producers", "SupplierAdvisor® identity, GPS, lots, invoices so the 10% target survives PFMA."),
-        ("D", "Agency", "5-minute porridge / 20-minute OnePot; 6–23 month complementary feeding. Super-Cube® for implementers."),
+        ("D", "Agency", "Instant fortified porridge (water or milk, under a minute); ~20-minute OnePot; complementary feeding. Super-Cube®."),
         ("E", "OS", "Onboarding, FNB/BankLink feeds, SchoolAdvisor gates, POPIA MELIA extract. No learner names."),
     ]
     for letter, t, d in ws:

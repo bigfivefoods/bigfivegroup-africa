@@ -717,6 +717,24 @@ export default function NfnspBriefing() {
             One SKU family for institutional plates
           </h2>
           <p className="text-sm text-[#525252] max-w-3xl mb-6 leading-relaxed">{NFNSP.foods.intro}</p>
+          <article
+            className="rounded-2xl p-5 sm:p-7 mb-6 max-w-4xl"
+            style={{ backgroundColor: FOREST }}
+          >
+            <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: "#E8C07A" }}>
+              MALNUTRITION PLATE
+            </div>
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-2">
+              {NFNSP.foods.instantPorridge.title}
+            </h3>
+            <p className="text-base font-semibold mb-3" style={{ color: "#E8C07A" }}>
+              {NFNSP.foods.instantPorridge.prep}
+            </p>
+            <p className="text-sm text-white/80 leading-relaxed mb-2">
+              {NFNSP.foods.instantPorridge.why}
+            </p>
+            <p className="text-[11px] text-white/45 leading-relaxed">{NFNSP.foods.instantPorridge.label}</p>
+          </article>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {NFNSP.foods.points.map((p) => (
               <li key={p.t} className="rounded-2xl border border-black/10 bg-white p-5">
