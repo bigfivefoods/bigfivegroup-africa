@@ -602,7 +602,7 @@ def page_2(c):
     y -= 7.2 * mm
     used = draw_para(
         c,
-        "Seats below are principal terms only. TBC designations remain open until the Royal Household and Big Five Group confirm them — they are not appointments.",
+        "Seats below are principal terms only. Any items marked TBC remain open until the Royal Household and Big Five Group confirm them — they are not appointments.",
         INNER,
         y,
         FONTS["sansItalic"],
@@ -618,8 +618,8 @@ def page_2(c):
         ("Prince Ntokozo", "Non-Executive Director / Royal Liaison", False),
         (
             "Dr. Joy (Natalie)",
-            "Strategic Advisor — role TBC; invitee to Board pending final designation",
-            True,
+            "Business Development Executive — Royal Household Wellness, Strategy & Stakeholder Relations",
+            False,
         ),
         ("Independent Chair", "To be appointed by mutual agreement", True),
     ]
@@ -709,12 +709,15 @@ def page_2(c):
         ),
         (
             "Dr. Joy (Natalie)",
-            "Strategic Advisor — Wellness, Product Integrity & Community Health (role TBC)",
-            True,
+            "Business Development Executive — Royal Household Wellness, Strategy & Stakeholder Relations",
+            False,
             [
-                "Expertise in nutrition, wellness, and fortified formulation",
-                "Oversees product quality and health standards",
-                "Final title after consultation with the Royal Household",
+                "Develop and oversee the Royal Household wellness strategy",
+                "Serve as strategic liaison between the Big Five CEO, the Royal Household and key stakeholders",
+                "Build and maintain high-level relationships with government, corporate partners and community structures",
+                "Provide strategic advice to the CEO on stakeholder dynamics, opportunities, risks and relationship management",
+                "Represent Big Five at selected high-level engagements, forums and stakeholder meetings",
+                "Ensure initiatives are culturally respectful, professionally governed and aligned with agreed strategic objectives",
             ],
         ),
         (
