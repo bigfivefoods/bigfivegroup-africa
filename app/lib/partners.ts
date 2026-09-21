@@ -383,7 +383,7 @@ export const PARTNERS: PartnerProfile[] = [
       },
       {
         href: "/api/partner/nfnsp-proposal",
-        label: "Download proposal (PDF) · September 2026 · v3.0",
+        label: "Download proposal (PDF) · September 2026 · v3.1",
         desc: "Session-gated A4 briefing — official Goals, Game Changers and Enablers.",
       },
       {

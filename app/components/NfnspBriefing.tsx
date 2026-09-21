@@ -3,11 +3,21 @@
 import Image from "next/image";
 import {
   ArrowRight,
+  Compass,
   Download,
+  GraduationCap,
+  Heart,
   Landmark,
+  Lightbulb,
   Network,
   Package,
+  Shield,
   ShieldCheck,
+  Sparkles,
+  Target,
+  Users,
+  UtensilsCrossed,
+  Zap,
 } from "lucide-react";
 import { NFNSP, NFNSP_PROPOSAL_NAV } from "../lib/nfnspPartnership";
 import NfnspAskForm from "./NfnspAskForm";
@@ -247,9 +257,138 @@ export default function NfnspBriefing() {
         </div>
       </section>
 
+      <section id="group-purpose" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Eyebrow>04 · VISION · MISSION · VALUES</Eyebrow>
+          <GoldRule />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-4 max-w-3xl">
+            The north star this partnership already answers to
+          </h2>
+          <blockquote
+            className="rounded-2xl p-5 sm:p-7 mb-8 max-w-4xl"
+            style={{ backgroundColor: FOREST }}
+          >
+            <p className="text-base sm:text-lg leading-relaxed italic" style={{ color: "#E8C07A" }}>
+              {NFNSP.groupPurposeLead}
+            </p>
+          </blockquote>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 mb-10">
+            {[
+              { icon: Compass, block: NFNSP.vision },
+              { icon: Target, block: NFNSP.mission },
+              { icon: Shield, block: NFNSP.valuesIntro },
+            ].map(({ icon: Icon, block }) => (
+              <article
+                key={block.kicker}
+                className="rounded-2xl p-5 sm:p-7 bg-[#fafafa]"
+                style={{ border: "1px solid rgba(196,146,58,0.35)", borderTop: `4px solid ${FOREST}` }}
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <Icon className="w-4 h-4" style={{ color: GOLD }} aria-hidden />
+                  <span className="text-[10px] tracking-[2px] font-semibold" style={{ color: GOLD }}>
+                    {block.kicker.toUpperCase()}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-black mb-3">{block.title}</h3>
+                <p className="text-sm text-[#404040] leading-relaxed">{block.body}</p>
+              </article>
+            ))}
+          </div>
+          <h3 className="text-lg font-semibold text-black mb-4">Five values — how each shows up on the Plan</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            {NFNSP.values.map((v, i) => {
+              const Icon = [Users, Lightbulb, Shield, Sparkles, Heart][i] ?? Sparkles;
+              return (
+                <article
+                  key={v.title}
+                  className="rounded-2xl bg-white p-4 sm:p-5"
+                  style={{ border: "1px solid rgba(196,146,58,0.3)", borderLeft: `4px solid ${FOREST}` }}
+                >
+                  <Icon className="w-5 h-5 mb-2" style={{ color: GOLD }} aria-hidden />
+                  <h4 className="text-sm font-semibold text-black mb-1">{v.title}</h4>
+                  <p className="text-xs text-[#525252] leading-relaxed mb-3">{v.desc}</p>
+                  <p className="text-xs leading-relaxed" style={{ color: FOREST }}>
+                    {v.nda}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="missions"
+        className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16"
+        style={{ backgroundColor: CREAM }}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Eyebrow>05 · FEED · EDUCATE · EMPOWER</Eyebrow>
+          <GoldRule />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-3xl">
+            How the Group mission serves the Department’s Goals
+          </h2>
+          <p className="text-sm sm:text-base text-[#525252] max-w-3xl mb-10 leading-relaxed">
+            Feed · Educate · Empower is not a slogan beside the Plan. It is the way nine pillars
+            become one delivery against Goals 1–3 and Enablers A–C.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-6">
+            {NFNSP.missions.map((m) => {
+              const Icon =
+                m.id === "feed" ? UtensilsCrossed : m.id === "educate" ? GraduationCap : Zap;
+              return (
+                <article
+                  key={m.id}
+                  className="rounded-2xl bg-white p-5 sm:p-7"
+                  style={{ border: "1px solid rgba(196,146,58,0.35)" }}
+                >
+                  <div
+                    className="w-11 h-11 rounded-2xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: FOREST, color: "#E8C07A" }}
+                  >
+                    <Icon className="w-5 h-5" aria-hidden />
+                  </div>
+                  <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
+                    {m.n} · {m.title.toUpperCase()}
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-tight text-black mb-2">{m.title}</h3>
+                  <p className="text-sm text-[#404040] leading-relaxed mb-4">{m.blurb}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {m.pillars.map((p) => (
+                      <Pill key={p}>{p}</Pill>
+                    ))}
+                  </div>
+                  <p className="text-sm leading-relaxed pl-3 border-l-2" style={{ borderColor: GOLD, color: FOREST }}>
+                    {m.nda}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+          <article
+            className="rounded-2xl p-5 sm:p-7"
+            style={{ backgroundColor: FOREST }}
+          >
+            <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: "#E8C07A" }}>
+              CROSS-CUTTING
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">{NFNSP.missionsCross.title}</h3>
+            <p className="text-sm text-white/80 leading-relaxed mb-3">{NFNSP.missionsCross.blurb}</p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              {NFNSP.missionsCross.pillars.map((p) => (
+                <Pill key={p}>{p}</Pill>
+              ))}
+            </div>
+            <p className="text-sm leading-relaxed" style={{ color: "#E8C07A" }}>
+              {NFNSP.missionsCross.nda}
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section id="plan-goals" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>04 · NDA GOALS AND OBJECTIVES</Eyebrow>
+          <Eyebrow>06 · NDA GOALS AND OBJECTIVES</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-4xl">
             Official Goals and Game Changers — and how Big Five answers each
@@ -404,7 +543,7 @@ export default function NfnspBriefing() {
         style={{ backgroundColor: CREAM }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>05 · HOW THE GROUP WORKS AS ONE</Eyebrow>
+          <Eyebrow>07 · HOW THE GROUP WORKS AS ONE</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-4 max-w-3xl">
             {NFNSP.systemFlow.title}
@@ -488,7 +627,7 @@ export default function NfnspBriefing() {
 
       <section id="pillars" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>06 · NINE PILLARS · ONE CIRCUIT</Eyebrow>
+          <Eyebrow>08 · NINE PILLARS · ONE CIRCUIT</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-3xl">
             Feed · Educate · Empower — mapped to the Plan
@@ -555,7 +694,7 @@ export default function NfnspBriefing() {
 
       <section id="who-we-are" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>07 · WHO WE ARE</Eyebrow>
+          <Eyebrow>09 · WHO WE ARE</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             Big Five Group — implementation partner
@@ -572,7 +711,7 @@ export default function NfnspBriefing() {
 
       <section id="foods" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>08 · BIG FIVE FOODS</Eyebrow>
+          <Eyebrow>10 · BIG FIVE FOODS</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-4">
             One SKU family for institutional plates
@@ -595,7 +734,7 @@ export default function NfnspBriefing() {
         style={{ backgroundColor: FOREST }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>09 · OPERATING SYSTEM</Eyebrow>
+          <Eyebrow>11 · OPERATING SYSTEM</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 max-w-3xl">
             {NFNSP.os.headline}
@@ -638,7 +777,7 @@ export default function NfnspBriefing() {
 
       <section id="workstreams" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>10 · FIVE WORKSTREAMS</Eyebrow>
+          <Eyebrow>12 · FIVE WORKSTREAMS</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">A–E</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -664,7 +803,7 @@ export default function NfnspBriefing() {
 
       <section id="demonstration" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>11 · DEMONSTRATION DESIGN</Eyebrow>
+          <Eyebrow>13 · DEMONSTRATION DESIGN</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             KZN first — then a second province
@@ -689,7 +828,7 @@ export default function NfnspBriefing() {
 
       <section id="commercial" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>12 · COMMERCIAL MODEL</Eyebrow>
+          <Eyebrow>14 · COMMERCIAL MODEL</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-3">
             Group figures — labelled
@@ -710,7 +849,7 @@ export default function NfnspBriefing() {
 
       <section id="governance" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>13 · GOVERNANCE AND RISK</Eyebrow>
+          <Eyebrow>15 · GOVERNANCE AND RISK</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             What this briefing is not
@@ -743,7 +882,7 @@ export default function NfnspBriefing() {
 
       <section id="ask" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>14 · 90-DAY ASK</Eyebrow>
+          <Eyebrow>16 · 90-DAY ASK</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">
             Five asks — and what we return
@@ -785,7 +924,7 @@ export default function NfnspBriefing() {
 
       <section id="conclusion" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: FOREST }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>15 · CONCLUSION</Eyebrow>
+          <Eyebrow>17 · CONCLUSION</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-white mb-6">
             Targets, plates, a closed circuit

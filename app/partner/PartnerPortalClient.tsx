@@ -239,6 +239,12 @@ function partnerJumpNavItems({
         icon: "landmark",
       },
       {
+        href: "#group-purpose",
+        label: "Group",
+        desc: "Vision, mission, Feed · Educate · Empower",
+        icon: "compass",
+      },
+      {
         href: "#plan-goals",
         label: "Goals",
         desc: "NDA objectives and how we deliver",
@@ -261,12 +267,6 @@ function partnerJumpNavItems({
         label: "90-day ask",
         desc: "Five asks and briefing form",
         icon: "target",
-      },
-      {
-        href: "#contact",
-        label: "Contact",
-        desc: "Follow up with Big Five",
-        icon: "users",
       },
     ];
   }
@@ -1137,7 +1137,7 @@ export default function PartnerPortalClient({
                     {
                       n: "02",
                       t: "Walk every Plan Goal and Game Changer",
-                      d: "Official titles from Draft 2 and the 27 August Framework — each answered with named pillars and a mandate limit.",
+                      d: "First the Group north star — vision, mission, Feed · Educate · Empower — then official Goal titles, each with a mandate limit.",
                     },
                     {
                       n: "03",

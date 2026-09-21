@@ -42,7 +42,7 @@ CONTENT_W = PAGE_W - 2 * INNER
 HEADER_H = 26 * mm
 FOOTER_H = 15.5 * mm
 BODY_BOTTOM = FOOTER_H + 7 * mm
-TOTAL = 14
+TOTAL = 16
 BODY = 12
 LEAD = 15.6  # 12pt × 1.3
 CAPTION = 9
@@ -197,7 +197,7 @@ def footer(c, n):
     c.rect(0, FOOTER_H - 1.0, PAGE_W, 1.0, fill=1, stroke=0)
     c.setFillColor(white)
     c.setFont(F["sansBold"], 8)
-    c.drawString(INNER, 6.4, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.0  ·  Not an awarded tender")
+    c.drawString(INNER, 6.4, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.1  ·  Not an awarded tender")
     c.drawRightString(PAGE_W - INNER, 6.4, f"{n}   /   {TOTAL}")
 
 
@@ -362,17 +362,19 @@ def page_contents(c):
         ("01", "Cover — sourced national figures", "1"),
         ("02", "Contents and reading rules", "2"),
         ("03", "Executive summary", "3"),
-        ("04", "Goal 1 — local agri-food system (Game Changers 1.1–1.2)", "4"),
-        ("05", "Goal 1 — production and informal trade (1.3–1.4)", "5"),
-        ("06", "Goal 2 — equitable access (Game Changers 2.1–2.3)", "6"),
-        ("07", "Goal 3 — protection of the vulnerable (3.1–3.3)", "7"),
-        ("08", "Enablers A–C — governance, resourcing, capacity/data", "8"),
-        ("09", "Nine pillars as one circuit", "9"),
-        ("10", "Why now · reading the Plan · who we are", "10"),
-        ("11", "Foods, workstreams, demonstration", "11"),
-        ("12", "SupplierAdvisor® farm-to-fork operating system", "12"),
-        ("13", "90-day ask and what we return", "13"),
-        ("14", "Risk, labelled figures, conclusion", "14"),
+        ("04", "Vision · mission · values", "4"),
+        ("05", "Feed · Educate · Empower × the Plan", "5"),
+        ("06", "Goal 1 — local agri-food system (1.1–1.2)", "6"),
+        ("07", "Goal 1 — production and informal trade (1.3–1.4)", "7"),
+        ("08", "Goal 2 — equitable access (2.1–2.3)", "8"),
+        ("09", "Goal 3 — protection of the vulnerable (3.1–3.3)", "9"),
+        ("10", "Enablers A–C — governance, resourcing, capacity/data", "10"),
+        ("11", "Nine pillars as one circuit", "11"),
+        ("12", "Why now · reading the Plan · who we are", "12"),
+        ("13", "Foods, workstreams, demonstration", "13"),
+        ("14", "SupplierAdvisor® farm-to-fork operating system", "14"),
+        ("15", "90-day ask and what we return", "15"),
+        ("16", "Risk, labelled figures, conclusion", "16"),
     ]
     for n, t, p in toc:
         c.setStrokeColor(RULE)
@@ -389,7 +391,7 @@ def page_contents(c):
         c.setFillColor(FOREST)
         c.setFont(F["sansBold"], BODY)
         c.drawRightString(PAGE_W - INNER, y, p)
-        y -= LEAD + 2.2
+        y -= LEAD + 1.0
 
     y -= 3 * mm
     kicker(c, "How to read figures", INNER, y)
@@ -457,6 +459,140 @@ def page_exec(c):
 
 
 # ---------------------------------------------------------------------------
+# Vision · mission · values
+# ---------------------------------------------------------------------------
+def page_purpose(c):
+    y = chrome(c, 4, "Vision · mission · values")
+    kicker(c, "04  ·  The north star this partnership already answers to", INNER, y)
+    y -= 10 * mm
+    lead = (
+        "The companies are instruments of one purpose. The Plan needs a partner that already answers to a north star — not a slide deck assembled for a tender."
+    )
+    lh = measure(c, lead, F["serifItalic"], BODY, LEAD, CONTENT_W - 16) + 14
+    rrect(c, INNER, y - lh, CONTENT_W, lh, 3, fill=FOREST, stroke=None)
+    para(c, lead, INNER + 8, y - 10, F["serifItalic"], BODY, LEAD, CONTENT_W - 16, GOLD_LT)
+    y -= lh + 6 * mm
+
+    cards = [
+        ("VISION", "A prosperous Africa — for everyone on it",
+         "Well-being is not a privilege. Families eat with dignity, leaders decide with integrity, and communities build economies they own. That is the same destination as the NFNSP-2 vision of well-coordinated, inclusive, just local food systems."),
+        ("MISSION", "Feed. Educate. Empower.",
+         "We deploy skills, capital, platforms and relationships so Africa can feed its people, educate its leaders, and empower its enterprises — at scale and with proof. That is how Big Five shows up against Goals 1–3 and Enablers A–C."),
+        ("VALUES", "What we refuse to compromise",
+         "Humanity, innovation, integrity, excellence, and purposeful impact. Values shape how we hire, partner, trade and deliver — including on this Plan."),
+    ]
+    tw = (CONTENT_W - 6 * mm) / 3
+    th = 72 * mm
+    for i, (k, t, d) in enumerate(cards):
+        x = INNER + i * (tw + 3 * mm)
+        rrect(c, x, y - th, tw, th, 2.6, fill=CREAM, stroke=GOLD, sw=0.4)
+        forest_bar(c, x, y - th, th)
+        c.setFillColor(GOLD)
+        c.setFont(F["sansBold"], 8)
+        c.drawString(x + 8, y - 10, k)
+        para(c, t, x + 8, y - 22, F["sansBold"], BODY, LEAD, tw - 16, FOREST)
+        para(c, d, x + 8, y - 48, F["sans"], BODY, LEAD, tw - 16, MUTED)
+    y -= th + 7 * mm
+
+    kicker(c, "Five values on this Plan", INNER, y)
+    y -= 8 * mm
+    vals = [
+        ("Humanity", "Goal 3: dignity in kitchens and the first 1 000 days — a plate and a livelihood path, not a grant we set."),
+        ("Innovation", "Enabler C and Goal 1.2: lots, ambient plates, SchoolAdvisor gates. Not BAS or LOGIS."),
+        ("Integrity", "Labelled figures. Programme-reported until audited. No awarded-tender claim."),
+        ("Excellence", "HACCP, published certifications, Super-Cube® for the people who run the protocol."),
+        ("Impact", "PMO under Enabler A. Scale only after a closed KZN circuit holds."),
+    ]
+    vw = (CONTENT_W - 8 * mm) / 5
+    vh = 48 * mm
+    for i, (t, d) in enumerate(vals):
+        x = INNER + i * (vw + 2 * mm)
+        rrect(c, x, y - vh, vw, vh, 2.2, fill=white, stroke=GOLD, sw=0.4)
+        c.setFillColor(FOREST)
+        c.setFont(F["sansBold"], BODY)
+        para(c, t, x + 5, y - 11, F["sansBold"], BODY, LEAD, vw - 10, FOREST)
+        para(c, d, x + 5, y - 28, F["sans"], CAPTION, CAPTION_LEAD, vw - 10, MUTED)
+    c.showPage()
+
+
+# ---------------------------------------------------------------------------
+# Feed · Educate · Empower
+# ---------------------------------------------------------------------------
+def page_missions(c):
+    y = chrome(c, 5, "Feed · Educate · Empower")
+    kicker(c, "05  ·  How the Group mission serves the Department’s Goals", INNER, y)
+    y -= 10 * mm
+    para(
+        c,
+        "Feed · Educate · Empower is not a slogan beside the Plan. It is the way nine pillars become one delivery against Goals 1–3 and Enablers A–C.",
+        INNER,
+        y,
+        F["serifItalic"],
+        BODY,
+        LEAD,
+        CONTENT_W,
+        FOREST,
+    )
+    y -= 22 * mm
+    missions = [
+        ("01  FEED", "Agri · Foods",
+         "Regenerative production and fortified nutrition — farm gate to school kitchen.",
+         "Goal 1: hubs, markets, smallholder lots, traders. Goals 2–3: affordable plates, NSNP, ECD, CNDC, complementary feeding. Agri opens the lot. Foods mills the plate."),
+        ("02  EDUCATE", "Leadership · Super-Cube®",
+         "Whole-person leadership for public servants, kitchen teams and implementers.",
+         "Goal 2.3 behavioural change and Enabler C capacity. Coordination becomes a skill, not a meeting. We do not write the national SBCC or the Grade 1–12 curriculum."),
+        ("03  EMPOWER", "Connect · Direct · Access · Global",
+         "Last-mile rails, capital access, verified trade and corridors.",
+         "Goal 1.2 invoices that survive PFMA. Goals 1.1 and 1.4: IDP/DDM nodes and trader infrastructure. Enabler B: capital behind a lawful buy. Global waits for a closed circuit."),
+    ]
+    tw = (CONTENT_W - 6 * mm) / 3
+    inner_w = tw - 16
+    heights = []
+    for k, pil, blurb, nda in missions:
+        h = (
+            14
+            + measure(c, pil, F["sansBold"], BODY, LEAD, inner_w)
+            + 4
+            + measure(c, blurb, F["sans"], BODY, LEAD, inner_w)
+            + 5
+            + measure(c, nda, F["sans"], BODY, LEAD, inner_w)
+            + 12
+        )
+        heights.append(h)
+    th = max(heights)
+    for i, (k, pil, blurb, nda) in enumerate(missions):
+        x = INNER + i * (tw + 3 * mm)
+        rrect(c, x, y - th, tw, th, 2.6, fill=CREAM, stroke=GOLD, sw=0.4)
+        forest_bar(c, x, y - th, th)
+        c.setFillColor(GOLD)
+        c.setFont(F["sansBold"], 8)
+        c.drawString(x + 8, y - 10, k)
+        yy = y - 22
+        used = para(c, pil, x + 8, yy, F["sansBold"], BODY, LEAD, inner_w, FOREST)
+        yy -= used + 4
+        used = para(c, blurb, x + 8, yy, F["sans"], BODY, LEAD, inner_w, INK)
+        yy -= used + 5
+        para(c, nda, x + 8, yy, F["sans"], BODY, LEAD, inner_w, MUTED)
+    y -= th + 7 * mm
+    rrect(c, INNER, y - 36 * mm, CONTENT_W, 36 * mm, 2.6, fill=FOREST, stroke=None)
+    c.setFillColor(GOLD_LT)
+    c.setFont(F["sansBold"], 8)
+    c.drawString(INNER + 10, y - 10, "CROSS-CUTTING  ·  IMPACT  ·  FOUNDATION")
+    para(
+        c,
+        "Impact is the PMO — Enabler A, one programme, one risk register. Foundation channels 10% of group profits with proof. Complementary CSI — not a substitute for the fiscus or SASSA.",
+        INNER + 10,
+        y - 22,
+        F["sans"],
+        BODY,
+        LEAD,
+        CONTENT_W - 20,
+        white,
+    )
+    c.showPage()
+
+
+# ---------------------------------------------------------------------------
 # Game-changer cards
 # ---------------------------------------------------------------------------
 def draw_gc(c, y, n, title, asks, deliver, limit) -> float:
@@ -494,9 +630,9 @@ def page_goal_head(c, num, running, kicker_t, title, rationale):
 def page_g1a(c):
     y = page_goal_head(
         c,
-        4,
+        6,
         "Goal 1 — local agri-food system",
-        "04  ·  Goal 1  ·  Game Changers 1.1–1.2",
+        "06  ·  Goal 1  ·  Game Changers 1.1–1.2",
         "Transformation of the local agri-food system to be sustainable, diversified, and inclusive",
         "Lead: Agriculture. GHS 2024: 22.2% of households still have inadequate food access. Framework: 1 / 3 / 5 new agri-hubs and produce markets per municipality by 2029 / 2033 / 2037.",
     )
@@ -530,9 +666,9 @@ def page_g1a(c):
 def page_g1b(c):
     y = page_goal_head(
         c,
-        5,
+        7,
         "Goal 1 — production and informal trade",
-        "05  ·  Goal 1  ·  Game Changers 1.3–1.4",
+        "07  ·  Goal 1  ·  Game Changers 1.3–1.4",
         "Urban and peri-urban production, informal traders and spaza shops",
         "Goal 1 continues: production on municipal and customary land, and a hygienic informal market. Framework XX cells are not invented here.",
     )
@@ -556,9 +692,9 @@ def page_g1b(c):
 def page_g2(c):
     y = page_goal_head(
         c,
-        6,
+        8,
         "Goal 2 — equitable access",
-        "06  ·  Goal 2  ·  Game Changers 2.1–2.3",
+        "08  ·  Goal 2  ·  Game Changers 2.1–2.3",
         "Equitable and dignified individual, household and community access to nutritious, safe, affordable, and healthy food",
         "Leads: Treasury (affordability), DoH (regulation), GCIS / DBE (behaviour).",
     )
@@ -591,9 +727,9 @@ def page_g2(c):
 def page_g3(c):
     y = page_goal_head(
         c,
-        7,
+        9,
         "Goal 3 — protection of the vulnerable",
-        "07  ·  Goal 3  ·  Game Changers 3.1–3.3",
+        "09  ·  Goal 3  ·  Game Changers 3.1–3.3",
         "Mitigate risks to the most vulnerable through social, livelihood, and nutrition protection",
         "Leads: DSD / SASSA, DoH and DBE. NFNSS 2023: about 29% of children under five stunted (Framework baseline 27%).",
     )
@@ -627,8 +763,8 @@ def page_g3(c):
 # Enablers
 # ---------------------------------------------------------------------------
 def page_enablers(c):
-    y = chrome(c, 8, "Enablers A–C — official titles")
-    kicker(c, "08  ·  Governance, resourcing, capacity and data", INNER, y)
+    y = chrome(c, 10, "Enablers A–C — official titles")
+    kicker(c, "10  ·  Governance, resourcing, capacity and data", INNER, y)
     y -= 8 * mm
     para(
         c,
@@ -663,8 +799,8 @@ def page_enablers(c):
 # Pillars / circuit
 # ---------------------------------------------------------------------------
 def page_pillars(c):
-    y = chrome(c, 9, "Nine pillars as one circuit")
-    kicker(c, "09  ·  Feed  ·  Educate  ·  Empower", INNER, y)
+    y = chrome(c, 11, "Nine pillars as one circuit")
+    kicker(c, "11  ·  Nine pillars as one circuit", INNER, y)
     y -= 9 * mm
     para(
         c,
@@ -784,8 +920,8 @@ def page_pillars(c):
 # Why now / who we are
 # ---------------------------------------------------------------------------
 def page_why(c):
-    y = chrome(c, 10, "Why now  ·  reading the Plan  ·  who we are")
-    kicker(c, "10  ·  Why now — the Plan’s own numbers", INNER, y)
+    y = chrome(c, 12, "Why now  ·  reading the Plan  ·  who we are")
+    kicker(c, "12  ·  Why now — the Plan’s own numbers", INNER, y)
     y -= 8 * mm
     why = [
         ("Access is not improving fast enough", "GHS 2024: 22.2% of households have inadequate or severely inadequate food access. Northern Cape 34.3%, Eastern Cape 31.2%, North West 30%.", "GHS 2024, as cited in NFNSP-2"),
@@ -840,8 +976,8 @@ def page_why(c):
 # Foods / workstreams / demonstration
 # ---------------------------------------------------------------------------
 def page_foods(c):
-    y = chrome(c, 11, "Foods  ·  workstreams  ·  demonstration")
-    kicker(c, "11  ·  Big Five Foods — labelled Group figures", INNER, y)
+    y = chrome(c, 13, "Foods  ·  workstreams  ·  demonstration")
+    kicker(c, "13  ·  Big Five Foods — labelled Group figures", INNER, y)
     y -= 8 * mm
     para(
         c,
@@ -913,8 +1049,8 @@ def page_foods(c):
 # OS
 # ---------------------------------------------------------------------------
 def page_os(c):
-    y = chrome(c, 12, "SupplierAdvisor® farm-to-fork OS")
-    kicker(c, "12  ·  Operating system", INNER, y)
+    y = chrome(c, 14, "SupplierAdvisor® farm-to-fork OS")
+    kicker(c, "14  ·  Operating system", INNER, y)
     y -= 9 * mm
     c.setFillColor(FOREST)
     c.setFont(F["serifBold"], 13)
@@ -995,8 +1131,8 @@ def page_os(c):
 # 90-day ask
 # ---------------------------------------------------------------------------
 def page_ask(c):
-    y = chrome(c, 13, "90-day ask")
-    kicker(c, "13  ·  Five asks", INNER, y)
+    y = chrome(c, 15, "90-day ask")
+    kicker(c, "15  ·  Five asks", INNER, y)
     y -= 8 * mm
     para(
         c,
@@ -1056,8 +1192,8 @@ def page_ask(c):
 # Close
 # ---------------------------------------------------------------------------
 def page_close(c):
-    y = chrome(c, 14, "Risk  ·  labelled figures  ·  conclusion")
-    kicker(c, "14  ·  Governance and risk — what this briefing is not", INNER, y)
+    y = chrome(c, 16, "Risk  ·  labelled figures  ·  conclusion")
+    kicker(c, "16  ·  Governance and risk — what this briefing is not", INNER, y)
     y -= 8 * mm
     risks = [
         ("Presented as an awarded NSNP contract", "This briefing is a proposal. No government contract is claimed."),
@@ -1145,6 +1281,8 @@ def build():
     page_cover(c)
     page_contents(c)
     page_exec(c)
+    page_purpose(c)
+    page_missions(c)
     page_g1a(c)
     page_g1b(c)
     page_g2(c)
