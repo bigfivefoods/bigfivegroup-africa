@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import {
   createPartnerToken,
   hasPartnerAuthConfigured,
@@ -10,11 +10,12 @@ import {
   findActiveContactByEmail,
   recordPartnerLogin,
 } from "../../../lib/partner-contacts";
+import { notifyPartnerLogin } from "../../../lib/partner-contacts/login-notify";
 import {
   isPartnerAdmin,
-  partnerHomePathAsync,
   resolvePostLoginPathAsync,
 } from "../../../lib/partners";
+import type { PartnerAccessRecord } from "../../../lib/partner-contacts/types";
 
 export async function POST(request: Request) {
   if (!hasPartnerAuthConfigured()) {
@@ -61,15 +62,18 @@ export async function POST(request: Request) {
 
   const home = await resolvePostLoginPathAsync(email, body.from);
   const admin = isPartnerAdmin(email);
+  const destSlug =
+    home.match(/^\/partner\/([a-z0-9-]+)/i)?.[1]?.toLowerCase() || "general";
 
-  // Best-effort access log for system admins (do not fail the login).
+  // Best-effort access log + Craig notify (do not fail the login).
+  let access: PartnerAccessRecord | null = null;
+  let contactName: string | undefined;
   try {
-    const homePath = await partnerHomePathAsync(email);
-    const slugMatch = homePath.match(/^\/partner\/([a-z0-9-]+)/i);
     const contact = await findActiveContactByEmail(email);
-    await recordPartnerLogin({
+    contactName = contact?.name;
+    access = await recordPartnerLogin({
       email,
-      slug: slugMatch?.[1]?.toLowerCase() || contact?.slug || "general",
+      slug: destSlug || contact?.slug || "general",
       name: contact?.name,
     });
   } catch (err) {
@@ -78,6 +82,24 @@ export async function POST(request: Request) {
       err instanceof Error ? err.message : err
     );
   }
+
+  after(() =>
+    notifyPartnerLogin({
+      email,
+      slug: destSlug,
+      name: contactName,
+      workspacePath: home,
+      isAdmin: admin,
+      access,
+      requestedFrom: body.from,
+      userAgent: request.headers.get("user-agent") || undefined,
+    }).catch((err) => {
+      console.warn(
+        "[partner-login] sign-in notify failed:",
+        err instanceof Error ? err.message : err
+      );
+    })
+  );
 
   const res = NextResponse.json({
     ok: true,

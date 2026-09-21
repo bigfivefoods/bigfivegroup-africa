@@ -252,9 +252,9 @@ export async function recordPartnerLogin(opts: {
   email: string;
   slug: string;
   name?: string;
-}): Promise<void> {
+}): Promise<PartnerAccessRecord | null> {
   const email = opts.email.trim().toLowerCase();
-  if (!email) return;
+  if (!email) return null;
   const now = new Date().toISOString();
   const slug = (opts.slug || "general").trim().toLowerCase() || "general";
   const snap = normalizeSnapshot(await loadPartnerContacts());
@@ -299,6 +299,7 @@ export async function recordPartnerLogin(opts: {
   access.sort((a, b) => Date.parse(b.lastLoginAt) - Date.parse(a.lastLoginAt));
   snap.access = access;
   await savePartnerContacts(snap);
+  return access.find((a) => a.email.toLowerCase() === email) ?? null;
 }
 
 export async function listPartnerAccess(): Promise<PartnerAccessRecord[]> {
