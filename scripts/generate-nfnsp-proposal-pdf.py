@@ -24,7 +24,8 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "partners" / "BigFive_NFNSP_Implementation_Partnership_Proposal.pdf"
 NDA = ROOT / "public" / "partners" / "department-of-agriculture-logo.png"
 BFG = ROOT / "public" / "bigfivegroup-logo.jpg"
-HERO = ROOT / "public" / "og" / "home.jpg"
+HERO = ROOT / "public" / "home-hero.jpg"
+FONTDIR = Path(__file__).resolve().parent / "fonts"
 
 PAGE_W, PAGE_H = A4
 FOREST = HexColor("#0F3D38")
@@ -32,40 +33,58 @@ FOREST_DK = HexColor("#0B1C22")
 GOLD = HexColor("#C4923A")
 GOLD_LT = HexColor("#E8C07A")
 INK = HexColor("#171717")
-MUTED = HexColor("#5C5C5C")
+MUTED = HexColor("#525252")
 CREAM = HexColor("#F7F1E6")
-PAPER = HexColor("#FBF8F2")
+PAPER = HexColor("#FAFAFA")
 RULE = HexColor("#E5D9C4")
+CARD = HexColor("#FFFFFF")
 
-INNER = 16 * mm
+INNER = 18 * mm
 CONTENT_W = PAGE_W - 2 * INNER
 HEADER_H = 26 * mm
-FOOTER_H = 15.5 * mm
-BODY_BOTTOM = FOOTER_H + 7 * mm
+FOOTER_H = 20 * mm
+BODY_BOTTOM = FOOTER_H + 7.5 * mm
 TOTAL = 16
-BODY = 12
-LEAD = 15.6  # 12pt × 1.3
-CAPTION = 9
-CAPTION_LEAD = 11.7
+BODY = 10.5
+LEAD = 15.75  # 1.5 like the portal
+CAPTION = 8.5
+CAPTION_LEAD = 12.6
+RADIUS = 4.2 * mm  # portal rounded-2xl
+GAP = 4.0 * mm
+PAD = 5.5 * mm
+BAR = 3.2
+SOFT = HexColor("#FBF7EE")
 
 
 def fonts() -> dict[str, str]:
-    c = {
+    inter = {
+        "sans": FONTDIR / "Inter-Regular.ttf",
+        "sansBold": FONTDIR / "Inter-Bold.ttf",
+        "sansSemi": FONTDIR / "Inter-SemiBold.ttf",
+        "sansItalic": FONTDIR / "Inter-Italic.ttf",
+    }
+    fallback = {
         "sans": "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
         "sansBold": "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "sansSemi": "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
         "sansItalic": "/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf",
-        "serif": "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
-        "serifBold": "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
-        "serifItalic": "/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf",
     }
     out: dict[str, str] = {}
-    for k, p in c.items():
+    for k in ("sans", "sansBold", "sansSemi", "sansItalic"):
+        p = inter[k]
         n = f"NFN_{k}"
-        if os.path.isfile(p):
-            pdfmetrics.registerFont(TTFont(n, p))
+        if p.is_file():
+            pdfmetrics.registerFont(TTFont(n, str(p)))
+            out[k] = n
+        elif os.path.isfile(fallback[k]):
+            pdfmetrics.registerFont(TTFont(n, fallback[k]))
             out[k] = n
         else:
-            out[k] = "Times-Bold" if "Bold" in k else "Times-Roman"
+            out[k] = "Helvetica-Bold" if "Bold" in k or k == "sansSemi" else "Helvetica"
+    # Portal headings are Inter, not serif — map former serif keys.
+    out["serif"] = out["sans"]
+    out["serifBold"] = out["sansBold"]
+    out["serifItalic"] = out["sansItalic"]
     return out
 
 
@@ -107,19 +126,20 @@ def make_hero() -> ImageReader:
     dpi = 168
     tw = int(PAGE_W / 72 * dpi)
     th = int(PAGE_H / 72 * dpi)
-    hero = cover_crop(src, tw, th, 0.22)
+    hero = cover_crop(src, tw, th, 0.18)
     dusk = PILImage.new("RGB", hero.size, (11, 28, 34))
-    return to_reader(PILImage.blend(hero, dusk, 0.55), 88)
+    return to_reader(PILImage.blend(hero, dusk, 0.40), 88)
 
 
 def make_footer_band() -> ImageReader:
+    """Hero pattern only — kente/paint from home-hero.jpg, never the globe lockup."""
     src = PILImage.open(HERO).convert("RGB")
-    dpi = 168
+    dpi = 200
     tw = int(PAGE_W / 72 * dpi)
     th = max(1, int(FOOTER_H / 72 * dpi))
-    strip = cover_crop(src, tw, th, 0.62)
-    dusk = PILImage.new("RGB", strip.size, (10, 14, 22))
-    return to_reader(PILImage.blend(strip, dusk, 0.62), 88)
+    strip = cover_crop(src, tw, th, 0.84)
+    dusk = PILImage.new("RGB", strip.size, (11, 28, 34))
+    return to_reader(PILImage.blend(strip, dusk, 0.30), 90)
 
 
 def wrap(c, text, font, size, max_w):
@@ -143,12 +163,33 @@ def measure(c, text, font, size, lead, max_w) -> float:
     return n * lead
 
 
-def para(c, text, x, y, font, size, lead, max_w, color) -> float:
+def draw_str(c, text, x, y, font, size, color, tracking=0, align="left"):
+    """Draw a string; tracking uses a text object (Canvas has no setCharSpace)."""
     c.setFillColor(color)
     c.setFont(font, size)
+    if not tracking:
+        if align == "right":
+            c.drawRightString(x, y, text)
+        else:
+            c.drawString(x, y, text)
+        return
+    extra = tracking * max(0, len(text) - 1)
+    w = c.stringWidth(text, font, size) + extra
+    ox = x if align != "right" else x - w
+    t = c.beginText()
+    t.setTextOrigin(ox, y)
+    t.setFont(font, size)
+    t.setFillColor(color)
+    t.setCharSpace(tracking)
+    t.textLine(text)
+    c.drawText(t)
+    c._code.append("0 Tc")
+
+
+def para(c, text, x, y, font, size, lead, max_w, color, tracking=0) -> float:
     yy = y
     for line in wrap(c, text, font, size, max_w):
-        c.drawString(x, yy, line)
+        draw_str(c, line, x, yy, font, size, color, tracking=tracking)
         yy -= lead
     return y - yy
 
@@ -162,29 +203,35 @@ def rrect(c, x, y, w, h, r, fill=None, stroke=None, sw=0.5):
     c.roundRect(x, y, w, h, r, fill=1 if fill is not None else 0, stroke=1 if stroke is not None else 0)
 
 
-def gold_rule(c, x, y, w, sw=0.7):
+def gold_rule(c, x, y, w, sw=0.8):
     c.setStrokeColor(GOLD)
     c.setLineWidth(sw)
     c.line(x, y, x + w, y)
+
+
+def forest_bar(c, x, y, h):
+    c.setFillColor(FOREST)
+    c.rect(x, y, BAR, h, fill=1, stroke=0)
+
+
+def card(c, x, yb, w, h, fill=white, stroke=GOLD, sw=0.45, bar=True, radius=None):
+    r = RADIUS if radius is None else radius
+    rrect(c, x, yb, w, h, r, fill=fill, stroke=None)
+    if bar:
+        c.saveState()
+        p = c.beginPath()
+        p.roundRect(x, yb, w, h, r)
+        c.clipPath(p, stroke=0)
+        forest_bar(c, x, yb, h)
+        c.restoreState()
+    if stroke is not None:
+        rrect(c, x, yb, w, h, r, fill=None, stroke=stroke, sw=sw)
 
 
 NDA_PLATE = None
 BFG_PLATE = None
 HERO_IMG = None
 FOOTER_IMG = None
-
-
-def cobrand(c, x, y, nda_w=54 * mm, nda_h=16.5 * mm):
-    c.drawImage(
-        NDA_PLATE, x, y, width=nda_w, height=nda_h, preserveAspectRatio=True, anchor="c"
-    )
-    c.setFillColor(GOLD)
-    c.setFont(F["serifBold"], 11)
-    c.drawCentredString(x + nda_w + 5 * mm, y + nda_h / 2 - 3, "×")
-    bx = x + nda_w + 10 * mm
-    c.drawImage(
-        BFG_PLATE, bx, y, width=nda_h, height=nda_h, preserveAspectRatio=True, anchor="c"
-    )
 
 
 def footer(c, n):
@@ -194,47 +241,56 @@ def footer(c, n):
         c.setFillColor(FOREST_DK)
         c.rect(0, 0, PAGE_W, FOOTER_H, fill=1, stroke=0)
     c.setFillColor(GOLD)
-    c.rect(0, FOOTER_H - 1.0, PAGE_W, 1.0, fill=1, stroke=0)
+    c.rect(0, FOOTER_H - 1.15, PAGE_W, 1.15, fill=1, stroke=0)
+    baseline = FOOTER_H * 0.42
     c.setFillColor(white)
-    c.setFont(F["sansBold"], 8)
-    c.drawString(INNER, 6.4, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.1  ·  Not an awarded tender")
-    c.drawRightString(PAGE_W - INNER, 6.4, f"{n}   /   {TOTAL}")
+    c.setFont(F["sansSemi"], 8)
+    c.drawString(INNER, baseline, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.1  ·  Not an awarded tender")
+    c.drawRightString(PAGE_W - INNER, baseline, f"{n}   /   {TOTAL}")
 
 
 def header_bar(c, running: str):
     y = PAGE_H - HEADER_H
     c.setFillColor(white)
     c.rect(0, y, PAGE_W, HEADER_H, fill=1, stroke=0)
-    cobrand(c, INNER, y + 4.6)
-    c.setFillColor(FOREST)
-    c.setFont(F["sansBold"], 8)
-    c.drawRightString(PAGE_W - INNER, y + 16.4, "NFNSP-2   ·   2027–2037")
-    c.setFillColor(MUTED)
-    c.setFont(F["serifItalic"], 9)
-    c.drawRightString(PAGE_W - INNER, y + 6.2, running)
+    nda_w, nda_h = 62 * mm, 17.2 * mm
+    bfg = 20 * mm
+    c.drawImage(
+        NDA_PLATE,
+        INNER,
+        y + (HEADER_H - nda_h) / 2,
+        width=nda_w,
+        height=nda_h,
+        preserveAspectRatio=True,
+        anchor="c",
+    )
+    c.drawImage(
+        BFG_PLATE,
+        PAGE_W - INNER - bfg,
+        y + (HEADER_H - bfg) / 2,
+        width=bfg,
+        height=bfg,
+        preserveAspectRatio=True,
+        anchor="c",
+    )
     c.setFillColor(GOLD)
-    c.rect(0, y, PAGE_W, 1.05, fill=1, stroke=0)
+    c.rect(0, y, PAGE_W, 1.15, fill=1, stroke=0)
     return y
 
 
 def chrome(c, n, running):
-    c.setFillColor(white)
+    c.setFillColor(PAPER)
     c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
     top = header_bar(c, running)
     footer(c, n)
-    return top - 10 * mm
+    draw_str(c, "NFNSP-2  ·  2027–2037", INNER, top - 6.2 * mm, F["sansSemi"], 7.5, GOLD, tracking=0.9)
+    draw_str(c, running, PAGE_W - INNER, top - 6.2 * mm, F["sansItalic"], 8, MUTED, align="right")
+    return top - 12.5 * mm
 
 
 def kicker(c, text, x, y):
-    c.setFillColor(GOLD)
-    c.setFont(F["sansBold"], 8)
-    c.drawString(x, y, text.upper())
-    gold_rule(c, x, y - 3.0, 22 * mm, 0.9)
-
-
-def forest_bar(c, x, y, h):
-    c.setFillColor(FOREST)
-    c.rect(x, y, 2.2, h, fill=1, stroke=0)
+    draw_str(c, text.upper(), x, y, F["sansSemi"], 7.5, GOLD, tracking=1.2)
+    gold_rule(c, x, y - 2.8, 22 * mm, 0.9)
 
 
 def bullets(c, items, x, y, max_w, size=BODY, lead=LEAD) -> float:
@@ -246,23 +302,61 @@ def bullets(c, items, x, y, max_w, size=BODY, lead=LEAD) -> float:
     return y
 
 
+def quote_box(c, y, text, size=BODY, lead=LEAD) -> float:
+    pw = CONTENT_W - 2 * PAD
+    h = measure(c, text, F["sansItalic"], size, lead, pw) + 2 * 5.2 * mm
+    rrect(c, INNER, y - h, CONTENT_W, h, RADIUS, fill=FOREST, stroke=None)
+    para(c, text, INNER + PAD, y - 5.6 * mm, F["sansItalic"], size, lead, pw, GOLD_LT)
+    return y - h - GAP
+
+
+def note_box(c, y, text, size=BODY, lead=LEAD) -> float:
+    pw = CONTENT_W - PAD - 8
+    h = measure(c, text, F["sans"], size, lead, pw) + 2 * 5.2 * mm
+    card(c, INNER, y - h, CONTENT_W, h, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
+    para(c, text, INNER + 9, y - 5.6 * mm, F["sans"], size, lead, pw, MUTED)
+    return y - h - GAP
+
+
 def metric_row(c, y, stats) -> float:
-    """Callout cards: (value, label, source)."""
+    """Portal-style callout cards: (value, label, source) — height follows content."""
     n = len(stats)
-    gap = 3.2 * mm
+    gap = 3.6 * mm
     tw = (CONTENT_W - gap * (n - 1)) / n
-    th = 26 * mm
+    inner_w = tw - 12
+    lab_h = [
+        measure(c, lab, F["sans"], 8.4, 11.8, inner_w)
+        for _, lab, _ in stats
+    ]
+    th = 5.2 * mm + 15 + 3.2 + max(lab_h) + 10 + 4.2 * mm
     for i, (v, lab, src) in enumerate(stats):
         x = INNER + i * (tw + gap)
-        rrect(c, x, y - th, tw, th, 2.4, fill=CREAM, stroke=GOLD, sw=0.45)
-        c.setFillColor(FOREST)
-        c.setFont(F["serifBold"], 16)
-        c.drawString(x + 6, y - 13, v)
-        para(c, lab, x + 6, y - 22, F["sans"], 8, 10.4, tw - 12, INK)
+        card(c, x, y - th, tw, th, fill=white, stroke=GOLD, sw=0.45, bar=True)
+        draw_str(c, v, x + 7.5, y - 7.2 * mm, F["sansSemi"], 14.5, FOREST, tracking=-0.35)
+        para(c, lab, x + 7.5, y - 12.2 * mm, F["sans"], 8.4, 11.8, inner_w, INK)
         c.setFillColor(MUTED)
-        c.setFont(F["sansItalic"], 7)
-        c.drawString(x + 6, y - th + 6, src)
-    return y - th - 6 * mm
+        c.setFont(F["sansItalic"], 7.4)
+        c.drawString(x + 7.5, y - th + 4.2 * mm, src)
+    return y - th - 5.5 * mm
+
+
+def numbered_card(c, y, mark, title, body, size=BODY, lead=LEAD) -> float:
+    """Full-width row: forest disc + title + body, height follows content."""
+    pw = CONTENT_W - 22
+    title_h = measure(c, title, F["sansSemi"], size, lead, pw)
+    body_h = measure(c, body, F["sans"], size, lead, pw)
+    h = 4.4 * mm + title_h + 1.8 + body_h + 4.0 * mm
+    card(c, INNER, y - h, CONTENT_W, h, fill=white, stroke=GOLD, sw=0.4, bar=False)
+    title_base = y - 5.0 * mm
+    c.setFillColor(FOREST)
+    c.circle(INNER + 10, title_base + 2.4, 5.4, fill=1, stroke=0)
+    c.setFillColor(GOLD_LT)
+    c.setFont(F["sansSemi"], 7.2)
+    c.drawCentredString(INNER + 10, title_base, mark)
+    tx = INNER + 18
+    para(c, title, tx, title_base, F["sansSemi"], size, lead, pw, FOREST)
+    para(c, body, tx, title_base - title_h - 1.8, F["sans"], size, lead, pw, MUTED)
+    return y - h - 2.8 * mm
 
 
 # ---------------------------------------------------------------------------
@@ -271,34 +365,28 @@ def metric_row(c, y, stats) -> float:
 def page_cover(c):
     if HERO_IMG:
         c.drawImage(HERO_IMG, 0, 0, width=PAGE_W, height=PAGE_H, preserveAspectRatio=False)
-    header_bar(c, "Implementation partnership")
+    header_bar(c, "")
     footer(c, 1)
 
-    y = PAGE_H - HEADER_H - 14 * mm
-    c.setFillColor(GOLD_LT)
-    c.setFont(F["sansBold"], 8)
-    c.drawString(INNER, y, "PARTNER PORTAL   ·   CONFIDENTIAL   ·   NFNSP-2")
-    y -= 12 * mm
-    c.setFillColor(white)
-    c.setFont(F["serifBold"], 28)
-    c.drawString(INNER, y, "Implementation partnership")
-    y -= 10 * mm
-    c.setFillColor(GOLD_LT)
-    c.setFont(F["serifItalic"], 12)
+    y = PAGE_H - HEADER_H - 12 * mm
+    draw_str(c, "PARTNER PORTAL   ·   CONFIDENTIAL   ·   NFNSP-2", INNER, y, F["sansSemi"], 7.5, GOLD_LT, tracking=1.3)
+    y -= 11 * mm
+    draw_str(c, "Implementation partnership", INNER, y, F["sansSemi"], 26, white, tracking=-0.45)
+    y -= 9 * mm
     para(
         c,
         "Operationalising the National Food and Nutrition Security Plan  ·  2027–2037",
         INNER,
         y,
-        F["serifItalic"],
+        F["sansItalic"],
         12,
-        15.6,
+        16,
         CONTENT_W * 0.92,
         GOLD_LT,
     )
-    y -= 18 * mm
-    gold_rule(c, INNER, y, 46 * mm, 1.1)
-    y -= 10 * mm
+    y -= 16 * mm
+    gold_rule(c, INNER, y, 46 * mm, 1.15)
+    y -= 9 * mm
     para(
         c,
         "Private briefing for the NFNSP Technical Working Group / Department of Agriculture. "
@@ -311,7 +399,7 @@ def page_cover(c):
         CONTENT_W * 0.92,
         HexColor("#F3E9D6"),
     )
-    y -= 28 * mm
+    y -= 26 * mm
 
     stats = [
         ("22.2%", "Households with inadequate or severely inadequate food access", "GHS 2024"),
@@ -319,35 +407,29 @@ def page_cover(c):
         ("17.6%", "Below the food poverty line of R777 pp/pm", "Poverty Trends 2025"),
         ("10 / 20 / 30%", "Smallholder share of government food procurement", "Framework 2029 / 2033 / 2037"),
     ]
-    tw = (CONTENT_W - 6 * mm) / 2
-    th = 34 * mm
+    tw = (CONTENT_W - 5 * mm) / 2
+    inner_w = tw - 16
+    lab_h = [measure(c, lab, F["sans"], BODY, LEAD, inner_w) for _, lab, _ in stats]
+    th = 6 * mm + 18 + 4 + max(lab_h) + 12
     for i, (v, lab, src) in enumerate(stats):
         col, row = i % 2, i // 2
-        x = INNER + col * (tw + 6 * mm)
+        x = INNER + col * (tw + 5 * mm)
         ty = y - th - row * (th + 4 * mm)
-        rrect(c, x, ty, tw, th, 3, fill=Color(1, 1, 1, alpha=0.94), stroke=GOLD, sw=0.5)
-        c.setFillColor(FOREST)
-        c.setFont(F["serifBold"], 20)
-        c.drawString(x + 8, ty + th - 14, v)
-        para(c, lab, x + 8, ty + th - 26, F["sans"], BODY, LEAD, tw - 16, INK)
+        card(c, x, ty, tw, th, fill=Color(1, 1, 1, alpha=0.95), stroke=GOLD, sw=0.5, bar=True)
+        draw_str(c, v, x + 9, ty + th - 8.2 * mm, F["sansSemi"], 18, FOREST, tracking=-0.4)
+        para(c, lab, x + 9, ty + th - 15 * mm, F["sans"], BODY, LEAD, inner_w, INK)
         c.setFillColor(MUTED)
         c.setFont(F["sansItalic"], CAPTION)
-        c.drawString(x + 8, ty + 7, src)
+        c.drawString(x + 9, ty + 5.2 * mm, src)
 
-    y = FOOTER_H + 28 * mm
-    rrect(c, INNER, FOOTER_H + 8 * mm, CONTENT_W, 22 * mm, 2.6, fill=Color(0.04, 0.11, 0.13, alpha=0.72), stroke=None)
-    para(
-        c,
+    honesty = (
         "Honesty: 355 000 meals is programme-reported, not millions. 2.5 million children per day is a DBE-pathway plan, not current headcount. "
-        "SupplierAdvisor® does not replace BAS or LOGIS.",
-        INNER + 8,
-        FOOTER_H + 22 * mm,
-        F["sans"],
-        BODY,
-        LEAD,
-        CONTENT_W - 16,
-        white,
+        "SupplierAdvisor® does not replace BAS or LOGIS."
     )
+    hh = measure(c, honesty, F["sans"], BODY, LEAD, CONTENT_W - 16) + 12
+    by = FOOTER_H + 8 * mm
+    rrect(c, INNER, by, CONTENT_W, hh, RADIUS, fill=Color(0.04, 0.11, 0.13, alpha=0.78), stroke=None)
+    para(c, honesty, INNER + 8, by + hh - 8, F["sans"], BODY, LEAD, CONTENT_W - 16, white)
     c.showPage()
 
 
@@ -357,7 +439,7 @@ def page_cover(c):
 def page_contents(c):
     y = chrome(c, 2, "Contents  ·  how to read this proposal")
     kicker(c, "02  ·  Contents", INNER, y)
-    y -= 11 * mm
+    y -= 9 * mm
     toc = [
         ("01", "Cover — sourced national figures", "1"),
         ("02", "Contents and reading rules", "2"),
@@ -379,23 +461,23 @@ def page_contents(c):
     for n, t, p in toc:
         c.setStrokeColor(RULE)
         c.setLineWidth(0.35)
-        c.setDash(0.8, 1.6)
+        c.setDash(0.7, 1.5)
         c.line(INNER + 16 * mm, y + 2, PAGE_W - INNER - 12 * mm, y + 2)
         c.setDash()
         c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], BODY)
+        c.setFont(F["sansSemi"], BODY)
         c.drawString(INNER, y, n)
         c.setFillColor(INK)
         c.setFont(F["sans"], BODY)
         c.drawString(INNER + 16 * mm, y, t)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], BODY)
+        c.setFont(F["sansSemi"], BODY)
         c.drawRightString(PAGE_W - INNER, y, p)
-        y -= LEAD + 1.0
+        y -= LEAD + 1.6
 
-    y -= 3 * mm
+    y -= 4 * mm
     kicker(c, "How to read figures", INNER, y)
-    y -= 9 * mm
+    y -= 8 * mm
     note = (
         "Official Goal, Enabler and Game-changer titles are from NFNSP-2 Draft 2 (July 2026) and the Results Framework of 27 August 2026. "
         "Official statistics (GHS 2024, NFNSS 2023, Poverty Trends 2025) carry a source. Group figures carry a label: plan, programme-reported, product specification, or internal comparison. "
@@ -403,10 +485,7 @@ def page_contents(c):
         "SupplierAdvisor® does not replace BAS or LOGIS. No learner names. Treasury, DoH, DSD/SASSA and COGTA/SALGA lead VAT, labelling, grants and the local mandate — Big Five operationalises lots, plates, nodes and MELIA extracts. "
         "This briefing does not replace the Plan; it proposes how to operationalise it."
     )
-    nh = measure(c, note, F["sans"], BODY, LEAD, CONTENT_W - 18) + 18
-    rrect(c, INNER, y - nh, CONTENT_W, nh, 3, fill=CREAM, stroke=GOLD, sw=0.4)
-    forest_bar(c, INNER, y - nh, nh)
-    para(c, note, INNER + 10, y - 10, F["sans"], BODY, LEAD, CONTENT_W - 18, MUTED)
+    note_box(c, y, note)
     c.showPage()
 
 
@@ -416,16 +495,13 @@ def page_contents(c):
 def page_exec(c):
     y = chrome(c, 3, "Executive summary")
     kicker(c, "03  ·  Executive summary", INNER, y)
-    y -= 10 * mm
+    y -= 8.5 * mm
 
     lead = (
         "South Africa has a Plan with named Goals, Game Changers and Enablers. What it needs now is an implementation partner "
         "that can put a lawful plate on the table, a verified smallholder lot behind that plate, and proof that both happened."
     )
-    lh = measure(c, lead, F["serifItalic"], BODY, LEAD, CONTENT_W - 16) + 14
-    rrect(c, INNER, y - lh, CONTENT_W, lh, 3, fill=FOREST, stroke=None)
-    para(c, lead, INNER + 8, y - 10, F["serifItalic"], BODY, LEAD, CONTENT_W - 16, GOLD_LT)
-    y -= lh + 6 * mm
+    y = quote_box(c, y, lead)
 
     y = metric_row(
         c,
@@ -445,16 +521,13 @@ def page_exec(c):
     ]
     for p in paras:
         used = para(c, p, INNER, y, F["sans"], BODY, LEAD, CONTENT_W, INK)
-        y -= used + 4 * mm
+        y -= used + 3.6 * mm
 
     close = (
         "Confidential partner briefing — not a government publication, not an awarded tender. "
         "355 000 meals is programme-reported. 2.5 million children per day is a DBE-pathway plan. SupplierAdvisor® does not replace BAS or LOGIS."
     )
-    ch = measure(c, close, F["sans"], BODY, LEAD, CONTENT_W - 16) + 16
-    rrect(c, INNER, y - ch, CONTENT_W, ch, 3, fill=CREAM, stroke=GOLD, sw=0.4)
-    forest_bar(c, INNER, y - ch, ch)
-    para(c, close, INNER + 10, y - 10, F["sans"], BODY, LEAD, CONTENT_W - 18, MUTED)
+    note_box(c, y, close)
     c.showPage()
 
 
@@ -464,14 +537,11 @@ def page_exec(c):
 def page_purpose(c):
     y = chrome(c, 4, "Vision · mission · values")
     kicker(c, "04  ·  The north star this partnership already answers to", INNER, y)
-    y -= 10 * mm
+    y -= 8.5 * mm
     lead = (
         "The companies are instruments of one purpose. The Plan needs a partner that already answers to a north star — not a slide deck assembled for a tender."
     )
-    lh = measure(c, lead, F["serifItalic"], BODY, LEAD, CONTENT_W - 16) + 14
-    rrect(c, INNER, y - lh, CONTENT_W, lh, 3, fill=FOREST, stroke=None)
-    para(c, lead, INNER + 8, y - 10, F["serifItalic"], BODY, LEAD, CONTENT_W - 16, GOLD_LT)
-    y -= lh + 6 * mm
+    y = quote_box(c, y, lead)
 
     cards = [
         ("VISION", "A prosperous Africa — for everyone on it",
@@ -482,17 +552,28 @@ def page_purpose(c):
          "Humanity, innovation, integrity, excellence, and purposeful impact. Values shape how we hire, partner, trade and deliver — including on this Plan."),
     ]
     tw = (CONTENT_W - 6 * mm) / 3
-    th = 72 * mm
+    inner_w = tw - 16
+    heights = []
+    for k, t, d in cards:
+        h = (
+            6 * mm
+            + 10
+            + measure(c, t, F["sansSemi"], BODY, LEAD, inner_w)
+            + 4
+            + measure(c, d, F["sans"], BODY, LEAD, inner_w)
+            + 6 * mm
+        )
+        heights.append(h)
+    th = max(heights)
     for i, (k, t, d) in enumerate(cards):
         x = INNER + i * (tw + 3 * mm)
-        rrect(c, x, y - th, tw, th, 2.6, fill=CREAM, stroke=GOLD, sw=0.4)
-        forest_bar(c, x, y - th, th)
-        c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], 8)
-        c.drawString(x + 8, y - 10, k)
-        para(c, t, x + 8, y - 22, F["sansBold"], BODY, LEAD, tw - 16, FOREST)
-        para(c, d, x + 8, y - 48, F["sans"], BODY, LEAD, tw - 16, MUTED)
-    y -= th + 7 * mm
+        card(c, x, y - th, tw, th, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
+        draw_str(c, k, x + 8, y - 5.6 * mm, F["sansSemi"], 7.4, GOLD, tracking=1.1)
+        yy = y - 10.5 * mm
+        used = para(c, t, x + 8, yy, F["sansSemi"], BODY, LEAD, inner_w, FOREST)
+        yy -= used + 3.5
+        para(c, d, x + 8, yy, F["sans"], BODY, LEAD, inner_w, MUTED)
+    y -= th + 6.5 * mm
 
     kicker(c, "Five values on this Plan", INNER, y)
     y -= 8 * mm
@@ -504,14 +585,20 @@ def page_purpose(c):
         ("Impact", "PMO under Enabler A. Scale only after a closed KZN circuit holds."),
     ]
     vw = (CONTENT_W - 8 * mm) / 5
-    vh = 48 * mm
+    inner_v = vw - 12
+    vh = max(
+        5.2 * mm
+        + measure(c, t, F["sansSemi"], BODY, LEAD, inner_v)
+        + 3
+        + measure(c, d, F["sans"], CAPTION, CAPTION_LEAD, inner_v)
+        + 5 * mm
+        for t, d in vals
+    )
     for i, (t, d) in enumerate(vals):
         x = INNER + i * (vw + 2 * mm)
-        rrect(c, x, y - vh, vw, vh, 2.2, fill=white, stroke=GOLD, sw=0.4)
-        c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], BODY)
-        para(c, t, x + 5, y - 11, F["sansBold"], BODY, LEAD, vw - 10, FOREST)
-        para(c, d, x + 5, y - 28, F["sans"], CAPTION, CAPTION_LEAD, vw - 10, MUTED)
+        card(c, x, y - vh, vw, vh, fill=white, stroke=GOLD, sw=0.4, bar=True)
+        used = para(c, t, x + 6, y - 5.4 * mm, F["sansSemi"], BODY, LEAD, inner_v, FOREST)
+        para(c, d, x + 6, y - 5.4 * mm - used - 2.5, F["sans"], CAPTION, CAPTION_LEAD, inner_v, MUTED)
     c.showPage()
 
 
@@ -521,19 +608,12 @@ def page_purpose(c):
 def page_missions(c):
     y = chrome(c, 5, "Feed · Educate · Empower")
     kicker(c, "05  ·  How the Group mission serves the Department’s Goals", INNER, y)
-    y -= 10 * mm
-    para(
+    y -= 8.5 * mm
+    y = quote_box(
         c,
-        "Feed · Educate · Empower is not a slogan beside the Plan. It is the way nine pillars become one delivery against Goals 1–3 and Enablers A–C.",
-        INNER,
         y,
-        F["serifItalic"],
-        BODY,
-        LEAD,
-        CONTENT_W,
-        FOREST,
+        "Feed · Educate · Empower is not a slogan beside the Plan. It is the way nine pillars become one delivery against Goals 1–3 and Enablers A–C.",
     )
-    y -= 22 * mm
     missions = [
         ("01  FEED", "Agri · Foods",
          "Regenerative production and fortified nutrition — farm gate to school kitchen.",
@@ -550,45 +630,35 @@ def page_missions(c):
     heights = []
     for k, pil, blurb, nda in missions:
         h = (
-            14
-            + measure(c, pil, F["sansBold"], BODY, LEAD, inner_w)
-            + 4
+            6 * mm
+            + 10
+            + measure(c, pil, F["sansSemi"], BODY, LEAD, inner_w)
+            + 3.5
             + measure(c, blurb, F["sans"], BODY, LEAD, inner_w)
-            + 5
+            + 4
             + measure(c, nda, F["sans"], BODY, LEAD, inner_w)
-            + 12
+            + 6 * mm
         )
         heights.append(h)
     th = max(heights)
     for i, (k, pil, blurb, nda) in enumerate(missions):
         x = INNER + i * (tw + 3 * mm)
-        rrect(c, x, y - th, tw, th, 2.6, fill=CREAM, stroke=GOLD, sw=0.4)
-        forest_bar(c, x, y - th, th)
-        c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], 8)
-        c.drawString(x + 8, y - 10, k)
-        yy = y - 22
-        used = para(c, pil, x + 8, yy, F["sansBold"], BODY, LEAD, inner_w, FOREST)
-        yy -= used + 4
+        card(c, x, y - th, tw, th, fill=white, stroke=GOLD, sw=0.4, bar=True)
+        draw_str(c, k, x + 8, y - 5.6 * mm, F["sansSemi"], 7.4, GOLD, tracking=1.0)
+        yy = y - 10.5 * mm
+        used = para(c, pil, x + 8, yy, F["sansSemi"], BODY, LEAD, inner_w, FOREST)
+        yy -= used + 3.2
         used = para(c, blurb, x + 8, yy, F["sans"], BODY, LEAD, inner_w, INK)
-        yy -= used + 5
+        yy -= used + 4
         para(c, nda, x + 8, yy, F["sans"], BODY, LEAD, inner_w, MUTED)
-    y -= th + 7 * mm
-    rrect(c, INNER, y - 36 * mm, CONTENT_W, 36 * mm, 2.6, fill=FOREST, stroke=None)
-    c.setFillColor(GOLD_LT)
-    c.setFont(F["sansBold"], 8)
-    c.drawString(INNER + 10, y - 10, "CROSS-CUTTING  ·  IMPACT  ·  FOUNDATION")
-    para(
-        c,
-        "Impact is the PMO — Enabler A, one programme, one risk register. Foundation channels 10% of group profits with proof. Complementary CSI — not a substitute for the fiscus or SASSA.",
-        INNER + 10,
-        y - 22,
-        F["sans"],
-        BODY,
-        LEAD,
-        CONTENT_W - 20,
-        white,
+    y -= th + 5.5 * mm
+    cross = (
+        "Impact is the PMO — Enabler A, one programme, one risk register. Foundation channels 10% of group profits with proof. Complementary CSI — not a substitute for the fiscus or SASSA."
     )
+    ch = 6 * mm + 10 + measure(c, cross, F["sans"], BODY, LEAD, CONTENT_W - 20) + 5.5 * mm
+    rrect(c, INNER, y - ch, CONTENT_W, ch, RADIUS, fill=FOREST, stroke=None)
+    draw_str(c, "CROSS-CUTTING  ·  IMPACT  ·  FOUNDATION", INNER + 10, y - 5.6 * mm, F["sansSemi"], 7.4, GOLD_LT, tracking=1.0)
+    para(c, cross, INNER + 10, y - 11.5 * mm, F["sans"], BODY, LEAD, CONTENT_W - 20, white)
     c.showPage()
 
 
@@ -596,34 +666,35 @@ def page_missions(c):
 # Game-changer cards
 # ---------------------------------------------------------------------------
 def draw_gc(c, y, n, title, asks, deliver, limit) -> float:
+    pad = 7.5
     pw = CONTENT_W - 18
-    title_w = CONTENT_W - 38
-    th = measure(c, title, F["sansBold"], BODY, LEAD, title_w)
+    num_w = c.stringWidth(n + "  ", F["sansSemi"], BODY) + 2
+    title_w = CONTENT_W - 18 - num_w
+    th = measure(c, title, F["sansSemi"], BODY, LEAD, title_w)
     ah = measure(c, "Plan: " + asks, F["sans"], BODY, LEAD, pw)
     dh = measure(c, "Big Five: " + deliver, F["sans"], BODY, LEAD, pw)
     lh = measure(c, limit, F["sansItalic"], CAPTION, CAPTION_LEAD, pw)
-    h = 14 + th + 6 + ah + 5 + dh + 5 + lh + 10
-    rrect(c, INNER, y - h, CONTENT_W, h, 2.8, fill=CREAM, stroke=GOLD, sw=0.4)
-    forest_bar(c, INNER, y - h, h)
+    h = 5.4 * mm + th + 3.5 + ah + 3.2 + dh + 3.2 + lh + 5.2 * mm
+    card(c, INNER, y - h, CONTENT_W, h, fill=white, stroke=GOLD, sw=0.45, bar=True)
     c.setFillColor(GOLD)
-    c.setFont(F["sansBold"], BODY)
-    c.drawString(INNER + 10, y - 11, n)
-    para(c, title, INNER + 30, y - 11, F["sansBold"], BODY, LEAD, title_w, FOREST)
-    y_body = y - 14 - th
-    para(c, "Plan: " + asks, INNER + 10, y_body, F["sans"], BODY, LEAD, pw, MUTED)
-    para(c, "Big Five: " + deliver, INNER + 10, y_body - ah - 4, F["sans"], BODY, LEAD, pw, INK)
-    para(c, limit, INNER + 10, y_body - ah - 4 - dh - 4, F["sansItalic"], CAPTION, CAPTION_LEAD, pw, FOREST)
-    return y - h - 4.2 * mm
+    c.setFont(F["sansSemi"], BODY)
+    c.drawString(INNER + pad, y - 5.4 * mm, n)
+    para(c, title, INNER + pad + num_w, y - 5.4 * mm, F["sansSemi"], BODY, LEAD, title_w, FOREST)
+    y_body = y - 5.4 * mm - th - 3.5
+    para(c, "Plan: " + asks, INNER + pad, y_body, F["sans"], BODY, LEAD, pw, MUTED)
+    para(c, "Big Five: " + deliver, INNER + pad, y_body - ah - 3.2, F["sans"], BODY, LEAD, pw, INK)
+    para(c, limit, INNER + pad, y_body - ah - 3.2 - dh - 3.2, F["sansItalic"], CAPTION, CAPTION_LEAD, pw, FOREST)
+    return y - h - GAP
 
 
 def page_goal_head(c, num, running, kicker_t, title, rationale):
     y = chrome(c, num, running)
     kicker(c, kicker_t, INNER, y)
-    y -= 9 * mm
-    used = para(c, title, INNER, y, F["serifBold"], 16, 20.8, CONTENT_W, FOREST)
-    y -= used + 4 * mm
+    y -= 10 * mm
+    used = para(c, title, INNER, y, F["sansSemi"], 15.5, 20, CONTENT_W, FOREST, tracking=-0.25)
+    y -= used + 3.2 * mm
     used = para(c, rationale, INNER, y, F["sans"], BODY, LEAD, CONTENT_W, MUTED)
-    y -= used + 5 * mm
+    y -= used + 4.5 * mm
     return y
 
 
@@ -766,7 +837,7 @@ def page_enablers(c):
     y = chrome(c, 10, "Enablers A–C — official titles")
     kicker(c, "10  ·  Governance, resourcing, capacity and data", INNER, y)
     y -= 8 * mm
-    para(
+    used = para(
         c,
         "In the official Plan, Enabler B is resourcing — not MELIA. Enabler C is capacity, innovation and technological support, and it is Enabler C that carries data and MELIA. This page uses those titles.",
         INNER,
@@ -777,7 +848,7 @@ def page_enablers(c):
         CONTENT_W,
         MUTED,
     )
-    y -= 16 * mm
+    y -= used + 5 * mm
     y = draw_gc(
         c, y, "A",
         "Multi-actor food-system governance",
@@ -801,19 +872,19 @@ def page_enablers(c):
 def page_pillars(c):
     y = chrome(c, 11, "Nine pillars as one circuit")
     kicker(c, "11  ·  Nine pillars as one circuit", INNER, y)
-    y -= 9 * mm
-    para(
+    y -= 8 * mm
+    used = para(
         c,
         "The Department does not need nine vendors. It needs one circuit mapped to the Plan’s Game Changers: Agri opens a lot (1.3), Connect proves it for the 10% target (1.2), Foods mills a plate (Goals 2–3), Direct moves it to hub, market, rank and kitchen (1.1, 1.4). Leadership forms people. Impact reports programme-reported until audited.",
         INNER,
         y,
-        F["serifItalic"],
+        F["sansItalic"],
         BODY,
         LEAD,
         CONTENT_W,
         FOREST,
     )
-    y -= 22 * mm
+    y -= used + 4.5 * mm
 
     steps = [
         ("01", "Agri", "Smallholders onboard with practice, soil and identity. Grain is a lot, not a donation."),
@@ -823,18 +894,26 @@ def page_pillars(c):
         ("05", "People", "Leadership runs the kitchen. Impact reports programme-reported until audited."),
     ]
     tw = (CONTENT_W - 8 * mm) / 5
-    sh = 34 * mm
+    inner_s = tw - 10
+    sh = max(
+        5 * mm
+        + 9
+        + 11
+        + measure(c, d, F["sans"], 7.2, 10.0, inner_s)
+        + 4.5 * mm
+        for _, _, d in steps
+    )
     for i, (n, t, d) in enumerate(steps):
         x = INNER + i * (tw + 2 * mm)
-        rrect(c, x, y - sh, tw, sh, 2.4, fill=CREAM, stroke=GOLD, sw=0.4)
+        card(c, x, y - sh, tw, sh, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
         c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], 7)
-        c.drawString(x + 4.5, y - 8, n)
+        c.setFont(F["sansSemi"], 7)
+        c.drawString(x + 5.5, y - 5 * mm, n)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 7.6)
-        c.drawString(x + 4.5, y - 16.5, t)
-        para(c, d, x + 4.5, y - 25, F["sans"], 6.15, 8.0, tw - 9, MUTED)
-    y -= sh + 7 * mm
+        c.setFont(F["sansSemi"], 9)
+        c.drawString(x + 5.5, y - 9.2 * mm, t)
+        para(c, d, x + 5.5, y - 14 * mm, F["sans"], 7.2, 10.0, inner_s, MUTED)
+    y -= sh + 6 * mm
 
     kicker(c, "Nine pillars — what each does for NDA", INNER, y)
     y -= 8 * mm
@@ -850,20 +929,26 @@ def page_pillars(c):
         ("Global", "Empower", "After a closed KZN circuit — not a current scale claim."),
     ]
     col_w = (CONTENT_W - 6 * mm) / 3
-    ph = 23 * mm
+    inner_p = col_w - 12
+    ph = max(
+        4.6 * mm
+        + 8
+        + 11
+        + measure(c, d, F["sans"], 7.4, 10.2, inner_p)
+        + 4.2 * mm
+        for _, _, d in pillars
+    )
     for i, (t, mission, d) in enumerate(pillars):
         col, row = i % 3, i // 3
         x = INNER + col * (col_w + 3 * mm)
         ty = y - row * (ph + 3 * mm)
-        rrect(c, x, ty - ph, col_w, ph, 2.2, fill=white, stroke=RULE, sw=0.4)
-        c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], 5.8)
-        c.drawString(x + 5, ty - 7, mission.upper())
+        card(c, x, ty - ph, col_w, ph, fill=white, stroke=GOLD, sw=0.4, bar=True)
+        draw_str(c, mission.upper(), x + 6, ty - 4.6 * mm, F["sansSemi"], 6.4, GOLD, tracking=0.8)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 8.2)
-        c.drawString(x + 5, ty - 16, t)
-        para(c, d, x + 5, ty - 24, F["sans"], 6.3, 8.1, col_w - 10, MUTED)
-    y -= 3 * (ph + 3 * mm) + 3 * mm
+        c.setFont(F["sansSemi"], 9.5)
+        c.drawString(x + 6, ty - 9.2 * mm, t)
+        para(c, d, x + 6, ty - 13.6 * mm, F["sans"], 7.4, 10.2, inner_p, MUTED)
+    y -= 3 * (ph + 3 * mm) + 2.5 * mm
 
     kicker(c, "Where each pillar sits on the Plan", INNER, y)
     y -= 7 * mm
@@ -881,38 +966,42 @@ def page_pillars(c):
     ]
     name_w = 28 * mm
     cell_w = (CONTENT_W - name_w) / 6
-    row_h = 6.1 * mm
-    head_h = 7.2 * mm
+    row_h = 5.0 * mm
+    head_h = 6.0 * mm
     table_h = head_h + row_h * len(rows)
-    rrect(c, INNER, y - table_h, CONTENT_W, table_h, 2, fill=white, stroke=GOLD, sw=0.4)
+    rrect(c, INNER, y - table_h, CONTENT_W, table_h, RADIUS, fill=white, stroke=GOLD, sw=0.4)
     c.setFillColor(CREAM)
-    c.rect(INNER, y - head_h, CONTENT_W, head_h, fill=1, stroke=0)
+    c.roundRect(INNER, y - head_h, CONTENT_W, head_h, RADIUS, fill=1, stroke=0)
+    c.setFillColor(CREAM)
+    c.rect(INNER, y - head_h, CONTENT_W, head_h / 2, fill=1, stroke=0)
     c.setFillColor(GOLD)
-    c.setFont(F["sansBold"], 5.6)
-    c.drawString(INNER + 4, y - 5.4, "PILLAR")
+    c.setFont(F["sansSemi"], 6)
+    c.drawString(INNER + 5, y - 4.6, "PILLAR")
     for i, lab in enumerate(cols):
-        c.drawCentredString(INNER + name_w + i * cell_w + cell_w / 2, y - 5.4, lab)
+        c.drawCentredString(INNER + name_w + i * cell_w + cell_w / 2, y - 4.6, lab)
     yy = y - head_h
     for i, (name, marks) in enumerate(rows):
         if i % 2:
-            c.setFillColor(HexColor("#FBF7EE"))
+            c.setFillColor(SOFT)
             c.rect(INNER + 0.4, yy - row_h, CONTENT_W - 0.8, row_h, fill=1, stroke=0)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 6.4)
-        c.drawString(INNER + 4, yy - 4.6, name)
+        c.setFont(F["sansSemi"], 7)
+        c.drawString(INNER + 5, yy - 4.0, name)
         for j, m in enumerate(marks):
             cx = INNER + name_w + j * cell_w + cell_w / 2
             if m:
                 c.setFillColor(GOLD)
-                c.circle(cx, yy - 3.4, 2.1, fill=1, stroke=0)
+                c.circle(cx, yy - 2.8, 2.0, fill=1, stroke=0)
             else:
                 c.setFillColor(RULE)
                 c.setFont(F["sans"], 7)
-                c.drawCentredString(cx, yy - 4.6, "–")
+                c.drawCentredString(cx, yy - 4.0, "–")
         yy -= row_h
-    c.setFillColor(MUTED)
-    c.setFont(F["sansItalic"], 6)
-    c.drawString(INNER, y - table_h - 5, "Gold mark = primary contribution. Global is held until a closed KZN circuit — not a current scale claim.")
+    cap_y = y - table_h - 4.5
+    if cap_y > BODY_BOTTOM - 1:
+        c.setFillColor(MUTED)
+        c.setFont(F["sansItalic"], 7)
+        c.drawString(INNER, cap_y, "Gold mark = primary contribution. Global is held until a closed KZN circuit — not a current scale claim.")
     c.showPage()
 
 
@@ -930,21 +1019,22 @@ def page_why(c):
         ("Procurement must reach smallholders", "Plan targets: 10% (2029) / 20% (2033) / 30% (2037) smallholder share of government food procurement. That target only survives PFMA if lots, invoices and identity are real.", "NFNSP-2 procurement horizons"),
     ]
     for t, d, src in why:
-        h = 24 * mm
-        rrect(c, INNER, y - h, CONTENT_W, h, 2.4, fill=CREAM, stroke=RULE, sw=0.4)
+        pw = CONTENT_W - 16
+        h = 5 * mm + 12 + measure(c, d, F["sans"], BODY, LEAD, pw) + 10 + 4.5 * mm
+        card(c, INNER, y - h, CONTENT_W, h, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 8)
-        c.drawString(INNER + 8, y - 8, t)
-        para(c, d, INNER + 8, y - 16.5, F["sans"], 7.15, 9.3, CONTENT_W - 16, MUTED)
+        c.setFont(F["sansSemi"], BODY)
+        c.drawString(INNER + 8, y - 5.4 * mm, t)
+        para(c, d, INNER + 8, y - 10.6 * mm, F["sans"], BODY, LEAD, pw, MUTED)
         c.setFillColor(MUTED)
-        c.setFont(F["sansItalic"], 5.9)
-        c.drawString(INNER + 8, y - h + 5, src)
-        y -= h + 3.2 * mm
+        c.setFont(F["sansItalic"], 7.4)
+        c.drawString(INNER + 8, y - h + 4.2 * mm, src)
+        y -= h + 3.4 * mm
 
-    y -= 2 * mm
+    y -= 1.5 * mm
     kicker(c, "Reading the Plan", INNER, y)
     y -= 8 * mm
-    para(
+    used = para(
         c,
         "NFNSP-2 Draft 2 (July 2026, internal discussion) and the Results Framework of 27 August 2026 are the source documents. Official Goal, Enabler and Game-changer titles are used in full. The 90-day ask is a seat at the Framework’s private-sector round tables — not a claim that they have already been held with Big Five. Several Framework cells remain XX and are not invented here.",
         INNER,
@@ -955,7 +1045,7 @@ def page_why(c):
         CONTENT_W,
         INK,
     )
-    y -= 36 * mm
+    y -= used + 5 * mm
     kicker(c, "Who we are", INNER, y)
     y -= 8 * mm
     para(
@@ -978,7 +1068,7 @@ def page_why(c):
 def page_foods(c):
     y = chrome(c, 13, "Foods  ·  workstreams  ·  demonstration")
     kicker(c, "13  ·  Big Five Foods — labelled Group figures", INNER, y)
-    y -= 8 * mm
+    y -= 7.5 * mm
     para(
         c,
         "One SKU family across NSNP, ECD, CNDC and holiday packs. Instant fortified porridge is the malnutrition plate: add water or milk; ready in under a minute. Ambient, fortified, institutional 5 kg formats where school- or clinic-linked.",
@@ -1001,17 +1091,18 @@ def page_foods(c):
             ("74% / 185%", "Nutrition / fortification", "Formulation; lab pack 90 days"),
         ],
     )
-    rrect(c, INNER, y - 20 * mm, CONTENT_W, 20 * mm, 2.2, fill=CREAM, stroke=GOLD, sw=0.4)
+    cert_h = 12.5 * mm
+    card(c, INNER, y - cert_h, CONTENT_W, cert_h, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
     c.setFillColor(FOREST)
-    c.setFont(F["sansBold"], BODY)
-    c.drawString(INNER + 8, y - 9, "ISO 9001, FSSC 22000, Sedex, SANHA Halaal, Kosher, SAAFoST")
+    c.setFont(F["sansSemi"], BODY)
+    c.drawString(INNER + 8, y - 5.6 * mm, "ISO 9001, FSSC 22000, Sedex, SANHA Halaal, Kosher, SAAFoST")
     c.setFillColor(MUTED)
     c.setFont(F["sansItalic"], CAPTION)
-    c.drawString(INNER + 8, y - 9 - LEAD, "As published on bigfivegroup.africa/foods")
-    y -= 26 * mm
+    c.drawString(INNER + 8, y - 10.2 * mm, "As published on bigfivegroup.africa/foods")
+    y -= cert_h + 5 * mm
 
     kicker(c, "Five workstreams A–E", INNER, y)
-    y -= 8 * mm
+    y -= 7.5 * mm
     ws = [
         ("A", "Plates", "Instant fortified porridge (water or milk, under a minute) plus soya, OnePot, soups. 5 kg institutional packs."),
         ("B", "Markets", "Costed container / micro-hub spec for an IDP / DDM One Plan. SANTACO rank + rural nodes."),
@@ -1020,28 +1111,16 @@ def page_foods(c):
         ("E", "OS", "Onboarding, FNB/BankLink feeds, SchoolAdvisor gates, POPIA MELIA extract. No learner names."),
     ]
     for letter, t, d in ws:
-        rrect(c, INNER, y - 20 * mm, CONTENT_W, 20 * mm, 2.2, fill=white, stroke=RULE, sw=0.35)
-        c.setFillColor(FOREST)
-        c.circle(INNER + 11, y - 10, 5.4, fill=1, stroke=0)
-        c.setFillColor(GOLD_LT)
-        c.setFont(F["sansBold"], 9)
-        c.drawCentredString(INNER + 11, y - 12.2, letter)
-        c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], BODY)
-        c.drawString(INNER + 20, y - 8, t)
-        para(c, d, INNER + 20, y - 8 - LEAD - 1, F["sans"], BODY, LEAD, CONTENT_W - 28, MUTED)
-        y -= 22.5 * mm
+        y = numbered_card(c, y, letter, t, d, size=9.4, lead=13.2)
 
     y -= 1 * mm
     kicker(c, "Demonstration design", INNER, y)
-    y -= 8 * mm
+    y -= 7.5 * mm
     demo = (
         "Phase 1: two KZN local municipalities + one metro cluster (rural Zululand-type, peri-urban, dense informal-trade node in eThekwini or Msunduzi). "
         "Phase 2: a second high-inadequacy province (Eastern Cape is the Plan’s own reference). Scale only after a closed circuit holds."
     )
-    dh = measure(c, demo, F["sans"], BODY, LEAD, CONTENT_W - 16) + 14
-    rrect(c, INNER, y - dh, CONTENT_W, dh, 3, fill=FOREST, stroke=None)
-    para(c, demo, INNER + 8, y - 10, F["sans"], BODY, LEAD, CONTENT_W - 16, GOLD_LT)
+    quote_box(c, y, demo)
     c.showPage()
 
 
@@ -1051,24 +1130,16 @@ def page_foods(c):
 def page_os(c):
     y = chrome(c, 14, "SupplierAdvisor® farm-to-fork OS")
     kicker(c, "14  ·  Operating system", INNER, y)
-    y -= 9 * mm
-    c.setFillColor(FOREST)
-    c.setFont(F["serifBold"], 13)
-    c.drawString(INNER, y, "One workspace: network, buy, make, hold, ship, pay, prove")
-    y -= 10 * mm
-    rrect(c, INNER, y - 18 * mm, CONTENT_W, 18 * mm, 2.5, fill=FOREST, stroke=None)
-    para(
+    y -= 8 * mm
+    draw_str(c, "One workspace: network, buy, make, hold, ship, pay, prove", INNER, y, F["sansSemi"], 13.5, FOREST, tracking=-0.25)
+    y -= 8 * mm
+    y = quote_box(
         c,
+        y,
         "SupplierAdvisor® does not replace BAS or LOGIS. It is the trade and quality layer those systems do not have.",
-        INNER + 8,
-        y - 8,
-        F["sansBold"],
-        BODY,
-        LEAD,
-        CONTENT_W - 16,
-        GOLD_LT,
+        size=BODY,
+        lead=LEAD,
     )
-    y -= 17 * mm
     mods = [
         "Verified network + OTIFEF",
         "POs, invoices, lot holds",
@@ -1084,18 +1155,20 @@ def page_os(c):
         "Yoco-class last-mile acceptance",
     ]
     tw = (CONTENT_W - 8 * mm) / 3
+    chip_h = 9.2 * mm
+    chip_gap = 2.8 * mm
     for i, m in enumerate(mods):
         col, row = i % 3, i // 3
         x = INNER + col * (tw + 4 * mm)
-        ty = y - row * 11 * mm
-        rrect(c, x, ty - 9.5 * mm, tw, 9.5 * mm, 2, fill=CREAM, stroke=RULE, sw=0.35)
-        c.setFillColor(INK)
-        c.setFont(F["sans"], 6.7)
-        c.drawString(x + 5, ty - 6.4, m)
-    y -= 4 * 11 * mm + 6 * mm
+        ty = y - row * (chip_h + chip_gap)
+        card(c, x, ty - chip_h, tw, chip_h, fill=CREAM, stroke=GOLD, sw=0.35, bar=False, radius=2.8 * mm)
+        c.setFillColor(FOREST)
+        c.setFont(F["sansSemi"], 8)
+        c.drawString(x + 6, ty - 6.0, m)
+    y -= 4 * (chip_h + chip_gap) + 3 * mm
 
     kicker(c, "Actor table — farm to fork", INNER, y)
-    y -= 6 * mm
+    y -= 6.5 * mm
     actors = [
         ("Smallholder", "Identity, GPS, lots, invoices so the 10% target survives PFMA."),
         ("Aggregation hub", "Receive, grade, lot, hold."),
@@ -1105,24 +1178,26 @@ def page_os(c):
         ("Municipality / Treasury", "SLA, IDP/SDBIP annex, PFMA/MFMA workstream."),
         ("Bank / CSI / DFI", "FNB Integration Channel and BankLink feeds where selected."),
     ]
-    head_h, row_h = 7 * mm, 12.2 * mm
+    head_h, row_h = 6.8 * mm, 8.8 * mm
     table_h = head_h + row_h * len(actors)
-    rrect(c, INNER, y - table_h, CONTENT_W, table_h, 2.5, fill=white, stroke=GOLD, sw=0.45)
+    rrect(c, INNER, y - table_h, CONTENT_W, table_h, RADIUS, fill=white, stroke=GOLD, sw=0.45)
     c.setFillColor(CREAM)
-    c.rect(INNER, y - head_h, CONTENT_W, head_h, fill=1, stroke=0)
+    c.roundRect(INNER, y - head_h, CONTENT_W, head_h, RADIUS, fill=1, stroke=0)
+    c.setFillColor(CREAM)
+    c.rect(INNER, y - head_h, CONTENT_W, head_h / 2, fill=1, stroke=0)
     c.setFillColor(GOLD)
-    c.setFont(F["sansBold"], 6.2)
-    c.drawString(INNER + 8, y - 5, "ACTOR")
-    c.drawString(INNER + 58 * mm, y - 5, "ROLE IN THE CIRCUIT")
+    c.setFont(F["sansSemi"], 6.4)
+    c.drawString(INNER + 8, y - 4.6, "ACTOR")
+    c.drawString(INNER + 58 * mm, y - 4.6, "ROLE IN THE CIRCUIT")
     yy = y - head_h
     for i, (a, r) in enumerate(actors):
         if i % 2:
-            c.setFillColor(HexColor("#FBF7EE"))
+            c.setFillColor(SOFT)
             c.rect(INNER + 0.4, yy - row_h, CONTENT_W - 0.8, row_h, fill=1, stroke=0)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 7.5)
-        c.drawString(INNER + 8, yy - 7.6, a)
-        para(c, r, INNER + 58 * mm, yy - 7.6, F["sans"], 7.2, 9.2, CONTENT_W - 66 * mm, MUTED)
+        c.setFont(F["sansSemi"], 8.2)
+        c.drawString(INNER + 8, yy - 5.6, a)
+        para(c, r, INNER + 58 * mm, yy - 5.6, F["sans"], 8.0, 10.2, CONTENT_W - 66 * mm, MUTED)
         yy -= row_h
     c.showPage()
 
@@ -1134,18 +1209,11 @@ def page_ask(c):
     y = chrome(c, 15, "90-day ask")
     kicker(c, "15  ·  Five asks", INNER, y)
     y -= 8 * mm
-    para(
+    y = quote_box(
         c,
-        "What is asked in 90 days is a closed briefing, a named province, a lawful buying path, a MELIA protocol, and a seat at the tables already written into the Framework. Scale only after a closed circuit holds.",
-        INNER,
         y,
-        F["serifItalic"],
-        8.6,
-        11.4,
-        CONTENT_W,
-        FOREST,
+        "What is asked in 90 days is a closed briefing, a named province, a lawful buying path, a MELIA protocol, and a seat at the tables already written into the Framework. Scale only after a closed circuit holds.",
     )
-    y -= 18 * mm
     asks = [
         ("01", "Closed technical briefing", "NFNSP TWG, DoA secretariat, DBE NSNP, DoH nutrition, DSD food-centre / ECD nutrition, KZN Provincial Treasury, SALGA KZN."),
         ("02", "Name KwaZulu-Natal", "Joint demonstration province — two local municipalities + one metro cluster."),
@@ -1154,21 +1222,11 @@ def page_ask(c):
         ("05", "A seat at the tables", "Private-sector round tables / municipal roadshows the 27 August 2026 Framework is written for."),
     ]
     for n, t, d in asks:
-        rrect(c, INNER, y - 16.8 * mm, CONTENT_W, 16.8 * mm, 2.4, fill=white, stroke=RULE, sw=0.4)
-        c.setFillColor(FOREST)
-        c.circle(INNER + 11, y - 8.4, 5.4, fill=1, stroke=0)
-        c.setFillColor(GOLD_LT)
-        c.setFont(F["sansBold"], 6.6)
-        c.drawCentredString(INNER + 11, y - 10.2, n)
-        c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 8.2)
-        c.drawString(INNER + 21, y - 6.6, t)
-        para(c, d, INNER + 21, y - 14.2, F["sans"], 7.05, 9.2, CONTENT_W - 28, MUTED)
-        y -= 18.6 * mm
+        y = numbered_card(c, y, n, t, d, size=9.4, lead=13.2)
 
-    y -= 1 * mm
+    y -= 1.5 * mm
     kicker(c, "In return (90 days)", INNER, y)
-    y -= 8 * mm
+    y -= 7.5 * mm
     ret = [
         "Costed node pack",
         "Three-menu institutional basket vs a reference school meal",
@@ -1177,14 +1235,16 @@ def page_ask(c):
         "One-page risk register",
     ]
     tw = (CONTENT_W - 8 * mm) / 2
+    chip_h = 10 * mm
     for i, item in enumerate(ret):
         col, row = i % 2, i // 2
         x = INNER + col * (tw + 4 * mm)
-        ty = y - row * 11 * mm
-        rrect(c, x, ty - 9.5 * mm, tw, 9.5 * mm, 2, fill=CREAM, stroke=GOLD, sw=0.35)
+        ty = y - row * (chip_h + 2.8 * mm)
+        w = tw if not (i == 4) else tw
+        card(c, x, ty - chip_h, w, chip_h, fill=CREAM, stroke=GOLD, sw=0.4, bar=False, radius=2.8 * mm)
         c.setFillColor(FOREST)
-        c.setFont(F["sans"], 7.2)
-        c.drawString(x + 6, ty - 6.4, item)
+        c.setFont(F["sansSemi"], 8.4)
+        c.drawString(x + 7, ty - 6.4, item)
     c.showPage()
 
 
@@ -1202,29 +1262,31 @@ def page_close(c):
         ("Learner data in MELIA extract", "Lot-and-kitchen proof only. No learner names. POPIA purpose-limited."),
         ("PFMA / MFMA cannot buy the meal", "90-day time-boxed legal workstream is ask 3 — before scale."),
     ]
-    head_h, row_h = 7 * mm, 13.2 * mm
+    head_h, row_h = 6.8 * mm, 9.4 * mm
     table_h = head_h + row_h * len(risks)
-    rrect(c, INNER, y - table_h, CONTENT_W, table_h, 2.4, fill=white, stroke=GOLD, sw=0.45)
+    rrect(c, INNER, y - table_h, CONTENT_W, table_h, RADIUS, fill=white, stroke=GOLD, sw=0.45)
     c.setFillColor(CREAM)
-    c.rect(INNER, y - head_h, CONTENT_W, head_h, fill=1, stroke=0)
+    c.roundRect(INNER, y - head_h, CONTENT_W, head_h, RADIUS, fill=1, stroke=0)
+    c.setFillColor(CREAM)
+    c.rect(INNER, y - head_h, CONTENT_W, head_h / 2, fill=1, stroke=0)
     c.setFillColor(GOLD)
-    c.setFont(F["sansBold"], 6.2)
-    c.drawString(INNER + 8, y - 5, "RISK")
-    c.drawString(INNER + 82 * mm, y - 5, "MITIGATION")
+    c.setFont(F["sansSemi"], 6.4)
+    c.drawString(INNER + 8, y - 4.6, "RISK")
+    c.drawString(INNER + 82 * mm, y - 4.6, "MITIGATION")
     yy = y - head_h
     for i, (risk, mit) in enumerate(risks):
         if i % 2:
-            c.setFillColor(HexColor("#FBF7EE"))
+            c.setFillColor(SOFT)
             c.rect(INNER + 0.4, yy - row_h, CONTENT_W - 0.8, row_h, fill=1, stroke=0)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 7.2)
-        para(c, risk, INNER + 8, yy - 5.5, F["sansBold"], 7.2, 9.0, 70 * mm, FOREST)
-        para(c, mit, INNER + 82 * mm, yy - 5.5, F["sans"], 7.1, 9.0, CONTENT_W - 90 * mm, MUTED)
+        c.setFont(F["sansSemi"], 8)
+        para(c, risk, INNER + 8, yy - 6.0, F["sansSemi"], 8, 10.4, 70 * mm, FOREST)
+        para(c, mit, INNER + 82 * mm, yy - 6.0, F["sans"], 8, 10.4, CONTENT_W - 90 * mm, MUTED)
         yy -= row_h
-    y -= table_h + 7 * mm
+    y -= table_h + 6 * mm
 
     kicker(c, "Commercial model — labelled Group figures, not government contracts", INNER, y)
-    y -= 8 * mm
+    y -= 7.5 * mm
     commercial = [
         ("355 000 meals", "Programme-reported, not audited public stats"),
         ("2.5 million children / day", "DBE-pathway delivery plan, not current headcount"),
@@ -1232,43 +1294,42 @@ def page_close(c):
         ("~20 jobs per mature node", "Design intent, to be measured"),
         ("10% of group profits to Foundation", "Standing Group policy"),
     ]
-    tw = (CONTENT_W - 8 * mm) / 2
+    tw = (CONTENT_W - 5 * mm) / 2
+    chip_h = 14 * mm
     for i, (t, lab) in enumerate(commercial):
         col, row = i % 2, i // 2
-        x = INNER + col * (tw + 4 * mm)
-        ty = y - row * 16 * mm
+        x = INNER + col * (tw + 5 * mm)
+        ty = y - row * (chip_h + 3 * mm)
+        w = tw if i < 4 else CONTENT_W
         if i == 4:
             x = INNER
-        rrect(c, x, ty - 14 * mm, tw if i < 4 else CONTENT_W, 14 * mm, 2.2, fill=CREAM, stroke=RULE, sw=0.35)
+        card(c, x, ty - chip_h, w, chip_h, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
         c.setFillColor(FOREST)
-        c.setFont(F["sansBold"], 7.5)
-        c.drawString(x + 7, ty - 6, t)
+        c.setFont(F["sansSemi"], 9.5)
+        c.drawString(x + 8, ty - 6.2 * mm, t)
         c.setFillColor(MUTED)
-        c.setFont(F["sansItalic"], 6.1)
-        c.drawString(x + 7, ty - 12, lab)
-    y -= 3 * 16 * mm + 2 * mm
+        c.setFont(F["sansItalic"], 7.6)
+        c.drawString(x + 8, ty - 11.2 * mm, lab)
+    y -= 3 * (chip_h + 3 * mm) + 1.5 * mm
 
     kicker(c, "Conclusion", INNER, y)
-    y -= 8 * mm
+    y -= 7.5 * mm
     close = (
         "The Plan has named Goals, Game Changers and Enablers. The Group has plates, an operating system, and a demonstration design mapped to each of them. "
         "What is asked in 90 days is a closed briefing, a named province, a lawful buying path for Game Changer 1.2, a MELIA protocol, and a seat at the tables already written into the Framework. "
         "Nothing here is an awarded tender, a current daily NSNP headcount, a replacement for BAS or LOGIS, or a claim to gazette VAT, grants or a Food and Nutrition Security Act."
     )
-    ch = measure(c, close, F["serifItalic"], 8.6, 11.6, CONTENT_W - 16) + 16
-    rrect(c, INNER, y - ch, CONTENT_W, ch, 3, fill=FOREST, stroke=None)
-    para(c, close, INNER + 8, y - 9, F["serifItalic"], 8.6, 11.6, CONTENT_W - 16, GOLD_LT)
-    y -= ch + 6 * mm
+    y = quote_box(c, y, close)
     c.setFillColor(FOREST)
-    c.setFont(F["sans"], 7.2)
+    c.setFont(F["sansSemi"], 8)
     c.drawString(INNER, y, "Dr. Craig R. Muller  ·  craig@bigfivegroup.africa  ·  +27 (0) 82 581 4215  ·  bigfivegroup.africa")
     c.showPage()
 
 
 def build():
     global NDA_PLATE, BFG_PLATE, HERO_IMG, FOOTER_IMG
-    NDA_PLATE = plate(NDA, 1100, 360, pad=16)
-    BFG_PLATE = plate(BFG, 420, 420, pad=16)
+    NDA_PLATE = plate(NDA, 1200, 380, pad=10)
+    BFG_PLATE = plate(BFG, 480, 480, pad=6)
     HERO_IMG = make_hero()
     FOOTER_IMG = make_footer_band()
 
