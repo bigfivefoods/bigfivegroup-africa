@@ -235,7 +235,7 @@ export default function NfnspBriefing() {
           <Eyebrow>03 · READING THE PLAN</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
-            Draft 2.2 and the 27 August Framework
+            Draft 2 (July 2026) and the 27 August Framework
           </h2>
           <ul className="space-y-3 max-w-3xl">
             {NFNSP.readingThePlan.map((p) => (
@@ -251,63 +251,93 @@ export default function NfnspBriefing() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Eyebrow>04 · NDA GOALS AND OBJECTIVES</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-3xl">
-            What the Plan actually asks — and how we answer each goal
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-4xl">
+            Official Goals and Game Changers — and how Big Five answers each
           </h2>
           <p className="text-sm sm:text-base text-[#525252] max-w-3xl mb-10 leading-relaxed">
-            Goals 1–3 as read from NFNSP-2 Draft 2.2 (July 2026) and the Results Framework of 27
-            August 2026. Official statistics are sourced. This is not a substitute for the Plan
-            itself. Each goal is answered with named pillars and labelled Group figures.
+            Titles below are the Plan’s own, from NFNSP-2 Draft 2 (July 2026) and the Results
+            Framework of 27 August 2026. This is not a substitute for those documents. Each Game
+            Changer is answered with named pillars, labelled Group figures, and an explicit limit
+            where the lead sits with Treasury, DoH, DSD, SASSA, COGTA or SALGA.
           </p>
-          <div className="space-y-8 mb-12">
+          <div className="space-y-12 mb-12">
             {NFNSP.planGoals.map((g) => (
-              <article
-                key={g.id}
-                className="rounded-2xl bg-[#fafafa] p-5 sm:p-7"
-                style={{ border: "1px solid rgba(196,146,58,0.35)", borderLeft: `4px solid ${FOREST}` }}
-              >
-                <div className="flex flex-wrap items-baseline gap-3 mb-3">
-                  <span className="text-[10px] tracking-[2px] font-semibold" style={{ color: GOLD }}>
+              <article key={g.id} id={g.id} className="scroll-mt-28">
+                <div
+                  className="rounded-2xl p-5 sm:p-7 mb-5"
+                  style={{ backgroundColor: FOREST }}
+                >
+                  <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: "#E8C07A" }}>
                     {g.n.toUpperCase()}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-black">
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-3">
                     {g.title}
                   </h3>
-                </div>
-                <p className="text-sm text-[#404040] leading-relaxed mb-1">{g.problem}</p>
-                <Source>{g.source}</Source>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6">
-                  <div className="rounded-xl bg-white border border-black/8 p-4 sm:p-5">
-                    <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
-                      THE PLAN ASKS
-                    </div>
-                    <p className="text-sm text-black leading-relaxed">{g.planAsks}</p>
-                  </div>
-                  <div className="rounded-xl bg-white border border-black/8 p-4 sm:p-5">
-                    <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
-                      HOW BIG FIVE ACHIEVES IT
-                    </div>
-                    <ul className="space-y-2">
-                      {g.weDeliver.map((line) => (
-                        <li key={line.slice(0, 48)} className="text-sm text-[#404040] leading-relaxed pl-3 border-l-2" style={{ borderColor: GOLD }}>
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
+                  <p className="text-sm text-white/80 leading-relaxed mb-2">{g.rationale}</p>
+                  <p className="text-xs text-white/55 leading-relaxed">{g.lead}</p>
+                  <p className="text-[11px] text-white/45 mt-1 leading-relaxed">{g.source}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {g.pillars.map((p) => (
+                      <Pill key={p}>{p}</Pill>
+                    ))}
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2 mt-5">
-                  {g.pillars.map((p) => (
-                    <Pill key={p}>{p}</Pill>
+                <div className="space-y-5">
+                  {g.gameChangers.map((gc) => (
+                    <div
+                      key={gc.id}
+                      className="rounded-2xl bg-[#fafafa] p-5 sm:p-6"
+                      style={{ border: "1px solid rgba(196,146,58,0.35)", borderLeft: `4px solid ${FOREST}` }}
+                    >
+                      <div className="flex flex-wrap items-baseline gap-3 mb-3">
+                        <span className="text-[10px] tracking-[2px] font-semibold" style={{ color: GOLD }}>
+                          GAME CHANGER {gc.n}
+                        </span>
+                        <h4 className="text-lg font-semibold tracking-tight text-black">{gc.title}</h4>
+                      </div>
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                        <div className="rounded-xl bg-white border border-black/8 p-4 sm:p-5">
+                          <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
+                            THE PLAN ASKS
+                          </div>
+                          <p className="text-sm text-black leading-relaxed mb-3">{gc.planAsks}</p>
+                          <p className="text-xs text-[#525252] leading-relaxed">{gc.targets}</p>
+                        </div>
+                        <div className="rounded-xl bg-white border border-black/8 p-4 sm:p-5">
+                          <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
+                            HOW BIG FIVE ACHIEVES IT
+                          </div>
+                          <ul className="space-y-2 mb-3">
+                            {gc.weDeliver.map((line) => (
+                              <li
+                                key={line.slice(0, 48)}
+                                className="text-sm text-[#404040] leading-relaxed pl-3 border-l-2"
+                                style={{ borderColor: GOLD }}
+                              >
+                                {line}
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="text-xs leading-relaxed" style={{ color: FOREST }}>
+                            {gc.limit}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {gc.pillars.map((p) => (
+                          <Pill key={p}>{p}</Pill>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </article>
             ))}
           </div>
-          <h3 className="text-lg font-semibold text-black mb-2">Enablers A–C</h3>
+          <h3 className="text-lg font-semibold text-black mb-2">Enablers A–C — official titles</h3>
           <p className="text-sm text-[#525252] mb-5 max-w-3xl leading-relaxed">
-            The goals cannot run without governance, data, and a lawful buying path. How we
-            operationalise each enabler follows in the circuit chapter.
+            Enabler B is resourcing. Enabler C is capacity, innovation and data (MELIA). How we
+            operationalise each Game Changer follows in the circuit chapter.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {NFNSP.planEnablers.map((e) => (
@@ -320,7 +350,8 @@ export default function NfnspBriefing() {
                   {e.n.toUpperCase()}
                 </div>
                 <h3 className="text-base font-semibold text-black mb-2">{e.title}</h3>
-                <p className="text-sm text-[#404040] leading-relaxed mb-4">{e.planAsks}</p>
+                <p className="text-sm text-[#404040] leading-relaxed mb-3">{e.rationale}</p>
+                <p className="text-xs text-[#737373] leading-relaxed mb-4">{e.lead}</p>
                 <div className="flex flex-wrap gap-2">
                   {e.pillars.map((p) => (
                     <Pill key={p}>{p}</Pill>
@@ -330,18 +361,21 @@ export default function NfnspBriefing() {
             ))}
           </div>
           <div className="overflow-x-auto rounded-2xl border border-black/10">
-            <table className="w-full min-w-[32rem] text-left">
-              <caption className="sr-only">Plan horizons</caption>
+            <table className="w-full min-w-[40rem] text-left">
+              <caption className="sr-only">Plan horizons from the Results Framework</caption>
               <thead>
                 <tr className="bg-[#F7F1E6] border-b border-black/10">
                   <th className="px-4 py-3 text-[10px] tracking-[2px]" style={{ color: GOLD }}>
                     HORIZON
                   </th>
                   <th className="px-4 py-3 text-[10px] tracking-[2px]" style={{ color: GOLD }}>
-                    SMALLHOLDER SHARE
+                    SMALLHOLDER PROCUREMENT
                   </th>
                   <th className="px-4 py-3 text-[10px] tracking-[2px]" style={{ color: GOLD }}>
-                    NOTE
+                    FIRST 1 000 DAYS
+                  </th>
+                  <th className="px-4 py-3 text-[10px] tracking-[2px]" style={{ color: GOLD }}>
+                    HUBS AND MARKETS
                   </th>
                 </tr>
               </thead>
@@ -351,12 +385,16 @@ export default function NfnspBriefing() {
                     <td className="px-4 py-3 text-sm font-semibold">{h.year}</td>
                     <td className="px-4 py-3 text-sm">{h.smallholder}</td>
                     <td className="px-4 py-3 text-sm text-[#525252]">{h.feeding}</td>
+                    <td className="px-4 py-3 text-sm text-[#525252]">{h.hubs}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <Source>NFNSP-2 procurement horizons · complementary feeding 50% of high-risk areas by 2029</Source>
+          <Source>
+            Results Framework 27 August 2026 — Plan targets, not Group delivery claims. Several
+            Framework cells remain XX and are not invented here.
+          </Source>
         </div>
       </section>
 
@@ -401,34 +439,48 @@ export default function NfnspBriefing() {
               </li>
             ))}
           </ol>
-          <h3 className="text-lg font-semibold text-black mb-4">Enablers — how we operationalise them</h3>
-          <div className="space-y-5">
+          <h3 className="text-lg font-semibold text-black mb-4">Enablers A–C — how we operationalise each Game Changer</h3>
+          <div className="space-y-8">
             {NFNSP.planEnablers.map((e) => (
-              <article
-                key={e.id}
-                className="rounded-2xl bg-white p-5 sm:p-7"
-                style={{ border: "1px solid rgba(196,146,58,0.3)", borderLeft: `4px solid ${FOREST}` }}
-              >
-                <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
-                  {e.n.toUpperCase()} · {e.title.toUpperCase()}
-                </div>
-                <ul className="space-y-2 mb-4">
-                  {e.weDeliver.map((line) => (
-                    <li
-                      key={line.slice(0, 48)}
-                      className="text-sm text-[#404040] leading-relaxed pl-3 border-l-2"
-                      style={{ borderColor: GOLD }}
+              <div key={e.id}>
+                <h4 className="text-base font-semibold text-black mb-1">
+                  {e.n} · {e.title}
+                </h4>
+                <p className="text-sm text-[#525252] mb-4 max-w-3xl leading-relaxed">{e.rationale}</p>
+                <div className="space-y-4">
+                  {e.gameChangers.map((gc) => (
+                    <article
+                      key={gc.id}
+                      className="rounded-2xl bg-white p-5 sm:p-6"
+                      style={{ border: "1px solid rgba(196,146,58,0.3)", borderLeft: `4px solid ${FOREST}` }}
                     >
-                      {line}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2">
-                  {e.pillars.map((p) => (
-                    <Pill key={p}>{p}</Pill>
+                      <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
+                        {gc.n} · {gc.title.toUpperCase()}
+                      </div>
+                      <p className="text-sm text-[#404040] leading-relaxed mb-3">{gc.planAsks}</p>
+                      <ul className="space-y-2 mb-3">
+                        {gc.weDeliver.map((line) => (
+                          <li
+                            key={line.slice(0, 48)}
+                            className="text-sm text-[#404040] leading-relaxed pl-3 border-l-2"
+                            style={{ borderColor: GOLD }}
+                          >
+                            {line}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-xs leading-relaxed mb-3" style={{ color: FOREST }}>
+                        {gc.limit}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {gc.pillars.map((p) => (
+                          <Pill key={p}>{p}</Pill>
+                        ))}
+                      </div>
+                    </article>
                   ))}
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>

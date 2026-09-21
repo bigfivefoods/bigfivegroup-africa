@@ -1136,8 +1136,8 @@ export default function PartnerPortalClient({
                     },
                     {
                       n: "02",
-                      t: "Walk every Plan goal",
-                      d: "Executive summary, Goals 1–3 and Enablers A–C — each answered with named pillars.",
+                      t: "Walk every Plan Goal and Game Changer",
+                      d: "Official titles from Draft 2 and the 27 August Framework — each answered with named pillars and a mandate limit.",
                     },
                     {
                       n: "03",

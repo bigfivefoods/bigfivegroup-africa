@@ -383,8 +383,8 @@ export const PARTNERS: PartnerProfile[] = [
       },
       {
         href: "/api/partner/nfnsp-proposal",
-        label: "Download proposal (PDF) · September 2026 · v2.0",
-        desc: "Session-gated A4 briefing — executive summary through 90-day ask.",
+        label: "Download proposal (PDF) · September 2026 · v3.0",
+        desc: "Session-gated A4 briefing — official Goals, Game Changers and Enablers.",
       },
       {
         href: "https://www.nda.gov.za/",

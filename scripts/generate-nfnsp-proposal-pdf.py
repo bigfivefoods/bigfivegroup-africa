@@ -43,7 +43,7 @@ HEADER_H = 24 * mm
 FOOTER_H = 13.2 * mm
 FRAME = 5.2 * mm
 BODY_BOTTOM = FOOTER_H + 6 * mm
-TOTAL = 13
+TOTAL = 14
 
 
 def fonts() -> dict[str, str]:
@@ -196,7 +196,7 @@ def footer(c, n):
     c.rect(0, FOOTER_H - 0.7, PAGE_W, 0.7, fill=1, stroke=0)
     c.setFillColor(GOLD_LT)
     c.setFont(F["sans"], 6.1)
-    c.drawString(INNER, 5.4, "CONFIDENTIAL  ·  NFNSP-2  ·  v2.0  ·  September 2026")
+    c.drawString(INNER, 5.4, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.0  ·  September 2026")
     c.drawCentredString(PAGE_W / 2, 5.4, "Principal terms  ·  not an awarded tender")
     c.setFont(F["sansBold"], 6.4)
     c.drawRightString(PAGE_W - INNER, 5.4, f"{n}   /   {TOTAL}")
@@ -327,7 +327,7 @@ def page_cover(c):
 
     c.setFillColor(GOLD_LT)
     c.setFont(F["sans"], 6.1)
-    c.drawString(INNER, 5.4, "CONFIDENTIAL  ·  NFNSP-2  ·  v2.0  ·  September 2026")
+    c.drawString(INNER, 5.4, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.0  ·  September 2026")
     c.drawCentredString(PAGE_W / 2, 5.4, "Big Five Group (Pty) Ltd  ×  Department of Agriculture")
     c.setFont(F["sansBold"], 6.4)
     c.drawRightString(PAGE_W - INNER, 5.4, f"1   /   {TOTAL}")
@@ -345,16 +345,17 @@ def page_contents(c):
         ("01", "Cover — sourced national figures", "1"),
         ("02", "Contents and reading rules", "2"),
         ("03", "Executive summary", "3"),
-        ("04", "The Plan — Goals 1–3", "4"),
-        ("05", "The Plan — Enablers A–C and horizons", "5"),
-        ("06", "How Big Five achieves Goals 1–2", "6"),
-        ("07", "How Big Five achieves Goal 3 and Enablers A–C", "7"),
-        ("08", "Nine pillars as one circuit", "8"),
-        ("09", "Why now · reading the Plan · who we are", "9"),
-        ("10", "Foods, workstreams, demonstration", "10"),
-        ("11", "SupplierAdvisor® farm-to-fork operating system", "11"),
-        ("12", "90-day ask and what we return", "12"),
-        ("13", "Risk, labelled figures, conclusion", "13"),
+        ("04", "Goal 1 — local agri-food system (Game Changers 1.1–1.2)", "4"),
+        ("05", "Goal 1 — production and informal trade (1.3–1.4)", "5"),
+        ("06", "Goal 2 — equitable access (Game Changers 2.1–2.3)", "6"),
+        ("07", "Goal 3 — protection of the vulnerable (3.1–3.3)", "7"),
+        ("08", "Enablers A–C — governance, resourcing, capacity/data", "8"),
+        ("09", "Nine pillars as one circuit", "9"),
+        ("10", "Why now · reading the Plan · who we are", "10"),
+        ("11", "Foods, workstreams, demonstration", "11"),
+        ("12", "SupplierAdvisor® farm-to-fork operating system", "12"),
+        ("13", "90-day ask and what we return", "13"),
+        ("14", "Risk, labelled figures, conclusion", "14"),
     ]
     for n, t, p in toc:
         c.setStrokeColor(RULE)
@@ -371,16 +372,16 @@ def page_contents(c):
         c.setFillColor(FOREST)
         c.setFont(F["sansBold"], 8)
         c.drawRightString(PAGE_W - INNER, y, p)
-        y -= 9.4 * mm
+        y -= 8.2 * mm
 
     y -= 3 * mm
     kicker(c, "How to read figures", INNER, y)
     y -= 9 * mm
     note = (
-        "Official statistics (GHS 2024, NFNSS 2023, Poverty Trends 2025, NFNSP-2 Draft 2.2 / Results Framework 27 August 2026) carry a source. "
-        "Group figures carry a label: plan, programme-reported, product specification, or internal comparison. "
-        "This document does not invent government contracts, awarded tenders, or current daily NSNP volumes. "
-        "SupplierAdvisor® does not replace BAS or LOGIS. No learner names. No beneficiary databases on the partner portal. "
+        "Official Goal, Enabler and Game-changer titles are from NFNSP-2 Draft 2 (July 2026) and the Results Framework of 27 August 2026. "
+        "Official statistics (GHS 2024, NFNSS 2023, Poverty Trends 2025) carry a source. Group figures carry a label: plan, programme-reported, product specification, or internal comparison. "
+        "This document does not invent government contracts, awarded tenders, current daily NSNP volumes, or Framework cells left as XX. "
+        "SupplierAdvisor® does not replace BAS or LOGIS. No learner names. Treasury, DoH, DSD/SASSA and COGTA/SALGA lead VAT, labelling, grants and the local mandate — Big Five operationalises lots, plates, nodes and MELIA extracts. "
         "This briefing does not replace the Plan; it proposes how to operationalise it."
     )
     nh = measure(c, note, F["sans"], 8.0, 10.8, CONTENT_W - 18) + 14
@@ -399,8 +400,8 @@ def page_exec(c):
     y -= 10 * mm
 
     lead = (
-        "South Africa has a Plan. What it needs now is an implementation partner that can put a lawful plate on the table, "
-        "a verified smallholder lot behind that plate, and proof that both happened — without claiming a government contract that has not been awarded."
+        "South Africa has a Plan with named Goals, Game Changers and Enablers. What it needs now is an implementation partner that can put a lawful plate on the table, "
+        "a verified smallholder lot behind that plate, and proof that both happened — without claiming a government contract, and without pretending to gazette VAT, grants or a Food and Nutrition Security Act."
     )
     lh = measure(c, lead, F["serifItalic"], 11, 14.4, CONTENT_W - 16) + 12
     rrect(c, INNER, y - lh, CONTENT_W, lh, 3, fill=FOREST, stroke=None)
@@ -408,10 +409,10 @@ def page_exec(c):
     y -= lh + 7 * mm
 
     paras = [
-        "The National Food and Nutrition Security Plan 2027–2037 (NFNSP-2 Draft 2.2, July 2026, and Results Framework 27 August 2026) is the Department of Agriculture’s blueprint for Goals 1–3 and Enablers A–C: reduce hunger; scale nutrition for the first 1 000 days and school feeding; build inclusive food systems with a rising smallholder share of public procurement; and enable that work through governance, data (MELIA), and a lawful finance/procurement path.",
-        "The Plan’s own numbers are the case for urgency. GHS 2024: 22.2% of households have inadequate or severely inadequate food access (Northern Cape 34.3%, Eastern Cape 31.2%, North West 30%). NFNSS 2023: about 29% of children under five stunted; 15% severely (Framework working baseline 27%). Poverty Trends 2025: 17.6% below the food poverty line of R777 pp/pm (2023 prices); 71% of the poor in 2023 were under 35. Plan targets: 10% / 20% / 30% smallholder share of government food procurement by 2029 / 2033 / 2037, and complementary feeding in 50% of high-risk areas by 2029.",
-        "Big Five Group (Pty) Ltd proposes to operationalise those goals as one coherent system — not nine disconnected companies. Agri verifies smallholders. Foods turns grain into fortified ambient meals in 5 kg institutional formats. Direct takes the plate to the last mile. Connect (SupplierAdvisor®) is the farm-to-fork operating system. Leadership (Super-Cube®) forms the people. Access opens capital. Impact is the PMO. Foundation channels 10% of group profits with proof. Global holds standards when corridors extend.",
-        "We ask for 90 days: a closed technical briefing; KwaZulu-Natal named as joint demonstration province (two local municipalities + one metro cluster); a time-boxed PFMA/MFMA workstream; a MELIA data protocol; and a seat at the private-sector round tables the 27 August 2026 Framework is already written for. Scale only after a closed circuit holds. A second high-inadequacy province (Eastern Cape is the Plan’s own reference) is Phase 2 — not a current claim.",
+        "Official Goal titles, used in full: Goal 1 — Transformation of the local agri-food system to be sustainable, diversified, and inclusive. Goal 2 — Equitable and dignified individual, household and community access to nutritious, safe, affordable, and healthy food. Goal 3 — Mitigate risks to the most vulnerable through social, livelihood, and nutrition protection. Enabler A — multi-actor governance. Enabler B — resourcing. Enabler C — capacity, innovation and technological support, including data and MELIA. Sources: NFNSP-2 Draft 2 (July 2026) and Results Framework 27 August 2026. Period: 2027–2037.",
+        "GHS 2024: 22.2% of households have inadequate or severely inadequate food access (Northern Cape 34.3%, Eastern Cape 31.2%, North West 30%). NFNSS 2023: about 29% of children under five stunted; 15% severely (Framework working baseline 27%). Poverty Trends 2025: 17.6% below the food poverty line of R777 pp/pm (2023 prices). Framework targets include 10% / 20% / 30% of the government food-procurement budget from smallholders by 2029 / 2033 / 2037; complementary feeding in 50% then 100% of high-risk areas; and 1 / 3 / 5 new agri-hubs and produce markets per local or metro municipality.",
+        "Big Five Group operationalises the Game Changers a private partner can actually run — as one circuit. Agri verifies producers. Foods mills lots into fortified ambient plates for NSNP, ECD, CNDC and holiday packs. Direct specifies IDP/DDM nodes and trader infrastructure. Connect (SupplierAdvisor®) is the farm-to-fork OS. Leadership (Super-Cube®) forms people. Access opens capital. Impact is the PMO. Foundation channels 10% of group profits. Mandate honesty: Treasury leads VAT and a possible food reserve; DoH leads FoP and advertising rules; DSD/SASSA lead grants and vouchers; COGTA/SALGA lead the local mandate.",
+        "We ask for 90 days: a closed technical briefing; KwaZulu-Natal as joint demonstration (two local municipalities + one metro cluster); a PFMA/MFMA workstream against Game Changer 1.2; a MELIA data protocol; and a seat at the private-sector round tables the Framework is written for. Scale only after a closed circuit holds.",
     ]
     for p in paras:
         used = para(c, p, INNER, y, F["sans"], 8.05, 10.9, CONTENT_W, INK)
@@ -433,69 +434,157 @@ def page_exec(c):
 
 
 # ---------------------------------------------------------------------------
-# Goals 1–3
+# Game-changer cards
 # ---------------------------------------------------------------------------
-GOALS = [
-    (
-        "GOAL 1",
-        "Reduce hunger — plates that can be bought and proved",
-        "GHS 2024: 22.2% of households have inadequate or severely inadequate food access. Worst: Northern Cape 34.3%, Eastern Cape 31.2%, North West 30%. Hunger is an access and last-mile problem as much as a production problem.",
-        "A meal institutions can buy lawfully (PFMA/MFMA), kitchens can cook in minutes, that holds ambient, and that can be proved by lot — not a slogan.",
-        "GHS 2024, as cited in NFNSP-2",
-    ),
-    (
-        "GOAL 2",
-        "Scale nutrition — first 1 000 days and school feeding",
-        "NFNSS 2023: about 29% of children under five stunted; 15% severely. Framework working baseline: 27%. Complementary feeding in 50% of high-risk areas by 2029 is a Plan target, not a Group delivery claim.",
-        "High-impact nutrition for women, infants and children; NSNP/ECD/CNDC plates that are fortified, fast to cook, and safe; people in kitchens who can run the protocol.",
-        "NFNSS 2023  ·  Framework 27 Aug 2026",
-    ),
-    (
-        "GOAL 3",
-        "Inclusive food systems — smallholder share of public procurement",
-        "Plan targets 10% (2029) / 20% (2033) / 30% (2037) smallholder share of government food procurement. That target fails if the smallholder has no identity, no GPS, no lot and no invoice that PFMA can see.",
-        "Verified producers, aggregation, a mill that can take a lot, and a buying path that is lawful — not a database of names without trade.",
-        "NFNSP-2 procurement horizons",
-    ),
-]
+def draw_gc(c, y, n, title, asks, deliver, limit) -> float:
+    pw = CONTENT_W - 18
+    title_w = CONTENT_W - 36
+    th = measure(c, title, F["sansBold"], 8.0, 10.2, title_w)
+    ah = measure(c, "Plan: " + asks, F["sans"], 6.95, 9.05, pw)
+    dh = measure(c, "Big Five: " + deliver, F["sans"], 6.95, 9.05, pw)
+    lh = measure(c, limit, F["sansItalic"], 6.2, 8.0, pw)
+    h = 12 + th + 4 + ah + 4 + dh + 4 + lh + 8
+    rrect(c, INNER, y - h, CONTENT_W, h, 2.6, fill=white, stroke=GOLD, sw=0.45)
+    forest_bar(c, INNER, y - h, h)
+    c.setFillColor(GOLD)
+    c.setFont(F["sansBold"], 6.8)
+    c.drawString(INNER + 10, y - 8, n)
+    para(c, title, INNER + 28, y - 8, F["sansBold"], 8.0, 10.2, title_w, FOREST)
+    y_body = y - 10 - th
+    para(c, "Plan: " + asks, INNER + 10, y_body, F["sans"], 6.95, 9.05, pw, MUTED)
+    para(c, "Big Five: " + deliver, INNER + 10, y_body - ah - 3.5, F["sans"], 6.95, 9.05, pw, INK)
+    para(c, limit, INNER + 10, y_body - ah - 3.5 - dh - 3.5, F["sansItalic"], 6.2, 8.0, pw, FOREST)
+    return y - h - 3.2 * mm
 
 
-def page_goals(c):
-    y = chrome(c, 4, "The Plan — Goals 1–3")
-    kicker(c, "04  ·  What the Department’s Plan asks", INNER, y)
+def page_goal_head(c, num, running, kicker_t, title, rationale):
+    y = chrome(c, num, running)
+    kicker(c, kicker_t, INNER, y)
     y -= 8 * mm
-    para(
-        c,
-        "Goals 1–3 as read from NFNSP-2 Draft 2.2 (July 2026) and the Results Framework of 27 August 2026. This page states the problem and what the Plan asks. How Big Five answers each goal follows on pages 6–7.",
-        INNER,
-        y,
-        F["sans"],
-        7.6,
-        10.2,
-        CONTENT_W,
-        MUTED,
-    )
-    y -= 16 * mm
+    c.setFillColor(FOREST)
+    c.setFont(F["serifBold"], 11)
+    used = para(c, title, INNER, y, F["serifBold"], 11, 13.4, CONTENT_W, FOREST)
+    y -= used + 3 * mm
+    used = para(c, rationale, INNER, y, F["sans"], 7.4, 9.8, CONTENT_W, MUTED)
+    y -= used + 5 * mm
+    return y
 
-    for n, title, problem, asks, src in GOALS:
-        pw = CONTENT_W - 18
-        ph = measure(c, problem, F["sans"], 7.35, 9.7, pw)
-        ah = measure(c, "The Plan asks: " + asks, F["sans"], 7.45, 9.8, pw)
-        h = 22 + ph + 8 + ah + 12
-        rrect(c, INNER, y - h, CONTENT_W, h, 3, fill=white, stroke=GOLD, sw=0.5)
-        forest_bar(c, INNER, y - h, h)
-        c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], 7)
-        c.drawString(INNER + 10, y - 9, n)
-        c.setFillColor(FOREST)
-        c.setFont(F["serifBold"], 11.2)
-        c.drawString(INNER + 10, y - 20, title)
-        para(c, problem, INNER + 10, y - 32, F["sans"], 7.35, 9.7, pw, MUTED)
-        para(c, "The Plan asks: " + asks, INNER + 10, y - 32 - ph - 6, F["sans"], 7.45, 9.8, pw, INK)
-        c.setFillColor(MUTED)
-        c.setFont(F["sansItalic"], 6.1)
-        c.drawString(INNER + 10, y - h + 6, src)
-        y -= h + 4.5 * mm
+
+def page_g1a(c):
+    y = page_goal_head(
+        c,
+        4,
+        "Goal 1 — local agri-food system",
+        "04  ·  Goal 1  ·  Game Changers 1.1–1.2",
+        "Transformation of the local agri-food system to be sustainable, diversified, and inclusive",
+        "Lead: Agriculture. Support: SALGA, municipalities, DSBD, COGTA, Treasury, DBE, DSD, DoH. Source: NFNSP-2 Draft 2 (July 2026) and Results Framework 27 August 2026. GHS 2024: 22.2% of households still have inadequate or severely inadequate food access.",
+    )
+    y = draw_gc(
+        c, y, "1.1",
+        "Local food value chains — agri-hubs, produce markets, distribution centres",
+        "Municipal spatial planning for agri-hubs, produce markets and food-distribution centres; revitalise with the private sector; implement Comprehensive Producer Development Support; business-support mechanisms. Targets: map existing; 1 / 3 / up to 5 new hubs and markets per local or metro municipality by 2029 / 2033 / 2037; 3 / 10 / 15 business-support mechanisms.",
+        "Direct: costed container/micro-hub spec as an IDP / SDF / DDM One Plan annex. Agri: regenerative onboarding so grain is a lot. Connect: identity, GPS, grade, lot and hold. Foods mill: BOM, MPS, MRP, HACCP — the processor the Plan’s value-chain framework asks for. Access: capital for verified nodes. 90-day return: costed node pack.",
+        "Limit: we do not replace municipal spatial planning and we do not claim a national agri-hub build-out. Demonstration first.",
+    )
+    y = draw_gc(
+        c, y, "1.2",
+        "Government food procurement from local smallholder producers and processors",
+        "Link institutions that procure food to local markets; review procurement so smallholder realities survive the rules; align supply with demand; write a value-chain framework from producer to aggregation. Targets: 10% / 20% / 30% of the government food-procurement budget from smallholders by 2029 / 2033 / 2037.",
+        "Connect: identity, GPS, lots, invoices so the 10% target survives PFMA. Foods: 5 kg institutional SKUs. 90-day ask 3: PFMA/MFMA workstream. 90-day return: value-chain one-pager producer → hub → mill → kitchen, including hold-or-ship.",
+        "Limit: Treasury and DoA lead policy revision. We do not rewrite national procurement regulations. We make a lot those regulations can buy.",
+    )
+    c.showPage()
+
+
+def page_g1b(c):
+    y = page_goal_head(
+        c,
+        5,
+        "Goal 1 — production and informal trade",
+        "05  ·  Goal 1  ·  Game Changers 1.3–1.4",
+        "Urban and peri-urban production, informal traders and spaza shops",
+        "The same Goal 1 continues: production on municipal, customary and state land, and a hygienic informal market. Framework cells left as XX (SMME counts, municipal capacity) are not invented here.",
+    )
+    y = draw_gc(
+        c, y, "1.3",
+        "Urban and peri-urban household and smallholder production",
+        "Capacity-building; more and better extension; farmer support; land access through municipal spatial plans; tenure that can underpin loans; youth, women and persons with disabilities among new producers. Targets: 10% / 25% / 50% increase on the DoA producer register by 2029 / 2033 / 2037.",
+        "Agri: regenerative practice, soil and offtake — farmers trained as suppliers. Leadership (Super-Cube®): capability for implementers and municipal officers. Access: finance offtake where tenure is defendable. Connect: a verified network, not a mailing list.",
+        "Limit: we do not allocate municipal, communal or state land. COGTA, SALGA and traditional authorities lead land. We take a verified producer into trade.",
+    )
+    y = draw_gc(
+        c, y, "1.4",
+        "Informal traders and spaza shops — accreditation, infrastructure, healthy food",
+        "Municipal plans for trading space and infrastructure (transport, storage, water, sanitation, energy, security); sale of local produce and healthy food; collective bargaining; finance; health-and-safety compliance that fits informal operations.",
+        "Direct: SANTACO-rank and rural node spec. 15 000 containers is pathway design, not a live national fleet. Foods: ambient SKUs a spaza can hold without a cold chain (24-month shelf life, product specification). Connect: HACCP holds. Leadership: 5-minute porridge / 20-minute OnePot protocol.",
+        "Limit: SALGA / COGTA lead by-laws and trading space. DoH leads health-and-safety norms. We specify a node and a plate those norms can use.",
+    )
+    c.showPage()
+
+
+def page_g2(c):
+    y = page_goal_head(
+        c,
+        6,
+        "Goal 2 — equitable access",
+        "06  ·  Goal 2  ·  Game Changers 2.1–2.3",
+        "Equitable and dignified individual, household and community access to nutritious, safe, affordable, and healthy food",
+        "Leads vary: Treasury (affordability), DoH (regulation), GCIS / DBE (behaviour). Poverty Trends 2025: 17.6% below the food poverty line of R777 pp/pm (2023 prices).",
+    )
+    y = draw_gc(
+        c, y, "2.1",
+        "Enhance the local food environment — affordable healthy food",
+        "Price-stabilisation path (VAT methodology, subsidies, health-promotion levy, food-waste redirection, possible national food reserve, shock plan). Targets: 60% / 70% / 80% of households above the food poverty line; 60% / 75% / 100% VAT-exempt share of the STATS SA basket.",
+        "Foods: institutional cost points, approximate — ~R1.10 soup / ~R1.30 soya / ~R2.50 OnePot (internal comparison ~50% below wholesale/retail). Ambient 24-month shelf life so last-mile waste is a hold. Holiday and CNDC packs. 90-day return: three-menu basket versus a reference school meal.",
+        "Limit: Treasury leads VAT, subsidies, a food reserve and a national shock plan. We put a costed plate on the table those instruments can buy.",
+    )
+    y = draw_gc(
+        c, y, "2.2",
+        "Regulate the local food environment toward healthy diets",
+        "Front-of-pack labelling; advertising of unhealthy food; healthy tuckshops, spazas and cafeterias; school-ground and around-school norms; supermarket placement.",
+        "Connect / SchoolAdvisor: kitchen and vendor gates — a school environment that is not ready does not receive the next lot. No learner names. Leadership: school-environment protocol. Foods: one SKU family that can sit in a tuckshop or NSNP kitchen.",
+        "Limit: DoH gazettes FoP and advertising rules. DBE leads school-ground norms. We run the kitchen and vendor gate those regulations can use.",
+    )
+    y = draw_gc(
+        c, y, "2.3",
+        "Holistic food and nutrition behavioural-change strategy",
+        "Costed SBCC; obesity-prevention strategy; nutrition and agriculture in the Grade 1–12 curriculum; updated SA food-based dietary guidelines; indigenous recipes; practical toolkits.",
+        "Leadership (Super-Cube®): agency for kitchen teams and municipal officers. Foods: 5-minute porridge / 20-minute OnePot under the energy constraints the Plan names. Indigenous recipes as SKU work. Foundation: 10% of group profits as complementary CSI — not a substitute for GCIS or DBE curriculum.",
+        "Limit: GCIS / Communications and DBE lead national SBCC and curriculum. We form the people and the plate a campaign can point to.",
+    )
+    c.showPage()
+
+
+def page_g3(c):
+    y = page_goal_head(
+        c,
+        7,
+        "Goal 3 — protection of the vulnerable",
+        "07  ·  Goal 3  ·  Game Changers 3.1–3.3",
+        "Mitigate risks to the most vulnerable through social, livelihood, and nutrition protection",
+        "Leads: DSD / SASSA (social support); DoH and DBE (nutrition-specific); DSD with DoH (first 1 000 days). NFNSS 2023: about 29% of children under five stunted; Framework working baseline 27%.",
+    )
+    y = draw_gc(
+        c, y, "3.1",
+        "Strengthened social-support systems",
+        "Review the social-security net with ending food insecurity as the primary target; livelihood pathways; explore lifting grants toward the nutrition poverty line; close calendar gaps (holidays, last week of the month, seasonal farm work).",
+        "Agri + Connect: offtake so a grant household can become a supplier. Foods: CNDC and holiday packs for the calendar gaps the Plan names. Foundation: 10% of group profits as complementary CSI — not a substitute for SASSA.",
+        "Limit: DSD, SASSA and Treasury lead grant levels. We do not set the Child Support Grant.",
+    )
+    y = draw_gc(
+        c, y, "3.2",
+        "High-impact nutrition — NSNP, ECD, CNDC, fortification, referrals",
+        "Strengthen NSNP, ECD, CNDC and related pilots; referral systems including holidays; equalise ECD nutrition; review fortification vehicles. Targets: 3% / 5% / 10% stunting reduction; 40% / 60% / 80% of ECD centres receiving nutrition support.",
+        "Foods: one SKU family across NSNP, ECD, CNDC and holiday packs. 74% more nutrition / 185% more fortification are formulation/design claims — lab pack in the first 90 days. SchoolAdvisor: lot-and-kitchen proof. No learner names. Impact: 355 000 meals is programme-reported, not an NSNP headcount.",
+        "Limit: DBE and DoH lead NSNP, ECD nutrition and stunting %. 2.5 million children per day is a DBE-pathway plan, not current headcount.",
+    )
+    y = draw_gc(
+        c, y, "3.3",
+        "First 1 000 days — maternal/child support and complementary feeding 6–23 months",
+        "Holistic maternal/child support; breastfeeding support; preventative supplemental feeding for children 6–23 months in high-risk areas (50% by 2029, 100% by 2033). Draft 2 also records a WHO-Code-aligned voucher pathway — DSD lead.",
+        "Foods: complementary-feeding SKU work for the 6–23 month window, labelled formulation/design until the 90-day lab pack. Leadership: Super-Cube® for implementers. Foundation: complementary CSI rail — not a voucher scheme.",
+        "Limit: DSD and DoH lead maternal policy and any voucher instrument. We do not issue nutrition vouchers and we do not replace breastfeeding support.",
+    )
     c.showPage()
 
 
@@ -503,178 +592,42 @@ def page_goals(c):
 # Enablers
 # ---------------------------------------------------------------------------
 def page_enablers(c):
-    y = chrome(c, 5, "The Plan — Enablers A–C")
-    kicker(c, "05  ·  Enablers the goals cannot run without", INNER, y)
-    y -= 9 * mm
-    ens = [
-        (
-            "ENABLER A  ·  GOVERNANCE AND COORDINATION",
-            "A multi-department briefing that can actually sit: NFNSP TWG, DoA secretariat, DBE NSNP, DoH nutrition, DSD food-centre / ECD, KZN Treasury, SALGA KZN. Private-sector round tables and municipal roadshows the 27 August 2026 Framework is written for.",
-            "Impact as PMO — one programme, one risk register, one cadence. Super-Cube® so coordination is a skill, not a meeting. 90-day asks 1 and 5.",
-        ),
-        (
-            "ENABLER B  ·  DATA AND MELIA",
-            "Evidence that a plate was produced, held, shipped and received — inside the Plan’s monitoring architecture, not in a parallel dashboard.",
-            "SupplierAdvisor® extracts sit inside MELIA, not beside it. Lot-and-kitchen proof only. No learner names. SchoolAdvisor gates: a kitchen that is not ready does not receive the next lot.",
-        ),
-        (
-            "ENABLER C  ·  FINANCE AND PROCUREMENT",
-            "A time-boxed answer to how a fortified ambient meal and a smallholder-linked lot can be bought lawfully — and which rule the 2029 10% target actually requires.",
-            "90-day ask 3 before any scale claim. Access for capital. Connect GL / AR / AP / VAT and selected bank feeds (FNB Integration Channel, BankLink). Foundation: 10% of group profits as a complementary rail.",
-        ),
-    ]
-    for t, asks, deliver in ens:
-        pw = CONTENT_W - 20
-        ah = measure(c, "The Plan asks: " + asks, F["sans"], 7.4, 9.8, pw)
-        dh = measure(c, "Big Five: " + deliver, F["sans"], 7.4, 9.8, pw)
-        h = 16 + ah + 6 + dh + 8
-        rrect(c, INNER, y - h, CONTENT_W, h, 3, fill=white, stroke=GOLD, sw=0.45)
-        forest_bar(c, INNER, y - h, h)
-        c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], 7)
-        c.drawString(INNER + 10, y - 9, t)
-        para(c, "The Plan asks: " + asks, INNER + 10, y - 20, F["sans"], 7.4, 9.8, pw, MUTED)
-        para(c, "Big Five: " + deliver, INNER + 10, y - 20 - ah - 5, F["sans"], 7.4, 9.8, pw, INK)
-        y -= h + 4.2 * mm
-
-    y -= 1 * mm
-    kicker(c, "Horizons the Plan itself writes", INNER, y)
-    y -= 9 * mm
-    rows = [
-        ("2029", "10%", "Complementary feeding in 50% of high-risk areas"),
-        ("2033", "20%", "Scale only after a closed-circuit demonstration"),
-        ("2037", "30%", "National pathway — not a current claim"),
-    ]
-    col_w = (CONTENT_W - 8 * mm) / 3
-    hh = 20 * mm
-    for i, (year, sh, note) in enumerate(rows):
-        x = INNER + i * (col_w + 4 * mm)
-        rrect(c, x, y - hh, col_w, hh, 2.5, fill=CREAM, stroke=GOLD, sw=0.4)
-        c.setFillColor(FOREST)
-        c.setFont(F["serifBold"], 16)
-        c.drawString(x + 7, y - 13, sh)
-        c.setFillColor(GOLD)
-        c.setFont(F["sansBold"], 7)
-        c.drawRightString(x + col_w - 7, y - 11, year)
-        para(c, note, x + 7, y - 22, F["sans"], 6.6, 8.4, col_w - 14, MUTED)
-    c.showPage()
-
-
-# ---------------------------------------------------------------------------
-# How we achieve goals
-# ---------------------------------------------------------------------------
-HOW_G1 = (
-    "GOAL 1 — REDUCE HUNGER",
-    [
-        "Foods: fortified porridge, soya, OnePot and soups at approximate institutional cost points (~R1.10 soup / ~R1.30 soya / ~R2.50 OnePot). Internal comparison: ~50% below wholesale/retail. 24-month ambient shelf life (product specification).",
-        "Direct: last-mile nodes so the plate reaches rank, rural and informal-trade markets. SANTACO 15 000 containers is pathway design, not a live national fleet.",
-        "Connect: purchase orders, invoices and lot holds so a school or CNDC can show what was received.",
-        "Impact: programme gates so delivery is reported as programme-reported until audited.",
-    ],
-    "Pillars: Foods  ·  Direct  ·  Connect  ·  Impact",
-)
-HOW_G2 = (
-    "GOAL 2 — SCALE NUTRITION",
-    [
-        "Foods: one SKU family across NSNP, ECD, CNDC and holiday packs. 5 kg institutional formats. 5-minute porridge / 20-minute OnePot. 74% more nutrition / 185% more fortification are formulation/design claims — lab pack in the first 90 days.",
-        "Leadership (Super-Cube®): whole-person capability for implementers, school-environment support, and municipal nutrition officers.",
-        "Connect / SchoolAdvisor: kitchen gates and lot-and-kitchen proof. No learner names.",
-        "Foundation: 10% of group profits (standing Group policy) as a complementary CSI rail — not a substitute for the fiscus.",
-    ],
-    "Pillars: Foods  ·  Leadership  ·  Connect  ·  Foundation",
-)
-HOW_G3 = (
-    "GOAL 3 — INCLUSIVE FOOD SYSTEMS / SMALLHOLDER PROCUREMENT",
-    [
-        "Agri: regenerative onboarding, soil and practice verification, offtake into Foods. Farmers are trained as suppliers, not as beneficiaries of a once-off drop.",
-        "Connect (SupplierAdvisor®): identity, GPS, lots, invoices so the 10% target survives PFMA.",
-        "Foods mill: BOM, MPS, MRP, HACCP — the lot becomes a plate.",
-        "Access: institutional, CSI and DFI pathways that finance real offtake, not workshops.",
-        "Direct: local markets so smallholder value is not trapped at the farm gate.",
-    ],
-    "Pillars: Agri  ·  Connect  ·  Foods  ·  Access  ·  Direct",
-)
-
-
-def draw_how_block(c, y, title, lines, pil) -> float:
-    inner_w = CONTENT_W - 18
-    body = 0.0
-    for line in lines:
-        body += measure(c, line, F["sans"], 7.05, 9.25, inner_w) + 2.1 * mm
-    h = 16 + body + 11
-    rrect(c, INNER, y - h, CONTENT_W, h, 2.6, fill=white, stroke=GOLD, sw=0.45)
-    forest_bar(c, INNER, y - h, h)
-    c.setFillColor(GOLD)
-    c.setFont(F["sansBold"], 7.2)
-    c.drawString(INNER + 10, y - 9, title)
-    yy = y - 18
-    yy = bullets(c, lines, INNER + 10, yy, inner_w)
-    c.setFillColor(FOREST)
-    c.setFont(F["sansBold"], 7.1)
-    c.drawString(INNER + 10, y - h + 6, pil)
-    return y - h - 4.2 * mm
-
-
-def page_how_12(c):
-    y = chrome(c, 6, "How Big Five achieves Goals 1–2")
-    kicker(c, "06  ·  Each objective, answered with a circuit", INNER, y)
-    y -= 9 * mm
+    y = chrome(c, 8, "Enablers A–C — official titles")
+    kicker(c, "08  ·  Governance, resourcing, capacity and data", INNER, y)
+    y -= 8 * mm
     para(
         c,
-        "Not a slogan against a target. Each Plan goal is answered with named pillars, labelled Group figures, and an explicit non-claim where the work is still pathway design.",
+        "In the official Plan, Enabler B is resourcing — not MELIA. Enabler C is capacity, innovation and technological support, and it is Enabler C that carries data and MELIA. This page uses those titles.",
         INNER,
         y,
-        F["serifItalic"],
-        8.6,
-        11.4,
+        F["sans"],
+        7.3,
+        9.6,
         CONTENT_W,
-        FOREST,
+        MUTED,
     )
-    y -= 18 * mm
-    y = draw_how_block(c, y, *HOW_G1)
-    y -= 2 * mm
-    y = draw_how_block(c, y, *HOW_G2)
-    c.showPage()
-
-
-def page_how_3e(c):
-    y = chrome(c, 7, "How Big Five achieves Goal 3 and Enablers A–C")
-    kicker(c, "07  ·  Smallholders, governance, data, finance", INNER, y)
-    y -= 9 * mm
-    y = draw_how_block(c, y, *HOW_G3)
-
-    ens = [
-        (
-            "ENABLER A — GOVERNANCE",
-            [
-                "Impact as PMO: one programme plan, one risk register, one reporting cadence.",
-                "Leadership: Super-Cube® for public servants and implementers so coordination is a skill, not a meeting.",
-                "90-day asks 1 and 5: the closed briefing and the seat at tables already in the Framework.",
-            ],
-            "Pillars: Impact  ·  Leadership",
-        ),
-        (
-            "ENABLER B — DATA AND MELIA",
-            [
-                "SupplierAdvisor® extracts sit inside MELIA, not beside it (90-day ask 4).",
-                "Lot-and-kitchen proof only. No learner names. No beneficiary PII on this portal. POPIA purpose-limited.",
-                "SchoolAdvisor gates: a kitchen that is not ready does not receive the next lot.",
-            ],
-            "Pillars: Connect  ·  Impact",
-        ),
-        (
-            "ENABLER C — FINANCE AND PROCUREMENT",
-            [
-                "90-day ask 3: PFMA/MFMA workstream before any scale claim.",
-                "Access: capital pathways for verified nodes and producers.",
-                "Connect: GL / AR / AP / VAT and selected bank feeds (FNB Integration Channel, BankLink) so money and lots reconcile.",
-                "Foundation: 10% of group profits as a complementary rail.",
-            ],
-            "Pillars: Access  ·  Connect  ·  Foundation",
-        ),
-    ]
-    for title, lines, pil in ens:
-        y = draw_how_block(c, y, title, lines, pil)
+    y -= 14 * mm
+    y = draw_gc(
+        c, y, "A",
+        "Integrated, participatory, mainstreamed multi-actor food-system governance",
+        "NFNS Council; IMC on Poverty; Premier and Mayoral committees; FNS Bill then Act; local-government mandate; 30% / 50% / 100% of local municipalities revise IDPs; 100% of DDM One Plans include a food-systems component by 2029; round tables quarterly.",
+        "Impact as PMO — one programme, one risk register, one cadence. 90-day asks 1 and 5: closed TWG briefing and a seat at Framework round tables. 90-day return: draft municipal SLA for an IDP/SDBIP annex. Direct: node spec in DDM One Plan language. Leadership: Super-Cube® so coordination is a skill.",
+        "Limit: we do not appoint the NFNS Council, draft the Act, or write departmental APPs. COGTA and SALGA lead the local mandate.",
+    )
+    y = draw_gc(
+        c, y, "B",
+        "Adequate and effective resourcing of a well-coordinated local agri-food system",
+        "Full costing; SEIAS; MTEF/APP alignment; possible conditional grant; DFI, climate and private capital; SETA lines. Targets: 50% of unfunded NFNSP activities funded by 2029 and 100% by 2033.",
+        "Access: institutional, CSI and DFI pathways that finance offtake, not workshops. Connect: GL / AR / AP / VAT and selected bank feeds so money and lots reconcile. Foundation: 10% of group profits (standing policy) as a complementary rail. 90-day return: costed node pack and one-page risk register.",
+        "Limit: we do not reallocate votes or design a conditional grant. Treasury leads. We cost a closed-circuit demonstration those votes can buy.",
+    )
+    y = draw_gc(
+        c, y, "C",
+        "Increased capacity, innovation and technological support — including MELIA",
+        "Capacity-needs assessment; vocational packs; municipal leadership; ARC genetic material at cost-recovery; multi-sectoral information system; MELIA; 80% then 100% of indicator data submitted and cleaned.",
+        "Leadership (Super-Cube®) and Agri onboarding for the people who will run a KZN circuit. SupplierAdvisor® extracts sit inside MELIA, not beside it. Lot-and-kitchen proof only. No learner names. POPIA purpose-limited. SchoolAdvisor gates.",
+        "Limit: SupplierAdvisor® does not replace BAS or LOGIS, and it is not a parallel national dashboard. It is the trade and quality layer those systems do not have.",
+    )
     c.showPage()
 
 
@@ -682,12 +635,12 @@ def page_how_3e(c):
 # Pillars / circuit
 # ---------------------------------------------------------------------------
 def page_pillars(c):
-    y = chrome(c, 8, "Nine pillars as one circuit")
-    kicker(c, "08  ·  Feed  ·  Educate  ·  Empower", INNER, y)
+    y = chrome(c, 9, "Nine pillars as one circuit")
+    kicker(c, "09  ·  Feed  ·  Educate  ·  Empower", INNER, y)
     y -= 9 * mm
     para(
         c,
-        "The Department does not need nine vendors. It needs one circuit that can put a lot on a mill, a plate in a kitchen, and proof in MELIA. Agri → Connect → Foods → Direct, with Leadership forming people and Impact reporting honestly.",
+        "The Department does not need nine vendors. It needs one circuit mapped to the Plan’s Game Changers: Agri opens a lot (1.3), Connect proves it for the 10% target (1.2), Foods mills a plate (Goals 2–3), Direct moves it to hub, market, rank and kitchen (1.1, 1.4). Leadership forms people. Impact reports programme-reported until audited.",
         INNER,
         y,
         F["serifItalic"],
@@ -750,16 +703,16 @@ def page_pillars(c):
 
     kicker(c, "Where each pillar sits on the Plan", INNER, y)
     y -= 7 * mm
-    cols = ["G1 Hunger", "G2 Nutrition", "G3 Smallholder", "EA Gov.", "EB MELIA", "EC Finance"]
+    cols = ["G1 Agri-food", "G2 Access", "G3 Protect", "EA Gov.", "EB Resource", "EC Cap/data"]
     rows = [
-        ("Agri", [0, 0, 1, 0, 0, 0]),
-        ("Foods", [1, 1, 1, 0, 0, 0]),
-        ("Leadership", [0, 1, 0, 1, 0, 0]),
+        ("Agri", [1, 0, 1, 0, 0, 1]),
+        ("Foods", [1, 1, 1, 0, 0, 1]),
+        ("Leadership", [1, 1, 1, 1, 0, 1]),
         ("Connect", [1, 1, 1, 0, 1, 1]),
-        ("Direct", [1, 0, 1, 0, 0, 0]),
-        ("Access", [0, 0, 1, 0, 0, 1]),
-        ("Impact", [1, 0, 0, 1, 1, 0]),
-        ("Foundation", [0, 1, 0, 0, 0, 1]),
+        ("Direct", [1, 1, 1, 1, 0, 0]),
+        ("Access", [1, 0, 0, 0, 1, 0]),
+        ("Impact", [1, 0, 1, 1, 1, 1]),
+        ("Foundation", [0, 1, 1, 0, 1, 0]),
         ("Global", [0, 0, 0, 0, 0, 0]),
     ]
     name_w = 28 * mm
@@ -803,8 +756,8 @@ def page_pillars(c):
 # Why now / who we are
 # ---------------------------------------------------------------------------
 def page_why(c):
-    y = chrome(c, 9, "Why now  ·  reading the Plan  ·  who we are")
-    kicker(c, "09  ·  Why now — the Plan’s own numbers", INNER, y)
+    y = chrome(c, 10, "Why now  ·  reading the Plan  ·  who we are")
+    kicker(c, "10  ·  Why now — the Plan’s own numbers", INNER, y)
     y -= 8 * mm
     why = [
         ("Access is not improving fast enough", "GHS 2024: 22.2% of households have inadequate or severely inadequate food access. Northern Cape 34.3%, Eastern Cape 31.2%, North West 30%.", "GHS 2024, as cited in NFNSP-2"),
@@ -829,7 +782,7 @@ def page_why(c):
     y -= 8 * mm
     para(
         c,
-        "NFNSP-2 Draft 2.2 (July 2026) and the Results Framework of 27 August 2026 are the source documents. This briefing does not replace them. The 27 August 2026 Framework is written for private-sector round tables and municipal roadshows. The 90-day ask is a seat at those tables — not a claim that they have already been held with Big Five.",
+        "NFNSP-2 Draft 2 (July 2026, internal discussion) and the Results Framework of 27 August 2026 are the source documents. Official Goal, Enabler and Game-changer titles are used in full. The 90-day ask is a seat at the Framework’s private-sector round tables — not a claim that they have already been held with Big Five. Several Framework cells remain XX and are not invented here.",
         INNER,
         y,
         F["sans"],
@@ -859,8 +812,8 @@ def page_why(c):
 # Foods / workstreams / demonstration
 # ---------------------------------------------------------------------------
 def page_foods(c):
-    y = chrome(c, 10, "Foods  ·  workstreams  ·  demonstration")
-    kicker(c, "10  ·  Big Five Foods — labelled Group figures", INNER, y)
+    y = chrome(c, 11, "Foods  ·  workstreams  ·  demonstration")
+    kicker(c, "11  ·  Big Five Foods — labelled Group figures", INNER, y)
     y -= 8 * mm
     para(
         c,
@@ -943,8 +896,8 @@ def page_foods(c):
 # OS
 # ---------------------------------------------------------------------------
 def page_os(c):
-    y = chrome(c, 11, "SupplierAdvisor® farm-to-fork OS")
-    kicker(c, "11  ·  Operating system", INNER, y)
+    y = chrome(c, 12, "SupplierAdvisor® farm-to-fork OS")
+    kicker(c, "12  ·  Operating system", INNER, y)
     y -= 9 * mm
     c.setFillColor(FOREST)
     c.setFont(F["serifBold"], 13)
@@ -1025,8 +978,8 @@ def page_os(c):
 # 90-day ask
 # ---------------------------------------------------------------------------
 def page_ask(c):
-    y = chrome(c, 12, "90-day ask")
-    kicker(c, "12  ·  Five asks", INNER, y)
+    y = chrome(c, 13, "90-day ask")
+    kicker(c, "13  ·  Five asks", INNER, y)
     y -= 8 * mm
     para(
         c,
@@ -1086,8 +1039,8 @@ def page_ask(c):
 # Close
 # ---------------------------------------------------------------------------
 def page_close(c):
-    y = chrome(c, 13, "Risk  ·  labelled figures  ·  conclusion")
-    kicker(c, "13  ·  Governance and risk — what this briefing is not", INNER, y)
+    y = chrome(c, 14, "Risk  ·  labelled figures  ·  conclusion")
+    kicker(c, "14  ·  Governance and risk — what this briefing is not", INNER, y)
     y -= 8 * mm
     risks = [
         ("Presented as an awarded NSNP contract", "This briefing is a proposal. No government contract is claimed."),
@@ -1145,9 +1098,9 @@ def page_close(c):
     kicker(c, "Conclusion", INNER, y)
     y -= 8 * mm
     close = (
-        "The Plan has the targets. The Group has plates, an operating system, and a demonstration design. "
-        "What is asked in 90 days is a closed briefing, a named province, a lawful buying path, a MELIA protocol, and a seat at the tables already written into the Framework. "
-        "Nothing here is an awarded tender, a current daily NSNP headcount, or a replacement for BAS or LOGIS."
+        "The Plan has named Goals, Game Changers and Enablers. The Group has plates, an operating system, and a demonstration design mapped to each of them. "
+        "What is asked in 90 days is a closed briefing, a named province, a lawful buying path for Game Changer 1.2, a MELIA protocol, and a seat at the tables already written into the Framework. "
+        "Nothing here is an awarded tender, a current daily NSNP headcount, a replacement for BAS or LOGIS, or a claim to gazette VAT, grants or a Food and Nutrition Security Act."
     )
     ch = measure(c, close, F["serifItalic"], 8.6, 11.6, CONTENT_W - 16) + 16
     rrect(c, INNER, y - ch, CONTENT_W, ch, 3, fill=FOREST, stroke=None)
@@ -1174,10 +1127,11 @@ def build():
     page_cover(c)
     page_contents(c)
     page_exec(c)
-    page_goals(c)
+    page_g1a(c)
+    page_g1b(c)
+    page_g2(c)
+    page_g3(c)
     page_enablers(c)
-    page_how_12(c)
-    page_how_3e(c)
     page_pillars(c)
     page_why(c)
     page_foods(c)
