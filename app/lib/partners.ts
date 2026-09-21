@@ -333,7 +333,7 @@ export const PARTNERS: PartnerProfile[] = [
     slug: "department-of-agriculture",
     name: "Department of Agriculture",
     organisation: "NFNSP Technical Working Group / Department of Agriculture",
-    emails: [],
+    emails: ["craig@bigfivefoods.com"],
     role: "National department · NFNSP-2 implementation partnership",
     headline: "Implementation partnership · NFNSP-2",
     summary:
