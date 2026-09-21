@@ -369,7 +369,7 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#proposal",
         label: "Full proposal",
-        desc: "Sectioned long-read — summary through 90-day ask.",
+        desc: "Fifteen sections — executive summary, Plan goals, nine-pillar circuit, 90-day ask.",
       },
       {
         href: "#os",
@@ -383,8 +383,8 @@ export const PARTNERS: PartnerProfile[] = [
       },
       {
         href: "/api/partner/nfnsp-proposal",
-        label: "Download proposal (PDF) · September 2026 · v1.0",
-        desc: "Session-gated A4 briefing.",
+        label: "Download proposal (PDF) · September 2026 · v2.0",
+        desc: "Session-gated A4 briefing — executive summary through 90-day ask.",
       },
       {
         href: "https://www.nda.gov.za/",

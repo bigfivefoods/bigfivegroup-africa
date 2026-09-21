@@ -10,8 +10,8 @@ export const NFNSP = {
   title: "Implementation partnership",
   subtitle: "Operationalising the National Food and Nutrition Security Plan · 2027–2037",
   pdfHref: "/partners/BigFive_NFNSP_Implementation_Partnership_Proposal.pdf",
-  pdfLabel: "Download proposal (PDF) · September 2026 · v1.0",
-  pdfVersion: "v1.0 · September 2026",
+  pdfLabel: "Download proposal (PDF) · September 2026 · v2.0",
+  pdfVersion: "v2.0 · September 2026",
   website: "https://www.nda.gov.za/",
   honestyLine:
     "Programme-reported meals to date are in the hundreds of thousands (355 000 on the Group site, programme-reported), not millions. The 2.5 million children-per-day NSNP figure is a DBE-pathway plan, not a current daily headcount.",
@@ -68,10 +68,240 @@ export const NFNSP = {
       desc: "Two local municipalities + one metro cluster. Scale only after a closed circuit holds. Second province after the Plan’s own high-inadequacy reference.",
     },
   ],
+  execSummaryLead:
+    "South Africa has a Plan. What it needs now is an implementation partner that can put a lawful plate on the table, a verified smallholder lot behind that plate, and proof that both happened — without claiming a government contract that has not been awarded.",
   execSummary: [
-    "The National Food and Nutrition Security Plan 2027–2037 asks the private sector to help operationalise Goals 1–3 and Enablers A–C — plates, producers, municipal markets, and proof.",
-    "Big Five Group proposes an implementation partnership: Foods as the institutional meal, SupplierAdvisor® as the farm-to-fork OS, Direct nodes as last-mile markets, and a 24-month KwaZulu-Natal demonstration before any national scale claim.",
-    "This workspace is a partner briefing of a confidential proposal. It is not a government publication, not an awarded tender, and not a claim of current NSNP daily headcount.",
+    "The National Food and Nutrition Security Plan 2027–2037 (NFNSP-2 Draft 2.2, July 2026, and Results Framework 27 August 2026) is the Department of Agriculture’s blueprint for Goals 1–3 and Enablers A–C: reduce hunger; scale nutrition for the first 1 000 days and school feeding; build inclusive food systems with a rising smallholder share of public procurement; and enable that work through governance, data (MELIA), and a lawful finance/procurement path.",
+    "The Plan’s own numbers are the case for urgency. GHS 2024: 22.2% of households have inadequate or severely inadequate food access (Northern Cape 34.3%, Eastern Cape 31.2%, North West 30%). NFNSS 2023: about 29% of children under five stunted; 15% severely stunted (Framework working baseline 27%). Poverty Trends 2025: 17.6% of people below the food poverty line of R777 per person per month (2023 prices); 71% of the poor in 2023 were under 35. Plan targets: 10% / 20% / 30% smallholder share of government food procurement by 2029 / 2033 / 2037, and complementary feeding in 50% of high-risk areas by 2029.",
+    "Big Five Group (Pty) Ltd proposes to operationalise those goals as one coherent system — not nine disconnected companies. Agri trains and verifies smallholders. Foods turns that grain into fortified ambient meals (porridge, soya, OnePot, soups) in 5 kg institutional formats for NSNP, ECD, CNDC and holiday packs. Direct takes the plate to the last mile (SANTACO-rank and rural nodes — pathway design). Connect (SupplierAdvisor®) is the farm-to-fork operating system: identity, lots, invoices, HACCP holds, GL. Leadership (Super-Cube®) forms the people who run kitchens, hubs and municipal SLAs. Access opens capital pathways. Impact is the PMO. Foundation channels 10% of group profits with proof. Global holds standards when corridors extend.",
+    "SupplierAdvisor® does not replace BAS or LOGIS. It is the trade and quality layer those systems do not have. Extracts sit inside MELIA, not beside it. No learner names. No beneficiary databases on this portal.",
+    "We ask for 90 days: a closed technical briefing; KwaZulu-Natal named as joint demonstration province (two local municipalities + one metro cluster); a time-boxed PFMA/MFMA workstream; a MELIA data protocol; and a seat at the private-sector round tables the 27 August 2026 Framework is already written for. Scale only after a closed circuit holds. A second high-inadequacy province (Eastern Cape is the Plan’s own reference) is Phase 2 — not a current claim.",
+    "This workspace is a confidential partner briefing. It is not a government publication, not an awarded tender, and not a claim of current NSNP daily headcount. Programme-reported meals to date are in the hundreds of thousands (355 000 on the Group site, programme-reported). The 2.5 million children-per-day NSNP figure is a DBE-pathway plan, not a current daily headcount.",
+  ],
+  planGoals: [
+    {
+      id: "g1",
+      n: "Goal 1",
+      title: "Reduce hunger — plates that can be bought and proved",
+      problem:
+        "GHS 2024: 22.2% of households have inadequate or severely inadequate food access. The worst provinces are Northern Cape 34.3%, Eastern Cape 31.2% and North West 30%. Hunger here is an access and last-mile problem as much as a production problem.",
+      source: "GHS 2024, as cited in NFNSP-2",
+      planAsks:
+        "A meal that institutions can buy lawfully (PFMA/MFMA), that kitchens can cook in minutes, that holds ambient, and that can be proved by lot — not a slogan.",
+      weDeliver: [
+        "Foods: fortified porridge, soya, OnePot and soups at approximate institutional cost points (~R1.10 soup / ~R1.30 soya / ~R2.50 OnePot per meal). Internal comparison: ~50% below wholesale/retail. 24-month ambient shelf life (product specification).",
+        "Direct: last-mile nodes so the plate reaches rank, rural and informal-trade markets. SANTACO 15 000 containers is pathway design, not a live national fleet.",
+        "Connect: purchase orders, invoices and lot holds so a school or CNDC can show what was received.",
+        "Impact: programme gates so delivery is reported as programme-reported until audited.",
+      ],
+      pillars: ["Foods", "Direct", "Connect", "Impact"],
+    },
+    {
+      id: "g2",
+      n: "Goal 2",
+      title: "Scale nutrition — first 1 000 days and school feeding",
+      problem:
+        "NFNSS 2023: about 29% of children under five stunted; 15% severely stunted. Framework working baseline: 27%. Complementary feeding in 50% of high-risk areas by 2029 is a Plan target, not a Group delivery claim.",
+      source: "NFNSS 2023 · Framework 27 Aug 2026",
+      planAsks:
+        "High-impact nutrition for women, infants and children; NSNP/ECD/CNDC plates that are fortified, fast to cook, and safe; people in kitchens who can run the protocol.",
+      weDeliver: [
+        "Foods: one SKU family across NSNP, ECD, CNDC and holiday packs. 5 kg institutional formats. 5-minute porridge / 20-minute OnePot. 74% more nutrition / 185% more fortification are formulation/design claims — lab pack in the first 90 days.",
+        "Leadership (Super-Cube®): whole-person capability for implementers, school-environment support, and municipal nutrition officers.",
+        "Connect / SchoolAdvisor: kitchen gates and lot-and-kitchen proof. No learner names.",
+        "Foundation: 10% of group profits (standing Group policy) as a complementary CSI rail — not a substitute for the fiscus.",
+      ],
+      pillars: ["Foods", "Leadership", "Connect", "Foundation"],
+    },
+    {
+      id: "g3",
+      n: "Goal 3",
+      title: "Inclusive food systems — smallholder share of public procurement",
+      problem:
+        "The Plan targets 10% (2029) / 20% (2033) / 30% (2037) smallholder share of government food procurement. That target fails if the smallholder has no identity, no GPS, no lot and no invoice that PFMA can see.",
+      source: "NFNSP-2 procurement horizons",
+      planAsks:
+        "Verified producers, aggregation, a mill that can take a lot, and a buying path that is lawful — not a database of names without trade.",
+      weDeliver: [
+        "Agri: regenerative onboarding, soil and practice verification, offtake into Foods. Farmers are trained as suppliers, not as beneficiaries of a once-off drop.",
+        "Connect (SupplierAdvisor®): identity, GPS, lots, invoices so the 10% target survives PFMA.",
+        "Foods mill: BOM, MPS, MRP, HACCP — the lot becomes a plate.",
+        "Access: institutional, CSI and DFI pathways that finance real offtake, not workshops.",
+        "Direct: local markets so smallholder value is not trapped at the farm gate.",
+      ],
+      pillars: ["Agri", "Connect", "Foods", "Access", "Direct"],
+    },
+  ],
+  planEnablers: [
+    {
+      id: "ea",
+      n: "Enabler A",
+      title: "Governance and coordination",
+      planAsks:
+        "A multi-department briefing that can actually sit: NFNSP TWG, DoA secretariat, DBE NSNP, DoH nutrition, DSD food-centre / ECD, KZN Treasury, SALGA KZN. Private-sector round tables and municipal roadshows the 27 August 2026 Framework is written for.",
+      weDeliver: [
+        "Impact as PMO: one programme plan, one risk register, one reporting cadence.",
+        "Leadership: Super-Cube® for public servants and implementers so coordination is a skill, not a meeting.",
+        "90-day ask 1 and 5: the closed briefing and the seat at tables already in the Framework.",
+      ],
+      pillars: ["Impact", "Leadership"],
+    },
+    {
+      id: "eb",
+      n: "Enabler B",
+      title: "Data and MELIA",
+      planAsks:
+        "Evidence that a plate was produced, held, shipped and received — inside the Plan’s monitoring architecture, not in a parallel dashboard.",
+      weDeliver: [
+        "SupplierAdvisor® extracts sit inside MELIA, not beside it (90-day ask 4).",
+        "Lot-and-kitchen proof only. No learner names. No beneficiary PII on this portal. POPIA purpose-limited.",
+        "SchoolAdvisor gates: a kitchen that is not ready does not receive the next lot.",
+      ],
+      pillars: ["Connect", "Impact"],
+    },
+    {
+      id: "ec",
+      n: "Enabler C",
+      title: "Finance and procurement",
+      planAsks:
+        "A time-boxed answer to how a fortified ambient meal and a smallholder-linked lot can be bought lawfully — and which rule the 2029 10% target actually requires.",
+      weDeliver: [
+        "90-day ask 3: PFMA/MFMA workstream before any scale claim.",
+        "Access: capital pathways for verified nodes and producers.",
+        "Connect: GL / AR / AP / VAT and selected bank feeds (FNB Integration Channel, BankLink) so money and lots reconcile.",
+        "Foundation: 10% of group profits as a complementary rail.",
+      ],
+      pillars: ["Access", "Connect", "Foundation"],
+    },
+  ],
+  coherenceLead:
+    "The Department does not need nine vendors. It needs one circuit that can put a lot on a mill, a plate in a kitchen, and proof in MELIA.",
+  coherence: [
+    "Agri opens a verified lot. Connect records identity, GPS, invoice and hold. Foods mills the lot into a fortified ambient plate. Direct moves the plate to school, ECD, CNDC, rank and rural node. Leadership forms the people who run the kitchen. Impact reports the delivery as programme-reported until it is audited.",
+    "That sequence is one NFNSP delivery — not nine slide decks. SupplierAdvisor® is the spine: the trade and quality layer BAS and LOGIS do not have. Extracts sit inside MELIA. No learner names.",
+    "Access finances offtake, not workshops. Foundation channels 10% of group profits with proof — complementary CSI, not a substitute for the fiscus. Global holds standards when a closed KwaZulu-Natal circuit is ready to travel. That is Phase 2, not a current claim.",
+  ],
+  pillarMatrix: {
+    cols: [
+      { id: "g1", label: "G1 Hunger" },
+      { id: "g2", label: "G2 Nutrition" },
+      { id: "g3", label: "G3 Smallholder" },
+      { id: "ea", label: "EA Governance" },
+      { id: "eb", label: "EB MELIA" },
+      { id: "ec", label: "EC Finance" },
+    ],
+    rows: [
+      { name: "Agri", marks: [false, false, true, false, false, false] },
+      { name: "Foods", marks: [true, true, true, false, false, false] },
+      { name: "Leadership", marks: [false, true, false, true, false, false] },
+      { name: "Connect", marks: [true, true, true, false, true, true] },
+      { name: "Direct", marks: [true, false, true, false, false, false] },
+      { name: "Access", marks: [false, false, true, false, false, true] },
+      { name: "Impact", marks: [true, false, false, true, true, false] },
+      { name: "Foundation", marks: [false, true, false, false, false, true] },
+      { name: "Global", marks: [false, false, false, false, false, false] },
+    ],
+    note: "Global is held until a closed KZN circuit — not a current scale claim.",
+  },
+  systemFlow: {
+    title: "How the Group works as one circuit",
+    steps: [
+      {
+        n: "01",
+        t: "Agri",
+        d: "Smallholders onboard with practice, soil and identity. Grain is a lot, not a donation.",
+      },
+      {
+        n: "02",
+        t: "Connect",
+        d: "SupplierAdvisor® records the lot, the invoice, the hold. BAS/LOGIS stay. This is the trade layer.",
+      },
+      {
+        n: "03",
+        t: "Foods",
+        d: "The mill turns the lot into a fortified ambient plate — porridge, soya, OnePot, soup.",
+      },
+      {
+        n: "04",
+        t: "Direct",
+        d: "The plate moves to school, ECD, CNDC, rank and rural node. Pathway design until a circuit is closed.",
+      },
+      {
+        n: "05",
+        t: "Leadership + Impact",
+        d: "People run the kitchen. The PMO reports honestly — programme-reported until audited.",
+      },
+    ],
+  },
+  pillars: [
+    {
+      slug: "agri",
+      mission: "Feed",
+      name: "Agri",
+      serves:
+        "Restores soil and smallholder livelihoods; supplies verified produce into Foods and public-procurement lots.",
+      nda: "Goal 3 — the 10% smallholder target has no meaning without producers who can invoice.",
+    },
+    {
+      slug: "foods",
+      mission: "Feed",
+      name: "Foods",
+      serves:
+        "Fortified ambient meals at institutional cost points for NSNP, ECD, CNDC and holiday packs.",
+      nda: "Goals 1 and 2 — the plate. Certifications as published on bigfivegroup.africa/foods.",
+    },
+    {
+      slug: "leadership",
+      mission: "Educate",
+      name: "Leadership",
+      serves:
+        "Super-Cube® whole-person leadership for implementers, kitchen teams and public servants.",
+      nda: "Goal 2 agency + Enabler A — programmes fail when people are unformed.",
+    },
+    {
+      slug: "connect",
+      mission: "Empower",
+      name: "Connect",
+      serves:
+        "SupplierAdvisor®: verified network, lots, HACCP holds, GL, selected bank feeds. Not BAS/LOGIS.",
+      nda: "Goal 3 proof + Enablers B and C — the OS the Plan can actually use.",
+    },
+    {
+      slug: "direct",
+      mission: "Empower",
+      name: "Direct",
+      serves:
+        "Last-mile nodes and SANTACO-rank containers so the plate reaches where people already are.",
+      nda: "Goal 1 access — 15 000 containers is pathway design, to be measured.",
+    },
+    {
+      slug: "access",
+      mission: "Empower",
+      name: "Access",
+      serves: "Institutional, CSI and DFI pathways that finance offtake, not workshops.",
+      nda: "Enabler C — capital behind a lawful buy.",
+    },
+    {
+      slug: "impact",
+      mission: "Cross-cutting",
+      name: "Impact",
+      serves: "PMO: plans, gates, risk register, honest reporting across pillars.",
+      nda: "Enabler A — one programme, not nine slide decks.",
+    },
+    {
+      slug: "foundation",
+      mission: "Cross-cutting",
+      name: "Foundation",
+      serves: "10% of group profits (standing policy) with proof on SupplierAdvisor®.",
+      nda: "Goal 2 complementary feeding CSI — not a substitute for the fiscus.",
+    },
+    {
+      slug: "global",
+      mission: "Empower",
+      name: "Global",
+      serves: "Corridors and standards when demonstration is ready to travel.",
+      nda: "After a closed KZN circuit — not a current scale claim.",
+    },
   ],
   whyNow: [
     {
@@ -296,14 +526,16 @@ export const NFNSP_PROPOSAL_NAV = [
   { href: "#exec-summary", n: "01", label: "Executive summary" },
   { href: "#why-now", n: "02", label: "Why now" },
   { href: "#reading-the-plan", n: "03", label: "Reading the Plan" },
-  { href: "#who-we-are", n: "04", label: "Who we are" },
-  { href: "#foods", n: "05", label: "Big Five Foods" },
-  { href: "#os", n: "06", label: "Farm-to-fork OS" },
-  { href: "#alignment", n: "07", label: "Goals & enablers" },
-  { href: "#workstreams", n: "08", label: "Five workstreams" },
-  { href: "#demonstration", n: "09", label: "Demonstration design" },
-  { href: "#commercial", n: "10", label: "Commercial model" },
-  { href: "#governance", n: "11", label: "Governance and risk" },
-  { href: "#ask", n: "12", label: "90-day ask" },
-  { href: "#conclusion", n: "13", label: "Conclusion" },
+  { href: "#plan-goals", n: "04", label: "NDA goals & objectives" },
+  { href: "#how-we-deliver", n: "05", label: "How we achieve them" },
+  { href: "#pillars", n: "06", label: "Nine pillars · one circuit" },
+  { href: "#who-we-are", n: "07", label: "Who we are" },
+  { href: "#foods", n: "08", label: "Big Five Foods" },
+  { href: "#os", n: "09", label: "Farm-to-fork OS" },
+  { href: "#workstreams", n: "10", label: "Five workstreams" },
+  { href: "#demonstration", n: "11", label: "Demonstration design" },
+  { href: "#commercial", n: "12", label: "Commercial model" },
+  { href: "#governance", n: "13", label: "Governance and risk" },
+  { href: "#ask", n: "14", label: "90-day ask" },
+  { href: "#conclusion", n: "15", label: "Conclusion" },
 ] as const;

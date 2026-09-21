@@ -239,28 +239,28 @@ function partnerJumpNavItems({
         icon: "landmark",
       },
       {
-        href: "#proposal",
-        label: "Proposal",
-        desc: "Sectioned long-read",
-        icon: "book",
+        href: "#plan-goals",
+        label: "Goals",
+        desc: "NDA objectives and how we deliver",
+        icon: "target",
+      },
+      {
+        href: "#pillars",
+        label: "Pillars",
+        desc: "Nine pillars as one circuit",
+        icon: "network",
       },
       {
         href: "#os",
         label: "OS",
         desc: "SupplierAdvisor® farm-to-fork",
-        icon: "network",
+        icon: "compass",
       },
       {
         href: "#ask",
         label: "90-day ask",
         desc: "Five asks and briefing form",
         icon: "target",
-      },
-      {
-        href: "#resources",
-        label: "Resources",
-        desc: "PDF and workspace materials",
-        icon: "file",
       },
       {
         href: "#contact",
@@ -1136,13 +1136,13 @@ export default function PartnerPortalClient({
                     },
                     {
                       n: "02",
-                      t: "Walk the proposal",
-                      d: "Thirteen sections from executive summary to conclusion. Every Group figure is labelled.",
+                      t: "Walk every Plan goal",
+                      d: "Executive summary, Goals 1–3 and Enablers A–C — each answered with named pillars.",
                     },
                     {
                       n: "03",
-                      t: "See the farm-to-fork OS",
-                      d: "SupplierAdvisor® is the trade and quality layer. It does not replace BAS or LOGIS.",
+                      t: "See nine pillars as one circuit",
+                      d: "Agri → Connect → Foods → Direct. SupplierAdvisor® does not replace BAS or LOGIS.",
                     },
                     {
                       n: "04",
