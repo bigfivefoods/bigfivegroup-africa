@@ -693,56 +693,65 @@ def page_2(c):
     y -= qh + 6.4 * mm
 
     section_label(c, "6  ·  Roles and responsibilities", INNER, y)
-    y -= 7.2 * mm
+    y -= 7.0 * mm
 
-    roles = [
-        (
-            "Dr. Craig Ross Muller",
-            "Chief Executive Officer",
-            False,
-            [
-                "Overall strategic leadership and execution",
-                "Investor relations, finance, and capital raising",
-                "Government and corporate partnerships: DTIC, DSD, KZN Provincial, Ingonyama Trust",
-                "Commercial agreements, expansion, and profitability",
-            ],
-        ),
-        (
-            "Dr. Joy (Natalie)",
-            "Business Development Executive — Royal Household Wellness, Strategy & Stakeholder Relations",
-            False,
-            [
-                "Develop and oversee the Royal Household wellness strategy",
-                "Serve as strategic liaison between the Big Five CEO, the Royal Household and key stakeholders",
-                "Build and maintain high-level relationships with government, corporate partners and community structures",
-                "Provide strategic advice to the CEO on stakeholder dynamics, opportunities, risks and relationship management",
-                "Represent Big Five at selected high-level engagements, forums and stakeholder meetings",
-                "Ensure initiatives are culturally respectful, professionally governed and aligned with agreed strategic objectives",
-            ],
-        ),
-        (
-            "Prince Ntokozo",
-            "Board Member, Royal & Strategic Affairs",
-            False,
-            [
-                "Official liaison between the Company and the Royal Household",
-                "Custodian of the Royal Calendar and cultural protocol",
-                "Facilitates engagement with Amakhosi, Izinduna, and Ingonyama Trust Board",
-                "Governance oversight and protection of royal reputation",
-            ],
-        ),
-    ]
-    rg = 3.6 * mm
-    rw = (CONTENT_W - 2 * rg) / 3
-    rh = 56 * mm
-    for i, (person, title, tbc, bullets) in enumerate(roles):
-        x = INNER + i * (rw + rg)
-        rrect(c, x, y - rh, rw, rh, 2.4, fill=CREAM_CARD, stroke=GOLD, sw=0.5)
+    role_ceo = (
+        "Dr. Craig Ross Muller",
+        "Chief Executive Officer",
+        False,
+        [
+            "Overall strategic leadership and execution",
+            "Investor relations, finance, and capital raising",
+            "Government and corporate partnerships: DTIC, DSD, KZN Provincial, Ingonyama Trust",
+            "Commercial agreements, expansion, and profitability",
+        ],
+    )
+    role_prince = (
+        "Prince Ntokozo",
+        "Board Member, Royal & Strategic Affairs",
+        False,
+        [
+            "Official liaison between the Company and the Royal Household",
+            "Custodian of the Royal Calendar and cultural protocol",
+            "Facilitates engagement with Amakhosi, Izinduna, and Ingonyama Trust Board",
+            "Governance oversight and protection of royal reputation",
+        ],
+    )
+    role_joy = (
+        "Dr. Joy (Natalie)",
+        "Business Development Executive — Royal Household Wellness, Strategy & Stakeholder Relations",
+        False,
+        [
+            "Develop and oversee the Royal Household wellness strategy",
+            "Serve as strategic liaison between the Big Five CEO, the Royal Household and key stakeholders",
+            "Build and maintain high-level relationships with government, corporate partners and community structures",
+            "Provide strategic advice to the CEO on stakeholder dynamics, opportunities, risks and relationship management",
+            "Represent Big Five at selected high-level engagements, forums and stakeholder meetings",
+            "Ensure initiatives are culturally respectful, professionally governed and aligned with agreed strategic objectives",
+        ],
+    )
+
+    def measure_role_card_h(person, title, bullets, card_w, *, title_size=6.5, bullet_size=6.55, bullet_lead=8.35):
+        """Height needed for padding + badge + name + title + bullets."""
+        inner_w = card_w - 14
+        name_lines = wrap_text(c, person, FONTS["serifBold"], 9.0, inner_w)
+        title_lines = wrap_text(c, title, FONTS["sansItalic"], title_size, inner_w)
+        h = 12.0  # top pad + badge
+        h += 10.8 * len(name_lines) + 2.0
+        h += 8.4 * len(title_lines) + 4.0
+        for b in bullets:
+            bl = wrap_text(c, b, FONTS["sans"], bullet_size, inner_w - 8.8)
+            h += max(bullet_lead * len(bl), bullet_lead) + 1.8
+        h += 5.0  # bottom pad
+        return h
+
+    def draw_role_card(person, title, tbc, bullets, x, top, card_w, card_h, *, title_size=6.5, bullet_size=6.55, bullet_lead=8.35):
+        rrect(c, x, top - card_h, card_w, card_h, 2.4, fill=CREAM_CARD, stroke=GOLD, sw=0.5)
         badge(
             c,
             "ROLE TBC" if tbc else "TABLED ROLE",
             x + 7,
-            y - 11.0,
+            top - 11.0,
             fill=CREAM,
             stroke=GOLD,
             text_color=GOLD_DK,
@@ -750,33 +759,51 @@ def page_2(c):
             h=9.4,
             pad=4.2,
         )
+        inner_w = card_w - 14
         c.setFillColor(INK)
         c.setFont(FONTS["serifBold"], 9.0)
-        name_lines = wrap_text(c, person, FONTS["serifBold"], 9.0, rw - 14)
-        ny = y - 22.4
+        name_lines = wrap_text(c, person, FONTS["serifBold"], 9.0, inner_w)
+        ny = top - 22.4
         draw_lines(c, name_lines, x + 7, ny, FONTS["serifBold"], 9.0, 10.8, INK)
         ny = ny - 10.8 * len(name_lines) - 1.4
-        title_used = draw_para(c, title, x + 7, ny, FONTS["sansItalic"], 6.4, 8.4, rw - 14, GOLD_DK)
-        byy = ny - title_used - 3.8
+        title_used = draw_para(c, title, x + 7, ny, FONTS["sansItalic"], title_size, 8.4, inner_w, GOLD_DK)
+        byy = ny - title_used - 3.6
         for b in bullets:
-            used_b = check_item(c, b, x + 6, byy, rw - 14, size=6.65, leading=8.6)
-            byy -= used_b + 2.0
+            used_b = check_item(c, b, x + 6, byy, inner_w, size=bullet_size, leading=bullet_lead)
+            byy -= used_b + 1.8
+        return card_h
 
-    band_y = y - rh - 4.8 * mm
+    # Top row: CEO + Prince
+    gap = 3.6 * mm
+    half_w = (CONTENT_W - gap) / 2
+    top_h = max(
+        measure_role_card_h(*role_ceo[:2], role_ceo[3], half_w),
+        measure_role_card_h(*role_prince[:2], role_prince[3], half_w),
+    )
+    draw_role_card(*role_ceo, INNER, y, half_w, top_h)
+    draw_role_card(*role_prince, INNER + half_w + gap, y, half_w, top_h)
+    y -= top_h + 3.4 * mm
+
+    # Full-width Dr Joy card
+    joy_h = measure_role_card_h(*role_joy[:2], role_joy[3], CONTENT_W, title_size=6.7, bullet_size=6.7, bullet_lead=8.55)
+    # Keep STATUS + footer clear
     band_h = 13.0 * mm
+    avail = y - (BODY_BOTTOM + band_h + 6.0 * mm)
+    if joy_h > avail and avail > 40 * mm:
+        # gentle tighten rather than clip
+        joy_h = avail
+    draw_role_card(*role_joy, INNER, y, CONTENT_W, joy_h, title_size=6.7, bullet_size=6.7, bullet_lead=8.55)
+    y -= joy_h + 4.0 * mm
+
+    band_y = y
     rrect(c, INNER, band_y - band_h, CONTENT_W, band_h, 2.4, fill=CREAM_CARD, stroke=GOLD, sw=0.5)
     c.setFillColor(GOLD)
     c.rect(INNER, band_y - band_h, 1.6, band_h, fill=1, stroke=0)
     c.setFillColor(GOLD_DK)
     c.setFont(FONTS["sansBold"], 5.7)
     c.drawString(INNER + 9, band_y - 5.6, "STATUS")
-    c.setFillColor(INK_SOFT)
-    c.setFont(FONTS["serifItalic"], 7.8)
-    c.drawString(
-        INNER + 9,
-        band_y - 15.2,
-        "Big Five Royal Foods (Pty) Ltd is established and awaits Royal approval of the HOA and Official Meal Partner designation.",
-    )
+    status = "Big Five Royal Foods (Pty) Ltd is established and awaits Royal approval of the HOA and Official Meal Partner designation."
+    draw_para(c, status, INNER + 9, band_y - 15.0, FONTS["serifItalic"], 7.4, 9.4, CONTENT_W - 18, INK_SOFT)
 
     draw_footer(c, 2)
     c.showPage()
