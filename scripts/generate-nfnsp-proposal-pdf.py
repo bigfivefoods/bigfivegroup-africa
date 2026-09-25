@@ -44,7 +44,7 @@ CONTENT_W = PAGE_W - 2 * INNER
 HEADER_H = 26 * mm
 FOOTER_H = 20 * mm
 BODY_BOTTOM = FOOTER_H + 7.5 * mm
-TOTAL = 16
+TOTAL = 17
 BODY = 10.5
 LEAD = 15.75  # 1.5 like the portal
 CAPTION = 8.5
@@ -245,7 +245,7 @@ def footer(c, n):
     baseline = FOOTER_H * 0.42
     c.setFillColor(white)
     c.setFont(F["sansSemi"], 8)
-    c.drawString(INNER, baseline, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.1  ·  Not an awarded tender")
+    c.drawString(INNER, baseline, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.2  ·  Not an awarded tender")
     c.drawRightString(PAGE_W - INNER, baseline, f"{n}   /   {TOTAL}")
 
 
@@ -456,7 +456,8 @@ def page_contents(c):
         ("13", "Foods, workstreams, demonstration", "13"),
         ("14", "SupplierAdvisor® farm-to-fork operating system", "14"),
         ("15", "90-day ask and what we return", "15"),
-        ("16", "Risk, labelled figures, conclusion", "16"),
+        ("16", "Impact PMO projected timeline", "16"),
+        ("17", "Risk, labelled figures, conclusion", "17"),
     ]
     for n, t, p in toc:
         c.setStrokeColor(RULE)
@@ -1251,9 +1252,122 @@ def page_ask(c):
 # ---------------------------------------------------------------------------
 # Close
 # ---------------------------------------------------------------------------
+def page_gantt(c):
+    y = chrome(c, 16, "Impact PMO  ·  projected timeline")
+    kicker(c, "16  ·  Big Five Impact — phase by phase", INNER, y)
+    y -= 7.5 * mm
+    y = quote_box(
+        c,
+        y,
+        "Big Five Impact is the PMO under Enabler A: one programme, one risk register, one cadence. Foods, Agri, Direct, Connect, Leadership, Access and Foundation deliver through that voice. Projected demonstration design — not an awarded tender. Scale only after a closed circuit holds.",
+        size=BODY,
+        lead=LEAD,
+    )
+
+    cols = [
+        ("90 days", "Q4 26–Q1 27"),
+        ("2027", "KZN year 1"),
+        ("2028", "KZN year 2"),
+        ("2029", "Plan 10%"),
+        ("2030–33", "Plan 20%"),
+        ("2034–37", "Plan 30%"),
+    ]
+    rows = [
+        ("Impact PMO", "Plan · risk register · MELIA", 0, 5, GOLD),
+        ("Governance", "TWG briefing · SLA · tables", 0, 2, FOREST),
+        ("Lawful buy", "PFMA path · lots · invoices", 0, 3, FOREST),
+        ("Plates", "Porridge · soya · OnePot", 0, 5, FOREST),
+        ("Producers", "Agri lots · onboarding", 0, 4, FOREST),
+        ("Nodes", "IDP/DDM hubs · rank · rural", 0, 4, FOREST),
+        ("OS / MELIA", "SupplierAdvisor® extracts", 0, 5, FOREST),
+        ("People", "Super-Cube® kitchens / hubs", 1, 4, FOREST),
+    ]
+    label_w = 48 * mm
+    track_w = CONTENT_W - label_w
+    n_cols = len(cols)
+    cell_w = track_w / n_cols
+    head_h = 11 * mm
+    row_h = 7.2 * mm
+    chart_h = head_h + row_h * len(rows)
+    card(c, INNER, y - chart_h, CONTENT_W, chart_h, fill=white, stroke=GOLD, sw=0.45, bar=False)
+    c.setFillColor(CREAM)
+    c.rect(INNER + 0.4, y - head_h, CONTENT_W - 0.8, head_h - 0.2, fill=1, stroke=0)
+    c.setFillColor(GOLD)
+    c.setFont(F["sansSemi"], 6.2)
+    c.drawString(INNER + 5, y - 6.6, "IMPACT STREAM")
+    for i, (lab, sub) in enumerate(cols):
+        cx = INNER + label_w + i * cell_w + cell_w / 2
+        c.setFillColor(FOREST)
+        c.setFont(F["sansSemi"], 7)
+        c.drawCentredString(cx, y - 5.4, lab)
+        c.setFillColor(MUTED)
+        c.setFont(F["sans"], 5.8)
+        c.drawCentredString(cx, y - 9.4, sub)
+
+    yy = y - head_h
+    for i, (stream, product, start, end, colour) in enumerate(rows):
+        if i % 2:
+            c.setFillColor(SOFT)
+            c.rect(INNER + 0.4, yy - row_h, CONTENT_W - 0.8, row_h, fill=1, stroke=0)
+        c.setFillColor(FOREST)
+        c.setFont(F["sansSemi"], 7.4)
+        c.drawString(INNER + 5, yy - 3.6 * mm, stream)
+        c.setFillColor(MUTED)
+        c.setFont(F["sans"], 6.2)
+        c.drawString(INNER + 5, yy - 6.2 * mm, product)
+        bar_x = INNER + label_w + start * cell_w + 1.6
+        bar_w = (end - start + 1) * cell_w - 3.2
+        c.setFillColor(colour)
+        c.roundRect(bar_x, yy - row_h + 2.4, bar_w, row_h - 4.8, 2.2, fill=1, stroke=0)
+        yy -= row_h
+
+    y -= chart_h + 5 * mm
+
+    phases = [
+        ("0  Mobilise · 90 days", "Enabler A. Close the five asks. Impact PMO, node pack, three-menu basket, producer protocol, draft SLA."),
+        ("1  Closed KZN circuit · 2027–2028", "Goals 1–3 in two locals + one metro. Instant porridge, lots, nodes, Super-Cube®, MELIA extracts. Scale gate."),
+        ("2  Second province · 2029", "Only if Phase 1 holds. Eastern Cape is the Plan’s GHS reference. Framework 10% is a Plan target, not a Group headcount."),
+        ("3  Named circuits · 2030–33", "Expand only where a lawful buy already holds. 1/3/5 hubs per municipality remains a Plan target."),
+        ("4  Horizon 2037", "Framework 30% is the Plan’s horizon. Global waits. No invented national volumes. Impact reports programme-reported until audited."),
+    ]
+    tw = (CONTENT_W - 4 * mm) / 2
+    # first four in 2x2, fifth full width
+    card_h = 22 * mm
+    for i, (t, d) in enumerate(phases[:4]):
+        col, row = i % 2, i // 2
+        x = INNER + col * (tw + 4 * mm)
+        ty = y - row * (card_h + 2.8 * mm)
+        card(c, x, ty - card_h, tw, card_h, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
+        c.setFillColor(FOREST)
+        c.setFont(F["sansSemi"], 8)
+        c.drawString(x + 8, ty - 5.2 * mm, t)
+        para(c, d, x + 8, ty - 9.2 * mm, F["sans"], 7.4, 10.2, tw - 14, MUTED)
+    y -= 2 * (card_h + 2.8 * mm)
+    card(c, INNER, y - 16 * mm, CONTENT_W, 16 * mm, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
+    c.setFillColor(FOREST)
+    c.setFont(F["sansSemi"], 8)
+    c.drawString(INNER + 8, y - 5 * mm, phases[4][0])
+    para(c, phases[4][1], INNER + 8, y - 9 * mm, F["sans"], 7.4, 10.2, CONTENT_W - 16, MUTED)
+    y -= 16 * mm + 4 * mm
+    c.setFillColor(MUTED)
+    c.setFont(F["sansItalic"], 7)
+    para(
+        c,
+        "10 / 20 / 30% smallholder procurement and 1 / 3 / 5 hubs per municipality are NFNSP-2 Framework targets. Big Five Impact operationalises lots, plates, nodes and MELIA extracts in named circuits. SupplierAdvisor® does not replace BAS or LOGIS. Instant fortified porridge: water or milk, under a minute.",
+        INNER,
+        y,
+        F["sansItalic"],
+        7,
+        9.5,
+        CONTENT_W,
+        MUTED,
+    )
+    c.showPage()
+
+
 def page_close(c):
-    y = chrome(c, 16, "Risk  ·  labelled figures  ·  conclusion")
-    kicker(c, "16  ·  Governance and risk — what this briefing is not", INNER, y)
+    y = chrome(c, 17, "Risk  ·  labelled figures  ·  conclusion")
+    kicker(c, "17  ·  Governance and risk — what this briefing is not", INNER, y)
     y -= 8 * mm
     risks = [
         ("Presented as an awarded NSNP contract", "This briefing is a proposal. No government contract is claimed."),
@@ -1354,6 +1468,7 @@ def build():
     page_foods(c)
     page_os(c)
     page_ask(c)
+    page_gantt(c)
     page_close(c)
     c.save()
     print(f"Wrote {OUT}  ({TOTAL} pages)")

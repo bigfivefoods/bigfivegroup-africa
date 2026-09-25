@@ -13,8 +13,8 @@ export const NFNSP = {
   title: "Implementation partnership",
   subtitle: "Operationalising the National Food and Nutrition Security Plan · 2027–2037",
   pdfHref: "/partners/BigFive_NFNSP_Implementation_Partnership_Proposal.pdf",
-  pdfLabel: "Download proposal (PDF) · September 2026 · v3.1",
-  pdfVersion: "v3.1 · September 2026",
+  pdfLabel: "Download proposal (PDF) · September 2026 · v3.2",
+  pdfVersion: "v3.2 · September 2026",
   website: "https://www.nda.gov.za/",
   honestyLine:
     "Programme-reported meals to date are in the hundreds of thousands (355 000 on the Group site, programme-reported), not millions. The 2.5 million children-per-day NSNP figure is a DBE-pathway plan, not a current daily headcount.",
@@ -879,6 +879,186 @@ export const NFNSP = {
     "Value-chain one-pager: producer → hub → mill → kitchen (Goal 1.2)",
     "One-page risk register",
   ],
+  /**
+   * Projected Impact-PMO timeline. Not an awarded tender. Framework 10/20/30%
+   * and 1/3/5 hubs are Plan targets — Big Five operationalises named circuits.
+   */
+  gantt: {
+    kicker: "PROJECTED TIMELINE · BIG FIVE IMPACT",
+    title: "Impact runs one programme — phase by phase",
+    lead:
+      "Every workstream below reports through Big Five Impact: one programme plan, one risk register, one cadence. This is a projected demonstration design mapped to official Goals, Game Changers and Enablers. It is not an awarded tender, not a current NSNP headcount, and not a national hub build-out.",
+    owner:
+      "Big Five Impact is the PMO under Enabler A. Foods, Agri, Direct, Connect, Leadership, Access and Foundation deliver through that single Group voice.",
+    columns: [
+      { id: "d90", label: "90 days", sub: "Q4 2026 – Q1 2027" },
+      { id: "y27", label: "2027", sub: "KZN year 1" },
+      { id: "y28", label: "2028", sub: "KZN year 2" },
+      { id: "y29", label: "2029", sub: "Plan 10%" },
+      { id: "y33", label: "2030–33", sub: "Plan 20%" },
+      { id: "y37", label: "2034–37", sub: "Plan 30%" },
+    ],
+    rows: [
+      {
+        stream: "Impact PMO",
+        product: "Programme plan · risk register · MELIA reporting",
+        goal: "Enabler A",
+        tone: "gold" as const,
+        start: 0,
+        end: 5,
+      },
+      {
+        stream: "Governance",
+        product: "TWG briefing · municipal SLA · Framework tables",
+        goal: "Enabler A.1 / A.3",
+        tone: "forest" as const,
+        start: 0,
+        end: 2,
+      },
+      {
+        stream: "Lawful buy",
+        product: "PFMA / MFMA path · lots · invoices",
+        goal: "Goal 1.2",
+        tone: "forest" as const,
+        start: 0,
+        end: 3,
+      },
+      {
+        stream: "Plates",
+        product: "Instant fortified porridge · soya · OnePot · soups",
+        goal: "Goals 2–3",
+        tone: "forest" as const,
+        start: 0,
+        end: 5,
+      },
+      {
+        stream: "Producers",
+        product: "Agri onboarding · verified smallholder lots",
+        goal: "Goal 1.3",
+        tone: "forest" as const,
+        start: 0,
+        end: 4,
+      },
+      {
+        stream: "Nodes",
+        product: "IDP / DDM micro-hubs · SANTACO rank · rural traders",
+        goal: "Goals 1.1 / 1.4",
+        tone: "forest" as const,
+        start: 0,
+        end: 4,
+      },
+      {
+        stream: "Operating system",
+        product: "SupplierAdvisor® extracts in MELIA · SchoolAdvisor gates",
+        goal: "Enabler C",
+        tone: "forest" as const,
+        start: 0,
+        end: 5,
+      },
+      {
+        stream: "People",
+        product: "Super-Cube® for kitchens, hubs and implementers",
+        goal: "Goal 2.3 · Enabler C",
+        tone: "forest" as const,
+        start: 1,
+        end: 4,
+      },
+    ],
+    phases: [
+      {
+        n: "0",
+        name: "Mobilise",
+        when: "90 days · Q4 2026 – Q1 2027",
+        goal: "Enabler A — a single Group voice at the TWG",
+        objective: "Close the five asks so a circuit can start. Scale is not on the table yet.",
+        deliverables: [
+          "Closed technical briefing (TWG, DoA, DBE NSNP, DoH, DSD, KZN Treasury, SALGA KZN)",
+          "KwaZulu-Natal named as joint demonstration province",
+          "Time-boxed PFMA / MFMA workstream for Game Changer 1.2",
+          "MELIA data protocol — lot-and-kitchen proof, no learner names",
+          "Seat at the Framework’s private-sector round tables",
+        ],
+        products: [
+          "Impact PMO stand-up and one-page risk register",
+          "Costed node pack (Goal 1.1)",
+          "Three-menu institutional basket vs a reference school meal (Goal 2.1)",
+          "Producer-onboarding protocol (Goal 1.3)",
+          "Draft municipal SLA for an IDP / SDBIP annex",
+        ],
+      },
+      {
+        n: "1",
+        name: "Closed KZN circuit",
+        when: "2027–2028 · 24 months",
+        goal: "Goals 1.1–1.4, 2 and 3 in two local municipalities + one metro cluster",
+        objective:
+          "Put a verified lot on a mill, a lawful plate in a kitchen, and a MELIA extract on the table — and prove the circuit holds.",
+        deliverables: [
+          "Rural Zululand-type + peri-urban + dense informal-trade node (eThekwini or Msunduzi)",
+          "Instant fortified porridge (water or milk, under a minute) plus soya, OnePot and soups in demo NSNP / ECD / CNDC kitchens",
+          "SupplierAdvisor® lots, invoices and HACCP holds so the 10% target can survive PFMA in this circuit",
+          "Super-Cube® for the people who run kitchens and hubs",
+          "Programme-reported until audited — Impact cadence",
+        ],
+        products: [
+          "Big Five Foods™ 5 kg institutional SKUs",
+          "Agri verified producers",
+          "Direct costed micro-hub / rank node",
+          "Connect farm-to-fork OS (not BAS / LOGIS)",
+          "Foundation complementary CSI — not a SASSA substitute",
+        ],
+      },
+      {
+        n: "2",
+        name: "Second province",
+        when: "2029 · after the scale gate",
+        goal: "Repeat a closed circuit in a high-inadequacy province",
+        objective:
+          "Eastern Cape is the Plan’s own GHS reference. We do not start Phase 2 unless Phase 1 holds. Framework 10% smallholder procurement by 2029 is a Plan target, not a Group headcount.",
+        deliverables: [
+          "Named second-province circuit only if KZN proof is closed",
+          "Same plate / lot / node / MELIA stack",
+          "Impact still the single PMO — not a second slide deck",
+        ],
+        products: [
+          "Same SKU family and OS",
+          "Local producer onboarding",
+          "IDP / DDM node spec for the second cluster",
+        ],
+      },
+      {
+        n: "3",
+        name: "Named-circuit expansion",
+        when: "2030–2033",
+        goal: "Framework 20% horizon as context — named circuits only",
+        objective:
+          "Expand only where a lawful buy and a closed circuit already hold. 1 / 3 / 5 hubs per municipality remains a Plan target, not a Big Five build-out claim.",
+        deliverables: [
+          "Additional named circuits under the same Impact PMO",
+          "Programme-reported until audited",
+          "No national scale claim",
+        ],
+        products: [
+          "Plates, lots, nodes and MELIA extracts in those circuits",
+          "Access / Foundation as complementary rails (Enabler B)",
+        ],
+      },
+      {
+        n: "4",
+        name: "Horizon 2037",
+        when: "2034–2037",
+        goal: "Framework 30% smallholder procurement is the Plan’s horizon",
+        objective:
+          "Global waits for a closed circuit that is ready to travel. We do not gazette VAT, grants or a Food and Nutrition Security Act.",
+        deliverables: [
+          "Hold the named circuits that already work",
+          "Impact reporting remains programme-reported until audited",
+        ],
+        products: ["Standing plate / lot / node / OS stack — no invented national volumes"],
+      },
+    ],
+    note: "10 / 20 / 30% smallholder share of government food procurement (2029 / 2033 / 2037) and 1 / 3 / 5 agri-hubs per municipality are NFNSP-2 Framework targets. Big Five Impact operationalises lots, plates, nodes and MELIA extracts in named circuits. Scale only after a closed circuit holds. SupplierAdvisor® does not replace BAS or LOGIS. Instant fortified porridge: add water or milk; ready in under a minute.",
+  },
   conclusion: [
     "The Plan has named Goals, Game Changers and Enablers. The Group has plates, an operating system, and a demonstration design mapped to each of them.",
     "What is asked in 90 days is a closed briefing, a named province, a lawful buying path for Game Changer 1.2, a MELIA protocol, and a seat at the tables already written into the Framework.",
@@ -909,6 +1089,6 @@ export const NFNSP_PROPOSAL_NAV = [
   { href: "#commercial", n: "14", label: "Commercial model" },
   { href: "#governance", n: "15", label: "Governance and risk" },
   { href: "#nfnsp-partnership-deck", n: "16", label: "Proposal deck" },
-  { href: "#ask", n: "17", label: "90-day ask" },
+  { href: "#ask", n: "17", label: "90-day ask · Impact timeline" },
   { href: "#conclusion", n: "18", label: "Conclusion" },
 ] as const;

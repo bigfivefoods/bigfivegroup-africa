@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { NFNSP, NFNSP_PROPOSAL_NAV } from "../lib/nfnspPartnership";
 import NfnspAskForm from "./NfnspAskForm";
+import NfnspGantt from "./NfnspGantt";
 
 const NfnspPartnershipDeck = dynamic(() => import("./NfnspPartnershipDeck"), {
   ssr: true,
@@ -934,7 +935,7 @@ export default function NfnspBriefing() {
           <Eyebrow>17 · 90-DAY ASK</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">
-            Five asks — and what we return
+            Five asks — timeline, deliverables, then the briefing
           </h2>
           <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {NFNSP.asks.map((a) => (
@@ -965,6 +966,9 @@ export default function NfnspBriefing() {
                 </li>
               ))}
             </ul>
+          </div>
+          <div className="mb-12">
+            <NfnspGantt />
           </div>
           <h3 className="text-xl font-semibold tracking-tight text-black mb-4">Request a briefing</h3>
           <NfnspAskForm />
