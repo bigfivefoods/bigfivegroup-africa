@@ -275,6 +275,12 @@ function partnerJumpNavItems({
         icon: "crown",
       },
       {
+        href: "#how-we-deliver",
+        label: "Group",
+        desc: "How the Group works as one circuit",
+        icon: "building",
+      },
+      {
         href: "#nfnsp-partnership-deck",
         label: "Slide deck",
         desc: "Gantt, Goals, deliverables — Save as PDF",
@@ -1073,6 +1079,8 @@ export default function PartnerPortalClient({
       <PageJumpNav
         ariaLabel={`${partner.name} page sections`}
         items={jumpItems}
+        layout="scroll"
+        align="center"
         accentDark={zuluHero ? "#a67c00" : nfnspHero ? "#0F3D38" : "#171717"}
         accentSoft={zuluHero ? "#faf6eb" : nfnspHero ? "#F7F1E6" : "#f5f5f5"}
       />

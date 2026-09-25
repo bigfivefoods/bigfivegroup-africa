@@ -92,6 +92,8 @@ type PageJumpNavProps = {
    * auto — overlay when it fits, otherwise scroll.
    */
   layout?: "auto" | "overlay" | "scroll";
+  /** Center the chapter row in the page. Overflow falls back to a start-aligned scroller. */
+  align?: "start" | "center";
 };
 
 const TOP_NAV_MISSIONS = ["Feed", "Educate", "Empower"] as const;
@@ -122,11 +124,13 @@ export default function PageJumpNav({
   accentDark = "#171717",
   accentSoft = "#f5f5f5",
   layout = "auto",
+  align = "start",
 }: PageJumpNavProps) {
   const navDomId = useId();
   const [activeHref, setActiveHref] = useState<string>(items[0]?.href ?? "");
   const useOverlay =
     layout === "overlay" || (layout === "auto" && items.length <= OVERLAY_SLOT_COUNT);
+  const centered = align === "center";
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -273,9 +277,10 @@ export default function PageJumpNav({
       <div className="max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-1.5">
         {/* Mobile / tablet — and desktop when the overlay slot cannot fit the items */}
         <div
-          className={`flex items-center gap-1.5 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+          className={`flex w-full items-center gap-1.5 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
             useOverlay ? "xl:hidden" : ""
           }`}
+          style={centered ? { justifyContent: "safe center" } : undefined}
         >
           {items.map((item) => {
             const active = item.href === activeHref;
@@ -346,7 +351,11 @@ export default function PageJumpNav({
                 </span>
               ))}
             </div>
-            <div className="absolute inset-0 flex items-center justify-between gap-1 2xl:gap-2 text-[13px] 2xl:text-sm font-medium text-[#171717]">
+            <div
+              className={`absolute inset-0 flex items-center gap-1 2xl:gap-2 text-[13px] 2xl:text-sm font-medium text-[#171717] ${
+                centered ? "justify-center" : "justify-between"
+              }`}
+            >
               {items.map((item) => {
                 const active = item.href === activeHref;
                 return (
