@@ -13,8 +13,8 @@ export const NFNSP = {
   title: "Implementation partnership",
   subtitle: "Operationalising the National Food and Nutrition Security Plan · 2027–2037",
   pdfHref: "/partners/BigFive_NFNSP_Implementation_Partnership_Proposal.pdf",
-  pdfLabel: "Download proposal (PDF) · September 2026 · v3.4",
-  pdfVersion: "v3.4 · September 2026",
+  pdfLabel: "Download proposal (PDF) · September 2026 · v3.7",
+  pdfVersion: "v3.7 · September 2026",
   website: "https://www.nda.gov.za/",
   honestyLine:
     "Programme-reported meals to date are in the hundreds of thousands (355 000 on the Group site, programme-reported), not millions. The 2.5 million children-per-day NSNP figure is a DBE-pathway plan, not a current daily headcount.",
@@ -79,7 +79,7 @@ export const NFNSP = {
     "Big Five Group (Pty) Ltd answers to one north star: a prosperous Africa for everyone on it, through Feed · Educate · Empower. We propose to operationalise the Game Changers the Plan can actually use a private partner for — as one circuit, not nine vendors. Agri verifies household and smallholder producers. Foods mills lots into plates: the Department of Education has approved fortified instant porridge (add water or milk; ready in under a minute — the malnutrition plate), soya mince and OnePot meals for National School Nutrition Programme (NSNP) school feeding, alongside soups for ECD, CNDC, holiday packs and complementary feeding. Direct specifies last-mile nodes, rank markets and trader infrastructure for an IDP / DDM One Plan. Connect (SupplierAdvisor®) is the farm-to-fork operating system: identity, lots, invoices, HACCP holds, GL. Leadership (Super-Cube®) forms the people who run kitchens, hubs and municipal SLAs. Access opens capital. Impact is the PMO. Foundation channels 10% of group profits with proof. Global holds standards when a closed circuit is ready to travel. NSNP product approval is not an awarded NFNSP contract and is not a current daily headcount.",
     "This briefing is honest about mandate. Treasury leads VAT, price-stabilisation and a possible national food reserve. DoH leads front-of-pack labelling and advertising rules. DSD and SASSA lead social grants and nutrition vouchers. COGTA / SALGA lead the local-government mandate. Big Five does not gazette those instruments. We put a verified lot, a lawful plate and a MELIA-ready extract on the table so those instruments have something real to buy, train and measure.",
     "SupplierAdvisor® does not replace BAS or LOGIS. Extracts sit inside MELIA, not beside it. No learner names. No beneficiary databases on this portal.",
-    "We ask for 90 days: a closed technical briefing; KwaZulu-Natal named as joint demonstration province (two local municipalities + one metro cluster); a time-boxed PFMA/MFMA workstream against Game Changer 1.2; a MELIA data protocol; and a seat at the private-sector round tables the 27 August 2026 Framework is already written for. Scale only after a closed circuit holds.",
+    "We ask for 90 days: a closed technical briefing; KwaZulu-Natal named as joint demonstration province (two local municipalities + one metro cluster); a time-boxed PFMA/MFMA workstream against Game Changer 1.2; a MELIA data protocol; and a seat at the private-sector round tables the 27 August 2026 Framework is already written for. Scale only after a closed circuit holds. In that same province, Big Five is in the process of signing a Heads of Agreement with the Zulu Kingdom — cultural and community buy-in for the circuit, not an NFNSP award and not a completed signature.",
   ],
   planGoals: [
     {
@@ -121,7 +121,7 @@ export const NFNSP = {
           targets:
             "Framework: 10% (2029) / 20% (2033) / 30% (2037) of the government food-procurement budget from smallholder producers; rising numbers of smallholders and SMMEs procured from at least monthly.",
           weDeliver: [
-            "Connect (SupplierAdvisor®): identity, GPS, lots, invoices so the 10% target survives PFMA — not a database of names without trade.",
+            "Connect (SupplierAdvisor®): verified companies, OTIFEF, purchase orders, invoices and lot holds on one OS — so the 10% target survives PFMA. A HACCP hold stops the ship. Not a database of names, and not a replacement for BAS or LOGIS.",
             "Foods: institutional SKUs (5 kg) that a school, hospital, ECD or CNDC can buy as a plate, not a workshop.",
             "90-day ask 3: time-boxed PFMA/MFMA workstream on how a fortified ambient meal and a smallholder-linked lot can be bought lawfully.",
             "90-day return: draft value-chain one-pager from producer → hub → mill → kitchen, including hold-or-ship. The Plan asked for that framework document.",
@@ -140,7 +140,7 @@ export const NFNSP = {
             "Framework: 10% / 25% / 50% increase in producers on the DoA register by 2029 / 2033 / 2037; 10% / 20% / 50% of new producers on newly allocated land; 20% / 40% / 60% of new land-accessing producers youth, women or persons with disabilities.",
           weDeliver: [
             "Agri: regenerative practice, soil and offtake — farmers trained as suppliers. Agroecological principles as published on the Group Agri rail, not a land-reform mandate.",
-            "Leadership (Super-Cube®): whole-person capability for implementers and municipal officers who must run extension as a skill.",
+            "Leadership (Super-Cube®): six faces — Choices, Principles, Mental, Emotional, Physical, Spiritual — so the officer who runs extension can hold the protocol as a skill. The person first, then the hub.",
             "Access: institutional / CSI / DFI pathways that finance offtake where tenure is defendable — not a substitute for municipal land allocation.",
             "Connect: the producer register the 10% target needs is a verified network, not a mailing list.",
           ],
@@ -206,8 +206,8 @@ export const NFNSP = {
           targets:
             "Framework: FoP implemented and enforced; fast-food and school-vendor registration; % of households purchasing a healthy basket (XX); % of schools implementing defined food-environment standards.",
           weDeliver: [
-            "Connect / SchoolAdvisor: kitchen and vendor gates — a school environment that is not ready does not receive the next lot. No learner names.",
-            "Leadership: school-environment support and Super-Cube® for implementers so a ‘minimum healthy school food environment’ is a protocol, not a poster.",
+            "Connect / SchoolAdvisor®: inspections on the same OS as the lot. A kitchen or vendor that is not ready does not receive the next shipment. No learner names.",
+            "Leadership (Super-Cube®): the adults who run that kitchen practise the six faces, so a healthy school-food protocol is a skill, not a poster.",
             "Foods: one SKU family that can sit in a tuckshop or NSNP kitchen without competing as confectionery.",
           ],
           limit:
@@ -223,7 +223,7 @@ export const NFNSP = {
           targets:
             "Framework: focused campaigns (sodas, fast food, salt); SBCC on public radio evaluated; curriculum integrated; % of systemic local-food-environment challenges resolved (XX).",
           weDeliver: [
-            "Leadership (Super-Cube®): whole-person agency for kitchen teams, municipal officers and implementers — the people the Plan says must run the protocol.",
+            "Leadership (Super-Cube®): assess the six faces, then practise them with kitchen teams and municipal officers. super-cube.me. This is not the national campaign and not the Grade 1–12 curriculum.",
             "Foods: instant fortified porridge — add water or milk; ready in under a minute — so home and institutional preparation is possible under the energy constraints the Plan names under utilisation. OnePot remains a ~20-minute complete plate.",
             "Indigenous and traditional recipes as SKU and recipe work — formulation, not a national radio campaign.",
             "Foundation: 10% of group profits (standing policy) as a complementary CSI rail for education-linked plates — not a substitute for GCIS or DBE curriculum.",
@@ -406,7 +406,7 @@ export const NFNSP = {
           targets:
             "Framework: 50% then 100% of identified training materials; XX% of targeted staff and community field workers completing training; municipal leaders trained; genetic-material and input-cost processes in place.",
           weDeliver: [
-            "Leadership (Super-Cube®): whole-person leadership for public servants, kitchen teams and implementers.",
+            "Leadership (Super-Cube®): the same six faces for public servants, kitchen teams and implementers — person, then team, then the supply network. Not an industry-scale claim.",
             "Agri: producer onboarding and practice — learning sites as offtake into Foods, not a replacement for provincial extension.",
             "Foods: preparation protocol kitchens can run — instant fortified porridge in under a minute with water or milk; OnePot ~20 minutes.",
           ],
@@ -423,7 +423,7 @@ export const NFNSP = {
           targets:
             "Framework: data and MELIA readiness audit; 80% (2029) / 100% (2033) of indicator data submitted and cleaned; mid-term and final evaluation against indicators.",
           weDeliver: [
-            "SupplierAdvisor® extracts sit inside MELIA, not beside it (90-day ask 4).",
+            "SupplierAdvisor® extracts — lots, invoices, OTIFEF, SchoolAdvisor® kitchen gates — sit inside MELIA, not beside it (90-day ask 4). HACCP holds stop the ship.",
             "Lot-and-kitchen proof only. No learner names. No beneficiary PII on this portal. POPIA purpose-limited.",
             "SchoolAdvisor gates: a kitchen that is not ready does not receive the next lot.",
             "Impact: programme-reported until audited.",
@@ -475,7 +475,7 @@ export const NFNSP = {
       {
         n: "02",
         t: "Connect",
-        d: "SupplierAdvisor® records the lot, the invoice, the hold. BAS/LOGIS stay. This is the trade layer Goal 1.2 needs.",
+        d: "SupplierAdvisor® keeps the company, the OTIFEF score, the PO, the invoice and the lot hold on one OS. HACCP can stop the ship. BAS and LOGIS stay.",
       },
       {
         n: "03",
@@ -490,7 +490,7 @@ export const NFNSP = {
       {
         n: "05",
         t: "People",
-        d: "Leadership runs the kitchen. Impact reports programme-reported until audited. MELIA, not a parallel dashboard.",
+        d: "Super-Cube® forms the person who runs the kitchen. Impact reports programme-reported until audited. MELIA stays inside Enabler C.",
       },
     ],
   },
@@ -516,16 +516,16 @@ export const NFNSP = {
       mission: "Educate",
       name: "Leadership",
       serves:
-        "Super-Cube® whole-person leadership for implementers, kitchen teams, traders and public servants.",
-      nda: "Goal 2.3 agency + Enablers A and C — programmes fail when people are unformed.",
+        "Super-Cube® at super-cube.me — six faces, the person at the centre, then the team and the supply network.",
+      nda: "Goal 2.3 and Enabler C — forms kitchen teams, extension officers and municipal implementers. Not the national curriculum.",
     },
     {
       slug: "connect",
       mission: "Empower",
       name: "Connect",
       serves:
-        "SupplierAdvisor®: verified network, lots, HACCP holds, GL, selected bank feeds. Not BAS/LOGIS.",
-      nda: "Goal 1.2 proof + Enablers B and C — the OS the Plan can actually use.",
+        "SupplierAdvisor® at supplieradvisor.com — verified trade, OTIFEF, lot holds and HACCP gates on one OS. SchoolAdvisor® for the kitchen.",
+      nda: "Goal 1.2 and Enabler C — the trade and quality layer a PFMA reader can test. Not BAS or LOGIS. No learner names.",
     },
     {
       slug: "direct",
@@ -651,22 +651,24 @@ export const NFNSP = {
       n: "02",
       title: "Educate",
       pillars: ["Leadership"],
-      blurb: "Whole-person Super-Cube® leadership for public servants, kitchen teams and implementers.",
-      nda: "Goal 2.3 behavioural change and Enabler C capacity. Coordination becomes a skill, not a meeting. We do not write the national SBCC or the Grade 1–12 curriculum.",
+      blurb:
+        "Super-Cube® — six faces, the person at the centre — for the adults who run kitchens, hubs and municipal SLAs.",
+      nda: "Goal 2.3 and Enabler C. Assess, then practise. We do not write the national SBCC or the Grade 1–12 curriculum.",
     },
     {
       id: "empower",
       n: "03",
       title: "Empower",
-      pillars: ["Connect", "Direct", "Access", "Global"],
-      blurb: "Last-mile rails, capital access, verified trade and corridors.",
-      nda: "Goal 1.2 invoices that survive PFMA; Goals 1.1 and 1.4 IDP/DDM nodes and trader infrastructure; Enabler B capital behind a lawful buy. Global waits for a closed circuit.",
+      pillars: ["Connect", "Direct", "Access", "Global", "Impact", "Foundation"],
+      blurb:
+        "Connect, Direct, Access, Global, the PMO and the Foundation — one circuit that moves the plate, pays for it, proves it and gives back.",
+      nda: "Goal 1.2 invoices that survive PFMA; Goals 1.1 and 1.4 nodes; Enabler B capital behind a lawful buy; Enabler A one programme. Global waits for a closed circuit.",
     },
   ],
   missionsCross: {
     title: "Cross-cutting",
     pillars: ["Impact", "Foundation"],
-    blurb: "PMO glue and 10% of group profits with proof.",
+    blurb: "Impact runs the programme. The Foundation returns 10% of group profits with proof. On this Plan both sit inside Empower.",
     nda: "Enabler A: one programme, one risk register. Foundation CSI is complementary — not a substitute for the fiscus or SASSA.",
   },
   whoWeAre: [
@@ -710,24 +712,178 @@ export const NFNSP = {
       },
     ],
   },
+  leadership: {
+    headline: "Super-Cube® — the person who runs the protocol",
+    site: "https://www.super-cube.me",
+    siteLabel: "super-cube.me",
+    lead:
+      "Big Five Leadership is the Educate pillar. Super-Cube® is a human-centric model: six developable faces, the person at the centre, then the team and the supply network. Dr Craig Ross Muller developed it as his DBA at the University of KwaZulu-Natal (2020) and tested it in an African FMCG network.",
+    limit:
+      "We form the adults who run kitchens, hubs, extension and municipal SLAs. We do not write the national behaviour-change campaign or the Grade 1–12 curriculum. Where a school programme is used, it is for operators under consent — learner names do not enter the MELIA extract.",
+    faces: [
+      {
+        name: "Choices",
+        d: "Judgement under complexity — values, risk and a decision that can be explained.",
+        nda: "A buyer or kitchen lead can choose a lawful lot under ambiguity, instead of inventing a headcount.",
+      },
+      {
+        name: "Principles",
+        d: "Integrity and governance that hold when a shortcut is easier.",
+        nda: "The record stays honest: labelled figures, no awarded-tender claim, no learner names.",
+      },
+      {
+        name: "Mental",
+        d: "Enough clarity to run a protocol, not only to attend the meeting.",
+        nda: "An IDP annex, a MELIA extract and a kitchen gate that people can actually operate.",
+      },
+      {
+        name: "Emotional",
+        d: "Steadiness and trust in a kitchen, a hub and a municipal team.",
+        nda: "Producer, mill and school kitchen can trust one another, so the circuit is not one meeting.",
+      },
+      {
+        name: "Physical",
+        d: "Energy and care for the body that has to sustain the work.",
+        nda: "The stamina to run a feeding day. The plate itself stays with Foods.",
+      },
+      {
+        name: "Spiritual",
+        d: "Purpose that keeps the work about people.",
+        nda: "Dignity in a school kitchen and in the first 1 000 days — not a poster on the wall.",
+      },
+    ],
+    levels: [
+      { n: "01", t: "The person", d: "Implementer, kitchen lead or extension officer. Assess the six faces, then practise." },
+      { n: "02", t: "The kitchen or hub", d: "One operation shares the same language for judgement and care." },
+      { n: "03", t: "The supply network", d: "Producer, mill, transporter and kitchen can hold one standard. Industry scale waits." },
+    ],
+    caseNote:
+      "An FMCG value-chain case recorded lifts on all six faces. Principles was the largest, at +45.1%. That is one network, not an NFNSP result and not a forecast for KwaZulu-Natal.",
+  },
+  kingdom: {
+    headline: "A Kingdom partnership, in signature",
+    status: "In the process of signing · not yet executed",
+    lead:
+      "Big Five Group is in the process of signing a Heads of Agreement with the Zulu Kingdom — the Private Office of His Majesty King Misuzulu kaZwelithini. The proposed programme is Isidlo seSilo, a Kingdom nutrition pathway rooted in Ubuntu, dignity and heritage.",
+    why:
+      "KwaZulu-Natal is the demonstration province in this briefing. A circuit that communities recognise as food of the Nation is received differently from a vendor drop. Royal legitimacy and household reach are the cultural rail. They do not replace a municipal mandate, a PFMA test, or the Department’s own decision.",
+    points: [
+      {
+        t: "Community buy-in",
+        d: "Traditional leadership and household pathways across the Nation, so producers, kitchens and traders meet the plate as something of their own place.",
+      },
+      {
+        t: "A cultural home for the plate",
+        d: "Isidlo seSilo is the name in the Heads of Agreement for a Kingdom nutrition programme. Signature is still outstanding. Until it is signed, the programme is proposed — not proclaimed.",
+      },
+      {
+        t: "What this is not",
+        d: "Not an awarded NFNSP contract. Not a gazetted royal appointment. Not consent from every municipality. Not a reason to skip BAS, LOGIS, or the 90-day legal workstream.",
+      },
+    ],
+    href: "https://bigfivegroup.africa/partner/zulu-kingdom",
+    hrefLabel: "bigfivegroup.africa/partner/zulu-kingdom",
+    logo: "/partners/zulu-kingdom-logo.png",
+  },
+  empower: {
+    headline: "Empower — the circuit that carries the plate",
+    lead:
+      "Feed mills the meal. Educate forms the person who runs it. Empower is how that meal moves, is financed, is proved, travels when it is ready, and gives back. Six companies. One programme for the Department.",
+    parts: [
+      {
+        id: "os",
+        name: "Connect",
+        role: "Operating system",
+        href: "https://www.bigfivegroup.africa/connect",
+        hrefLabel: "www.bigfivegroup.africa/connect",
+        external: "https://www.supplieradvisor.com",
+        externalLabel: "supplieradvisor.com",
+        body: "SupplierAdvisor® is the operating system: verified companies, OTIFEF scores, purchase orders, invoices and lot holds on one set of books. HACCP holds stop a ship. SchoolAdvisor® gates the kitchen. CropAdvisor® hands a harvest to the invoice.",
+        nda: "This is the record Game Changer 1.2 can test, and the extract Enabler C puts inside MELIA. It does not replace BAS or LOGIS. No learner names.",
+      },
+      {
+        id: "direct",
+        name: "Direct",
+        role: "Containers and last mile",
+        href: "https://www.bigfivegroup.africa/direct",
+        hrefLabel: "www.bigfivegroup.africa/direct",
+        body: "Direct puts a container or micro-hub where people already are — a SANTACO rank, a produce market, a rural node — with storage, water and energy so an ambient plate can be held without a cold chain. The node is specified for an IDP or DDM One Plan.",
+        nda: "Goals 1.1 and 1.4. 15 000 containers is pathway design, not a live national fleet. SALGA and COGTA lead the trading space and the by-laws. We do not claim a hub in every municipality.",
+      },
+      {
+        id: "access",
+        name: "Access",
+        role: "Government funding and feeding schemes",
+        href: "https://www.bigfivegroup.africa/access",
+        hrefLabel: "www.bigfivegroup.africa/access",
+        body: "Access opens the institutional path: how a school, hospital, ECD, CNDC or municipality can buy a fortified meal and a smallholder-linked lot lawfully, and how offtake finance sits behind that buy where tenure can carry it. NSNP, ECD and CNDC are the feeding schemes the plate is built for.",
+        nda: "Enabler B — capital beside a vote, not instead of one. Access does not award a feeding scheme, set a grant, or reallocate the fiscus. Treasury, DBE, DSD and SASSA lead those instruments.",
+      },
+      {
+        id: "global",
+        name: "Global",
+        role: "Exports, after proof",
+        href: "https://www.bigfivegroup.africa/global",
+        hrefLabel: "www.bigfivegroup.africa/global",
+        body: "Global holds the standards and the corridor for when a closed South African circuit is ready to travel — same plate, same lot, same operating system. The Group’s wider route-to-market work is not this partnership’s export book.",
+        nda: "Nothing is exported on the back of this briefing. A second province, then a corridor, only after KwaZulu-Natal holds. No invented cross-border volume.",
+      },
+      {
+        id: "pmo",
+        name: "Impact",
+        role: "PMO — delivers the project",
+        href: "https://www.bigfivegroup.africa/impact",
+        hrefLabel: "www.bigfivegroup.africa/impact",
+        body: "Impact is the project management office. One plan, one risk register, one cadence across Feed, Educate and Empower. It gates the 90 days, the KwaZulu-Natal circuit and any second province, and it reports programme-reported until the numbers are audited.",
+        nda: "Enabler A — one Group voice to the Technical Working Group. Impact does not appoint the Council, draft a Food and Nutrition Security Act, or turn a Plan target into a Group headcount.",
+      },
+      {
+        id: "foundation-give",
+        name: "Foundation",
+        role: "Giving back",
+        href: "https://www.bigfivegroup.africa/foundation",
+        hrefLabel: "www.bigfivegroup.africa/foundation",
+        body: "The Foundation is a registered non-profit. Ten percent of group profits is standing policy, with proof on SupplierAdvisor®. The work is social, economic and environmental: education-linked plates, holiday gaps, and a community path from beneficiary toward offtake — measured, not claimed in advance.",
+        nda: "Goals 2 and 3, as complementary CSI. Not a substitute for the fiscus, SASSA, or a nutrition voucher. We do not set the Child Support Grant.",
+      },
+    ],
+  },
   os: {
-    headline: "SupplierAdvisor® as the farm-to-fork ERP",
-    sub: "Written for a DG / Treasury reader. One workspace: network, buy, make, hold, ship, pay, prove. This is Enabler C’s trade layer, and the proof Game Changer 1.2 needs.",
+    headline: "SupplierAdvisor® — one chain for the circuit",
+    site: "https://www.supplieradvisor.com",
+    siteLabel: "supplieradvisor.com",
+    sub: "Big Five Connect runs SupplierAdvisor®, the supply-chain operating system. One workspace for the companies, the buy, the make, the hold, the ship and the proof. This is Enabler C’s trade layer, and the record Game Changer 1.2 needs.",
     nonClaim:
-      "SupplierAdvisor® does not replace BAS or LOGIS. It is the trade and quality layer those systems do not have.",
+      "SupplierAdvisor® does not replace BAS or LOGIS. It is the trade and quality layer those systems do not have. No learner names.",
+    groups: [
+      {
+        title: "Core OS",
+        d: "Verified companies on one graph. Buy and sell, inventory, manufacturing, distribution, finance, SHEQ and quality. OTIFEF scores every delivery On-Time, In-Full and Error-Free. Purchase orders, invoices and lot holds sit on the same books.",
+      },
+      {
+        title: "Food safety",
+        d: "HACCP plans and inspections that block shipping when a lot is on hold. Pedigree from product to movement. When a lot fails, the ship stops.",
+      },
+      {
+        title: "SchoolAdvisor®",
+        d: "The NSNP kitchen gate on the same OS. A kitchen or vendor that is not ready does not receive the next lot. Lot-and-kitchen proof for MELIA. No learner names.",
+      },
+      {
+        title: "CropAdvisor®",
+        d: "Fields, harvest and the farm-to-buyer handoff, so a household or smallholder lot can become the invoice. Not a replacement for provincial extension.",
+      },
+    ],
     modules: [
-      "Verified network + OTIFEF",
+      "Verified network · OTIFEF",
       "POs, invoices, lot holds",
-      "Inventory",
+      "Inventory and GPS movement",
       "BOM / MPS / MRP",
-      "GPS shipping",
       "HACCP holds that stop ship",
       "SHEQ",
-      "SchoolAdvisor",
-      "ContainerAdvisor®",
-      "Full GL / AR / AP / VAT",
-      "FNB Integration Channel + BankLink",
-      "Yoco-class last-mile acceptance",
+      "SchoolAdvisor® kitchen gate",
+      "CropAdvisor® farm handoff",
+      "GL / AR / AP / VAT",
+      "Bank import where a feed is selected",
     ],
     actors: [
       { actor: "Smallholder / household producer", role: "Identity, GPS, lots, invoices so the 10% target (Goal 1.2) survives PFMA." },
@@ -736,7 +892,7 @@ export const NFNSP = {
       { actor: "Trader / spaza / distributor", role: "OTIFEF, inventory, food-safety gates — Goal 1.4." },
       { actor: "School / ECD / CNDC", role: "SchoolAdvisor gates. Lot-and-kitchen proof. No learner names. Goals 2–3." },
       { actor: "Municipality / Treasury", role: "SLA, IDP/SDBIP annex, PFMA/MFMA workstream. Enablers A–B." },
-      { actor: "Bank / CSI / DFI", role: "FNB Integration Channel and BankLink where selected. Enabler B." },
+      { actor: "Bank / CSI / DFI", role: "Bank import where a feed is selected. Enabler B." },
     ],
   },
   alignment: [
@@ -781,17 +937,17 @@ export const NFNSP = {
     {
       id: "C",
       title: "Producers",
-      d: "SupplierAdvisor® identity, GPS, lots, invoices so the 10% target (Goal 1.2) survives PFMA. Agri offtake (Goal 1.3).",
+      d: "SupplierAdvisor® puts identity, the lot, the invoice and the OTIFEF score on one OS, so the 10% target can survive PFMA. CropAdvisor® hands the harvest to that lot. Not BAS or LOGIS.",
     },
     {
       id: "D",
       title: "Agency and protection",
-      d: "Instant fortified porridge (water or milk, under a minute); ~20-minute OnePot; school-environment support; 6–23 month complementary feeding. Super-Cube®. Goals 2.3 and 3.3.",
+      d: "Super-Cube® — six faces, the person at the centre — for the adults who run the plate. Instant porridge and OnePot are what they can actually prepare. Not the national curriculum. Goals 2.3 and 3.3.",
     },
     {
       id: "E",
       title: "Operating system",
-      d: "Onboarding, FNB/BankLink feeds, SchoolAdvisor gates, POPIA MELIA extract. Lot-and-kitchen proof. No learner names. Enabler C.",
+      d: "SchoolAdvisor® gates the kitchen. HACCP holds stop the ship. Extracts sit inside MELIA. Bank feeds only where selected. No learner names. Enabler C.",
     },
   ],
   demonstration: {
@@ -973,7 +1129,7 @@ export const NFNSP = {
       },
       {
         stream: "Goal 2.2 · Food environment",
-        product: "SchoolAdvisor gates · Super-Cube® kitchen protocol",
+        product: "SchoolAdvisor® gates · Super-Cube® six faces",
         offering: "Connect · Leadership · Foods",
         goal: "Goal 2.2",
         href: "#gc-g2-2",
@@ -1039,7 +1195,7 @@ export const NFNSP = {
       },
       {
         stream: "Enabler C · OS / MELIA",
-        product: "SupplierAdvisor® extracts · SchoolAdvisor gates",
+        product: "SchoolAdvisor® · HACCP holds · Super-Cube®",
         offering: "Connect · Leadership · Impact",
         goal: "Enabler C",
         href: "#enabler-ec",
@@ -1149,12 +1305,13 @@ export const NFNSP = {
         products: ["Standing plate / lot / node / OS stack — no invented national volumes"],
       },
     ],
-    note: "Each bar is an official Goal, Game Changer or Enabler, linked to the Big Five offering that delivers it. 10 / 20 / 30% smallholder procurement and 1 / 3 / 5 hubs per municipality are Framework targets, not Group headcount. Department of Education approval covers fortified instant porridge, soya mince and OnePot for NSNP school feeding — not an awarded NFNSP contract. SupplierAdvisor® does not replace BAS or LOGIS. Porridge: water or milk, under a minute.",
+    note: "Each bar is an official Goal, Game Changer or Enabler, linked to the Big Five offering that delivers it. 10 / 20 / 30% smallholder procurement and 1 / 3 / 5 hubs per municipality are Framework targets, not Group headcount. Department of Education approval covers fortified instant porridge, soya mince and OnePot for NSNP school feeding — not an awarded NFNSP contract. SupplierAdvisor® does not replace BAS or LOGIS. Porridge: water or milk, under a minute. A Heads of Agreement with the Zulu Kingdom is in signature for KwaZulu-Natal community and cultural buy-in — not yet executed, and not an NFNSP contract.",
   },
   conclusion: [
     "The Plan has named Goals, Game Changers and Enablers. The Group has plates, an operating system, and a demonstration design mapped to each of them.",
     "What is asked in 90 days is a closed briefing, a named province, a lawful buying path for Game Changer 1.2, a MELIA protocol, and a seat at the tables already written into the Framework.",
     "Nothing here is an awarded tender, a current daily NSNP headcount, a replacement for BAS or LOGIS, or a claim to gazette VAT, grants or a Food and Nutrition Security Act.",
+    "In KwaZulu-Natal, a Heads of Agreement with the Zulu Kingdom is in the process of being signed. That is community and cultural buy-in for the demonstration — Isidlo seSilo, still subject to signature — not a completed contract and not an NFNSP award.",
   ],
   spheres: [
     { value: "national", label: "National" },
@@ -1162,6 +1319,19 @@ export const NFNSP = {
     { value: "municipal", label: "Municipal" },
     { value: "other", label: "Other" },
   ],
+} as const;
+
+/** Where a Gantt offering name opens on the briefing. */
+export const NFNSP_OFFERING_HREF = {
+  Agri: "#pillar-agri",
+  Foods: "#foods",
+  Leadership: "#leadership",
+  Connect: "#os",
+  Direct: "#direct",
+  Access: "#access",
+  Impact: "#pmo",
+  Foundation: "#foundation-give",
+  Global: "#global",
 } as const;
 
 export const NFNSP_PROPOSAL_NAV = [
@@ -1172,16 +1342,18 @@ export const NFNSP_PROPOSAL_NAV = [
   { href: "#group-purpose", n: "05", label: "Vision · mission · values" },
   { href: "#missions", n: "06", label: "Feed · Educate · Empower" },
   { href: "#plan-goals", n: "07", label: "Goals 1–3 · Game Changers" },
-  { href: "#how-we-deliver", n: "08", label: "Circuit · Enablers A–C" },
-  { href: "#pillars", n: "09", label: "Nine pillars · one circuit" },
-  { href: "#who-we-are", n: "10", label: "Who we are" },
-  { href: "#foods", n: "11", label: "Big Five Foods" },
-  { href: "#os", n: "12", label: "Farm-to-fork OS" },
-  { href: "#workstreams", n: "13", label: "Five workstreams" },
-  { href: "#demonstration", n: "14", label: "Demonstration design" },
-  { href: "#commercial", n: "15", label: "Commercial model" },
-  { href: "#governance", n: "16", label: "Governance and risk" },
-  { href: "#nfnsp-partnership-deck", n: "17", label: "Proposal deck" },
-  { href: "#ask", n: "18", label: "90-day ask" },
-  { href: "#conclusion", n: "19", label: "Conclusion" },
+  { href: "#foods", n: "08", label: "Feed · Big Five Foods" },
+  { href: "#leadership", n: "09", label: "Educate · Super-Cube®" },
+  { href: "#empower", n: "10", label: "Empower · the circuit" },
+  { href: "#kingdom", n: "11", label: "Zulu Kingdom · in signature" },
+  { href: "#how-we-deliver", n: "12", label: "Circuit · Enablers A–C" },
+  { href: "#pillars", n: "13", label: "Nine pillars · one circuit" },
+  { href: "#who-we-are", n: "14", label: "Who we are" },
+  { href: "#workstreams", n: "15", label: "Five workstreams" },
+  { href: "#demonstration", n: "16", label: "Demonstration design" },
+  { href: "#commercial", n: "17", label: "Commercial model" },
+  { href: "#governance", n: "18", label: "Governance and risk" },
+  { href: "#nfnsp-partnership-deck", n: "19", label: "Proposal deck" },
+  { href: "#ask", n: "20", label: "90-day ask" },
+  { href: "#conclusion", n: "21", label: "Conclusion" },
 ] as const;

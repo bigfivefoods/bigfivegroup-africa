@@ -21,9 +21,42 @@ import {
   UtensilsCrossed,
   Zap,
 } from "lucide-react";
+import { NSNP_PRODUCTS } from "../lib/foodsProducts";
 import { NFNSP, NFNSP_PROPOSAL_NAV } from "../lib/nfnspPartnership";
 import NfnspAskForm from "./NfnspAskForm";
 import NfnspGantt from "./NfnspGantt";
+import SuperCubeModel from "./SuperCubeModel";
+
+const FEED_RANGES = [
+  {
+    title: "Instant fortified porridge",
+    stat: "Water or milk · under a minute",
+    note: "The malnutrition plate. Banana, Strawberry, Chocolate, Original.",
+    src: "/foods/porridge-original.jpg",
+    alt: "Original fortified instant porridge",
+  },
+  {
+    title: "Soya mince",
+    stat: "About R1.30 a meal",
+    note: "Internal comparison. Chilli Beef, Rich Beef, Beef & Onion, Mutton.",
+    src: "/foods/soya-beef.jpg",
+    alt: "Soya mince",
+  },
+  {
+    title: "OnePot",
+    stat: "About 20 minutes · about R2.50",
+    note: "A complete plate. 1 kg prepares about 4 kg. Internal comparison.",
+    src: "/foods/onepot-chicken.jpg",
+    alt: "Chicken OnePot meal",
+  },
+  {
+    title: "Soups",
+    stat: "About R1.10 a meal",
+    note: "Internal comparison. Brown Onion, Minestrone, Oxtail, Chicken.",
+    src: "/foods/soup-chicken.jpg",
+    alt: "Chicken soup",
+  },
+] as const;
 
 const NfnspPartnershipDeck = dynamic(() => import("./NfnspPartnershipDeck"), {
   ssr: true,
@@ -195,7 +228,7 @@ export default function NfnspBriefing() {
           </h2>
           <p className="text-sm text-[#525252] max-w-3xl mb-8 leading-relaxed">
             Confidential partner briefing. Official statistics carry a source. Group figures carry a
-            plan / programme-reported / product specification / internal comparison label. Nineteen
+            plan / programme-reported / product specification / internal comparison label. Twenty-one
             sections — executive summary, the project plan, then the proposal deck, 90-day ask and conclusion.
           </p>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-10">
@@ -623,13 +656,311 @@ export default function NfnspBriefing() {
         </div>
       </section>
 
+      <section id="foods" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Eyebrow>08 · FEED · BIG FIVE FOODS</Eyebrow>
+          <GoldRule />
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
+              The plate the Department can actually buy
+            </h2>
+            <ProjectPlanLink />
+          </div>
+          <p className="text-sm sm:text-base text-[#525252] max-w-3xl mb-4 leading-relaxed">{NFNSP.foods.intro}</p>
+          <a
+            href="https://www.bigfivegroup.africa/foods"
+            className="inline-flex items-center gap-2 text-sm font-semibold underline decoration-[#0F3D38]/35 underline-offset-2 hover:decoration-[#0F3D38] mb-8"
+            style={{ color: FOREST }}
+          >
+            www.bigfivegroup.africa/foods
+            <ArrowRight className="w-4 h-4" aria-hidden />
+          </a>
+          <article
+            className="rounded-2xl p-5 sm:p-6 mb-8"
+            style={{ backgroundColor: CREAM, border: "1px solid rgba(196,146,58,0.45)" }}
+          >
+            <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
+              DEPARTMENT OF EDUCATION · NSNP
+            </div>
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2">
+              {NFNSP.foods.nsnpApproval.title}
+            </h3>
+            <p className="text-sm text-[#404040] leading-relaxed mb-2">{NFNSP.foods.nsnpApproval.body}</p>
+            <p className="text-[12px] italic leading-relaxed" style={{ color: FOREST }}>
+              {NFNSP.foods.nsnpApproval.limit}
+            </p>
+          </article>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {FEED_RANGES.map((item) => (
+              <article key={item.title} className="rounded-2xl overflow-hidden bg-[#fafafa] border border-black/10">
+                <div className="relative aspect-[4/3] bg-[#F7F1E6]">
+                  <Image src={item.src} alt={item.alt} fill className="object-cover" sizes="(min-width: 1024px) 240px, 50vw" />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-semibold text-black leading-snug">{item.title}</h3>
+                  <p className="text-xs font-semibold mt-1" style={{ color: FOREST }}>
+                    {item.stat}
+                  </p>
+                  <p className="text-xs text-[#525252] mt-2 leading-relaxed">{item.note}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="text-[10px] tracking-[2px] font-semibold mb-3" style={{ color: GOLD }}>
+            NSNP · 5 KG INSTITUTIONAL PACKS
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            {NSNP_PRODUCTS.map((product) => (
+              <article key={product.id} className="rounded-2xl overflow-hidden border border-black/10 bg-white">
+                <div className="relative aspect-[4/3] bg-[#F7F1E6]">
+                  <Image src={product.src} alt={product.shortName} fill className="object-cover" sizes="(min-width: 640px) 320px, 100vw" />
+                </div>
+                <div className="p-4">
+                  <div className="text-[10px] tracking-[1.6px] font-semibold mb-1" style={{ color: GOLD }}>
+                    {product.badge.toUpperCase()}
+                  </div>
+                  <h3 className="text-sm font-semibold text-black leading-snug">{product.shortName}</h3>
+                  <p className="text-xs text-[#525252] mt-2 leading-relaxed">{product.blurb}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="text-[11px] text-[#737373] max-w-3xl leading-relaxed">
+            Costs are internal comparisons, not a price policy. 74% more nutrition and 185% more fortification are formulation claims — lab pack in the first 90 days. Certifications as published on the Foods page.
+          </p>
+        </div>
+      </section>
+
+      <section id="leadership" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Eyebrow>09 · EDUCATE · BIG FIVE LEADERSHIP</Eyebrow>
+          <GoldRule />
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
+              {NFNSP.leadership.headline}
+            </h2>
+            <ProjectPlanLink />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-8 lg:gap-10 items-center mb-8">
+            <div className="rounded-3xl bg-white py-4 px-2" style={{ border: "1px solid rgba(196,146,58,0.35)" }}>
+              <SuperCubeModel />
+            </div>
+            <div>
+              <p className="text-sm sm:text-base text-[#404040] leading-relaxed mb-4">{NFNSP.leadership.lead}</p>
+              <p className="text-sm font-medium leading-relaxed mb-5" style={{ color: FOREST }}>
+                {NFNSP.leadership.limit}
+              </p>
+              <div className="flex flex-wrap gap-x-5 gap-y-2">
+                <a
+                  href="https://www.bigfivegroup.africa/leadership"
+                  className="inline-flex items-center gap-2 text-sm font-semibold underline decoration-[#0F3D38]/35 underline-offset-2"
+                  style={{ color: FOREST }}
+                >
+                  www.bigfivegroup.africa/leadership
+                  <ArrowRight className="w-4 h-4" aria-hidden />
+                </a>
+                <a
+                  href={NFNSP.leadership.site}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold underline decoration-[#C4923A]/50 underline-offset-2"
+                  style={{ color: GOLD }}
+                >
+                  {NFNSP.leadership.siteLabel}
+                  <ArrowRight className="w-4 h-4" aria-hidden />
+                </a>
+              </div>
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-black mb-3">What each face gives the Department</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
+            {NFNSP.leadership.faces.map((face) => (
+              <article
+                key={face.name}
+                className="rounded-2xl bg-white p-4"
+                style={{ border: "1px solid rgba(196,146,58,0.35)" }}
+              >
+                <h3 className="text-base font-semibold mb-1" style={{ color: FOREST }}>
+                  {face.name}
+                </h3>
+                <p className="text-sm text-[#404040] leading-relaxed mb-2">{face.d}</p>
+                <p className="text-xs leading-relaxed" style={{ color: FOREST }}>
+                  {face.nda}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+            {NFNSP.leadership.levels.map((level) => (
+              <article key={level.n} className="rounded-2xl bg-white p-4" style={{ border: "1px solid rgba(196,146,58,0.28)" }}>
+                <div className="text-[10px] tracking-[2px] font-semibold mb-1" style={{ color: GOLD }}>
+                  {level.n} · {level.t.toUpperCase()}
+                </div>
+                <p className="text-sm text-[#404040] leading-relaxed">{level.d}</p>
+              </article>
+            ))}
+          </div>
+          <p className="text-xs text-[#737373] max-w-3xl leading-relaxed">{NFNSP.leadership.caseNote}</p>
+        </div>
+      </section>
+
+      <section id="empower" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Eyebrow>10 · EMPOWER</Eyebrow>
+          <GoldRule />
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
+              {NFNSP.empower.headline}
+            </h2>
+            <ProjectPlanLink />
+          </div>
+          <p className="text-sm sm:text-base text-[#525252] max-w-3xl mb-6 leading-relaxed">{NFNSP.empower.lead}</p>
+          <nav aria-label="Empower companies" className="flex flex-wrap gap-2 mb-10">
+            {NFNSP.empower.parts.map((part) => (
+              <a
+                key={part.id}
+                href={`#${part.id}`}
+                className="rounded-full px-3 py-1.5 text-xs font-semibold"
+                style={{ color: FOREST, border: "1px solid rgba(196,146,58,0.45)", backgroundColor: CREAM }}
+              >
+                {part.name}
+              </a>
+            ))}
+          </nav>
+
+          <article id="os" className="scroll-mt-28 rounded-3xl p-5 sm:p-8 mb-6 text-white" style={{ backgroundColor: FOREST }}>
+            <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: "#E8C07A" }}>
+              CONNECT · OPERATING SYSTEM
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">{NFNSP.os.headline}</h3>
+            <p className="text-sm sm:text-base text-white/80 max-w-3xl mb-3 leading-relaxed">{NFNSP.os.sub}</p>
+            <p className="text-sm font-semibold max-w-3xl mb-3 leading-relaxed" style={{ color: "#E8C07A" }}>
+              {NFNSP.empower.parts[0].nda}
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6">
+              <a href={NFNSP.empower.parts[0].href} className="text-sm font-semibold underline decoration-[#E8C07A]/50 underline-offset-2" style={{ color: "#E8C07A" }}>
+                {NFNSP.empower.parts[0].hrefLabel}
+              </a>
+              <a href={NFNSP.empower.parts[0].external} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold underline decoration-white/40 underline-offset-2 text-white">
+                {NFNSP.empower.parts[0].externalLabel}
+              </a>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+              {NFNSP.os.groups.map((group) => (
+                <article key={group.title} className="rounded-2xl border border-white/15 bg-white/5 p-4 sm:p-5">
+                  <h4 className="text-base font-semibold mb-2" style={{ color: "#E8C07A" }}>{group.title}</h4>
+                  <p className="text-sm text-white/80 leading-relaxed">{group.d}</p>
+                </article>
+              ))}
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-white/15">
+              <table className="w-full min-w-[36rem] text-left">
+                <caption className="sr-only">Farm-to-fork actors on SupplierAdvisor</caption>
+                <thead>
+                  <tr className="border-b border-white/15 bg-black/20">
+                    <th className="px-4 py-3 text-[10px] tracking-[2px] text-[#E8C07A]">ACTOR</th>
+                    <th className="px-4 py-3 text-[10px] tracking-[2px] text-[#E8C07A]">ROLE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {NFNSP.os.actors.map((a) => (
+                    <tr key={a.actor} className="border-b border-white/10 last:border-0">
+                      <td className="px-4 py-3 text-sm font-semibold align-top">{a.actor}</td>
+                      <td className="px-4 py-3 text-sm text-white/75">{a.role}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <div className="grid grid-cols-1 gap-4">
+            {NFNSP.empower.parts.slice(1).map((part) => (
+              <article
+                key={part.id}
+                id={part.id}
+                className="scroll-mt-28 rounded-3xl bg-[#fafafa] p-5 sm:p-7"
+                style={{ border: "1px solid rgba(196,146,58,0.35)" }}
+              >
+                <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
+                  {part.name.toUpperCase()} · {part.role.toUpperCase()}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-black mb-3">{part.role}</h3>
+                <p className="text-sm sm:text-base text-[#404040] max-w-3xl leading-relaxed mb-3">{part.body}</p>
+                <p className="text-sm font-medium max-w-3xl leading-relaxed mb-4" style={{ color: FOREST }}>
+                  {part.nda}
+                </p>
+                <a
+                  href={part.href}
+                  className="inline-flex items-center gap-2 text-sm font-semibold underline decoration-[#0F3D38]/35 underline-offset-2"
+                  style={{ color: FOREST }}
+                >
+                  {part.hrefLabel}
+                  <ArrowRight className="w-4 h-4" aria-hidden />
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="kingdom" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Eyebrow>11 · ZULU KINGDOM · IN SIGNATURE</Eyebrow>
+          <GoldRule />
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
+              {NFNSP.kingdom.headline}
+            </h2>
+            <ProjectPlanLink />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] gap-8 items-start mb-8">
+            <div className="rounded-3xl bg-white p-5 flex items-center justify-center" style={{ border: "1px solid rgba(196,146,58,0.35)" }}>
+              <Image
+                src={NFNSP.kingdom.logo}
+                alt="Zulu Kingdom"
+                width={160}
+                height={160}
+                className="h-auto w-36 object-contain"
+              />
+            </div>
+            <div>
+              <div className="inline-flex rounded-full px-3 py-1 text-[10px] tracking-[1.6px] font-semibold mb-3" style={{ color: FOREST, backgroundColor: "rgba(196,146,58,0.18)" }}>
+                {NFNSP.kingdom.status.toUpperCase()}
+              </div>
+              <p className="text-sm sm:text-base text-[#404040] leading-relaxed mb-3">{NFNSP.kingdom.lead}</p>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: FOREST }}>{NFNSP.kingdom.why}</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+            {NFNSP.kingdom.points.map((point) => (
+              <article key={point.t} className="rounded-2xl bg-white p-5" style={{ border: "1px solid rgba(196,146,58,0.3)" }}>
+                <h3 className="text-base font-semibold text-black mb-2">{point.t}</h3>
+                <p className="text-sm text-[#404040] leading-relaxed">{point.d}</p>
+              </article>
+            ))}
+          </div>
+          <a
+            href={NFNSP.kingdom.href}
+            className="inline-flex items-center gap-2 text-sm font-semibold underline decoration-[#0F3D38]/35 underline-offset-2"
+            style={{ color: FOREST }}
+          >
+            {NFNSP.kingdom.hrefLabel}
+            <ArrowRight className="w-4 h-4" aria-hidden />
+          </a>
+          <p className="text-[11px] text-[#737373] mt-3 max-w-3xl leading-relaxed">
+            That workspace is private to the Zulu Kingdom partnership. This page does not reproduce the Heads of Agreement. It records that signature is underway, and why it matters to a KwaZulu-Natal circuit.
+          </p>
+        </div>
+      </section>
+
       <section
         id="how-we-deliver"
         className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16"
         style={{ backgroundColor: CREAM }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>08 · HOW THE GROUP WORKS AS ONE</Eyebrow>
+          <Eyebrow>12 · HOW THE GROUP WORKS AS ONE</Eyebrow>
           <GoldRule />
           <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-4">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
@@ -720,7 +1051,7 @@ export default function NfnspBriefing() {
 
       <section id="pillars" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>09 · NINE PILLARS · ONE CIRCUIT</Eyebrow>
+          <Eyebrow>13 · NINE PILLARS · ONE CIRCUIT</Eyebrow>
           <GoldRule />
           <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-3">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
@@ -794,7 +1125,7 @@ export default function NfnspBriefing() {
 
       <section id="who-we-are" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>10 · WHO WE ARE</Eyebrow>
+          <Eyebrow>14 · WHO WE ARE</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             Big Five Group — implementation partner
@@ -809,114 +1140,10 @@ export default function NfnspBriefing() {
         </div>
       </section>
 
-      <section id="foods" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>11 · BIG FIVE FOODS</Eyebrow>
-          <GoldRule />
-          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-4">
-            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
-              One SKU family for institutional plates
-            </h2>
-            <ProjectPlanLink />
-          </div>
-          <p className="text-sm text-[#525252] max-w-3xl mb-6 leading-relaxed">{NFNSP.foods.intro}</p>
-          <article
-            className="rounded-2xl p-5 sm:p-6 mb-6 max-w-4xl"
-            style={{ backgroundColor: CREAM, border: "1px solid rgba(196,146,58,0.45)" }}
-          >
-            <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
-              DEPARTMENT OF EDUCATION · NSNP
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2">
-              {NFNSP.foods.nsnpApproval.title}
-            </h3>
-            <p className="text-sm text-[#404040] leading-relaxed mb-2">{NFNSP.foods.nsnpApproval.body}</p>
-            <p className="text-[12px] italic leading-relaxed" style={{ color: FOREST }}>
-              {NFNSP.foods.nsnpApproval.limit}
-            </p>
-          </article>
-          <article
-            className="rounded-2xl p-5 sm:p-7 mb-6 max-w-4xl"
-            style={{ backgroundColor: FOREST }}
-          >
-            <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: "#E8C07A" }}>
-              MALNUTRITION PLATE
-            </div>
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-2">
-              {NFNSP.foods.instantPorridge.title}
-            </h3>
-            <p className="text-base font-semibold mb-3" style={{ color: "#E8C07A" }}>
-              {NFNSP.foods.instantPorridge.prep}
-            </p>
-            <p className="text-sm text-white/80 leading-relaxed mb-2">
-              {NFNSP.foods.instantPorridge.why}
-            </p>
-            <p className="text-[11px] text-white/45 leading-relaxed">{NFNSP.foods.instantPorridge.label}</p>
-          </article>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {NFNSP.foods.points.map((p) => (
-              <li key={p.t} className="rounded-2xl border border-black/10 bg-white p-5">
-                <div className="text-sm font-semibold text-black mb-1">{p.t}</div>
-                <Source>{p.label}</Source>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section
-        id="os"
-        className="scroll-mt-28 border-b border-black/10 text-white py-14 sm:py-16"
-        style={{ backgroundColor: FOREST }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>12 · OPERATING SYSTEM</Eyebrow>
-          <GoldRule />
-          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-3">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter max-w-3xl">
-              {NFNSP.os.headline}
-            </h2>
-            <ProjectPlanLink light />
-          </div>
-          <p className="text-white/70 text-sm sm:text-base max-w-3xl mb-4">{NFNSP.os.sub}</p>
-          <p className="text-sm font-semibold mb-8 max-w-3xl" style={{ color: "#E8C07A" }}>
-            {NFNSP.os.nonClaim}
-          </p>
-          <div className="flex flex-wrap gap-2 mb-10">
-            {NFNSP.os.modules.map((m) => (
-              <span
-                key={m}
-                className="text-xs rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-white/85"
-              >
-                {m}
-              </span>
-            ))}
-          </div>
-          <div className="overflow-x-auto rounded-2xl border border-white/15">
-            <table className="w-full min-w-[36rem] text-left">
-              <caption className="sr-only">Farm-to-fork actors</caption>
-              <thead>
-                <tr className="border-b border-white/15 bg-black/20">
-                  <th className="px-4 py-3 text-[10px] tracking-[2px] text-[#E8C07A]">ACTOR</th>
-                  <th className="px-4 py-3 text-[10px] tracking-[2px] text-[#E8C07A]">ROLE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {NFNSP.os.actors.map((a) => (
-                  <tr key={a.actor} className="border-b border-white/10 last:border-0">
-                    <td className="px-4 py-3 text-sm font-semibold align-top">{a.actor}</td>
-                    <td className="px-4 py-3 text-sm text-white/75">{a.role}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
 
       <section id="workstreams" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>13 · FIVE WORKSTREAMS</Eyebrow>
+          <Eyebrow>15 · FIVE WORKSTREAMS</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">A–E</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -942,7 +1169,7 @@ export default function NfnspBriefing() {
 
       <section id="demonstration" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>14 · DEMONSTRATION DESIGN</Eyebrow>
+          <Eyebrow>16 · DEMONSTRATION DESIGN</Eyebrow>
           <GoldRule />
           <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-6">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
@@ -970,7 +1197,7 @@ export default function NfnspBriefing() {
 
       <section id="commercial" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>15 · COMMERCIAL MODEL</Eyebrow>
+          <Eyebrow>17 · COMMERCIAL MODEL</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-3">
             Group figures — labelled
@@ -991,7 +1218,7 @@ export default function NfnspBriefing() {
 
       <section id="governance" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>16 · GOVERNANCE AND RISK</Eyebrow>
+          <Eyebrow>18 · GOVERNANCE AND RISK</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             What this briefing is not
@@ -1028,7 +1255,7 @@ export default function NfnspBriefing() {
 
       <section id="ask" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>18 · 90-DAY ASK</Eyebrow>
+          <Eyebrow>20 · 90-DAY ASK</Eyebrow>
           <GoldRule />
           <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-8">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
@@ -1091,7 +1318,7 @@ export default function NfnspBriefing() {
 
       <section id="conclusion" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: FOREST }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>19 · CONCLUSION</Eyebrow>
+          <Eyebrow>21 · CONCLUSION</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-white mb-6">
             Targets, plates, a closed circuit

@@ -251,10 +251,28 @@ function partnerJumpNavItems({
         icon: "target",
       },
       {
-        href: "#os",
-        label: "OS",
-        desc: "SupplierAdvisor® farm-to-fork",
-        icon: "compass",
+        href: "#foods",
+        label: "Feed",
+        desc: "Big Five Foods — plates for the Plan",
+        icon: "package",
+      },
+      {
+        href: "#leadership",
+        label: "Educate",
+        desc: "Super-Cube® for the people who run it",
+        icon: "graduation",
+      },
+      {
+        href: "#empower",
+        label: "Empower",
+        desc: "Connect, Direct, Access, Global, PMO, Foundation",
+        icon: "network",
+      },
+      {
+        href: "#kingdom",
+        label: "Kingdom",
+        desc: "Zulu Kingdom heads of agreement, in signature",
+        icon: "crown",
       },
       {
         href: "#nfnsp-partnership-deck",

@@ -372,14 +372,14 @@ export const PARTNERS: PartnerProfile[] = [
         desc: "Fifteen sections — executive summary, Plan goals, nine-pillar circuit, 90-day ask.",
       },
       {
-        href: "#os",
-        label: "Farm-to-fork OS",
-        desc: "SupplierAdvisor® as trade and quality layer — not BAS/LOGIS.",
+        href: "#empower",
+        label: "Empower",
+        desc: "Connect, Direct, Access, Global, the PMO and the Foundation — one circuit.",
       },
       {
         href: "#nfnsp-partnership-deck",
         label: "Proposal deck",
-        desc: "22-slide deck — Goal-linked Impact Gantt, NSNP-approved plates, deliverables. Landscape or Portrait, then Save as PDF.",
+        desc: "25-slide deck — Feed, Educate, Empower, Zulu Kingdom HOA in signature, NSNP-approved plates. Landscape or Portrait, then Save as PDF.",
       },
       {
         href: "#ask",
@@ -388,7 +388,7 @@ export const PARTNERS: PartnerProfile[] = [
       },
       {
         href: "/api/partner/nfnsp-proposal",
-        label: "Download proposal (PDF) · September 2026 · v3.4",
+        label: "Download proposal (PDF) · September 2026 · v3.7",
         desc: "Session-gated A4 briefing — official Goals, Game Changers and Enablers.",
       },
       {

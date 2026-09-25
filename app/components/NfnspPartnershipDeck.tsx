@@ -19,10 +19,11 @@ import DeckShell, {
   useDeckPdfExport,
 } from "./deck/DeckShell";
 import { CONTACT_EMAIL } from "../lib/contact";
-import { NFNSP } from "../lib/nfnspPartnership";
+import { NFNSP, NFNSP_OFFERING_HREF } from "../lib/nfnspPartnership";
+import SuperCubeModel from "./SuperCubeModel";
 
 const theme = DECK_THEMES.nfnsp;
-const TOTAL = 22;
+const TOTAL = 25;
 const P = NFNSP;
 const G = NFNSP.gantt;
 const FOREST = "#0F3D38";
@@ -130,9 +131,18 @@ function DeckGanttChart({ band }: { band: "a" | "b" }) {
           return (
             <div key={row.stream} className="contents">
               <div className="px-2.5 py-1.5 min-w-0 border-t" style={{ borderColor: "rgba(15,61,56,0.08)" }}>
-                <div className="text-[11px] sm:text-xs font-semibold text-black leading-snug">{row.stream}</div>
+                <a href={row.href} className="text-[11px] sm:text-xs font-semibold text-black leading-snug underline decoration-[#C4923A]/50 underline-offset-2">
+                  {row.stream}
+                </a>
                 <div className="text-[9px] leading-snug" style={{ color: FOREST }}>
-                  {row.offering}
+                  {row.offering.split(" · ").map((name, i) => (
+                    <span key={`${row.stream}-${name}`}>
+                      {i > 0 ? " · " : null}
+                      <a href={NFNSP_OFFERING_HREF[name as keyof typeof NFNSP_OFFERING_HREF] ?? row.href} className="underline decoration-[#0F3D38]/30 underline-offset-2">
+                        {name}
+                      </a>
+                    </span>
+                  ))}
                 </div>
                 <div className="text-[9px] text-[#525252] leading-snug hidden sm:block">{row.product}</div>
               </div>
@@ -150,13 +160,15 @@ function DeckGanttChart({ band }: { band: "a" | "b" }) {
                     />
                   ))}
                 </div>
-                <div
+                <a
+                  href={row.href}
                   className="absolute top-1.5 bottom-1.5 rounded-full"
                   style={{
                     left: `calc(${left}% + 2px)`,
                     width: `calc(${width}% - 4px)`,
                     backgroundColor: GANTT_TONE[row.tone],
                   }}
+                  aria-label={`${row.stream}. Open ${row.goal}.`}
                 />
               </div>
             </div>
@@ -185,9 +197,9 @@ function PhaseCard({
         </div>
         <div className="text-[9px] text-[#737373] text-right leading-tight">{phase.when}</div>
       </div>
-      <h3 className="text-sm font-semibold leading-snug mb-1" style={{ color: FOREST }}>
+      <a href={phase.href} className="text-sm font-semibold leading-snug mb-1 underline decoration-[#0F3D38]/30 underline-offset-2" style={{ color: FOREST }}>
         {phase.name}
-      </h3>
+      </a>
       <p className="text-[10px] sm:text-[11px] font-semibold text-black leading-snug mb-1">{phase.goal}</p>
       <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug mb-2">{phase.objective}</p>
       <div className="text-[9px] tracking-[1.3px] font-semibold mb-1" style={{ color: GOLD }}>
@@ -579,17 +591,25 @@ function Slide({ index }: { index: number }) {
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>THE PLATE · BIG FIVE FOODS™</DeckEyebrow>
-          <DeckTitle>Instant fortified porridge is the malnutrition plate</DeckTitle>
-          <p className="text-sm text-[#525252] max-w-3xl leading-relaxed mb-4">{P.foods.intro}</p>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 min-h-0">
-            {P.foods.points.slice(0, 6).map((pt) => (
-              <article
-                key={pt.t}
-                className="rounded-2xl border p-3.5 min-w-0"
-                style={{ borderColor: "rgba(196,146,58,0.35)", borderLeft: `4px solid ${FOREST}` }}
-              >
-                <p className="text-sm font-semibold text-black leading-snug">{pt.t}</p>
-                <p className="text-[11px] text-[#737373] mt-1 leading-snug">{pt.label}</p>
+          <DeckTitle>The plate the Department can buy</DeckTitle>
+          <p className="text-xs sm:text-sm text-[#525252] max-w-3xl leading-snug mb-3">
+            Department of Education approval for NSNP: fortified instant porridge, soya mince and OnePot. Menu approval — not an awarded contract. www.bigfivegroup.africa/foods
+          </p>
+          <div className="grid grid-cols-4 gap-2 min-h-0">
+            {[
+              ["/foods/porridge-original.jpg", "Porridge", "Water or milk · under a minute"],
+              ["/foods/soya-beef.jpg", "Soya mince", "About R1.30 · internal"],
+              ["/foods/onepot-chicken.jpg", "OnePot", "About 20 minutes"],
+              ["/foods/soup-chicken.jpg", "Soups", "About R1.10 · internal"],
+            ].map(([src, title, stat]) => (
+              <article key={title} className="rounded-xl overflow-hidden border min-w-0" style={{ borderColor: "rgba(196,146,58,0.35)" }}>
+                <div className="relative h-24 sm:h-28 bg-[#F7F1E6]">
+                  <Image src={src} alt={title} fill className="object-cover" sizes="180px" />
+                </div>
+                <div className="p-2">
+                  <p className="text-xs font-semibold text-black leading-snug">{title}</p>
+                  <p className="text-[10px] leading-snug mt-0.5" style={{ color: FOREST }}>{stat}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -599,24 +619,36 @@ function Slide({ index }: { index: number }) {
     case 13:
       return (
         <DeckSlideShell theme={theme}>
-          <DeckEyebrow theme={theme}>FARM-TO-FORK OS</DeckEyebrow>
-          <DeckTitle>{P.os.headline}</DeckTitle>
-          <p
-            className="rounded-2xl p-4 text-sm leading-relaxed mb-4"
-            style={{ backgroundColor: FOREST, color: GOLD_LT }}
-          >
-            {P.os.nonClaim}
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-            {P.os.modules.map((m) => (
-              <div
-                key={m}
-                className="rounded-xl px-3 py-2 text-xs font-semibold"
-                style={{ backgroundColor: CREAM, color: FOREST, border: "1px solid rgba(196,146,58,0.3)" }}
-              >
-                {m}
-              </div>
-            ))}
+          <DeckEyebrow theme={theme}>EDUCATE · SUPER-CUBE®</DeckEyebrow>
+          <DeckTitle>Six faces. The person at the centre.</DeckTitle>
+          <div className="grid grid-cols-1 md:grid-cols-[200px_minmax(0,1fr)] gap-3 min-h-0 items-center">
+            <SuperCubeModel compact />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 min-h-0">
+              {P.leadership.faces.map((face) => (
+                <article
+                  key={face.name}
+                  className="rounded-xl p-2 min-w-0"
+                  style={{ backgroundColor: CREAM, border: "1px solid rgba(196,146,58,0.35)" }}
+                >
+                  <h3 className="text-xs font-semibold" style={{ color: FOREST }}>
+                    {face.name}
+                  </h3>
+                  <p className="text-[10px] text-[#404040] leading-snug mt-0.5">{face.nda}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-[11px] text-[#737373] max-w-2xl leading-snug">{P.leadership.caseNote}</p>
+            <a
+              href={P.leadership.site}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold underline decoration-[#0F3D38]/40 underline-offset-2 shrink-0"
+              style={{ color: FOREST }}
+            >
+              {P.leadership.siteLabel}
+            </a>
           </div>
         </DeckSlideShell>
       );
@@ -624,8 +656,102 @@ function Slide({ index }: { index: number }) {
     case 14:
       return (
         <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>EMPOWER · ONE CIRCUIT</DeckEyebrow>
+          <DeckTitle>{P.empower.headline}</DeckTitle>
+          <p className="text-xs sm:text-sm text-[#525252] max-w-3xl leading-snug mb-3">{P.empower.lead}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 min-h-0">
+            {P.empower.parts.map((part) => (
+              <article
+                key={part.id}
+                className="rounded-xl p-3 min-w-0"
+                style={{ border: "1px solid rgba(196,146,58,0.35)", backgroundColor: part.id === "os" ? FOREST : CREAM }}
+              >
+                <div className="text-[10px] tracking-[1.4px] font-semibold mb-1" style={{ color: GOLD }}>
+                  {part.name.toUpperCase()}
+                </div>
+                <h3 className="text-sm font-semibold leading-snug mb-1" style={{ color: part.id === "os" ? "#E8C07A" : FOREST }}>
+                  {part.role}
+                </h3>
+                <p className="text-[11px] leading-snug" style={{ color: part.id === "os" ? "rgba(255,255,255,0.82)" : "#404040" }}>
+                  {part.nda}
+                </p>
+              </article>
+            ))}
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 15:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>EMPOWER · CONNECT · SUPPLIERADVISOR®</DeckEyebrow>
+          <DeckTitle>{P.os.headline}</DeckTitle>
+          <p
+            className="rounded-2xl px-4 py-3 text-xs sm:text-sm leading-snug mb-3"
+            style={{ backgroundColor: FOREST, color: GOLD_LT }}
+          >
+            {P.os.nonClaim}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 min-h-0 mb-3">
+            {P.os.groups.map((group) => (
+              <article
+                key={group.title}
+                className="rounded-xl p-3 min-w-0"
+                style={{ border: "1px solid rgba(196,146,58,0.35)" }}
+              >
+                <h3 className="text-sm font-semibold mb-1" style={{ color: FOREST }}>
+                  {group.title}
+                </h3>
+                <p className="text-[11px] text-[#404040] leading-snug">{group.d}</p>
+              </article>
+            ))}
+          </div>
+          <a
+            href={P.os.site}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-semibold underline decoration-[#0F3D38]/40 underline-offset-2"
+            style={{ color: FOREST }}
+          >
+            {P.os.siteLabel}
+          </a>
+        </DeckSlideShell>
+      );
+
+    case 16:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>ZULU KINGDOM · IN SIGNATURE</DeckEyebrow>
+          <DeckTitle>{P.kingdom.headline}</DeckTitle>
+          <div className="grid grid-cols-1 md:grid-cols-[140px_minmax(0,1fr)] gap-4 items-center min-h-0">
+            <div className="rounded-2xl bg-white p-3 flex items-center justify-center border" style={{ borderColor: "rgba(196,146,58,0.35)" }}>
+              <Image src={P.kingdom.logo} alt="Zulu Kingdom" width={120} height={120} className="h-auto w-24 object-contain" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] tracking-[1.4px] font-semibold mb-2" style={{ color: GOLD }}>{P.kingdom.status.toUpperCase()}</p>
+              <p className="text-xs sm:text-sm text-[#404040] leading-snug mb-2">{P.kingdom.lead}</p>
+              <p className="text-xs sm:text-sm leading-snug" style={{ color: FOREST }}>{P.kingdom.why}</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3 min-h-0">
+            {P.kingdom.points.map((point) => (
+              <article key={point.t} className="rounded-xl p-3 min-w-0" style={{ backgroundColor: CREAM, border: "1px solid rgba(196,146,58,0.35)" }}>
+                <h3 className="text-sm font-semibold text-black mb-1">{point.t}</h3>
+                <p className="text-[11px] text-[#404040] leading-snug">{point.d}</p>
+              </article>
+            ))}
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 17:
+      return (
+        <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>DEMONSTRATION · KWAZULU-NATAL FIRST</DeckEyebrow>
           <DeckTitle>Scale only after a closed circuit holds</DeckTitle>
+          <p className="text-xs sm:text-sm leading-snug mb-3 max-w-3xl" style={{ color: FOREST }}>
+            The same province is where a Heads of Agreement with the Zulu Kingdom is in signature — community and cultural buy-in, not yet executed, and not an NFNSP award.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
             <article className="rounded-2xl p-5" style={{ backgroundColor: FOREST }}>
               <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD_LT }}>
@@ -649,7 +775,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 15:
+    case 18:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>90-DAY ASK</DeckEyebrow>
@@ -675,7 +801,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 16:
+    case 19:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>IN RETURN · LABELLED GROUP FIGURES</DeckEyebrow>
@@ -706,7 +832,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 17:
+    case 20:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GANTT · GOAL 1 AND ENABLER A</DeckEyebrow>
@@ -718,7 +844,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 18:
+    case 21:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>GANTT · GOALS 2–3 AND ENABLERS B–C</DeckEyebrow>
@@ -730,7 +856,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 19:
+    case 22:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PHASES 0–1 · GOALS · DELIVERABLES · PRODUCTS</DeckEyebrow>
@@ -743,7 +869,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 20:
+    case 23:
       return (
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>PHASES 2–4 · AFTER THE SCALE GATE</DeckEyebrow>
@@ -756,7 +882,7 @@ function Slide({ index }: { index: number }) {
         </DeckSlideShell>
       );
 
-    case 21:
+    case 24:
       return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <KenteDarkField>

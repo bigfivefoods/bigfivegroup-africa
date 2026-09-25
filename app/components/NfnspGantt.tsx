@@ -1,6 +1,6 @@
 "use client";
 
-import { NFNSP } from "../lib/nfnspPartnership";
+import { NFNSP, NFNSP_OFFERING_HREF } from "../lib/nfnspPartnership";
 
 const FOREST = "#0F3D38";
 const GOLD = "#C4923A";
@@ -14,17 +14,7 @@ const TONE = {
   horizon: { bg: "#E8C07A", fg: FOREST },
 } as const;
 
-const OFFERING_HREF: Record<string, string> = {
-  Agri: "#pillar-agri",
-  Foods: "#pillar-foods",
-  Leadership: "#pillar-leadership",
-  Connect: "#pillar-connect",
-  Direct: "#pillar-direct",
-  Access: "#pillar-access",
-  Impact: "#pillar-impact",
-  Foundation: "#pillar-foundation",
-  Global: "#pillar-global",
-};
+const OFFERING_HREF: Record<string, string> = NFNSP_OFFERING_HREF;
 
 function OfferingLinks({ offering }: { offering: string }) {
   const parts = offering.split(" · ");
