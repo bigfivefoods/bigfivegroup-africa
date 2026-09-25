@@ -3,7 +3,7 @@
 Minimal leopard HOA briefing — Isidlo seSilo × Big Five Group.
 
 Co-brand: Zulu Kingdom lockup + Big Five Group globe.
-Output: public/partners/zulu-kingdom-hoa-isidlo-sesilo.pdf
+Output: private/partner-files/zulu-kingdom-hoa-isidlo-sesilo.pdf
 
 Run: python3 scripts/generate-zulu-hoa-pdf.py
 """
@@ -25,7 +25,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas as pdfcanvas
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "public" / "partners" / "zulu-kingdom-hoa-isidlo-sesilo.pdf"
+OUT = ROOT / "private" / "partner-files" / "zulu-kingdom-hoa-isidlo-sesilo.pdf"
 LEOPARD = ROOT / "public" / "partners" / "zulu-kingdom-leopard-hero.jpg"
 ZK_LOGO = ROOT / "public" / "partners" / "zulu-kingdom-logo.png"
 BFG_LOGO = ROOT / "public" / "bigfivegroup-logo.jpg"

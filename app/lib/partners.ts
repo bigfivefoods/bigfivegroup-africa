@@ -465,7 +465,7 @@ export const PARTNERS: PartnerProfile[] = [
         desc: "21-day headcount · Royal Rate · planned monthly offtake.",
       },
       {
-        href: "/partners/zulu-kingdom-hoa-isidlo-sesilo.pdf",
+        href: "/api/partner/zulu-hoa",
         label: "Download HOA briefing (PDF)",
         desc: "Co-branded A4 portrait — BF/RH/HOA/FINAL-V5 principal terms.",
       },

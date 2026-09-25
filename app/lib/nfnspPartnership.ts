@@ -12,7 +12,7 @@ export const NFNSP = {
   kicker: "PARTNER PORTAL · CONFIDENTIAL · NFNSP-2",
   title: "Implementation partnership",
   subtitle: "Operationalising the National Food and Nutrition Security Plan · 2027–2037",
-  pdfHref: "/partners/BigFive_NFNSP_Implementation_Partnership_Proposal.pdf",
+  pdfHref: "/api/partner/nfnsp-proposal",
   pdfLabel: "Download proposal (PDF) · September 2026 · v3.7",
   pdfVersion: "v3.7 · September 2026",
   website: "https://www.nda.gov.za/",

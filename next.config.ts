@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  outputFileTracingIncludes: {
+    "/api/partner/nfnsp-proposal": [
+      "./private/partner-files/BigFive_NFNSP_Implementation_Partnership_Proposal.pdf",
+    ],
+    "/api/partner/zulu-hoa": [
+      "./private/partner-files/zulu-kingdom-hoa-isidlo-sesilo.pdf",
+    ],
+  },
   async redirects() {
     return [
       {

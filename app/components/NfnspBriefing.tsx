@@ -693,8 +693,14 @@ export default function NfnspBriefing() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {FEED_RANGES.map((item) => (
               <article key={item.title} className="rounded-2xl overflow-hidden bg-[#fafafa] border border-black/10">
-                <div className="relative aspect-[4/3] bg-[#F7F1E6]">
-                  <Image src={item.src} alt={item.alt} fill className="object-cover" sizes="(min-width: 1024px) 240px, 50vw" />
+                <div className="relative aspect-[3/4] bg-[#F7F1E6]">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="object-contain object-center p-2 sm:p-3"
+                    sizes="(min-width: 1024px) 240px, 50vw"
+                  />
                 </div>
                 <div className="p-4">
                   <h3 className="text-base font-semibold text-black leading-snug">{item.title}</h3>
@@ -712,8 +718,14 @@ export default function NfnspBriefing() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
             {NSNP_PRODUCTS.map((product) => (
               <article key={product.id} className="rounded-2xl overflow-hidden border border-black/10 bg-white">
-                <div className="relative aspect-[4/3] bg-[#F7F1E6]">
-                  <Image src={product.src} alt={product.shortName} fill className="object-cover" sizes="(min-width: 640px) 320px, 100vw" />
+                <div className="relative aspect-square bg-[#F7F1E6]">
+                  <Image
+                    src={product.src}
+                    alt={product.shortName}
+                    fill
+                    className="object-contain object-center p-3 sm:p-5"
+                    sizes="(min-width: 640px) 320px, 100vw"
+                  />
                 </div>
                 <div className="p-4">
                   <div className="text-[10px] tracking-[1.6px] font-semibold mb-1" style={{ color: GOLD }}>

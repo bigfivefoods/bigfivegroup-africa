@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   return servePartnerPdf({
     request,
-    slug: "department-of-agriculture",
-    filename: "BigFive_NFNSP_Implementation_Partnership_Proposal.pdf",
+    slug: "zulu-kingdom",
+    filename: "zulu-kingdom-hoa-isidlo-sesilo.pdf",
   });
 }

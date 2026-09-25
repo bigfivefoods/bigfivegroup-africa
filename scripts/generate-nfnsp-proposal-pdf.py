@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """NFNSP-2 implementation partnership proposal — A4 portrait.
 
-Output: public/partners/BigFive_NFNSP_Implementation_Partnership_Proposal.pdf
+Output: private/partner-files/BigFive_NFNSP_Implementation_Partnership_Proposal.pdf
 Run: python3 scripts/generate-nfnsp-proposal-pdf.py
 """
 
@@ -21,7 +21,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas as pdfcanvas
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "public" / "partners" / "BigFive_NFNSP_Implementation_Partnership_Proposal.pdf"
+OUT = ROOT / "private" / "partner-files" / "BigFive_NFNSP_Implementation_Partnership_Proposal.pdf"
 NDA = ROOT / "public" / "partners" / "department-of-agriculture-logo.png"
 BFG = ROOT / "public" / "bigfivegroup-logo.jpg"
 HERO = ROOT / "public" / "home-hero.jpg"
@@ -1142,24 +1142,51 @@ def page_why(c):
 # ---------------------------------------------------------------------------
 # Foods / workstreams / demonstration
 # ---------------------------------------------------------------------------
+def draw_contained(c, path: Path, x, yb, w, h):
+    """Fit the whole bitmap inside the box. Nothing is cropped."""
+    im = PILImage.open(path)
+    iw, ih = im.size
+    scale = min(w / iw, h / ih)
+    dw, dh = iw * scale, ih * scale
+    c.drawImage(
+        ImageReader(str(path)),
+        x + (w - dw) / 2,
+        yb + (h - dh) / 2,
+        width=dw,
+        height=dh,
+        mask="auto",
+    )
+
+
+def food_shots(c, y) -> float:
+    shots = [
+        (ROOT / "public/foods/porridge-original.jpg", "Porridge"),
+        (ROOT / "public/foods/soya-beef.jpg", "Soya mince"),
+        (ROOT / "public/foods/onepot-chicken.jpg", "OnePot"),
+        (ROOT / "public/foods/soup-chicken.jpg", "Soups"),
+    ]
+    gap = 3 * mm
+    cap = 4.8 * mm
+    box_h = 20 * mm
+    tw = (CONTENT_W - gap * (len(shots) - 1)) / len(shots)
+    total_h = box_h + cap
+    for i, (path, label) in enumerate(shots):
+        x = INNER + i * (tw + gap)
+        card(c, x, y - total_h, tw, total_h, fill=CREAM, stroke=GOLD, sw=0.35, bar=False)
+        pad = 1.4 * mm
+        draw_contained(c, path, x + pad, y - box_h + pad, tw - 2 * pad, box_h - 2 * pad)
+        c.setFillColor(FOREST)
+        c.setFont(F["sansSemi"], 7.2)
+        c.drawCentredString(x + tw / 2, y - box_h - 3.6 * mm, label)
+    return y - total_h - 2.4 * mm
+
+
 def page_foods(c):
     y = chrome(c, 16, "Foods  ·  workstreams  ·  demonstration")
     c.bookmarkPage("p16")
     kicker(c, "16  ·  Big Five Foods — labelled Group figures", INNER, y)
     back_to_plan(c, y)
-    y -= 7.5 * mm
-    used = para(
-        c,
-        "One SKU family across NSNP, ECD, CNDC and holiday packs. Instant fortified porridge is the malnutrition plate: add water or milk; ready in under a minute.",
-        INNER,
-        y,
-        F["sans"],
-        BODY,
-        LEAD,
-        CONTENT_W,
-        MUTED,
-    )
-    y -= used + 3.5 * mm
+    y -= 4.2 * mm
     y = quote_box(
         c,
         y,
@@ -1167,6 +1194,7 @@ def page_foods(c):
         size=9.5,
         lead=13.2,
     )
+    y = food_shots(c, y)
     y = metric_row(
         c,
         y,
@@ -1190,14 +1218,14 @@ def page_foods(c):
     kicker(c, "Five workstreams A–E", INNER, y)
     y -= 6.2 * mm
     ws = [
-        ("A", "Plates", "DoE-approved for NSNP: fortified instant porridge (water or milk, under a minute), soya mince and OnePot, plus soups. 5 kg packs."),
+        ("A", "Plates", "NSNP-approved porridge, soya mince, OnePot and soups. 5 kg packs."),
         ("B", "Markets", "Costed container / micro-hub spec for an IDP / DDM One Plan. SANTACO rank + rural nodes."),
         ("C", "Producers", "SupplierAdvisor®: OTIFEF, the lot and the invoice on one OS. Not BAS or LOGIS."),
         ("D", "Agency", "Super-Cube® six faces for the adults who run the plate. Porridge and OnePot. Not the curriculum."),
         ("E", "OS", "SchoolAdvisor® gates the kitchen. HACCP holds stop the ship. MELIA extract. No learner names."),
     ]
     for letter, t, d in ws:
-        y = numbered_card(c, y, letter, t, d, size=8.7, lead=11.6)
+        y = numbered_card(c, y, letter, t, d, size=8, lead=10.4)
 
     c.bookmarkHorizontal("demo", INNER, y)
     kicker(c, "Demonstration design", INNER, y)

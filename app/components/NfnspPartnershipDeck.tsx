@@ -595,20 +595,24 @@ function Slide({ index }: { index: number }) {
           <p className="text-xs sm:text-sm text-[#525252] max-w-3xl leading-snug mb-3">
             Department of Education approval for NSNP: fortified instant porridge, soya mince and OnePot. Menu approval — not an awarded contract. www.bigfivegroup.africa/foods
           </p>
-          <div className="grid grid-cols-4 gap-2 min-h-0">
+          <div className="grid grid-cols-4 gap-2">
             {[
               ["/foods/porridge-original.jpg", "Porridge", "Water or milk · under a minute"],
               ["/foods/soya-beef.jpg", "Soya mince", "About R1.30 · internal"],
               ["/foods/onepot-chicken.jpg", "OnePot", "About 20 minutes"],
               ["/foods/soup-chicken.jpg", "Soups", "About R1.10 · internal"],
             ].map(([src, title, stat]) => (
-              <article key={title} className="rounded-xl overflow-hidden border min-w-0" style={{ borderColor: "rgba(196,146,58,0.35)" }}>
-                <div className="relative h-24 sm:h-28 bg-[#F7F1E6]">
-                  <Image src={src} alt={title} fill className="object-cover" sizes="180px" />
+              <article
+                key={title}
+                className="flex flex-col overflow-hidden rounded-xl border"
+                style={{ borderColor: "rgba(196,146,58,0.35)" }}
+              >
+                <div className="relative aspect-[3/4] bg-[#F7F1E6]">
+                  <DeckPrintImage src={src} alt={title} fit="contain" paddingClass="p-1" />
                 </div>
-                <div className="p-2">
-                  <p className="text-xs font-semibold text-black leading-snug">{title}</p>
-                  <p className="text-[10px] leading-snug mt-0.5" style={{ color: FOREST }}>{stat}</p>
+                <div className="shrink-0 p-2">
+                  <p className="text-xs font-semibold leading-snug text-black">{title}</p>
+                  <p className="mt-0.5 text-[10px] leading-snug" style={{ color: FOREST }}>{stat}</p>
                 </div>
               </article>
             ))}

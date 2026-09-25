@@ -566,7 +566,7 @@ export const ZULU_KINGDOM_PARTNERSHIP = {
         "NSNP / institutional 5 kg formats where school- or clinic-linked",
       ],
     },
-    downloadHref: "/partners/zulu-kingdom-hoa-isidlo-sesilo.pdf",
+    downloadHref: "/api/partner/zulu-hoa",
     downloadLabel: "Download HOA briefing (A4 portrait PDF)",
     honestyFooter:
       "This page reflects Heads of Agreement principal terms (BF/RH/HOA/FINAL-V5) prepared for the Amazulu Queens' High Tea. It is a Big Five Group partner briefing — not an official Palace publication and not a record of executed statutory documents. Until the HOA is executed, treat exclusivity, offtake ranges and sponsor names as proposed.",
