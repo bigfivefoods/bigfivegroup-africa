@@ -22,12 +22,19 @@ import { CONTACT_EMAIL } from "../lib/contact";
 import { NFNSP } from "../lib/nfnspPartnership";
 
 const theme = DECK_THEMES.nfnsp;
-const TOTAL = 18;
+const TOTAL = 22;
 const P = NFNSP;
+const G = NFNSP.gantt;
 const FOREST = "#0F3D38";
 const GOLD = "#C4923A";
 const GOLD_LT = "#E8C07A";
 const CREAM = "#F7F1E6";
+const GANTT_COLS = G.columns.length;
+const GANTT_TONE = {
+  gold: GOLD,
+  forest: FOREST,
+  horizon: GOLD_LT,
+} as const;
 const NDA_LOGO = "/partners/department-of-agriculture-logo.png";
 const BFG_LOGO = "/bigfivegroup-logo.jpg";
 const HERO = "/home-hero.jpg";
@@ -87,6 +94,124 @@ function Limit({ children }: { children: string }) {
     <p className="text-[10px] sm:text-xs leading-snug italic mt-1.5" style={{ color: FOREST }}>
       {children}
     </p>
+  );
+}
+
+function DeckGanttChart({ band }: { band: "a" | "b" }) {
+  const rows = G.rows.filter((row) => row.band === band);
+  return (
+    <div
+      className="rounded-2xl overflow-hidden min-h-0 border"
+      style={{ borderColor: "rgba(196,146,58,0.35)" }}
+    >
+      <div
+        className="grid"
+        style={{ gridTemplateColumns: "minmax(7.2rem,0.8fr) minmax(0,1.7fr)" }}
+      >
+        <div className="px-2.5 py-2 text-[9px] tracking-[1.4px] font-semibold" style={{ color: GOLD, backgroundColor: CREAM }}>
+          IMPACT STREAM
+        </div>
+        <div
+          className="grid"
+          style={{ gridTemplateColumns: `repeat(${GANTT_COLS}, minmax(0,1fr))`, backgroundColor: CREAM }}
+        >
+          {G.columns.map((c) => (
+            <div key={c.id} className="px-0.5 py-2 text-center">
+              <div className="text-[9px] sm:text-[10px] font-semibold leading-tight" style={{ color: FOREST }}>
+                {c.label}
+              </div>
+              <div className="text-[8px] text-[#737373] leading-tight hidden sm:block">{c.sub}</div>
+            </div>
+          ))}
+        </div>
+        {rows.map((row) => {
+          const left = (row.start / GANTT_COLS) * 100;
+          const width = ((row.end - row.start + 1) / GANTT_COLS) * 100;
+          return (
+            <div key={row.stream} className="contents">
+              <div className="px-2.5 py-1.5 min-w-0 border-t" style={{ borderColor: "rgba(15,61,56,0.08)" }}>
+                <div className="text-[11px] sm:text-xs font-semibold text-black leading-snug">{row.stream}</div>
+                <div className="text-[9px] leading-snug" style={{ color: FOREST }}>
+                  {row.offering}
+                </div>
+                <div className="text-[9px] text-[#525252] leading-snug hidden sm:block">{row.product}</div>
+              </div>
+              <div className="relative mx-1.5 my-1 min-h-7 sm:min-h-8">
+                <div className="absolute inset-y-1 inset-x-0 rounded-full" style={{ backgroundColor: CREAM }} />
+                <div
+                  className="absolute inset-y-0 grid h-full w-full pointer-events-none"
+                  style={{ gridTemplateColumns: `repeat(${GANTT_COLS}, minmax(0,1fr))` }}
+                >
+                  {G.columns.map((c, i) => (
+                    <div
+                      key={c.id}
+                      className="h-full"
+                      style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(196,146,58,0.16)" }}
+                    />
+                  ))}
+                </div>
+                <div
+                  className="absolute top-1.5 bottom-1.5 rounded-full"
+                  style={{
+                    left: `calc(${left}% + 2px)`,
+                    width: `calc(${width}% - 4px)`,
+                    backgroundColor: GANTT_TONE[row.tone],
+                  }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function PhaseCard({
+  phase,
+  compact,
+}: {
+  phase: (typeof G.phases)[number];
+  compact?: boolean;
+}) {
+  return (
+    <article
+      className="rounded-2xl p-3 sm:p-3.5 min-w-0 min-h-0 flex flex-col"
+      style={{ border: "1px solid rgba(196,146,58,0.35)", backgroundColor: "white" }}
+    >
+      <div className="flex items-baseline justify-between gap-2 mb-1">
+        <div className="text-[9px] tracking-[1.6px] font-semibold" style={{ color: GOLD }}>
+          PHASE {phase.n}
+        </div>
+        <div className="text-[9px] text-[#737373] text-right leading-tight">{phase.when}</div>
+      </div>
+      <h3 className="text-sm font-semibold leading-snug mb-1" style={{ color: FOREST }}>
+        {phase.name}
+      </h3>
+      <p className="text-[10px] sm:text-[11px] font-semibold text-black leading-snug mb-1">{phase.goal}</p>
+      <p className="text-[10px] sm:text-[11px] text-[#525252] leading-snug mb-2">{phase.objective}</p>
+      <div className="text-[9px] tracking-[1.3px] font-semibold mb-1" style={{ color: GOLD }}>
+        DELIVERABLES
+      </div>
+      <ul className="space-y-0.5 mb-2">
+        {(compact ? phase.deliverables.slice(0, 4) : phase.deliverables).map((d) => (
+          <li key={d} className="text-[10px] text-[#404040] leading-snug pl-2.5 relative">
+            <span className="absolute left-0 top-[0.4em] w-1 h-1 rounded-full" style={{ backgroundColor: FOREST }} />
+            {d}
+          </li>
+        ))}
+      </ul>
+      <div className="text-[9px] tracking-[1.3px] font-semibold mb-1 mt-auto" style={{ color: GOLD }}>
+        BIG FIVE PRODUCTS
+      </div>
+      <ul className="space-y-0.5">
+        {phase.products.map((d) => (
+          <li key={d} className="text-[10px] leading-snug" style={{ color: FOREST }}>
+            {d}
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 
@@ -583,6 +708,56 @@ function Slide({ index }: { index: number }) {
 
     case 17:
       return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>GANTT · GOAL 1 AND ENABLER A</DeckEyebrow>
+          <DeckTitle>Every Goal 1 game changer has a named offering</DeckTitle>
+          <p className="text-xs sm:text-sm leading-relaxed mb-3 max-w-3xl" style={{ color: FOREST }}>
+            {G.owner} Department of Education has approved fortified instant porridge, soya mince and OnePot for NSNP school feeding.
+          </p>
+          <DeckGanttChart band="a" />
+        </DeckSlideShell>
+      );
+
+    case 18:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>GANTT · GOALS 2–3 AND ENABLERS B–C</DeckEyebrow>
+          <DeckTitle>NSNP-approved plates sit on Goals 2 and 3</DeckTitle>
+          <p className="text-xs leading-relaxed mb-3 max-w-3xl text-[#525252]">
+            Fortified instant porridge, soya mince and OnePot are approved by the Department of Education for NSNP school feeding. That approval is not an awarded NFNSP contract.
+          </p>
+          <DeckGanttChart band="b" />
+        </DeckSlideShell>
+      );
+
+    case 19:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>PHASES 0–1 · GOALS · DELIVERABLES · PRODUCTS</DeckEyebrow>
+          <DeckTitle>Mobilise, then prove a closed KZN circuit</DeckTitle>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 min-h-0">
+            {G.phases.slice(0, 2).map((phase) => (
+              <PhaseCard key={phase.n} phase={phase} />
+            ))}
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 20:
+      return (
+        <DeckSlideShell theme={theme}>
+          <DeckEyebrow theme={theme}>PHASES 2–4 · AFTER THE SCALE GATE</DeckEyebrow>
+          <DeckTitle>Named circuits only — Plan horizons are not Group headcount</DeckTitle>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 min-h-0">
+            {G.phases.slice(2).map((phase) => (
+              <PhaseCard key={phase.n} phase={phase} compact />
+            ))}
+          </div>
+        </DeckSlideShell>
+      );
+
+    case 21:
+      return (
         <DeckSlideShell dark theme={theme} className="!p-0">
           <KenteDarkField>
             <DeckTitleLayout>
@@ -650,7 +825,7 @@ export default function NfnspPartnershipDeck() {
         </h2>
         <p className="text-sm sm:text-base text-[#525252] max-w-2xl leading-relaxed">
           Downloadable presentation of the NFNSP-2 briefing — Landscape or Portrait, then Save as PDF.
-          Official Goals, Game Changers and Enablers, with labelled Group figures.
+          Official Goals, Game Changers and Enablers, Impact PMO timeline, and labelled Group figures.
         </p>
       </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

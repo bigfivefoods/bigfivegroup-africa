@@ -259,7 +259,7 @@ function partnerJumpNavItems({
       {
         href: "#nfnsp-partnership-deck",
         label: "Slide deck",
-        desc: "Downloadable proposal presentation",
+        desc: "Gantt, Goals, deliverables — Save as PDF",
         icon: "book",
       },
       {

@@ -44,7 +44,7 @@ CONTENT_W = PAGE_W - 2 * INNER
 HEADER_H = 26 * mm
 FOOTER_H = 20 * mm
 BODY_BOTTOM = FOOTER_H + 7.5 * mm
-TOTAL = 17
+TOTAL = 18
 BODY = 10.5
 LEAD = 15.75  # 1.5 like the portal
 CAPTION = 8.5
@@ -245,7 +245,7 @@ def footer(c, n):
     baseline = FOOTER_H * 0.42
     c.setFillColor(white)
     c.setFont(F["sansSemi"], 8)
-    c.drawString(INNER, baseline, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.2  ·  Not an awarded tender")
+    c.drawString(INNER, baseline, "CONFIDENTIAL  ·  NFNSP-2  ·  v3.3  ·  Not an awarded tender")
     c.drawRightString(PAGE_W - INNER, baseline, f"{n}   /   {TOTAL}")
 
 
@@ -456,8 +456,9 @@ def page_contents(c):
         ("13", "Foods, workstreams, demonstration", "13"),
         ("14", "SupplierAdvisor® farm-to-fork operating system", "14"),
         ("15", "90-day ask and what we return", "15"),
-        ("16", "Impact PMO projected timeline", "16"),
-        ("17", "Risk, labelled figures, conclusion", "17"),
+        ("16", "Impact Gantt — every Goal linked to an offering", "16"),
+        ("17", "Phase goals, deliverables and products", "17"),
+        ("18", "Risk, labelled figures, conclusion", "18"),
     ]
     for n, t, p in toc:
         c.setStrokeColor(RULE)
@@ -825,8 +826,8 @@ def page_g3(c):
         c, y, "3.2–3.3",
         "High-impact nutrition and the first 1 000 days",
         "NSNP, ECD, CNDC, fortification, holiday referrals. Complementary feeding 6–23 months in 50% then 100% of high-risk areas. Any voucher instrument is DSD lead.",
-        "Instant fortified porridge is the malnutrition plate: add water or milk; ready in under a minute. No stove cycle, no cold chain, no trained cook. One SKU family across NSNP, ECD, CNDC and holiday packs. SchoolAdvisor: lot-and-kitchen proof. No learner names.",
-        "Limit: 2.5 million children per day is a DBE-pathway plan, not current headcount. We do not issue nutrition vouchers.",
+        "Department of Education has approved fortified instant porridge, soya mince and OnePot for NSNP school feeding. Porridge: water or milk, under a minute. SchoolAdvisor: lot-and-kitchen proof. No learner names.",
+        "Limit: menu approval is not an awarded NFNSP contract. 2.5 million children per day is a DBE-pathway plan, not current headcount.",
     )
     c.showPage()
 
@@ -1070,9 +1071,9 @@ def page_foods(c):
     y = chrome(c, 13, "Foods  ·  workstreams  ·  demonstration")
     kicker(c, "13  ·  Big Five Foods — labelled Group figures", INNER, y)
     y -= 7.5 * mm
-    para(
+    used = para(
         c,
-        "One SKU family across NSNP, ECD, CNDC and holiday packs. Instant fortified porridge is the malnutrition plate: add water or milk; ready in under a minute. Ambient, fortified, institutional 5 kg formats where school- or clinic-linked.",
+        "One SKU family across NSNP, ECD, CNDC and holiday packs. Instant fortified porridge is the malnutrition plate: add water or milk; ready in under a minute.",
         INNER,
         y,
         F["sans"],
@@ -1081,7 +1082,14 @@ def page_foods(c):
         CONTENT_W,
         MUTED,
     )
-    y -= 16 * mm
+    y -= used + 3.5 * mm
+    y = quote_box(
+        c,
+        y,
+        "Department of Education approval for NSNP school feeding: fortified instant porridge, soya mince and OnePot meals. Menu approval — not an awarded NFNSP contract, and not a current daily headcount.",
+        size=9.5,
+        lead=13.2,
+    )
     y = metric_row(
         c,
         y,
@@ -1105,7 +1113,7 @@ def page_foods(c):
     kicker(c, "Five workstreams A–E", INNER, y)
     y -= 7.5 * mm
     ws = [
-        ("A", "Plates", "Instant fortified porridge (water or milk, under a minute) plus soya, OnePot, soups. 5 kg institutional packs."),
+        ("A", "Plates", "DoE-approved for NSNP: fortified instant porridge (water or milk, under a minute), soya mince and OnePot, plus soups. 5 kg packs."),
         ("B", "Markets", "Costed container / micro-hub spec for an IDP / DDM One Plan. SANTACO rank + rural nodes."),
         ("C", "Producers", "SupplierAdvisor® identity, GPS, lots, invoices so the 10% target survives PFMA."),
         ("D", "Agency", "Instant fortified porridge (water or milk, under a minute); ~20-minute OnePot; complementary feeding. Super-Cube®."),
@@ -1253,124 +1261,156 @@ def page_ask(c):
 # Close
 # ---------------------------------------------------------------------------
 def page_gantt(c):
-    y = chrome(c, 16, "Impact PMO  ·  projected timeline")
-    kicker(c, "16  ·  Big Five Impact — phase by phase", INNER, y)
-    y -= 7.5 * mm
-    y = quote_box(
+    y = chrome(c, 16, "Impact Gantt  ·  Goals linked to offerings")
+    kicker(c, "16  ·  Every official Goal has a Big Five offering", INNER, y)
+    y -= 7.2 * mm
+    used = para(
         c,
+        "Big Five Impact is the PMO. Gold bars are the NSNP-approved plate and the PMO. Forest bars are the other official Game Changers and Enablers. Each row names the offering that delivers it.",
+        INNER,
         y,
-        "Big Five Impact is the PMO under Enabler A: one programme, one risk register, one cadence. Foods, Agri, Direct, Connect, Leadership, Access and Foundation deliver through that voice. Projected demonstration design — not an awarded tender. Scale only after a closed circuit holds.",
-        size=BODY,
-        lead=LEAD,
+        F["sans"],
+        9.2,
+        12.6,
+        CONTENT_W,
+        MUTED,
     )
+    y -= used + 3.2 * mm
 
     cols = [
         ("90 days", "Q4 26–Q1 27"),
-        ("2027", "KZN year 1"),
-        ("2028", "KZN year 2"),
+        ("2027", "KZN y1"),
+        ("2028", "KZN y2"),
         ("2029", "Plan 10%"),
         ("2030–33", "Plan 20%"),
         ("2034–37", "Plan 30%"),
     ]
     rows = [
-        ("Impact PMO", "Plan · risk register · MELIA", 0, 5, GOLD),
-        ("Governance", "TWG briefing · SLA · tables", 0, 2, FOREST),
-        ("Lawful buy", "PFMA path · lots · invoices", 0, 3, FOREST),
-        ("Plates", "Porridge · soya · OnePot", 0, 5, FOREST),
-        ("Producers", "Agri lots · onboarding", 0, 4, FOREST),
-        ("Nodes", "IDP/DDM hubs · rank · rural", 0, 4, FOREST),
-        ("OS / MELIA", "SupplierAdvisor® extracts", 0, 5, FOREST),
-        ("People", "Super-Cube® kitchens / hubs", 1, 4, FOREST),
+        ("Impact PMO", "Impact", 0, 5, GOLD),
+        ("Goal 1.1 · Hubs", "Direct · Agri · Connect · Foods", 0, 4, FOREST),
+        ("Goal 1.2 · Procurement", "Connect · Foods · Agri", 0, 5, FOREST),
+        ("Goal 1.3 · Producers", "Agri · Leadership · Access", 0, 4, FOREST),
+        ("Goal 1.4 · Traders", "Direct · Foods · Connect", 0, 4, FOREST),
+        ("Goal 2.1 · Affordable plate", "Foods · Direct · Foundation", 0, 5, GOLD),
+        ("Goal 2.2 · Food environment", "Connect · Leadership · Foods", 1, 4, FOREST),
+        ("Goal 2.3 · Behaviour", "Leadership · Foods · Foundation", 1, 4, FOREST),
+        ("Goal 3.1 · Social support", "Agri · Connect · Foods", 0, 4, FOREST),
+        ("Goal 3.2 · NSNP / ECD", "Foods · Connect · Direct", 0, 5, GOLD),
+        ("Goal 3.3 · First 1 000 days", "Foods · Leadership", 1, 3, FOREST),
+        ("Enabler B · Capital", "Access · Foundation", 0, 5, FOREST),
+        ("Enabler C · OS / MELIA", "Connect · Leadership · Impact", 0, 5, FOREST),
     ]
-    label_w = 48 * mm
+    label_w = 70 * mm
     track_w = CONTENT_W - label_w
     n_cols = len(cols)
     cell_w = track_w / n_cols
-    head_h = 11 * mm
-    row_h = 7.2 * mm
+    head_h = 10.5 * mm
+    row_h = 9.4 * mm
     chart_h = head_h + row_h * len(rows)
+    bottom = y - chart_h
+    if bottom < BODY_BOTTOM:
+        row_h = (y - BODY_BOTTOM - 16 * mm - head_h) / len(rows)
+        chart_h = head_h + row_h * len(rows)
     card(c, INNER, y - chart_h, CONTENT_W, chart_h, fill=white, stroke=GOLD, sw=0.45, bar=False)
     c.setFillColor(CREAM)
-    c.rect(INNER + 0.4, y - head_h, CONTENT_W - 0.8, head_h - 0.2, fill=1, stroke=0)
+    c.rect(INNER + 0.6, y - head_h + 0.4, CONTENT_W - 1.2, head_h - 0.8, fill=1, stroke=0)
     c.setFillColor(GOLD)
-    c.setFont(F["sansSemi"], 6.2)
-    c.drawString(INNER + 5, y - 6.6, "IMPACT STREAM")
+    c.setFont(F["sansSemi"], 6.4)
+    c.drawString(INNER + 4, y - 6.2, "GOAL  ·  OFFERING")
     for i, (lab, sub) in enumerate(cols):
         cx = INNER + label_w + i * cell_w + cell_w / 2
         c.setFillColor(FOREST)
-        c.setFont(F["sansSemi"], 7)
-        c.drawCentredString(cx, y - 5.4, lab)
+        c.setFont(F["sansSemi"], 6.6)
+        c.drawCentredString(cx, y - 4.6, lab)
         c.setFillColor(MUTED)
-        c.setFont(F["sans"], 5.8)
-        c.drawCentredString(cx, y - 9.4, sub)
+        c.setFont(F["sans"], 5.6)
+        c.drawCentredString(cx, y - 8.4, sub)
 
     yy = y - head_h
-    for i, (stream, product, start, end, colour) in enumerate(rows):
+    for i, (stream, offering, start, end, colour) in enumerate(rows):
         if i % 2:
             c.setFillColor(SOFT)
-            c.rect(INNER + 0.4, yy - row_h, CONTENT_W - 0.8, row_h, fill=1, stroke=0)
+            c.rect(INNER + 0.5, yy - row_h, CONTENT_W - 1, row_h, fill=1, stroke=0)
         c.setFillColor(FOREST)
-        c.setFont(F["sansSemi"], 7.4)
-        c.drawString(INNER + 5, yy - 3.6 * mm, stream)
+        c.setFont(F["sansSemi"], 7)
+        c.drawString(INNER + 4, yy - 3.2 * mm, stream)
         c.setFillColor(MUTED)
-        c.setFont(F["sans"], 6.2)
-        c.drawString(INNER + 5, yy - 6.2 * mm, product)
-        bar_x = INNER + label_w + start * cell_w + 1.6
-        bar_w = (end - start + 1) * cell_w - 3.2
+        offer_size = 6.0
+        max_w = label_w - 8
+        while offer_size > 4.8 and c.stringWidth(offering, F["sans"], offer_size) > max_w:
+            offer_size -= 0.15
+        c.setFont(F["sans"], offer_size)
+        c.drawString(INNER + 4, yy - 6.6 * mm, offering)
+        bar_x = INNER + label_w + start * cell_w + 3.2
+        bar_w = max(4, (end - start + 1) * cell_w - 2.8)
         c.setFillColor(colour)
-        c.roundRect(bar_x, yy - row_h + 2.4, bar_w, row_h - 4.8, 2.2, fill=1, stroke=0)
+        c.roundRect(bar_x, yy - row_h + 2.2, bar_w, max(3, row_h - 4.4), 2, fill=1, stroke=0)
         yy -= row_h
 
-    y -= chart_h + 5 * mm
-
-    phases = [
-        ("0  Mobilise · 90 days", "Enabler A. Close the five asks. Impact PMO, node pack, three-menu basket, producer protocol, draft SLA."),
-        ("1  Closed KZN circuit · 2027–2028", "Goals 1–3 in two locals + one metro. Instant porridge, lots, nodes, Super-Cube®, MELIA extracts. Scale gate."),
-        ("2  Second province · 2029", "Only if Phase 1 holds. Eastern Cape is the Plan’s GHS reference. Framework 10% is a Plan target, not a Group headcount."),
-        ("3  Named circuits · 2030–33", "Expand only where a lawful buy already holds. 1/3/5 hubs per municipality remains a Plan target."),
-        ("4  Horizon 2037", "Framework 30% is the Plan’s horizon. Global waits. No invented national volumes. Impact reports programme-reported until audited."),
-    ]
-    tw = (CONTENT_W - 4 * mm) / 2
-    # first four in 2x2, fifth full width
-    card_h = 22 * mm
-    for i, (t, d) in enumerate(phases[:4]):
-        col, row = i % 2, i // 2
-        x = INNER + col * (tw + 4 * mm)
-        ty = y - row * (card_h + 2.8 * mm)
-        card(c, x, ty - card_h, tw, card_h, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
-        c.setFillColor(FOREST)
-        c.setFont(F["sansSemi"], 8)
-        c.drawString(x + 8, ty - 5.2 * mm, t)
-        para(c, d, x + 8, ty - 9.2 * mm, F["sans"], 7.4, 10.2, tw - 14, MUTED)
-    y -= 2 * (card_h + 2.8 * mm)
-    card(c, INNER, y - 16 * mm, CONTENT_W, 16 * mm, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
-    c.setFillColor(FOREST)
-    c.setFont(F["sansSemi"], 8)
-    c.drawString(INNER + 8, y - 5 * mm, phases[4][0])
-    para(c, phases[4][1], INNER + 8, y - 9 * mm, F["sans"], 7.4, 10.2, CONTENT_W - 16, MUTED)
-    y -= 16 * mm + 4 * mm
-    c.setFillColor(MUTED)
-    c.setFont(F["sansItalic"], 7)
+    y = yy - 4 * mm
     para(
         c,
-        "10 / 20 / 30% smallholder procurement and 1 / 3 / 5 hubs per municipality are NFNSP-2 Framework targets. Big Five Impact operationalises lots, plates, nodes and MELIA extracts in named circuits. SupplierAdvisor® does not replace BAS or LOGIS. Instant fortified porridge: water or milk, under a minute.",
+        "Gold = Impact PMO and the NSNP-approved plate (porridge, soya mince, OnePot). 10/20/30% and 1/3/5 hubs are Framework targets, not Group headcount. SupplierAdvisor® does not replace BAS or LOGIS.",
         INNER,
         y,
         F["sansItalic"],
-        7,
-        9.5,
+        7.2,
+        10,
         CONTENT_W,
         MUTED,
     )
     c.showPage()
 
 
+def _phase_card(c, x, y, w, title, body) -> float:
+    pw = w - 14
+    th = measure(c, title, F["sansSemi"], 8.4, 11.2, pw)
+    bh = measure(c, body, F["sans"], 7.6, 10.4, pw)
+    h = 4.6 * mm + th + 2.4 + bh + 4.2 * mm
+    card(c, x, y - h, w, h, fill=CREAM, stroke=GOLD, sw=0.4, bar=True)
+    para(c, title, x + 7, y - 4.6 * mm, F["sansSemi"], 8.4, 11.2, pw, FOREST)
+    para(c, body, x + 7, y - 4.6 * mm - th - 2.4, F["sans"], 7.6, 10.4, pw, MUTED)
+    return h
+
+
+def page_phases(c):
+    y = chrome(c, 17, "Phase goals  ·  deliverables  ·  products")
+    kicker(c, "17  ·  What Impact delivers in each phase", INNER, y)
+    y -= 7.2 * mm
+    phases = [
+        (
+            "0  ·  Mobilise  ·  90 days",
+            "Goal: Enabler A — one Group voice. Objective: close the five asks. Deliverables: TWG briefing, KZN named, PFMA/MFMA workstream, MELIA protocol, Framework tables. Products: Impact PMO, costed node pack, three-menu basket, producer protocol, draft municipal SLA.",
+        ),
+        (
+            "1  ·  Closed KZN circuit  ·  2027–2028",
+            "Goal: Goals 1.1–1.4, 2 and 3 in two locals + one metro. Objective: lot, plate and MELIA extract hold. Deliverables: NSNP-approved porridge, soya mince and OnePot in demo kitchens; lots and invoices; Super-Cube®. Products: 5 kg SKUs, Agri producers, Direct nodes, Connect OS. Scale gate.",
+        ),
+        (
+            "2  ·  Second province  ·  2029",
+            "Goal: repeat a closed circuit. Objective: only if Phase 1 holds. Eastern Cape is the Plan’s GHS reference. Framework 10% is a Plan target, not a Group headcount. Products: same NSNP-approved plate, local onboarding, IDP/DDM node spec.",
+        ),
+        (
+            "3  ·  Named circuits  ·  2030–2033",
+            "Goal: Framework 20% as context. Objective: expand only where a lawful buy already holds. 1/3/5 hubs per municipality stays a Plan target. Products: plates, lots, nodes and MELIA extracts; Access and Foundation as complementary rails.",
+        ),
+        (
+            "4  ·  Horizon 2037",
+            "Goal: Framework 30% is the Plan’s horizon. Objective: hold circuits that already work. Global waits. No invented national volumes. Impact reports programme-reported until audited.",
+        ),
+    ]
+    for title, body in phases:
+        h = _phase_card(c, INNER, y, CONTENT_W, title, body)
+        y -= h + 3.2 * mm
+    c.showPage()
+
+
 def page_close(c):
-    y = chrome(c, 17, "Risk  ·  labelled figures  ·  conclusion")
-    kicker(c, "17  ·  Governance and risk — what this briefing is not", INNER, y)
+    y = chrome(c, 18, "Risk  ·  labelled figures  ·  conclusion")
+    kicker(c, "18  ·  Governance and risk — what this briefing is not", INNER, y)
     y -= 8 * mm
     risks = [
-        ("Presented as an awarded NSNP contract", "This briefing is a proposal. No government contract is claimed."),
+        ("NSNP approval read as an NFNSP contract", "DoE approved porridge, soya mince and OnePot for NSNP menus. This briefing is not an awarded NFNSP contract."),
         ("2.5 million daily meals read as current", "Labelled as DBE-pathway plan, not current headcount."),
         ("BAS / LOGIS replacement fear", "Explicit non-claim: SupplierAdvisor® does not replace BAS or LOGIS."),
         ("Learner data in MELIA extract", "Lot-and-kitchen proof only. No learner names. POPIA purpose-limited."),
@@ -1469,6 +1509,7 @@ def build():
     page_os(c)
     page_ask(c)
     page_gantt(c)
+    page_phases(c)
     page_close(c)
     c.save()
     print(f"Wrote {OUT}  ({TOTAL} pages)")

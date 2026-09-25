@@ -746,6 +746,21 @@ export default function NfnspBriefing() {
           </h2>
           <p className="text-sm text-[#525252] max-w-3xl mb-6 leading-relaxed">{NFNSP.foods.intro}</p>
           <article
+            className="rounded-2xl p-5 sm:p-6 mb-6 max-w-4xl"
+            style={{ backgroundColor: CREAM, border: "1px solid rgba(196,146,58,0.45)" }}
+          >
+            <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
+              DEPARTMENT OF EDUCATION · NSNP
+            </div>
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-black mb-2">
+              {NFNSP.foods.nsnpApproval.title}
+            </h3>
+            <p className="text-sm text-[#404040] leading-relaxed mb-2">{NFNSP.foods.nsnpApproval.body}</p>
+            <p className="text-[12px] italic leading-relaxed" style={{ color: FOREST }}>
+              {NFNSP.foods.nsnpApproval.limit}
+            </p>
+          </article>
+          <article
             className="rounded-2xl p-5 sm:p-7 mb-6 max-w-4xl"
             style={{ backgroundColor: FOREST }}
           >

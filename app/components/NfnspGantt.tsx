@@ -63,7 +63,10 @@ export default function NfnspGantt() {
                   <div className="px-4 py-3 min-w-0 border-t" style={{ borderColor: "rgba(15,61,56,0.08)" }}>
                     <div className="text-sm font-semibold text-black leading-snug">{row.stream}</div>
                     <div className="text-[11px] text-[#525252] leading-snug">{row.product}</div>
-                    <div className="text-[10px] tracking-[0.6px] mt-1" style={{ color: GOLD }}>
+                    <div className="text-[10px] tracking-[0.4px] mt-1" style={{ color: FOREST }}>
+                      {row.offering}
+                    </div>
+                    <div className="text-[10px] tracking-[0.6px]" style={{ color: GOLD }}>
                       {row.goal}
                     </div>
                   </div>

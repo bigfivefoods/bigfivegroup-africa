@@ -379,7 +379,7 @@ export const PARTNERS: PartnerProfile[] = [
       {
         href: "#nfnsp-partnership-deck",
         label: "Proposal deck",
-        desc: "18-slide downloadable presentation — Landscape or Portrait, then Save as PDF.",
+        desc: "22-slide deck — Goal-linked Impact Gantt, NSNP-approved plates, deliverables. Landscape or Portrait, then Save as PDF.",
       },
       {
         href: "#ask",
@@ -388,7 +388,7 @@ export const PARTNERS: PartnerProfile[] = [
       },
       {
         href: "/api/partner/nfnsp-proposal",
-        label: "Download proposal (PDF) · September 2026 · v3.2",
+        label: "Download proposal (PDF) · September 2026 · v3.3",
         desc: "Session-gated A4 briefing — official Goals, Game Changers and Enablers.",
       },
       {
