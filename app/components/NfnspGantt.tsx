@@ -14,27 +14,72 @@ const TONE = {
   horizon: { bg: "#E8C07A", fg: FOREST },
 } as const;
 
+const OFFERING_HREF: Record<string, string> = {
+  Agri: "#pillar-agri",
+  Foods: "#pillar-foods",
+  Leadership: "#pillar-leadership",
+  Connect: "#pillar-connect",
+  Direct: "#pillar-direct",
+  Access: "#pillar-access",
+  Impact: "#pillar-impact",
+  Foundation: "#pillar-foundation",
+  Global: "#pillar-global",
+};
+
+function OfferingLinks({ offering }: { offering: string }) {
+  const parts = offering.split(" · ");
+  return (
+    <div className="text-[10px] tracking-[0.4px] mt-1" style={{ color: FOREST }}>
+      {parts.map((name, i) => {
+        const href = OFFERING_HREF[name];
+        return (
+          <span key={`${name}-${i}`}>
+            {i > 0 ? " · " : null}
+            {href ? (
+              <a
+                href={href}
+                className="underline decoration-[#0F3D38]/35 underline-offset-2 hover:decoration-[#0F3D38]"
+              >
+                {name}
+              </a>
+            ) : (
+              name
+            )}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function NfnspGantt() {
   const G = NFNSP.gantt;
 
   return (
-    <div id="gantt" className="scroll-mt-28">
+    <div>
       <div className="text-[10px] sm:text-xs tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
-        {G.kicker}
+        02 · PROJECT PLAN
       </div>
       <div className="h-px w-14 mb-4" style={{ backgroundColor: GOLD }} />
-      <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tighter text-black mb-3 text-balance">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 text-balance max-w-3xl">
         {G.title}
-      </h3>
+      </h2>
       <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-2">{G.lead}</p>
-      <p className="text-sm leading-relaxed max-w-3xl mb-8" style={{ color: FOREST }}>
+      <p className="text-sm leading-relaxed max-w-3xl mb-3" style={{ color: FOREST }}>
         {G.owner}
+      </p>
+      <p className="text-sm text-[#404040] leading-relaxed max-w-3xl mb-8">
+        Select a stream to open that Goal, Game Changer or Enabler. Each pillar name opens the company
+        that delivers it. Those sections link back to this plan.
       </p>
 
       <div className="rounded-2xl bg-white overflow-hidden mb-8" style={{ border: "1px solid rgba(196,146,58,0.35)" }}>
         <div className="overflow-x-auto">
-          <div className="min-w-[48rem]" style={{ display: "grid", gridTemplateColumns: "minmax(13.5rem,0.9fr) minmax(22rem,1.6fr)" }}>
-            <div className="px-4 py-3 text-[10px] tracking-[1.6px] font-semibold" style={{ color: GOLD, backgroundColor: CREAM }}>
+          <div className="grid min-w-[40rem] grid-cols-[10.75rem_minmax(18rem,1fr)] md:min-w-[48rem] md:grid-cols-[minmax(14.5rem,0.95fr)_minmax(22rem,1.6fr)]">
+            <div
+              className="sticky left-0 z-10 border-r px-3 py-3 text-[10px] tracking-[1.6px] font-semibold md:px-4"
+              style={{ color: GOLD, backgroundColor: CREAM, borderColor: "rgba(196,146,58,0.28)" }}
+            >
               IMPACT STREAM
             </div>
             <div
@@ -58,17 +103,37 @@ export default function NfnspGantt() {
               const tone = TONE[row.tone];
               const left = (row.start / COLS) * 100;
               const width = ((row.end - row.start + 1) / COLS) * 100;
+              const span = `${G.columns[row.start]?.label ?? ""} – ${G.columns[row.end]?.label ?? ""}`;
               return (
                 <div key={row.stream} className="contents">
-                  <div className="px-4 py-3 min-w-0 border-t" style={{ borderColor: "rgba(15,61,56,0.08)" }}>
-                    <div className="text-sm font-semibold text-black leading-snug">{row.stream}</div>
+                  <div
+                    className="sticky left-0 z-10 min-w-0 border-r border-t bg-white px-3 py-3 md:px-4"
+                    style={{ borderTopColor: "rgba(15,61,56,0.08)", borderRightColor: "rgba(196,146,58,0.28)" }}
+                  >
+                    <a
+                      href={row.href}
+                      className="text-sm font-semibold text-black leading-snug underline decoration-[#C4923A]/45 underline-offset-2 hover:decoration-[#C4923A]"
+                    >
+                      {row.stream}
+                    </a>
                     <div className="text-[11px] text-[#525252] leading-snug">{row.product}</div>
-                    <div className="text-[10px] tracking-[0.4px] mt-1" style={{ color: FOREST }}>
-                      {row.offering}
-                    </div>
-                    <div className="text-[10px] tracking-[0.6px]" style={{ color: GOLD }}>
-                      {row.goal}
-                    </div>
+                    <OfferingLinks offering={row.offering} />
+                    <a
+                      href={row.href}
+                      className="inline-block text-[10px] tracking-[0.6px] mt-1 underline decoration-[#C4923A]/45 underline-offset-2 hover:decoration-[#C4923A]"
+                      style={{ color: GOLD }}
+                    >
+                      {row.goal} →
+                    </a>
+                    {"alsoHref" in row ? (
+                      <a
+                        href={row.alsoHref}
+                        className="block text-[10px] tracking-[0.4px] mt-0.5 underline decoration-[#0F3D38]/35 underline-offset-2 hover:decoration-[#0F3D38]"
+                        style={{ color: FOREST }}
+                      >
+                        {row.alsoLabel} →
+                      </a>
+                    ) : null}
                   </div>
                   <div className="relative mx-2 my-2 min-h-11 border-t" style={{ borderColor: "transparent" }}>
                     <div className="absolute inset-y-2 inset-x-0 rounded-full" style={{ backgroundColor: CREAM }} />
@@ -84,14 +149,16 @@ export default function NfnspGantt() {
                         />
                       ))}
                     </div>
-                    <div
-                      className="absolute top-3 bottom-3 rounded-full"
+                    <a
+                      href={row.href}
+                      className="absolute top-3 bottom-3 rounded-full hover:brightness-110"
                       style={{
                         left: `calc(${left}% + 3px)`,
                         width: `calc(${width}% - 6px)`,
                         backgroundColor: tone.bg,
                       }}
-                      title={`${row.stream}: ${G.columns[row.start]?.label} – ${G.columns[row.end]?.label}`}
+                      aria-label={`${row.stream}, ${span}. Open ${row.goal}.`}
+                      title={`${row.stream}: ${span}`}
                     />
                   </div>
                 </div>
@@ -105,7 +172,7 @@ export default function NfnspGantt() {
         {G.phases.map((p) => (
           <article
             key={p.n}
-            className="rounded-2xl bg-white p-4 min-w-0"
+            className="rounded-2xl bg-white p-4 min-w-0 flex flex-col"
             style={{ border: "1px solid rgba(196,146,58,0.35)" }}
           >
             <div className="flex items-baseline justify-between gap-2 mb-2">
@@ -114,9 +181,13 @@ export default function NfnspGantt() {
               </div>
               <div className="text-[10px] text-[#737373] text-right leading-tight">{p.when}</div>
             </div>
-            <h4 className="text-base font-semibold mb-1" style={{ color: FOREST }}>
+            <a
+              href={p.href}
+              className="text-base font-semibold mb-1 underline decoration-[#0F3D38]/30 underline-offset-2 hover:decoration-[#0F3D38]"
+              style={{ color: FOREST }}
+            >
               {p.name}
-            </h4>
+            </a>
             <p className="text-[11px] font-semibold text-black leading-snug mb-2">{p.goal}</p>
             <p className="text-[11px] text-[#525252] leading-relaxed mb-3">{p.objective}</p>
             <div className="text-[10px] tracking-[1.4px] font-semibold mb-1" style={{ color: GOLD }}>

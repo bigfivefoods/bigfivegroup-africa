@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import {
   ArrowRight,
+  ArrowUp,
   Compass,
   Download,
   GraduationCap,
@@ -42,6 +43,23 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
     <div className="text-[10px] sm:text-xs tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
       {children}
     </div>
+  );
+}
+
+function gcDomId(id: string) {
+  return `gc-${id.replaceAll(".", "-")}`;
+}
+
+function ProjectPlanLink({ light = false }: { light?: boolean }) {
+  return (
+    <a
+      href="#gantt"
+      className="inline-flex shrink-0 items-center gap-1 text-[11px] font-semibold tracking-wide underline decoration-current/40 underline-offset-2 hover:decoration-current"
+      style={{ color: light ? "#E8C07A" : GOLD }}
+    >
+      Project plan
+      <ArrowUp className="w-3 h-3" aria-hidden />
+    </a>
   );
 }
 
@@ -177,8 +195,8 @@ export default function NfnspBriefing() {
           </h2>
           <p className="text-sm text-[#525252] max-w-3xl mb-8 leading-relaxed">
             Confidential partner briefing. Official statistics carry a source. Group figures carry a
-            plan / programme-reported / product specification / internal comparison label. Eighteen
-            sections — executive summary through the proposal deck, 90-day ask and conclusion.
+            plan / programme-reported / product specification / internal comparison label. Nineteen
+            sections — executive summary, the project plan, then the proposal deck, 90-day ask and conclusion.
           </p>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-10">
             {NFNSP_PROPOSAL_NAV.map((item) => (
@@ -232,12 +250,23 @@ export default function NfnspBriefing() {
               </li>
             ))}
           </ul>
+          <p className="mt-8 text-sm font-semibold max-w-3xl" style={{ color: FOREST }}>
+            <a href="#gantt" className="underline decoration-[#0F3D38]/35 underline-offset-2 hover:decoration-[#0F3D38]">
+              The project plan follows — goals, deliverables and the offerings that carry them.
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section id="gantt" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: CREAM }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <NfnspGantt />
         </div>
       </section>
 
       <section id="why-now" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>02 · WHY NOW</Eyebrow>
+          <Eyebrow>03 · WHY NOW</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">
             The Plan’s own numbers
@@ -270,7 +299,7 @@ export default function NfnspBriefing() {
 
       <section id="reading-the-plan" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>03 · READING THE PLAN</Eyebrow>
+          <Eyebrow>04 · READING THE PLAN</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             Draft 2 (July 2026) and the 27 August Framework
@@ -287,7 +316,7 @@ export default function NfnspBriefing() {
 
       <section id="group-purpose" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>04 · VISION · MISSION · VALUES</Eyebrow>
+          <Eyebrow>05 · VISION · MISSION · VALUES</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-4 max-w-3xl">
             The north star this partnership already answers to
@@ -351,7 +380,7 @@ export default function NfnspBriefing() {
         style={{ backgroundColor: CREAM }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>05 · FEED · EDUCATE · EMPOWER</Eyebrow>
+          <Eyebrow>06 · FEED · EDUCATE · EMPOWER</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-3xl">
             How the Group mission serves the Department’s Goals
@@ -416,11 +445,14 @@ export default function NfnspBriefing() {
 
       <section id="plan-goals" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>06 · NDA GOALS AND OBJECTIVES</Eyebrow>
+          <Eyebrow>07 · NDA GOALS AND OBJECTIVES</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-4xl">
-            Official Goals and Game Changers — and how Big Five answers each
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-4xl">
+              Official Goals and Game Changers — and how Big Five answers each
+            </h2>
+            <ProjectPlanLink />
+          </div>
           <p className="text-sm sm:text-base text-[#525252] max-w-3xl mb-10 leading-relaxed">
             Titles below are the Plan’s own, from NFNSP-2 Draft 2 (July 2026) and the Results
             Framework of 27 August 2026. This is not a substitute for those documents. Each Game
@@ -434,8 +466,11 @@ export default function NfnspBriefing() {
                   className="rounded-2xl p-5 sm:p-7 mb-5"
                   style={{ backgroundColor: FOREST }}
                 >
-                  <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: "#E8C07A" }}>
-                    {g.n.toUpperCase()}
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="text-[10px] tracking-[2px] font-semibold" style={{ color: "#E8C07A" }}>
+                      {g.n.toUpperCase()}
+                    </div>
+                    <ProjectPlanLink light />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-white mb-3">
                     {g.title}
@@ -453,14 +488,18 @@ export default function NfnspBriefing() {
                   {g.gameChangers.map((gc) => (
                     <div
                       key={gc.id}
-                      className="rounded-2xl bg-[#fafafa] p-5 sm:p-6"
+                      id={gcDomId(gc.id)}
+                      className="scroll-mt-28 rounded-2xl bg-[#fafafa] p-5 sm:p-6"
                       style={{ border: "1px solid rgba(196,146,58,0.35)", borderLeft: `4px solid ${FOREST}` }}
                     >
-                      <div className="flex flex-wrap items-baseline gap-3 mb-3">
-                        <span className="text-[10px] tracking-[2px] font-semibold" style={{ color: GOLD }}>
-                          GAME CHANGER {gc.n}
-                        </span>
-                        <h4 className="text-lg font-semibold tracking-tight text-black">{gc.title}</h4>
+                      <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                        <div className="flex flex-wrap items-baseline gap-3 min-w-0">
+                          <span className="text-[10px] tracking-[2px] font-semibold" style={{ color: GOLD }}>
+                            GAME CHANGER {gc.n}
+                          </span>
+                          <h4 className="text-lg font-semibold tracking-tight text-black">{gc.title}</h4>
+                        </div>
+                        <ProjectPlanLink />
                       </div>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div className="rounded-xl bg-white border border-black/8 p-4 sm:p-5">
@@ -510,11 +549,15 @@ export default function NfnspBriefing() {
             {NFNSP.planEnablers.map((e) => (
               <article
                 key={e.id}
-                className="rounded-2xl bg-white p-5"
+                id={`enabler-${e.id}`}
+                className="scroll-mt-28 rounded-2xl bg-white p-5"
                 style={{ border: "1px solid rgba(196,146,58,0.3)", borderLeft: `4px solid ${FOREST}` }}
               >
-                <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
-                  {e.n.toUpperCase()}
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <div className="text-[10px] tracking-[2px] font-semibold" style={{ color: GOLD }}>
+                    {e.n.toUpperCase()}
+                  </div>
+                  <ProjectPlanLink />
                 </div>
                 <h3 className="text-base font-semibold text-black mb-2">{e.title}</h3>
                 <p className="text-sm text-[#404040] leading-relaxed mb-3">{e.rationale}</p>
@@ -524,10 +567,24 @@ export default function NfnspBriefing() {
                     <Pill key={p}>{p}</Pill>
                   ))}
                 </div>
+                {e.id === "ec" ? (
+                  <a
+                    href="#os"
+                    className="inline-flex mt-4 text-[11px] font-semibold underline decoration-[#0F3D38]/35 underline-offset-2 hover:decoration-[#0F3D38]"
+                    style={{ color: FOREST }}
+                  >
+                    Operating system →
+                  </a>
+                ) : null}
               </article>
             ))}
           </div>
-          <div className="overflow-x-auto rounded-2xl border border-black/10">
+          <div id="plan-horizons" className="scroll-mt-28">
+            <div className="flex flex-wrap items-end justify-between gap-3 mb-3">
+              <h3 className="text-lg font-semibold text-black">Framework horizons</h3>
+              <ProjectPlanLink />
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-black/10">
             <table className="w-full min-w-[40rem] text-left">
               <caption className="sr-only">Plan horizons from the Results Framework</caption>
               <thead>
@@ -562,6 +619,7 @@ export default function NfnspBriefing() {
             Results Framework 27 August 2026 — Plan targets, not Group delivery claims. Several
             Framework cells remain XX and are not invented here.
           </Source>
+          </div>
         </div>
       </section>
 
@@ -571,11 +629,14 @@ export default function NfnspBriefing() {
         style={{ backgroundColor: CREAM }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>07 · HOW THE GROUP WORKS AS ONE</Eyebrow>
+          <Eyebrow>08 · HOW THE GROUP WORKS AS ONE</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-4 max-w-3xl">
-            {NFNSP.systemFlow.title}
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
+              {NFNSP.systemFlow.title}
+            </h2>
+            <ProjectPlanLink />
+          </div>
           <blockquote
             className="rounded-2xl p-5 sm:p-7 mb-8 max-w-4xl"
             style={{ backgroundColor: FOREST }}
@@ -618,11 +679,15 @@ export default function NfnspBriefing() {
                   {e.gameChangers.map((gc) => (
                     <article
                       key={gc.id}
-                      className="rounded-2xl bg-white p-5 sm:p-6"
+                      id={gcDomId(gc.id)}
+                      className="scroll-mt-28 rounded-2xl bg-white p-5 sm:p-6"
                       style={{ border: "1px solid rgba(196,146,58,0.3)", borderLeft: `4px solid ${FOREST}` }}
                     >
-                      <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
-                        {gc.n} · {gc.title.toUpperCase()}
+                      <div className="flex flex-wrap items-start justify-between gap-3 mb-2">
+                        <div className="text-[10px] tracking-[2px] font-semibold" style={{ color: GOLD }}>
+                          {gc.n} · {gc.title.toUpperCase()}
+                        </div>
+                        <ProjectPlanLink />
                       </div>
                       <p className="text-sm text-[#404040] leading-relaxed mb-3">{gc.planAsks}</p>
                       <ul className="space-y-2 mb-3">
@@ -655,11 +720,14 @@ export default function NfnspBriefing() {
 
       <section id="pillars" className="scroll-mt-28 border-b border-black/10 bg-white py-14 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>08 · NINE PILLARS · ONE CIRCUIT</Eyebrow>
+          <Eyebrow>09 · NINE PILLARS · ONE CIRCUIT</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black mb-3 max-w-3xl">
-            Feed · Educate · Empower — mapped to the Plan
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter text-black max-w-3xl">
+              Feed · Educate · Empower — mapped to the Plan
+            </h2>
+            <ProjectPlanLink />
+          </div>
           <p className="text-sm sm:text-base text-[#525252] max-w-3xl mb-8 leading-relaxed">
             Nine companies, one delivery. Each pillar has a job on Goals 1–3 and Enablers A–C.
             Global is held until a closed KwaZulu-Natal circuit — not a current scale claim.
@@ -668,7 +736,8 @@ export default function NfnspBriefing() {
             {NFNSP.pillars.map((p) => (
               <article
                 key={p.slug}
-                className="rounded-2xl bg-[#fafafa] p-5"
+                id={`pillar-${p.slug}`}
+                className="scroll-mt-28 rounded-2xl bg-[#fafafa] p-5"
                 style={{ border: "1px solid rgba(196,146,58,0.28)" }}
               >
                 <div className="text-[10px] tracking-[2px] font-semibold mb-1" style={{ color: GOLD }}>
@@ -679,6 +748,9 @@ export default function NfnspBriefing() {
                 <p className="text-xs font-medium leading-relaxed" style={{ color: FOREST }}>
                   {p.nda}
                 </p>
+                <div className="mt-3">
+                  <ProjectPlanLink />
+                </div>
               </article>
             ))}
           </div>
@@ -722,7 +794,7 @@ export default function NfnspBriefing() {
 
       <section id="who-we-are" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>09 · WHO WE ARE</Eyebrow>
+          <Eyebrow>10 · WHO WE ARE</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             Big Five Group — implementation partner
@@ -739,11 +811,14 @@ export default function NfnspBriefing() {
 
       <section id="foods" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>10 · BIG FIVE FOODS</Eyebrow>
+          <Eyebrow>11 · BIG FIVE FOODS</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-4">
-            One SKU family for institutional plates
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
+              One SKU family for institutional plates
+            </h2>
+            <ProjectPlanLink />
+          </div>
           <p className="text-sm text-[#525252] max-w-3xl mb-6 leading-relaxed">{NFNSP.foods.intro}</p>
           <article
             className="rounded-2xl p-5 sm:p-6 mb-6 max-w-4xl"
@@ -795,11 +870,14 @@ export default function NfnspBriefing() {
         style={{ backgroundColor: FOREST }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>11 · OPERATING SYSTEM</Eyebrow>
+          <Eyebrow>12 · OPERATING SYSTEM</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter mb-3 max-w-3xl">
-            {NFNSP.os.headline}
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tighter max-w-3xl">
+              {NFNSP.os.headline}
+            </h2>
+            <ProjectPlanLink light />
+          </div>
           <p className="text-white/70 text-sm sm:text-base max-w-3xl mb-4">{NFNSP.os.sub}</p>
           <p className="text-sm font-semibold mb-8 max-w-3xl" style={{ color: "#E8C07A" }}>
             {NFNSP.os.nonClaim}
@@ -838,7 +916,7 @@ export default function NfnspBriefing() {
 
       <section id="workstreams" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>12 · FIVE WORKSTREAMS</Eyebrow>
+          <Eyebrow>13 · FIVE WORKSTREAMS</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">A–E</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -864,11 +942,14 @@ export default function NfnspBriefing() {
 
       <section id="demonstration" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>13 · DEMONSTRATION DESIGN</Eyebrow>
+          <Eyebrow>14 · DEMONSTRATION DESIGN</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
-            KZN first — then a second province
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-6">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
+              KZN first — then a second province
+            </h2>
+            <ProjectPlanLink />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <article className="rounded-2xl border border-black/10 bg-[#fafafa] p-5">
               <div className="text-[10px] tracking-[2px] font-semibold mb-2" style={{ color: GOLD }}>
@@ -889,7 +970,7 @@ export default function NfnspBriefing() {
 
       <section id="commercial" className="scroll-mt-28 border-b border-black/10 py-14" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>14 · COMMERCIAL MODEL</Eyebrow>
+          <Eyebrow>15 · COMMERCIAL MODEL</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-3">
             Group figures — labelled
@@ -910,7 +991,7 @@ export default function NfnspBriefing() {
 
       <section id="governance" className="scroll-mt-28 border-b border-black/10 bg-white py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>15 · GOVERNANCE AND RISK</Eyebrow>
+          <Eyebrow>16 · GOVERNANCE AND RISK</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-6">
             What this briefing is not
@@ -947,11 +1028,14 @@ export default function NfnspBriefing() {
 
       <section id="ask" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: CREAM }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>17 · 90-DAY ASK</Eyebrow>
+          <Eyebrow>18 · 90-DAY ASK</Eyebrow>
           <GoldRule />
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black mb-8">
-            Five asks — timeline, deliverables, then the briefing
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-black">
+              Five asks — then the briefing
+            </h2>
+            <ProjectPlanLink />
+          </div>
           <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {NFNSP.asks.map((a) => (
               <li
@@ -982,9 +1066,24 @@ export default function NfnspBriefing() {
               ))}
             </ul>
           </div>
-          <div className="mb-12">
-            <NfnspGantt />
-          </div>
+          <a
+            href="#gantt"
+            className="mb-12 flex items-center justify-between gap-4 rounded-2xl bg-white p-5 hover:bg-[#F7F1E6]"
+            style={{ border: "1px solid rgba(196,146,58,0.35)" }}
+          >
+            <span>
+              <span className="block text-[10px] tracking-[2px] font-semibold mb-1" style={{ color: GOLD }}>
+                PROJECT PLAN
+              </span>
+              <span className="block text-base font-semibold text-black">
+                Impact timeline, goals and deliverables
+              </span>
+              <span className="block text-sm text-[#525252] mt-1 leading-relaxed">
+                The chart sits with the executive summary. Phase 0 is these five asks.
+              </span>
+            </span>
+            <ArrowUp className="w-4 h-4 shrink-0" style={{ color: GOLD }} aria-hidden />
+          </a>
           <h3 className="text-xl font-semibold tracking-tight text-black mb-4">Request a briefing</h3>
           <NfnspAskForm />
         </div>
@@ -992,7 +1091,7 @@ export default function NfnspBriefing() {
 
       <section id="conclusion" className="scroll-mt-28 border-b border-black/10 py-14 sm:py-16" style={{ backgroundColor: FOREST }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Eyebrow>18 · CONCLUSION</Eyebrow>
+          <Eyebrow>19 · CONCLUSION</Eyebrow>
           <GoldRule />
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tighter text-white mb-6">
             Targets, plates, a closed circuit
