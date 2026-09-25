@@ -656,7 +656,7 @@ export default function AboutPage() {
                 <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-amber-400/40 via-transparent to-emerald-500/20 blur-sm" />
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-white/5">
                   <Image
-                    src="/craig-muller.png"
+                    src="/craig-muller-latest.jpg"
                     alt="Dr. Craig R. Muller, Founder & CEO of Big Five Group"
                     fill
                     className="object-cover object-top"
