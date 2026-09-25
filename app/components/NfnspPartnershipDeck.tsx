@@ -625,7 +625,7 @@ function Slide({ index }: { index: number }) {
         <DeckSlideShell theme={theme}>
           <DeckEyebrow theme={theme}>EDUCATE · SUPER-CUBE®</DeckEyebrow>
           <DeckTitle>Six faces. The person at the centre.</DeckTitle>
-          <div className="grid grid-cols-1 md:grid-cols-[200px_minmax(0,1fr)] gap-3 min-h-0 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[250px_minmax(0,1fr)] gap-3 min-h-0 items-start">
             <SuperCubeModel compact />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 min-h-0">
               {P.leadership.faces.map((face) => (

@@ -753,8 +753,8 @@ export default function NfnspBriefing() {
             </h2>
             <ProjectPlanLink />
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-8 lg:gap-10 items-center mb-8">
-            <div className="rounded-3xl bg-white py-4 px-2" style={{ border: "1px solid rgba(196,146,58,0.35)" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)] gap-8 lg:gap-10 items-center mb-8">
+            <div className="rounded-3xl bg-white px-3 py-5" style={{ border: "1px solid rgba(196,146,58,0.35)" }}>
               <SuperCubeModel />
             </div>
             <div>
